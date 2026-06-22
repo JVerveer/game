@@ -560,6 +560,149 @@ const buildWokeshireMap = () => {
   return map;
 };
 
+const buildCryptoniaMap = () => {
+  const map = makeBlankMap(56, 34, "T");
+  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
+    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = Math.round(start.x + (end.x - start.x) * t);
+      const y = Math.round(start.y + (end.y - start.y) * t);
+      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
+    }
+  };
+
+  rect(map, 3, 4, 50, 25, "S");
+  rect(map, 39, 5, 10, 24, "W");
+  rect(map, 34, 8, 8, 18, "R");
+  rect(map, 9, 8, 27, 15, "E");
+  hline(map, 9, 42, 16, "R");
+  vline(map, 27, 5, 30, "R");
+  hline(map, 12, 35, 10, "R");
+  hline(map, 12, 35, 22, "R");
+
+  Object.keys(WORLD_ROUTES.cryptonia).forEach(direction => {
+    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
+  });
+
+  rect(map, 11, 9, 5, 5, "I");
+  rect(map, 18, 8, 4, 6, "A");
+  rect(map, 24, 7, 4, 7, "I");
+  rect(map, 30, 8, 5, 6, "A");
+  rect(map, 11, 18, 6, 4, "B");
+  rect(map, 24, 18, 7, 4, "H");
+  rect(map, 34, 23, 8, 3, "P");
+  rect(map, 32, 18, 3, 5, "U");
+
+  map[21][14] = "O";
+  map[21][27] = "O";
+  map[21][35] = "O";
+  map[25][36] = "O";
+  map[25][37] = "O";
+
+  Object.keys(WORLD_ROUTES.cryptonia).forEach(direction => {
+    const pos = PORTAL_POS[direction as RouteDirection];
+    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
+  });
+
+  return map;
+};
+
+const buildSurveilliaMap = () => {
+  const map = makeBlankMap(56, 34, "T");
+  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
+    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = Math.round(start.x + (end.x - start.x) * t);
+      const y = Math.round(start.y + (end.y - start.y) * t);
+      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
+    }
+  };
+
+  rect(map, 3, 4, 50, 25, "G");
+  rect(map, 6, 22, 44, 5, "W");
+  rect(map, 10, 7, 36, 14, "E");
+  hline(map, 10, 46, 16, "R");
+  vline(map, 27, 4, 30, "R");
+  hline(map, 12, 44, 10, "R");
+  hline(map, 12, 44, 20, "R");
+  rect(map, 33, 23, 10, 4, "R");
+
+  Object.keys(WORLD_ROUTES.surveillia).forEach(direction => {
+    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
+  });
+
+  rect(map, 11, 8, 5, 6, "I");
+  rect(map, 18, 7, 5, 7, "A");
+  rect(map, 25, 6, 5, 8, "I");
+  rect(map, 32, 7, 5, 7, "A");
+  rect(map, 39, 8, 5, 6, "I");
+  rect(map, 12, 17, 7, 3, "B");
+  rect(map, 24, 17, 7, 3, "H");
+  rect(map, 35, 23, 7, 3, "P");
+
+  map[19][15] = "O";
+  map[19][27] = "O";
+  map[25][36] = "O";
+  map[25][37] = "O";
+
+  Object.keys(WORLD_ROUTES.surveillia).forEach(direction => {
+    const pos = PORTAL_POS[direction as RouteDirection];
+    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
+  });
+
+  return map;
+};
+
+const buildTweetsburgMap = () => {
+  const map = makeBlankMap(56, 34, "T");
+  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
+    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = Math.round(start.x + (end.x - start.x) * t);
+      const y = Math.round(start.y + (end.y - start.y) * t);
+      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
+    }
+  };
+
+  rect(map, 4, 4, 48, 25, "S");
+  rect(map, 8, 7, 40, 18, "E");
+  hline(map, 8, 48, 16, "R");
+  vline(map, 27, 5, 29, "R");
+  hline(map, 12, 44, 10, "R");
+  hline(map, 12, 44, 22, "R");
+  rect(map, 18, 12, 19, 8, "R");
+
+  Object.keys(WORLD_ROUTES.tweetsburg).forEach(direction => {
+    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
+  });
+
+  rect(map, 10, 8, 6, 4, "U");
+  rect(map, 18, 8, 6, 4, "B");
+  rect(map, 31, 8, 6, 4, "H");
+  rect(map, 40, 8, 6, 4, "U");
+  rect(map, 12, 21, 6, 3, "B");
+  rect(map, 35, 21, 7, 3, "P");
+  rect(map, 24, 12, 7, 7, "I");
+
+  map[11][13] = "O";
+  map[11][21] = "O";
+  map[11][34] = "O";
+  map[11][43] = "O";
+  map[23][15] = "O";
+  map[23][36] = "O";
+  map[23][37] = "O";
+
+  Object.keys(WORLD_ROUTES.tweetsburg).forEach(direction => {
+    const pos = PORTAL_POS[direction as RouteDirection];
+    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
+  });
+
+  return map;
+};
+
 const buildShopMap = () => {
   const map = makeBlankMap(14, 10, "D");
   rect(map, 1, 1, 12, 8, "B");
@@ -628,6 +771,9 @@ const themedRowsFor = (theme: TownTheme) => {
   if (theme.id === "brexiton") return buildBrexitonMap();
   if (theme.id === "promptford") return buildPromptfordMap();
   if (theme.id === "wokeshire") return buildWokeshireMap();
+  if (theme.id === "cryptonia") return buildCryptoniaMap();
+  if (theme.id === "surveillia") return buildSurveilliaMap();
+  if (theme.id === "tweetsburg") return buildTweetsburgMap();
   return buildThemedTownMap(theme);
 };
 
@@ -658,6 +804,36 @@ const doorConfigFor = (theme: TownTheme): TownDoorConfig => {
       healing: "33,15",
       homes: ["12,15", "17,15", "38,15", "43,15"],
       train: ["36,25", "37,25", "36,26", "37,26"],
+      save: "27,18",
+      sign: "25,18",
+    };
+  }
+  if (theme.id === "cryptonia") {
+    return {
+      shop: "14,21",
+      healing: "27,21",
+      homes: ["35,21"],
+      train: ["36,25", "37,25", "36,26", "37,26"],
+      save: "27,18",
+      sign: "25,18",
+    };
+  }
+  if (theme.id === "surveillia") {
+    return {
+      shop: "15,19",
+      healing: "27,19",
+      homes: ["41,13"],
+      train: ["36,25", "37,25", "36,26", "37,26"],
+      save: "27,18",
+      sign: "25,18",
+    };
+  }
+  if (theme.id === "tweetsburg") {
+    return {
+      shop: "21,11",
+      healing: "34,11",
+      homes: ["13,11", "43,11", "15,23"],
+      train: ["36,23", "37,23", "36,24", "37,24"],
       save: "27,18",
       sign: "25,18",
     };
@@ -700,6 +876,36 @@ const specialObjectsFor = (theme: TownTheme): Record<string, string> => {
       "11,17": "CANAL_HOUSE",
     };
   }
+  if (theme.id === "cryptonia") {
+    return {
+      "24,10": "BURJ_TOWER",
+      "31,15": "PALM_ISLAND",
+      "17,16": "LUXURY_CAR",
+      "38,16": "CRYPTO_BILLBOARD",
+      "43,21": "YACHT",
+      "33,18": "GOLD_ATM",
+    };
+  }
+  if (theme.id === "surveillia") {
+    return {
+      "25,10": "PEARL_TOWER",
+      "18,15": "SHANGHAI_TOWER",
+      "35,15": "NEON_SIGN",
+      "42,20": "CAMERA_POLE",
+      "20,23": "RIVER_FERRY",
+      "31,20": "DATA_KIOSK",
+    };
+  }
+  if (theme.id === "tweetsburg") {
+    return {
+      "26,13": "MOSCOW_CATHEDRAL",
+      "18,16": "KREMLIN_WALL",
+      "35,16": "KREMLIN_WALL",
+      "22,21": "SNOW_STATUE",
+      "31,21": "RUMOR_KIOSK",
+      "43,18": "RED_STAR",
+    };
+  }
   return {};
 };
 
@@ -737,6 +943,42 @@ const specialInteractionsFor = (theme: TownTheme): Record<string, Interaction> =
       "29,14": {
         name: "Tulip Notice Stand",
         lines: ["Every faction has approved a different acceptable tulip color."],
+      },
+    };
+  }
+  if (theme.id === "cryptonia") {
+    return {
+      "24,10": {
+        name: "Needle Tower",
+        lines: ["The elevator accepts only coins currently going up."],
+      },
+      "38,16": {
+        name: "Speculation Billboard",
+        lines: ["It says BUY THE DIP. The dip has filed for bankruptcy."],
+      },
+    };
+  }
+  if (theme.id === "surveillia") {
+    return {
+      "42,20": {
+        name: "Camera Pole",
+        lines: ["The camera politely confirms it saw you reading this."],
+      },
+      "31,20": {
+        name: "Data Kiosk",
+        lines: ["It recommends a route based on your last seven hesitations."],
+      },
+    };
+  }
+  if (theme.id === "tweetsburg") {
+    return {
+      "26,13": {
+        name: "Cathedral of Hot Takes",
+        lines: ["Every dome repeats a different version of the same rumor."],
+      },
+      "31,21": {
+        name: "Rumor Kiosk",
+        lines: ["The headline updates before the sentence finishes loading."],
       },
     };
   }

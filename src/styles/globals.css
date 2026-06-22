@@ -1395,6 +1395,456 @@
     border: 3px solid #252018;
   }
 
+  .map-cryptonia .tile-S {
+    background-color: #e4ca78;
+  }
+
+  .map-cryptonia .tile-S::before {
+    background-image:
+      radial-gradient(circle, rgba(97,75,40,0.22) 1px, transparent 2px),
+      linear-gradient(135deg, transparent 0 42%, rgba(255,248,200,0.22) 42% 48%, transparent 48%);
+    background-size: 10px 10px, 28px 28px;
+  }
+
+  .map-cryptonia .tile-E {
+    background-color: #d9c78a;
+  }
+
+  .map-cryptonia .tile-E::before {
+    background-image:
+      linear-gradient(90deg, rgba(102,76,37,0.18) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(255,248,200,0.32) 1px, transparent 1px);
+    background-size: 14px 14px;
+  }
+
+  .map-cryptonia .tile-R {
+    background-color: #c7ae69;
+  }
+
+  .map-cryptonia .tile-W {
+    background: repeating-linear-gradient(135deg, #55a6b4 0 8px, #2f8196 8px 16px);
+  }
+
+  .map-cryptonia .tile-A,
+  .map-cryptonia .tile-I {
+    background:
+      linear-gradient(180deg, #8fd6df 0 13%, #252018 13% 18%, transparent 18%),
+      linear-gradient(90deg, transparent 0 14%, #252018 14% 17%, #bdf2f4 17% 29%, #252018 29% 32%, transparent 32% 43%, #252018 43% 46%, #bdf2f4 46% 58%, #252018 58% 61%, transparent 61% 72%, #252018 72% 75%, #bdf2f4 75% 87%, #252018 87% 90%, transparent 90%),
+      linear-gradient(0deg, #b8944f 0 10%, transparent 10%),
+      #d7c074;
+  }
+
+  .map-cryptonia .tile-I::after {
+    left: 17px;
+    top: -4px;
+    width: 10px;
+    height: 50px;
+    background:
+      linear-gradient(90deg, #252018 0 3px, #d7c074 3px 7px, #252018 7px 10px);
+    box-shadow: 0 -10px 0 -2px #252018;
+  }
+
+  .map-surveillia .tile-E {
+    background-color: #5c6067;
+  }
+
+  .map-surveillia .tile-E::before {
+    background-image:
+      linear-gradient(90deg, rgba(37,32,24,0.28) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(255,248,200,0.12) 1px, transparent 1px);
+    background-size: 12px 12px;
+  }
+
+  .map-surveillia .tile-R {
+    background-color: #68615b;
+  }
+
+  .map-surveillia .tile-W {
+    background: repeating-linear-gradient(135deg, #4f8da4 0 8px, #2d6e8b 8px 16px);
+  }
+
+  .map-surveillia .tile-A,
+  .map-surveillia .tile-I {
+    background:
+      linear-gradient(180deg, #252018 0 5%, #b34db8 5% 11%, transparent 11%),
+      linear-gradient(90deg, transparent 0 13%, #252018 13% 16%, #91e7f4 16% 27%, #252018 27% 30%, transparent 30% 43%, #252018 43% 46%, #f4d76b 46% 57%, #252018 57% 60%, transparent 60% 73%, #252018 73% 76%, #91e7f4 76% 87%, #252018 87% 90%, transparent 90%),
+      linear-gradient(0deg, #303942 0 10%, transparent 10%),
+      #47515d;
+  }
+
+  .map-surveillia .tile-I::after {
+    left: 14px;
+    top: -2px;
+    width: 18px;
+    height: 48px;
+    background:
+      radial-gradient(circle at 50% 28%, #b34db8 0 5px, #252018 6px 8px, transparent 9px),
+      linear-gradient(90deg, transparent 0 38%, #252018 38% 45%, #91e7f4 45% 58%, #252018 58% 65%, transparent 65%);
+  }
+
+  .map-tweetsburg .tile-S {
+    background-color: #d8d7c8;
+  }
+
+  .map-tweetsburg .tile-S::before {
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 2px),
+      linear-gradient(135deg, transparent 0 42%, rgba(97,75,40,0.16) 42% 49%, transparent 49%);
+    background-size: 9px 9px, 24px 24px;
+  }
+
+  .map-tweetsburg .tile-E {
+    background-color: #a33931;
+  }
+
+  .map-tweetsburg .tile-E::before {
+    background-image:
+      linear-gradient(90deg, rgba(37,32,24,0.28) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(255,248,200,0.18) 1px, transparent 1px);
+    background-size: 12px 12px;
+  }
+
+  .map-tweetsburg .tile-R {
+    background-color: #8b6a54;
+  }
+
+  .map-tweetsburg .tile-U,
+  .map-tweetsburg .tile-I {
+    background:
+      linear-gradient(180deg, #f4d76b 0 8%, #252018 8% 13%, transparent 13%),
+      linear-gradient(90deg, transparent 0 13%, #252018 13% 16%, #fff3a8 16% 27%, #252018 27% 30%, transparent 30% 43%, #252018 43% 46%, #fff3a8 46% 57%, #252018 57% 60%, transparent 60% 73%, #252018 73% 76%, #fff3a8 76% 87%, #252018 87% 90%, transparent 90%),
+      linear-gradient(0deg, #6a2e28 0 12%, transparent 12%),
+      #b54035;
+  }
+
+  .map-tweetsburg .tile-I::after {
+    left: 10px;
+    top: 1px;
+    width: 28px;
+    height: 40px;
+    background:
+      radial-gradient(circle at 23% 18%, #f4d76b 0 6px, #252018 7px 9px, transparent 10px),
+      radial-gradient(circle at 50% 8%, #5fc15b 0 7px, #252018 8px 10px, transparent 11px),
+      radial-gradient(circle at 76% 18%, #2f64a5 0 6px, #252018 7px 9px, transparent 10px);
+  }
+
+  .object-burj-tower::before {
+    left: 17px;
+    top: -18px;
+    width: 10px;
+    height: 62px;
+    background:
+      linear-gradient(90deg, #252018 0 3px, #d7c074 3px 7px, #252018 7px 10px);
+    box-shadow: -7px 20px 0 #bdf2f4, 7px 10px 0 #bdf2f4;
+  }
+
+  .object-burj-tower::after {
+    left: 20px;
+    top: -29px;
+    width: 4px;
+    height: 14px;
+    background: #252018;
+  }
+
+  .object-palm-island::before {
+    left: 10px;
+    top: 9px;
+    width: 22px;
+    height: 22px;
+    background: #2e9c66;
+    border-radius: 50%;
+    box-shadow: 0 12px 0 #d7c074, -10px 12px 0 #d7c074, 10px 12px 0 #d7c074;
+  }
+
+  .object-palm-island::after {
+    left: 19px;
+    top: 16px;
+    width: 5px;
+    height: 23px;
+    background: #8b6138;
+  }
+
+  .object-luxury-car::before,
+  .object-river-ferry::before {
+    left: 3px;
+    top: 19px;
+    width: 36px;
+    height: 13px;
+    background: #f4d76b;
+    border: 4px solid #252018;
+    border-radius: 8px 8px 3px 3px;
+  }
+
+  .object-luxury-car::after {
+    left: 9px;
+    top: 32px;
+    width: 7px;
+    height: 7px;
+    background: #252018;
+    box-shadow: 18px 0 0 #252018, 8px -10px 0 #bdf2f4, 17px -10px 0 #bdf2f4;
+  }
+
+  .object-crypto-billboard::before {
+    left: 1px;
+    top: 7px;
+    width: 40px;
+    height: 22px;
+    background: #252018;
+    border: 4px solid #f4d76b;
+  }
+
+  .object-crypto-billboard::after {
+    content: "BTC";
+    left: 7px;
+    top: 12px;
+    color: #f4d76b;
+    font: 11px/1 monospace;
+    font-weight: 900;
+  }
+
+  .object-yacht::before {
+    left: 1px;
+    top: 21px;
+    width: 39px;
+    height: 13px;
+    background: #fff3a8;
+    border: 4px solid #252018;
+    border-radius: 2px 2px 14px 14px;
+  }
+
+  .object-yacht::after {
+    left: 19px;
+    top: 6px;
+    width: 0;
+    height: 0;
+    border-left: 14px solid #fff3a8;
+    border-top: 17px solid transparent;
+    filter: drop-shadow(-3px 0 0 #252018);
+  }
+
+  .object-gold-atm::before {
+    left: 9px;
+    top: 8px;
+    width: 24px;
+    height: 29px;
+    background: #f4d76b;
+    border: 4px solid #252018;
+    box-shadow: inset 0 8px 0 #fff3a8;
+  }
+
+  .object-gold-atm::after {
+    left: 16px;
+    top: 23px;
+    width: 10px;
+    height: 4px;
+    background: #252018;
+    box-shadow: 0 -8px 0 #2e9c66;
+  }
+
+  .object-pearl-tower::before {
+    left: 17px;
+    top: -12px;
+    width: 8px;
+    height: 54px;
+    background: #252018;
+    box-shadow: 0 0 0 0 #252018;
+  }
+
+  .object-pearl-tower::after {
+    left: 11px;
+    top: 2px;
+    width: 20px;
+    height: 20px;
+    background: #b34db8;
+    border: 4px solid #252018;
+    border-radius: 50%;
+    box-shadow: 0 24px 0 -1px #91e7f4, 0 24px 0 3px #252018;
+  }
+
+  .object-shanghai-tower::before {
+    left: 12px;
+    top: -7px;
+    width: 20px;
+    height: 50px;
+    background:
+      repeating-linear-gradient(0deg, #91e7f4 0 6px, #47515d 6px 10px);
+    border: 4px solid #252018;
+    border-radius: 9px 9px 2px 2px;
+  }
+
+  .object-shanghai-tower::after {
+    left: 18px;
+    top: -15px;
+    width: 8px;
+    height: 12px;
+    background: #252018;
+  }
+
+  .object-neon-sign::before {
+    left: 3px;
+    top: 11px;
+    width: 36px;
+    height: 18px;
+    background: #252018;
+    border: 4px solid #b34db8;
+  }
+
+  .object-neon-sign::after {
+    content: "24H";
+    left: 9px;
+    top: 15px;
+    color: #91e7f4;
+    font: 12px/1 monospace;
+    font-weight: 900;
+  }
+
+  .object-camera-pole::before {
+    left: 19px;
+    top: 9px;
+    width: 5px;
+    height: 31px;
+    background: #252018;
+  }
+
+  .object-camera-pole::after {
+    left: 13px;
+    top: 6px;
+    width: 20px;
+    height: 11px;
+    background: #5c6067;
+    border: 3px solid #252018;
+    box-shadow: 12px 4px 0 -2px #91e7f4;
+  }
+
+  .object-river-ferry::before {
+    background: #91e7f4;
+    border-radius: 2px 2px 14px 14px;
+  }
+
+  .object-river-ferry::after {
+    left: 9px;
+    top: 13px;
+    width: 24px;
+    height: 8px;
+    background: #fff3a8;
+    border: 3px solid #252018;
+  }
+
+  .object-data-kiosk::before {
+    left: 8px;
+    top: 6px;
+    width: 26px;
+    height: 30px;
+    background: #47515d;
+    border: 4px solid #252018;
+    box-shadow: inset 0 8px 0 #91e7f4;
+  }
+
+  .object-data-kiosk::after {
+    left: 16px;
+    top: 21px;
+    width: 10px;
+    height: 4px;
+    background: #b34db8;
+    box-shadow: 0 7px 0 #252018;
+  }
+
+  .object-moscow-cathedral::before {
+    left: 5px;
+    top: 13px;
+    width: 32px;
+    height: 25px;
+    background: #b54035;
+    border: 4px solid #252018;
+    box-shadow: inset 9px 0 0 #fff3a8, inset -9px 0 0 #fff3a8;
+  }
+
+  .object-moscow-cathedral::after {
+    left: 5px;
+    top: -2px;
+    width: 11px;
+    height: 17px;
+    background: #f4d76b;
+    border: 3px solid #252018;
+    border-radius: 50% 50% 2px 2px;
+    box-shadow: 12px -7px 0 -1px #5fc15b, 12px -7px 0 2px #252018, 25px 0 0 -1px #2f64a5, 25px 0 0 2px #252018;
+  }
+
+  .object-kremlin-wall::before {
+    left: -2px;
+    top: 18px;
+    width: 46px;
+    height: 18px;
+    background:
+      repeating-linear-gradient(90deg, #7b2e29 0 8px, #b54035 8px 16px);
+    border: 4px solid #252018;
+  }
+
+  .object-kremlin-wall::after {
+    left: 2px;
+    top: 9px;
+    width: 8px;
+    height: 11px;
+    background: #b54035;
+    border: 3px solid #252018;
+    box-shadow: 16px 0 0 #b54035, 32px 0 0 #b54035;
+  }
+
+  .object-snow-statue::before {
+    left: 13px;
+    top: 8px;
+    width: 16px;
+    height: 25px;
+    background: #d8d7c8;
+    border: 4px solid #252018;
+    box-shadow: 0 -9px 0 -1px #d8d7c8, 0 -9px 0 3px #252018;
+  }
+
+  .object-snow-statue::after {
+    left: 8px;
+    top: 34px;
+    width: 26px;
+    height: 6px;
+    background: #252018;
+  }
+
+  .object-rumor-kiosk::before {
+    left: 6px;
+    top: 9px;
+    width: 30px;
+    height: 27px;
+    background: #fff3a8;
+    border: 4px solid #252018;
+    box-shadow: inset 0 8px 0 #b54035;
+  }
+
+  .object-rumor-kiosk::after {
+    left: 13px;
+    top: 22px;
+    width: 16px;
+    height: 3px;
+    background: #252018;
+    box-shadow: 0 6px 0 #252018;
+  }
+
+  .object-red-star::before {
+    left: 13px;
+    top: 7px;
+    width: 18px;
+    height: 18px;
+    background: #f4d76b;
+    clip-path: polygon(50% 0, 61% 36%, 98% 36%, 68% 57%, 79% 94%, 50% 71%, 21% 94%, 32% 57%, 2% 36%, 39% 36%);
+    filter: drop-shadow(0 0 0 #252018);
+  }
+
+  .object-red-star::after {
+    left: 19px;
+    top: 24px;
+    width: 5px;
+    height: 16px;
+    background: #252018;
+  }
+
   /* Richer character sprites with hats, faces, torsos, arms, and animated feet. */
   .trainer-sprite::before,
   .npc-sprite::before,

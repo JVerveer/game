@@ -16,6 +16,7 @@ import {
 } from "../data/items";
 import {
   DS_TILE_COLORS, DS_TILE_ICONS, DS_MAP_ROWS,
+  GAME_TILE_COLORS,
   WALKABLE_TILES as WALK,
   GAME_MAPS,
   MAIN_TOWN_IDS,
@@ -2079,6 +2080,23 @@ const objectClassFor = (obj: string) => {
     TULIP_STAND: "world-object object-tulip-stand",
     WINDMILL: "world-object object-windmill",
     CANAL_HOUSE: "world-object object-canal-house",
+    BURJ_TOWER: "world-object object-burj-tower",
+    PALM_ISLAND: "world-object object-palm-island",
+    LUXURY_CAR: "world-object object-luxury-car",
+    CRYPTO_BILLBOARD: "world-object object-crypto-billboard",
+    YACHT: "world-object object-yacht",
+    GOLD_ATM: "world-object object-gold-atm",
+    PEARL_TOWER: "world-object object-pearl-tower",
+    SHANGHAI_TOWER: "world-object object-shanghai-tower",
+    NEON_SIGN: "world-object object-neon-sign",
+    CAMERA_POLE: "world-object object-camera-pole",
+    RIVER_FERRY: "world-object object-river-ferry",
+    DATA_KIOSK: "world-object object-data-kiosk",
+    MOSCOW_CATHEDRAL: "world-object object-moscow-cathedral",
+    KREMLIN_WALL: "world-object object-kremlin-wall",
+    SNOW_STATUE: "world-object object-snow-statue",
+    RUMOR_KIOSK: "world-object object-rumor-kiosk",
+    RED_STAR: "world-object object-red-star",
     CLERK: "clerk-sprite",
     NURSE: "nurse-sprite",
   };
@@ -2417,6 +2435,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
                     className={`map-tile tile-${t}`}
                     style={{
                       width: TS, height: TS, flexShrink: 0,
+                      backgroundColor: GAME_TILE_COLORS[t] ?? GAME_TILE_COLORS.G,
                       boxShadow: "inset 0 0 0 1px rgba(37,32,24,0.2)",
                       display: "flex", alignItems: "center", justifyContent: "center",
                       fontSize: TS * 0.62, lineHeight: 1, userSelect: "none",
