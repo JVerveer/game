@@ -454,6 +454,112 @@ const buildBrexitonMap = () => {
   return map;
 };
 
+const buildPromptfordMap = () => {
+  const map = makeBlankMap(56, 34, "T");
+  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
+    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = Math.round(start.x + (end.x - start.x) * t);
+      const y = Math.round(start.y + (end.y - start.y) * t);
+      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
+    }
+  };
+
+  rect(map, 3, 4, 50, 25, "G");
+  rect(map, 6, 21, 44, 4, "W");
+  rect(map, 18, 20, 8, 6, "R");
+  rect(map, 33, 20, 9, 6, "R");
+  rect(map, 8, 7, 40, 13, "E");
+  hline(map, 8, 48, 13, "R");
+  vline(map, 27, 5, 29, "R");
+  hline(map, 12, 44, 8, "R");
+  hline(map, 12, 44, 18, "R");
+
+  Object.keys(WORLD_ROUTES.promptford).forEach(direction => {
+    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
+  });
+
+  rect(map, 9, 8, 7, 3, "A");
+  rect(map, 18, 8, 7, 3, "A");
+  rect(map, 31, 8, 7, 3, "A");
+  rect(map, 40, 8, 7, 3, "A");
+  rect(map, 10, 15, 7, 3, "B");
+  rect(map, 24, 15, 7, 3, "H");
+  rect(map, 39, 15, 7, 3, "B");
+  rect(map, 34, 23, 8, 3, "P");
+  rect(map, 23, 11, 3, 7, "I");
+
+  map[10][13] = "O";
+  map[10][22] = "O";
+  map[10][34] = "O";
+  map[10][43] = "O";
+  map[17][13] = "O";
+  map[17][27] = "O";
+  map[17][42] = "O";
+  map[25][36] = "O";
+  map[25][37] = "O";
+
+  Object.keys(WORLD_ROUTES.promptford).forEach(direction => {
+    const pos = PORTAL_POS[direction as RouteDirection];
+    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
+  });
+
+  return map;
+};
+
+const buildWokeshireMap = () => {
+  const map = makeBlankMap(56, 34, "T");
+  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
+    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = Math.round(start.x + (end.x - start.x) * t);
+      const y = Math.round(start.y + (end.y - start.y) * t);
+      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
+    }
+  };
+
+  rect(map, 4, 4, 48, 25, "G");
+  rect(map, 7, 7, 42, 4, "W");
+  rect(map, 7, 18, 42, 4, "W");
+  rect(map, 16, 6, 5, 17, "R");
+  rect(map, 34, 6, 5, 17, "R");
+  rect(map, 9, 11, 38, 7, "E");
+  hline(map, 9, 47, 14, "R");
+  vline(map, 27, 10, 29, "R");
+  rect(map, 32, 23, 10, 4, "R");
+
+  Object.keys(WORLD_ROUTES.wokeshire).forEach(direction => {
+    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
+  });
+
+  rect(map, 10, 12, 4, 4, "U");
+  rect(map, 15, 12, 4, 4, "U");
+  rect(map, 20, 12, 4, 4, "B");
+  rect(map, 31, 12, 4, 4, "H");
+  rect(map, 36, 12, 4, 4, "U");
+  rect(map, 41, 12, 4, 4, "U");
+  rect(map, 35, 23, 6, 3, "P");
+  rect(map, 45, 23, 4, 4, "U");
+
+  map[15][12] = "O";
+  map[15][17] = "O";
+  map[15][22] = "O";
+  map[15][33] = "O";
+  map[15][38] = "O";
+  map[15][43] = "O";
+  map[25][36] = "O";
+  map[25][37] = "O";
+
+  Object.keys(WORLD_ROUTES.wokeshire).forEach(direction => {
+    const pos = PORTAL_POS[direction as RouteDirection];
+    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
+  });
+
+  return map;
+};
+
 const buildShopMap = () => {
   const map = makeBlankMap(14, 10, "D");
   rect(map, 1, 1, 12, 8, "B");
@@ -500,25 +606,68 @@ const routeInteractionsFor = (theme: TownTheme) => Object.fromEntries(
   }),
 );
 
-const createThemedTownDef = (theme: TownTheme): GameMapDef => {
-  const isBrexiton = theme.id === "brexiton";
-  return {
-    id: theme.id,
-    name: theme.name,
-    width: 56,
-    height: 34,
-    rows: isBrexiton ? buildBrexitonMap() : buildThemedTownMap(theme),
-    spawn: { x: 27, y: 18 },
-    objects: isBrexiton ? {
-      ...routeObjectsFor(theme),
-      "12,14": "DOOR_SHOP",
-      "27,14": "DOOR_HEAL",
-      "40,14": "DOOR_HOME",
-      "20,9": "DOOR_HOME",
-      "36,24": "TRAIN",
-      "37,24": "TRAIN",
-      "27,18": "★",
-      "25,18": "SIGN",
+type TownDoorConfig = {
+  shop: string;
+  healing: string;
+  homes: string[];
+  train: string[];
+  save: string;
+  sign: string;
+};
+
+const defaultDoorConfig: TownDoorConfig = {
+  shop: "19,14",
+  healing: "28,14",
+  homes: ["37,14", "21,24"],
+  train: ["34,24", "35,24", "34,25", "35,25"],
+  save: "27,18",
+  sign: "25,18",
+};
+
+const themedRowsFor = (theme: TownTheme) => {
+  if (theme.id === "brexiton") return buildBrexitonMap();
+  if (theme.id === "promptford") return buildPromptfordMap();
+  if (theme.id === "wokeshire") return buildWokeshireMap();
+  return buildThemedTownMap(theme);
+};
+
+const doorConfigFor = (theme: TownTheme): TownDoorConfig => {
+  if (theme.id === "brexiton") {
+    return {
+      shop: "12,14",
+      healing: "27,14",
+      homes: ["40,14", "20,9"],
+      train: ["36,24", "37,24", "36,25", "37,25"],
+      save: "27,18",
+      sign: "25,18",
+    };
+  }
+  if (theme.id === "promptford") {
+    return {
+      shop: "13,17",
+      healing: "27,17",
+      homes: ["42,17", "22,10"],
+      train: ["36,25", "37,25", "36,26", "37,26"],
+      save: "27,18",
+      sign: "25,18",
+    };
+  }
+  if (theme.id === "wokeshire") {
+    return {
+      shop: "22,15",
+      healing: "33,15",
+      homes: ["12,15", "17,15", "38,15", "43,15"],
+      train: ["36,25", "37,25", "36,26", "37,26"],
+      save: "27,18",
+      sign: "25,18",
+    };
+  }
+  return defaultDoorConfig;
+};
+
+const specialObjectsFor = (theme: TownTheme): Record<string, string> => {
+  if (theme.id === "brexiton") {
+    return {
       "22,17": "LONDON_CLOCK",
       "15,19": "PARLIAMENT",
       "10,18": "PHONE_BOX",
@@ -526,72 +675,37 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
       "32,18": "DOUBLE_DECKER",
       "42,18": "LAMP_POST",
       "27,32": "VOTE_GATE",
-    } : {
-      ...routeObjectsFor(theme),
-      "19,14": "DOOR_SHOP",
-      "28,14": "DOOR_HEAL",
-      "37,14": "DOOR_HOME",
-      "21,24": "DOOR_HOME",
-      "34,24": "TRAIN",
-      "35,24": "TRAIN",
-      "27,18": "★",
-      "25,18": "SIGN",
-    },
-    interactions: isBrexiton ? {
-      ...routeInteractionsFor(theme),
-      "12,14": {
-        name: `${theme.name} Shop`,
-        portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
-        auto: true,
-        lines: [],
-      },
-      "27,14": {
-        name: `${theme.name} Healing Center`,
-        portal: { mapId: "healing", x: 7, y: 7, facing: "up" },
-        auto: true,
-        lines: [],
-      },
-      "40,14": {
-        name: `${theme.name} House`,
-        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
-        auto: true,
-        lines: [],
-      },
-      "20,9": {
-        name: "Terraced House",
-        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
-        auto: true,
-        lines: [],
-      },
-      "36,24": {
-        name: `${theme.name} Train Station`,
-        train: true,
-        lines: ["Choose a destination."],
-      },
-      "37,24": {
-        name: `${theme.name} Train Station`,
-        train: true,
-        lines: ["Choose a destination."],
-      },
-      "36,25": {
-        name: `${theme.name} Train Platform`,
-        train: true,
-        lines: ["Choose a destination."],
-      },
-      "37,25": {
-        name: `${theme.name} Train Platform`,
-        train: true,
-        lines: ["Choose a destination."],
-      },
-      "27,18": {
-        name: "Save Point",
-        save: true,
-        lines: ["★ PROGRESS SAVED ★", `${theme.name} - Lv. 15`, theme.hook],
-      },
-      "25,18": {
-        name: "Town Sign",
-        lines: [...theme.sign, `Hook: ${theme.hook}`],
-      },
+    };
+  }
+  if (theme.id === "promptford") {
+    return {
+      "24,13": "EIFFEL_TOWER",
+      "17,18": "PARIS_CAFE",
+      "31,18": "BAGUETTE_STAND",
+      "43,18": "METRO_SIGN",
+      "20,21": "SEINE_BRIDGE",
+      "36,21": "SEINE_BRIDGE",
+      "29,13": "AI_ORACLE",
+    };
+  }
+  if (theme.id === "wokeshire") {
+    return {
+      "17,9": "CANAL_BRIDGE",
+      "35,9": "CANAL_BRIDGE",
+      "17,20": "CANAL_BRIDGE",
+      "35,20": "CANAL_BRIDGE",
+      "24,14": "BICYCLE",
+      "29,14": "TULIP_STAND",
+      "47,22": "WINDMILL",
+      "11,17": "CANAL_HOUSE",
+    };
+  }
+  return {};
+};
+
+const specialInteractionsFor = (theme: TownTheme): Record<string, Interaction> => {
+  if (theme.id === "brexiton") {
+    return {
       "22,17": {
         name: "Clock Tower",
         lines: ["The clock insists it is always negotiation o'clock."],
@@ -600,61 +714,93 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
         name: "Parliament Queue",
         lines: ["A queue forms, debates itself, then queues again."],
       },
-    } : {
+    };
+  }
+  if (theme.id === "promptford") {
+    return {
+      "24,13": {
+        name: "Iron Oracle Tower",
+        lines: ["The tower predicts your next prompt, then asks for clearer requirements."],
+      },
+      "17,18": {
+        name: "Automation Cafe",
+        lines: ["A tiny cafe where citizens outsource menu choices to very confident oracles."],
+      },
+    };
+  }
+  if (theme.id === "wokeshire") {
+    return {
+      "24,14": {
+        name: "Canal Bicycle",
+        lines: ["It has three locks, two stickers, and one strongly held opinion."],
+      },
+      "29,14": {
+        name: "Tulip Notice Stand",
+        lines: ["Every faction has approved a different acceptable tulip color."],
+      },
+    };
+  }
+  return {};
+};
+
+const createThemedTownDef = (theme: TownTheme): GameMapDef => {
+  const doors = doorConfigFor(theme);
+  const homeObjects = Object.fromEntries(doors.homes.map(coord => [coord, "DOOR_HOME"]));
+  const trainObjects = Object.fromEntries(doors.train.slice(0, 2).map(coord => [coord, "TRAIN"]));
+  const trainInteractions = Object.fromEntries(doors.train.map(coord => [coord, {
+    name: `${theme.name} Train Station`,
+    train: true,
+    lines: ["Choose a destination."],
+  } satisfies Interaction]));
+
+  return {
+    id: theme.id,
+    name: theme.name,
+    width: 56,
+    height: 34,
+    rows: themedRowsFor(theme),
+    spawn: { x: 27, y: 18 },
+    objects: {
+      ...routeObjectsFor(theme),
+      [doors.shop]: "DOOR_SHOP",
+      [doors.healing]: "DOOR_HEAL",
+      ...homeObjects,
+      ...trainObjects,
+      [doors.save]: "★",
+      [doors.sign]: "SIGN",
+      ...specialObjectsFor(theme),
+    },
+    interactions: {
       ...routeInteractionsFor(theme),
-      "19,14": {
+      [doors.shop]: {
         name: `${theme.name} Shop`,
         portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
         auto: true,
         lines: [],
       },
-      "28,14": {
+      [doors.healing]: {
         name: `${theme.name} Healing Center`,
         portal: { mapId: "healing", x: 7, y: 7, facing: "up" },
         auto: true,
         lines: [],
       },
-      "37,14": {
-        name: `${theme.name} House`,
+      ...Object.fromEntries(doors.homes.map((coord, index) => [coord, {
+        name: index === 0 ? `${theme.name} House` : "Local House",
         portal: { mapId: "house", x: 6, y: 6, facing: "up" },
         auto: true,
         lines: [],
-      },
-      "21,24": {
-        name: "Local House",
-        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
-        auto: true,
-        lines: [],
-      },
-      "34,24": {
-        name: `${theme.name} Train Station`,
-        train: true,
-        lines: ["Choose a destination."],
-      },
-      "35,24": {
-        name: `${theme.name} Train Station`,
-        train: true,
-        lines: ["Choose a destination."],
-      },
-      "34,25": {
-        name: `${theme.name} Train Platform`,
-        train: true,
-        lines: ["Choose a destination."],
-      },
-      "35,25": {
-        name: `${theme.name} Train Platform`,
-        train: true,
-        lines: ["Choose a destination."],
-      },
-      "27,18": {
+      } satisfies Interaction])),
+      ...trainInteractions,
+      [doors.save]: {
         name: "Save Point",
         save: true,
         lines: ["★ PROGRESS SAVED ★", `${theme.name} - Lv. 15`, theme.hook],
       },
-      "25,18": {
+      [doors.sign]: {
         name: "Town Sign",
         lines: [...theme.sign, `Hook: ${theme.hook}`],
       },
+      ...specialInteractionsFor(theme),
     },
   };
 };
