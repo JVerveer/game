@@ -100,6 +100,7 @@
       linear-gradient(90deg, transparent 0 10px, rgba(43, 103, 39, 0.45) 10px 14px, transparent 14px),
       linear-gradient(0deg, transparent 0 14px, rgba(43, 103, 39, 0.32) 14px 18px, transparent 18px);
     background-size: 24px 24px;
+    animation: grass-sway 1.8s steps(2, end) infinite;
   }
 
   .tile-X {
@@ -111,6 +112,7 @@
       linear-gradient(135deg, transparent 0 35%, rgba(34, 82, 32, 0.55) 35% 48%, transparent 48%),
       linear-gradient(45deg, transparent 0 42%, rgba(34, 82, 32, 0.45) 42% 56%, transparent 56%);
     background-size: 16px 16px;
+    animation: grass-sway 1.1s steps(2, end) infinite;
   }
 
   .tile-T {
@@ -141,9 +143,10 @@
   .tile-V,
   .tile-N {
     background:
-      linear-gradient(#b94b37 0 26%, transparent 26%),
-      linear-gradient(90deg, transparent 0 22%, #fff8c8 22% 36%, transparent 36% 64%, #fff8c8 64% 78%, transparent 78%),
-      #d7bb72;
+      linear-gradient(#9b3529 0 14%, #ca4b36 14% 28%, transparent 28%),
+      linear-gradient(90deg, transparent 0 18%, rgba(255, 248, 200, 0.75) 18% 30%, transparent 30% 70%, rgba(255, 248, 200, 0.75) 70% 82%, transparent 82%),
+      linear-gradient(0deg, #9d7041 0 14%, transparent 14%),
+      #d8bd76;
   }
 
   .tile-S {
@@ -169,6 +172,29 @@
     height: 42px;
     position: relative;
     image-rendering: pixelated;
+  }
+
+  .trainer-sprite.walking {
+    animation: trainer-bob 0.32s steps(2, end) infinite;
+  }
+
+  .trainer-sprite.facing-left {
+    transform: scaleX(-1);
+  }
+
+  .trainer-sprite.facing-up::before {
+    background: #d73d32;
+    box-shadow:
+      0 5px 0 #f8d39d,
+      -6px 7px 0 #252018,
+      6px 7px 0 #252018,
+      -3px 18px 0 #4d77b0,
+      3px 18px 0 #4d77b0,
+      0 18px 0 #4d77b0,
+      -8px 20px 0 #fff8c8,
+      8px 20px 0 #fff8c8,
+      -5px 32px 0 #252018,
+      5px 32px 0 #252018;
   }
 
   .trainer-sprite::before {
@@ -227,5 +253,267 @@
     height: 8px;
     background: #fff8c8;
     box-shadow: 24px 0 0 #fff8c8, 12px 18px 0 #252018;
+  }
+
+  .world-object {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 3px 2px rgba(37, 32, 24, 0.35));
+  }
+
+  .world-object::before,
+  .world-object::after {
+    content: "";
+    position: absolute;
+  }
+
+  .object-sign::before {
+    left: 8px;
+    top: 10px;
+    width: 26px;
+    height: 16px;
+    background: #fff8c8;
+    border: 4px solid #252018;
+  }
+
+  .object-sign::after {
+    left: 18px;
+    top: 28px;
+    width: 6px;
+    height: 12px;
+    background: #6d4627;
+    box-shadow: 0 8px 0 #252018;
+  }
+
+  .object-save::before {
+    left: 10px;
+    top: 6px;
+    width: 22px;
+    height: 22px;
+    background: #f6d746;
+    border: 4px solid #252018;
+    transform: rotate(45deg);
+    animation: sparkle-pulse 1s steps(2, end) infinite;
+  }
+
+  .object-door::before,
+  .object-exit::before {
+    left: 13px;
+    top: 8px;
+    width: 16px;
+    height: 28px;
+    background: #5a3c22;
+    border: 4px solid #252018;
+  }
+
+  .object-shop::before,
+  .object-heal::before,
+  .object-home::before,
+  .object-house::before {
+    left: 4px;
+    top: 16px;
+    width: 34px;
+    height: 22px;
+    background: #d8bd76;
+    border: 4px solid #252018;
+  }
+
+  .object-shop::after,
+  .object-heal::after,
+  .object-home::after,
+  .object-house::after {
+    left: 0;
+    top: 6px;
+    width: 42px;
+    height: 14px;
+    background: #ca4b36;
+    border: 4px solid #252018;
+    box-shadow: inset 13px 0 0 #fff8c8, inset 26px 0 0 #ca4b36;
+  }
+
+  .object-heal::after {
+    background: #4d77b0;
+    box-shadow: inset 17px 0 0 #fff8c8, inset 21px 0 0 #4d77b0;
+  }
+
+  .object-home::after,
+  .object-house::after {
+    background: #7a4b9c;
+    box-shadow: none;
+  }
+
+  .object-cave::before {
+    left: 4px;
+    top: 9px;
+    width: 34px;
+    height: 26px;
+    background: #5d4937;
+    border: 4px solid #252018;
+    border-radius: 14px 14px 2px 2px;
+  }
+
+  .object-cave::after {
+    left: 14px;
+    top: 18px;
+    width: 14px;
+    height: 18px;
+    background: #20170f;
+  }
+
+  .object-bed::before {
+    left: 5px;
+    top: 14px;
+    width: 32px;
+    height: 20px;
+    background: #4d77b0;
+    border: 4px solid #252018;
+    box-shadow: inset 0 -8px 0 #fff8c8;
+  }
+
+  .object-tv::before {
+    left: 7px;
+    top: 11px;
+    width: 28px;
+    height: 20px;
+    background: #4f5b45;
+    border: 4px solid #252018;
+    box-shadow: inset 6px 5px 0 rgba(255, 248, 200, 0.35);
+  }
+
+  .object-tv::after {
+    left: 17px;
+    top: 33px;
+    width: 8px;
+    height: 5px;
+    background: #252018;
+  }
+
+  .object-potion::before {
+    left: 14px;
+    top: 8px;
+    width: 14px;
+    height: 26px;
+    background: #4d77b0;
+    border: 4px solid #252018;
+    box-shadow: inset 0 11px 0 #fff8c8;
+  }
+
+  .object-ball::before {
+    left: 9px;
+    top: 9px;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(#ca4b36 0 47%, #252018 47% 56%, #fff8c8 56%);
+    border: 4px solid #252018;
+    border-radius: 50%;
+  }
+
+  .object-arrow-left::before,
+  .object-arrow-right::before {
+    left: 8px;
+    top: 13px;
+    width: 26px;
+    height: 16px;
+    background: #fff8c8;
+    border: 4px solid #252018;
+  }
+
+  .object-arrow-left::after {
+    left: 2px;
+    top: 8px;
+    width: 18px;
+    height: 18px;
+    border-left: 5px solid #252018;
+    border-bottom: 5px solid #252018;
+    transform: rotate(45deg);
+  }
+
+  .object-arrow-right::after {
+    right: 2px;
+    top: 8px;
+    width: 18px;
+    height: 18px;
+    border-right: 5px solid #252018;
+    border-bottom: 5px solid #252018;
+    transform: rotate(-45deg);
+  }
+
+  .npc-sprite,
+  .clerk-sprite,
+  .nurse-sprite {
+    width: 34px;
+    height: 42px;
+    position: relative;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 3px 2px rgba(37, 32, 24, 0.45));
+  }
+
+  .npc-sprite.walking {
+    animation: trainer-bob 0.42s steps(2, end) infinite;
+  }
+
+  .npc-sprite::before,
+  .clerk-sprite::before,
+  .nurse-sprite::before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 3px;
+    width: 16px;
+    height: 16px;
+    background: #f8d39d;
+    box-shadow:
+      0 -5px 0 #315f2a,
+      -5px 17px 0 #f6d746,
+      0 17px 0 #f6d746,
+      5px 17px 0 #f6d746,
+      -7px 20px 0 #252018,
+      7px 20px 0 #252018,
+      -5px 32px 0 #252018,
+      5px 32px 0 #252018;
+  }
+
+  .clerk-sprite::before {
+    box-shadow:
+      0 -5px 0 #4d77b0,
+      -5px 17px 0 #fff8c8,
+      0 17px 0 #fff8c8,
+      5px 17px 0 #fff8c8,
+      -7px 20px 0 #252018,
+      7px 20px 0 #252018,
+      -5px 32px 0 #252018,
+      5px 32px 0 #252018;
+  }
+
+  .nurse-sprite::before {
+    box-shadow:
+      0 -5px 0 #ca4b36,
+      -5px 17px 0 #fff8c8,
+      0 17px 0 #fff8c8,
+      5px 17px 0 #fff8c8,
+      -7px 20px 0 #ca4b36,
+      7px 20px 0 #ca4b36,
+      -5px 32px 0 #252018,
+      5px 32px 0 #252018;
+  }
+
+  @keyframes grass-sway {
+    0% { transform: translateX(0); opacity: 0.8; }
+    50% { transform: translateX(2px); opacity: 1; }
+    100% { transform: translateX(0); opacity: 0.8; }
+  }
+
+  @keyframes trainer-bob {
+    0% { translate: 0 0; }
+    50% { translate: 0 -3px; }
+    100% { translate: 0 0; }
+  }
+
+  @keyframes sparkle-pulse {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.35); }
+    100% { filter: brightness(1); }
   }
 }

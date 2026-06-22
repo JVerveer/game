@@ -173,7 +173,6 @@ export const GAME_MAPS: Record<GameMapId, GameMapDef> = {
       "36,16": "⌂",
       "31,15": "★",
       "21,16": "SIGN",
-      "33,16": "NPC",
       "57,28": "→",
       "8,15": "CAVE",
     },
@@ -212,10 +211,6 @@ export const GAME_MAPS: Record<GameMapId, GameMapDef> = {
         name: "Town Sign",
         lines: ["★ SATIRIA TOWN ★", "Shop west. Healing Center north.", "Follow the east road to Sproutford."],
       },
-      "33,16": {
-        name: "Route Guide",
-        lines: ['"The road east is longer now."', '"Follow the path, and you will reach Sproutford Town."'],
-      },
       "57,28": {
         name: "Route 2 Gate",
         portal: { mapId: "sproutford", x: 2, y: 18, facing: "right" },
@@ -242,7 +237,6 @@ export const GAME_MAPS: Record<GameMapId, GameMapDef> = {
       "30,17": "HOME",
       "25,16": "★",
       "23,18": "SIGN",
-      "28,18": "NPC",
     },
     interactions: {
       "1,18": {
@@ -278,10 +272,6 @@ export const GAME_MAPS: Record<GameMapId, GameMapDef> = {
       "23,18": {
         name: "Town Sign",
         lines: ["★ SPROUTFORD TOWN ★", "Fresh grass. Fresh gossip.", "West road returns to Satiria."],
-      },
-      "28,18": {
-        name: "Sproutford Local",
-        lines: ['"Welcome to Sproutford!"', '"Our town is small, but our pathfinding is ambitious."'],
       },
     },
   },

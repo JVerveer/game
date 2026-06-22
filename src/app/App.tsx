@@ -2028,6 +2028,73 @@ const D_PAD_BTN: React.CSSProperties = {
   alignItems: "center", justifyContent: "center",
 };
 
+const objectClassFor = (obj: string) => {
+  const map: Record<string, string> = {
+    SHOP: "world-object object-shop",
+    HEAL: "world-object object-heal",
+    HOME: "world-object object-home",
+    "⌂": "world-object object-house",
+    "★": "world-object object-save",
+    SIGN: "world-object object-sign",
+    CAVE: "world-object object-cave",
+    EXIT: "world-object object-exit",
+    POTN: "world-object object-potion",
+    BALL: "world-object object-ball",
+    BED: "world-object object-bed",
+    TV: "world-object object-tv",
+    "←": "world-object object-arrow-left",
+    "→": "world-object object-arrow-right",
+    CLERK: "clerk-sprite",
+    NURSE: "nurse-sprite",
+  };
+  return map[obj] ?? "world-object object-sign";
+};
+
+type MovingNpc = {
+  id: string;
+  mapId: GameMapId;
+  x: number;
+  y: number;
+  homeX: number;
+  homeY: number;
+  lines: string[];
+  name: string;
+  walking?: boolean;
+};
+
+const INITIAL_NPCS: MovingNpc[] = [
+  {
+    id: "satiria-guide",
+    mapId: "satiria",
+    x: 33,
+    y: 16,
+    homeX: 33,
+    homeY: 16,
+    name: "Route Guide",
+    lines: ['"The east road is open now."', '"Follow the path and keep an eye on the tall grass."'],
+  },
+  {
+    id: "satiria-kid",
+    mapId: "satiria",
+    x: 27,
+    y: 18,
+    homeX: 27,
+    homeY: 18,
+    name: "Town Kid",
+    lines: ['"I saw the shop clerk polish one potion for six hours."', '"That means it is probably rare."'],
+  },
+  {
+    id: "sproutford-local",
+    mapId: "sproutford",
+    x: 28,
+    y: 18,
+    homeX: 28,
+    homeY: 18,
+    name: "Sproutford Local",
+    lines: ['"Welcome to Sproutford!"', '"Our town is small, but our pathfinding is ambitious."'],
+  },
+];
+
 function GameScreen({ onExit }: { onExit: () => void }) {
   const [mapId, setMapId] = useState<GameMapId>("satiria");
   const [pos, setPos] = useState(GAME_MAPS.satiria.spawn);
@@ -2040,6 +2107,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [battleEnemy, setBattleEnemy] = useState<Enemy | null>(null);
   const [location, setLocation] = useState("Satiria Town");
   const [saveMsg, setSaveMsg] = useState<string | null>(null);
+  const [isWalking, setIsWalking] = useState(false);
+  const [npcs, setNpcs] = useState<MovingNpc[]>(INITIAL_NPCS);
   const viewRef = useRef<HTMLDivElement>(null);
   const [viewSize, setViewSize] = useState({ w: 900, h: 600 });
   const currentMap = GAME_MAPS[mapId];
@@ -2051,6 +2120,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const dlgRef = useRef(dlg);
   const pausedRef = useRef(paused);
   const battleRef = useRef(battleEnemy);
+  const npcsRef = useRef(npcs);
   const pendingPortalRef = useRef<Portal | null>(null);
   const returnPortalRef = useRef<Portal>({ mapId: "satiria", x: 31, y: 17, facing: "down" });
   const lastMove = useRef(0);
@@ -2060,6 +2130,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   dlgRef.current = dlg;
   pausedRef.current = paused;
   battleRef.current = battleEnemy;
+  npcsRef.current = npcs;
 
   const isIndoor = (id: GameMapId) => id === "shop" || id === "house" || id === "healing";
 
@@ -2087,6 +2158,9 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       ? (GAME_MAPS[mapIdRef.current].rows[y][x] ?? "T")
       : "T";
 
+  const npcAt = (id: GameMapId, x: number, y: number) =>
+    npcsRef.current.find(npc => npc.mapId === id && npc.x === x && npc.y === y);
+
   const doMove = (dx: number, dy: number, dir: "up" | "down" | "left" | "right") => {
     if (dlgRef.current || pausedRef.current || battleRef.current) return;
     const now = Date.now();
@@ -2099,8 +2173,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     const ny = cur.y + dy;
     const t = tile(nx, ny);
     if (!WALK.has(t)) return;
+    if (npcAt(mapIdRef.current, nx, ny)) return;
 
     setPos({ x: nx, y: ny });
+    setIsWalking(true);
+    setTimeout(() => setIsWalking(false), 180);
     setSteps(s => s + 1);
     setLocation(LOCATION_FOR(mapIdRef.current, nx, ny, t));
 
@@ -2138,6 +2215,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     // check adjacent then current tile
     for (const [cx, cy] of [[cur.x + ox, cur.y + oy], [cur.x, cur.y]]) {
       const key = `${cx},${cy}`;
+      const npc = npcAt(mapIdRef.current, cx, cy);
+      if (npc) {
+        setDlg({ name: npc.name, lines: npc.lines, idx: 0 });
+        return;
+      }
       const intr = GAME_MAPS[mapIdRef.current].interactions[key];
       if (intr) {
         if (intr.heal) setHp(h => ({ ...h, cur: h.max }));
@@ -2164,6 +2246,28 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, []); // reads from refs — no deps needed
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      if (dlgRef.current || pausedRef.current || battleRef.current) return;
+      setNpcs(prev => prev.map(npc => {
+        if (Math.random() > 0.45) return { ...npc, walking: false };
+        const dirs = [[0, -1], [0, 1], [-1, 0], [1, 0]] as const;
+        const [dx, dy] = dirs[Math.floor(Math.random() * dirs.length)];
+        const nx = npc.x + dx;
+        const ny = npc.y + dy;
+        const map = GAME_MAPS[npc.mapId];
+        const t = map.rows[ny]?.[nx] ?? "T";
+        const nearHome = Math.abs(nx - npc.homeX) + Math.abs(ny - npc.homeY) <= 4;
+        const blockedByPlayer = mapIdRef.current === npc.mapId && posRef.current.x === nx && posRef.current.y === ny;
+        const blockedByNpc = prev.some(other => other.id !== npc.id && other.mapId === npc.mapId && other.x === nx && other.y === ny);
+        if (!nearHome || !WALK.has(t) || blockedByPlayer || blockedByNpc) return { ...npc, walking: false };
+        return { ...npc, x: nx, y: ny, walking: true };
+      }));
+      window.setTimeout(() => setNpcs(prev => prev.map(npc => ({ ...npc, walking: false }))), 280);
+    }, 1300);
+    return () => window.clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const upd = () => {
@@ -2218,24 +2322,34 @@ function GameScreen({ onExit }: { onExit: () => void }) {
                       fontSize: TS * 0.62, lineHeight: 1, userSelect: "none",
                     }}
                   >
-                    {obj && (
-                      <span style={{
-                        ...VT,
-                        fontSize: obj.length > 3 ? 12 : obj.length > 1 ? 14 : TS * 0.45,
-                        color: "#252018",
-                        fontWeight: 700,
-                        lineHeight: 1,
-                        textShadow: "1px 1px 0 rgba(255,248,200,0.55)",
-                      }}>
-                        {obj}
-                      </span>
-                    )}
+                    {obj && obj !== "NPC" && <div className={objectClassFor(obj)} />}
                   </div>
                 );
               })}
             </div>
           ))}
         </div>
+
+        {npcs.filter(npc => npc.mapId === mapId).map(npc => (
+          <div
+            key={npc.id}
+            style={{
+              position: "absolute",
+              left: npc.x * TS,
+              top: npc.y * TS,
+              width: TS,
+              height: TS,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 9,
+              pointerEvents: "none",
+              transition: "left 0.28s linear, top 0.28s linear",
+            }}
+          >
+            <div className={`npc-sprite ${npc.walking ? "walking" : ""}`} />
+          </div>
+        ))}
 
         {/* Player sprite — absolutely overlaid on the map */}
         <div style={{
@@ -2247,7 +2361,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           zIndex: 10, pointerEvents: "none",
           transition: "left 0.1s linear, top 0.1s linear",
         }}>
-          <div className="trainer-sprite" />
+          <div className={`trainer-sprite facing-${facing} ${isWalking ? "walking" : ""}`} />
         </div>
       </div>
 
