@@ -2290,19 +2290,28 @@
 
   .map-satiria .building-tile {
     background:
-      linear-gradient(90deg, transparent 0 16%, rgba(37,32,24,0.2) 16% 19%, #fff3a8 19% 34%, rgba(37,32,24,0.2) 34% 37%, transparent 37% 63%, rgba(37,32,24,0.2) 63% 66%, #fff3a8 66% 81%, rgba(37,32,24,0.2) 81% 84%, transparent 84%),
-      #e0c27a;
+      linear-gradient(90deg, transparent 0 13%, #252018 13% 16%, #cde8f0 16% 31%, #252018 31% 34%, transparent 34% 66%, #252018 66% 69%, #cde8f0 69% 84%, #252018 84% 87%, transparent 87%) 0 24px / 48px 14px no-repeat,
+      linear-gradient(90deg, transparent 0 13%, #252018 13% 16%, #cde8f0 16% 31%, #252018 31% 34%, transparent 34% 66%, #252018 66% 69%, #cde8f0 69% 84%, #252018 84% 87%, transparent 87%) 0 39px / 48px 9px no-repeat,
+      linear-gradient(0deg, transparent 0 36%, rgba(255,248,200,0.24) 36% 42%, transparent 42%),
+      repeating-linear-gradient(0deg, rgba(127,82,48,0.18) 0 2px, transparent 2px 9px),
+      #d8b477;
   }
 
   .map-satiria .tile-H.building-tile {
     background:
-      linear-gradient(90deg, transparent 0 16%, rgba(37,32,24,0.2) 16% 19%, #fff3a8 19% 34%, rgba(37,32,24,0.2) 34% 37%, transparent 37% 63%, rgba(37,32,24,0.2) 63% 66%, #fff3a8 66% 81%, rgba(37,32,24,0.2) 81% 84%, transparent 84%),
-      #d9c27d;
+      linear-gradient(90deg, transparent 0 13%, #252018 13% 16%, #cde8f0 16% 31%, #252018 31% 34%, transparent 34% 66%, #252018 66% 69%, #cde8f0 69% 84%, #252018 84% 87%, transparent 87%) 0 24px / 48px 14px no-repeat,
+      linear-gradient(90deg, transparent 0 13%, #252018 13% 16%, #cde8f0 16% 31%, #252018 31% 34%, transparent 34% 66%, #252018 66% 69%, #cde8f0 69% 84%, #252018 84% 87%, transparent 87%) 0 39px / 48px 9px no-repeat,
+      linear-gradient(0deg, transparent 0 36%, rgba(255,248,200,0.26) 36% 42%, transparent 42%),
+      repeating-linear-gradient(0deg, rgba(88,72,42,0.16) 0 2px, transparent 2px 9px),
+      #dbc27f;
   }
 
   .map-satiria .tile-P.building-tile {
     background:
-      linear-gradient(90deg, transparent 0 16%, rgba(37,32,24,0.2) 16% 19%, #fff3a8 19% 34%, rgba(37,32,24,0.2) 34% 37%, transparent 37% 63%, rgba(37,32,24,0.2) 63% 66%, #fff3a8 66% 81%, rgba(37,32,24,0.2) 81% 84%, transparent 84%),
+      linear-gradient(90deg, transparent 0 13%, #252018 13% 16%, #d6edf2 16% 31%, #252018 31% 34%, transparent 34% 66%, #252018 66% 69%, #d6edf2 69% 84%, #252018 84% 87%, transparent 87%) 0 24px / 48px 14px no-repeat,
+      linear-gradient(90deg, transparent 0 13%, #252018 13% 16%, #d6edf2 16% 31%, #252018 31% 34%, transparent 34% 66%, #252018 66% 69%, #d6edf2 69% 84%, #252018 84% 87%, transparent 87%) 0 39px / 48px 9px no-repeat,
+      linear-gradient(0deg, transparent 0 36%, rgba(255,248,200,0.24) 36% 42%, transparent 42%),
+      repeating-linear-gradient(0deg, rgba(68,65,58,0.16) 0 2px, transparent 2px 9px),
       #cfc0a0;
   }
 
@@ -2312,23 +2321,36 @@
 
   .map-satiria .building-top::before {
     background:
-      linear-gradient(180deg, #252018 0 16%, #ca4b36 16% 72%, #8f3328 72% 100%);
-    height: 14px;
+      linear-gradient(90deg, transparent 0 12%, #6d3428 12% 22%, transparent 22%),
+      linear-gradient(180deg, #252018 0 16%, #b74334 16% 72%, #7d2e28 72% 100%);
+    height: 18px;
+    top: -2px;
   }
 
   .map-satiria .tile-H.building-top::before {
     background:
+      linear-gradient(90deg, transparent 0 12%, #6d3428 12% 22%, transparent 22%),
       linear-gradient(180deg, #252018 0 16%, #315f9f 16% 72%, #243d68 72% 100%);
   }
 
   .map-satiria .tile-P.building-top::before {
     background:
+      linear-gradient(90deg, transparent 0 12%, #6d3428 12% 22%, transparent 22%),
       linear-gradient(180deg, #252018 0 16%, #5c585b 16% 72%, #353133 72% 100%);
   }
 
   .map-satiria .building-bottom::after {
     background:
+      linear-gradient(90deg, transparent 0 36%, #252018 36% 39%, #5a3c22 39% 61%, #252018 61% 64%, transparent 64%),
       linear-gradient(0deg, #8b6138 0 8px, transparent 8px);
+  }
+
+  .map-satiria .building-top.building-left::before {
+    box-shadow: 10px -8px 0 -2px #6d3428, 10px -11px 0 -4px #252018;
+  }
+
+  .map-satiria .building-top.building-right::before {
+    box-shadow: -10px -8px 0 -2px #6d3428, -10px -11px 0 -4px #252018;
   }
 
   .map-satiria .building-left {
@@ -2356,6 +2378,52 @@
 
   .map-satiria .building-bottom {
     border-bottom: 4px solid #252018;
+  }
+
+  .map-satiria .object-door-shop::before,
+  .map-satiria .object-door-heal::before,
+  .map-satiria .object-door-home::before {
+    left: 4px;
+    top: 5px;
+    width: 34px;
+    height: 34px;
+    background:
+      linear-gradient(180deg, #f4d76b 0 18%, #252018 18% 25%, #f7df98 25% 100%);
+    border: 4px solid #252018;
+    box-shadow:
+      inset 7px 14px 0 #cde8f0,
+      inset -7px 14px 0 #cde8f0,
+      0 -8px 0 #b74334;
+  }
+
+  .map-satiria .object-door-heal::before {
+    background:
+      linear-gradient(180deg, #4d77b0 0 18%, #252018 18% 25%, #f7df98 25% 100%);
+    box-shadow:
+      inset 7px 14px 0 #cde8f0,
+      inset -7px 14px 0 #cde8f0,
+      0 -8px 0 #315f9f;
+  }
+
+  .map-satiria .object-door-home::before {
+    background:
+      linear-gradient(180deg, #7a4b9c 0 18%, #252018 18% 25%, #f7df98 25% 100%);
+  }
+
+  .map-satiria .object-door-shop::after,
+  .map-satiria .object-door-heal::after,
+  .map-satiria .object-door-home::after {
+    left: 16px;
+    top: 23px;
+    width: 10px;
+    height: 16px;
+    background: #5a3c22;
+    border: 3px solid #252018;
+    box-shadow:
+      -12px 11px 0 #8b6138,
+      0 11px 0 #8b6138,
+      12px 11px 0 #8b6138,
+      4px 5px 0 #f4d76b;
   }
 
   .trainer-sprite,
