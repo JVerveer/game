@@ -13,9 +13,7 @@ const rect = (
 ) => {
   for (let ry = y; ry < y + h; ry++) {
     for (let cx = x; cx < x + w; cx++) {
-      if (map[ry]?.[cx] !== undefined) {
-        map[ry][cx] = tile;
-      }
+      if (map[ry]?.[cx] !== undefined) map[ry][cx] = tile;
     }
   }
 };
@@ -39,72 +37,61 @@ const vline = (
 export const buildSatiriaMap = () => {
   const map = makeBlankMap(56, 34, "T");
 
-  // Main town clearing
   rect(map, 3, 3, 50, 28, "G");
 
-  // Forest border
-  rect(map, 0, 0, 56, 2, "T");
-  rect(map, 0, 32, 56, 2, "T");
-  rect(map, 0, 0, 2, 34, "T");
-  rect(map, 54, 0, 2, 34, "T");
+  rect(map, 0, 0, 56, 3, "T");
+  rect(map, 0, 31, 56, 3, "T");
+  rect(map, 0, 0, 3, 34, "T");
+  rect(map, 53, 0, 3, 34, "T");
 
-  // Roads
-  vline(map, 28, 2, 31, "R");
-  hline(map, 5, 50, 17, "R");
+  rect(map, 6, 6, 7, 6, "X");
+  rect(map, 42, 20, 7, 5, "X");
 
-  // Central plaza
-  rect(map, 23, 13, 11, 9, "R");
+  rect(map, 5, 25, 10, 4, "W");
+  rect(map, 6, 24, 8, 1, "S");
+  rect(map, 15, 26, 4, 2, "S");
 
-  // Monument / fountain
-  rect(map, 27, 16, 3, 3, "V");
+  rect(map, 47, 9, 4, 9, "M");
 
-  // Residential district (north)
-  rect(map, 8, 6, 7, 5, "B");
-  rect(map, 20, 6, 7, 5, "H");
-  rect(map, 33, 6, 7, 5, "B");
-  rect(map, 44, 6, 7, 5, "B");
+  vline(map, 27, 2, 31, "R");
+  hline(map, 6, 50, 18, "R");
+  hline(map, 13, 42, 25, "R");
 
-  // Doors
-  map[10][11] = "O";
-  map[10][23] = "O";
-  map[10][36] = "O";
-  map[10][47] = "O";
+  rect(map, 23, 15, 10, 7, "E");
+  rect(map, 25, 17, 6, 3, "R");
 
-  // Market district (west)
-  rect(map, 7, 21, 7, 5, "B");
-  rect(map, 16, 21, 7, 5, "B");
+  map[18][27] = "V";
 
-  map[25][10] = "O";
-  map[25][19] = "O";
+  rect(map, 17, 14, 4, 2, "L");
+  rect(map, 35, 14, 4, 2, "L");
+  rect(map, 17, 27, 4, 2, "L");
+  rect(map, 34, 27, 5, 2, "L");
 
-  // Palace district (east)
-  rect(map, 38, 21, 10, 6, "P");
+  rect(map, 9, 13, 7, 1, "F");
+  rect(map, 40, 13, 7, 1, "F");
+  rect(map, 8, 27, 9, 1, "F");
+  rect(map, 39, 27, 9, 1, "F");
 
-  map[26][43] = "O";
+  rect(map, 14, 10, 7, 4, "A");
+  map[13][19] = "O";
 
-  // Pond
-  rect(map, 5, 26, 8, 3, "W");
-  rect(map, 6, 25, 6, 1, "S");
-  rect(map, 5, 29, 8, 1, "S");
+  rect(map, 25, 9, 7, 5, "H");
+  map[13][28] = "O";
 
-  // Mountain ridge
-  rect(map, 47, 12, 5, 8, "M");
+  rect(map, 38, 10, 7, 4, "U");
+  map[13][41] = "O";
 
-  // Town trees
-  rect(map, 17, 14, 2, 2, "X");
-  rect(map, 37, 14, 2, 2, "X");
+  rect(map, 17, 22, 7, 4, "B");
+  map[25][20] = "O";
 
-  rect(map, 12, 18, 2, 2, "X");
-  rect(map, 43, 18, 2, 2, "X");
+  rect(map, 34, 22, 7, 4, "I");
+  map[25][37] = "O";
 
-  rect(map, 12, 27, 2, 2, "X");
-  rect(map, 30, 26, 2, 2, "X");
+  rect(map, 35, 26, 6, 3, "P");
+  map[27][37] = "P";
+  map[27][38] = "P";
 
-  // Decorative grass pockets
-  map[8][17] = "G";
-  map[9][18] = "G";
-  map[22][31] = "G";
-  map[24][29] = "G";
+  rect(map, 26, 0, 3, 4, "R");
 
   return map;
 };
