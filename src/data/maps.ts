@@ -958,12 +958,12 @@ const themedRowsFor = (theme: TownTheme) => {
 const doorConfigFor = (theme: TownTheme): TownDoorConfig => {
   if (theme.id === "satiria") {
     return {
-      shop: "11,22",
-      healing: "21,22",
+      shop: "9,22",
+      healing: "18,22",
       homes: ["11,10", "23,10", "35,10", "46,10"],
       train: ["41,23", "42,23", "41,24", "42,24"],
-      save: "27,18",
-      sign: "25,18",
+      save: "26,19",
+      sign: "24,18",
     };
   }
   if (theme.id === "brexiton") {
@@ -1072,8 +1072,17 @@ const doorConfigFor = (theme: TownTheme): TownDoorConfig => {
 const specialObjectsFor = (theme: TownTheme): Record<string, string> => {
   if (theme.id === "satiria") {
     return {
-      "28,19": "SATIRIA_FOUNTAIN",
+      "28,18": "SATIRIA_FOUNTAIN",
       "9,23": "SATIRIA_POND_SIGN",
+      "28,19": "SATIRIA_STATUE",
+      "24,16": "SATIRIA_BENCH",
+      "32,16": "SATIRIA_BENCH",
+      "24,22": "SATIRIA_BENCH",
+      "32,22": "SATIRIA_BENCH",
+      "26,16": "SATIRIA_LAMP",
+      "31,16": "SATIRIA_LAMP",
+      "26,22": "SATIRIA_LAMP",
+      "31,22": "SATIRIA_LAMP",
     };
   }
   if (theme.id === "brexiton") {
@@ -1186,9 +1195,13 @@ const specialObjectsFor = (theme: TownTheme): Record<string, string> => {
 const specialInteractionsFor = (theme: TownTheme): Record<string, Interaction> => {
   if (theme.id === "satiria") {
     return {
-      "28,19": {
+      "28,18": {
         name: "Town Fountain",
         lines: ["The fountain marks Satiria's central square.", "The water looks suspiciously well-balanced."],
+      },
+      "28,19": {
+        name: "Founder Statue",
+        lines: ["A heroic statue, carefully positioned where everyone must walk around it."],
       },
       "9,23": {
         name: "Pond Sign",
