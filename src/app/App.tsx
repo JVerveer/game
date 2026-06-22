@@ -2034,6 +2034,20 @@ const D_PAD_BTN: React.CSSProperties = {
   alignItems: "center", justifyContent: "center",
 };
 
+const BUILDING_TILES = new Set(["B", "H", "P", "A", "U", "I"]);
+
+const tileShapeClassFor = (rows: string[][], x: number, y: number, tile: string) => {
+  if (!BUILDING_TILES.has(tile)) return "";
+  const same = (dx: number, dy: number) => rows[y + dy]?.[x + dx] === tile;
+  return [
+    "building-tile",
+    same(0, -1) ? "building-mid-y" : "building-top",
+    same(0, 1) ? "building-mid-y" : "building-bottom",
+    same(-1, 0) ? "building-mid-x" : "building-left",
+    same(1, 0) ? "building-mid-x" : "building-right",
+  ].join(" ");
+};
+
 const objectClassFor = (obj: string) => {
   const map: Record<string, string> = {
     SHOP: "world-object object-shop",
@@ -2452,10 +2466,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
             <div key={ry} style={{ display: "flex" }}>
               {row.map((t, cx) => {
                 const obj = currentMap.objects[`${cx},${ry}`];
+                const tileShapeClass = tileShapeClassFor(currentMap.rows, cx, ry, t);
                 return (
                   <div
                     key={cx}
-                    className={`map-tile tile-${t}`}
+                    className={`map-tile tile-${t} ${tileShapeClass}`}
                     style={{
                       width: TS, height: TS, flexShrink: 0,
                       backgroundColor: GAME_TILE_COLORS[t] ?? GAME_TILE_COLORS.G,

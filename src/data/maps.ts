@@ -1,4 +1,6 @@
 // ─── Map data ─────────────────────────────────────────────────────────────────
+import { buildSatiriaMap } from "./cityMaps/satiria";
+
 // Tile key legend:
 //   T = Trees/Forest   G = Grass       W = Water      R = Road/Path/Floor
 //   B = Building       H = Healing Ctr Q = Quest NPC  X = Encounter Zone
@@ -106,35 +108,6 @@ const rect = (map: string[][], x: number, y: number, w: number, h: number, tile:
 
 const hline = (map: string[][], x1: number, x2: number, y: number, tile: string) => rect(map, x1, y, x2 - x1 + 1, 1, tile);
 const vline = (map: string[][], x: number, y1: number, y2: number, tile: string) => rect(map, x, y1, 1, y2 - y1 + 1, tile);
-
-const buildSatiriaMap = () => {
-  const map = makeBlankMap(64, 38, "T");
-  rect(map, 5, 4, 54, 29, "G");
-  rect(map, 13, 5, 18, 5, "X");
-  rect(map, 9, 22, 18, 5, "S");
-  rect(map, 14, 27, 18, 3, "W");
-  rect(map, 6, 12, 4, 8, "C");
-  rect(map, 55, 11, 5, 8, "M");
-
-  rect(map, 19, 11, 24, 10, "R");
-  hline(map, 17, 59, 16, "R");
-  vline(map, 31, 8, 29, "R");
-  hline(map, 31, 59, 29, "R");
-  hline(map, 59, 63, 29, "R");
-
-  rect(map, 20, 12, 6, 4, "B");
-  rect(map, 28, 12, 6, 4, "H");
-  rect(map, 36, 12, 6, 4, "B");
-  rect(map, 22, 17, 5, 3, "B");
-  rect(map, 34, 17, 5, 3, "B");
-  map[15][23] = "O";
-  map[15][31] = "O";
-  map[15][39] = "O";
-  map[19][24] = "O";
-  map[19][36] = "O";
-  map[16][30] = "V";
-  return map;
-};
 
 type TownTheme = {
   id: TownMapId;
@@ -958,6 +931,7 @@ const defaultDoorConfig: TownDoorConfig = {
 };
 
 const themedRowsFor = (theme: TownTheme) => {
+  if (theme.id === "satiria") return buildSatiriaMap();
   if (theme.id === "brexiton") return buildBrexitonMap();
   if (theme.id === "promptford") return buildPromptfordMap();
   if (theme.id === "wokeshire") return buildWokeshireMap();
@@ -972,6 +946,16 @@ const themedRowsFor = (theme: TownTheme) => {
 };
 
 const doorConfigFor = (theme: TownTheme): TownDoorConfig => {
+  if (theme.id === "satiria") {
+    return {
+      shop: "19,14",
+      healing: "32,14",
+      homes: ["44,14", "20,26"],
+      train: ["37,26", "38,26", "37,27", "38,27"],
+      save: "27,18",
+      sign: "25,18",
+    };
+  }
   if (theme.id === "brexiton") {
     return {
       shop: "12,14",

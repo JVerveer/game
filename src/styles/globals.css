@@ -2288,6 +2288,95 @@
     font-weight: 900;
   }
 
+  .map-satiria .building-tile {
+    background:
+      linear-gradient(90deg, transparent 0 16%, rgba(37,32,24,0.2) 16% 19%, #fff3a8 19% 34%, rgba(37,32,24,0.2) 34% 37%, transparent 37% 63%, rgba(37,32,24,0.2) 63% 66%, #fff3a8 66% 81%, rgba(37,32,24,0.2) 81% 84%, transparent 84%),
+      #e0c27a;
+  }
+
+  .map-satiria .tile-H.building-tile {
+    background:
+      linear-gradient(90deg, transparent 0 16%, rgba(37,32,24,0.2) 16% 19%, #fff3a8 19% 34%, rgba(37,32,24,0.2) 34% 37%, transparent 37% 63%, rgba(37,32,24,0.2) 63% 66%, #fff3a8 66% 81%, rgba(37,32,24,0.2) 81% 84%, transparent 84%),
+      #d9c27d;
+  }
+
+  .map-satiria .tile-P.building-tile {
+    background:
+      linear-gradient(90deg, transparent 0 16%, rgba(37,32,24,0.2) 16% 19%, #fff3a8 19% 34%, rgba(37,32,24,0.2) 34% 37%, transparent 37% 63%, rgba(37,32,24,0.2) 63% 66%, #fff3a8 66% 81%, rgba(37,32,24,0.2) 81% 84%, transparent 84%),
+      #cfc0a0;
+  }
+
+  .map-satiria .building-tile::after {
+    background: none;
+  }
+
+  .map-satiria .building-top::before {
+    background:
+      linear-gradient(180deg, #252018 0 16%, #ca4b36 16% 72%, #8f3328 72% 100%);
+    height: 14px;
+  }
+
+  .map-satiria .tile-H.building-top::before {
+    background:
+      linear-gradient(180deg, #252018 0 16%, #315f9f 16% 72%, #243d68 72% 100%);
+  }
+
+  .map-satiria .tile-P.building-top::before {
+    background:
+      linear-gradient(180deg, #252018 0 16%, #5c585b 16% 72%, #353133 72% 100%);
+  }
+
+  .map-satiria .building-bottom::after {
+    background:
+      linear-gradient(0deg, #8b6138 0 8px, transparent 8px);
+  }
+
+  .map-satiria .building-left {
+    box-shadow:
+      inset 4px 0 0 #252018,
+      inset 0 0 0 1px rgba(37,32,24,0.2) !important;
+  }
+
+  .map-satiria .building-right {
+    box-shadow:
+      inset -4px 0 0 #252018,
+      inset 0 0 0 1px rgba(37,32,24,0.2) !important;
+  }
+
+  .map-satiria .building-left.building-right {
+    box-shadow:
+      inset 4px 0 0 #252018,
+      inset -4px 0 0 #252018,
+      inset 0 0 0 1px rgba(37,32,24,0.2) !important;
+  }
+
+  .map-satiria .building-top {
+    border-top: 4px solid #252018;
+  }
+
+  .map-satiria .building-bottom {
+    border-bottom: 4px solid #252018;
+  }
+
+  .trainer-sprite,
+  .npc-sprite {
+    width: 34px;
+    height: 42px;
+    overflow: hidden;
+    transform-origin: 50% 100%;
+    contain: paint;
+  }
+
+  .trainer-sprite.facing-up {
+    transform: none;
+  }
+
+  .trainer-sprite.facing-up::before {
+    width: 30px;
+    height: 42px;
+    box-shadow: none;
+  }
+
   /* Richer character sprites with hats, faces, torsos, arms, and animated feet. */
   .trainer-sprite::before,
   .npc-sprite::before,
