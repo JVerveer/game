@@ -2200,6 +2200,101 @@ const INITIAL_NPCS: MovingNpc[] = [
   })),
 ];
 
+type SceneStyle = React.CSSProperties & Record<"--x" | "--y" | "--w" | "--h", number>;
+
+const sceneStyle = (x: number, y: number, w = 1, h = 1): SceneStyle => ({
+  "--x": x,
+  "--y": y,
+  "--w": w,
+  "--h": h,
+});
+
+const SATIRIA_FLOWERS = [
+  [5, 5], [16, 4], [37, 5], [43, 7], [50, 14], [6, 16], [14, 15], [18, 24],
+  [31, 14], [35, 15], [43, 15], [33, 26], [36, 28], [42, 27], [17, 29], [21, 27],
+  [7, 32], [13, 31], [39, 31], [44, 30], [48, 25], [45, 22], [31, 23], [11, 20],
+];
+
+const SATIRIA_TREES = [
+  [5, 8], [17, 8], [39, 8], [45, 8], [5, 14], [14, 14], [19, 14], [37, 14],
+  [43, 14], [49, 17], [17, 24], [21, 25], [32, 25], [36, 24], [42, 25],
+  [50, 24], [8, 28], [18, 29], [23, 30], [34, 30], [41, 30], [47, 29],
+];
+
+const SATIRIA_BUILDINGS = [
+  { x: 8, y: 4, w: 7, h: 6, color: "red", kind: "house", crest: "★" },
+  { x: 20, y: 4, w: 7, h: 6, color: "blue", kind: "house", crest: "♜" },
+  { x: 32, y: 4, w: 6, h: 6, color: "purple", kind: "house", crest: "♦" },
+  { x: 43, y: 4, w: 7, h: 6, color: "red", kind: "house", crest: "□" },
+  { x: 6, y: 16, w: 7, h: 6, color: "green", kind: "shop", crest: "" },
+  { x: 15, y: 16, w: 7, h: 6, color: "blue", kind: "shop", crest: "" },
+  { x: 37, y: 16, w: 10, h: 8, color: "red", kind: "hall", crest: "★" },
+];
+
+function SatiriaScene() {
+  const topForest = Array.from({ length: 28 }, (_, i) => [i * 2, 0.1] as const);
+  const bottomForest = Array.from({ length: 28 }, (_, i) => [i * 2, 32.1] as const);
+  const sideForest = Array.from({ length: 16 }, (_, i) => [0.1, i * 2 + 2] as const);
+  const rightForest = Array.from({ length: 16 }, (_, i) => [53.8, i * 2 + 2] as const);
+
+  return (
+    <div className="satiria-scene" aria-hidden="true">
+      {[...topForest, ...bottomForest, ...sideForest, ...rightForest].map(([x, y], index) => (
+        <i key={`forest-${index}`} className="satiria-scene-tree forest-tree" style={sceneStyle(x, y, 2, 2)} />
+      ))}
+
+      <i className="satiria-road road-main-h" style={sceneStyle(6, 13, 43, 2)} />
+      <i className="satiria-road road-main-v" style={sceneStyle(26.5, 0, 2, 35)} />
+      <i className="satiria-road road-west-lower" style={sceneStyle(8, 23, 20, 2)} />
+      <i className="satiria-road road-hall" style={sceneStyle(42, 23, 2, 6)} />
+      <i className="satiria-plaza" style={sceneStyle(23, 16, 11, 7)} />
+
+      <i className="satiria-pond-coded" style={sceneStyle(4.5, 25, 11, 6.5)} />
+      <i className="satiria-pier-coded" style={sceneStyle(8.3, 23.6, 1.9, 3.2)} />
+      <i className="satiria-mountains mountain-a" style={sceneStyle(48, 5.5, 5, 11)} />
+      <i className="satiria-mountains mountain-b" style={sceneStyle(48, 24, 5, 8)} />
+
+      {SATIRIA_BUILDINGS.map((building, index) => (
+        <div
+          key={`${building.kind}-${index}`}
+          className={`satiria-coded-building roof-${building.color} building-${building.kind}`}
+          style={sceneStyle(building.x, building.y, building.w, building.h)}
+        >
+          <i className="roof" />
+          <i className="walls" />
+          <i className="gable" />
+          <i className="door" />
+          <i className="windows" />
+          <i className="chimney" />
+          {building.crest && <span className="crest">{building.crest}</span>}
+        </div>
+      ))}
+
+      {[
+        [6.5, 10.7, 10, 1], [19, 10.7, 9, 1], [31, 10.7, 8, 1], [42, 10.7, 10, 1],
+        [5, 21.8, 9, 1], [14, 21.8, 9, 1], [36, 24, 12, 1], [36, 16, 12, 1],
+      ].map(([x, y, w, h], index) => (
+        <i key={`fence-${index}`} className="satiria-coded-fence" style={sceneStyle(x, y, w, h)} />
+      ))}
+
+      {SATIRIA_TREES.map(([x, y], index) => (
+        <i key={`tree-${index}`} className="satiria-scene-tree" style={sceneStyle(x, y, 1.3, 1.8)} />
+      ))}
+
+      {SATIRIA_FLOWERS.map(([x, y], index) => (
+        <i key={`flower-${index}`} className="satiria-coded-flower" style={sceneStyle(x, y, 0.8, 0.8)} />
+      ))}
+
+      <i className="satiria-coded-fountain" style={sceneStyle(26.1, 17.2, 4, 4)} />
+      <i className="satiria-coded-statue" style={sceneStyle(27.2, 16.6, 1.8, 3)} />
+      {[24, 32].map((x, index) => <i key={`bench-top-${index}`} className="satiria-coded-bench" style={sceneStyle(x, 16.2, 1.8, 0.8)} />)}
+      {[24, 32].map((x, index) => <i key={`bench-bottom-${index}`} className="satiria-coded-bench" style={sceneStyle(x, 22.1, 1.8, 0.8)} />)}
+      {[25.4, 31.2].map((x, index) => <i key={`lamp-top-${index}`} className="satiria-coded-lamp" style={sceneStyle(x, 15.2, 1, 1.8)} />)}
+      {[25.4, 31.2].map((x, index) => <i key={`lamp-bottom-${index}`} className="satiria-coded-lamp" style={sceneStyle(x, 21.3, 1, 1.8)} />)}
+    </div>
+  );
+}
+
 const isTownMap = (id: GameMapId): id is TownMapId => MAIN_TOWN_IDS.includes(id as TownMapId);
 
 function GameScreen({ onExit }: { onExit: () => void }) {
@@ -2471,8 +2566,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         transition: "transform 0.1s linear",
         width: mapPxW, height: mapPxH,
       }} className={`map-layer map-${mapId}`}>
+        {mapId === "satiria" && <SatiriaScene />}
+
         {/* Tiles rendered as flex rows */}
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div className={mapId === "satiria" ? "satiria-game-grid" : ""} style={{ display: "flex", flexDirection: "column" }}>
           {currentMap.rows.map((row, ry) => (
             <div key={ry} style={{ display: "flex" }}>
               {row.map((t, cx) => {
