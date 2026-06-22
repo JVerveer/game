@@ -18,8 +18,12 @@ import {
   DS_TILE_COLORS, DS_TILE_ICONS, DS_MAP_ROWS,
   WALKABLE_TILES as WALK,
   GAME_MAPS,
+  MAIN_TOWN_IDS,
+  TOWN_THEMES,
+  TOWN_WORLD_POSITIONS,
   type GameMapId,
   type Portal,
+  type TownMapId,
   getLocationName as LOCATION_FOR,
 } from "../data/maps";
 import {
@@ -2063,6 +2067,7 @@ type MovingNpc = {
   lines: string[];
   name: string;
   walking?: boolean;
+  variant?: number;
 };
 
 const INITIAL_NPCS: MovingNpc[] = [
@@ -2075,6 +2080,7 @@ const INITIAL_NPCS: MovingNpc[] = [
     homeY: 16,
     name: "Route Guide",
     lines: ['"The east road is open now."', '"Follow the path and keep an eye on the tall grass."'],
+    variant: 0,
   },
   {
     id: "satiria-kid",
@@ -2085,18 +2091,22 @@ const INITIAL_NPCS: MovingNpc[] = [
     homeY: 18,
     name: "Town Kid",
     lines: ['"I saw the shop clerk polish one potion for six hours."', '"That means it is probably rare."'],
+    variant: 1,
   },
-  {
-    id: "sproutford-local",
-    mapId: "sproutford",
-    x: 28,
-    y: 18,
-    homeX: 28,
-    homeY: 18,
-    name: "Sproutford Local",
-    lines: ['"Welcome to Sproutford!"', '"Our town is small, but our pathfinding is ambitious."'],
-  },
+  ...TOWN_THEMES.slice(1).map((theme, index) => ({
+    id: `${theme.id}-local`,
+    mapId: theme.id,
+    x: index % 2 === 0 ? 29 : 24,
+    y: index % 2 === 0 ? 19 : 17,
+    homeX: index % 2 === 0 ? 29 : 24,
+    homeY: index % 2 === 0 ? 19 : 17,
+    name: theme.npcName,
+    lines: theme.npcLines,
+    variant: (index + 2) % 5,
+  })),
 ];
+
+const isTownMap = (id: GameMapId): id is TownMapId => MAIN_TOWN_IDS.includes(id as TownMapId);
 
 function GameScreen({ onExit }: { onExit: () => void }) {
   const [mapId, setMapId] = useState<GameMapId>("satiria");
@@ -2112,9 +2122,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [saveMsg, setSaveMsg] = useState<string | null>(null);
   const [isWalking, setIsWalking] = useState(false);
   const [npcs, setNpcs] = useState<MovingNpc[]>(INITIAL_NPCS);
+  const [miniMapOpen, setMiniMapOpen] = useState(false);
   const viewRef = useRef<HTMLDivElement>(null);
   const [viewSize, setViewSize] = useState({ w: 900, h: 600 });
   const currentMap = GAME_MAPS[mapId];
+  const currentTown = isTownMap(mapId) ? TOWN_THEMES.find(town => town.id === mapId) : null;
 
   // Mutable refs so event handler closure stays fresh
   const mapIdRef = useRef(mapId);
@@ -2360,7 +2372,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
               transition: "left 0.28s linear, top 0.28s linear",
             }}
           >
-            <div className={`npc-sprite ${npc.walking ? "walking" : ""}`} />
+            <div className={`npc-sprite npc-variant-${npc.variant ?? 0} ${npc.walking ? "walking" : ""}`} />
           </div>
         ))}
 
@@ -2442,6 +2454,88 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           {saveMsg}
         </div>
       )}
+
+      {/* ── CLICKABLE WORLD MINIMAP ── */}
+      <button
+        type="button"
+        aria-label="Open world minimap"
+        onClick={() => setMiniMapOpen(open => !open)}
+        style={{
+          position: "absolute",
+          left: 14,
+          bottom: 38,
+          zIndex: 25,
+          width: miniMapOpen ? 254 : 142,
+          minHeight: miniMapOpen ? 184 : 92,
+          border: "4px solid #252018",
+          backgroundColor: "#fff8c8",
+          boxShadow: "inset 0 0 0 3px #ffffff, 0 8px 0 rgba(90,60,34,0.55)",
+          padding: miniMapOpen ? 10 : 8,
+          cursor: "pointer",
+          textAlign: "left",
+          transition: "width 0.18s ease, min-height 0.18s ease",
+        }}
+      >
+        <div style={{ ...PX, fontSize: "0.42rem", color: "#315f2a", marginBottom: 6 }}>
+          WORLD MAP
+        </div>
+        <div style={{ position: "relative", height: miniMapOpen ? 94 : 54, backgroundColor: "#76ad56", border: "2px solid #252018", overflow: "hidden" }}>
+          <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle, rgba(37,32,24,0.16) 1px, transparent 2px)", backgroundSize: "10px 10px" }} />
+          {TOWN_THEMES.slice(0, -1).map((town, index) => {
+            const next = TOWN_THEMES[index + 1];
+            const a = TOWN_WORLD_POSITIONS[town.id];
+            const b = TOWN_WORLD_POSITIONS[next.id];
+            return (
+              <div
+                key={`${town.id}-${next.id}`}
+                style={{
+                  position: "absolute",
+                  left: `${Math.min(a.x, b.x)}%`,
+                  top: `${Math.min(a.y, b.y)}%`,
+                  width: `${Math.abs(a.x - b.x) || 2}%`,
+                  height: `${Math.abs(a.y - b.y) || 2}%`,
+                  borderTop: "2px dashed rgba(90,60,34,0.78)",
+                  transform: a.y > b.y ? "skewY(-24deg)" : "skewY(24deg)",
+                  transformOrigin: "left center",
+                }}
+              />
+            );
+          })}
+          {TOWN_THEMES.map(town => {
+            const p = TOWN_WORLD_POSITIONS[town.id];
+            const active = town.id === mapId;
+            return (
+              <div
+                key={town.id}
+                title={town.name}
+                style={{
+                  position: "absolute",
+                  left: `calc(${p.x}% - ${active ? 6 : 4}px)`,
+                  top: `calc(${p.y}% - ${active ? 6 : 4}px)`,
+                  width: active ? 12 : 8,
+                  height: active ? 12 : 8,
+                  backgroundColor: active ? "#e84a4a" : "#f6d746",
+                  border: "2px solid #252018",
+                  boxShadow: active ? "0 0 0 3px rgba(232,74,74,0.24)" : "none",
+                }}
+              />
+            );
+          })}
+        </div>
+        <div style={{ ...VT, fontSize: miniMapOpen ? "1rem" : "0.88rem", color: "#252018", lineHeight: 1.1, marginTop: 7 }}>
+          Hero: {location}
+        </div>
+        {miniMapOpen && (
+          <div style={{ marginTop: 6 }}>
+            <div style={{ ...PX, fontSize: "0.38rem", color: "#b6422c", marginBottom: 4 }}>
+              {currentTown?.name ?? currentMap.name}
+            </div>
+            <div style={{ ...VT, fontSize: "0.9rem", color: "#66512c", lineHeight: 1.1 }}>
+              {currentTown ? currentTown.hook : "Interior area. Exit returns to the last town doorway."}
+            </div>
+          </div>
+        )}
+      </button>
 
       {/* ── DIALOGUE BOX ── */}
       {dlg && (

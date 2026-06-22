@@ -528,17 +528,88 @@
     content: "";
     position: absolute;
     left: 9px;
-    top: 3px;
+    top: 1px;
     width: 16px;
     height: 16px;
     background: #f8d39d;
     box-shadow:
       0 -5px 0 #315f2a,
-      -5px 17px 0 #f6d746,
-      0 17px 0 #f6d746,
-      5px 17px 0 #f6d746,
-      -7px 20px 0 #252018,
-      7px 20px 0 #252018,
+      -6px 6px 0 #252018,
+      6px 6px 0 #252018,
+      -3px 18px 0 #f6d746,
+      3px 18px 0 #f6d746,
+      0 18px 0 #f6d746,
+      -8px 20px 0 #315f2a,
+      8px 20px 0 #315f2a,
+      -5px 32px 0 #252018,
+      5px 32px 0 #252018;
+  }
+
+  .npc-sprite::after,
+  .clerk-sprite::after,
+  .nurse-sprite::after {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: 8px;
+    width: 3px;
+    height: 3px;
+    background: #252018;
+    box-shadow: 8px 0 0 #252018, 4px 7px 0 #b6422c;
+  }
+
+  .npc-variant-1::before {
+    box-shadow:
+      0 -5px 0 #7a4b9c,
+      -6px 6px 0 #252018,
+      6px 6px 0 #252018,
+      -3px 18px 0 #4d77b0,
+      3px 18px 0 #4d77b0,
+      0 18px 0 #4d77b0,
+      -8px 20px 0 #fff8c8,
+      8px 20px 0 #fff8c8,
+      -5px 32px 0 #252018,
+      5px 32px 0 #252018;
+  }
+
+  .npc-variant-2::before {
+    box-shadow:
+      0 -5px 0 #ca4b36,
+      -6px 6px 0 #252018,
+      6px 6px 0 #252018,
+      -3px 18px 0 #315f2a,
+      3px 18px 0 #315f2a,
+      0 18px 0 #315f2a,
+      -8px 20px 0 #f6d746,
+      8px 20px 0 #f6d746,
+      -5px 32px 0 #252018,
+      5px 32px 0 #252018;
+  }
+
+  .npc-variant-3::before {
+    box-shadow:
+      0 -5px 0 #5a3c22,
+      -6px 6px 0 #252018,
+      6px 6px 0 #252018,
+      -3px 18px 0 #b6422c,
+      3px 18px 0 #b6422c,
+      0 18px 0 #b6422c,
+      -8px 20px 0 #4d77b0,
+      8px 20px 0 #4d77b0,
+      -5px 32px 0 #252018,
+      5px 32px 0 #252018;
+  }
+
+  .npc-variant-4::before {
+    box-shadow:
+      0 -5px 0 #252018,
+      -6px 6px 0 #252018,
+      6px 6px 0 #252018,
+      -3px 18px 0 #fff8c8,
+      3px 18px 0 #fff8c8,
+      0 18px 0 #fff8c8,
+      -8px 20px 0 #7a4b9c,
+      8px 20px 0 #7a4b9c,
       -5px 32px 0 #252018,
       5px 32px 0 #252018;
   }
@@ -546,11 +617,13 @@
   .clerk-sprite::before {
     box-shadow:
       0 -5px 0 #4d77b0,
-      -5px 17px 0 #fff8c8,
-      0 17px 0 #fff8c8,
-      5px 17px 0 #fff8c8,
-      -7px 20px 0 #252018,
-      7px 20px 0 #252018,
+      -6px 6px 0 #252018,
+      6px 6px 0 #252018,
+      -3px 18px 0 #fff8c8,
+      3px 18px 0 #fff8c8,
+      0 18px 0 #fff8c8,
+      -8px 20px 0 #4d77b0,
+      8px 20px 0 #4d77b0,
       -5px 32px 0 #252018,
       5px 32px 0 #252018;
   }
@@ -558,11 +631,13 @@
   .nurse-sprite::before {
     box-shadow:
       0 -5px 0 #ca4b36,
-      -5px 17px 0 #fff8c8,
-      0 17px 0 #fff8c8,
-      5px 17px 0 #fff8c8,
-      -7px 20px 0 #ca4b36,
-      7px 20px 0 #ca4b36,
+      -6px 6px 0 #252018,
+      6px 6px 0 #252018,
+      -3px 18px 0 #fff8c8,
+      3px 18px 0 #fff8c8,
+      0 18px 0 #fff8c8,
+      -8px 20px 0 #ca4b36,
+      8px 20px 0 #ca4b36,
       -5px 32px 0 #252018,
       5px 32px 0 #252018;
   }
