@@ -2454,7 +2454,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
   return (
     <div className="gameboy-shell">
-      <div ref={viewRef} className="gameboy-screen">
+      <div ref={viewRef} className={`gameboy-screen screen-${mapId}`}>
 
       {/* White battle flash */}
       {flash && (

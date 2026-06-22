@@ -1321,6 +1321,7 @@ const specialInteractionsFor = (theme: TownTheme): Record<string, Interaction> =
 
 const createThemedTownDef = (theme: TownTheme): GameMapDef => {
   const doors = doorConfigFor(theme);
+  const rows = themedRowsFor(theme);
   const homeObjects = Object.fromEntries(doors.homes.map(coord => [coord, "DOOR_HOME"]));
   const trainObjects = Object.fromEntries(doors.train.slice(0, 2).map(coord => [coord, "TRAIN"]));
   const trainInteractions = Object.fromEntries(doors.train.map(coord => [coord, {
@@ -1332,9 +1333,9 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
   return {
     id: theme.id,
     name: theme.name,
-    width: 56,
-    height: 34,
-    rows: themedRowsFor(theme),
+    width: rows[0]?.length ?? 56,
+    height: rows.length,
+    rows,
     spawn: { x: 27, y: 18 },
     objects: {
       ...routeObjectsFor(theme),

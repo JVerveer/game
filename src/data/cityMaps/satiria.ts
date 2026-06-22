@@ -1,7 +1,7 @@
 import { hline, makeBlankMap, rect, vline } from "./utils";
 
 export const buildSatiriaMap = () => {
-  const map = makeBlankMap(56, 34, "T");
+  const map = makeBlankMap(56, 35, "T");
 
   // Forest-framed clearing, like a classic RPG starter town.
   rect(map, 3, 3, 50, 28, "G");

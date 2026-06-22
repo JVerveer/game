@@ -78,6 +78,33 @@
     mix-blend-mode: multiply;
   }
 
+  .gameboy-screen.screen-satiria::after {
+    display: none;
+  }
+
+  .map-layer.map-satiria {
+    background-image: url("/maps/satiria-reference.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .map-layer.map-satiria .map-tile {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .map-layer.map-satiria .map-tile::before,
+  .map-layer.map-satiria .map-tile::after {
+    display: none;
+  }
+
+  .map-layer.map-satiria .map-tile > .world-object {
+    display: none;
+  }
+
   .map-tile {
     position: relative;
     overflow: visible;
