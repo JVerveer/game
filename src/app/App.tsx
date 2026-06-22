@@ -2449,21 +2449,23 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
       {/* ── HUD TOP ── */}
       <div style={{
-        position: "absolute", top: 0, left: 0, right: 0, zIndex: 120,
-        padding: "12px 16px",
-        background: "linear-gradient(to bottom, rgba(37,32,24,0.88) 0%, transparent 100%)",
+        position: "fixed", top: 12, left: 12, right: 12, zIndex: 1000,
+        padding: "10px 14px",
+        border: "4px solid #252018",
+        background: "#fff8c8",
+        boxShadow: "inset 0 0 0 3px #ffffff, inset 0 0 0 6px #ffef93, 0 5px 0 rgba(90,60,34,0.55)",
         display: "flex", justifyContent: "space-between", alignItems: "flex-start",
         pointerEvents: "none",
       }}>
         {/* Player stats */}
         <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-          <div style={{ ...PX, fontSize: "0.45rem", color: "#fff8c8" }}>HERO · LV.15</div>
+          <div style={{ ...PX, fontSize: "0.45rem", color: "#252018" }}>HERO · LV.15</div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ ...RJ, fontSize: "0.75rem", color: "#e84a4a", fontWeight: 700 }}>HP</span>
-            <div style={{ width: 120, height: 10, backgroundColor: "rgba(0,0,0,0.6)", border: "1px solid rgba(255,255,255,0.2)" }}>
+            <div style={{ width: 120, height: 10, backgroundColor: "#252018", border: "1px solid #252018" }}>
               <div style={{ height: "100%", width: `${hpPct}%`, backgroundColor: hpColor, transition: "width 0.4s" }} />
             </div>
-            <span style={{ ...RJ, fontSize: "0.75rem", color: "rgba(255,255,255,0.5)", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>
+            <span style={{ ...RJ, fontSize: "0.75rem", color: "#252018", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>
               {hp.cur}/{hp.max}
             </span>
           </div>
@@ -2472,13 +2474,13 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         {/* Location */}
         <div style={{ textAlign: "center" }}>
           <div className="pixel-window px-4 py-1" style={{ ...VT, fontSize: "1.35rem" }}>{location}</div>
-          <div style={{ ...RJ, fontSize: "0.7rem", color: "rgba(255,248,200,0.75)" }}>Steps: {steps}</div>
+          <div style={{ ...RJ, fontSize: "0.7rem", color: "#66512c", fontWeight: 700 }}>Steps: {steps}</div>
         </div>
 
         {/* Currency + pause hint */}
         <div style={{ textAlign: "right", display: "flex", flexDirection: "column", gap: 4 }}>
-          <div style={{ ...VT, fontSize: "1.2rem", color: "#fff8c8" }}>1,240 G</div>
-          <div style={{ ...RJ, fontSize: "0.65rem", color: "rgba(255,248,200,0.65)" }}>ESC to pause</div>
+          <div style={{ ...VT, fontSize: "1.2rem", color: "#252018" }}>1,240 G</div>
+          <div style={{ ...RJ, fontSize: "0.65rem", color: "#66512c", fontWeight: 700 }}>ESC to pause</div>
         </div>
       </div>
 
@@ -2504,7 +2506,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       {saveMsg && (
         <div style={{
           position: "absolute", top: "20%", left: "50%", transform: "translateX(-50%)",
-          zIndex: 130, border: "2px solid rgba(245,197,24,0.7)",
+          zIndex: 1100, border: "2px solid rgba(245,197,24,0.7)",
           backgroundColor: "rgba(30,20,0,0.95)", padding: "12px 28px",
           ...VT, fontSize: "1.5rem", color: "#f5c518",
         }}>
@@ -2518,10 +2520,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         aria-label="Open world minimap"
         onClick={() => setMiniMapOpen(open => !open)}
         style={{
-          position: "absolute",
+          position: "fixed",
           left: 14,
           bottom: 38,
-          zIndex: 125,
+          zIndex: 1000,
           width: miniMapOpen ? 254 : 142,
           minHeight: miniMapOpen ? 184 : 92,
           border: "4px solid #252018",
@@ -2601,9 +2603,9 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       {trainOpen && (
         <div
           style={{
-            position: "absolute",
+            position: "fixed",
             inset: 0,
-            zIndex: 140,
+            zIndex: 1200,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -2662,7 +2664,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         <div
           onClick={doInteract}
           style={{
-            position: "absolute", bottom: 80, left: 12, right: 12, zIndex: 130,
+            position: "fixed", bottom: 80, left: 12, right: 12, zIndex: 1100,
             border: "4px solid #252018",
             backgroundColor: "#fff8c8",
             padding: "16px 20px", cursor: "pointer",
@@ -2686,7 +2688,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
       {/* ── BOTTOM HINT ── */}
       <div style={{
-        position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 120,
+        position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 1000,
         padding: "8px 16px",
         background: "linear-gradient(to top, rgba(37,32,24,0.8) 0%, transparent 100%)",
         display: "flex", justifyContent: "space-between", alignItems: "center",
@@ -2698,7 +2700,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       </div>
 
       {/* ── ON-SCREEN D-PAD ── */}
-      <div style={{ position: "absolute", bottom: 16, right: 16, zIndex: 125, display: "grid", gridTemplateColumns: "repeat(3,38px)", gap: 3, width: 120 }}>
+      <div style={{ position: "fixed", bottom: 16, right: 16, zIndex: 1000, display: "grid", gridTemplateColumns: "repeat(3,38px)", gap: 3, width: 120 }}>
         <div /><button style={D_PAD_BTN} onClick={() => doMove(0,-1,"up")}>▲</button><div />
         <button style={D_PAD_BTN} onClick={() => doMove(-1,0,"left")}>◀</button>
         <button style={{ ...D_PAD_BTN, color: "#f5c518", borderColor: "rgba(245,197,24,0.3)" }} onClick={doInteract}>Z</button>
@@ -2708,7 +2710,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
       {/* ── PAUSE MENU ── */}
       {paused && (
-        <div style={{ position: "absolute", inset: 0, zIndex: 150, display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "rgba(0,0,0,0.85)" }}>
+        <div style={{ position: "fixed", inset: 0, zIndex: 1200, display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "rgba(0,0,0,0.85)" }}>
           <div style={{ border: "2px solid rgba(245,197,24,0.55)", backgroundColor: "#0d0d1e", padding: "40px 48px", textAlign: "center", minWidth: 260 }}>
             <div style={{ ...PX, fontSize: "0.8rem", color: "#f5c518", marginBottom: 28 }}>PAUSED</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
