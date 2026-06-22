@@ -16,9 +16,10 @@ import {
 } from "../data/items";
 import {
   DS_TILE_COLORS, DS_TILE_ICONS, DS_MAP_ROWS,
-  GAME_TILE_COLORS as GT, WALKABLE_TILES as WALK,
-  GAME_MAP_W as MAP_W, GAME_MAP, GAME_MAP_H as MAP_H,
-  MAP_OBJECTS as OBJ, INTERACTIONS as INTR,
+  WALKABLE_TILES as WALK,
+  GAME_MAPS,
+  type GameMapId,
+  type Portal,
   getLocationName as LOCATION_FOR,
 } from "../data/maps";
 import {
@@ -2028,7 +2029,8 @@ const D_PAD_BTN: React.CSSProperties = {
 };
 
 function GameScreen({ onExit }: { onExit: () => void }) {
-  const [pos, setPos] = useState({ x: 18, y: 12 });
+  const [mapId, setMapId] = useState<GameMapId>("satiria");
+  const [pos, setPos] = useState(GAME_MAPS.satiria.spawn);
   const [facing, setFacing] = useState<"up" | "down" | "left" | "right">("down");
   const [dlg, setDlg] = useState<{ name: string; lines: string[]; idx: number } | null>(null);
   const [hp, setHp] = useState({ cur: 82, max: 100 });
@@ -2040,22 +2042,50 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [saveMsg, setSaveMsg] = useState<string | null>(null);
   const viewRef = useRef<HTMLDivElement>(null);
   const [viewSize, setViewSize] = useState({ w: 900, h: 600 });
+  const currentMap = GAME_MAPS[mapId];
 
   // Mutable refs so event handler closure stays fresh
+  const mapIdRef = useRef(mapId);
   const posRef = useRef(pos);
   const facingRef = useRef(facing);
   const dlgRef = useRef(dlg);
   const pausedRef = useRef(paused);
   const battleRef = useRef(battleEnemy);
+  const pendingPortalRef = useRef<Portal | null>(null);
+  const returnPortalRef = useRef<Portal>({ mapId: "satiria", x: 31, y: 17, facing: "down" });
   const lastMove = useRef(0);
+  mapIdRef.current = mapId;
   posRef.current = pos;
   facingRef.current = facing;
   dlgRef.current = dlg;
   pausedRef.current = paused;
   battleRef.current = battleEnemy;
 
+  const isIndoor = (id: GameMapId) => id === "shop" || id === "house" || id === "healing";
+
+  const warpTo = (portal: Portal) => {
+    const fromMapId = mapIdRef.current;
+    const cur = posRef.current;
+    const destination = isIndoor(fromMapId) && portal.mapId === "satiria"
+      ? returnPortalRef.current
+      : portal;
+
+    if (!isIndoor(fromMapId) && isIndoor(portal.mapId)) {
+      returnPortalRef.current = { mapId: fromMapId, x: cur.x, y: cur.y, facing: "down" };
+    }
+
+    const nextMap = GAME_MAPS[destination.mapId];
+    const nextTile = nextMap.rows[destination.y]?.[destination.x] ?? "G";
+    setMapId(destination.mapId);
+    setPos({ x: destination.x, y: destination.y });
+    setFacing(destination.facing ?? "down");
+    setLocation(LOCATION_FOR(destination.mapId, destination.x, destination.y, nextTile));
+  };
+
   const tile = (x: number, y: number) =>
-    y >= 0 && y < MAP_H && x >= 0 && x < MAP_W ? (GAME_MAP[y][x] ?? "T") : "T";
+    y >= 0 && y < GAME_MAPS[mapIdRef.current].height && x >= 0 && x < GAME_MAPS[mapIdRef.current].width
+      ? (GAME_MAPS[mapIdRef.current].rows[y][x] ?? "T")
+      : "T";
 
   const doMove = (dx: number, dy: number, dir: "up" | "down" | "left" | "right") => {
     if (dlgRef.current || pausedRef.current || battleRef.current) return;
@@ -2072,7 +2102,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
     setPos({ x: nx, y: ny });
     setSteps(s => s + 1);
-    setLocation(LOCATION_FOR(nx, ny, t));
+    setLocation(LOCATION_FOR(mapIdRef.current, nx, ny, t));
 
     if (t === "X" && Math.random() < 0.13) {
       setFlash(true);
@@ -2092,6 +2122,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         setDlg({ ...d, idx: d.idx + 1 });
       } else {
         setDlg(null);
+        if (pendingPortalRef.current) {
+          const portal = pendingPortalRef.current;
+          pendingPortalRef.current = null;
+          warpTo(portal);
+        }
       }
       return;
     }
@@ -2103,10 +2138,12 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     // check adjacent then current tile
     for (const [cx, cy] of [[cur.x + ox, cur.y + oy], [cur.x, cur.y]]) {
       const key = `${cx},${cy}`;
-      const intr = INTR[key];
+      const intr = GAME_MAPS[mapIdRef.current].interactions[key];
       if (intr) {
         if (intr.heal) setHp(h => ({ ...h, cur: h.max }));
         if (intr.save) { setSaveMsg("★ Saved!"); setTimeout(() => setSaveMsg(null), 2500); }
+        if (intr.shop) { setSaveMsg("SHOP OPEN"); setTimeout(() => setSaveMsg(null), 1800); }
+        if (intr.portal) pendingPortalRef.current = intr.portal;
         setDlg({ name: intr.name, lines: intr.lines, idx: 0 });
         return;
       }
@@ -2138,8 +2175,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   }, []);
 
   // Camera: centre on player, clamped to map bounds
-  const mapPxW = MAP_W * TS;
-  const mapPxH = MAP_H * TS;
+  const mapPxW = currentMap.width * TS;
+  const mapPxH = currentMap.height * TS;
   const rawCamX = viewSize.w / 2 - (pos.x + 0.5) * TS;
   const rawCamY = viewSize.h / 2 - (pos.y + 0.5) * TS;
   const camX = Math.min(0, Math.max(rawCamX, viewSize.w - mapPxW));
@@ -2166,10 +2203,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       }}>
         {/* Tiles rendered as flex rows */}
         <div style={{ display: "flex", flexDirection: "column" }}>
-          {GAME_MAP.map((row, ry) => (
+          {currentMap.rows.map((row, ry) => (
             <div key={ry} style={{ display: "flex" }}>
               {row.map((t, cx) => {
-                const obj = OBJ[`${cx},${ry}`];
+                const obj = currentMap.objects[`${cx},${ry}`];
                 return (
                   <div
                     key={cx}
@@ -2181,7 +2218,18 @@ function GameScreen({ onExit }: { onExit: () => void }) {
                       fontSize: TS * 0.62, lineHeight: 1, userSelect: "none",
                     }}
                   >
-                    {obj}
+                    {obj && (
+                      <span style={{
+                        ...VT,
+                        fontSize: obj.length > 3 ? 12 : obj.length > 1 ? 14 : TS * 0.45,
+                        color: "#252018",
+                        fontWeight: 700,
+                        lineHeight: 1,
+                        textShadow: "1px 1px 0 rgba(255,248,200,0.55)",
+                      }}>
+                        {obj}
+                      </span>
+                    )}
                   </div>
                 );
               })}
@@ -2248,7 +2296,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
             setBattleEnemy(null);
             setHp(prev => ({ ...prev, cur: newHp }));
             if (result === "defeat") {
-              setPos({ x: 18, y: 12 });
+              setMapId("satiria");
+              setPos(GAME_MAPS.satiria.spawn);
               setLocation("Satiria Town");
             }
           }}
