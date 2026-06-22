@@ -2714,7 +2714,6 @@ function GameScreen({ onExit }: { onExit: () => void }) {
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {[
                 { label: "Resume", action: () => setPaused(false), color: "#5de85d" },
-                { label: "Exit to Menu", action: onExit, color: "#f5c518" },
               ].map(btn => (
                 <button
                   key={btn.label}
@@ -2740,110 +2739,9 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   );
 }
 
-// ─── NAVIGATION ──────────────────────────────────────────────────────────────
-const NAV_PAGES: { id: PageId; num: string; label: string; Icon: LucideIcon }[] = [
-  { id: "cover",     num: "00", label: "Cover",      Icon: Star },
-  { id: "design",    num: "01", label: "Design",     Icon: Layers },
-  { id: "components",num: "02", label: "Components", Icon: Grid3x3 },
-  { id: "overworld", num: "04", label: "Overworld",  Icon: Map },
-  { id: "battle",    num: "05", label: "Battle",     Icon: Sword },
-  { id: "character", num: "06", label: "Character",  Icon: User },
-  { id: "inventory", num: "07", label: "Inventory",  Icon: Package },
-  { id: "quests",    num: "08", label: "Quests",     Icon: ScrollText },
-  { id: "shop",      num: "09", label: "Shop",       Icon: ShoppingBag },
-  { id: "save",      num: "11", label: "Save",       Icon: Save },
-  { id: "settings",  num: "12", label: "Settings",   Icon: Settings },
-];
-
 // ─── APP ROOT ─────────────────────────────────────────────────────────────────
 function AppInner() {
-  const [page, setPage] = useState<PageId>("cover");
-  const [gameMode, setGameMode] = useState(false);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const { theme } = useTheme();
-  const pri = theme.vars["--primary"];
-  const mut = theme.vars["--muted-foreground"];
-
-  const navigate = (id: PageId) => {
-    setPage(id);
-    contentRef.current?.scrollTo({ top: 0 });
-  };
-
-  if (gameMode) {
-    return <GameScreen onExit={() => { setGameMode(false); setPage("cover"); }} />;
-  }
-
-  return (
-    <div className="flex h-screen bg-background text-foreground overflow-hidden" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
-      {/* Sidebar nav */}
-      <nav
-        className="w-14 md:w-48 shrink-0 flex flex-col border-r-2 overflow-y-auto bg-sidebar"
-        style={{ borderColor: `${pri}12`, scrollbarWidth: "none" }}
-      >
-        {/* Logo */}
-        <div className="py-4 px-2 border-b-2 flex items-center justify-center md:justify-start gap-2"
-          style={{ borderColor: `${pri}12` }}>
-          <span className="text-xl">🐉</span>
-          <span className="hidden md:block leading-tight" style={{ ...PX, fontSize: "0.45rem", color: pri }}>
-            CRINGE<br />QUEST
-          </span>
-        </div>
-
-        {/* Pages */}
-        <div className="flex flex-col flex-1 py-2 gap-0.5">
-          {NAV_PAGES.map(({ id, num, label, Icon }) => {
-            const active = page === id;
-            return (
-              <button
-                key={id}
-                onClick={() => navigate(id)}
-                className="flex items-center gap-3 px-2 py-2.5 md:px-4 transition-all text-left"
-                style={{
-                  backgroundColor: active ? `${pri}14` : "transparent",
-                  borderLeft: active ? `2px solid ${pri}` : "2px solid transparent",
-                }}
-              >
-                <Icon size={15} className="shrink-0" style={{ color: active ? pri : mut }} />
-                <div className="hidden md:flex flex-col leading-none gap-0.5">
-                  <span style={{ ...PX, fontSize: "0.35rem", color: active ? `${pri}80` : `${pri}22` }}>{num}</span>
-                  <span style={{ color: active ? pri : mut, fontFamily: "'Rajdhani',sans-serif", fontWeight: 700, fontSize: "0.85rem" }}>
-                    {label}
-                  </span>
-                </div>
-                <div className="md:hidden text-center w-full">
-                  <span style={{ ...PX, fontSize: "0.35rem", color: active ? pri : mut }}>{num}</span>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Bottom info */}
-        <div className="p-3 border-t-2 hidden md:block" style={{ borderColor: `${pri}12` }}>
-          <div className="text-muted-foreground text-center" style={{ ...PX, fontSize: "0.35rem" }}>v0.1.0-α</div>
-        </div>
-      </nav>
-
-      {/* Content */}
-      <main
-        ref={contentRef}
-        className="flex-1 overflow-y-auto overflow-x-hidden"
-        style={{ scrollbarWidth: "thin", scrollbarColor: `${pri}30 transparent` }}
-      >
-        {page === "cover"      && <CoverPage onStart={() => setGameMode(true)} />}
-        {page === "design"     && <DesignSystemPage />}
-        {page === "components" && <ComponentsPage />}
-        {page === "overworld"  && <OverworldPage />}
-        {page === "battle"     && <BattlePage />}
-        {page === "character"  && <CharacterPage />}
-        {page === "inventory"  && <InventoryPage />}
-        {page === "quests"     && <QuestsPage />}
-        {page === "shop"       && <ShopPage />}
-        {page === "save"       && <SavePage />}
-        {page === "settings"   && <SettingsPage />}
-      </main>
-    </div>
-  );
+  return <GameScreen onExit={() => undefined} />;
 }
 
 export default function App() {
