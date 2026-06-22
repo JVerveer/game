@@ -311,6 +311,16 @@ class TilePainter:
             pygame.draw.rect(surf, CREAM, (13, 4, 6, 6))
             pygame.draw.rect(surf, CREAM, (11, 6, 10, 2))
             pygame.draw.rect(surf, INK, (13, 18, 7, 10))
+        elif kind == "P":
+            surf.fill((205, 166, 88))
+            pygame.draw.rect(surf, INK, (2, 7, 28, 23))
+            pygame.draw.rect(surf, (246, 221, 139), (4, 11, 24, 17))
+            pygame.draw.rect(surf, (92, 88, 91), (1, 4, 30, 9))
+            pygame.draw.rect(surf, INK, (1, 4, 30, 9), 2)
+            pygame.draw.rect(surf, INK, (8, 18, 16, 4))
+            pygame.draw.rect(surf, BLUE, (10, 16, 12, 5))
+            pygame.draw.rect(surf, INK, (13, 22, 7, 6))
+            pygame.draw.circle(surf, RED, (25, 17), 2)
         elif kind == "M":
             surf.fill((96, 83, 84))
             pygame.draw.polygon(surf, (73, 67, 78), [(1, 31), (16, 4), (31, 31)])
@@ -399,6 +409,8 @@ def make_town_map(theme):
     rect(34, 11, 6, 4, "B")
     rect(18, 21, 6, 4, "B")
     rect(32, 21, 6, 4, "B")
+    rows[24][34] = "P"
+    rows[24][35] = "P"
     rows[18][27] = "V"
     for direction in exits:
         x, y = PORTAL_POS[direction]
@@ -540,6 +552,8 @@ class Game:
         self.steps = 0
         self.dialog = None
         self.dialog_line = 0
+        self.train_open = False
+        self.train_index = 0
         self.mode = "title"
         self.minimap_open = False
         self.walk_flash = 0
@@ -571,6 +585,9 @@ class Game:
                 if self.mode == "title":
                     self.mode = "game"
                     continue
+                if self.train_open:
+                    self.handle_train_key(event.key)
+                    continue
                 if event.key in (pygame.K_ESCAPE, pygame.K_q):
                     if self.dialog:
                         self.dialog = None
@@ -596,14 +613,14 @@ class Game:
     def update(self, dt):
         self.walk_flash = max(0, self.walk_flash - dt)
         self.message_timer = max(0, self.message_timer - dt)
-        if self.mode != "game" or self.dialog:
+        if self.mode != "game" or self.dialog or self.train_open:
             return
         hero_tile = (int(self.hero.x), int(self.hero.y))
         for npc in self.town.npcs:
             npc.update(self.town, hero_tile, dt)
 
     def move(self, dx, dy, facing):
-        if self.mode != "game":
+        if self.mode != "game" or self.train_open:
             return
         self.facing = facing
         nx, ny = int(self.hero.x + dx), int(self.hero.y + dy)
@@ -647,10 +664,39 @@ class Game:
                 self.toast("Progress saved")
                 self.start_dialog("Save Point", ["Progress saved.", f"{self.town.theme.name} - Lv. 15"])
                 return
+            if tile == "P":
+                self.open_train_menu()
+                return
             if tile == "B":
                 self.start_dialog("Town Door", [f"Local shops advertise potions at {self.price} G.", self.town.theme.hook])
                 return
         self.start_dialog(self.town.theme.name, [self.town.theme.satire, self.town.theme.hook])
+
+    def train_destinations(self):
+        return [town for town in TOWNS if town.key != self.town_key]
+
+    def open_train_menu(self):
+        self.train_open = True
+        self.train_index = 0
+
+    def handle_train_key(self, key):
+        destinations = self.train_destinations()
+        if key in (pygame.K_ESCAPE, pygame.K_q, pygame.K_z):
+            self.train_open = False
+            return
+        if key in (pygame.K_UP, pygame.K_w):
+            self.train_index = (self.train_index - 1) % len(destinations)
+            return
+        if key in (pygame.K_DOWN, pygame.K_s):
+            self.train_index = (self.train_index + 1) % len(destinations)
+            return
+        if key in (pygame.K_SPACE, pygame.K_RETURN):
+            destination = destinations[self.train_index]
+            self.town_key = destination.key
+            self.hero.update(35, 25)
+            self.facing = "up"
+            self.train_open = False
+            self.toast(f"Arrived at {destination.name} Station")
 
     def start_dialog(self, name, lines):
         self.dialog = {"name": name, "lines": lines}
@@ -735,6 +781,8 @@ class Game:
             self.draw_toast()
         if self.dialog:
             self.draw_dialog()
+        if self.train_open:
+            self.draw_train_menu()
 
     def draw_hud(self):
         hud = pygame.Rect(14, 12, SCREEN_W - 28, 66)
@@ -801,6 +849,43 @@ class Game:
         for i, line in enumerate(wrap_text(text, self.fonts.medium, rect.w - 60)[:3]):
             self.fonts.draw(self.screen, line, (rect.x + 22, rect.y + 44 + i * 24), INK, self.fonts.medium)
         self.fonts.draw(self.screen, "SPACE", (rect.right - 92, rect.bottom - 28), SHADOW, self.fonts.small)
+
+    def draw_train_menu(self):
+        overlay = pygame.Surface((SCREEN_W, SCREEN_H), pygame.SRCALPHA)
+        overlay.fill((34, 29, 24, 96))
+        self.screen.blit(overlay, (0, 0))
+
+        rect = pygame.Rect(246, 96, 468, 430)
+        draw_panel(self.screen, rect, fill=(255, 248, 202))
+        self.fonts.draw(self.screen, "TRAIN STATION", (rect.x + 28, rect.y + 24), RED, self.fonts.large)
+        self.fonts.draw(self.screen, f"Departing: {self.town.theme.name}", (rect.x + 30, rect.y + 76), OLIVE, self.fonts.medium)
+        pygame.draw.rect(self.screen, INK, (rect.x + 30, rect.y + 110, rect.w - 60, 4))
+
+        destinations = self.train_destinations()
+        visible_rows = 7
+        first = max(0, min(self.train_index - 3, len(destinations) - visible_rows))
+        visible = destinations[first:first + visible_rows]
+        for row, town in enumerate(visible):
+            idx = first + row
+            y = rect.y + 132 + row * 30
+            if idx == self.train_index:
+                pygame.draw.rect(self.screen, RED, (rect.x + 30, y - 4, rect.w - 60, 26))
+                self.fonts.draw(self.screen, ">", (rect.x + 42, y - 1), PALE_YELLOW, self.fonts.medium)
+                color = PALE_YELLOW
+            else:
+                color = INK
+            self.fonts.draw(self.screen, town.name, (rect.x + 70, y), color, self.fonts.medium)
+        if first > 0:
+            self.fonts.draw(self.screen, "^", (rect.right - 54, rect.y + 132), SHADOW, self.fonts.medium)
+        if first + visible_rows < len(destinations):
+            self.fonts.draw(self.screen, "v", (rect.right - 54, rect.y + 132 + (visible_rows - 1) * 30), SHADOW, self.fonts.medium)
+
+        selected = destinations[self.train_index]
+        hint_y = rect.bottom - 82
+        pygame.draw.rect(self.screen, INK, (rect.x + 30, hint_y - 10, rect.w - 60, 2))
+        for i, line in enumerate(wrap_text(selected.hook, self.fonts.small, rect.w - 64)[:2]):
+            self.fonts.draw(self.screen, line, (rect.x + 32, hint_y + i * 18), SHADOW, self.fonts.small)
+        self.fonts.draw(self.screen, "UP/DOWN choose   SPACE depart   Z/Q cancel", (rect.x + 52, rect.bottom - 32), OLIVE, self.fonts.small)
 
 
 if __name__ == "__main__":

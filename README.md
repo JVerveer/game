@@ -16,7 +16,7 @@
   Controls:
 
   - `WASD` / arrow keys: move
-  - `Space` / `Z`: talk or advance dialogue
+  - `Space` / `Z`: talk, advance dialogue, or use the train station
   - `M`: open the world minimap
-  - `Q` / `Esc`: return to the title screen or close dialogue
+  - `Q` / `Esc`: return to the title screen, close dialogue, or cancel train travel
   
