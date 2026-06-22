@@ -2034,6 +2034,9 @@ const objectClassFor = (obj: string) => {
     HEAL: "world-object object-heal",
     HOME: "world-object object-home",
     "⌂": "world-object object-house",
+    DOOR_SHOP: "world-object object-door-shop",
+    DOOR_HEAL: "world-object object-door-heal",
+    DOOR_HOME: "world-object object-door-home",
     "★": "world-object object-save",
     SIGN: "world-object object-sign",
     CAVE: "world-object object-cave",
@@ -2181,6 +2184,12 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setSteps(s => s + 1);
     setLocation(LOCATION_FOR(mapIdRef.current, nx, ny, t));
 
+    const steppedInteraction = GAME_MAPS[mapIdRef.current].interactions[`${nx},${ny}`];
+    if (steppedInteraction?.portal && steppedInteraction.auto) {
+      window.setTimeout(() => warpTo(steppedInteraction.portal!), 120);
+      return;
+    }
+
     if (t === "X" && Math.random() < 0.13) {
       setFlash(true);
       setTimeout(() => setFlash(false), 500);
@@ -2225,6 +2234,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         if (intr.heal) setHp(h => ({ ...h, cur: h.max }));
         if (intr.save) { setSaveMsg("★ Saved!"); setTimeout(() => setSaveMsg(null), 2500); }
         if (intr.shop) { setSaveMsg("SHOP OPEN"); setTimeout(() => setSaveMsg(null), 1800); }
+        if (intr.portal && intr.auto) {
+          warpTo(intr.portal);
+          return;
+        }
         if (intr.portal) pendingPortalRef.current = intr.portal;
         setDlg({ name: intr.name, lines: intr.lines, idx: 0 });
         return;
@@ -2283,8 +2296,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const mapPxH = currentMap.height * TS;
   const rawCamX = viewSize.w / 2 - (pos.x + 0.5) * TS;
   const rawCamY = viewSize.h / 2 - (pos.y + 0.5) * TS;
-  const camX = Math.min(0, Math.max(rawCamX, viewSize.w - mapPxW));
-  const camY = Math.min(0, Math.max(rawCamY, viewSize.h - mapPxH));
+  const camX = mapPxW <= viewSize.w ? (viewSize.w - mapPxW) / 2 : Math.min(0, Math.max(rawCamX, viewSize.w - mapPxW));
+  const camY = mapPxH <= viewSize.h ? (viewSize.h - mapPxH) / 2 : Math.min(0, Math.max(rawCamY, viewSize.h - mapPxH));
 
   const hpPct = (hp.cur / hp.max) * 100;
   const hpColor = hpPct > 50 ? "#5de85d" : hpPct > 25 ? "#f5c518" : "#e84a4a";

@@ -1,9 +1,9 @@
 // ─── Map data ─────────────────────────────────────────────────────────────────
 // Tile key legend:
-//   T = Trees/Forest   G = Grass       W = Water      R = Road/Path
+//   T = Trees/Forest   G = Grass       W = Water      R = Road/Path/Floor
 //   B = Building       H = Healing Ctr Q = Quest NPC  X = Encounter Zone
 //   C = Cave           D = Dungeon     S = Sand/Beach M = Mountain
-//   V = Save Point     N = NPC         P = Player spawn (design map only)
+//   V = Save Point     N = NPC         O = Door/Portal P = Player spawn (design map only)
 
 // ── Design-system overworld display map (18 rows × ~30 cols) ─────────────────
 export const DS_TILE_COLORS: Record<string, string> = {
@@ -43,10 +43,10 @@ export const GAME_TILE_COLORS: Record<string, string> = {
   T: "#182e0a", G: "#265424", W: "#0f4466", R: "#5a4830",
   B: "#32325a", H: "#1e3880", Q: "#5a3e08", X: "#1e4020",
   C: "#2e1c08", D: "#08081a", S: "#7a6030", M: "#282838",
-  V: "#3c2e00", N: "#3a2460",
+  V: "#3c2e00", N: "#3a2460", O: "#5a4830",
 };
 
-export const WALKABLE_TILES = new Set(["G", "R", "S", "X", "B", "H", "Q", "V", "N"]);
+export const WALKABLE_TILES = new Set(["G", "R", "S", "X", "Q", "V", "N", "O"]);
 
 export type GameMapId = "satiria" | "sproutford" | "shop" | "house" | "healing";
 
@@ -63,6 +63,7 @@ export interface Interaction {
   save?: boolean;
   shop?: boolean;
   portal?: Portal;
+  auto?: boolean;
   lines: string[];
 }
 
@@ -111,7 +112,12 @@ const buildSatiriaMap = () => {
   rect(map, 36, 12, 6, 4, "B");
   rect(map, 22, 17, 5, 3, "B");
   rect(map, 34, 17, 5, 3, "B");
-  rect(map, 30, 15, 2, 2, "V");
+  map[15][23] = "O";
+  map[15][31] = "O";
+  map[15][39] = "O";
+  map[19][24] = "O";
+  map[19][36] = "O";
+  map[16][30] = "V";
   return map;
 };
 
@@ -127,6 +133,10 @@ const buildSproutfordMap = () => {
   rect(map, 26, 11, 5, 4, "H");
   rect(map, 18, 18, 5, 4, "B");
   rect(map, 28, 18, 5, 4, "B");
+  map[14][19] = "O";
+  map[14][28] = "O";
+  map[21][20] = "O";
+  map[21][30] = "O";
   rect(map, 24, 16, 2, 2, "V");
   return map;
 };
@@ -136,7 +146,7 @@ const buildShopMap = () => {
   rect(map, 1, 1, 12, 8, "B");
   rect(map, 2, 2, 10, 2, "R");
   rect(map, 2, 5, 10, 3, "R");
-  rect(map, 6, 8, 2, 1, "R");
+  rect(map, 6, 8, 2, 1, "O");
   return map;
 };
 
@@ -144,7 +154,7 @@ const buildHouseMap = () => {
   const map = makeBlankMap(12, 9, "D");
   rect(map, 1, 1, 10, 7, "B");
   rect(map, 2, 4, 8, 3, "R");
-  rect(map, 5, 7, 2, 1, "R");
+  rect(map, 5, 7, 2, 1, "O");
   return map;
 };
 
@@ -153,7 +163,7 @@ const buildHealingMap = () => {
   rect(map, 1, 1, 12, 8, "H");
   rect(map, 2, 2, 10, 2, "R");
   rect(map, 2, 5, 10, 3, "R");
-  rect(map, 6, 8, 2, 1, "R");
+  rect(map, 6, 8, 2, 1, "O");
   return map;
 };
 
@@ -166,43 +176,48 @@ export const GAME_MAPS: Record<GameMapId, GameMapDef> = {
     rows: buildSatiriaMap(),
     spawn: { x: 31, y: 17 },
     objects: {
-      "23,11": "SHOP",
-      "31,11": "HEAL",
-      "39,11": "HOME",
-      "24,16": "⌂",
-      "36,16": "⌂",
-      "31,15": "★",
+      "23,15": "DOOR_SHOP",
+      "31,15": "DOOR_HEAL",
+      "39,15": "DOOR_HOME",
+      "24,19": "DOOR_HOME",
+      "36,19": "DOOR_HOME",
+      "30,16": "★",
       "21,16": "SIGN",
-      "57,28": "→",
+      "63,29": "→",
       "8,15": "CAVE",
     },
     interactions: {
-      "23,11": {
+      "23,15": {
         name: "Satiria Shop",
         portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
-        lines: ["You step into the Satiria Shop."],
-      },
-      "31,11": {
-        name: "Healing Center",
-        portal: { mapId: "healing", x: 7, y: 7, facing: "up" },
-        lines: ["The Healing Center doors slide open."],
-      },
-      "39,11": {
-        name: "Quiet House",
-        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
-        lines: ["You enter a cozy little house."],
-      },
-      "24,16": {
-        name: "Starter House",
-        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
-        lines: ["You duck inside the starter house."],
-      },
-      "36,16": {
-        name: "Neighbor House",
-        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
-        lines: ["You visit the neighbor's house."],
+        auto: true,
+        lines: [],
       },
       "31,15": {
+        name: "Healing Center",
+        portal: { mapId: "healing", x: 7, y: 7, facing: "up" },
+        auto: true,
+        lines: [],
+      },
+      "39,15": {
+        name: "Quiet House",
+        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
+        auto: true,
+        lines: [],
+      },
+      "24,19": {
+        name: "Starter House",
+        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
+        auto: true,
+        lines: [],
+      },
+      "36,19": {
+        name: "Neighbor House",
+        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
+        auto: true,
+        lines: [],
+      },
+      "30,16": {
         name: "Save Point",
         save: true,
         lines: ["★ PROGRESS SAVED ★", "Satiria Town - Lv. 15", "Good luck out there."],
@@ -211,10 +226,11 @@ export const GAME_MAPS: Record<GameMapId, GameMapDef> = {
         name: "Town Sign",
         lines: ["★ SATIRIA TOWN ★", "Shop west. Healing Center north.", "Follow the east road to Sproutford."],
       },
-      "57,28": {
+      "63,29": {
         name: "Route 2 Gate",
         portal: { mapId: "sproutford", x: 2, y: 18, facing: "right" },
-        lines: ["You follow the road toward Sproutford Town."],
+        auto: true,
+        lines: [],
       },
       "8,15": {
         name: "Western Cave",
@@ -231,38 +247,43 @@ export const GAME_MAPS: Record<GameMapId, GameMapDef> = {
     spawn: { x: 2, y: 18 },
     objects: {
       "1,18": "←",
-      "19,10": "SHOP",
-      "28,10": "HEAL",
-      "20,17": "⌂",
-      "30,17": "HOME",
+      "19,14": "DOOR_SHOP",
+      "28,14": "DOOR_HEAL",
+      "20,21": "DOOR_HOME",
+      "30,21": "DOOR_HOME",
       "25,16": "★",
       "23,18": "SIGN",
     },
     interactions: {
       "1,18": {
         name: "Route 2 West",
-        portal: { mapId: "satiria", x: 58, y: 28, facing: "left" },
-        lines: ["You head back toward Satiria Town."],
+        portal: { mapId: "satiria", x: 62, y: 29, facing: "left" },
+        auto: true,
+        lines: [],
       },
-      "19,10": {
+      "19,14": {
         name: "Sproutford Shop",
         portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
-        lines: ["You enter Sproutford's tiny shop."],
+        auto: true,
+        lines: [],
       },
-      "28,10": {
+      "28,14": {
         name: "Sproutford Healing Center",
         portal: { mapId: "healing", x: 7, y: 7, facing: "up" },
-        lines: ["The healing center smells faintly of lemonade."],
+        auto: true,
+        lines: [],
       },
-      "20,17": {
+      "20,21": {
         name: "Sproutford House",
         portal: { mapId: "house", x: 6, y: 6, facing: "up" },
-        lines: ["You step inside a Sproutford home."],
+        auto: true,
+        lines: [],
       },
-      "30,17": {
+      "30,21": {
         name: "Mayor's House",
         portal: { mapId: "house", x: 6, y: 6, facing: "up" },
-        lines: ["You enter the mayor's extremely modest house."],
+        auto: true,
+        lines: [],
       },
       "25,16": {
         name: "Save Point",
@@ -302,7 +323,8 @@ export const GAME_MAPS: Record<GameMapId, GameMapDef> = {
       "7,8": {
         name: "Exit",
         portal: { mapId: "satiria", x: 23, y: 12, facing: "down" },
-        lines: ["You step back outside."],
+        auto: true,
+        lines: [],
       },
     },
   },
@@ -332,7 +354,8 @@ export const GAME_MAPS: Record<GameMapId, GameMapDef> = {
       "7,8": {
         name: "Exit",
         portal: { mapId: "satiria", x: 31, y: 12, facing: "down" },
-        lines: ["You step back outside."],
+        auto: true,
+        lines: [],
       },
     },
   },
@@ -361,7 +384,8 @@ export const GAME_MAPS: Record<GameMapId, GameMapDef> = {
       "6,7": {
         name: "Exit",
         portal: { mapId: "satiria", x: 39, y: 12, facing: "down" },
-        lines: ["You head back outside."],
+        auto: true,
+        lines: [],
       },
     },
   },
