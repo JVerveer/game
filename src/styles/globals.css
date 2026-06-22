@@ -759,6 +759,261 @@
       5px 32px 0 #252018;
   }
 
+  /* More legible Yellow-era buildings: framed walls, roofs, windows, doors. */
+  .tile-B,
+  .tile-H,
+  .tile-P {
+    background:
+      linear-gradient(180deg, transparent 0 17%, #252018 17% 21%, transparent 21%),
+      linear-gradient(180deg, #252018 0 4%, #ca4b36 4% 16%, #8f3328 16% 22%, transparent 22%),
+      linear-gradient(90deg, transparent 0 13%, #252018 13% 15%, #fff3a8 15% 27%, #252018 27% 29%, transparent 29% 69%, #252018 69% 71%, #fff3a8 71% 83%, #252018 83% 85%, transparent 85%),
+      linear-gradient(0deg, #8b6138 0 11%, transparent 11%),
+      #e0c27a;
+  }
+
+  .tile-H {
+    background:
+      linear-gradient(180deg, transparent 0 17%, #252018 17% 21%, transparent 21%),
+      linear-gradient(180deg, #252018 0 4%, #315f9f 4% 16%, #243d68 16% 22%, transparent 22%),
+      linear-gradient(90deg, transparent 0 13%, #252018 13% 15%, #fff3a8 15% 27%, #252018 27% 29%, transparent 29% 69%, #252018 69% 71%, #fff3a8 71% 83%, #252018 83% 85%, transparent 85%),
+      linear-gradient(0deg, #8b6138 0 11%, transparent 11%),
+      #e0c27a;
+  }
+
+  .tile-P {
+    background:
+      linear-gradient(180deg, transparent 0 17%, #252018 17% 21%, transparent 21%),
+      linear-gradient(180deg, #252018 0 4%, #5c585b 4% 16%, #353133 16% 22%, transparent 22%),
+      linear-gradient(90deg, transparent 0 13%, #252018 13% 15%, #fff3a8 15% 27%, #252018 27% 29%, transparent 29% 69%, #252018 69% 71%, #fff3a8 71% 83%, #252018 83% 85%, transparent 85%),
+      linear-gradient(0deg, #8b6138 0 11%, transparent 11%),
+      #e0c27a;
+  }
+
+  .tile-B::after,
+  .tile-H::after,
+  .tile-P::after {
+    background:
+      linear-gradient(90deg, transparent 0 41%, #252018 41% 44%, #5a3c22 44% 58%, #252018 58% 61%, transparent 61%),
+      linear-gradient(90deg, transparent 0 20%, rgba(37,32,24,0.2) 20% 23%, transparent 23% 77%, rgba(37,32,24,0.2) 77% 80%, transparent 80%),
+      linear-gradient(0deg, transparent 0 48%, rgba(255,248,200,0.42) 48% 57%, transparent 57%);
+  }
+
+  .object-door-shop::before,
+  .object-door-heal::before,
+  .object-door-home::before {
+    left: 8px;
+    top: 3px;
+    width: 26px;
+    height: 35px;
+    background:
+      linear-gradient(180deg, #ca4b36 0 18%, #252018 18% 25%, #f6dd8b 25% 100%);
+    border: 4px solid #252018;
+    box-shadow: inset 8px 13px 0 #fff3a8, inset -8px 13px 0 #fff3a8;
+  }
+
+  .object-door-heal::before {
+    background:
+      linear-gradient(180deg, #4d77b0 0 18%, #252018 18% 25%, #f6dd8b 25% 100%);
+  }
+
+  .object-door-home::before {
+    background:
+      linear-gradient(180deg, #7a4b9c 0 18%, #252018 18% 25%, #f6dd8b 25% 100%);
+  }
+
+  .object-door-shop::after,
+  .object-door-heal::after,
+  .object-door-home::after {
+    left: 17px;
+    top: 23px;
+    width: 8px;
+    height: 15px;
+    background: #5a3c22;
+    border: 3px solid #252018;
+    box-shadow: 9px -9px 0 #fff3a8, -9px -9px 0 #fff3a8, 4px 5px 0 #f6d746;
+  }
+
+  .object-train-station::before {
+    left: 2px;
+    top: 5px;
+    width: 38px;
+    height: 33px;
+    background:
+      linear-gradient(180deg, #5c585b 0 22%, #252018 22% 30%, #f6dd8b 30% 100%);
+    border: 4px solid #252018;
+    box-shadow: inset 6px 16px 0 #fff3a8, inset -6px 16px 0 #fff3a8;
+  }
+
+  .object-train-station::after {
+    left: 8px;
+    top: 20px;
+    width: 26px;
+    height: 7px;
+    background: #4d77b0;
+    border: 3px solid #252018;
+    box-shadow:
+      3px 10px 0 #252018,
+      16px 10px 0 #252018,
+      24px -7px 0 #ca4b36,
+      10px -16px 0 #fff3a8;
+  }
+
+  /* Richer character sprites with hats, faces, torsos, arms, and animated feet. */
+  .trainer-sprite::before,
+  .npc-sprite::before,
+  .clerk-sprite::before,
+  .nurse-sprite::before {
+    left: 8px;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    background: #f8d39d;
+    border: 2px solid #252018;
+    box-shadow:
+      0 -6px 0 #d73d32,
+      7px -4px 0 #fff8c8,
+      -5px 7px 0 #252018,
+      19px 7px 0 #252018,
+      1px 20px 0 #252018,
+      4px 22px 0 #4d77b0,
+      9px 22px 0 #fff8c8,
+      14px 22px 0 #4d77b0,
+      -5px 24px 0 #fff8c8,
+      23px 24px 0 #fff8c8,
+      3px 35px 0 #252018,
+      15px 35px 0 #252018;
+  }
+
+  .trainer-sprite::after,
+  .npc-sprite::after,
+  .clerk-sprite::after,
+  .nurse-sprite::after {
+    left: 12px;
+    top: 8px;
+    width: 3px;
+    height: 3px;
+    background: #252018;
+    box-shadow: 9px 0 0 #252018, 5px 7px 0 #b6422c;
+  }
+
+  .trainer-sprite.facing-up::before {
+    background: #d73d32;
+    box-shadow:
+      0 6px 0 #f8d39d,
+      -5px 8px 0 #252018,
+      19px 8px 0 #252018,
+      1px 20px 0 #252018,
+      4px 22px 0 #4d77b0,
+      9px 22px 0 #fff8c8,
+      14px 22px 0 #4d77b0,
+      -5px 24px 0 #fff8c8,
+      23px 24px 0 #fff8c8,
+      3px 35px 0 #252018,
+      15px 35px 0 #252018;
+  }
+
+  .npc-sprite::before {
+    box-shadow:
+      0 -6px 0 #315f2a,
+      -5px 7px 0 #252018,
+      19px 7px 0 #252018,
+      1px 20px 0 #252018,
+      4px 22px 0 #f6d746,
+      9px 22px 0 #f6d746,
+      14px 22px 0 #f6d746,
+      -5px 24px 0 #315f2a,
+      23px 24px 0 #315f2a,
+      3px 35px 0 #252018,
+      15px 35px 0 #252018;
+  }
+
+  .trainer-sprite.walking,
+  .npc-sprite.walking {
+    animation: character-walk 0.24s steps(2, end) infinite;
+  }
+
+  .trainer-sprite::before,
+  .npc-sprite::before,
+  .clerk-sprite::before,
+  .nurse-sprite::before {
+    left: 2px;
+    top: 0;
+    width: 30px;
+    height: 42px;
+    border: 0;
+    box-shadow: none;
+    background:
+      /* cap brim */
+      linear-gradient(#252018 0 0) 18px 4px / 9px 4px no-repeat,
+      /* cap */
+      linear-gradient(#d73d32 0 0) 8px 0 / 18px 7px no-repeat,
+      linear-gradient(#fff8c8 0 0) 13px 2px / 7px 3px no-repeat,
+      /* head fill above outline */
+      linear-gradient(#f8d39d 0 0) 8px 8px / 16px 14px no-repeat,
+      /* ears */
+      linear-gradient(#252018 0 0) 3px 12px / 4px 7px no-repeat,
+      linear-gradient(#252018 0 0) 25px 12px / 4px 7px no-repeat,
+      /* jacket and shirt */
+      linear-gradient(#4d77b0 0 0) 9px 25px / 5px 10px no-repeat,
+      linear-gradient(#fff8c8 0 0) 14px 25px / 5px 10px no-repeat,
+      linear-gradient(#4d77b0 0 0) 19px 25px / 4px 10px no-repeat,
+      /* arms */
+      linear-gradient(#fff8c8 0 0) 3px 25px / 6px 9px no-repeat,
+      linear-gradient(#fff8c8 0 0) 24px 25px / 5px 9px no-repeat,
+      /* feet */
+      linear-gradient(#252018 0 0) 8px 36px / 7px 6px no-repeat,
+      linear-gradient(#252018 0 0) 18px 36px / 7px 6px no-repeat,
+      /* outlines behind fills */
+      linear-gradient(#252018 0 0) 7px 23px / 18px 14px no-repeat,
+      linear-gradient(#252018 0 0) 6px 6px / 20px 18px no-repeat;
+  }
+
+  .trainer-sprite::after,
+  .npc-sprite::after,
+  .clerk-sprite::after,
+  .nurse-sprite::after {
+    left: 12px;
+    top: 13px;
+    width: 3px;
+    height: 3px;
+    background: #252018;
+    box-shadow: 8px 0 0 #252018, 4px 6px 0 #b6422c;
+  }
+
+  .trainer-sprite.facing-up::before {
+    background:
+      linear-gradient(#d73d32 0 0) 8px 0 / 18px 9px no-repeat,
+      linear-gradient(#d73d32 0 0) 8px 8px / 16px 13px no-repeat,
+      linear-gradient(#252018 0 0) 3px 12px / 4px 7px no-repeat,
+      linear-gradient(#252018 0 0) 25px 12px / 4px 7px no-repeat,
+      linear-gradient(#4d77b0 0 0) 9px 25px / 14px 10px no-repeat,
+      linear-gradient(#fff8c8 0 0) 3px 25px / 6px 9px no-repeat,
+      linear-gradient(#fff8c8 0 0) 24px 25px / 5px 9px no-repeat,
+      linear-gradient(#252018 0 0) 8px 36px / 7px 6px no-repeat,
+      linear-gradient(#252018 0 0) 18px 36px / 7px 6px no-repeat,
+      linear-gradient(#252018 0 0) 7px 23px / 18px 14px no-repeat,
+      linear-gradient(#252018 0 0) 6px 6px / 20px 18px no-repeat;
+  }
+
+  .trainer-sprite.facing-up::after {
+    display: none;
+  }
+
+  .npc-sprite::before {
+    background:
+      linear-gradient(#315f2a 0 0) 8px 0 / 18px 7px no-repeat,
+      linear-gradient(#f8d39d 0 0) 8px 8px / 16px 14px no-repeat,
+      linear-gradient(#252018 0 0) 3px 12px / 4px 7px no-repeat,
+      linear-gradient(#252018 0 0) 25px 12px / 4px 7px no-repeat,
+      linear-gradient(#f6d746 0 0) 9px 25px / 14px 10px no-repeat,
+      linear-gradient(#315f2a 0 0) 3px 25px / 6px 9px no-repeat,
+      linear-gradient(#315f2a 0 0) 24px 25px / 5px 9px no-repeat,
+      linear-gradient(#252018 0 0) 8px 36px / 7px 6px no-repeat,
+      linear-gradient(#252018 0 0) 18px 36px / 7px 6px no-repeat,
+      linear-gradient(#252018 0 0) 7px 23px / 18px 14px no-repeat,
+      linear-gradient(#252018 0 0) 6px 6px / 20px 18px no-repeat;
+  }
+
   @keyframes grass-sway {
     0% { transform: translateX(0); opacity: 0.8; }
     50% { transform: translateX(2px); opacity: 1; }
@@ -783,6 +1038,21 @@
     100% {
       translate: -1px 0;
       filter: drop-shadow(-3px 3px 0 rgba(37, 32, 24, 0.22));
+    }
+  }
+
+  @keyframes character-walk {
+    0% {
+      translate: -2px 0;
+      filter: drop-shadow(-4px 5px 0 rgba(37, 32, 24, 0.28));
+    }
+    50% {
+      translate: 2px -4px;
+      filter: drop-shadow(4px 5px 0 rgba(37, 32, 24, 0.28));
+    }
+    100% {
+      translate: -2px 0;
+      filter: drop-shadow(-4px 5px 0 rgba(37, 32, 24, 0.28));
     }
   }
 

@@ -2441,7 +2441,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           display: "flex", alignItems: "center", justifyContent: "center",
           filter: "drop-shadow(0 3px 6px rgba(0,0,0,0.9))",
           zIndex: 10, pointerEvents: "none",
-          transition: "left 0.1s linear, top 0.1s linear",
+          transition: "left 0.18s steps(3, end), top 0.18s steps(3, end)",
         }}>
           <div className={`trainer-sprite facing-${facing} ${isWalking ? "walking" : ""}`} />
         </div>
