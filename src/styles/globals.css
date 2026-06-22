@@ -617,6 +617,14 @@
       21px -5px 0 #ca4b36;
   }
 
+  .object-train-station {
+    overflow: visible;
+  }
+
+  .object-train-station > span {
+    display: none;
+  }
+
   .npc-sprite,
   .clerk-sprite,
   .nurse-sprite {

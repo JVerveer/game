@@ -2132,7 +2132,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [saveMsg, setSaveMsg] = useState<string | null>(null);
   const [isWalking, setIsWalking] = useState(false);
   const [npcs, setNpcs] = useState<MovingNpc[]>(INITIAL_NPCS);
-  const [miniMapOpen, setMiniMapOpen] = useState(false);
+  const [miniMapOpen, setMiniMapOpen] = useState(true);
   const [trainOpen, setTrainOpen] = useState(false);
   const [trainIndex, setTrainIndex] = useState(0);
   const viewRef = useRef<HTMLDivElement>(null);
@@ -2449,7 +2449,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
       {/* ── HUD TOP ── */}
       <div style={{
-        position: "absolute", top: 0, left: 0, right: 0, zIndex: 20,
+        position: "absolute", top: 0, left: 0, right: 0, zIndex: 120,
         padding: "12px 16px",
         background: "linear-gradient(to bottom, rgba(37,32,24,0.88) 0%, transparent 100%)",
         display: "flex", justifyContent: "space-between", alignItems: "flex-start",
@@ -2504,7 +2504,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       {saveMsg && (
         <div style={{
           position: "absolute", top: "20%", left: "50%", transform: "translateX(-50%)",
-          zIndex: 30, border: "2px solid rgba(245,197,24,0.7)",
+          zIndex: 130, border: "2px solid rgba(245,197,24,0.7)",
           backgroundColor: "rgba(30,20,0,0.95)", padding: "12px 28px",
           ...VT, fontSize: "1.5rem", color: "#f5c518",
         }}>
@@ -2521,7 +2521,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           position: "absolute",
           left: 14,
           bottom: 38,
-          zIndex: 25,
+          zIndex: 125,
           width: miniMapOpen ? 254 : 142,
           minHeight: miniMapOpen ? 184 : 92,
           border: "4px solid #252018",
@@ -2603,7 +2603,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           style={{
             position: "absolute",
             inset: 0,
-            zIndex: 45,
+            zIndex: 140,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -2662,7 +2662,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         <div
           onClick={doInteract}
           style={{
-            position: "absolute", bottom: 80, left: 12, right: 12, zIndex: 30,
+            position: "absolute", bottom: 80, left: 12, right: 12, zIndex: 130,
             border: "4px solid #252018",
             backgroundColor: "#fff8c8",
             padding: "16px 20px", cursor: "pointer",
@@ -2686,7 +2686,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
       {/* ── BOTTOM HINT ── */}
       <div style={{
-        position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 20,
+        position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 120,
         padding: "8px 16px",
         background: "linear-gradient(to top, rgba(37,32,24,0.8) 0%, transparent 100%)",
         display: "flex", justifyContent: "space-between", alignItems: "center",
@@ -2698,7 +2698,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       </div>
 
       {/* ── ON-SCREEN D-PAD ── */}
-      <div style={{ position: "absolute", bottom: 16, right: 16, zIndex: 20, display: "grid", gridTemplateColumns: "repeat(3,38px)", gap: 3, width: 120 }}>
+      <div style={{ position: "absolute", bottom: 16, right: 16, zIndex: 125, display: "grid", gridTemplateColumns: "repeat(3,38px)", gap: 3, width: 120 }}>
         <div /><button style={D_PAD_BTN} onClick={() => doMove(0,-1,"up")}>▲</button><div />
         <button style={D_PAD_BTN} onClick={() => doMove(-1,0,"left")}>◀</button>
         <button style={{ ...D_PAD_BTN, color: "#f5c518", borderColor: "rgba(245,197,24,0.3)" }} onClick={doInteract}>Z</button>
@@ -2708,7 +2708,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
       {/* ── PAUSE MENU ── */}
       {paused && (
-        <div style={{ position: "absolute", inset: 0, zIndex: 50, display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "rgba(0,0,0,0.85)" }}>
+        <div style={{ position: "absolute", inset: 0, zIndex: 150, display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "rgba(0,0,0,0.85)" }}>
           <div style={{ border: "2px solid rgba(245,197,24,0.55)", backgroundColor: "#0d0d1e", padding: "40px 48px", textAlign: "center", minWidth: 260 }}>
             <div style={{ ...PX, fontSize: "0.8rem", color: "#f5c518", marginBottom: 28 }}>PAUSED</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
