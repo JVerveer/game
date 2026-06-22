@@ -858,6 +858,235 @@
       10px -16px 0 #fff3a8;
   }
 
+  .map-brexiton .tile-E {
+    background-color: #77716a;
+  }
+
+  .map-brexiton .tile-E::before {
+    background-image:
+      linear-gradient(90deg, rgba(37,32,24,0.28) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(255,248,200,0.14) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  .map-brexiton .tile-R {
+    background-color: #6d655b;
+  }
+
+  .map-brexiton .tile-R::before {
+    background-image:
+      linear-gradient(90deg, rgba(37,32,24,0.22) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(255,248,200,0.18) 1px, transparent 1px),
+      linear-gradient(90deg, transparent 0 44%, rgba(255,248,200,0.28) 44% 50%, transparent 50%);
+    background-size: 12px 12px, 12px 12px, 48px 48px;
+  }
+
+  .map-brexiton .tile-G {
+    background-color: #5f8f51;
+  }
+
+  .map-brexiton .tile-G::before {
+    background-image:
+      linear-gradient(90deg, transparent 0 15px, rgba(43,103,39,0.42) 15px 18px, transparent 18px),
+      radial-gradient(circle at 8px 8px, rgba(255,248,200,0.18) 0 2px, transparent 3px);
+    background-size: 24px 24px;
+  }
+
+  .map-brexiton .tile-W {
+    background:
+      repeating-linear-gradient(135deg, #517f91 0 8px, #346b82 8px 16px);
+  }
+
+  .map-brexiton .tile-U {
+    background:
+      linear-gradient(180deg, #252018 0 4%, #5d2a22 4% 18%, #34201d 18% 24%, transparent 24%),
+      linear-gradient(90deg, transparent 0 9%, #252018 9% 12%, #f2d988 12% 23%, #252018 23% 26%, transparent 26% 38%, #252018 38% 41%, #f2d988 41% 52%, #252018 52% 55%, transparent 55% 67%, #252018 67% 70%, #f2d988 70% 81%, #252018 81% 84%, transparent 84%),
+      linear-gradient(0deg, #3b241d 0 13%, transparent 13%),
+      #9b4a37;
+  }
+
+  .map-brexiton .tile-U::after {
+    background:
+      linear-gradient(90deg, rgba(37,32,24,0.2) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(37,32,24,0.22) 1px, transparent 1px);
+    background-size: 12px 9px;
+  }
+
+  .map-brexiton .tile-A {
+    background:
+      linear-gradient(180deg, #f4e7ac 0 9%, #252018 9% 13%, transparent 13%),
+      linear-gradient(90deg, transparent 0 10%, #252018 10% 13%, #f7e9ad 13% 22%, #252018 22% 25%, transparent 25% 38%, #252018 38% 41%, #f7e9ad 41% 50%, #252018 50% 53%, transparent 53% 66%, #252018 66% 69%, #f7e9ad 69% 78%, #252018 78% 81%, transparent 81%),
+      linear-gradient(0deg, #7d6746 0 13%, transparent 13%),
+      #bea66f;
+  }
+
+  .map-brexiton .tile-A::after {
+    background:
+      repeating-linear-gradient(90deg, transparent 0 10px, rgba(37,32,24,0.34) 10px 13px, transparent 13px 23px),
+      linear-gradient(0deg, transparent 0 48%, rgba(255,248,200,0.32) 48% 58%, transparent 58%);
+  }
+
+  .map-brexiton .tile-I {
+    background:
+      linear-gradient(180deg, transparent 0 4%, #252018 4% 9%, #d9c172 9% 15%, #252018 15% 20%, transparent 20%),
+      linear-gradient(90deg, transparent 0 25%, #252018 25% 30%, #e5d28a 30% 70%, #252018 70% 75%, transparent 75%),
+      linear-gradient(0deg, #6c5431 0 15%, transparent 15%),
+      #b99b5c;
+  }
+
+  .map-brexiton .tile-I::after {
+    left: 13px;
+    top: 10px;
+    width: 22px;
+    height: 22px;
+    background:
+      radial-gradient(circle at 50% 50%, #fff3a8 0 36%, #252018 37% 46%, transparent 47%),
+      linear-gradient(90deg, transparent 0 48%, #252018 48% 54%, transparent 54%),
+      linear-gradient(0deg, transparent 0 48%, #252018 48% 54%, transparent 54%);
+  }
+
+  .object-london-clock::before {
+    left: 14px;
+    top: -18px;
+    width: 16px;
+    height: 58px;
+    background:
+      radial-gradient(circle at 50% 30%, #fff3a8 0 7px, #252018 8px 10px, transparent 11px),
+      linear-gradient(90deg, #252018 0 3px, #d5bc73 3px 13px, #252018 13px 16px);
+    border-top: 5px solid #252018;
+    box-shadow: 0 -9px 0 #6b5432;
+  }
+
+  .object-london-clock::after {
+    left: 19px;
+    top: -28px;
+    width: 6px;
+    height: 12px;
+    background: #252018;
+    box-shadow: 0 -5px 0 #d5bc73;
+  }
+
+  .object-parliament::before {
+    left: -4px;
+    top: 7px;
+    width: 50px;
+    height: 28px;
+    background:
+      repeating-linear-gradient(90deg, #252018 0 3px, #d5bc73 3px 9px, #a98e57 9px 13px),
+      #d5bc73;
+    border: 4px solid #252018;
+  }
+
+  .object-parliament::after {
+    left: 9px;
+    top: 18px;
+    width: 8px;
+    height: 14px;
+    background: #5a3c22;
+    border: 3px solid #252018;
+    box-shadow: 18px 0 0 #5a3c22;
+  }
+
+  .object-phone-box::before {
+    left: 13px;
+    top: 5px;
+    width: 16px;
+    height: 32px;
+    background:
+      linear-gradient(180deg, #f4d76b 0 12%, #252018 12% 18%, transparent 18%),
+      linear-gradient(90deg, #252018 0 3px, #c53c31 3px 13px, #252018 13px 16px);
+    border: 3px solid #252018;
+  }
+
+  .object-phone-box::after {
+    left: 18px;
+    top: 18px;
+    width: 4px;
+    height: 17px;
+    background: #f4d76b;
+    box-shadow: 7px 0 0 #f4d76b;
+  }
+
+  .object-black-cab::before {
+    left: 3px;
+    top: 18px;
+    width: 36px;
+    height: 14px;
+    background:
+      linear-gradient(180deg, #f3d35f 0 28%, transparent 28%),
+      #232323;
+    border: 4px solid #252018;
+    border-radius: 8px 8px 3px 3px;
+  }
+
+  .object-black-cab::after {
+    left: 9px;
+    top: 32px;
+    width: 7px;
+    height: 7px;
+    background: #252018;
+    box-shadow: 18px 0 0 #252018, 7px -10px 0 #b8d9df, 16px -10px 0 #b8d9df;
+  }
+
+  .object-double-decker::before {
+    left: 2px;
+    top: 8px;
+    width: 38px;
+    height: 27px;
+    background:
+      linear-gradient(0deg, #252018 0 4px, transparent 4px),
+      repeating-linear-gradient(90deg, transparent 0 5px, #fff3a8 5px 10px, transparent 10px 15px),
+      linear-gradient(180deg, #c53c31 0 45%, #252018 45% 52%, #c53c31 52% 100%);
+    border: 4px solid #252018;
+  }
+
+  .object-double-decker::after {
+    left: 9px;
+    top: 33px;
+    width: 7px;
+    height: 7px;
+    background: #252018;
+    box-shadow: 18px 0 0 #252018;
+  }
+
+  .object-lamp-post::before {
+    left: 19px;
+    top: 10px;
+    width: 5px;
+    height: 30px;
+    background: #252018;
+  }
+
+  .object-lamp-post::after {
+    left: 14px;
+    top: 4px;
+    width: 15px;
+    height: 9px;
+    background: #fff3a8;
+    border: 3px solid #252018;
+    box-shadow: 0 10px 0 #252018;
+  }
+
+  .object-vote-gate::before {
+    left: -1px;
+    top: 13px;
+    width: 44px;
+    height: 16px;
+    background:
+      repeating-linear-gradient(90deg, #252018 0 4px, #f4d76b 4px 10px, #c53c31 10px 16px);
+    border: 4px solid #252018;
+  }
+
+  .object-vote-gate::after {
+    left: 10px;
+    top: 2px;
+    width: 22px;
+    height: 13px;
+    background: #fff3a8;
+    border: 3px solid #252018;
+    box-shadow: inset 0 -4px 0 #c53c31;
+  }
+
   /* Richer character sprites with hats, faces, torsos, arms, and animated feet. */
   .trainer-sprite::before,
   .npc-sprite::before,

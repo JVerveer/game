@@ -2061,6 +2061,13 @@ const objectClassFor = (obj: string) => {
     ARROW_NW: "world-object object-route object-route-nw",
     ARROW_SE: "world-object object-route object-route-se",
     ARROW_SW: "world-object object-route object-route-sw",
+    LONDON_CLOCK: "world-object object-london-clock",
+    PARLIAMENT: "world-object object-parliament",
+    PHONE_BOX: "world-object object-phone-box",
+    BLACK_CAB: "world-object object-black-cab",
+    DOUBLE_DECKER: "world-object object-double-decker",
+    LAMP_POST: "world-object object-lamp-post",
+    VOTE_GATE: "world-object object-vote-gate",
     CLERK: "clerk-sprite",
     NURSE: "nurse-sprite",
   };
@@ -2386,7 +2393,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         transform: `translate(${camX}px,${camY}px)`,
         transition: "transform 0.1s linear",
         width: mapPxW, height: mapPxH,
-      }}>
+      }} className={`map-layer map-${mapId}`}>
         {/* Tiles rendered as flex rows */}
         <div style={{ display: "flex", flexDirection: "column" }}>
           {currentMap.rows.map((row, ry) => (

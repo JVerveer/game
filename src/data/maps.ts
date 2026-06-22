@@ -44,9 +44,10 @@ export const GAME_TILE_COLORS: Record<string, string> = {
   B: "#32325a", H: "#1e3880", Q: "#5a3e08", X: "#1e4020",
   C: "#2e1c08", D: "#08081a", S: "#7a6030", M: "#282838",
   V: "#3c2e00", N: "#3a2460", O: "#5a4830", P: "#5a4830",
+  A: "#b9a06d", I: "#927947", U: "#713224", E: "#4a4a4a",
 };
 
-export const WALKABLE_TILES = new Set(["G", "R", "S", "X", "Q", "V", "N", "O", "L"]);
+export const WALKABLE_TILES = new Set(["G", "R", "S", "X", "Q", "V", "N", "O", "L", "E"]);
 
 export type TownMapId =
   | "satiria"
@@ -392,6 +393,67 @@ const buildThemedTownMap = (theme: TownTheme) => {
   return map;
 };
 
+const buildBrexitonMap = () => {
+  const map = makeBlankMap(56, 34, "T");
+  const setTile = (x: number, y: number, tile: string) => {
+    if (map[y]?.[x] !== undefined) map[y][x] = tile;
+  };
+  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
+    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = Math.round(start.x + (end.x - start.x) * t);
+      const y = Math.round(start.y + (end.y - start.y) * t);
+      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
+    }
+  };
+
+  rect(map, 3, 3, 50, 27, "G");
+  rect(map, 5, 24, 46, 5, "W");
+  rect(map, 24, 23, 8, 7, "R");
+  rect(map, 33, 24, 10, 4, "R");
+  rect(map, 7, 6, 42, 17, "E");
+  hline(map, 7, 49, 18, "R");
+  vline(map, 27, 4, 30, "R");
+  hline(map, 13, 42, 10, "R");
+  hline(map, 13, 42, 15, "R");
+  vline(map, 13, 7, 22, "R");
+  vline(map, 42, 7, 22, "R");
+
+  Object.keys(WORLD_ROUTES.brexiton).forEach(direction => {
+    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
+  });
+
+  rect(map, 9, 7, 6, 3, "U");
+  rect(map, 17, 7, 6, 3, "U");
+  rect(map, 31, 7, 6, 3, "U");
+  rect(map, 39, 7, 6, 3, "U");
+  rect(map, 9, 12, 6, 3, "B");
+  rect(map, 23, 12, 8, 3, "H");
+  rect(map, 37, 12, 6, 3, "B");
+  rect(map, 8, 20, 14, 4, "A");
+  rect(map, 22, 18, 3, 6, "I");
+  rect(map, 34, 21, 8, 4, "P");
+  rect(map, 44, 20, 4, 3, "U");
+
+  setTile(14, 9, "O");
+  setTile(20, 9, "O");
+  setTile(34, 9, "O");
+  setTile(42, 9, "O");
+  setTile(12, 14, "O");
+  setTile(27, 14, "O");
+  setTile(40, 14, "O");
+  setTile(36, 24, "O");
+  setTile(37, 24, "O");
+
+  Object.keys(WORLD_ROUTES.brexiton).forEach(direction => {
+    const pos = PORTAL_POS[direction as RouteDirection];
+    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
+  });
+
+  return map;
+};
+
 const buildShopMap = () => {
   const map = makeBlankMap(14, 10, "D");
   rect(map, 1, 1, 12, 8, "B");
@@ -438,81 +500,164 @@ const routeInteractionsFor = (theme: TownTheme) => Object.fromEntries(
   }),
 );
 
-const createThemedTownDef = (theme: TownTheme): GameMapDef => ({
-  id: theme.id,
-  name: theme.name,
-  width: 56,
-  height: 34,
-  rows: buildThemedTownMap(theme),
-  spawn: { x: 27, y: 18 },
-  objects: {
-    ...routeObjectsFor(theme),
-    "19,14": "DOOR_SHOP",
-    "28,14": "DOOR_HEAL",
-    "37,14": "DOOR_HOME",
-    "21,24": "DOOR_HOME",
-    "34,24": "TRAIN",
-    "35,24": "TRAIN",
-    "27,18": "★",
-    "25,18": "SIGN",
-  },
-  interactions: {
-    ...routeInteractionsFor(theme),
-    "19,14": {
-      name: `${theme.name} Shop`,
-      portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
-      auto: true,
-      lines: [],
+const createThemedTownDef = (theme: TownTheme): GameMapDef => {
+  const isBrexiton = theme.id === "brexiton";
+  return {
+    id: theme.id,
+    name: theme.name,
+    width: 56,
+    height: 34,
+    rows: isBrexiton ? buildBrexitonMap() : buildThemedTownMap(theme),
+    spawn: { x: 27, y: 18 },
+    objects: isBrexiton ? {
+      ...routeObjectsFor(theme),
+      "12,14": "DOOR_SHOP",
+      "27,14": "DOOR_HEAL",
+      "40,14": "DOOR_HOME",
+      "20,9": "DOOR_HOME",
+      "36,24": "TRAIN",
+      "37,24": "TRAIN",
+      "27,18": "★",
+      "25,18": "SIGN",
+      "22,17": "LONDON_CLOCK",
+      "15,19": "PARLIAMENT",
+      "10,18": "PHONE_BOX",
+      "18,18": "BLACK_CAB",
+      "32,18": "DOUBLE_DECKER",
+      "42,18": "LAMP_POST",
+      "27,32": "VOTE_GATE",
+    } : {
+      ...routeObjectsFor(theme),
+      "19,14": "DOOR_SHOP",
+      "28,14": "DOOR_HEAL",
+      "37,14": "DOOR_HOME",
+      "21,24": "DOOR_HOME",
+      "34,24": "TRAIN",
+      "35,24": "TRAIN",
+      "27,18": "★",
+      "25,18": "SIGN",
     },
-    "28,14": {
-      name: `${theme.name} Healing Center`,
-      portal: { mapId: "healing", x: 7, y: 7, facing: "up" },
-      auto: true,
-      lines: [],
+    interactions: isBrexiton ? {
+      ...routeInteractionsFor(theme),
+      "12,14": {
+        name: `${theme.name} Shop`,
+        portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
+        auto: true,
+        lines: [],
+      },
+      "27,14": {
+        name: `${theme.name} Healing Center`,
+        portal: { mapId: "healing", x: 7, y: 7, facing: "up" },
+        auto: true,
+        lines: [],
+      },
+      "40,14": {
+        name: `${theme.name} House`,
+        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
+        auto: true,
+        lines: [],
+      },
+      "20,9": {
+        name: "Terraced House",
+        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
+        auto: true,
+        lines: [],
+      },
+      "36,24": {
+        name: `${theme.name} Train Station`,
+        train: true,
+        lines: ["Choose a destination."],
+      },
+      "37,24": {
+        name: `${theme.name} Train Station`,
+        train: true,
+        lines: ["Choose a destination."],
+      },
+      "36,25": {
+        name: `${theme.name} Train Platform`,
+        train: true,
+        lines: ["Choose a destination."],
+      },
+      "37,25": {
+        name: `${theme.name} Train Platform`,
+        train: true,
+        lines: ["Choose a destination."],
+      },
+      "27,18": {
+        name: "Save Point",
+        save: true,
+        lines: ["★ PROGRESS SAVED ★", `${theme.name} - Lv. 15`, theme.hook],
+      },
+      "25,18": {
+        name: "Town Sign",
+        lines: [...theme.sign, `Hook: ${theme.hook}`],
+      },
+      "22,17": {
+        name: "Clock Tower",
+        lines: ["The clock insists it is always negotiation o'clock."],
+      },
+      "15,19": {
+        name: "Parliament Queue",
+        lines: ["A queue forms, debates itself, then queues again."],
+      },
+    } : {
+      ...routeInteractionsFor(theme),
+      "19,14": {
+        name: `${theme.name} Shop`,
+        portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
+        auto: true,
+        lines: [],
+      },
+      "28,14": {
+        name: `${theme.name} Healing Center`,
+        portal: { mapId: "healing", x: 7, y: 7, facing: "up" },
+        auto: true,
+        lines: [],
+      },
+      "37,14": {
+        name: `${theme.name} House`,
+        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
+        auto: true,
+        lines: [],
+      },
+      "21,24": {
+        name: "Local House",
+        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
+        auto: true,
+        lines: [],
+      },
+      "34,24": {
+        name: `${theme.name} Train Station`,
+        train: true,
+        lines: ["Choose a destination."],
+      },
+      "35,24": {
+        name: `${theme.name} Train Station`,
+        train: true,
+        lines: ["Choose a destination."],
+      },
+      "34,25": {
+        name: `${theme.name} Train Platform`,
+        train: true,
+        lines: ["Choose a destination."],
+      },
+      "35,25": {
+        name: `${theme.name} Train Platform`,
+        train: true,
+        lines: ["Choose a destination."],
+      },
+      "27,18": {
+        name: "Save Point",
+        save: true,
+        lines: ["★ PROGRESS SAVED ★", `${theme.name} - Lv. 15`, theme.hook],
+      },
+      "25,18": {
+        name: "Town Sign",
+        lines: [...theme.sign, `Hook: ${theme.hook}`],
+      },
     },
-    "37,14": {
-      name: `${theme.name} House`,
-      portal: { mapId: "house", x: 6, y: 6, facing: "up" },
-      auto: true,
-      lines: [],
-    },
-    "21,24": {
-      name: "Local House",
-      portal: { mapId: "house", x: 6, y: 6, facing: "up" },
-      auto: true,
-      lines: [],
-    },
-    "34,24": {
-      name: `${theme.name} Train Station`,
-      train: true,
-      lines: ["Choose a destination."],
-    },
-    "35,24": {
-      name: `${theme.name} Train Station`,
-      train: true,
-      lines: ["Choose a destination."],
-    },
-    "34,25": {
-      name: `${theme.name} Train Platform`,
-      train: true,
-      lines: ["Choose a destination."],
-    },
-    "35,25": {
-      name: `${theme.name} Train Platform`,
-      train: true,
-      lines: ["Choose a destination."],
-    },
-    "27,18": {
-      name: "Save Point",
-      save: true,
-      lines: ["★ PROGRESS SAVED ★", `${theme.name} - Lv. 15`, theme.hook],
-    },
-    "25,18": {
-      name: "Town Sign",
-      lines: [...theme.sign, `Hook: ${theme.hook}`],
-    },
-  },
-});
+  };
+};
 
 const GENERATED_TOWN_MAPS = Object.fromEntries(
   TOWN_THEMES.map(theme => [theme.id, createThemedTownDef(theme)]),
