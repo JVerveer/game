@@ -703,6 +703,196 @@ const buildTweetsburgMap = () => {
   return map;
 };
 
+const buildInflatopolisMap = () => {
+  const map = makeBlankMap(56, 34, "T");
+  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
+    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = Math.round(start.x + (end.x - start.x) * t);
+      const y = Math.round(start.y + (end.y - start.y) * t);
+      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
+    }
+  };
+
+  rect(map, 4, 4, 48, 25, "G");
+  rect(map, 6, 21, 44, 5, "E");
+  rect(map, 8, 7, 40, 13, "R");
+  hline(map, 8, 48, 14, "R");
+  vline(map, 27, 5, 29, "R");
+  hline(map, 11, 45, 9, "R");
+  hline(map, 11, 45, 19, "R");
+
+  Object.keys(WORLD_ROUTES.inflatopolis).forEach(direction => {
+    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
+  });
+
+  rect(map, 10, 8, 6, 4, "A");
+  rect(map, 18, 8, 6, 4, "B");
+  rect(map, 31, 8, 6, 4, "H");
+  rect(map, 40, 8, 6, 4, "A");
+  rect(map, 11, 16, 6, 4, "U");
+  rect(map, 21, 16, 6, 4, "U");
+  rect(map, 35, 23, 7, 3, "P");
+
+  map[11][13] = "O";
+  map[11][21] = "O";
+  map[11][34] = "O";
+  map[11][43] = "O";
+  map[19][14] = "O";
+  map[19][24] = "O";
+  map[25][36] = "O";
+  map[25][37] = "O";
+
+  Object.keys(WORLD_ROUTES.inflatopolis).forEach(direction => {
+    const pos = PORTAL_POS[direction as RouteDirection];
+    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
+  });
+
+  return map;
+};
+
+const buildTariffMap = () => {
+  const map = makeBlankMap(56, 34, "T");
+  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
+    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = Math.round(start.x + (end.x - start.x) * t);
+      const y = Math.round(start.y + (end.y - start.y) * t);
+      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
+    }
+  };
+
+  rect(map, 3, 4, 50, 25, "G");
+  rect(map, 5, 23, 46, 5, "W");
+  rect(map, 8, 18, 41, 5, "S");
+  rect(map, 11, 8, 35, 10, "E");
+  hline(map, 11, 46, 15, "R");
+  vline(map, 27, 5, 30, "R");
+  hline(map, 12, 44, 10, "R");
+  rect(map, 33, 22, 10, 5, "R");
+
+  Object.keys(WORLD_ROUTES.tariff).forEach(direction => {
+    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
+  });
+
+  rect(map, 12, 9, 6, 4, "U");
+  rect(map, 22, 9, 6, 4, "B");
+  rect(map, 32, 9, 6, 4, "H");
+  rect(map, 40, 9, 5, 4, "U");
+  rect(map, 35, 23, 7, 3, "P");
+  rect(map, 8, 16, 5, 4, "M");
+
+  map[12][15] = "O";
+  map[12][25] = "O";
+  map[12][35] = "O";
+  map[12][42] = "O";
+  map[25][36] = "O";
+  map[25][37] = "O";
+
+  Object.keys(WORLD_ROUTES.tariff).forEach(direction => {
+    const pos = PORTAL_POS[direction as RouteDirection];
+    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
+  });
+
+  return map;
+};
+
+const buildRagebaitMap = () => {
+  const map = makeBlankMap(56, 34, "T");
+  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
+    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = Math.round(start.x + (end.x - start.x) * t);
+      const y = Math.round(start.y + (end.y - start.y) * t);
+      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
+    }
+  };
+
+  rect(map, 4, 4, 48, 25, "G");
+  rect(map, 5, 22, 46, 5, "W");
+  rect(map, 7, 18, 44, 4, "S");
+  rect(map, 8, 7, 41, 11, "E");
+  hline(map, 8, 49, 15, "R");
+  vline(map, 27, 5, 30, "R");
+  hline(map, 12, 44, 10, "R");
+  rect(map, 34, 22, 9, 5, "R");
+
+  Object.keys(WORLD_ROUTES.ragebait).forEach(direction => {
+    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
+  });
+
+  rect(map, 10, 8, 6, 4, "U");
+  rect(map, 18, 8, 6, 4, "B");
+  rect(map, 31, 8, 6, 4, "H");
+  rect(map, 40, 8, 6, 4, "A");
+  rect(map, 35, 23, 7, 3, "P");
+  rect(map, 15, 16, 9, 2, "M");
+
+  map[11][13] = "O";
+  map[11][21] = "O";
+  map[11][34] = "O";
+  map[11][43] = "O";
+  map[25][36] = "O";
+  map[25][37] = "O";
+
+  Object.keys(WORLD_ROUTES.ragebait).forEach(direction => {
+    const pos = PORTAL_POS[direction as RouteDirection];
+    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
+  });
+
+  return map;
+};
+
+const buildFactcheckMap = () => {
+  const map = makeBlankMap(56, 34, "T");
+  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
+    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = Math.round(start.x + (end.x - start.x) * t);
+      const y = Math.round(start.y + (end.y - start.y) * t);
+      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
+    }
+  };
+
+  rect(map, 4, 4, 48, 25, "S");
+  rect(map, 42, 5, 7, 22, "W");
+  rect(map, 8, 8, 34, 17, "E");
+  hline(map, 8, 42, 17, "R");
+  vline(map, 27, 5, 30, "R");
+  hline(map, 11, 40, 11, "R");
+  hline(map, 11, 40, 23, "R");
+  rect(map, 33, 23, 9, 4, "R");
+
+  Object.keys(WORLD_ROUTES.factcheck).forEach(direction => {
+    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
+  });
+
+  rect(map, 10, 9, 7, 4, "A");
+  rect(map, 22, 9, 7, 4, "H");
+  rect(map, 33, 9, 7, 4, "B");
+  rect(map, 11, 20, 7, 4, "U");
+  rect(map, 35, 23, 7, 3, "P");
+  rect(map, 23, 15, 8, 5, "I");
+
+  map[12][13] = "O";
+  map[12][25] = "O";
+  map[12][36] = "O";
+  map[23][14] = "O";
+  map[25][36] = "O";
+  map[25][37] = "O";
+
+  Object.keys(WORLD_ROUTES.factcheck).forEach(direction => {
+    const pos = PORTAL_POS[direction as RouteDirection];
+    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
+  });
+
+  return map;
+};
+
 const buildShopMap = () => {
   const map = makeBlankMap(14, 10, "D");
   rect(map, 1, 1, 12, 8, "B");
@@ -774,6 +964,10 @@ const themedRowsFor = (theme: TownTheme) => {
   if (theme.id === "cryptonia") return buildCryptoniaMap();
   if (theme.id === "surveillia") return buildSurveilliaMap();
   if (theme.id === "tweetsburg") return buildTweetsburgMap();
+  if (theme.id === "inflatopolis") return buildInflatopolisMap();
+  if (theme.id === "tariff") return buildTariffMap();
+  if (theme.id === "ragebait") return buildRagebaitMap();
+  if (theme.id === "factcheck") return buildFactcheckMap();
   return buildThemedTownMap(theme);
 };
 
@@ -834,6 +1028,46 @@ const doorConfigFor = (theme: TownTheme): TownDoorConfig => {
       healing: "34,11",
       homes: ["13,11", "43,11", "15,23"],
       train: ["36,23", "37,23", "36,24", "37,24"],
+      save: "27,18",
+      sign: "25,18",
+    };
+  }
+  if (theme.id === "inflatopolis") {
+    return {
+      shop: "21,11",
+      healing: "34,11",
+      homes: ["13,11", "43,11", "14,19", "24,19"],
+      train: ["36,25", "37,25", "36,26", "37,26"],
+      save: "27,18",
+      sign: "25,18",
+    };
+  }
+  if (theme.id === "tariff") {
+    return {
+      shop: "25,12",
+      healing: "35,12",
+      homes: ["15,12", "42,12"],
+      train: ["36,25", "37,25", "36,26", "37,26"],
+      save: "27,18",
+      sign: "25,18",
+    };
+  }
+  if (theme.id === "ragebait") {
+    return {
+      shop: "21,11",
+      healing: "34,11",
+      homes: ["13,11", "43,11"],
+      train: ["36,25", "37,25", "36,26", "37,26"],
+      save: "27,18",
+      sign: "25,18",
+    };
+  }
+  if (theme.id === "factcheck") {
+    return {
+      shop: "13,12",
+      healing: "25,12",
+      homes: ["36,12", "14,23"],
+      train: ["36,25", "37,25", "36,26", "37,26"],
       save: "27,18",
       sign: "25,18",
     };
@@ -904,6 +1138,46 @@ const specialObjectsFor = (theme: TownTheme): Record<string, string> => {
       "22,21": "SNOW_STATUE",
       "31,21": "RUMOR_KIOSK",
       "43,18": "RED_STAR",
+    };
+  }
+  if (theme.id === "inflatopolis") {
+    return {
+      "27,13": "OBELISCO",
+      "16,14": "TANGO_STAGE",
+      "37,14": "STEAK_GRILL",
+      "20,22": "PESO_SIGN",
+      "32,22": "PRICE_BOARD",
+      "43,20": "BALCONY_HOUSE",
+    };
+  }
+  if (theme.id === "tariff") {
+    return {
+      "11,16": "CHRIST_STATUE",
+      "18,18": "SUGARLOAF",
+      "26,18": "BEACH_UMBRELLA",
+      "32,18": "CARNIVAL_DRUMS",
+      "44,21": "RIO_BOAT",
+      "38,15": "CABLE_CAR",
+    };
+  }
+  if (theme.id === "ragebait") {
+    return {
+      "18,16": "GOLDEN_GATE",
+      "24,16": "GOLDEN_GATE",
+      "32,14": "TRAM_CAR",
+      "42,15": "TECH_BILLBOARD",
+      "16,10": "HILL_HOUSE",
+      "45,10": "FOG_HORN",
+    };
+  }
+  if (theme.id === "factcheck") {
+    return {
+      "27,15": "INDIA_GATE",
+      "14,17": "TUKTUK",
+      "35,17": "LOTUS_DOME",
+      "45,18": "FACT_FOUNTAIN",
+      "20,23": "MARKET_STALL",
+      "31,23": "NEWS_STAND",
     };
   }
   return {};
@@ -979,6 +1253,54 @@ const specialInteractionsFor = (theme: TownTheme): Record<string, Interaction> =
       "31,21": {
         name: "Rumor Kiosk",
         lines: ["The headline updates before the sentence finishes loading."],
+      },
+    };
+  }
+  if (theme.id === "inflatopolis") {
+    return {
+      "27,13": {
+        name: "Obelisco of Adjusted Prices",
+        lines: ["Every plaque has a newer price sticker over the previous sticker."],
+      },
+      "32,22": {
+        name: "Price Board",
+        lines: ["The numbers climb so quickly the chalk is out of breath."],
+      },
+    };
+  }
+  if (theme.id === "tariff") {
+    return {
+      "11,16": {
+        name: "Hilltop Statue",
+        lines: ["It watches over every tariff form with impressive patience."],
+      },
+      "32,18": {
+        name: "Carnival Customs Desk",
+        lines: ["Every drumbeat adds a small processing fee."],
+      },
+    };
+  }
+  if (theme.id === "ragebait") {
+    return {
+      "18,16": {
+        name: "Suspension Bridge",
+        lines: ["A perfect backdrop for dramatic entrances and sponsored exits."],
+      },
+      "42,15": {
+        name: "Tech Billboard",
+        lines: ["It says your outrage has been successfully optimized."],
+      },
+    };
+  }
+  if (theme.id === "factcheck") {
+    return {
+      "27,15": {
+        name: "Verified Gate",
+        lines: ["Three plaques disagree about who verified it first."],
+      },
+      "31,23": {
+        name: "News Stand",
+        lines: ["Every headline comes with a footnote and a louder counter-headline."],
       },
     };
   }

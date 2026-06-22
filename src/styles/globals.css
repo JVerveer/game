@@ -1845,6 +1845,449 @@
     background: #252018;
   }
 
+  .map-inflatopolis .tile-E,
+  .map-inflatopolis .tile-R {
+    background-color: #b99366;
+  }
+
+  .map-inflatopolis .tile-E::before,
+  .map-inflatopolis .tile-R::before {
+    background-image:
+      linear-gradient(90deg, rgba(73,51,31,0.22) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(255,248,200,0.24) 1px, transparent 1px);
+    background-size: 14px 14px;
+  }
+
+  .map-inflatopolis .tile-A,
+  .map-inflatopolis .tile-U {
+    background:
+      linear-gradient(180deg, #6c5431 0 8%, #252018 8% 13%, transparent 13%),
+      linear-gradient(90deg, transparent 0 12%, #252018 12% 15%, #fff3a8 15% 27%, #252018 27% 30%, transparent 30% 43%, #252018 43% 46%, #fff3a8 46% 58%, #252018 58% 61%, transparent 61% 74%, #252018 74% 77%, #fff3a8 77% 89%, #252018 89% 92%, transparent 92%),
+      linear-gradient(0deg, #725134 0 12%, transparent 12%),
+      #d0ad79;
+  }
+
+  .map-tariff .tile-E,
+  .map-tariff .tile-R {
+    background-color: #b58b5d;
+  }
+
+  .map-tariff .tile-W {
+    background: repeating-linear-gradient(135deg, #54a9bd 0 8px, #2e849c 8px 16px);
+  }
+
+  .map-tariff .tile-S {
+    background-color: #e7cf7b;
+  }
+
+  .map-tariff .tile-U {
+    background:
+      linear-gradient(180deg, #315f2a 0 12%, #252018 12% 17%, transparent 17%),
+      linear-gradient(90deg, transparent 0 13%, #fff3a8 13% 27%, transparent 27% 43%, #fff3a8 43% 57%, transparent 57% 73%, #fff3a8 73% 87%, transparent 87%),
+      #d6673f;
+  }
+
+  .map-ragebait .tile-E,
+  .map-ragebait .tile-R {
+    background-color: #8f7f6c;
+  }
+
+  .map-ragebait .tile-W {
+    background: repeating-linear-gradient(135deg, #6aa4b8 0 8px, #3f809b 8px 16px);
+  }
+
+  .map-ragebait .tile-S {
+    background-color: #d9c57a;
+  }
+
+  .map-ragebait .tile-U {
+    background:
+      linear-gradient(180deg, #5c585b 0 9%, #252018 9% 14%, transparent 14%),
+      linear-gradient(90deg, transparent 0 12%, #fff3a8 12% 25%, transparent 25% 42%, #fff3a8 42% 55%, transparent 55% 72%, #fff3a8 72% 85%, transparent 85%),
+      #cfa66d;
+  }
+
+  .map-factcheck .tile-E,
+  .map-factcheck .tile-R {
+    background-color: #c3a66e;
+  }
+
+  .map-factcheck .tile-S {
+    background-color: #dcc071;
+  }
+
+  .map-factcheck .tile-W {
+    background: repeating-linear-gradient(135deg, #6ea5ad 0 8px, #497f90 8px 16px);
+  }
+
+  .map-factcheck .tile-A,
+  .map-factcheck .tile-U {
+    background:
+      linear-gradient(180deg, #c2693d 0 9%, #252018 9% 14%, transparent 14%),
+      linear-gradient(90deg, transparent 0 12%, #fff3a8 12% 26%, transparent 26% 43%, #fff3a8 43% 57%, transparent 57% 74%, #fff3a8 74% 88%, transparent 88%),
+      #d6a45f;
+  }
+
+  .object-obelisco::before {
+    left: 18px;
+    top: -12px;
+    width: 8px;
+    height: 52px;
+    background: #e8d8a4;
+    border-left: 3px solid #252018;
+    border-right: 3px solid #252018;
+  }
+
+  .object-obelisco::after {
+    left: 14px;
+    top: 37px;
+    width: 16px;
+    height: 5px;
+    background: #252018;
+  }
+
+  .object-tango-stage::before,
+  .object-market-stall::before {
+    left: 2px;
+    top: 15px;
+    width: 38px;
+    height: 19px;
+    background: repeating-linear-gradient(90deg, #b54035 0 7px, #fff3a8 7px 14px);
+    border: 4px solid #252018;
+  }
+
+  .object-tango-stage::after {
+    left: 12px;
+    top: 28px;
+    width: 6px;
+    height: 10px;
+    background: #252018;
+    box-shadow: 14px 0 0 #252018, 7px -8px 0 #b54035;
+  }
+
+  .object-steak-grill::before {
+    left: 6px;
+    top: 18px;
+    width: 30px;
+    height: 16px;
+    background: #5a3c22;
+    border: 4px solid #252018;
+    box-shadow: inset 0 5px 0 #e26a3d;
+  }
+
+  .object-steak-grill::after {
+    left: 11px;
+    top: 10px;
+    width: 4px;
+    height: 9px;
+    background: #f4d76b;
+    box-shadow: 8px -3px 0 #f4d76b, 16px 0 0 #f4d76b;
+  }
+
+  .object-peso-sign::before,
+  .object-price-board::before,
+  .object-tech-billboard::before {
+    left: 2px;
+    top: 8px;
+    width: 38px;
+    height: 22px;
+    background: #252018;
+    border: 4px solid #f4d76b;
+  }
+
+  .object-peso-sign::after {
+    content: "$$";
+    left: 10px;
+    top: 12px;
+    color: #f4d76b;
+    font: 14px/1 monospace;
+    font-weight: 900;
+  }
+
+  .object-price-board::after {
+    content: "999";
+    left: 8px;
+    top: 12px;
+    color: #f4d76b;
+    font: 12px/1 monospace;
+    font-weight: 900;
+  }
+
+  .object-balcony-house::before,
+  .object-hill-house::before {
+    left: 6px;
+    top: 3px;
+    width: 30px;
+    height: 35px;
+    background:
+      linear-gradient(180deg, #8b6138 0 18%, transparent 18%),
+      linear-gradient(90deg, transparent 0 16%, #fff3a8 16% 33%, transparent 33% 62%, #fff3a8 62% 79%, transparent 79%),
+      #cfa66d;
+    border: 4px solid #252018;
+  }
+
+  .object-balcony-house::after {
+    left: 11px;
+    top: 20px;
+    width: 20px;
+    height: 5px;
+    background: #252018;
+  }
+
+  .object-christ-statue::before {
+    left: 19px;
+    top: 4px;
+    width: 6px;
+    height: 33px;
+    background: #e8d8a4;
+    box-shadow: -14px 9px 0 -1px #e8d8a4, 14px 9px 0 -1px #e8d8a4;
+    border: 2px solid #252018;
+  }
+
+  .object-christ-statue::after {
+    left: 15px;
+    top: 0;
+    width: 12px;
+    height: 10px;
+    background: #e8d8a4;
+    border: 3px solid #252018;
+  }
+
+  .object-sugarloaf::before {
+    left: 6px;
+    top: 9px;
+    width: 30px;
+    height: 30px;
+    background: #5d4937;
+    border: 4px solid #252018;
+    border-radius: 50% 50% 6px 6px;
+  }
+
+  .object-beach-umbrella::before {
+    left: 5px;
+    top: 9px;
+    width: 32px;
+    height: 16px;
+    background: repeating-linear-gradient(90deg, #b54035 0 8px, #fff3a8 8px 16px);
+    border: 4px solid #252018;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .object-beach-umbrella::after {
+    left: 20px;
+    top: 25px;
+    width: 4px;
+    height: 15px;
+    background: #252018;
+  }
+
+  .object-carnival-drums::before {
+    left: 7px;
+    top: 18px;
+    width: 10px;
+    height: 18px;
+    background: #b54035;
+    border: 3px solid #252018;
+    box-shadow: 14px 0 0 #f4d76b, 28px 0 0 #2f64a5;
+  }
+
+  .object-rio-boat::before {
+    left: 2px;
+    top: 22px;
+    width: 38px;
+    height: 13px;
+    background: #fff3a8;
+    border: 4px solid #252018;
+    border-radius: 2px 2px 14px 14px;
+  }
+
+  .object-cable-car::before,
+  .object-tram-car::before {
+    left: 4px;
+    top: 16px;
+    width: 34px;
+    height: 18px;
+    background: #b54035;
+    border: 4px solid #252018;
+    box-shadow: inset 7px 0 0 #fff3a8, inset -7px 0 0 #fff3a8;
+  }
+
+  .object-cable-car::after {
+    left: 0;
+    top: 9px;
+    width: 42px;
+    height: 3px;
+    background: #252018;
+  }
+
+  .object-golden-gate::before {
+    left: 15px;
+    top: 3px;
+    width: 12px;
+    height: 37px;
+    background: #c95a35;
+    border: 4px solid #252018;
+    box-shadow: -9px 15px 0 -3px #c95a35, 9px 15px 0 -3px #c95a35;
+  }
+
+  .object-golden-gate::after {
+    left: -4px;
+    top: 20px;
+    width: 50px;
+    height: 5px;
+    background: #252018;
+    box-shadow: 0 10px 0 #c95a35;
+  }
+
+  .object-tram-car::after {
+    left: 8px;
+    top: 34px;
+    width: 7px;
+    height: 6px;
+    background: #252018;
+    box-shadow: 18px 0 0 #252018;
+  }
+
+  .object-tech-billboard::after {
+    content: "LIVE";
+    left: 7px;
+    top: 12px;
+    color: #91e7f4;
+    font: 11px/1 monospace;
+    font-weight: 900;
+  }
+
+  .object-hill-house::after {
+    left: 18px;
+    top: 25px;
+    width: 8px;
+    height: 12px;
+    background: #5a3c22;
+    border: 3px solid #252018;
+  }
+
+  .object-fog-horn::before {
+    left: 12px;
+    top: 10px;
+    width: 18px;
+    height: 22px;
+    background: #d8d7c8;
+    border: 4px solid #252018;
+  }
+
+  .object-fog-horn::after {
+    left: 25px;
+    top: 14px;
+    width: 14px;
+    height: 10px;
+    background: #fff3a8;
+    border: 3px solid #252018;
+  }
+
+  .object-india-gate::before {
+    left: 5px;
+    top: 5px;
+    width: 32px;
+    height: 34px;
+    background: #d6a45f;
+    border: 4px solid #252018;
+    box-shadow: inset 11px 13px 0 #8b6a54, inset 11px 13px 0 4px #252018;
+  }
+
+  .object-india-gate::after {
+    left: 13px;
+    top: 0;
+    width: 16px;
+    height: 7px;
+    background: #252018;
+  }
+
+  .object-tuktuk::before {
+    left: 4px;
+    top: 18px;
+    width: 34px;
+    height: 16px;
+    background: #f4d76b;
+    border: 4px solid #252018;
+    border-radius: 12px 12px 3px 3px;
+  }
+
+  .object-tuktuk::after {
+    left: 10px;
+    top: 32px;
+    width: 7px;
+    height: 7px;
+    background: #252018;
+    box-shadow: 17px 0 0 #252018, 8px -10px 0 #2e9c66;
+  }
+
+  .object-lotus-dome::before {
+    left: 6px;
+    top: 13px;
+    width: 30px;
+    height: 22px;
+    background: #e8d8a4;
+    border: 4px solid #252018;
+    border-radius: 50% 50% 4px 4px;
+  }
+
+  .object-lotus-dome::after {
+    left: 15px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    background: #fff3a8;
+    border: 3px solid #252018;
+    border-radius: 50%;
+  }
+
+  .object-fact-fountain::before {
+    left: 10px;
+    top: 14px;
+    width: 22px;
+    height: 22px;
+    background: #6ea5ad;
+    border: 4px solid #252018;
+    border-radius: 50%;
+  }
+
+  .object-fact-fountain::after {
+    left: 18px;
+    top: 6px;
+    width: 6px;
+    height: 13px;
+    background: #fff3a8;
+    box-shadow: -7px 10px 0 #fff3a8, 7px 10px 0 #fff3a8;
+  }
+
+  .object-market-stall::after {
+    left: 11px;
+    top: 29px;
+    width: 7px;
+    height: 9px;
+    background: #252018;
+    box-shadow: 14px 0 0 #252018;
+  }
+
+  .object-news-stand::before {
+    left: 5px;
+    top: 9px;
+    width: 32px;
+    height: 27px;
+    background: #fff3a8;
+    border: 4px solid #252018;
+    box-shadow: inset 0 8px 0 #2f64a5;
+  }
+
+  .object-news-stand::after {
+    content: "FACT";
+    left: 8px;
+    top: 20px;
+    color: #252018;
+    font: 9px/1 monospace;
+    font-weight: 900;
+  }
+
   /* Richer character sprites with hats, faces, torsos, arms, and animated feet. */
   .trainer-sprite::before,
   .npc-sprite::before,
