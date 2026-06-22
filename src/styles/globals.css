@@ -508,6 +508,115 @@
     transform: rotate(-45deg);
   }
 
+  .tile-G {
+    background-color: #83b24a;
+  }
+
+  .tile-G::before {
+    background-image:
+      linear-gradient(105deg, transparent 0 34%, rgba(88, 137, 56, 0.85) 34% 42%, transparent 42%),
+      linear-gradient(105deg, transparent 0 70%, rgba(170, 203, 91, 0.7) 70% 75%, transparent 75%);
+    background-size: 16px 16px;
+  }
+
+  .tile-X {
+    background-color: #5e9740;
+  }
+
+  .tile-R {
+    background-color: #cda658;
+  }
+
+  .tile-R::before {
+    background-image:
+      linear-gradient(100deg, rgba(154, 108, 55, 0.65) 1px, transparent 2px),
+      linear-gradient(0deg, rgba(255, 239, 147, 0.3) 1px, transparent 1px);
+    background-size: 16px 9px;
+  }
+
+  .tile-W {
+    background: repeating-linear-gradient(135deg, #4285b5 0 8px, #225893 8px 16px);
+  }
+
+  .tile-S {
+    background-color: #e8c96f;
+  }
+
+  .tile-P {
+    background:
+      linear-gradient(180deg, #5c585b 0 10%, #77716f 10% 32%, #252018 32% 37%, transparent 37%),
+      linear-gradient(90deg, transparent 0 18%, rgba(255, 248, 200, 0.9) 18% 30%, transparent 30% 70%, rgba(255, 248, 200, 0.9) 70% 82%, transparent 82%),
+      linear-gradient(0deg, #8b6138 0 12%, transparent 12%),
+      #d8bd76;
+  }
+
+  .tile-F {
+    background:
+      linear-gradient(0deg, transparent 0 40%, #764e2d 40% 58%, transparent 58%),
+      repeating-linear-gradient(90deg, transparent 0 8px, #eecd71 8px 13px, #252018 13px 14px, transparent 14px 18px),
+      #83b24a;
+  }
+
+  .tile-L {
+    background:
+      radial-gradient(circle at 22% 32%, #ca4b36 0 4%, transparent 5%),
+      radial-gradient(circle at 62% 28%, #f6d746 0 4%, transparent 5%),
+      radial-gradient(circle at 45% 72%, #4d77b0 0 4%, transparent 5%),
+      linear-gradient(105deg, transparent 0 34%, rgba(88, 137, 56, 0.85) 34% 42%, transparent 42%),
+      #83b24a;
+    background-size: 100% 100%, 100% 100%, 100% 100%, 16px 16px, 100% 100%;
+  }
+
+  .object-route::before {
+    left: 7px;
+    top: 12px;
+    width: 28px;
+    height: 18px;
+    background: #ffef93;
+    border: 4px solid #252018;
+  }
+
+  .object-route::after {
+    left: 15px;
+    top: 8px;
+    color: #252018;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.55rem;
+    line-height: 1;
+  }
+
+  .object-route-n::after { content: "^"; }
+  .object-route-s::after { content: "v"; top: 14px; }
+  .object-route-e::after { content: ">"; left: 17px; top: 13px; }
+  .object-route-w::after { content: "<"; left: 13px; top: 13px; }
+  .object-route-ne::after { content: "/"; left: 17px; top: 13px; }
+  .object-route-nw::after { content: "\\"; left: 15px; top: 13px; }
+  .object-route-se::after { content: "\\"; left: 15px; top: 13px; }
+  .object-route-sw::after { content: "/"; left: 17px; top: 13px; }
+
+  .object-train-station::before {
+    left: 5px;
+    top: 9px;
+    width: 32px;
+    height: 25px;
+    background: #f6dd8b;
+    border: 4px solid #252018;
+    box-shadow: inset 0 10px 0 #5c585b;
+  }
+
+  .object-train-station::after {
+    left: 9px;
+    top: 19px;
+    width: 24px;
+    height: 6px;
+    background: #4d77b0;
+    border: 3px solid #252018;
+    box-shadow:
+      2px 9px 0 #252018,
+      14px 9px 0 #252018,
+      21px -5px 0 #ca4b36;
+  }
+
   .npc-sprite,
   .clerk-sprite,
   .nurse-sprite {

@@ -21,6 +21,7 @@ import {
   MAIN_TOWN_IDS,
   TOWN_THEMES,
   TOWN_WORLD_POSITIONS,
+  WORLD_ROUTES,
   type GameMapId,
   type Portal,
   type TownMapId,
@@ -2051,6 +2052,15 @@ const objectClassFor = (obj: string) => {
     TV: "world-object object-tv",
     "←": "world-object object-arrow-left",
     "→": "world-object object-arrow-right",
+    TRAIN: "world-object object-train-station",
+    ARROW_N: "world-object object-route object-route-n",
+    ARROW_S: "world-object object-route object-route-s",
+    ARROW_E: "world-object object-route object-route-e",
+    ARROW_W: "world-object object-route object-route-w",
+    ARROW_NE: "world-object object-route object-route-ne",
+    ARROW_NW: "world-object object-route object-route-nw",
+    ARROW_SE: "world-object object-route object-route-se",
+    ARROW_SW: "world-object object-route object-route-sw",
     CLERK: "clerk-sprite",
     NURSE: "nurse-sprite",
   };
@@ -2123,6 +2133,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [isWalking, setIsWalking] = useState(false);
   const [npcs, setNpcs] = useState<MovingNpc[]>(INITIAL_NPCS);
   const [miniMapOpen, setMiniMapOpen] = useState(false);
+  const [trainOpen, setTrainOpen] = useState(false);
+  const [trainIndex, setTrainIndex] = useState(0);
   const viewRef = useRef<HTMLDivElement>(null);
   const [viewSize, setViewSize] = useState({ w: 900, h: 600 });
   const currentMap = GAME_MAPS[mapId];
@@ -2136,6 +2148,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const pausedRef = useRef(paused);
   const battleRef = useRef(battleEnemy);
   const npcsRef = useRef(npcs);
+  const trainOpenRef = useRef(trainOpen);
+  const trainIndexRef = useRef(trainIndex);
   const pendingPortalRef = useRef<Portal | null>(null);
   const returnPortalRef = useRef<Portal>({ mapId: "satiria", x: 31, y: 17, facing: "down" });
   const lastMove = useRef(0);
@@ -2146,6 +2160,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   pausedRef.current = paused;
   battleRef.current = battleEnemy;
   npcsRef.current = npcs;
+  trainOpenRef.current = trainOpen;
+  trainIndexRef.current = trainIndex;
 
   const isIndoor = (id: GameMapId) => id === "shop" || id === "house" || id === "healing";
 
@@ -2176,8 +2192,38 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const npcAt = (id: GameMapId, x: number, y: number) =>
     npcsRef.current.find(npc => npc.mapId === id && npc.x === x && npc.y === y);
 
+  const trainDestinations = () => TOWN_THEMES.filter(town => town.id !== mapIdRef.current);
+
+  const travelByTrain = (townId: TownMapId) => {
+    setTrainOpen(false);
+    setTrainIndex(0);
+    warpTo({ mapId: townId, x: 35, y: 25, facing: "up" });
+    setSaveMsg(`Arrived: ${TOWN_THEMES.find(town => town.id === townId)?.name ?? townId}`);
+    window.setTimeout(() => setSaveMsg(null), 2200);
+  };
+
+  const handleTrainKey = (key: string) => {
+    const destinations = trainDestinations();
+    if (key === "Escape" || key === "q" || key === "Q" || key === "z" || key === "Z") {
+      setTrainOpen(false);
+      return;
+    }
+    if (key === "ArrowUp" || key === "w" || key === "W") {
+      setTrainIndex(i => (i - 1 + destinations.length) % destinations.length);
+      return;
+    }
+    if (key === "ArrowDown" || key === "s" || key === "S") {
+      setTrainIndex(i => (i + 1) % destinations.length);
+      return;
+    }
+    if (key === " " || key === "Enter") {
+      const selected = destinations[trainIndexRef.current] ?? destinations[0];
+      if (selected) travelByTrain(selected.id);
+    }
+  };
+
   const doMove = (dx: number, dy: number, dir: "up" | "down" | "left" | "right") => {
-    if (dlgRef.current || pausedRef.current || battleRef.current) return;
+    if (dlgRef.current || pausedRef.current || battleRef.current || trainOpenRef.current) return;
     const now = Date.now();
     if (now - lastMove.current < 155) return;
     lastMove.current = now;
@@ -2214,6 +2260,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
   const doInteract = () => {
     if (pausedRef.current) return;
+    if (trainOpenRef.current) return;
     const d = dlgRef.current;
     if (d) {
       if (d.idx < d.lines.length - 1) {
@@ -2246,6 +2293,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         if (intr.heal) setHp(h => ({ ...h, cur: h.max }));
         if (intr.save) { setSaveMsg("★ Saved!"); setTimeout(() => setSaveMsg(null), 2500); }
         if (intr.shop) { setSaveMsg("SHOP OPEN"); setTimeout(() => setSaveMsg(null), 1800); }
+        if (intr.train) {
+          setTrainIndex(0);
+          setTrainOpen(true);
+          return;
+        }
         if (intr.portal && intr.auto) {
           warpTo(intr.portal);
           return;
@@ -2259,6 +2311,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
+      if (trainOpenRef.current) {
+        e.preventDefault();
+        handleTrainKey(e.key);
+        return;
+      }
       if (e.key === "Escape") { setPaused(p => !p); return; }
       if (e.key === " " || e.key === "z" || e.key === "Z" || e.key === "Enter") {
         e.preventDefault(); doInteract(); return;
@@ -2274,7 +2331,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      if (dlgRef.current || pausedRef.current || battleRef.current) return;
+      if (dlgRef.current || pausedRef.current || battleRef.current || trainOpenRef.current) return;
       setNpcs(prev => prev.map(npc => {
         if (Math.random() > 0.45) return { ...npc, walking: false };
         const dirs = [[0, -1], [0, 1], [-1, 0], [1, 0]] as const;
@@ -2481,13 +2538,16 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         </div>
         <div style={{ position: "relative", height: miniMapOpen ? 94 : 54, backgroundColor: "#76ad56", border: "2px solid #252018", overflow: "hidden" }}>
           <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle, rgba(37,32,24,0.16) 1px, transparent 2px)", backgroundSize: "10px 10px" }} />
-          {TOWN_THEMES.slice(0, -1).map((town, index) => {
-            const next = TOWN_THEMES[index + 1];
-            const a = TOWN_WORLD_POSITIONS[town.id];
-            const b = TOWN_WORLD_POSITIONS[next.id];
+          {Object.entries(WORLD_ROUTES).flatMap(([from, routes]) =>
+            Object.values(routes).map(to => [from as TownMapId, to!] as const)
+          ).filter(([from, to], index, edges) =>
+            edges.findIndex(([a, b]) => [a, b].sort().join("-") === [from, to].sort().join("-")) === index
+          ).map(([from, to]) => {
+            const a = TOWN_WORLD_POSITIONS[from];
+            const b = TOWN_WORLD_POSITIONS[to];
             return (
               <div
-                key={`${town.id}-${next.id}`}
+                key={`${from}-${to}`}
                 style={{
                   position: "absolute",
                   left: `${Math.min(a.x, b.x)}%`,
@@ -2536,6 +2596,66 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           </div>
         )}
       </button>
+
+      {/* ── TRAIN STATION MENU ── */}
+      {trainOpen && (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 45,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "rgba(37,32,24,0.38)",
+          }}
+        >
+          <div
+            className="pixel-window"
+            style={{
+              width: "min(520px, calc(100vw - 56px))",
+              padding: "24px 28px",
+              backgroundColor: "#fff8c8",
+            }}
+          >
+            <div style={{ ...PX, fontSize: "0.85rem", color: "#ca4b36", marginBottom: 14 }}>
+              TRAIN STATION
+            </div>
+            <div style={{ ...VT, fontSize: "1.25rem", color: "#315f2a", marginBottom: 12 }}>
+              Departing: {currentTown?.name ?? currentMap.name}
+            </div>
+            <div style={{ height: 3, backgroundColor: "#252018", marginBottom: 12 }} />
+            <div style={{ display: "grid", gap: 4 }}>
+              {trainDestinations().map((town, index) => (
+                <button
+                  key={town.id}
+                  type="button"
+                  onClick={() => travelByTrain(town.id)}
+                  onMouseEnter={() => setTrainIndex(index)}
+                  style={{
+                    border: index === trainIndex ? "2px solid #252018" : "2px solid transparent",
+                    backgroundColor: index === trainIndex ? "#ca4b36" : "transparent",
+                    color: index === trainIndex ? "#fff3a8" : "#252018",
+                    padding: "5px 10px",
+                    textAlign: "left",
+                    cursor: "pointer",
+                    ...VT,
+                    fontSize: "1.35rem",
+                  }}
+                >
+                  {index === trainIndex ? "▶ " : "  "}{town.name}
+                </button>
+              ))}
+            </div>
+            <div style={{ minHeight: 42, marginTop: 12, ...VT, fontSize: "1rem", color: "#66512c", lineHeight: 1.15 }}>
+              {trainDestinations()[trainIndex]?.hook}
+            </div>
+            <div style={{ ...RJ, fontSize: "0.72rem", color: "#315f2a", marginTop: 8, fontWeight: 700 }}>
+              UP/DOWN choose · SPACE depart · Z / ESC cancel
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── DIALOGUE BOX ── */}
       {dlg && (

@@ -3,7 +3,7 @@
 //   T = Trees/Forest   G = Grass       W = Water      R = Road/Path/Floor
 //   B = Building       H = Healing Ctr Q = Quest NPC  X = Encounter Zone
 //   C = Cave           D = Dungeon     S = Sand/Beach M = Mountain
-//   V = Save Point     N = NPC         O = Door/Portal P = Player spawn (design map only)
+//   V = Save Point     N = NPC         O = Door/Portal P = Train Station
 
 // ── Design-system overworld display map (18 rows × ~30 cols) ─────────────────
 export const DS_TILE_COLORS: Record<string, string> = {
@@ -43,10 +43,10 @@ export const GAME_TILE_COLORS: Record<string, string> = {
   T: "#182e0a", G: "#265424", W: "#0f4466", R: "#5a4830",
   B: "#32325a", H: "#1e3880", Q: "#5a3e08", X: "#1e4020",
   C: "#2e1c08", D: "#08081a", S: "#7a6030", M: "#282838",
-  V: "#3c2e00", N: "#3a2460", O: "#5a4830",
+  V: "#3c2e00", N: "#3a2460", O: "#5a4830", P: "#5a4830",
 };
 
-export const WALKABLE_TILES = new Set(["G", "R", "S", "X", "Q", "V", "N", "O"]);
+export const WALKABLE_TILES = new Set(["G", "R", "S", "X", "Q", "V", "N", "O", "L"]);
 
 export type TownMapId =
   | "satiria"
@@ -75,6 +75,7 @@ export interface Interaction {
   heal?: boolean;
   save?: boolean;
   shop?: boolean;
+  train?: boolean;
   portal?: Portal;
   auto?: boolean;
   lines: string[];
@@ -158,7 +159,7 @@ export const TOWN_THEMES: TownTheme[] = [
     sign: ["★ SATIRIA TOWN ★", "Shop west. Healing Center north.", "Follow the east road to Brexiton."],
     npcName: "Route Guide",
     npcLines: ['"The east road is open now."', '"Eleven towns, one pair of shoes. Very heroic."'],
-    world: { x: 10, y: 64 },
+    world: { x: 50, y: 96 },
   },
   {
     id: "brexiton",
@@ -170,7 +171,7 @@ export const TOWN_THEMES: TownTheme[] = [
     sign: ["★ BREXITON ★", "Mind the gap between promise and policy.", "The exit gate is having a consultation."],
     npcName: "Queue Minister",
     npcLines: ['"We voted to open this gate, then formed a committee to close it."', '"Please enjoy the paperwork maze."'],
-    world: { x: 22, y: 58 },
+    world: { x: 50, y: 7 },
   },
   {
     id: "tweetsburg",
@@ -182,7 +183,7 @@ export const TOWN_THEMES: TownTheme[] = [
     sign: ["★ TWEETSBURG ★", "Every rumor has fiber internet.", "Quest facts may update without notice."],
     npcName: "Trend Watcher",
     npcLines: ['"A rumor just patched itself into the main quest."', '"Do not read the replies unless you brought potions."'],
-    world: { x: 34, y: 50 },
+    world: { x: 68, y: 77 },
   },
   {
     id: "cryptonia",
@@ -194,7 +195,7 @@ export const TOWN_THEMES: TownTheme[] = [
     sign: ["★ CRYPTONIA CITY ★", "Prices moon at dawn and crash by lunch.", "No refunds on vibes."],
     npcName: "Token Baron",
     npcLines: ['"My wallet was full this morning. Now it is a learning experience."', '"The beach is real. The yield is theoretical."'],
-    world: { x: 48, y: 62 },
+    world: { x: 68, y: 50 },
   },
   {
     id: "wokeshire",
@@ -206,7 +207,7 @@ export const TOWN_THEMES: TownTheme[] = [
     sign: ["★ WOKESHIRE ★", "Check the notice board before speaking.", "The notices disagree."],
     npcName: "Consensus Ranger",
     npcLines: ['"The north path is approved by three factions and denounced by four."', '"Bring empathy, patience, and a spare checklist."'],
-    world: { x: 58, y: 44 },
+    world: { x: 32, y: 34 },
   },
   {
     id: "tariff",
@@ -218,7 +219,7 @@ export const TOWN_THEMES: TownTheme[] = [
     sign: ["★ TARIFF TOWN ★", "All roads are imports.", "Toll prices refresh when nobody is looking."],
     npcName: "Dock Broker",
     npcLines: ['"Crossing the street costs three stamps and one surprise fee."', '"The ships are punctual. The forms are not."'],
-    world: { x: 72, y: 48 },
+    world: { x: 68, y: 34 },
   },
   {
     id: "factcheck",
@@ -230,7 +231,7 @@ export const TOWN_THEMES: TownTheme[] = [
     sign: ["★ FACTCHECK FALLS ★", "Three plaques explain this waterfall.", "Only one is mostly true."],
     npcName: "Citation Clerk",
     npcLines: ['"The quest began here, unless you ask the mayor."', '"I rate that potion claim: needs context."'],
-    world: { x: 62, y: 30 },
+    world: { x: 50, y: 88 },
   },
   {
     id: "ragebait",
@@ -242,7 +243,7 @@ export const TOWN_THEMES: TownTheme[] = [
     sign: ["★ RAGEBAIT BAY ★", "Quiet deeds earn quiet applause.", "Dramatic deeds get sponsored."],
     npcName: "Reaction Producer",
     npcLines: ['"Try entering the shop with a gasp. The algorithm loves commitment."', '"Subtlety was nerfed last season."'],
-    world: { x: 80, y: 22 },
+    world: { x: 32, y: 77 },
   },
   {
     id: "surveillia",
@@ -254,7 +255,7 @@ export const TOWN_THEMES: TownTheme[] = [
     sign: ["★ SURVEILLIA ★", "Smile. The signs already know you read them.", "Cameras cover every shortcut."],
     npcName: "Camera Guard",
     npcLines: ['"You are currently standing exactly there."', '"Disable the cameras and I will have to guess like everyone else."'],
-    world: { x: 68, y: 14 },
+    world: { x: 50, y: 21 },
   },
   {
     id: "promptford",
@@ -266,7 +267,7 @@ export const TOWN_THEMES: TownTheme[] = [
     sign: ["★ PROMPTFORD ★", "Canals, startups, and oracles with opinions.", "Please phrase your destiny clearly."],
     npcName: "Oracle Intern",
     npcLines: ['"The oracle suggests taking the scenic route, with confidence 0.51."', '"I asked it what to eat. It opened a sprint board."'],
-    world: { x: 50, y: 14 },
+    world: { x: 50, y: 63 },
   },
   {
     id: "inflatopolis",
@@ -278,21 +279,83 @@ export const TOWN_THEMES: TownTheme[] = [
     sign: ["★ INFLATOPOLIS ★", "Read prices quickly.", "Yesterday's bargain is today's museum exhibit."],
     npcName: "Price Sprinter",
     npcLines: ['"I saved up for bread. Now I can afford a receipt."', '"The shop sign updates faster than my legs."'],
-    world: { x: 35, y: 24 },
+    world: { x: 32, y: 50 },
   },
 ];
 
 export const MAIN_TOWN_IDS = TOWN_THEMES.map(town => town.id);
 export const TOWN_WORLD_POSITIONS = Object.fromEntries(TOWN_THEMES.map(town => [town.id, town.world])) as Record<TownMapId, { x: number; y: number }>;
 
+export const WORLD_ROUTES: Record<TownMapId, Partial<Record<RouteDirection, TownMapId>>> = {
+  satiria: { N: "factcheck" },
+  factcheck: { S: "satiria", NW: "ragebait", NE: "tweetsburg" },
+  ragebait: { SE: "factcheck", NE: "promptford" },
+  tweetsburg: { SW: "factcheck", NW: "promptford" },
+  promptford: { SW: "ragebait", SE: "tweetsburg", NW: "inflatopolis", NE: "cryptonia" },
+  inflatopolis: { S: "promptford", N: "wokeshire" },
+  cryptonia: { S: "promptford", N: "tariff" },
+  wokeshire: { S: "inflatopolis", NE: "surveillia" },
+  tariff: { S: "cryptonia", NW: "surveillia" },
+  surveillia: { SW: "wokeshire", SE: "tariff", N: "brexiton" },
+  brexiton: { S: "surveillia" },
+};
+
+export type RouteDirection = "N" | "S" | "E" | "W" | "NE" | "NW" | "SE" | "SW";
+
+const PORTAL_POS: Record<RouteDirection, { x: number; y: number }> = {
+  N: { x: 27, y: 0 },
+  S: { x: 27, y: 33 },
+  W: { x: 0, y: 18 },
+  E: { x: 55, y: 18 },
+  NE: { x: 55, y: 6 },
+  NW: { x: 0, y: 6 },
+  SE: { x: 55, y: 29 },
+  SW: { x: 0, y: 29 },
+};
+
+const ENTRY_POS: Record<RouteDirection, { x: number; y: number; facing: "up" | "down" | "left" | "right" }> = {
+  N: { x: 27, y: 2, facing: "down" },
+  S: { x: 27, y: 31, facing: "up" },
+  W: { x: 2, y: 18, facing: "right" },
+  E: { x: 53, y: 18, facing: "left" },
+  NE: { x: 53, y: 7, facing: "left" },
+  NW: { x: 2, y: 7, facing: "right" },
+  SE: { x: 53, y: 28, facing: "left" },
+  SW: { x: 2, y: 28, facing: "right" },
+};
+
+const findEntryFrom = (target: TownMapId, from: TownMapId) => {
+  const entry = Object.entries(WORLD_ROUTES[target]).find(([, town]) => town === from);
+  return ENTRY_POS[(entry?.[0] as RouteDirection | undefined) ?? "S"];
+};
+
 const buildThemedTownMap = (theme: TownTheme) => {
   const map = makeBlankMap(56, 34, "T");
+  const setTile = (x: number, y: number, tile: string) => {
+    if (map[y]?.[x] !== undefined) map[y][x] = tile;
+  };
+  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
+    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = Math.round(start.x + (end.x - start.x) * t);
+      const y = Math.round(start.y + (end.y - start.y) * t);
+      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
+    }
+  };
+
   rect(map, 4, 4, 48, 24, "G");
+  rect(map, 6, 26, 9, 1, "F");
+  rect(map, 41, 26, 9, 1, "F");
+  rect(map, 7, 5, 6, 2, "L");
+  rect(map, 43, 23, 6, 2, "L");
   rect(map, 15, 10, 24, 11, "R");
-  hline(map, 0, 55, 18, "R");
-  vline(map, 27, 7, 29, "R");
-  hline(map, 27, 55, 29, "R");
-  hline(map, 0, 27, 29, "R");
+  vline(map, 27, 8, 28, "R");
+  hline(map, 16, 38, 18, "R");
+
+  Object.keys(WORLD_ROUTES[theme.id]).forEach(direction => {
+    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
+  });
 
   if (theme.accent === "water" || theme.accent === "port") {
     rect(map, 41, 5, 8, 13, "W");
@@ -315,12 +378,17 @@ const buildThemedTownMap = (theme: TownTheme) => {
   rect(map, 34, 11, 6, 4, "B");
   rect(map, 18, 21, 6, 4, "B");
   rect(map, 32, 21, 6, 4, "B");
-  map[14][19] = "O";
-  map[14][28] = "O";
-  map[14][37] = "O";
-  map[24][21] = "O";
-  map[24][35] = "O";
-  map[18][27] = "V";
+  setTile(14, 19, "O");
+  setTile(14, 28, "O");
+  setTile(14, 37, "O");
+  setTile(24, 21, "O");
+  setTile(24, 34, "P");
+  setTile(24, 35, "P");
+  setTile(18, 27, "V");
+  Object.keys(WORLD_ROUTES[theme.id]).forEach(direction => {
+    const pos = PORTAL_POS[direction as RouteDirection];
+    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
+  });
   return map;
 };
 
@@ -350,39 +418,46 @@ const buildHealingMap = () => {
   return map;
 };
 
-const createThemedTownDef = (theme: TownTheme, prevId: TownMapId, nextId?: TownMapId): GameMapDef => ({
+const routeObjectsFor = (theme: TownTheme) => Object.fromEntries(
+  Object.keys(WORLD_ROUTES[theme.id]).map(direction => {
+    const pos = PORTAL_POS[direction as RouteDirection];
+    return [`${pos.x},${pos.y}`, `ARROW_${direction}`];
+  }),
+);
+
+const routeInteractionsFor = (theme: TownTheme) => Object.fromEntries(
+  Object.entries(WORLD_ROUTES[theme.id]).map(([direction, target]) => {
+    const pos = PORTAL_POS[direction as RouteDirection];
+    const entry = findEntryFrom(target!, theme.id);
+    return [`${pos.x},${pos.y}`, {
+      name: `${target ? TOWN_THEMES.find(town => town.id === target)?.name : "Route"} Route`,
+      portal: { mapId: target!, x: entry.x, y: entry.y, facing: entry.facing },
+      auto: true,
+      lines: [],
+    }];
+  }),
+);
+
+const createThemedTownDef = (theme: TownTheme): GameMapDef => ({
   id: theme.id,
   name: theme.name,
   width: 56,
   height: 34,
   rows: buildThemedTownMap(theme),
-  spawn: { x: 2, y: 18 },
+  spawn: { x: 27, y: 18 },
   objects: {
-    "1,18": "←",
-    ...(nextId ? { "55,29": "→" } : {}),
+    ...routeObjectsFor(theme),
     "19,14": "DOOR_SHOP",
     "28,14": "DOOR_HEAL",
     "37,14": "DOOR_HOME",
     "21,24": "DOOR_HOME",
-    "35,24": "DOOR_HOME",
+    "34,24": "TRAIN",
+    "35,24": "TRAIN",
     "27,18": "★",
     "25,18": "SIGN",
   },
   interactions: {
-    "1,18": {
-      name: "West Route",
-      portal: { mapId: prevId, x: prevId === "satiria" ? 62 : 54, y: prevId === "satiria" ? 29 : 29, facing: "left" },
-      auto: true,
-      lines: [],
-    },
-    ...(nextId ? {
-      "55,29": {
-        name: "East Route",
-        portal: { mapId: nextId, x: 2, y: 18, facing: "right" },
-        auto: true,
-        lines: [],
-      },
-    } : {}),
+    ...routeInteractionsFor(theme),
     "19,14": {
       name: `${theme.name} Shop`,
       portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
@@ -407,11 +482,25 @@ const createThemedTownDef = (theme: TownTheme, prevId: TownMapId, nextId?: TownM
       auto: true,
       lines: [],
     },
+    "34,24": {
+      name: `${theme.name} Train Station`,
+      train: true,
+      lines: ["Choose a destination."],
+    },
     "35,24": {
-      name: "Mayor's House",
-      portal: { mapId: "house", x: 6, y: 6, facing: "up" },
-      auto: true,
-      lines: [],
+      name: `${theme.name} Train Station`,
+      train: true,
+      lines: ["Choose a destination."],
+    },
+    "34,25": {
+      name: `${theme.name} Train Platform`,
+      train: true,
+      lines: ["Choose a destination."],
+    },
+    "35,25": {
+      name: `${theme.name} Train Platform`,
+      train: true,
+      lines: ["Choose a destination."],
     },
     "27,18": {
       name: "Save Point",
@@ -426,84 +515,10 @@ const createThemedTownDef = (theme: TownTheme, prevId: TownMapId, nextId?: TownM
 });
 
 const GENERATED_TOWN_MAPS = Object.fromEntries(
-  TOWN_THEMES.slice(1).map((theme, index) => {
-    const prev = TOWN_THEMES[index].id;
-    const next = TOWN_THEMES[index + 2]?.id;
-    return [theme.id, createThemedTownDef(theme, prev, next)];
-  }),
-) as Record<Exclude<TownMapId, "satiria">, GameMapDef>;
+  TOWN_THEMES.map(theme => [theme.id, createThemedTownDef(theme)]),
+) as Record<TownMapId, GameMapDef>;
 
 export const GAME_MAPS: Record<GameMapId, GameMapDef> = {
-  satiria: {
-    id: "satiria",
-    name: "Satiria Town",
-    width: 64,
-    height: 38,
-    rows: buildSatiriaMap(),
-    spawn: { x: 31, y: 17 },
-    objects: {
-      "23,15": "DOOR_SHOP",
-      "31,15": "DOOR_HEAL",
-      "39,15": "DOOR_HOME",
-      "24,19": "DOOR_HOME",
-      "36,19": "DOOR_HOME",
-      "30,16": "★",
-      "21,16": "SIGN",
-      "63,29": "→",
-      "8,15": "CAVE",
-    },
-    interactions: {
-      "23,15": {
-        name: "Satiria Shop",
-        portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
-        auto: true,
-        lines: [],
-      },
-      "31,15": {
-        name: "Healing Center",
-        portal: { mapId: "healing", x: 7, y: 7, facing: "up" },
-        auto: true,
-        lines: [],
-      },
-      "39,15": {
-        name: "Quiet House",
-        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
-        auto: true,
-        lines: [],
-      },
-      "24,19": {
-        name: "Starter House",
-        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
-        auto: true,
-        lines: [],
-      },
-      "36,19": {
-        name: "Neighbor House",
-        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
-        auto: true,
-        lines: [],
-      },
-      "30,16": {
-        name: "Save Point",
-        save: true,
-        lines: ["★ PROGRESS SAVED ★", "Satiria Town - Lv. 15", "Good luck out there."],
-      },
-      "21,16": {
-        name: "Town Sign",
-        lines: ["★ SATIRIA TOWN ★", "Shop west. Healing Center north.", "Follow the east road to Brexiton."],
-      },
-      "63,29": {
-        name: "Route 2 Gate",
-        portal: { mapId: "brexiton", x: 2, y: 18, facing: "right" },
-        auto: true,
-        lines: [],
-      },
-      "8,15": {
-        name: "Western Cave",
-        lines: ["??? MYSTERIOUS CAVE ???", "The cave is still under construction.", "A sign says: bring snacks."],
-      },
-    },
-  },
   ...GENERATED_TOWN_MAPS,
   shop: {
     id: "shop",
