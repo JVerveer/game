@@ -1,96 +1,77 @@
-const makeBlankMap = (width: number, height: number, fill = "T") =>
-  Array.from({ length: height }, () =>
-    Array.from({ length: width }, () => fill)
-  );
-
-const rect = (
-  map: string[][],
-  x: number,
-  y: number,
-  w: number,
-  h: number,
-  tile: string
-) => {
-  for (let ry = y; ry < y + h; ry++) {
-    for (let cx = x; cx < x + w; cx++) {
-      if (map[ry]?.[cx] !== undefined) map[ry][cx] = tile;
-    }
-  }
-};
-
-const hline = (
-  map: string[][],
-  x1: number,
-  x2: number,
-  y: number,
-  tile: string
-) => rect(map, x1, y, x2 - x1 + 1, 1, tile);
-
-const vline = (
-  map: string[][],
-  x: number,
-  y1: number,
-  y2: number,
-  tile: string
-) => rect(map, x, y1, 1, y2 - y1 + 1, tile);
+import { hline, makeBlankMap, rect, vline } from "./utils";
 
 export const buildSatiriaMap = () => {
   const map = makeBlankMap(56, 34, "T");
 
-  // Main clearing
+  // Forest-framed clearing, like a classic RPG starter town.
   rect(map, 3, 3, 50, 28, "G");
-
-  // Forest border
   rect(map, 0, 0, 56, 3, "T");
   rect(map, 0, 31, 56, 3, "T");
   rect(map, 0, 0, 3, 34, "T");
   rect(map, 53, 0, 3, 34, "T");
 
-  // Wild grass / forest pockets
-  rect(map, 6, 6, 8, 6, "X");
-  rect(map, 42, 20, 7, 5, "X");
+  // Pond, shore, and pier area.
+  rect(map, 5, 24, 10, 5, "W");
+  rect(map, 4, 23, 12, 1, "S");
+  rect(map, 4, 29, 11, 1, "S");
+  rect(map, 15, 25, 2, 3, "S");
+  rect(map, 9, 22, 2, 3, "R");
 
-  // Pond and beach
-  rect(map, 5, 25, 10, 4, "W");
-  rect(map, 6, 24, 8, 1, "S");
-  rect(map, 15, 26, 4, 2, "S");
+  // Right-side mountain ridge.
+  rect(map, 48, 8, 3, 11, "M");
+  rect(map, 46, 11, 3, 7, "M");
+  rect(map, 48, 23, 3, 6, "M");
 
-  // Mountain ridge
-  rect(map, 47, 9, 4, 9, "M");
+  // Roads and central square.
+  vline(map, 27, 0, 33, "R");
+  hline(map, 6, 48, 13, "R");
+  hline(map, 8, 38, 24, "R");
+  rect(map, 23, 16, 10, 7, "E");
+  rect(map, 25, 18, 6, 3, "R");
 
-  // Roads
-  vline(map, 27, 2, 31, "R");
-  hline(map, 8, 48, 18, "R");
-  hline(map, 15, 42, 25, "R");
+  // Top residential row.
+  rect(map, 8, 6, 7, 5, "B");
+  rect(map, 20, 6, 7, 5, "H");
+  rect(map, 32, 6, 7, 5, "U");
+  rect(map, 43, 6, 7, 5, "B");
 
-  // Town square
-  rect(map, 23, 15, 10, 7, "E");
-  rect(map, 25, 17, 6, 3, "R");
+  // Lower shops and town hall.
+  rect(map, 8, 18, 7, 5, "A");
+  rect(map, 18, 18, 7, 5, "H");
+  rect(map, 36, 18, 10, 6, "B");
 
-  // Door / interaction tiles
-  map[14][18] = "O"; // shop
-  map[14][28] = "O"; // healing
-  map[14][41] = "O"; // house
-  map[25][20] = "O"; // home
-  map[25][37] = "O"; // inn/home
-  map[27][37] = "P";
-  map[27][38] = "P";
+  // Door / interaction tiles.
+  map[10][11] = "O";
+  map[10][23] = "O";
+  map[10][35] = "O";
+  map[10][46] = "O";
+  map[22][11] = "O";
+  map[22][21] = "O";
+  map[23][41] = "O";
+  map[23][42] = "O";
 
-  // Save point
+  // Save point and town-center object anchors.
   map[18][27] = "V";
 
-  // Gardens / fences
-  rect(map, 16, 15, 4, 2, "L");
-  rect(map, 36, 15, 4, 2, "L");
-  rect(map, 17, 27, 4, 2, "L");
-  rect(map, 34, 27, 5, 2, "L");
+  // Gardens, fences, flowers, and yard boundaries.
+  rect(map, 7, 11, 10, 1, "F");
+  rect(map, 19, 11, 9, 1, "F");
+  rect(map, 31, 11, 9, 1, "F");
+  rect(map, 42, 11, 9, 1, "F");
+  rect(map, 7, 23, 9, 1, "F");
+  rect(map, 17, 23, 9, 1, "F");
+  rect(map, 35, 24, 12, 1, "F");
+  rect(map, 6, 16, 4, 2, "L");
+  rect(map, 17, 16, 3, 2, "L");
+  rect(map, 34, 15, 4, 2, "L");
+  rect(map, 43, 15, 3, 2, "L");
+  rect(map, 34, 25, 4, 2, "L");
+  rect(map, 45, 25, 3, 2, "L");
 
-  rect(map, 9, 13, 7, 1, "F");
-  rect(map, 40, 13, 7, 1, "F");
-  rect(map, 8, 27, 9, 1, "F");
-  rect(map, 39, 27, 9, 1, "F");
-
-  // North route
+  // Small forest pockets and clear route exits.
+  rect(map, 6, 5, 3, 2, "X");
+  rect(map, 39, 4, 3, 2, "X");
+  rect(map, 18, 27, 5, 2, "X");
   rect(map, 26, 0, 3, 4, "R");
 
   return map;

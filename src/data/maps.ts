@@ -1,5 +1,15 @@
 // ─── Map data ─────────────────────────────────────────────────────────────────
 import { buildSatiriaMap } from "./cityMaps/satiria";
+import { buildBrexitonMap as buildBrexitonCityMap } from "./cityMaps/brexiton";
+import { buildCryptoniaMap as buildCryptoniaCityMap } from "./cityMaps/cryptonia";
+import { buildFactcheckMap as buildFactcheckCityMap } from "./cityMaps/factcheck";
+import { buildInflatopolisMap as buildInflatopolisCityMap } from "./cityMaps/inflatopolis";
+import { buildPromptfordMap as buildPromptfordCityMap } from "./cityMaps/promptford";
+import { buildRagebaitMap as buildRagebaitCityMap } from "./cityMaps/ragebait";
+import { buildSurveilliaMap as buildSurveilliaCityMap } from "./cityMaps/surveillia";
+import { buildTariffMap as buildTariffCityMap } from "./cityMaps/tariff";
+import { buildTweetsburgMap as buildTweetsburgCityMap } from "./cityMaps/tweetsburg";
+import { buildWokeshireMap as buildWokeshireCityMap } from "./cityMaps/wokeshire";
 
 // Tile key legend:
 //   T = Trees/Forest   G = Grass       W = Water      R = Road/Path/Floor
@@ -932,26 +942,26 @@ const defaultDoorConfig: TownDoorConfig = {
 
 const themedRowsFor = (theme: TownTheme) => {
   if (theme.id === "satiria") return buildSatiriaMap();
-  if (theme.id === "brexiton") return buildBrexitonMap();
-  if (theme.id === "promptford") return buildPromptfordMap();
-  if (theme.id === "wokeshire") return buildWokeshireMap();
-  if (theme.id === "cryptonia") return buildCryptoniaMap();
-  if (theme.id === "surveillia") return buildSurveilliaMap();
-  if (theme.id === "tweetsburg") return buildTweetsburgMap();
-  if (theme.id === "inflatopolis") return buildInflatopolisMap();
-  if (theme.id === "tariff") return buildTariffMap();
-  if (theme.id === "ragebait") return buildRagebaitMap();
-  if (theme.id === "factcheck") return buildFactcheckMap();
+  if (theme.id === "brexiton") return buildBrexitonCityMap();
+  if (theme.id === "promptford") return buildPromptfordCityMap();
+  if (theme.id === "wokeshire") return buildWokeshireCityMap();
+  if (theme.id === "cryptonia") return buildCryptoniaCityMap();
+  if (theme.id === "surveillia") return buildSurveilliaCityMap();
+  if (theme.id === "tweetsburg") return buildTweetsburgCityMap();
+  if (theme.id === "inflatopolis") return buildInflatopolisCityMap();
+  if (theme.id === "tariff") return buildTariffCityMap();
+  if (theme.id === "ragebait") return buildRagebaitCityMap();
+  if (theme.id === "factcheck") return buildFactcheckCityMap();
   return buildThemedTownMap(theme);
 };
 
 const doorConfigFor = (theme: TownTheme): TownDoorConfig => {
   if (theme.id === "satiria") {
     return {
-      shop: "18,14",
-      healing: "28,14",
-      homes: ["41,14", "20,25", "37,25"],
-      train: ["37,27", "38,27"],
+      shop: "11,22",
+      healing: "21,22",
+      homes: ["11,10", "23,10", "35,10", "46,10"],
+      train: ["41,23", "42,23", "41,24", "42,24"],
       save: "27,18",
       sign: "25,18",
     };
@@ -1062,14 +1072,8 @@ const doorConfigFor = (theme: TownTheme): TownDoorConfig => {
 const specialObjectsFor = (theme: TownTheme): Record<string, string> => {
   if (theme.id === "satiria") {
     return {
-      "16,10": "SATIRIA_SHOP",
-      "25,9": "SATIRIA_HEALING",
-      "38,10": "SATIRIA_HOUSE_BLUE",
-      "17,22": "SATIRIA_HOUSE_RED",
-      "34,22": "SATIRIA_INN",
-      "35,26": "SATIRIA_STATION",
-      "27,17": "SATIRIA_FOUNTAIN",
-      "12,24": "SATIRIA_POND_SIGN",
+      "28,19": "SATIRIA_FOUNTAIN",
+      "9,23": "SATIRIA_POND_SIGN",
     };
   }
   if (theme.id === "brexiton") {
@@ -1180,6 +1184,18 @@ const specialObjectsFor = (theme: TownTheme): Record<string, string> => {
 };
 
 const specialInteractionsFor = (theme: TownTheme): Record<string, Interaction> => {
+  if (theme.id === "satiria") {
+    return {
+      "28,19": {
+        name: "Town Fountain",
+        lines: ["The fountain marks Satiria's central square.", "The water looks suspiciously well-balanced."],
+      },
+      "9,23": {
+        name: "Pond Sign",
+        lines: ["Satiria Pond", "Please do not debate the lily pads."],
+      },
+    };
+  }
   if (theme.id === "brexiton") {
     return {
       "22,17": {

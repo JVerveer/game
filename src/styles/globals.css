@@ -2584,6 +2584,79 @@
       4px 5px 0 #f4d76b;
   }
 
+  .map-layer:not(.map-satiria) .tile-B.building-tile,
+  .map-layer:not(.map-satiria) .tile-H.building-tile,
+  .map-layer:not(.map-satiria) .tile-P.building-tile {
+    background:
+      linear-gradient(90deg, transparent 0 14%, #252018 14% 17%, #fff3a8 17% 31%, #252018 31% 34%, transparent 34% 66%, #252018 66% 69%, #fff3a8 69% 83%, #252018 83% 86%, transparent 86%) 0 24px / 48px 14px no-repeat,
+      repeating-linear-gradient(0deg, rgba(88,58,31,0.14) 0 2px, transparent 2px 9px),
+      #d8bd76;
+  }
+
+  .map-layer:not(.map-satiria) .tile-H.building-tile {
+    background:
+      linear-gradient(90deg, transparent 0 14%, #252018 14% 17%, #fff3a8 17% 31%, #252018 31% 34%, transparent 34% 66%, #252018 66% 69%, #fff3a8 69% 83%, #252018 83% 86%, transparent 86%) 0 24px / 48px 14px no-repeat,
+      repeating-linear-gradient(0deg, rgba(61,80,116,0.14) 0 2px, transparent 2px 9px),
+      #d8bd76;
+  }
+
+  .map-layer:not(.map-satiria) .tile-P.building-tile {
+    background:
+      linear-gradient(90deg, transparent 0 14%, #252018 14% 17%, #fff3a8 17% 31%, #252018 31% 34%, transparent 34% 66%, #252018 66% 69%, #fff3a8 69% 83%, #252018 83% 86%, transparent 86%) 0 24px / 48px 14px no-repeat,
+      repeating-linear-gradient(0deg, rgba(70,70,76,0.14) 0 2px, transparent 2px 9px),
+      #d8bd76;
+  }
+
+  .map-layer:not(.map-satiria) .tile-B.building-tile::after,
+  .map-layer:not(.map-satiria) .tile-H.building-tile::after,
+  .map-layer:not(.map-satiria) .tile-P.building-tile::after {
+    background: none;
+  }
+
+  .map-layer:not(.map-satiria) .tile-B.building-top::before,
+  .map-layer:not(.map-satiria) .tile-H.building-top::before,
+  .map-layer:not(.map-satiria) .tile-P.building-top::before {
+    height: 16px;
+    top: -2px;
+    background:
+      linear-gradient(180deg, #252018 0 18%, #ca4b36 18% 72%, #8f3328 72% 100%);
+  }
+
+  .map-layer:not(.map-satiria) .tile-H.building-top::before {
+    background:
+      linear-gradient(180deg, #252018 0 18%, #315f9f 18% 72%, #243d68 72% 100%);
+  }
+
+  .map-layer:not(.map-satiria) .tile-P.building-top::before {
+    background:
+      linear-gradient(180deg, #252018 0 18%, #5c585b 18% 72%, #353133 72% 100%);
+  }
+
+  .map-layer:not(.map-satiria) .building-bottom::after {
+    background:
+      linear-gradient(0deg, #8b6138 0 8px, transparent 8px);
+  }
+
+  .map-layer:not(.map-satiria) .building-left {
+    box-shadow:
+      inset 4px 0 0 #252018,
+      inset 0 0 0 1px rgba(37,32,24,0.2) !important;
+  }
+
+  .map-layer:not(.map-satiria) .building-right {
+    box-shadow:
+      inset -4px 0 0 #252018,
+      inset 0 0 0 1px rgba(37,32,24,0.2) !important;
+  }
+
+  .map-layer:not(.map-satiria) .building-top {
+    border-top: 4px solid #252018;
+  }
+
+  .map-layer:not(.map-satiria) .building-bottom {
+    border-bottom: 4px solid #252018;
+  }
+
   .trainer-sprite,
   .npc-sprite {
     width: 34px;
