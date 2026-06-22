@@ -37,33 +37,51 @@ const vline = (
 export const buildSatiriaMap = () => {
   const map = makeBlankMap(56, 34, "T");
 
+  // Main clearing
   rect(map, 3, 3, 50, 28, "G");
 
+  // Forest border
   rect(map, 0, 0, 56, 3, "T");
   rect(map, 0, 31, 56, 3, "T");
   rect(map, 0, 0, 3, 34, "T");
   rect(map, 53, 0, 3, 34, "T");
 
-  rect(map, 6, 6, 7, 6, "X");
+  // Wild grass / forest pockets
+  rect(map, 6, 6, 8, 6, "X");
   rect(map, 42, 20, 7, 5, "X");
 
+  // Pond and beach
   rect(map, 5, 25, 10, 4, "W");
   rect(map, 6, 24, 8, 1, "S");
   rect(map, 15, 26, 4, 2, "S");
 
+  // Mountain ridge
   rect(map, 47, 9, 4, 9, "M");
 
+  // Roads
   vline(map, 27, 2, 31, "R");
-  hline(map, 6, 50, 18, "R");
-  hline(map, 13, 42, 25, "R");
+  hline(map, 8, 48, 18, "R");
+  hline(map, 15, 42, 25, "R");
 
+  // Town square
   rect(map, 23, 15, 10, 7, "E");
   rect(map, 25, 17, 6, 3, "R");
 
+  // Door / interaction tiles
+  map[14][18] = "O"; // shop
+  map[14][28] = "O"; // healing
+  map[14][41] = "O"; // house
+  map[25][20] = "O"; // home
+  map[25][37] = "O"; // inn/home
+  map[27][37] = "P";
+  map[27][38] = "P";
+
+  // Save point
   map[18][27] = "V";
 
-  rect(map, 17, 14, 4, 2, "L");
-  rect(map, 35, 14, 4, 2, "L");
+  // Gardens / fences
+  rect(map, 16, 15, 4, 2, "L");
+  rect(map, 36, 15, 4, 2, "L");
   rect(map, 17, 27, 4, 2, "L");
   rect(map, 34, 27, 5, 2, "L");
 
@@ -72,25 +90,7 @@ export const buildSatiriaMap = () => {
   rect(map, 8, 27, 9, 1, "F");
   rect(map, 39, 27, 9, 1, "F");
 
-  rect(map, 14, 10, 7, 4, "A");
-  map[13][19] = "O";
-
-  rect(map, 25, 9, 7, 5, "H");
-  map[13][28] = "O";
-
-  rect(map, 38, 10, 7, 4, "U");
-  map[13][41] = "O";
-
-  rect(map, 17, 22, 7, 4, "B");
-  map[25][20] = "O";
-
-  rect(map, 34, 22, 7, 4, "I");
-  map[25][37] = "O";
-
-  rect(map, 35, 26, 6, 3, "P");
-  map[27][37] = "P";
-  map[27][38] = "P";
-
+  // North route
   rect(map, 26, 0, 3, 4, "R");
 
   return map;

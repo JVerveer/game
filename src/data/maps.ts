@@ -948,9 +948,9 @@ const themedRowsFor = (theme: TownTheme) => {
 const doorConfigFor = (theme: TownTheme): TownDoorConfig => {
   if (theme.id === "satiria") {
     return {
-      shop: "19,13",
-      healing: "28,13",
-      homes: ["41,13", "20,25", "37,25"],
+      shop: "18,14",
+      healing: "28,14",
+      homes: ["41,14", "20,25", "37,25"],
       train: ["37,27", "38,27"],
       save: "27,18",
       sign: "25,18",
@@ -1060,6 +1060,18 @@ const doorConfigFor = (theme: TownTheme): TownDoorConfig => {
 };
 
 const specialObjectsFor = (theme: TownTheme): Record<string, string> => {
+  if (theme.id === "satiria") {
+    return {
+      "16,10": "SATIRIA_SHOP",
+      "25,9": "SATIRIA_HEALING",
+      "38,10": "SATIRIA_HOUSE_BLUE",
+      "17,22": "SATIRIA_HOUSE_RED",
+      "34,22": "SATIRIA_INN",
+      "35,26": "SATIRIA_STATION",
+      "27,17": "SATIRIA_FOUNTAIN",
+      "12,24": "SATIRIA_POND_SIGN",
+    };
+  }
   if (theme.id === "brexiton") {
     return {
       "22,17": "LONDON_CLOCK",

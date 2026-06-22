@@ -2050,6 +2050,14 @@ const tileShapeClassFor = (rows: string[][], x: number, y: number, tile: string)
 
 const objectClassFor = (obj: string) => {
   const map: Record<string, string> = {
+    SATIRIA_SHOP: "world-object satiria-building satiria-shop",
+    SATIRIA_HEALING: "world-object satiria-building satiria-healing",
+    SATIRIA_HOUSE_BLUE: "world-object satiria-building satiria-house-blue",
+    SATIRIA_HOUSE_RED: "world-object satiria-building satiria-house-red",
+    SATIRIA_INN: "world-object satiria-building satiria-inn",
+    SATIRIA_STATION: "world-object satiria-building satiria-station",
+    SATIRIA_FOUNTAIN: "world-object satiria-fountain",
+    SATIRIA_POND_SIGN: "world-object satiria-pond-sign",
     SHOP: "world-object object-shop",
     HEAL: "world-object object-heal",
     HOME: "world-object object-home",
