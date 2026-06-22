@@ -3,6 +3,7 @@ import {
   Star, Layers, Grid3x3, Sword, Map, User, Package,
   ScrollText, ShoppingBag, Save, Settings,
   Volume2, Gamepad2, Eye, Palette,
+  type LucideIcon,
 } from "lucide-react";
 import { ThemeProvider, useTheme } from "../context/ThemeContext";
 import {
@@ -72,14 +73,14 @@ function Panel({
   children, className = "", color = "gold",
 }: { children: React.ReactNode; className?: string; color?: "gold" | "green" | "red" | "blue" | "purple" }) {
   const borders: Record<string, string> = {
-    gold: "border-amber-500/30",
-    green: "border-green-500/30",
-    red: "border-red-500/30",
-    blue: "border-blue-400/30",
-    purple: "border-purple-400/30",
+    gold: "border-yellow-950",
+    green: "border-green-950",
+    red: "border-red-950",
+    blue: "border-blue-950",
+    purple: "border-purple-950",
   };
   return (
-    <div className={`border-2 ${borders[color]} bg-card p-4 ${className}`}>
+    <div className={`pixel-window ${borders[color]} p-4 ${className}`}>
       {children}
     </div>
   );
@@ -108,15 +109,6 @@ function SectionHead({ label }: { label: string }) {
 // ─── COVER ───────────────────────────────────────────────────────────────────
 function CoverPage({ onStart }: { onStart: () => void }) {
   const [blink, setBlink] = useState(true);
-  const [stars] = useState(() =>
-    Array.from({ length: 60 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() > 0.75 ? 2 : 1,
-      opacity: 0.2 + Math.random() * 0.8,
-    }))
-  );
 
   useEffect(() => {
     const t = setInterval(() => setBlink((b) => !b), 650);
@@ -131,76 +123,78 @@ function CoverPage({ onStart }: { onStart: () => void }) {
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden"
-      style={{ background: "radial-gradient(ellipse at 50% 40%, #0e1525 0%, #05050f 70%)" }}
+      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4"
+      style={{
+        background:
+          "linear-gradient(180deg,#f7db55 0%,#f1bd32 46%,#78a856 46%,#78a856 100%)",
+      }}
     >
-      {stars.map((s) => (
-        <div
-          key={s.id}
-          className="absolute rounded-full bg-white pointer-events-none"
-          style={{ left: `${s.x}%`, top: `${s.y}%`, width: s.size, height: s.size, opacity: s.opacity }}
-        />
-      ))}
-
-      {/* Scanline overlay */}
       <div
-        className="absolute inset-0 pointer-events-none z-10"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 4px)",
+          backgroundImage:
+            "linear-gradient(90deg,rgba(37,32,24,.08) 1px,transparent 1px),linear-gradient(0deg,rgba(37,32,24,.08) 1px,transparent 1px)",
+          backgroundSize: "24px 24px",
         }}
       />
 
-      <div className="z-20 text-center px-8 max-w-3xl">
-        <div className="text-amber-500/50 mb-6 tracking-[0.3em]" style={{ ...PX, fontSize: "0.5rem" }}>
-          ★ SATIRE STUDIOS PRESENTS ★
+      <div className="z-20 text-center w-[min(92vw,760px)] pixel-frame bg-[#fff8c8] px-6 py-8 md:px-12 md:py-10">
+        <div className="mb-6 tracking-[0.3em] text-[#66512c]" style={{ ...PX, fontSize: "0.5rem" }}>
+          SATIRE STUDIOS PRESENTS
         </div>
 
         <div className="mb-2">
-          <span className="text-amber-400 leading-none" style={{ ...PX, fontSize: "clamp(2rem,6vw,4rem)" }}>
+          <span className="text-[#df3f2c] leading-none" style={{ ...PX, fontSize: "clamp(1.8rem,5vw,3.6rem)" }}>
             CRINGE
           </span>
         </div>
         <div className="mb-8">
-          <span className="text-foreground leading-none" style={{ ...PX, fontSize: "clamp(2rem,6vw,4rem)" }}>
+          <span className="text-[#252018] leading-none" style={{ ...PX, fontSize: "clamp(1.8rem,5vw,3.6rem)" }}>
             QUEST
           </span>
         </div>
 
-        <div className="text-amber-200/60 mb-8" style={{ ...VT, fontSize: "1.6rem" }}>
-          ✦ A Satirical Monster-Collecting RPG ✦
+        <div className="text-[#315f2a] mb-8" style={{ ...VT, fontSize: "1.7rem" }}>
+          A satirical monster-collecting RPG
         </div>
 
-        {/* Hero scene */}
         <div
-          className="my-8 mx-auto relative flex items-end justify-center gap-8"
-          style={{ height: 120 }}
+          className="my-6 mx-auto relative flex items-end justify-center gap-12 border-4 border-[#252018] bg-[#8db45a] pixel-screen"
+          style={{ height: 148, maxWidth: 520 }}
         >
-          <div className="text-5xl drop-shadow-lg" style={{ imageRendering: "pixelated" }}>🧙</div>
-          <div className="text-amber-400/80 text-2xl mb-4" style={PX}>⚡</div>
-          <div className="text-5xl drop-shadow-lg">🐲</div>
-          <div className="absolute bottom-0 left-0 right-0 h-3 border-t-2 border-amber-500/20"
-            style={{ background: "linear-gradient(0deg,rgba(245,197,24,0.04),transparent)" }} />
+          <div className="trainer-sprite mb-8 scale-150" />
+          <div className="text-[#252018] mb-16" style={{ ...PX, fontSize: "1.2rem" }}>VS</div>
+          <div className="monster-sprite mb-6" />
+          <div className="absolute bottom-0 left-0 right-0 h-10 border-t-4 border-[#252018] bg-[#b78d50]" />
         </div>
 
         <button
           onClick={onStart}
-          className="mt-6 mb-8 text-green-400 text-center cursor-pointer hover:text-green-300 transition-colors block w-full"
-          style={{ ...PX, fontSize: "0.6rem", opacity: blink ? 1 : 0, transition: "opacity 0.05s", background: "none", border: "none" }}
+          className="pixel-btn mt-4 mb-6 mx-auto block px-6 py-3 text-center cursor-pointer transition-colors"
+          style={{
+            ...PX,
+            fontSize: "0.6rem",
+            opacity: blink ? 1 : 0.35,
+            transition: "opacity 0.05s",
+            backgroundColor: "#fff8c8",
+            color: "#252018",
+            minWidth: 180,
+          }}
         >
-          ▶ PRESS ENTER TO START ◀
+          PRESS ENTER
         </button>
 
-        <div className="grid grid-cols-4 gap-2 mb-8">
-          {["🎮 Pokémon Yellow", "🌍 EarthBound", "⚔️ Undertale", "🌾 Stardew Valley"].map((s) => (
-            <div key={s} className="border border-amber-500/15 bg-card/60 py-2 px-2 text-amber-200/50"
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-8">
+          {["Yellow Era", "Turn Battles", "Tall Grass", "Satire Town"].map((s) => (
+            <div key={s} className="border-2 border-[#252018] bg-[#f6d746] py-2 px-2 text-[#252018]"
               style={{ ...VT, fontSize: "1rem" }}>
               {s}
             </div>
           ))}
         </div>
 
-        <div className="text-foreground/20 tracking-widest" style={{ ...PX, fontSize: "0.45rem" }}>
-          © 2025 SATIRE STUDIOS LLC · v0.1.0-ALPHA · ALL RIGHTS RESERVED
+        <div className="text-[#66512c] tracking-widest" style={{ ...PX, fontSize: "0.45rem" }}>
+          © 2026 SATIRE STUDIOS · v0.2.0
         </div>
       </div>
     </div>
@@ -1841,36 +1835,36 @@ function InGameBattle({ enemy, playerHp, playerMaxHp, onEnd }: {
     <div style={{
       position: "absolute", inset: 0, zIndex: 40,
       display: "flex", flexDirection: "column",
-      background: "linear-gradient(180deg,#150308 0%,#0a0a1e 55%,#0d0d1e 100%)",
+      background: "linear-gradient(180deg,#8db45a 0%,#e6c768 58%,#b78d50 100%)",
     }}>
       {/* Scanlines */}
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 1,
-        backgroundImage: "repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.07) 3px,rgba(0,0,0,0.07) 4px)" }} />
+        backgroundImage: "repeating-linear-gradient(0deg,transparent,transparent 5px,rgba(37,32,24,0.08) 5px,rgba(37,32,24,0.08) 6px)" }} />
 
       {/* Arena header */}
       <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 20px",
-        borderBottom: "1px solid rgba(232,74,74,0.18)", zIndex: 2 }}>
-        <span style={{ ...PX, fontSize: "0.38rem", color: "rgba(232,74,74,0.5)" }}>BATTLE ARENA</span>
-        <span style={{ ...VT, fontSize: "1rem", color: "rgba(255,255,255,0.3)" }}>SATIRIA FIELDS — WILD ENCOUNTER</span>
-        <span style={{ ...PX, fontSize: "0.38rem", color: "rgba(232,74,74,0.5)" }}>TURN-BASED</span>
+        borderBottom: "4px solid #252018", background: "#fff8c8", zIndex: 2 }}>
+        <span style={{ ...PX, fontSize: "0.38rem", color: "#b6422c" }}>BATTLE ARENA</span>
+        <span style={{ ...VT, fontSize: "1rem", color: "#66512c" }}>SATIRIA FIELDS - WILD ENCOUNTER</span>
+        <span style={{ ...PX, fontSize: "0.38rem", color: "#b6422c" }}>TURN-BASED</span>
       </div>
 
       {/* Combat arena */}
       <div style={{ flex: 1, display: "grid", gridTemplateColumns: "1fr 1fr", padding: "12px 24px", gap: 16, zIndex: 2, minHeight: 0 }}>
         {/* Enemy */}
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-          <div style={{ border: "1px solid rgba(232,74,74,0.3)", backgroundColor: "rgba(0,0,0,0.45)", padding: "10px 14px" }}>
+          <div className="pixel-window" style={{ padding: "10px 14px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 2 }}>
-              <span style={{ ...PX, fontSize: "0.52rem", color: "#e84a4a" }}>{enemy.name.toUpperCase()}</span>
-              <span style={{ ...RJ, fontSize: "0.75rem", color: "rgba(255,255,255,0.4)" }}>Lv.{enemy.level}</span>
+              <span style={{ ...PX, fontSize: "0.52rem", color: "#b6422c" }}>{enemy.name.toUpperCase()}</span>
+              <span style={{ ...RJ, fontSize: "0.75rem", color: "#66512c" }}>Lv.{enemy.level}</span>
             </div>
-            <div style={{ ...RJ, fontSize: "0.72rem", color: "rgba(255,255,255,0.35)", marginBottom: 6 }}>{enemy.type} Type</div>
+            <div style={{ ...RJ, fontSize: "0.72rem", color: "#66512c", marginBottom: 6 }}>{enemy.type} Type</div>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <span style={{ ...RJ, fontSize: "0.72rem", color: "#e84a4a", fontWeight: 700 }}>HP</span>
               <div style={{ flex: 1, height: 10, backgroundColor: "rgba(0,0,0,0.6)", border: "1px solid rgba(255,255,255,0.1)" }}>
                 <div style={{ height: "100%", width: `${ePct}%`, backgroundColor: barCol(ePct), transition: "width 0.4s" }} />
               </div>
-              <span style={{ ...RJ, fontSize: "0.7rem", color: "rgba(255,255,255,0.35)", fontVariantNumeric: "tabular-nums" }}>{eHp}/{enemy.maxHp}</span>
+              <span style={{ ...RJ, fontSize: "0.7rem", color: "#66512c", fontVariantNumeric: "tabular-nums" }}>{eHp}/{enemy.maxHp}</span>
             </div>
           </div>
           <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
@@ -1880,34 +1874,32 @@ function InGameBattle({ enemy, playerHp, playerMaxHp, onEnd }: {
                 {dmg.crit ? "✦ " : ""}-{dmg.val}
               </div>
             )}
-            <div style={{ fontSize: 110,
+            <div className="monster-sprite" style={{
               filter: dmg?.who === "e" ? "brightness(4) saturate(0.2)" : "drop-shadow(0 8px 24px rgba(0,0,0,0.9))",
               transform: shake === "e" ? "translateX(-14px) scale(0.88)" : "scale(1)",
-              transition: "transform 0.1s, filter 0.1s", lineHeight: 1, userSelect: "none" }}>
-              {enemy.emoji}
-            </div>
+              transition: "transform 0.1s, filter 0.1s", userSelect: "none" }} />
           </div>
         </div>
 
         {/* Player */}
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-          <div style={{ border: "1px solid rgba(93,232,93,0.3)", backgroundColor: "rgba(0,0,0,0.45)", padding: "10px 14px" }}>
+          <div className="pixel-window" style={{ padding: "10px 14px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 2 }}>
-              <span style={{ ...PX, fontSize: "0.52rem", color: "#5de85d" }}>HERO</span>
-              <span style={{ ...RJ, fontSize: "0.75rem", color: "rgba(255,255,255,0.4)" }}>Lv.15</span>
+              <span style={{ ...PX, fontSize: "0.52rem", color: "#315f2a" }}>HERO</span>
+              <span style={{ ...RJ, fontSize: "0.75rem", color: "#66512c" }}>Lv.15</span>
             </div>
-            <div style={{ ...RJ, fontSize: "0.72rem", color: "rgba(255,255,255,0.35)", marginBottom: 6 }}>Satirist Type</div>
+            <div style={{ ...RJ, fontSize: "0.72rem", color: "#66512c", marginBottom: 6 }}>Satirist Type</div>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
               <span style={{ ...RJ, fontSize: "0.72rem", color: "#5de85d", fontWeight: 700 }}>HP</span>
               <div style={{ flex: 1, height: 12, backgroundColor: "rgba(0,0,0,0.6)", border: "1px solid rgba(255,255,255,0.1)" }}>
                 <div style={{ height: "100%", width: `${pPct}%`, backgroundColor: barCol(pPct), transition: "width 0.4s" }} />
               </div>
-              <span style={{ ...RJ, fontSize: "0.7rem", color: "rgba(255,255,255,0.45)", fontVariantNumeric: "tabular-nums" }}>{pHp}/{playerMaxHp}</span>
+              <span style={{ ...RJ, fontSize: "0.7rem", color: "#66512c", fontVariantNumeric: "tabular-nums" }}>{pHp}/{playerMaxHp}</span>
             </div>
             <div style={{ height: 4, backgroundColor: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,0.07)" }}>
               <div style={{ height: "100%", width: "68%", backgroundColor: "#4a9eff" }} />
             </div>
-            <div style={{ ...RJ, fontSize: "0.62rem", color: "rgba(255,255,255,0.25)", marginTop: 2 }}>XP 340 / 500</div>
+            <div style={{ ...RJ, fontSize: "0.62rem", color: "#66512c", marginTop: 2 }}>XP 340 / 500</div>
           </div>
           <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
             {dmg?.who === "p" && (
@@ -1916,21 +1908,18 @@ function InGameBattle({ enemy, playerHp, playerMaxHp, onEnd }: {
                 {dmg.val < 0 ? `+${Math.abs(dmg.val)}` : `-${dmg.val}`}
               </div>
             )}
-            <div style={{ fontSize: 88,
+            <div className="trainer-sprite" style={{
               filter: dmg?.who === "p" && (dmg.val ?? 0) > 0 ? "brightness(4) saturate(0.1)" : "drop-shadow(0 8px 24px rgba(0,0,0,0.9))",
-              transform: shake === "p" ? "translateX(14px) scale(0.88)" : "scale(1)",
-              transition: "transform 0.1s, filter 0.1s", lineHeight: 1, userSelect: "none" }}>
-              🧙
-            </div>
+              transform: shake === "p" ? "translateX(14px) scale(1.7)" : "scale(1.7)",
+              transition: "transform 0.1s, filter 0.1s", userSelect: "none" }} />
           </div>
         </div>
       </div>
 
       {/* Battle text box */}
-      <div style={{ margin: "0 16px 8px", border: "2px solid rgba(245,197,24,0.28)",
-        backgroundColor: "rgba(0,0,0,0.78)", padding: "12px 16px", zIndex: 2, minHeight: 68 }}>
-        <div style={{ ...VT, fontSize: "1.55rem", color: "#e4dfc0", lineHeight: 1.3 }}>{msg}</div>
-        {sub && <div style={{ ...VT, fontSize: "1.15rem", color: "rgba(228,223,192,0.55)", marginTop: 3 }}>{sub}</div>}
+      <div className="pixel-window" style={{ margin: "0 16px 8px", padding: "12px 16px", zIndex: 2, minHeight: 68 }}>
+        <div style={{ ...VT, fontSize: "1.55rem", color: "#252018", lineHeight: 1.3 }}>{msg}</div>
+        {sub && <div style={{ ...VT, fontSize: "1.15rem", color: "#66512c", marginTop: 3 }}>{sub}</div>}
       </div>
 
       {/* Action area */}
@@ -2160,7 +2149,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const hpColor = hpPct > 50 ? "#5de85d" : hpPct > 25 ? "#f5c518" : "#e84a4a";
 
   return (
-    <div ref={viewRef} style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden", backgroundColor: "#000" }}>
+    <div className="gameboy-shell">
+      <div ref={viewRef} className="gameboy-screen">
 
       {/* White battle flash */}
       {flash && (
@@ -2179,18 +2169,14 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           {GAME_MAP.map((row, ry) => (
             <div key={ry} style={{ display: "flex" }}>
               {row.map((t, cx) => {
-                const bg = GT[t] ?? "#222";
                 const obj = OBJ[`${cx},${ry}`];
-                // Subtle tile variation for grass/encounter
-                const shade = (cx + ry) % 2 === 0 && (t === "G" || t === "X")
-                  ? "rgba(0,0,0,0.12)" : "transparent";
                 return (
                   <div
                     key={cx}
+                    className={`map-tile tile-${t}`}
                     style={{
                       width: TS, height: TS, flexShrink: 0,
-                      backgroundColor: bg,
-                      boxShadow: `inset 0 0 0 1px rgba(0,0,0,0.18), inset 0 0 0 2000px ${shade}`,
+                      boxShadow: "inset 0 0 0 1px rgba(37,32,24,0.2)",
                       display: "flex", alignItems: "center", justifyContent: "center",
                       fontSize: TS * 0.62, lineHeight: 1, userSelect: "none",
                     }}
@@ -2209,13 +2195,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           left: pos.x * TS, top: pos.y * TS,
           width: TS, height: TS,
           display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: TS * 0.82, lineHeight: 1,
           filter: "drop-shadow(0 3px 6px rgba(0,0,0,0.9))",
           zIndex: 10, pointerEvents: "none",
-          // Subtle bob animation via transform
           transition: "left 0.1s linear, top 0.1s linear",
         }}>
-          🧙
+          <div className="trainer-sprite" />
         </div>
       </div>
 
@@ -2223,13 +2207,13 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       <div style={{
         position: "absolute", top: 0, left: 0, right: 0, zIndex: 20,
         padding: "12px 16px",
-        background: "linear-gradient(to bottom, rgba(0,0,0,0.88) 0%, transparent 100%)",
+        background: "linear-gradient(to bottom, rgba(37,32,24,0.88) 0%, transparent 100%)",
         display: "flex", justifyContent: "space-between", alignItems: "flex-start",
         pointerEvents: "none",
       }}>
         {/* Player stats */}
         <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-          <div style={{ ...PX, fontSize: "0.45rem", color: "#f5c518" }}>HERO · LV.15</div>
+          <div style={{ ...PX, fontSize: "0.45rem", color: "#fff8c8" }}>HERO · LV.15</div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ ...RJ, fontSize: "0.75rem", color: "#e84a4a", fontWeight: 700 }}>HP</span>
             <div style={{ width: 120, height: 10, backgroundColor: "rgba(0,0,0,0.6)", border: "1px solid rgba(255,255,255,0.2)" }}>
@@ -2243,14 +2227,14 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
         {/* Location */}
         <div style={{ textAlign: "center" }}>
-          <div style={{ ...VT, fontSize: "1.5rem", color: "#f5c518" }}>{location}</div>
-          <div style={{ ...RJ, fontSize: "0.7rem", color: "rgba(255,255,255,0.35)" }}>Steps: {steps}</div>
+          <div className="pixel-window px-4 py-1" style={{ ...VT, fontSize: "1.35rem" }}>{location}</div>
+          <div style={{ ...RJ, fontSize: "0.7rem", color: "rgba(255,248,200,0.75)" }}>Steps: {steps}</div>
         </div>
 
         {/* Currency + pause hint */}
         <div style={{ textAlign: "right", display: "flex", flexDirection: "column", gap: 4 }}>
-          <div style={{ ...VT, fontSize: "1.2rem", color: "#f5c518" }}>💰 1,240 G</div>
-          <div style={{ ...RJ, fontSize: "0.65rem", color: "rgba(255,255,255,0.3)" }}>ESC to pause</div>
+          <div style={{ ...VT, fontSize: "1.2rem", color: "#fff8c8" }}>1,240 G</div>
+          <div style={{ ...RJ, fontSize: "0.65rem", color: "rgba(255,248,200,0.65)" }}>ESC to pause</div>
         </div>
       </div>
 
@@ -2289,21 +2273,21 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           onClick={doInteract}
           style={{
             position: "absolute", bottom: 80, left: 12, right: 12, zIndex: 30,
-            border: "2px solid rgba(245,197,24,0.65)",
-            backgroundColor: "rgba(4,4,14,0.97)",
+            border: "4px solid #252018",
+            backgroundColor: "#fff8c8",
             padding: "16px 20px", cursor: "pointer",
-            boxShadow: "0 0 0 1px rgba(245,197,24,0.1), 0 -8px 40px rgba(0,0,0,0.8)",
+            boxShadow: "inset 0 0 0 4px #ffffff, 0 -8px 40px rgba(37,32,24,0.45)",
           }}
         >
-          <div style={{ ...PX, fontSize: "0.45rem", color: "#f5c518", marginBottom: 10 }}>{dlg.name}</div>
-          <div style={{ ...VT, fontSize: "1.7rem", color: "#e4dfc0", lineHeight: 1.35, minHeight: "3.2rem" }}>
+          <div style={{ ...PX, fontSize: "0.45rem", color: "#b6422c", marginBottom: 10 }}>{dlg.name}</div>
+          <div style={{ ...VT, fontSize: "1.7rem", color: "#252018", lineHeight: 1.35, minHeight: "3.2rem" }}>
             {dlg.lines[dlg.idx]}
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 8 }}>
-            <span style={{ ...RJ, fontSize: "0.7rem", color: "rgba(255,255,255,0.2)" }}>
+            <span style={{ ...RJ, fontSize: "0.7rem", color: "rgba(37,32,24,0.45)" }}>
               {dlg.idx + 1} / {dlg.lines.length}
             </span>
-            <span style={{ ...PX, fontSize: "0.38rem", color: "rgba(245,197,24,0.5)" }} className="animate-bounce">
+            <span style={{ ...PX, fontSize: "0.38rem", color: "#252018" }} className="animate-bounce">
               ▼ SPACE / CLICK
             </span>
           </div>
@@ -2314,11 +2298,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       <div style={{
         position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 20,
         padding: "8px 16px",
-        background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)",
+        background: "linear-gradient(to top, rgba(37,32,24,0.8) 0%, transparent 100%)",
         display: "flex", justifyContent: "space-between", alignItems: "center",
         pointerEvents: "none",
       }}>
-        <span style={{ ...RJ, fontSize: "0.75rem", color: "rgba(255,255,255,0.28)" }}>
+        <span style={{ ...RJ, fontSize: "0.75rem", color: "rgba(255,248,200,0.8)" }}>
           WASD / Arrows: Move · Space/Z: Interact · Esc: Pause
         </span>
       </div>
@@ -2361,12 +2345,13 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }
 
 // ─── NAVIGATION ──────────────────────────────────────────────────────────────
-const NAV_PAGES: { id: PageId; num: string; label: string; Icon: React.ComponentType<{size?: number; className?: string}> }[] = [
+const NAV_PAGES: { id: PageId; num: string; label: string; Icon: LucideIcon }[] = [
   { id: "cover",     num: "00", label: "Cover",      Icon: Star },
   { id: "design",    num: "01", label: "Design",     Icon: Layers },
   { id: "components",num: "02", label: "Components", Icon: Grid3x3 },

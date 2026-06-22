@@ -1,0 +1,231 @@
+@layer utilities {
+  .pixel-frame {
+    border: 4px solid #252018;
+    box-shadow:
+      inset 0 0 0 4px #fff3a8,
+      inset 0 0 0 8px #c47a2c,
+      0 10px 0 #5a3c22,
+      0 18px 24px rgba(55, 42, 22, 0.35);
+  }
+
+  .pixel-window {
+    border: 4px solid #252018;
+    background: #fff8c8;
+    color: #252018;
+    box-shadow: inset 0 0 0 3px #ffffff, inset 0 0 0 6px #b8a052;
+  }
+
+  .pixel-btn {
+    border: 3px solid #252018;
+    background: #fff8c8;
+    color: #252018;
+    box-shadow: inset 0 -4px 0 rgba(37, 32, 24, 0.16), 0 4px 0 #5a3c22;
+  }
+
+  .pixel-btn:hover {
+    background: #f6d746;
+  }
+
+  .pixel-screen {
+    background:
+      linear-gradient(rgba(255, 248, 200, 0.08), rgba(255, 248, 200, 0.08)),
+      repeating-linear-gradient(0deg, rgba(37, 32, 24, 0.08) 0 2px, transparent 2px 6px);
+  }
+
+  .gameboy-shell {
+    position: relative;
+    min-height: 100vh;
+    padding: clamp(10px, 2vw, 22px);
+    background:
+      radial-gradient(circle at 15% 12%, rgba(255, 255, 255, 0.22), transparent 22%),
+      linear-gradient(135deg, #f7db55 0%, #e6bd39 48%, #b8732f 100%);
+  }
+
+  .gameboy-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(45deg, rgba(37, 32, 24, 0.04) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(37, 32, 24, 0.04) 25%, transparent 25%);
+    background-size: 16px 16px;
+    mix-blend-mode: multiply;
+  }
+
+  .gameboy-screen {
+    position: relative;
+    height: calc(100vh - clamp(20px, 4vw, 44px));
+    overflow: hidden;
+    background: #8db45a;
+    border: 8px solid #252018;
+    box-shadow:
+      inset 0 0 0 4px #f7e88a,
+      inset 0 0 0 8px #5a6f3a,
+      0 12px 0 #5a3c22,
+      0 20px 32px rgba(37, 32, 24, 0.38);
+  }
+
+  .gameboy-screen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 80;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 5px, rgba(37, 32, 24, 0.08) 5px 6px),
+      radial-gradient(circle at center, transparent 58%, rgba(37, 32, 24, 0.15));
+    mix-blend-mode: multiply;
+  }
+
+  .map-tile {
+    position: relative;
+    image-rendering: pixelated;
+  }
+
+  .map-tile::before,
+  .map-tile::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .tile-G {
+    background-color: #76ad56;
+  }
+
+  .tile-G::before {
+    background-image:
+      linear-gradient(90deg, transparent 0 10px, rgba(43, 103, 39, 0.45) 10px 14px, transparent 14px),
+      linear-gradient(0deg, transparent 0 14px, rgba(43, 103, 39, 0.32) 14px 18px, transparent 18px);
+    background-size: 24px 24px;
+  }
+
+  .tile-X {
+    background-color: #659f4e;
+  }
+
+  .tile-X::before {
+    background:
+      linear-gradient(135deg, transparent 0 35%, rgba(34, 82, 32, 0.55) 35% 48%, transparent 48%),
+      linear-gradient(45deg, transparent 0 42%, rgba(34, 82, 32, 0.45) 42% 56%, transparent 56%);
+    background-size: 16px 16px;
+  }
+
+  .tile-T {
+    background:
+      radial-gradient(circle at 50% 36%, #315f2a 0 32%, transparent 33%),
+      linear-gradient(90deg, transparent 42%, #654023 42% 58%, transparent 58%),
+      #24471f;
+  }
+
+  .tile-R {
+    background-color: #b78d50;
+  }
+
+  .tile-R::before {
+    background-image:
+      linear-gradient(90deg, rgba(88, 58, 31, 0.18) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(255, 248, 200, 0.22) 1px, transparent 1px);
+    background-size: 12px 12px;
+  }
+
+  .tile-W {
+    background: repeating-linear-gradient(135deg, #4e91b8 0 8px, #2f75a5 8px 16px);
+  }
+
+  .tile-B,
+  .tile-H,
+  .tile-Q,
+  .tile-V,
+  .tile-N {
+    background:
+      linear-gradient(#b94b37 0 26%, transparent 26%),
+      linear-gradient(90deg, transparent 0 22%, #fff8c8 22% 36%, transparent 36% 64%, #fff8c8 64% 78%, transparent 78%),
+      #d7bb72;
+  }
+
+  .tile-S {
+    background-color: #e4c46c;
+  }
+
+  .tile-S::before {
+    background-image: radial-gradient(circle, rgba(97, 75, 40, 0.28) 1px, transparent 2px);
+    background-size: 10px 10px;
+  }
+
+  .tile-C,
+  .tile-D,
+  .tile-M {
+    background:
+      linear-gradient(135deg, rgba(255, 248, 200, 0.12) 25%, transparent 25% 50%, rgba(37, 32, 24, 0.2) 50% 75%, transparent 75%),
+      #5d4937;
+    background-size: 18px 18px;
+  }
+
+  .trainer-sprite {
+    width: 34px;
+    height: 42px;
+    position: relative;
+    image-rendering: pixelated;
+  }
+
+  .trainer-sprite::before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 1px;
+    width: 16px;
+    height: 16px;
+    background: #f8d39d;
+    box-shadow:
+      0 -5px 0 #d73d32,
+      -6px 6px 0 #252018,
+      6px 6px 0 #252018,
+      -3px 18px 0 #4d77b0,
+      3px 18px 0 #4d77b0,
+      0 18px 0 #4d77b0,
+      -8px 20px 0 #fff8c8,
+      8px 20px 0 #fff8c8,
+      -5px 32px 0 #252018,
+      5px 32px 0 #252018;
+  }
+
+  .monster-sprite {
+    width: 96px;
+    height: 86px;
+    position: relative;
+    image-rendering: pixelated;
+  }
+
+  .monster-sprite::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 14px;
+    width: 56px;
+    height: 48px;
+    background: #7a4b9c;
+    border: 5px solid #252018;
+    box-shadow:
+      -16px 10px 0 #7a4b9c,
+      16px 10px 0 #7a4b9c,
+      -8px -12px 0 #252018,
+      8px -12px 0 #252018,
+      0 22px 0 #5d317a,
+      -18px 44px 0 #252018,
+      18px 44px 0 #252018;
+  }
+
+  .monster-sprite::after {
+    content: "";
+    position: absolute;
+    left: 38px;
+    top: 32px;
+    width: 8px;
+    height: 8px;
+    background: #fff8c8;
+    box-shadow: 24px 0 0 #fff8c8, 12px 18px 0 #252018;
+  }
+}
