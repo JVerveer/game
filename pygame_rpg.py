@@ -14,10 +14,13 @@ INK = (34, 29, 24)
 CREAM = (255, 244, 194)
 PAPER = (255, 250, 218)
 GOLD = (242, 197, 54)
+YELLOW = (249, 216, 75)
+PALE_YELLOW = (255, 239, 147)
 RED = (204, 67, 48)
 GREEN = (66, 143, 71)
 BLUE = (73, 132, 178)
 SHADOW = (73, 52, 36)
+OLIVE = (64, 83, 43)
 
 
 @dataclass(frozen=True)
@@ -43,7 +46,7 @@ TOWNS = [
         "forest",
         "Route Guide",
         ('"The east road is open now."', '"Eleven towns, one heroic pair of shoes."'),
-        (10, 64),
+        (50, 96),
     ),
     TownTheme(
         "brexiton",
@@ -54,7 +57,7 @@ TOWNS = [
         "city",
         "Queue Minister",
         ('"We voted to open this gate, then formed a committee to close it."', '"Please enjoy the paperwork maze."'),
-        (22, 58),
+        (50, 7),
     ),
     TownTheme(
         "tweetsburg",
@@ -65,7 +68,7 @@ TOWNS = [
         "water",
         "Trend Watcher",
         ('"A rumor just patched itself into the main quest."', '"Do not read the replies unless you brought potions."'),
-        (34, 50),
+        (68, 77),
     ),
     TownTheme(
         "cryptonia",
@@ -76,7 +79,7 @@ TOWNS = [
         "sand",
         "Token Baron",
         ('"My wallet was full this morning. Now it is a learning experience."', '"The beach is real. The yield is theoretical."'),
-        (48, 62),
+        (68, 50),
     ),
     TownTheme(
         "wokeshire",
@@ -87,7 +90,7 @@ TOWNS = [
         "forest",
         "Consensus Ranger",
         ('"The north path is approved by three factions and denounced by four."', '"Bring empathy, patience, and a spare checklist."'),
-        (58, 44),
+        (32, 34),
     ),
     TownTheme(
         "tariff",
@@ -98,7 +101,7 @@ TOWNS = [
         "port",
         "Dock Broker",
         ('"Crossing the street costs three stamps and one surprise fee."', '"The ships are punctual. The forms are not."'),
-        (72, 48),
+        (68, 34),
     ),
     TownTheme(
         "factcheck",
@@ -109,7 +112,7 @@ TOWNS = [
         "water",
         "Citation Clerk",
         ('"The quest began here, unless you ask the mayor."', '"I rate that potion claim: needs context."'),
-        (62, 30),
+        (50, 88),
     ),
     TownTheme(
         "ragebait",
@@ -120,7 +123,7 @@ TOWNS = [
         "sand",
         "Reaction Producer",
         ('"Try entering the shop with a gasp. The algorithm loves commitment."', '"Subtlety was nerfed last season."'),
-        (80, 22),
+        (32, 77),
     ),
     TownTheme(
         "surveillia",
@@ -131,7 +134,7 @@ TOWNS = [
         "city",
         "Camera Guard",
         ('"You are currently standing exactly there."', '"Disable the cameras and I will have to guess like everyone else."'),
-        (68, 14),
+        (50, 21),
     ),
     TownTheme(
         "promptford",
@@ -142,7 +145,7 @@ TOWNS = [
         "water",
         "Oracle Intern",
         ('"The oracle suggests the scenic route, confidence 0.51."', '"I asked it what to eat. It opened a sprint board."'),
-        (50, 14),
+        (50, 63),
     ),
     TownTheme(
         "inflatopolis",
@@ -153,12 +156,59 @@ TOWNS = [
         "city",
         "Price Sprinter",
         ('"I saved up for bread. Now I can afford a receipt."', '"The shop sign updates faster than my legs."'),
-        (35, 24),
+        (32, 50),
     ),
 ]
 
 
 TOWN_BY_KEY = {town.key: town for town in TOWNS}
+
+ROUTES = {
+    "satiria": {"N": "factcheck"},
+    "factcheck": {"S": "satiria", "NW": "ragebait", "NE": "tweetsburg"},
+    "ragebait": {"SE": "factcheck", "NE": "promptford"},
+    "tweetsburg": {"SW": "factcheck", "NW": "promptford"},
+    "promptford": {"SW": "ragebait", "SE": "tweetsburg", "NW": "inflatopolis", "NE": "cryptonia"},
+    "inflatopolis": {"S": "promptford", "N": "wokeshire"},
+    "cryptonia": {"S": "promptford", "N": "tariff"},
+    "wokeshire": {"S": "inflatopolis", "NE": "surveillia"},
+    "tariff": {"S": "cryptonia", "NW": "surveillia"},
+    "surveillia": {"SW": "wokeshire", "SE": "tariff", "N": "brexiton"},
+    "brexiton": {"S": "surveillia"},
+}
+
+OPPOSITE_DIR = {
+    "N": "S",
+    "S": "N",
+    "E": "W",
+    "W": "E",
+    "NE": "SW",
+    "NW": "SE",
+    "SE": "NW",
+    "SW": "NE",
+}
+
+PORTAL_POS = {
+    "N": (27, 0),
+    "S": (27, 33),
+    "W": (0, 18),
+    "E": (55, 18),
+    "NE": (55, 6),
+    "NW": (0, 6),
+    "SE": (55, 29),
+    "SW": (0, 29),
+}
+
+ENTRY_POS = {
+    "N": (27, 2, "down"),
+    "S": (27, 31, "up"),
+    "W": (2, 18, "right"),
+    "E": (53, 18, "left"),
+    "NE": (53, 7, "left"),
+    "NW": (2, 7, "right"),
+    "SE": (53, 28, "left"),
+    "SW": (2, 28, "right"),
+}
 
 
 class PixelFont:
@@ -179,9 +229,10 @@ class PixelFont:
 
 
 def draw_panel(surf, rect, fill=PAPER, border=INK):
-    pygame.draw.rect(surf, SHADOW, rect.move(5, 5))
+    pygame.draw.rect(surf, SHADOW, rect.move(4, 4))
     pygame.draw.rect(surf, border, rect)
-    inner = rect.inflate(-8, -8)
+    pygame.draw.rect(surf, PALE_YELLOW, rect.inflate(-4, -4))
+    inner = rect.inflate(-10, -10)
     pygame.draw.rect(surf, fill, inner)
     pygame.draw.rect(surf, (255, 255, 255), inner, 2)
 
@@ -212,52 +263,79 @@ class TilePainter:
             return self.cache[kind]
         surf = pygame.Surface((TILE, TILE)).convert()
         if kind == "G":
-            surf.fill((114, 174, 88))
-            for i in range(0, TILE, 8):
-                pygame.draw.line(surf, (82, 145, 67), (i, TILE), (i + 5, TILE - 8), 2)
+            surf.fill((131, 178, 74))
+            for x in range(2, TILE, 8):
+                pygame.draw.line(surf, (88, 137, 56), (x, TILE - 6), (x + 3, TILE - 13), 2)
+                pygame.draw.line(surf, (170, 203, 91), (x + 4, 8), (x + 7, 4), 1)
         elif kind == "X":
-            surf.fill((91, 154, 73))
-            for x in range(2, TILE, 7):
-                pygame.draw.line(surf, (43, 103, 48), (x, TILE - 3), (x + 4, TILE - 18), 3)
+            surf.fill((94, 151, 64))
+            for x in range(0, TILE, 6):
+                pygame.draw.line(surf, (45, 99, 42), (x, TILE), (x + 5, TILE - 20), 3)
+                pygame.draw.line(surf, (45, 99, 42), (x + 6, TILE), (x + 1, TILE - 18), 2)
         elif kind == "R":
-            surf.fill((184, 139, 80))
-            for y in range(4, TILE, 10):
-                pygame.draw.line(surf, (146, 103, 61), (0, y), (TILE, y + 3), 1)
+            surf.fill((205, 166, 88))
+            for y in range(5, TILE, 9):
+                pygame.draw.line(surf, (154, 108, 55), (0, y), (TILE, y + 2), 1)
+            for x in range(0, TILE, 16):
+                pygame.draw.line(surf, (232, 195, 108), (x, 0), (x + 8, TILE), 1)
         elif kind == "W":
-            surf.fill((67, 143, 188))
-            for y in range(6, TILE, 12):
-                pygame.draw.arc(surf, (143, 204, 219), (0, y - 5, 18, 10), 0, math.pi, 2)
-                pygame.draw.arc(surf, (37, 103, 156), (15, y, 18, 10), 0, math.pi, 2)
+            surf.fill((66, 133, 181))
+            for y in range(4, TILE, 10):
+                pygame.draw.arc(surf, (183, 218, 220), (0, y - 4, 18, 10), 0, math.pi, 2)
+                pygame.draw.arc(surf, (34, 88, 147), (14, y, 20, 10), 0, math.pi, 2)
         elif kind == "S":
-            surf.fill((225, 196, 116))
+            surf.fill((232, 201, 111))
             for x in range(4, TILE, 9):
-                pygame.draw.circle(surf, (168, 134, 75), (x, (x * 5) % TILE), 1)
+                pygame.draw.circle(surf, (167, 126, 63), (x, (x * 5) % TILE), 1)
         elif kind == "T":
-            surf.fill((42, 84, 38))
-            pygame.draw.rect(surf, (92, 64, 38), (13, 16, 6, 16))
-            pygame.draw.circle(surf, (38, 111, 48), (16, 13), 13)
-            pygame.draw.circle(surf, (71, 143, 57), (11, 10), 7)
+            surf.fill((67, 112, 47))
+            pygame.draw.rect(surf, (88, 57, 34), (13, 15, 7, 17))
+            pygame.draw.rect(surf, INK, (12, 15, 9, 17), 1)
+            pygame.draw.circle(surf, (35, 94, 43), (16, 13), 13)
+            pygame.draw.circle(surf, (91, 154, 60), (10, 9), 7)
+            pygame.draw.circle(surf, (91, 154, 60), (23, 11), 6)
         elif kind == "B":
-            surf.fill((148, 113, 84))
-            pygame.draw.rect(surf, (196, 72, 54), (2, 2, 28, 10))
-            pygame.draw.rect(surf, (236, 202, 126), (5, 12, 22, 18))
-            pygame.draw.rect(surf, INK, (13, 18, 7, 12))
+            surf.fill((205, 166, 88))
+            pygame.draw.rect(surf, INK, (3, 8, 26, 22))
+            pygame.draw.rect(surf, (246, 221, 139), (5, 11, 22, 17))
+            pygame.draw.rect(surf, RED, (1, 3, 30, 9))
+            pygame.draw.rect(surf, INK, (1, 3, 30, 9), 2)
+            pygame.draw.rect(surf, INK, (13, 18, 7, 10))
+            pygame.draw.rect(surf, (128, 82, 48), (14, 19, 5, 9))
         elif kind == "H":
-            surf.fill((148, 113, 84))
-            pygame.draw.rect(surf, BLUE, (2, 2, 28, 10))
-            pygame.draw.rect(surf, (236, 202, 126), (5, 12, 22, 18))
+            surf.fill((205, 166, 88))
+            pygame.draw.rect(surf, INK, (3, 8, 26, 22))
+            pygame.draw.rect(surf, (246, 221, 139), (5, 11, 22, 17))
+            pygame.draw.rect(surf, BLUE, (1, 3, 30, 9))
+            pygame.draw.rect(surf, INK, (1, 3, 30, 9), 2)
             pygame.draw.rect(surf, CREAM, (13, 4, 6, 6))
             pygame.draw.rect(surf, CREAM, (11, 6, 10, 2))
+            pygame.draw.rect(surf, INK, (13, 18, 7, 10))
         elif kind == "M":
             surf.fill((96, 83, 84))
             pygame.draw.polygon(surf, (73, 67, 78), [(1, 31), (16, 4), (31, 31)])
             pygame.draw.polygon(surf, (211, 210, 195), [(16, 4), (11, 14), (20, 14)])
         elif kind == "V":
-            surf.fill((184, 139, 80))
+            surf.fill((205, 166, 88))
             pygame.draw.polygon(surf, GOLD, [(16, 3), (20, 13), (31, 13), (22, 20), (25, 31), (16, 24), (7, 31), (10, 20), (1, 13), (12, 13)])
+            pygame.draw.polygon(surf, INK, [(16, 3), (20, 13), (31, 13), (22, 20), (25, 31), (16, 24), (7, 31), (10, 20), (1, 13), (12, 13)], 2)
+        elif kind == "F":
+            surf.fill((131, 178, 74))
+            pygame.draw.rect(surf, (118, 78, 45), (0, 14, TILE, 6))
+            pygame.draw.rect(surf, INK, (0, 14, TILE, 6), 1)
+            for x in range(2, TILE, 10):
+                pygame.draw.rect(surf, (238, 205, 113), (x, 9, 5, 15))
+                pygame.draw.rect(surf, INK, (x, 9, 5, 15), 1)
+        elif kind == "L":
+            surf.fill((131, 178, 74))
+            for x, y, color in [(7, 10, RED), (21, 9, GOLD), (14, 22, BLUE), (26, 24, RED)]:
+                pygame.draw.rect(surf, INK, (x - 2, y - 2, 5, 5))
+                pygame.draw.rect(surf, color, (x - 1, y - 1, 3, 3))
+            for x in range(3, TILE, 9):
+                pygame.draw.line(surf, (88, 137, 56), (x, TILE - 4), (x + 3, TILE - 11), 2)
         else:
             surf.fill((30, 28, 42))
-        pygame.draw.rect(surf, (0, 0, 0), (0, 0, TILE, TILE), 1)
+        pygame.draw.rect(surf, (43, 50, 30), (0, 0, TILE, TILE), 1)
         self.cache[kind] = surf
         return surf
 
@@ -266,11 +344,14 @@ def make_town_map(theme):
     w, h = 56, 34
     rows = [["T" for _ in range(w)] for _ in range(h)]
 
+    def set_tile(x, y, tile):
+        if 0 <= x < w and 0 <= y < h:
+            rows[y][x] = tile
+
     def rect(x, y, rw, rh, tile):
         for yy in range(y, y + rh):
             for xx in range(x, x + rw):
-                if 0 <= xx < w and 0 <= yy < h:
-                    rows[yy][xx] = tile
+                set_tile(xx, yy, tile)
 
     def hline(x1, x2, y, tile):
         rect(x1, y, x2 - x1 + 1, 1, tile)
@@ -278,12 +359,28 @@ def make_town_map(theme):
     def vline(x, y1, y2, tile):
         rect(x, y1, 1, y2 - y1 + 1, tile)
 
+    def road_line(start, end, width=2):
+        sx, sy = start
+        ex, ey = end
+        steps = max(abs(ex - sx), abs(ey - sy), 1)
+        for i in range(steps + 1):
+            t = i / steps
+            x = round(sx + (ex - sx) * t)
+            y = round(sy + (ey - sy) * t)
+            rect(x - width // 2, y - width // 2, width + 1, width + 1, "R")
+
     rect(4, 4, 48, 24, "G")
+    rect(6, 26, 9, 1, "F")
+    rect(41, 26, 9, 1, "F")
+    rect(7, 5, 6, 2, "L")
+    rect(43, 23, 6, 2, "L")
     rect(15, 10, 24, 11, "R")
-    hline(0, 55, 18, "R")
-    vline(27, 7, 29, "R")
-    hline(27, 55, 29, "R")
-    hline(0, 27, 29, "R")
+    vline(27, 8, 28, "R")
+    hline(16, 38, 18, "R")
+
+    exits = ROUTES[theme.key].keys()
+    for direction in exits:
+        road_line((27, 18), PORTAL_POS[direction], 2)
 
     if theme.accent in ("water", "port"):
         rect(41, 5, 8, 13, "W")
@@ -303,6 +400,9 @@ def make_town_map(theme):
     rect(18, 21, 6, 4, "B")
     rect(32, 21, 6, 4, "B")
     rows[18][27] = "V"
+    for direction in exits:
+        x, y = PORTAL_POS[direction]
+        rect(x - 1, y - 1, 3, 3, "R")
     return rows
 
 
@@ -310,15 +410,12 @@ class TownMap:
     def __init__(self, theme, index):
         self.theme = theme
         self.index = index
+        self.routes = ROUTES[theme.key]
         self.rows = make_town_map(theme)
         self.w = len(self.rows[0])
         self.h = len(self.rows)
-        self.spawn = pygame.Vector2(2, 18)
-        self.portals = {}
-        if index > 0:
-            self.portals[(1, 18)] = index - 1
-        if index < len(TOWNS) - 1:
-            self.portals[(55, 18)] = index + 1
+        self.spawn = pygame.Vector2(27, 18)
+        self.portals = {PORTAL_POS[direction]: target for direction, target in self.routes.items()}
         self.npcs = [
             NPC(29 if index % 2 == 0 else 24, 19 if index % 2 == 0 else 17, theme.npc, theme.npc_lines, index % 5)
         ]
@@ -329,7 +426,7 @@ class TownMap:
         return "T"
 
     def walkable(self, x, y):
-        return self.tile_at(x, y) in {"G", "R", "X", "S", "V"}
+        return self.tile_at(x, y) in {"G", "R", "X", "S", "V", "L"}
 
     def location_name(self, x, y):
         tile = self.tile_at(x, y)
@@ -376,7 +473,13 @@ class SpriteFactory:
         surf = pygame.Surface((32, 42), pygame.SRCALPHA)
         bob = -2 if walk else 0
         leg = 2 if walk else 0
+        pygame.draw.rect(surf, INK, (8, bob, 16, 9))
         pygame.draw.rect(surf, hair, (9, 1 + bob, 14, 7))
+        if hair == (215, 61, 50):
+            pygame.draw.rect(surf, CREAM, (13, 3 + bob, 7, 3))
+            pygame.draw.rect(surf, INK, (21, 6 + bob, 7, 3))
+            pygame.draw.rect(surf, hair, (21, 5 + bob, 6, 3))
+        pygame.draw.rect(surf, INK, (7, 6 + bob, 18, 17))
         pygame.draw.rect(surf, (244, 194, 138), (8, 7 + bob, 16, 15))
         pygame.draw.rect(surf, INK, (4, 11 + bob, 4, 8))
         pygame.draw.rect(surf, INK, (24, 11 + bob, 4, 8))
@@ -384,7 +487,9 @@ class SpriteFactory:
             pygame.draw.rect(surf, INK, (12, 13 + bob, 3, 3))
             pygame.draw.rect(surf, INK, (19, 13 + bob, 3, 3))
             pygame.draw.rect(surf, RED, (15, 19 + bob, 5, 2))
+        pygame.draw.rect(surf, INK, (9, 22 + bob, 14, 14))
         pygame.draw.rect(surf, shirt, (10, 23 + bob, 12, 12))
+        pygame.draw.rect(surf, (255, 255, 255), (14, 24 + bob, 4, 8))
         pygame.draw.rect(surf, sleeve, (5, 24 + bob, 5, 8))
         pygame.draw.rect(surf, sleeve, (22, 24 + bob, 5, 8))
         pygame.draw.rect(surf, INK, (9 - leg, 35 + bob, 6, 6))
@@ -427,8 +532,9 @@ class Game:
         self.fonts = PixelFont()
         self.tiles = TilePainter()
         self.sprites = SpriteFactory()
-        self.towns = [TownMap(theme, i) for i, theme in enumerate(TOWNS)]
-        self.town_i = 0
+        self.town_order = [town.key for town in TOWNS]
+        self.towns = {theme.key: TownMap(theme, i) for i, theme in enumerate(TOWNS)}
+        self.town_key = "satiria"
         self.hero = pygame.Vector2(27, 18)
         self.facing = "down"
         self.steps = 0
@@ -444,7 +550,7 @@ class Game:
 
     @property
     def town(self):
-        return self.towns[self.town_i]
+        return self.towns[self.town_key]
 
     def run(self):
         while True:
@@ -512,17 +618,19 @@ class Game:
         if (nx, ny) in self.town.portals:
             self.change_town(self.town.portals[(nx, ny)])
 
-    def change_town(self, town_i):
-        if town_i < 0 or town_i >= len(self.towns):
+    def change_town(self, town_key):
+        if town_key not in self.towns:
             return
-        old_i = self.town_i
-        self.town_i = town_i
-        if town_i > old_i:
-            self.hero.update(2, 18)
-            self.facing = "right"
-        else:
-            self.hero.update(54, 18)
-            self.facing = "left"
+        old_key = self.town_key
+        self.town_key = town_key
+        incoming = "S"
+        for direction, target in ROUTES[town_key].items():
+            if target == old_key:
+                incoming = direction
+                break
+        x, y, facing = ENTRY_POS[incoming]
+        self.hero.update(x, y)
+        self.facing = facing
         self.toast(f"Entered {self.town.theme.name}")
 
     def interact(self):
@@ -575,22 +683,27 @@ class Game:
         pygame.display.flip()
 
     def draw_title(self):
-        self.screen.fill((247, 219, 85))
-        pygame.draw.rect(self.screen, (122, 168, 86), (0, SCREEN_H // 2, SCREEN_W, SCREEN_H // 2))
-        for x in range(0, SCREEN_W, 32):
-            pygame.draw.line(self.screen, (224, 180, 52), (x, 0), (x + 80, SCREEN_H), 1)
-        panel = pygame.Rect(170, 94, 620, 410)
-        draw_panel(self.screen, panel)
-        self.fonts.draw(self.screen, "CRINGE QUEST", (250, 150), RED, self.fonts.title, True)
-        self.fonts.draw(self.screen, "YELLOW", (380, 216), INK, self.fonts.large, True)
-        self.fonts.draw(self.screen, "A brighter 90s monster-town RPG", (286, 280), GREEN, self.fonts.medium)
-        pygame.draw.rect(self.screen, INK, (285, 326, 390, 84), 4)
-        pygame.draw.rect(self.screen, (141, 180, 90), (289, 330, 382, 76))
-        self.screen.blit(pygame.transform.scale(self.sprites.hero("down"), (64, 84)), (382, 320))
-        self.screen.blit(pygame.transform.scale(self.sprites.npc(2), (64, 84)), (514, 320))
+        self.screen.fill(YELLOW)
+        pygame.draw.rect(self.screen, (125, 174, 79), (0, SCREEN_H // 2 + 42, SCREEN_W, SCREEN_H // 2))
+        for x in range(-80, SCREEN_W, 32):
+            pygame.draw.line(self.screen, (224, 181, 52), (x, 0), (x + 120, SCREEN_H), 1)
+        pygame.draw.rect(self.screen, INK, (0, SCREEN_H // 2 + 38, SCREEN_W, 6))
+        panel = pygame.Rect(152, 82, 656, 430)
+        draw_panel(self.screen, panel, fill=(255, 248, 202))
+        pygame.draw.rect(self.screen, RED, (208, 128, 544, 92))
+        pygame.draw.rect(self.screen, INK, (208, 128, 544, 92), 4)
+        self.fonts.draw(self.screen, "CRINGE QUEST", (236, 140), PALE_YELLOW, self.fonts.title, True)
+        self.fonts.draw(self.screen, "YELLOW", (382, 232), INK, self.fonts.large, True)
+        self.fonts.draw(self.screen, "SATIRICAL MONSTER-TOWN RPG", (314, 285), OLIVE, self.fonts.medium)
+        pygame.draw.rect(self.screen, INK, (282, 328, 396, 92), 4)
+        pygame.draw.rect(self.screen, (151, 188, 87), (286, 332, 388, 84))
+        for x in range(286, 674, 32):
+            pygame.draw.line(self.screen, (92, 139, 63), (x, 400), (x + 10, 382), 2)
+        self.screen.blit(pygame.transform.scale(self.sprites.hero("down"), (64, 84)), (382, 324))
+        self.screen.blit(pygame.transform.scale(self.sprites.npc(2), (64, 84)), (514, 324))
         if pygame.time.get_ticks() // 500 % 2 == 0:
-            self.fonts.draw(self.screen, "PRESS ANY KEY", (375, 448), INK, self.fonts.medium)
-        self.fonts.draw(self.screen, "WASD/ARROWS move   SPACE talk   M map   Q title", (263, 548), CREAM, self.fonts.small)
+            self.fonts.draw(self.screen, "PRESS ANY KEY", (376, 454), RED, self.fonts.medium)
+        self.fonts.draw(self.screen, "WASD/ARROWS move   SPACE talk   M map   Q title", (263, 548), INK, self.fonts.small)
 
     def draw_game(self):
         self.screen.fill((36, 52, 38))
@@ -602,9 +715,11 @@ class Game:
         for pos, target in self.town.portals.items():
             x, y = pos
             sx, sy = cam_x + x * TILE, cam_y + y * TILE
-            pygame.draw.rect(self.screen, CREAM, (sx + 8, sy + 10, 16, 12))
-            arrow = "<" if target < self.town_i else ">"
-            self.fonts.draw(self.screen, arrow, (sx + 11, sy + 7), INK, self.fonts.medium)
+            direction = next((d for d, p in PORTAL_POS.items() if p == pos), "N")
+            arrow = {"N": "^", "S": "v", "E": ">", "W": "<", "NE": "/", "NW": "\\", "SE": "\\", "SW": "/"}[direction]
+            pygame.draw.rect(self.screen, INK, (sx + 6, sy + 8, 20, 16))
+            pygame.draw.rect(self.screen, PALE_YELLOW, (sx + 8, sy + 10, 16, 12))
+            self.fonts.draw(self.screen, arrow, (sx + 11, sy + 6), INK, self.fonts.medium)
 
         for npc in self.town.npcs:
             px, py = cam_x + npc.x * TILE, cam_y + npc.y * TILE - 10
@@ -623,14 +738,15 @@ class Game:
 
     def draw_hud(self):
         hud = pygame.Rect(14, 12, SCREEN_W - 28, 66)
-        pygame.draw.rect(self.screen, (34, 29, 24, 180), hud)
-        pygame.draw.rect(self.screen, CREAM, hud, 2)
-        self.fonts.draw(self.screen, "HERO  LV.15", (30, 24), CREAM, self.fonts.small)
-        pygame.draw.rect(self.screen, INK, (30, 48, 140, 13))
+        pygame.draw.rect(self.screen, INK, hud)
+        pygame.draw.rect(self.screen, PALE_YELLOW, hud.inflate(-4, -4))
+        pygame.draw.rect(self.screen, PAPER, hud.inflate(-10, -10))
+        self.fonts.draw(self.screen, "HERO  LV.15", (30, 24), INK, self.fonts.small)
+        pygame.draw.rect(self.screen, INK, (30, 48, 140, 13), 2)
         pygame.draw.rect(self.screen, GREEN, (33, 51, 110, 7))
         loc = self.town.location_name(int(self.hero.x), int(self.hero.y))
-        self.fonts.draw(self.screen, loc, (SCREEN_W // 2 - 160, 27), CREAM, self.fonts.medium)
-        self.fonts.draw(self.screen, f"Steps {self.steps}   {self.gold} G   Potion {self.price} G", (674, 26), CREAM, self.fonts.small)
+        self.fonts.draw(self.screen, loc, (SCREEN_W // 2 - 160, 27), RED, self.fonts.medium)
+        self.fonts.draw(self.screen, f"Steps {self.steps}   {self.gold} G   Potion {self.price} G", (674, 26), INK, self.fonts.small)
 
     def minimap_rect(self):
         return pygame.Rect(16, SCREEN_H - (252 if self.minimap_open else 106), 278 if self.minimap_open else 158, 234 if self.minimap_open else 88)
@@ -640,19 +756,30 @@ class Game:
         draw_panel(self.screen, rect)
         self.fonts.draw(self.screen, "WORLD MAP", (rect.x + 12, rect.y + 10), GREEN, self.fonts.small)
         map_rect = pygame.Rect(rect.x + 12, rect.y + 34, rect.w - 24, 82 if self.minimap_open else 42)
-        pygame.draw.rect(self.screen, (119, 173, 86), map_rect)
+        pygame.draw.rect(self.screen, (139, 181, 87), map_rect)
         pygame.draw.rect(self.screen, INK, map_rect, 2)
-        points = []
+        points = {
+            town.key: (
+                map_rect.x + town.world[0] * map_rect.w // 100,
+                map_rect.y + town.world[1] * map_rect.h // 100,
+            )
+            for town in TOWNS
+        }
+        drawn_edges = set()
+        for start, routes in ROUTES.items():
+            for target in routes.values():
+                edge = tuple(sorted((start, target)))
+                if edge in drawn_edges:
+                    continue
+                drawn_edges.add(edge)
+                pygame.draw.line(self.screen, SHADOW, points[start], points[target], 2)
+                pygame.draw.line(self.screen, (238, 204, 101), points[start], points[target], 1)
         for town in TOWNS:
-            px = map_rect.x + town.world[0] * map_rect.w // 100
-            py = map_rect.y + town.world[1] * map_rect.h // 100
-            points.append((px, py))
-        pygame.draw.lines(self.screen, SHADOW, False, points, 2)
-        for i, town in enumerate(TOWNS):
-            color = RED if i == self.town_i else GOLD
-            r = 6 if i == self.town_i else 4
-            pygame.draw.rect(self.screen, INK, (points[i][0] - r - 1, points[i][1] - r - 1, r * 2 + 2, r * 2 + 2))
-            pygame.draw.rect(self.screen, color, (points[i][0] - r, points[i][1] - r, r * 2, r * 2))
+            color = RED if town.key == self.town_key else GOLD
+            r = 6 if town.key == self.town_key else 4
+            px, py = points[town.key]
+            pygame.draw.rect(self.screen, INK, (px - r - 1, py - r - 1, r * 2 + 2, r * 2 + 2))
+            pygame.draw.rect(self.screen, color, (px - r, py - r, r * 2, r * 2))
         label_y = map_rect.bottom + 8
         self.fonts.draw(self.screen, f"Hero: {self.town.location_name(int(self.hero.x), int(self.hero.y))}", (rect.x + 12, label_y), INK, self.fonts.small)
         if self.minimap_open:
