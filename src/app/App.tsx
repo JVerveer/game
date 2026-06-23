@@ -2448,7 +2448,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     }
   };
 
-  const doMove = (dx: number, dy: number, dir: "up" | "down" | "left" | "right") => {
+  const doMove = (dx: number, dy: number, dir: "up" | "down" | "left" | "right", isRepeat = false) => {
     if (dlgRef.current || pausedRef.current || battleRef.current || trainOpenRef.current) return;
     const now = Date.now();
     if (now - lastMove.current < 155) return;
@@ -2469,11 +2469,13 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     // tile below the door and enters by pressing up into the door tile.
     if (entryInteraction?.portal && entryInteraction.auto) {
       if (isIndoor(mapIdRef.current) || t === "O" || entryInteraction === currentInteraction) {
+        if (dir === "up" && isRepeat && entryInteraction === currentInteraction) return;
         warpTo(entryInteraction.portal);
         return;
       }
     }
     if (dir === "up" && entryInteraction?.train && entryInteraction === currentInteraction) {
+      if (isRepeat) return;
       setTrainIndex(0);
       setTrainOpen(true);
       return;
@@ -2563,10 +2565,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       if (e.key === " " || e.key === "z" || e.key === "Z" || e.key === "Enter") {
         e.preventDefault(); doInteract(); return;
       }
-      if (e.key === "ArrowUp"    || e.key === "w" || e.key === "W") { e.preventDefault(); doMove(0, -1, "up"); }
-      if (e.key === "ArrowDown"  || e.key === "s" || e.key === "S") { e.preventDefault(); doMove(0, 1, "down"); }
-      if (e.key === "ArrowLeft"  || e.key === "a" || e.key === "A") { e.preventDefault(); doMove(-1, 0, "left"); }
-      if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") { e.preventDefault(); doMove(1, 0, "right"); }
+      if (e.key === "ArrowUp"    || e.key === "w" || e.key === "W") { e.preventDefault(); doMove(0, -1, "up", e.repeat); }
+      if (e.key === "ArrowDown"  || e.key === "s" || e.key === "S") { e.preventDefault(); doMove(0, 1, "down", e.repeat); }
+      if (e.key === "ArrowLeft"  || e.key === "a" || e.key === "A") { e.preventDefault(); doMove(-1, 0, "left", e.repeat); }
+      if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") { e.preventDefault(); doMove(1, 0, "right", e.repeat); }
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
