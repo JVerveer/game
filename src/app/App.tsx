@@ -2222,13 +2222,13 @@ const SATIRIA_TREES = [
 ];
 
 const SATIRIA_BUILDINGS = [
-  { x: 8.2, y: 3.3, w: 7.4, h: 6.2, color: "red", kind: "house", crest: "★" },
-  { x: 19.3, y: 3.2, w: 7, h: 6.2, color: "blue", kind: "house", crest: "♜" },
-  { x: 30.1, y: 3.2, w: 6.5, h: 6.2, color: "purple", kind: "house", crest: "♦" },
-  { x: 40.5, y: 3.3, w: 6.8, h: 6.2, color: "red", kind: "house", crest: "□" },
-  { x: 4.2, y: 15.3, w: 6.7, h: 6.4, color: "green", kind: "shop", crest: "" },
-  { x: 12, y: 15.3, w: 6.8, h: 6.4, color: "blue", kind: "shop", crest: "" },
-  { x: 37.1, y: 15.6, w: 9.7, h: 7.8, color: "red", kind: "hall", crest: "★" },
+  { x: 8, y: 5, w: 8, h: 5, color: "red", kind: "house", crest: "★" },
+  { x: 19, y: 5, w: 8, h: 5, color: "blue", kind: "house", crest: "♜" },
+  { x: 30, y: 5, w: 7, h: 5, color: "purple", kind: "house", crest: "♦" },
+  { x: 40, y: 5, w: 7, h: 5, color: "red", kind: "house", crest: "□" },
+  { x: 4, y: 17, w: 7, h: 5, color: "green", kind: "shop", crest: "" },
+  { x: 12, y: 17, w: 7, h: 5, color: "blue", kind: "shop", crest: "" },
+  { x: 37, y: 17, w: 10, h: 6, color: "red", kind: "hall", crest: "★" },
 ];
 
 function SatiriaScene() {
