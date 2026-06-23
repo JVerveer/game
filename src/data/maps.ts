@@ -60,7 +60,7 @@ export const GAME_TILE_COLORS: Record<string, string> = {
   Y: "#76a846",
 };
 
-export const WALKABLE_TILES = new Set(["G", "R", "S", "X", "Q", "V", "N", "L", "E"]);
+export const WALKABLE_TILES = new Set(["G", "R", "S", "X", "Q", "V", "N", "O", "L", "E"]);
 
 export type TownMapId =
   | "satiria"
@@ -1338,10 +1338,6 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
   const rows = themedRowsFor(theme);
   const homeObjects = Object.fromEntries(doors.homes.map(coord => [coord, "DOOR_HOME"]));
   const trainObjects = Object.fromEntries(doors.train.slice(0, 2).map(coord => [coord, "TRAIN"]));
-  const frontOfDoor = (coord: string) => {
-    const [x, y] = coord.split(",").map(Number);
-    return `${x},${y + 1}`;
-  };
   const shopInteraction = {
     name: `${theme.name} Shop`,
     portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
@@ -1360,17 +1356,11 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
     auto: true,
     lines: [],
   } satisfies Interaction]));
-  const frontDoorInteractions = {
-    [frontOfDoor(doors.shop)]: shopInteraction,
-    [frontOfDoor(doors.healing)]: healingInteraction,
-    ...Object.fromEntries(doors.homes.map((coord) => [frontOfDoor(coord), homeInteractions[coord]])),
-  };
   const trainInteractions = Object.fromEntries(doors.train.map(coord => [coord, {
     name: `${theme.name} Train Station`,
     train: true,
     lines: ["Choose a destination."],
   } satisfies Interaction]));
-  const frontTrainInteractions = Object.fromEntries(doors.train.map(coord => [frontOfDoor(coord), trainInteractions[coord]]));
 
   return {
     id: theme.id,
@@ -1395,8 +1385,6 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
       [doors.healing]: healingInteraction,
       ...homeInteractions,
       ...trainInteractions,
-      ...frontDoorInteractions,
-      ...frontTrainInteractions,
       [doors.save]: {
         name: "Save Point",
         save: true,
