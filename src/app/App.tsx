@@ -2251,9 +2251,6 @@ function SatiriaScene() {
 
       <i className="satiria-pond-coded" style={sceneStyle(3, 24, 11, 8)} />
       <i className="satiria-pier-coded" style={sceneStyle(8, 23, 2, 4)} />
-      <i className="satiria-mountains mountain-a" style={sceneStyle(48.2, 5.3, 4.3, 10.7)} />
-      <i className="satiria-mountains mountain-b" style={sceneStyle(48.3, 24.2, 4.2, 7.6)} />
-
       {SATIRIA_BUILDINGS.map((building, index) => (
         <div
           key={`${building.kind}-${index}`}
