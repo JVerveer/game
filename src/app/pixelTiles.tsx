@@ -158,6 +158,7 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
       {building.crest && <i className="pixel-sprite-tile pixel-building-sign" style={spriteStyle("sign", doorX, 2)} />}
       {building.crest && <span className="pixel-building-crest">{building.crest}</span>}
       <span className="pixel-story-marker" aria-hidden="true">
+        <b>{stories}F</b>
         {Array.from({ length: stories }).map((_, story) => (
           <i key={`story-${story}`} />
         ))}
