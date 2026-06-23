@@ -2459,14 +2459,23 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     const nx = cur.x + dx;
     const ny = cur.y + dy;
     const t = tile(nx, ny);
+    const currentInteraction = GAME_MAPS[mapIdRef.current].interactions[`${cur.x},${cur.y}`];
     const targetInteraction = GAME_MAPS[mapIdRef.current].interactions[`${nx},${ny}`];
+    const entryInteraction = dir === "up" && (currentInteraction?.auto || currentInteraction?.train)
+      ? currentInteraction
+      : targetInteraction;
 
     // Building doors are facade/trigger tiles. The hero stands on the walkable
     // tile below the door and enters by pressing up into the door tile.
-    if (targetInteraction?.portal && targetInteraction.auto) {
-      if (dir === "up" || isIndoor(mapIdRef.current)) {
-        warpTo(targetInteraction.portal);
+    if (entryInteraction?.portal && entryInteraction.auto) {
+      if (isIndoor(mapIdRef.current) || t === "O" || entryInteraction === currentInteraction) {
+        warpTo(entryInteraction.portal);
+        return;
       }
+    }
+    if (dir === "up" && entryInteraction?.train && entryInteraction === currentInteraction) {
+      setTrainIndex(0);
+      setTrainOpen(true);
       return;
     }
 

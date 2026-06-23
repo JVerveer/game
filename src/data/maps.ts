@@ -1338,11 +1338,39 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
   const rows = themedRowsFor(theme);
   const homeObjects = Object.fromEntries(doors.homes.map(coord => [coord, "DOOR_HOME"]));
   const trainObjects = Object.fromEntries(doors.train.slice(0, 2).map(coord => [coord, "TRAIN"]));
+  const frontOfDoor = (coord: string) => {
+    const [x, y] = coord.split(",").map(Number);
+    return `${x},${y + 1}`;
+  };
+  const shopInteraction = {
+    name: `${theme.name} Shop`,
+    portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
+    auto: true,
+    lines: [],
+  } satisfies Interaction;
+  const healingInteraction = {
+    name: `${theme.name} Healing Center`,
+    portal: { mapId: "healing", x: 7, y: 7, facing: "up" },
+    auto: true,
+    lines: [],
+  } satisfies Interaction;
+  const homeInteractions = Object.fromEntries(doors.homes.map((coord, index) => [coord, {
+    name: index === 0 ? `${theme.name} House` : "Local House",
+    portal: { mapId: "house", x: 6, y: 6, facing: "up" },
+    auto: true,
+    lines: [],
+  } satisfies Interaction]));
+  const frontDoorInteractions = {
+    [frontOfDoor(doors.shop)]: shopInteraction,
+    [frontOfDoor(doors.healing)]: healingInteraction,
+    ...Object.fromEntries(doors.homes.map((coord) => [frontOfDoor(coord), homeInteractions[coord]])),
+  };
   const trainInteractions = Object.fromEntries(doors.train.map(coord => [coord, {
     name: `${theme.name} Train Station`,
     train: true,
     lines: ["Choose a destination."],
   } satisfies Interaction]));
+  const frontTrainInteractions = Object.fromEntries(doors.train.map(coord => [frontOfDoor(coord), trainInteractions[coord]]));
 
   return {
     id: theme.id,
@@ -1363,25 +1391,12 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
     },
     interactions: {
       ...routeInteractionsFor(theme),
-      [doors.shop]: {
-        name: `${theme.name} Shop`,
-        portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
-        auto: true,
-        lines: [],
-      },
-      [doors.healing]: {
-        name: `${theme.name} Healing Center`,
-        portal: { mapId: "healing", x: 7, y: 7, facing: "up" },
-        auto: true,
-        lines: [],
-      },
-      ...Object.fromEntries(doors.homes.map((coord, index) => [coord, {
-        name: index === 0 ? `${theme.name} House` : "Local House",
-        portal: { mapId: "house", x: 6, y: 6, facing: "up" },
-        auto: true,
-        lines: [],
-      } satisfies Interaction])),
+      [doors.shop]: shopInteraction,
+      [doors.healing]: healingInteraction,
+      ...homeInteractions,
       ...trainInteractions,
+      ...frontDoorInteractions,
+      ...frontTrainInteractions,
       [doors.save]: {
         name: "Save Point",
         save: true,
