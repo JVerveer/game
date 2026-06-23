@@ -113,7 +113,7 @@ const groundClassFor = (rows: string[][], x: number, y: number) => {
   if (tile === "R" || tile === "O" || tile === "V" || tile === "E") return `pixel-ground-road ${edgeMaskFor(rows, x, y, "road")}`;
   if (tile === "W") return `pixel-ground-water ${edgeMaskFor(rows, x, y, "water")}`;
   if (tile === "S") return "pixel-ground-shore";
-  if (tile === "X") return "pixel-ground-tall";
+  if (tile === "X") return `pixel-ground-tall tall-phase-${hashTile(x, y) % 3}`;
   return "";
 };
 

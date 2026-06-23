@@ -2685,7 +2685,26 @@
   }
 
   .pixel-ground-tall {
-    animation: pixel-grass-sway 1.2s steps(2, end) infinite;
+    animation: pixel-grass-sway 1.05s steps(2, end) infinite;
+  }
+
+  .pixel-ground-tall::after {
+    background:
+      linear-gradient(78deg, transparent 0 29%, rgba(185, 229, 110, 0.64) 29% 35%, transparent 35%),
+      linear-gradient(104deg, transparent 0 46%, rgba(36, 82, 31, 0.58) 46% 54%, transparent 54%),
+      linear-gradient(82deg, transparent 0 67%, rgba(139, 199, 83, 0.54) 67% 73%, transparent 73%);
+    background-size: 15px 42px, 19px 46px, 23px 38px;
+    animation: pixel-tall-grass-blades 0.9s steps(2, end) infinite;
+  }
+
+  .pixel-ground-tall.tall-phase-1,
+  .pixel-ground-tall.tall-phase-1::after {
+    animation-delay: -0.22s;
+  }
+
+  .pixel-ground-tall.tall-phase-2,
+  .pixel-ground-tall.tall-phase-2::after {
+    animation-delay: -0.46s;
   }
 
   .pixel-tileset-building::after {
@@ -2763,6 +2782,11 @@
   @keyframes pixel-grass-sway {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-1px); }
+  }
+
+  @keyframes pixel-tall-grass-blades {
+    0%, 100% { transform: translateX(-1px); opacity: 0.72; }
+    50% { transform: translateX(2px); opacity: 0.96; }
   }
 
   .satiria-road {
