@@ -60,7 +60,7 @@ export const GAME_TILE_COLORS: Record<string, string> = {
   Y: "#76a846",
 };
 
-export const WALKABLE_TILES = new Set(["G", "R", "S", "X", "Q", "V", "N", "O", "L", "E"]);
+export const WALKABLE_TILES = new Set(["G", "R", "S", "X", "Q", "V", "N", "L", "E"]);
 
 export type TownMapId =
   | "satiria"

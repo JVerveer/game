@@ -2461,6 +2461,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     const t = tile(nx, ny);
     const targetInteraction = GAME_MAPS[mapIdRef.current].interactions[`${nx},${ny}`];
 
+    // Building doors are facade/trigger tiles. The hero stands on the walkable
+    // tile below the door and enters by pressing up into the door tile.
     if (targetInteraction?.portal && targetInteraction.auto) {
       if (dir === "up" || isIndoor(mapIdRef.current)) {
         warpTo(targetInteraction.portal);
