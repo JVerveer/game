@@ -1,0 +1,38 @@
+import { addRouteRoads, hline, makeBlankMap, rect, vline } from "./utils";
+
+export const buildBrexitonMap = () => {
+  const map = makeBlankMap(56, 34, "T");
+  rect(map, 3, 3, 50, 27, "G");
+  rect(map, 5, 24, 46, 5, "W");
+  rect(map, 24, 23, 8, 7, "R");
+  rect(map, 33, 24, 10, 4, "R");
+  rect(map, 7, 6, 42, 17, "E");
+  hline(map, 7, 49, 18, "R");
+  vline(map, 27, 4, 30, "R");
+  hline(map, 13, 42, 10, "R");
+  hline(map, 13, 42, 15, "R");
+  vline(map, 13, 7, 22, "R");
+  vline(map, 42, 7, 22, "R");
+  addRouteRoads(map, ["S"]);
+  rect(map, 9, 7, 6, 3, "U");
+  rect(map, 17, 7, 6, 3, "U");
+  rect(map, 31, 7, 6, 3, "U");
+  rect(map, 39, 7, 6, 3, "U");
+  rect(map, 9, 12, 6, 3, "B");
+  rect(map, 23, 12, 8, 3, "H");
+  rect(map, 37, 12, 6, 3, "B");
+  rect(map, 8, 20, 14, 4, "A");
+  rect(map, 22, 18, 3, 6, "I");
+  rect(map, 34, 21, 8, 4, "P");
+  rect(map, 44, 20, 4, 3, "U");
+  map[9][14] = "O";
+  map[9][20] = "O";
+  map[9][34] = "O";
+  map[9][42] = "O";
+  map[14][12] = "O";
+  map[14][27] = "O";
+  map[14][40] = "O";
+  map[24][36] = "O";
+  map[24][37] = "O";
+  return map;
+};

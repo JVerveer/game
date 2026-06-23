@@ -1,24 +1,22 @@
 
-# Phaser + Tiled village map demo
+  # Create as Described
 
-This is a small browser-game starter showing the recommended structure:
+  This is a code bundle for Create as Described. The original project is available at https://www.figma.com/design/vXYmACo4qsPcwEBWmxkvAa/Create-as-Described.
 
-- `assets/maps/village-demo.json` is an editable Tiled map.
-- `assets/tilesets/village-tiles.png` is a simple demo tileset.
-- `assets/reference-map.png` is your uploaded image, included as visual reference only.
-- `src/game.ts` renders the map with Phaser 3, adds collision, clickable hotspots, and a movable player.
+  ## Running the code
 
-## Run it
+  Run `npm i` to install the dependencies.
 
-```bash
-npm install
-npm run dev
-```
+  Run `npm run dev` to start the development server.
 
-Open the Vite URL in your browser.
+  ## Pygame RPG Edition
 
-## Edit the map
+  Run `python3 pygame_rpg.py` to start the redesigned 90s RPG version.
 
-Install Tiled, open `assets/maps/village-demo.json`, then edit layers named Ground, Roads, Buildings, Decorations, Collision, and Hotspots.
+  Controls:
 
-For production art, replace `village-tiles.png` with a proper pixel-art tileset that matches your reference image.
+  - `WASD` / arrow keys: move
+  - `Space` / `Z`: talk, advance dialogue, or use the train station
+  - `M`: open the world minimap
+  - `Q` / `Esc`: return to the title screen, close dialogue, or cancel train travel
+  
