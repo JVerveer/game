@@ -17,6 +17,7 @@ import { SATIRIA_ENTRANCES, coord } from "./cityMaps/satiriaLayout";
 //   B = Building       H = Healing Ctr Q = Quest NPC  X = Encounter Zone
 //   C = Cave           D = Dungeon     S = Sand/Beach M = Mountain
 //   V = Save Point     N = NPC         O = Door/Portal P = Train Station
+//   J = Wooden Dock
 
 // ── Design-system overworld display map (18 rows × ~30 cols) ─────────────────
 export const DS_TILE_COLORS: Record<string, string> = {
@@ -56,12 +57,12 @@ export const GAME_TILE_COLORS: Record<string, string> = {
   T: "#182e0a", G: "#265424", W: "#0f4466", R: "#5a4830",
   B: "#32325a", H: "#1e3880", Q: "#5a3e08", X: "#1e4020",
   C: "#2e1c08", D: "#08081a", S: "#7a6030", M: "#282838",
-  V: "#3c2e00", N: "#3a2460", O: "#5a4830", P: "#5a4830",
+  V: "#3c2e00", N: "#3a2460", O: "#5a4830", P: "#5a4830", J: "#7b4d2a",
   A: "#b9a06d", I: "#927947", U: "#713224", E: "#4a4a4a",
   Y: "#76a846",
 };
 
-export const WALKABLE_TILES = new Set(["G", "R", "S", "X", "Q", "V", "N", "O", "L", "E"]);
+export const WALKABLE_TILES = new Set(["G", "R", "S", "X", "Q", "V", "N", "O", "L", "E", "J"]);
 
 export type TownMapId =
   | "satiria"

@@ -2385,7 +2385,6 @@ const pixelBuildingsFor = (mapId: GameMapId, rows: string[][]): PixelBuilding[] 
   mapId === "satiria" ? SATIRIA_BUILDINGS : isTownMap(mapId) ? inferPixelBuildings(rows) : [];
 
 const SATIRIA_OBJECTS: PixelObject[] = [
-  { sprite: "pier", x: 8, y: 25, w: 2, h: 3 },
   { sprite: "fountain", x: 27, y: 18, w: 2, h: 2, className: "pixel-object-fountain" },
   { sprite: "statue", x: 27, y: 17, h: 1.5 },
   { sprite: "bench", x: 24, y: 16 },
@@ -2745,7 +2744,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           left: pos.x * TS, top: pos.y * TS,
           width: TS, height: TS,
           display: "flex", alignItems: "center", justifyContent: "center",
-          filter: "drop-shadow(0 3px 6px rgba(0,0,0,0.9))",
+          filter: "drop-shadow(0 3px 2px rgba(37,32,24,0.28))",
           zIndex: 10, pointerEvents: "none",
           transition: "left 0.18s steps(3, end), top 0.18s steps(3, end)",
         }}>

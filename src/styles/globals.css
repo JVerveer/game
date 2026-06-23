@@ -3560,6 +3560,64 @@
       linear-gradient(#252018 0 0) 6px 6px / 20px 18px no-repeat;
   }
 
+  .trainer-sprite {
+    --hero-frame-a: 0 -240px;
+    --hero-frame-b: -144px -240px;
+    width: 40px;
+    height: 46px;
+    background-image: url("/tilesets/satiria.png");
+    background-position: var(--hero-frame-a);
+    background-repeat: no-repeat;
+    background-size: 384px auto;
+    image-rendering: pixelated;
+    overflow: visible;
+    contain: paint;
+    filter: drop-shadow(0 3px 0 rgba(37, 32, 24, 0.28));
+  }
+
+  .trainer-sprite::before,
+  .trainer-sprite::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .trainer-sprite.facing-down {
+    --hero-frame-a: 0 -240px;
+    --hero-frame-b: -144px -240px;
+  }
+
+  .trainer-sprite.facing-up {
+    --hero-frame-a: -48px -240px;
+    --hero-frame-b: -48px -240px;
+    transform: none;
+  }
+
+  .trainer-sprite.facing-right {
+    --hero-frame-a: -96px -240px;
+    --hero-frame-b: -144px -240px;
+  }
+
+  .trainer-sprite.facing-left {
+    --hero-frame-a: -96px -240px;
+    --hero-frame-b: -144px -240px;
+    transform: scaleX(-1);
+  }
+
+  .trainer-sprite.walking {
+    animation: hero-sprite-step 0.28s steps(1, end) infinite;
+  }
+
+  @keyframes hero-sprite-step {
+    0%, 100% {
+      background-position: var(--hero-frame-a);
+      translate: 0 0;
+    }
+    50% {
+      background-position: var(--hero-frame-b);
+      translate: 0 -2px;
+    }
+  }
+
   @keyframes grass-sway {
     0% { transform: translateX(0); opacity: 0.8; }
     50% { transform: translateX(2px); opacity: 1; }

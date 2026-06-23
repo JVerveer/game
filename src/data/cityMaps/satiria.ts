@@ -22,13 +22,6 @@ export const buildSatiriaMap = () => {
   rect(map, 23, 16, 11, 7, "E");
   rect(map, 24, 17, 9, 5, "E");
 
-  // Pond and pier are written after paths so water never sits on top of a road.
-  rect(map, 3, 25, 11, 7, "S");
-  rect(map, 4, 26, 9, 5, "W");
-  rect(map, 6, 28, 2, 2, "W");
-  rect(map, 11, 29, 2, 1, "W");
-  rect(map, 8, 25, 2, 3, "R");
-
   SATIRIA_BUILDINGS_LAYOUT.forEach((building) => {
     const tile = building.type === "shop"
       ? "A"
@@ -83,6 +76,12 @@ export const buildSatiriaMap = () => {
   rect(map, 15, 27, 2, 2, "Y");
   rect(map, 46, 25, 2, 2, "Y");
   rect(map, 48, 28, 3, 3, "Y");
+
+  // Stamp the pond after decorative terrain so trees, flowers, and paths cannot
+  // leak into the water. The dock is real terrain and runs from shore inward.
+  rect(map, 3, 25, 11, 7, "S");
+  rect(map, 4, 26, 9, 5, "W");
+  rect(map, 8, 24, 2, 6, "J");
 
   SATIRIA_ENTRANCES.forEach(({ door }) => {
     map[door.y][door.x] = "O";

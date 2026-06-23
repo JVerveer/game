@@ -320,6 +320,93 @@ tile(34, (x, y) => {
   fill(x + 55, y + 96, 10, 10, rgba("#79b55a"));
 });
 
+const drawHero = (index, direction) => {
+  tile(index, (x, y) => {
+    const skin = rgba("#f3c68f");
+    const skinShade = rgba("#d99b68");
+    const red = rgba("#ca3c32");
+    const redDark = rgba("#8d2b29");
+    const blue = rgba("#345f9b");
+    const cream = rgba("#f8e8b8");
+    const shoe = rgba("#2a2119");
+    const hair = rgba("#5c351f");
+    fill(x, y, TILE, TILE, rgba("#000000", 0));
+    fill(x + 14, y + 41, 20, 4, rgba("#000000", 80));
+
+    if (direction === "back") {
+      fill(x + 14, y + 3, 20, 5, shoe);
+      fill(x + 15, y + 1, 17, 7, red);
+      fill(x + 17, y + 8, 14, 13, redDark);
+      fill(x + 13, y + 21, 22, 4, shoe);
+      fill(x + 15, y + 25, 18, 10, blue);
+      fill(x + 10, y + 25, 5, 10, cream);
+      fill(x + 33, y + 25, 5, 10, cream);
+      fill(x + 15, y + 35, 7, 7, shoe);
+      fill(x + 27, y + 35, 7, 7, shoe);
+      return;
+    }
+
+    if (direction === "side") {
+      fill(x + 12, y + 5, 22, 5, shoe);
+      fill(x + 14, y + 1, 15, 8, red);
+      fill(x + 29, y + 4, 7, 4, red);
+      fill(x + 15, y + 10, 16, 13, skin);
+      fill(x + 14, y + 10, 4, 9, hair);
+      fill(x + 29, y + 15, 3, 3, shoe);
+      fill(x + 28, y + 20, 4, 2, skinShade);
+      fill(x + 13, y + 23, 20, 4, shoe);
+      fill(x + 16, y + 27, 15, 9, blue);
+      fill(x + 30, y + 27, 6, 8, cream);
+      fill(x + 12, y + 27, 5, 8, cream);
+      fill(x + 15, y + 36, 7, 6, shoe);
+      fill(x + 27, y + 36, 7, 6, shoe);
+      return;
+    }
+
+    if (direction === "walk") {
+      fill(x + 12, y + 5, 24, 5, shoe);
+      fill(x + 14, y + 1, 18, 8, red);
+      fill(x + 21, y + 3, 8, 3, cream);
+      fill(x + 15, y + 10, 18, 13, skin);
+      fill(x + 11, y + 13, 5, 8, hair);
+      fill(x + 32, y + 13, 5, 8, hair);
+      fill(x + 19, y + 15, 3, 3, shoe);
+      fill(x + 28, y + 15, 3, 3, shoe);
+      fill(x + 23, y + 21, 5, 2, skinShade);
+      fill(x + 13, y + 23, 22, 4, shoe);
+      fill(x + 16, y + 27, 17, 9, blue);
+      fill(x + 22, y + 27, 5, 9, cream);
+      fill(x + 9, y + 28, 6, 9, cream);
+      fill(x + 34, y + 25, 5, 9, cream);
+      fill(x + 12, y + 36, 8, 6, shoe);
+      fill(x + 29, y + 35, 8, 6, shoe);
+      return;
+    }
+
+    fill(x + 12, y + 5, 24, 5, shoe);
+    fill(x + 14, y + 1, 18, 8, red);
+    fill(x + 21, y + 3, 8, 3, cream);
+    fill(x + 15, y + 10, 18, 13, skin);
+    fill(x + 11, y + 13, 5, 8, hair);
+    fill(x + 32, y + 13, 5, 8, hair);
+    fill(x + 19, y + 15, 3, 3, shoe);
+    fill(x + 28, y + 15, 3, 3, shoe);
+    fill(x + 23, y + 21, 5, 2, skinShade);
+    fill(x + 13, y + 23, 22, 4, shoe);
+    fill(x + 16, y + 27, 17, 9, blue);
+    fill(x + 22, y + 27, 5, 9, cream);
+    fill(x + 9, y + 25, 6, 9, cream);
+    fill(x + 34, y + 25, 5, 9, cream);
+    fill(x + 15, y + 36, 7, 6, shoe);
+    fill(x + 27, y + 36, 7, 6, shoe);
+  });
+};
+
+drawHero(40, "front");
+drawHero(41, "back");
+drawHero(42, "side");
+drawHero(43, "walk");
+
 const crcTable = new Uint32Array(256).map((_, n) => {
   let c = n;
   for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1;
