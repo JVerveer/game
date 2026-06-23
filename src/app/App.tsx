@@ -2322,13 +2322,18 @@ const sceneStyle = (x: number, y: number, w = 1, h = 1): SceneStyle => ({
 });
 
 const SATIRIA_FLOWERS = [
-  [5, 5], [16, 4], [37, 5], [43, 7], [6, 16], [14, 15],
-  [35, 15], [17, 29], [21, 27], [7, 31], [13, 31], [39, 31], [44, 30],
+  [5, 5], [17, 4], [38, 5], [48, 8], [7, 15], [15, 14],
+  [35, 15], [17, 29], [22, 28], [7, 31], [13, 31], [39, 31], [44, 30],
 ];
 
 const SATIRIA_TREES = [
-  [5, 8], [17, 8], [39, 8], [45, 8], [5, 15], [14, 15], [19, 15],
-  [17, 26], [21, 26], [32, 25], [36, 26], [18, 29], [23, 30], [34, 30], [41, 30],
+  [5, 8], [17, 8], [39, 8], [48, 12], [5, 15], [20, 15],
+  [17, 26], [22, 26], [32, 25], [36, 26], [18, 30], [24, 30], [34, 30], [41, 30],
+];
+
+const SATIRIA_TALL_GRASS = [
+  [18, 25, 5, 3],
+  [31, 25, 7, 4],
 ];
 
 const SATIRIA_BUILDINGS = [
@@ -2361,6 +2366,11 @@ function SatiriaScene() {
 
       <i className="satiria-pond-coded" style={sceneStyle(3, 25, 11, 7)} />
       <i className="satiria-pier-coded" style={sceneStyle(8, 25, 2, 3)} />
+
+      {SATIRIA_TALL_GRASS.map(([x, y, w, h], index) => (
+        <i key={`tall-grass-${index}`} className="satiria-tall-grass" style={sceneStyle(x, y, w, h)} />
+      ))}
+
       {SATIRIA_BUILDINGS.map((building, index) => (
         <div
           key={`${building.kind}-${index}`}

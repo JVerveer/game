@@ -2656,6 +2656,17 @@
     background-size: 100% 100%;
   }
 
+  .satiria-tall-grass {
+    z-index: 2;
+    background:
+      linear-gradient(80deg, transparent 0 28%, #2f6b25 28% 35%, transparent 35%),
+      linear-gradient(105deg, transparent 0 48%, #1f5522 48% 56%, transparent 56%),
+      linear-gradient(72deg, transparent 0 68%, #3d7c2f 68% 75%, transparent 75%),
+      #5f9337;
+    background-size: 14px 28px, 18px 34px, 22px 32px, 100% 100%;
+    box-shadow: inset 0 0 0 2px rgba(28, 75, 24, 0.28);
+  }
+
   .satiria-coded-building {
     z-index: 5;
     filter: none;
@@ -2751,26 +2762,23 @@
     top: 57%;
     width: 9%;
     height: 8%;
-    border: 2px solid #2a2119;
+    border: 0;
     background: #e3c56f;
     box-shadow:
-      calc(var(--w) * 25px) 0 0 -2px #e3c56f,
-      calc(var(--w) * 25px) 0 0 0 #2a2119;
+      calc(var(--w) * 25px) 0 0 0 #e3c56f;
   }
 
   .building-hall .windows {
     left: 18%;
     box-shadow:
-      calc(var(--w) * 17px) 0 0 -2px #e3c56f,
-      calc(var(--w) * 17px) 0 0 0 #2a2119,
-      calc(var(--w) * 31px) 0 0 -2px #e3c56f,
-      calc(var(--w) * 31px) 0 0 0 #2a2119;
+      calc(var(--w) * 17px) 0 0 0 #e3c56f,
+      calc(var(--w) * 31px) 0 0 0 #e3c56f;
   }
 
   .satiria-coded-building .chimney {
-    z-index: 1;
+    z-index: 8;
     left: 82%;
-    top: 0;
+    top: -2%;
     width: 8%;
     height: 22%;
     border: 4px solid #2a2119;
@@ -2845,11 +2853,11 @@
 
   .map-satiria .tile-X {
     background:
-      radial-gradient(circle at 50% 26%, #2e682c 0 12px, transparent 13px),
-      radial-gradient(circle at 31% 42%, #3f8136 0 10px, transparent 11px),
-      radial-gradient(circle at 68% 44%, #315f2a 0 11px, transparent 12px),
-      linear-gradient(90deg, transparent 42%, #70471f 42% 58%, transparent 58%),
-      #70a646 !important;
+      linear-gradient(80deg, transparent 0 28%, #2f6b25 28% 35%, transparent 35%),
+      linear-gradient(105deg, transparent 0 48%, #1f5522 48% 56%, transparent 56%),
+      linear-gradient(72deg, transparent 0 68%, #3d7c2f 68% 75%, transparent 75%),
+      #5f9337 !important;
+    background-size: 14px 28px, 18px 34px, 22px 32px, 100% 100%;
   }
 
   .map-satiria .tile-T {
