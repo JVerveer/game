@@ -51,13 +51,10 @@ const ATLAS: Record<string, number> = {
   sign: 22,
   save: 23,
   grassAlt: 24,
-  pathAlt: 25,
-  waterAlt: 26,
-  plazaAlt: 27,
+  mediumTree: 32,
+  largeTree: 34,
   tallGrassAlt: 28,
   treeAlt: 29,
-  wallAlt: 30,
-  shoreAlt: 31,
 };
 
 const BUILDING_TILES = new Set(["A", "B", "H", "I", "P", "U"]);
@@ -83,10 +80,10 @@ const terrainSpriteFor = (rows: string[][], x: number, y: number) => {
   const tile = rows[y]?.[x] ?? "G";
   const roll = hashTile(x, y);
 
-  if (tile === "R" || tile === "O" || tile === "V") return roll > 78 ? "pathAlt" : "path";
-  if (tile === "E") return roll > 70 ? "plazaAlt" : "plaza";
-  if (tile === "W") return roll > 60 ? "waterAlt" : "water";
-  if (tile === "S") return roll > 50 ? "shoreAlt" : "shore";
+  if (tile === "R" || tile === "O" || tile === "V") return "path";
+  if (tile === "E") return "plaza";
+  if (tile === "W") return "water";
+  if (tile === "S") return "shore";
   if (tile === "X") return roll > 55 ? "tallGrassAlt" : "tallGrass";
   if (tile === "T") return roll > 67 ? "treeAlt" : "tree";
   if (tile === "F") return "fence";
@@ -114,7 +111,8 @@ const edgeMaskFor = (rows: string[][], x: number, y: number, family: string) => 
 const groundClassFor = (rows: string[][], x: number, y: number) => {
   const tile = rows[y]?.[x];
   if (tile === "R" || tile === "O" || tile === "V" || tile === "E") return `pixel-ground-road ${edgeMaskFor(rows, x, y, "road")}`;
-  if (tile === "W" || tile === "S") return `pixel-ground-water ${edgeMaskFor(rows, x, y, "water")}`;
+  if (tile === "W") return `pixel-ground-water ${edgeMaskFor(rows, x, y, "water")}`;
+  if (tile === "S") return "pixel-ground-shore";
   if (tile === "X") return "pixel-ground-tall";
   return "";
 };
@@ -123,8 +121,7 @@ const roofFor = (color: PixelBuildingColor) => `${color}Roof`;
 
 const buildingTileFor = (building: PixelBuilding, xx: number, yy: number) => {
   if (yy < 2) return roofFor(building.color);
-  if (yy === building.h - 1 && (xx === 0 || xx === building.w - 1)) return "wallAlt";
-  return hashTile(building.x + xx, building.y + yy) > 72 ? "wallAlt" : "wall";
+  return "wall";
 };
 
 function PixelBuildingSprite({ building, index }: { building: PixelBuilding; index: number }) {
@@ -157,6 +154,7 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
       <i className="pixel-sprite-tile pixel-building-window" style={spriteStyle("window", building.w - 2, windowY)} />
       <i className="pixel-sprite-tile pixel-building-chimney" style={spriteStyle("chimney", building.w - 1.25, -0.45)} />
       {building.crest && <i className="pixel-sprite-tile pixel-building-sign" style={spriteStyle("sign", doorX, 2)} />}
+      {building.crest && <span className="pixel-building-crest">{building.crest}</span>}
     </div>
   );
 }

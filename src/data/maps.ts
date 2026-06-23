@@ -57,6 +57,7 @@ export const GAME_TILE_COLORS: Record<string, string> = {
   C: "#2e1c08", D: "#08081a", S: "#7a6030", M: "#282838",
   V: "#3c2e00", N: "#3a2460", O: "#5a4830", P: "#5a4830",
   A: "#b9a06d", I: "#927947", U: "#713224", E: "#4a4a4a",
+  Y: "#76a846",
 };
 
 export const WALKABLE_TILES = new Set(["G", "R", "S", "X", "Q", "V", "N", "O", "L", "E"]);

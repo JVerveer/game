@@ -2312,13 +2312,13 @@ const INITIAL_NPCS: MovingNpc[] = [
 ];
 
 const SATIRIA_BUILDINGS: PixelBuilding[] = [
-  { x: 8, y: 5, w: 8, h: 5, color: "red", kind: "house", crest: "★" },
-  { x: 19, y: 5, w: 8, h: 5, color: "blue", kind: "house", crest: "♜" },
+  { x: 8, y: 5, w: 7, h: 5, color: "red", kind: "house", crest: "★" },
+  { x: 19, y: 5, w: 10, h: 6, color: "blue", kind: "hall", crest: "+" },
   { x: 30, y: 5, w: 7, h: 5, color: "purple", kind: "house", crest: "♦" },
-  { x: 40, y: 5, w: 7, h: 5, color: "red", kind: "house", crest: "□" },
-  { x: 4, y: 17, w: 7, h: 5, color: "green", kind: "shop", crest: "" },
-  { x: 12, y: 17, w: 7, h: 5, color: "blue", kind: "shop", crest: "" },
-  { x: 37, y: 17, w: 10, h: 6, color: "red", kind: "hall", crest: "★" },
+  { x: 40, y: 5, w: 8, h: 5, color: "red", kind: "house", crest: "□" },
+  { x: 3, y: 16, w: 9, h: 7, color: "green", kind: "shop", crest: "$" },
+  { x: 13, y: 17, w: 6, h: 5, color: "blue", kind: "house", crest: "!" },
+  { x: 36, y: 16, w: 12, h: 8, color: "red", kind: "station", crest: "T" },
 ];
 
 const SATIRIA_OBJECTS: PixelObject[] = [
@@ -2333,6 +2333,9 @@ const SATIRIA_OBJECTS: PixelObject[] = [
   { sprite: "lamp", x: 31.2, y: 15.2 },
   { sprite: "lamp", x: 25.4, y: 21.3 },
   { sprite: "lamp", x: 31.2, y: 21.3 },
+  { sprite: "mediumTree", x: 15, y: 27, w: 2, h: 2 },
+  { sprite: "mediumTree", x: 46, y: 25, w: 2, h: 2 },
+  { sprite: "largeTree", x: 48, y: 28, w: 3, h: 3 },
 ];
 
 function SatiriaScene() {

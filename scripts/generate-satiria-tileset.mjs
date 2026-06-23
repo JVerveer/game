@@ -4,7 +4,7 @@ import { deflateSync } from "node:zlib";
 
 const TILE = 48;
 const COLS = 8;
-const ROWS = 4;
+const ROWS = 7;
 const W = TILE * COLS;
 const H = TILE * ROWS;
 const data = new Uint8Array(W * H * 4);
@@ -138,9 +138,10 @@ tile(7, (x, y) => {
 [c.roofRed, c.roofBlue, c.roofPurple, c.roofGreen].forEach((roof, i) => {
   tile(8 + i, (x, y) => {
     fill(x, y, TILE, TILE, roof);
-    for (let yy = 6; yy < TILE; yy += 9) fill(x, y + yy, TILE, 2, c.roofDark);
-    for (let xx = 0; xx < TILE; xx += 16) fill(x + xx, y, 2, TILE, rgba("#2a2119", 150));
-    rect(x, y, TILE, TILE, c.outline);
+    for (let yy = 6; yy < TILE; yy += 9) fill(x, y + yy, TILE, 2, rgba("#6d3428", 170));
+    for (let xx = 8; xx < TILE; xx += 16) fill(x + xx, y + 4, 2, TILE - 8, rgba("#fff1a2", 45));
+    fill(x, y, TILE, 2, rgba("#2a2119", 170));
+    fill(x, y + TILE - 3, TILE, 3, rgba("#5b2d25", 190));
   });
 });
 
@@ -284,6 +285,29 @@ tile(31, (x, y) => {
   fill(x, y, TILE, TILE, rgba("#c9a973"));
   checkerNoise(x, y, rgba("#e7c986"), rgba("#9a7648"), 12);
   for (let xx = 0; xx < TILE; xx += 12) fill(x + xx, y + 39, 7, 2, rgba("#7f6848"));
+});
+
+tile(32, (x, y) => {
+  fill(x, y, TILE * 2, TILE * 2, rgba("#000000", 0));
+  fill(x + 41, y + 56, 14, 35, c.trunk);
+  fill(x + 20, y + 29, 47, 44, c.leaf);
+  fill(x + 5, y + 43, 44, 34, c.leafLite);
+  fill(x + 39, y + 14, 47, 46, rgba("#285f24"));
+  fill(x + 55, y + 38, 34, 37, c.leaf);
+  fill(x + 25, y + 20, 18, 11, rgba("#5e9b43"));
+  fill(x + 56, y + 24, 14, 9, rgba("#5e9b43"));
+});
+
+tile(34, (x, y) => {
+  fill(x, y, TILE * 3, TILE * 3, rgba("#000000", 0));
+  fill(x + 64, y + 82, 18, 55, c.trunk);
+  fill(x + 31, y + 55, 78, 62, c.leaf);
+  fill(x + 12, y + 73, 61, 48, c.leafLite);
+  fill(x + 55, y + 24, 69, 67, rgba("#275d24"));
+  fill(x + 84, y + 62, 48, 53, c.leaf);
+  fill(x + 36, y + 30, 24, 14, rgba("#609e45"));
+  fill(x + 86, y + 38, 20, 13, rgba("#609e45"));
+  fill(x + 55, y + 96, 10, 10, rgba("#79b55a"));
 });
 
 const crcTable = new Uint32Array(256).map((_, n) => {

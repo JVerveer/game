@@ -29,15 +29,21 @@ export const buildSatiriaMap = () => {
   rect(map, 8, 25, 2, 3, "R");
 
   // Houses along the upper road.
-  rect(map, 8, 5, 8, 5, "B");
-  rect(map, 19, 5, 8, 5, "H");
+  rect(map, 8, 5, 7, 5, "B");
+  rect(map, 19, 5, 10, 6, "H");
   rect(map, 30, 5, 7, 5, "U");
-  rect(map, 40, 5, 7, 5, "B");
+  rect(map, 40, 5, 8, 5, "B");
 
   // Shops and larger town hall / station block.
-  rect(map, 4, 17, 7, 5, "A");
-  rect(map, 12, 17, 7, 5, "H");
-  rect(map, 37, 17, 10, 6, "P");
+  rect(map, 3, 16, 9, 7, "A");
+  rect(map, 13, 17, 6, 5, "H");
+  rect(map, 36, 16, 12, 8, "P");
+
+  // Door spurs connect every entrance into the town road / plaza network.
+  vline(map, 12, 11, 13, "R");
+  vline(map, 23, 11, 13, "R");
+  vline(map, 33, 11, 13, "R");
+  vline(map, 43, 11, 13, "R");
 
   // Yards, fences, hedges, flower patches, and tree pockets.
   hline(map, 7, 11, 11, "F");
@@ -53,13 +59,14 @@ export const buildSatiriaMap = () => {
   hline(map, 16, 20, 22, "F");
   hline(map, 36, 40, 24, "F");
   hline(map, 43, 48, 24, "F");
+  hline(map, 34, 42, 24, "R");
   rect(map, 18, 25, 5, 3, "X");
   rect(map, 31, 25, 7, 4, "X");
   rect(map, 14, 12, 4, 1, "L");
   rect(map, 38, 12, 3, 1, "L");
-  rect(map, 5, 23, 3, 1, "L");
-  rect(map, 34, 14, 4, 2, "L");
-  rect(map, 43, 14, 3, 2, "L");
+  rect(map, 20, 22, 3, 1, "L");
+  rect(map, 34, 15, 4, 1, "L");
+  rect(map, 43, 15, 3, 1, "L");
   rect(map, 34, 25, 4, 2, "L");
   rect(map, 44, 25, 3, 2, "L");
 
@@ -70,6 +77,12 @@ export const buildSatiriaMap = () => {
   ].forEach(([x, y]) => {
     if (map[y]?.[x] === "G" || map[y]?.[x] === "X") map[y][x] = "T";
   });
+
+  // Larger sprite trees use grass-looking blocker tiles underneath, so the
+  // player cannot walk through them and no tiny tree art leaks through.
+  rect(map, 15, 27, 2, 2, "Y");
+  rect(map, 46, 25, 2, 2, "Y");
+  rect(map, 48, 28, 3, 3, "Y");
 
   // Door / interaction tiles are written last so fences and landscaping cannot
   // accidentally block entrances.
