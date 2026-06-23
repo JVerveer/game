@@ -18,40 +18,40 @@ export const buildSatiriaMap = () => {
   rect(map, 47, 27, 4, 5, "M");
 
   // Pond, shore and pier at lower-left.
-  rect(map, 4, 25, 12, 7, "S");
-  rect(map, 5, 26, 10, 5, "W");
-  rect(map, 7, 28, 2, 2, "W");
-  rect(map, 13, 28, 2, 2, "W");
-  rect(map, 8, 24, 2, 3, "R");
+  rect(map, 3, 24, 11, 8, "S");
+  rect(map, 4, 25, 9, 6, "W");
+  rect(map, 6, 27, 2, 2, "W");
+  rect(map, 11, 28, 2, 2, "W");
+  rect(map, 8, 23, 2, 4, "R");
 
   // Cross roads and stone town square.
   vline(map, 27, 0, 34, "R");
   vline(map, 28, 0, 34, "R");
   hline(map, 6, 49, 13, "R");
   hline(map, 6, 49, 14, "R");
-  hline(map, 8, 27, 23, "R");
-  hline(map, 8, 27, 24, "R");
+  hline(map, 5, 27, 23, "R");
+  hline(map, 5, 27, 24, "R");
   rect(map, 23, 16, 11, 7, "E");
   rect(map, 24, 17, 9, 5, "E");
 
   // Houses along the upper road.
-  rect(map, 8, 5, 7, 5, "B");
-  rect(map, 20, 5, 7, 5, "H");
-  rect(map, 32, 5, 7, 5, "U");
-  rect(map, 43, 5, 7, 5, "B");
+  rect(map, 8, 5, 8, 5, "B");
+  rect(map, 19, 5, 8, 5, "H");
+  rect(map, 30, 5, 7, 5, "U");
+  rect(map, 40, 5, 7, 5, "B");
 
   // Shops and larger town hall / station block.
-  rect(map, 6, 17, 7, 5, "A");
-  rect(map, 15, 17, 7, 5, "H");
+  rect(map, 4, 17, 7, 5, "A");
+  rect(map, 12, 17, 7, 5, "H");
   rect(map, 37, 17, 10, 6, "P");
 
   // Door / interaction tiles.
-  map[10][11] = "O";
+  map[10][12] = "O";
   map[10][23] = "O";
-  map[10][35] = "O";
-  map[10][46] = "O";
-  map[22][9] = "O";
-  map[22][18] = "O";
+  map[10][33] = "O";
+  map[10][43] = "O";
+  map[22][7] = "O";
+  map[22][15] = "O";
   map[23][41] = "O";
   map[23][42] = "O";
   map[19][26] = "V";
@@ -59,10 +59,10 @@ export const buildSatiriaMap = () => {
   // Yards, fences, hedges, flower patches, and tree pockets.
   hline(map, 7, 16, 11, "F");
   hline(map, 19, 27, 11, "F");
-  hline(map, 31, 40, 11, "F");
-  hline(map, 42, 51, 11, "F");
-  hline(map, 6, 13, 22, "F");
-  hline(map, 15, 22, 22, "F");
+  hline(map, 30, 38, 11, "F");
+  hline(map, 40, 49, 11, "F");
+  hline(map, 4, 12, 22, "F");
+  hline(map, 12, 20, 22, "F");
   hline(map, 36, 48, 24, "F");
   rect(map, 4, 4, 3, 2, "X");
   rect(map, 39, 4, 3, 2, "X");

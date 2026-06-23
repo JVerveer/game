@@ -2200,13 +2200,15 @@ const INITIAL_NPCS: MovingNpc[] = [
   })),
 ];
 
-type SceneStyle = React.CSSProperties & Record<"--x" | "--y" | "--w" | "--h", number>;
+type SceneStyle = React.CSSProperties & Record<"--w" | "--h", number>;
 
 const sceneStyle = (x: number, y: number, w = 1, h = 1): SceneStyle => ({
-  "--x": x,
-  "--y": y,
   "--w": w,
   "--h": h,
+  left: x * 48,
+  top: y * 48,
+  width: w * 48,
+  height: h * 48,
 });
 
 const SATIRIA_FLOWERS = [
@@ -2222,13 +2224,13 @@ const SATIRIA_TREES = [
 ];
 
 const SATIRIA_BUILDINGS = [
-  { x: 8, y: 4, w: 7, h: 6, color: "red", kind: "house", crest: "★" },
-  { x: 20, y: 4, w: 7, h: 6, color: "blue", kind: "house", crest: "♜" },
-  { x: 32, y: 4, w: 6, h: 6, color: "purple", kind: "house", crest: "♦" },
-  { x: 43, y: 4, w: 7, h: 6, color: "red", kind: "house", crest: "□" },
-  { x: 6, y: 16, w: 7, h: 6, color: "green", kind: "shop", crest: "" },
-  { x: 15, y: 16, w: 7, h: 6, color: "blue", kind: "shop", crest: "" },
-  { x: 37, y: 16, w: 10, h: 8, color: "red", kind: "hall", crest: "★" },
+  { x: 8.2, y: 3.3, w: 7.4, h: 6.2, color: "red", kind: "house", crest: "★" },
+  { x: 19.3, y: 3.2, w: 7, h: 6.2, color: "blue", kind: "house", crest: "♜" },
+  { x: 30.1, y: 3.2, w: 6.5, h: 6.2, color: "purple", kind: "house", crest: "♦" },
+  { x: 40.5, y: 3.3, w: 6.8, h: 6.2, color: "red", kind: "house", crest: "□" },
+  { x: 4.2, y: 15.3, w: 6.7, h: 6.4, color: "green", kind: "shop", crest: "" },
+  { x: 12, y: 15.3, w: 6.8, h: 6.4, color: "blue", kind: "shop", crest: "" },
+  { x: 37.1, y: 15.6, w: 9.7, h: 7.8, color: "red", kind: "hall", crest: "★" },
 ];
 
 function SatiriaScene() {
@@ -2245,14 +2247,14 @@ function SatiriaScene() {
 
       <i className="satiria-road road-main-h" style={sceneStyle(6, 13, 43, 2)} />
       <i className="satiria-road road-main-v" style={sceneStyle(26.5, 0, 2, 35)} />
-      <i className="satiria-road road-west-lower" style={sceneStyle(8, 23, 20, 2)} />
-      <i className="satiria-road road-hall" style={sceneStyle(42, 23, 2, 6)} />
+      <i className="satiria-road road-west-lower" style={sceneStyle(5, 23, 23, 2)} />
+      <i className="satiria-road road-hall" style={sceneStyle(41.6, 23, 2, 6)} />
       <i className="satiria-plaza" style={sceneStyle(23, 16, 11, 7)} />
 
-      <i className="satiria-pond-coded" style={sceneStyle(4.5, 25, 11, 6.5)} />
-      <i className="satiria-pier-coded" style={sceneStyle(8.3, 23.6, 1.9, 3.2)} />
-      <i className="satiria-mountains mountain-a" style={sceneStyle(48, 5.5, 5, 11)} />
-      <i className="satiria-mountains mountain-b" style={sceneStyle(48, 24, 5, 8)} />
+      <i className="satiria-pond-coded" style={sceneStyle(3.6, 24.4, 9.6, 6.7)} />
+      <i className="satiria-pier-coded" style={sceneStyle(7.6, 23.2, 1.5, 3.5)} />
+      <i className="satiria-mountains mountain-a" style={sceneStyle(47.7, 5, 5.2, 11.4)} />
+      <i className="satiria-mountains mountain-b" style={sceneStyle(47.8, 23.7, 5.2, 8.4)} />
 
       {SATIRIA_BUILDINGS.map((building, index) => (
         <div
@@ -2271,8 +2273,8 @@ function SatiriaScene() {
       ))}
 
       {[
-        [6.5, 10.7, 10, 1], [19, 10.7, 9, 1], [31, 10.7, 8, 1], [42, 10.7, 10, 1],
-        [5, 21.8, 9, 1], [14, 21.8, 9, 1], [36, 24, 12, 1], [36, 16, 12, 1],
+        [6.5, 10.7, 10, 1], [18.8, 10.7, 8.8, 1], [29.7, 10.7, 7.6, 1], [39.8, 10.7, 8.8, 1],
+        [3.6, 21.8, 8.2, 1], [11.5, 21.8, 8.2, 1], [36, 24, 12, 1], [36, 16, 12, 1],
       ].map(([x, y, w, h], index) => (
         <i key={`fence-${index}`} className="satiria-coded-fence" style={sceneStyle(x, y, w, h)} />
       ))}

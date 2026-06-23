@@ -2574,18 +2574,11 @@
   }
 
   .satiria-scene i,
-  .satiria-scene span {
+  .satiria-scene span,
+  .satiria-coded-building {
     position: absolute;
     display: block;
     font-style: normal;
-  }
-
-  .satiria-scene > i,
-  .satiria-coded-building {
-    left: calc(var(--x) * 48px);
-    top: calc(var(--y) * 48px);
-    width: calc(var(--w) * 48px);
-    height: calc(var(--h) * 48px);
   }
 
   .satiria-road {
