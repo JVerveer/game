@@ -11,12 +11,6 @@ export const buildSatiriaMap = () => {
   rect(map, 0, 0, 3, 35, "T");
   rect(map, 53, 0, 3, 35, "T");
 
-  // Right-side rocky ridge.
-  rect(map, 48, 5, 5, 10, "M");
-  rect(map, 46, 8, 4, 10, "M");
-  rect(map, 49, 24, 4, 8, "M");
-  rect(map, 47, 27, 4, 5, "M");
-
   // Pond, shore and pier at lower-left.
   rect(map, 3, 24, 11, 8, "S");
   rect(map, 4, 25, 9, 6, "W");

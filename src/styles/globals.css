@@ -3308,15 +3308,15 @@
 
   .trainer-sprite.facing-up::before {
     background:
-      linear-gradient(#252018 0 0) 7px 0 / 20px 23px no-repeat,
       linear-gradient(#d73d32 0 0) 8px 1px / 18px 8px no-repeat,
-      linear-gradient(#d73d32 0 0) 9px 9px / 16px 12px no-repeat,
-      linear-gradient(#252018 0 0) 7px 23px / 18px 14px no-repeat,
-      linear-gradient(#4d77b0 0 0) 9px 25px / 14px 10px no-repeat,
+      linear-gradient(#b93028 0 0) 9px 9px / 16px 12px no-repeat,
+      linear-gradient(#4d77b0 0 0) 9px 24px / 14px 11px no-repeat,
       linear-gradient(#fff8c8 0 0) 4px 25px / 5px 9px no-repeat,
       linear-gradient(#fff8c8 0 0) 23px 25px / 5px 9px no-repeat,
       linear-gradient(#252018 0 0) 8px 36px / 7px 6px no-repeat,
       linear-gradient(#252018 0 0) 18px 36px / 7px 6px no-repeat;
+    background-repeat: no-repeat;
+    box-shadow: none !important;
   }
 
   .trainer-sprite.facing-up::after {

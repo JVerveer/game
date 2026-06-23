@@ -2187,6 +2187,116 @@ const INITIAL_NPCS: MovingNpc[] = [
     lines: ['"I saw the shop clerk polish one potion for six hours."', '"That means it is probably rare."'],
     variant: 1,
   },
+  {
+    id: "satiria-gardener",
+    mapId: "satiria",
+    x: 15,
+    y: 25,
+    homeX: 15,
+    homeY: 25,
+    name: "Garden Keeper",
+    lines: ['"The flowers are placed by permit now."', '"No petals on the roads. We learned."'],
+    variant: 2,
+  },
+  {
+    id: "satiria-fisher",
+    mapId: "satiria",
+    x: 10,
+    y: 24,
+    homeX: 10,
+    homeY: 24,
+    name: "Pond Fisher",
+    lines: ['"The pond is square because the town planner loves grids."', '"The fish seem undecided."'],
+    variant: 3,
+  },
+  {
+    id: "satiria-baker",
+    mapId: "satiria",
+    x: 20,
+    y: 24,
+    homeX: 20,
+    homeY: 24,
+    name: "Early Baker",
+    lines: ['"Fresh bread, old jokes, same oven."', '"Try not to battle near the baguettes."'],
+    variant: 4,
+  },
+  {
+    id: "satiria-runner",
+    mapId: "satiria",
+    x: 24,
+    y: 16,
+    homeX: 24,
+    homeY: 16,
+    name: "Town Runner",
+    lines: ['"I deliver mail between houses that are eight tiles apart."', '"It is honest cardio."'],
+    variant: 2,
+  },
+  {
+    id: "satiria-bench-critic",
+    mapId: "satiria",
+    x: 32,
+    y: 21,
+    homeX: 32,
+    homeY: 21,
+    name: "Bench Critic",
+    lines: ['"This bench has excellent sitting energy."', '"Four stars. Needs fewer speeches."'],
+    variant: 3,
+  },
+  {
+    id: "satiria-lamp-lighter",
+    mapId: "satiria",
+    x: 31,
+    y: 16,
+    homeX: 31,
+    homeY: 16,
+    name: "Lamp Lighter",
+    lines: ['"I keep the plaza lit and the rumors dim."', '"Usually."'],
+    variant: 4,
+  },
+  {
+    id: "satiria-station-aide",
+    mapId: "satiria",
+    x: 39,
+    y: 24,
+    homeX: 39,
+    homeY: 24,
+    name: "Station Aide",
+    lines: ['"The train doors are standardized now."', '"A tiny miracle of municipal design."'],
+    variant: 1,
+  },
+  {
+    id: "satiria-history-buff",
+    mapId: "satiria",
+    x: 29,
+    y: 21,
+    homeX: 29,
+    homeY: 21,
+    name: "History Buff",
+    lines: ['"The statue predates the fountain by one committee meeting."', '"Very historic."'],
+    variant: 2,
+  },
+  {
+    id: "satiria-tree-watcher",
+    mapId: "satiria",
+    x: 21,
+    y: 28,
+    homeX: 21,
+    homeY: 28,
+    name: "Tree Watcher",
+    lines: ['"Trees belong on grass, not rooftops."', '"I am glad someone finally said it."'],
+    variant: 3,
+  },
+  {
+    id: "satiria-path-sweeper",
+    mapId: "satiria",
+    x: 26,
+    y: 24,
+    homeX: 26,
+    homeY: 24,
+    name: "Path Sweeper",
+    lines: ['"I sweep the roads so no invisible pebbles stop heroes."', '"You are welcome, probably."'],
+    variant: 4,
+  },
   ...TOWN_THEMES.slice(1).map((theme, index) => ({
     id: `${theme.id}-local`,
     mapId: theme.id,
@@ -2460,9 +2570,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     const off: Record<string, [number, number]> = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
     const [ox, oy] = off[facingRef.current];
 
-    // check adjacent then current tile
+    // Check adjacent then current tile. Auto doors only trigger from the
+    // current tile so buildings cannot be entered from a step too far away.
     for (const [cx, cy] of [[cur.x + ox, cur.y + oy], [cur.x, cur.y]]) {
       const key = `${cx},${cy}`;
+      const isCurrentTile = cx === cur.x && cy === cur.y;
       const npc = npcAt(mapIdRef.current, cx, cy);
       if (npc) {
         setDlg({ name: npc.name, lines: npc.lines, idx: 0 });
@@ -2478,10 +2590,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           setTrainOpen(true);
           return;
         }
-        if (intr.portal && intr.auto) {
+        if (intr.portal && intr.auto && isCurrentTile) {
           warpTo(intr.portal);
           return;
         }
+        if (intr.portal && intr.auto) continue;
         if (intr.portal) pendingPortalRef.current = intr.portal;
         setDlg({ name: intr.name, lines: intr.lines, idx: 0 });
         return;
@@ -2523,7 +2636,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         const nearHome = Math.abs(nx - npc.homeX) + Math.abs(ny - npc.homeY) <= 4;
         const blockedByPlayer = mapIdRef.current === npc.mapId && posRef.current.x === nx && posRef.current.y === ny;
         const blockedByNpc = prev.some(other => other.id !== npc.id && other.mapId === npc.mapId && other.x === nx && other.y === ny);
-        if (!nearHome || !WALK.has(t) || blockedByPlayer || blockedByNpc) return { ...npc, walking: false };
+        if (!nearHome || !WALK.has(t) || t === "O" || blockedByPlayer || blockedByNpc) return { ...npc, walking: false };
         return { ...npc, x: nx, y: ny, walking: true };
       }));
       window.setTimeout(() => setNpcs(prev => prev.map(npc => ({ ...npc, walking: false }))), 280);
