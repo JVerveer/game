@@ -273,17 +273,17 @@ export const MAIN_TOWN_IDS = TOWN_THEMES.map(town => town.id);
 export const TOWN_WORLD_POSITIONS = Object.fromEntries(TOWN_THEMES.map(town => [town.id, town.world])) as Record<TownMapId, { x: number; y: number }>;
 
 export const WORLD_ROUTES: Record<TownMapId, Partial<Record<RouteDirection, TownMapId>>> = {
-  satiria: { N: "factcheck" },
-  factcheck: { S: "satiria", NW: "ragebait", NE: "tweetsburg" },
-  ragebait: { SE: "factcheck", NE: "promptford" },
-  tweetsburg: { SW: "factcheck", NW: "promptford" },
-  promptford: { SW: "ragebait", SE: "tweetsburg", NW: "inflatopolis", NE: "cryptonia" },
-  inflatopolis: { S: "promptford", N: "wokeshire" },
-  cryptonia: { S: "promptford", N: "tariff" },
-  wokeshire: { S: "inflatopolis", NE: "surveillia" },
-  tariff: { S: "cryptonia", NW: "surveillia" },
-  surveillia: { SW: "wokeshire", SE: "tariff", N: "brexiton" },
-  brexiton: { S: "surveillia" },
+  satiria: {},
+  factcheck: {},
+  ragebait: {},
+  tweetsburg: {},
+  promptford: {},
+  inflatopolis: {},
+  cryptonia: {},
+  wokeshire: {},
+  tariff: {},
+  surveillia: {},
+  brexiton: {},
 };
 
 export type RouteDirection = "N" | "S" | "E" | "W" | "NE" | "NW" | "SE" | "SW";

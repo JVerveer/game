@@ -1,4 +1,4 @@
-import { addRouteRoads, hline, makeBlankMap, rect, vline } from "./utils";
+import { addTreeBorder, hline, makeBlankMap, rect, vline } from "./utils";
 
 export const buildInflatopolisMap = () => {
   const map = makeBlankMap(56, 34, "T");
@@ -9,7 +9,6 @@ export const buildInflatopolisMap = () => {
   vline(map, 27, 5, 29, "R");
   hline(map, 11, 45, 9, "R");
   hline(map, 11, 45, 19, "R");
-  addRouteRoads(map, ["S", "N"]);
   rect(map, 10, 8, 6, 4, "A");
   rect(map, 18, 8, 6, 4, "B");
   rect(map, 31, 8, 6, 4, "H");
@@ -25,5 +24,6 @@ export const buildInflatopolisMap = () => {
   map[19][24] = "O";
   map[25][36] = "O";
   map[25][37] = "O";
+  addTreeBorder(map, 3);
   return map;
 };

@@ -1,4 +1,4 @@
-import { hline, makeBlankMap, rect, vline } from "./utils";
+import { addTreeBorder, hline, makeBlankMap, rect, vline } from "./utils";
 import { SATIRIA_BUILDINGS_LAYOUT, SATIRIA_ENTRANCES } from "./satiriaLayout";
 
 export const buildSatiriaMap = () => {
@@ -89,9 +89,6 @@ export const buildSatiriaMap = () => {
   });
   map[19][26] = "V";
 
-  // Clear route exits through the tree wall.
-  rect(map, 26, 0, 4, 4, "R");
-  rect(map, 26, 32, 4, 3, "R");
-
+  addTreeBorder(map, 3);
   return map;
 };

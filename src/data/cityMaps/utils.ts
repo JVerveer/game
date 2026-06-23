@@ -45,3 +45,14 @@ export const addRouteRoads = (map: string[][], directions: RouteDirection[]) => 
     rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
   });
 };
+
+export const addTreeBorder = (map: string[][], layers = 3) => {
+  const height = map.length;
+  const width = map[0]?.length ?? 0;
+  for (let layer = 0; layer < layers; layer++) {
+    rect(map, layer, layer, width - layer * 2, 1, "T");
+    rect(map, layer, height - layer - 1, width - layer * 2, 1, "T");
+    rect(map, layer, layer, 1, height - layer * 2, "T");
+    rect(map, width - layer - 1, layer, 1, height - layer * 2, "T");
+  }
+};

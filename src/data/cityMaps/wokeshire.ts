@@ -1,4 +1,4 @@
-import { addRouteRoads, hline, makeBlankMap, rect, vline } from "./utils";
+import { addTreeBorder, hline, makeBlankMap, rect, vline } from "./utils";
 
 export const buildWokeshireMap = () => {
   const map = makeBlankMap(56, 34, "T");
@@ -11,7 +11,6 @@ export const buildWokeshireMap = () => {
   hline(map, 9, 47, 14, "R");
   vline(map, 27, 10, 29, "R");
   rect(map, 32, 23, 10, 4, "R");
-  addRouteRoads(map, ["S", "NE"]);
   rect(map, 10, 12, 4, 4, "U");
   rect(map, 15, 12, 4, 4, "U");
   rect(map, 20, 12, 4, 4, "B");
@@ -28,5 +27,6 @@ export const buildWokeshireMap = () => {
   map[15][43] = "O";
   map[25][36] = "O";
   map[25][37] = "O";
+  addTreeBorder(map, 3);
   return map;
 };

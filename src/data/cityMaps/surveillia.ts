@@ -1,4 +1,4 @@
-import { addRouteRoads, hline, makeBlankMap, rect, vline } from "./utils";
+import { addTreeBorder, hline, makeBlankMap, rect, vline } from "./utils";
 
 export const buildSurveilliaMap = () => {
   const map = makeBlankMap(56, 34, "T");
@@ -10,7 +10,6 @@ export const buildSurveilliaMap = () => {
   hline(map, 12, 44, 10, "R");
   hline(map, 12, 44, 20, "R");
   rect(map, 33, 23, 10, 4, "R");
-  addRouteRoads(map, ["SW", "SE", "N"]);
   rect(map, 11, 8, 5, 6, "I");
   rect(map, 18, 7, 5, 7, "A");
   rect(map, 25, 6, 5, 8, "I");
@@ -23,5 +22,6 @@ export const buildSurveilliaMap = () => {
   map[19][27] = "O";
   map[25][36] = "O";
   map[25][37] = "O";
+  addTreeBorder(map, 3);
   return map;
 };

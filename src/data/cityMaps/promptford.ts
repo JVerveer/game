@@ -1,4 +1,4 @@
-import { addRouteRoads, hline, makeBlankMap, rect, vline } from "./utils";
+import { addTreeBorder, hline, makeBlankMap, rect, vline } from "./utils";
 
 export const buildPromptfordMap = () => {
   const map = makeBlankMap(56, 34, "T");
@@ -11,7 +11,6 @@ export const buildPromptfordMap = () => {
   vline(map, 27, 5, 29, "R");
   hline(map, 12, 44, 8, "R");
   hline(map, 12, 44, 18, "R");
-  addRouteRoads(map, ["SW", "SE", "NW", "NE"]);
   rect(map, 9, 8, 7, 3, "A");
   rect(map, 18, 8, 7, 3, "A");
   rect(map, 31, 8, 7, 3, "A");
@@ -30,5 +29,6 @@ export const buildPromptfordMap = () => {
   map[17][42] = "O";
   map[25][36] = "O";
   map[25][37] = "O";
+  addTreeBorder(map, 3);
   return map;
 };

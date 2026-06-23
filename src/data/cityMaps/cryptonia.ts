@@ -1,4 +1,4 @@
-import { addRouteRoads, hline, makeBlankMap, rect, vline } from "./utils";
+import { addTreeBorder, hline, makeBlankMap, rect, vline } from "./utils";
 
 export const buildCryptoniaMap = () => {
   const map = makeBlankMap(56, 34, "T");
@@ -10,7 +10,6 @@ export const buildCryptoniaMap = () => {
   vline(map, 27, 5, 30, "R");
   hline(map, 12, 35, 10, "R");
   hline(map, 12, 35, 22, "R");
-  addRouteRoads(map, ["S", "N"]);
   rect(map, 11, 9, 5, 5, "I");
   rect(map, 18, 8, 4, 6, "A");
   rect(map, 24, 7, 4, 7, "I");
@@ -24,5 +23,6 @@ export const buildCryptoniaMap = () => {
   map[21][35] = "O";
   map[25][36] = "O";
   map[25][37] = "O";
+  addTreeBorder(map, 3);
   return map;
 };

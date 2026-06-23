@@ -1,4 +1,4 @@
-import { addRouteRoads, hline, makeBlankMap, rect, vline } from "./utils";
+import { addTreeBorder, hline, makeBlankMap, rect, vline } from "./utils";
 
 export const buildFactcheckMap = () => {
   const map = makeBlankMap(56, 34, "T");
@@ -10,7 +10,6 @@ export const buildFactcheckMap = () => {
   hline(map, 11, 40, 11, "R");
   hline(map, 11, 40, 23, "R");
   rect(map, 33, 23, 9, 4, "R");
-  addRouteRoads(map, ["S", "NW", "NE"]);
   rect(map, 10, 9, 7, 4, "A");
   rect(map, 22, 9, 7, 4, "H");
   rect(map, 33, 9, 7, 4, "B");
@@ -23,5 +22,6 @@ export const buildFactcheckMap = () => {
   map[23][14] = "O";
   map[25][36] = "O";
   map[25][37] = "O";
+  addTreeBorder(map, 3);
   return map;
 };

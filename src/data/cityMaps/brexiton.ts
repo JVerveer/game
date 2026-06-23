@@ -1,4 +1,4 @@
-import { addRouteRoads, hline, makeBlankMap, rect, vline } from "./utils";
+import { addTreeBorder, hline, makeBlankMap, rect, vline } from "./utils";
 
 export const buildBrexitonMap = () => {
   const map = makeBlankMap(56, 34, "T");
@@ -13,7 +13,6 @@ export const buildBrexitonMap = () => {
   hline(map, 13, 42, 15, "R");
   vline(map, 13, 7, 22, "R");
   vline(map, 42, 7, 22, "R");
-  addRouteRoads(map, ["S"]);
   rect(map, 9, 7, 6, 3, "U");
   rect(map, 17, 7, 6, 3, "U");
   rect(map, 31, 7, 6, 3, "U");
@@ -34,5 +33,6 @@ export const buildBrexitonMap = () => {
   map[14][40] = "O";
   map[24][36] = "O";
   map[24][37] = "O";
+  addTreeBorder(map, 3);
   return map;
 };

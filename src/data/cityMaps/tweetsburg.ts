@@ -1,4 +1,4 @@
-import { addRouteRoads, hline, makeBlankMap, rect, vline } from "./utils";
+import { addTreeBorder, hline, makeBlankMap, rect, vline } from "./utils";
 
 export const buildTweetsburgMap = () => {
   const map = makeBlankMap(56, 34, "T");
@@ -9,7 +9,6 @@ export const buildTweetsburgMap = () => {
   hline(map, 12, 44, 10, "R");
   hline(map, 12, 44, 22, "R");
   rect(map, 18, 12, 19, 8, "R");
-  addRouteRoads(map, ["SW", "NW"]);
   rect(map, 10, 8, 6, 4, "U");
   rect(map, 18, 8, 6, 4, "B");
   rect(map, 31, 8, 6, 4, "H");
@@ -24,5 +23,6 @@ export const buildTweetsburgMap = () => {
   map[23][15] = "O";
   map[23][36] = "O";
   map[23][37] = "O";
+  addTreeBorder(map, 3);
   return map;
 };

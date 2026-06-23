@@ -1,4 +1,4 @@
-import { addRouteRoads, hline, makeBlankMap, rect, vline } from "./utils";
+import { addTreeBorder, hline, makeBlankMap, rect, vline } from "./utils";
 
 export const buildRagebaitMap = () => {
   const map = makeBlankMap(56, 34, "T");
@@ -10,7 +10,6 @@ export const buildRagebaitMap = () => {
   vline(map, 27, 5, 30, "R");
   hline(map, 12, 44, 10, "R");
   rect(map, 34, 22, 9, 5, "R");
-  addRouteRoads(map, ["SE", "NE"]);
   rect(map, 10, 8, 6, 4, "U");
   rect(map, 18, 8, 6, 4, "B");
   rect(map, 31, 8, 6, 4, "H");
@@ -23,5 +22,6 @@ export const buildRagebaitMap = () => {
   map[11][43] = "O";
   map[25][36] = "O";
   map[25][37] = "O";
+  addTreeBorder(map, 3);
   return map;
 };

@@ -2558,6 +2558,12 @@
     z-index: 2;
   }
 
+  .pixel-game-grid {
+    opacity: 0;
+    position: relative;
+    z-index: 2;
+  }
+
   .satiria-scene {
     position: absolute;
     inset: 0;

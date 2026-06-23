@@ -1,4 +1,4 @@
-import { addRouteRoads, hline, makeBlankMap, rect, vline } from "./utils";
+import { addTreeBorder, hline, makeBlankMap, rect, vline } from "./utils";
 
 export const buildTariffMap = () => {
   const map = makeBlankMap(56, 34, "T");
@@ -10,7 +10,6 @@ export const buildTariffMap = () => {
   vline(map, 27, 5, 30, "R");
   hline(map, 12, 44, 10, "R");
   rect(map, 33, 22, 10, 5, "R");
-  addRouteRoads(map, ["S", "NW"]);
   rect(map, 12, 9, 6, 4, "U");
   rect(map, 22, 9, 6, 4, "B");
   rect(map, 32, 9, 6, 4, "H");
@@ -23,5 +22,6 @@ export const buildTariffMap = () => {
   map[12][42] = "O";
   map[25][36] = "O";
   map[25][37] = "O";
+  addTreeBorder(map, 3);
   return map;
 };
