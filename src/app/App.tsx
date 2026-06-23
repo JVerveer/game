@@ -2316,8 +2316,8 @@ const SATIRIA_BUILDINGS: PixelBuilding[] = [
   { x: 19, y: 5, w: 8, h: 5, color: "green", kind: "house", crest: "⌂" },
   { x: 30, y: 5, w: 7, h: 6, color: "purple", kind: "house", crest: "♦" },
   { x: 40, y: 5, w: 8, h: 7, color: "red", kind: "house", crest: "□" },
-  { x: 3, y: 16, w: 10, h: 5, color: "green", kind: "shop", crest: "$" },
-  { x: 14, y: 16, w: 10, h: 5, color: "blue", kind: "hall", crest: "+" },
+  { x: 3, y: 16, w: 5, h: 5, color: "green", kind: "shop", crest: "$" },
+  { x: 14, y: 16, w: 5, h: 5, color: "blue", kind: "hall", crest: "+" },
   { x: 39, y: 18, w: 5, h: 3, color: "red", kind: "station", crest: "T" },
 ];
 

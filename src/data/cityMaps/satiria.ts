@@ -35,8 +35,8 @@ export const buildSatiriaMap = () => {
   rect(map, 40, 5, 8, 7, "B");
 
   // Shops and larger town hall / station block.
-  rect(map, 3, 16, 10, 5, "A");
-  rect(map, 14, 16, 10, 5, "H");
+  rect(map, 3, 16, 5, 5, "A");
+  rect(map, 14, 16, 5, 5, "H");
   rect(map, 39, 18, 5, 3, "P");
 
   // Yards, fences, hedges, flower patches, and tree pockets.
@@ -59,8 +59,8 @@ export const buildSatiriaMap = () => {
   vline(map, 23, 10, 13, "R");
   vline(map, 33, 11, 13, "R");
   vline(map, 44, 12, 13, "R");
-  vline(map, 8, 21, 24, "R");
-  vline(map, 19, 21, 24, "R");
+  vline(map, 5, 21, 24, "R");
+  vline(map, 16, 21, 24, "R");
   vline(map, 41, 21, 24, "R");
   rect(map, 18, 25, 5, 3, "X");
   rect(map, 31, 25, 7, 4, "X");
@@ -92,8 +92,8 @@ export const buildSatiriaMap = () => {
   map[10][23] = "O";
   map[11][33] = "O";
   map[12][44] = "O";
-  map[21][8] = "O";
-  map[21][19] = "O";
+  map[21][5] = "O";
+  map[21][16] = "O";
   map[21][41] = "O";
   map[19][26] = "V";
 

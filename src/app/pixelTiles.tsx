@@ -174,7 +174,19 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
       })}
       <i className="pixel-sprite-tile pixel-building-chimney" style={spriteStyle("chimney", building.w - 1.25, -0.45)} />
       {building.crest && <i className="pixel-sprite-tile pixel-building-sign" style={spriteStyle("sign", doorX, signY)} />}
-      {building.crest && <span className="pixel-building-crest">{building.crest}</span>}
+      {building.crest && (
+        <span
+          className="pixel-building-crest"
+          style={{
+            left: doorX * TILE_SIZE,
+            top: signY * TILE_SIZE,
+            width: TILE_SIZE,
+            height: TILE_SIZE,
+          }}
+        >
+          {building.crest}
+        </span>
+      )}
       <span className="pixel-story-marker" aria-hidden="true">
         <b>{stories}F</b>
         {Array.from({ length: stories }).map((_, story) => (
