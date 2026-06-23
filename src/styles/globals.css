@@ -2581,6 +2581,60 @@
     font-style: normal;
   }
 
+  .satiria-tileset-scene {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+    background: #76a846;
+  }
+
+  .satiria-sprite-tile,
+  .satiria-sprite-object,
+  .satiria-tileset-building {
+    position: absolute;
+    display: block;
+    image-rendering: pixelated;
+    background-repeat: no-repeat;
+  }
+
+  .satiria-sprite-tile {
+    z-index: 1;
+  }
+
+  .satiria-sprite-object {
+    z-index: 6;
+  }
+
+  .satiria-tileset-building {
+    z-index: 5;
+  }
+
+  .satiria-tileset-building::after {
+    content: "";
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: -5px;
+    height: 13px;
+    z-index: 0;
+    background: rgba(44, 32, 24, 0.22);
+  }
+
+  .satiria-tileset-building .satiria-sprite-tile {
+    z-index: 2;
+  }
+
+  .satiria-tileset-building .satiria-building-door,
+  .satiria-tileset-building .satiria-building-sign {
+    z-index: 5;
+  }
+
+  .satiria-tileset-building .satiria-building-chimney {
+    z-index: 8;
+  }
+
   .satiria-road {
     border: 4px solid rgba(66, 49, 32, 0.52);
     background:
