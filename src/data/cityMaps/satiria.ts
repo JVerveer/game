@@ -1,4 +1,5 @@
 import { hline, makeBlankMap, rect, vline } from "./utils";
+import { SATIRIA_BUILDINGS_LAYOUT, SATIRIA_ENTRANCES } from "./satiriaLayout";
 
 export const buildSatiriaMap = () => {
   const map = makeBlankMap(56, 35, "T");
@@ -28,16 +29,18 @@ export const buildSatiriaMap = () => {
   rect(map, 11, 29, 2, 1, "W");
   rect(map, 8, 25, 2, 3, "R");
 
-  // Houses along the upper road.
-  rect(map, 8, 5, 7, 4, "B");
-  rect(map, 19, 5, 8, 5, "B");
-  rect(map, 30, 5, 7, 6, "U");
-  rect(map, 40, 5, 8, 7, "B");
-
-  // Shops and larger town hall / station block.
-  rect(map, 3, 16, 5, 5, "A");
-  rect(map, 14, 16, 5, 5, "H");
-  rect(map, 39, 18, 5, 3, "P");
+  SATIRIA_BUILDINGS_LAYOUT.forEach((building) => {
+    const tile = building.type === "shop"
+      ? "A"
+      : building.type === "healing"
+        ? "H"
+        : building.type === "train"
+          ? "P"
+          : building.color === "purple"
+            ? "U"
+            : "B";
+    rect(map, building.x, building.y, building.w, building.h, tile);
+  });
 
   // Yards, fences, hedges, flower patches, and tree pockets.
   hline(map, 7, 11, 11, "F");
@@ -54,14 +57,9 @@ export const buildSatiriaMap = () => {
   hline(map, 36, 40, 24, "F");
   hline(map, 43, 48, 24, "F");
 
-  // Door spurs connect every entrance into the town road / plaza network.
-  vline(map, 11, 9, 13, "R");
-  vline(map, 23, 10, 13, "R");
-  vline(map, 33, 11, 13, "R");
-  vline(map, 44, 12, 13, "R");
-  vline(map, 5, 21, 24, "R");
-  vline(map, 16, 21, 24, "R");
-  vline(map, 41, 21, 24, "R");
+  SATIRIA_ENTRANCES.forEach(({ door }) => {
+    vline(map, door.x, door.y, door.y < 16 ? 13 : 24, "R");
+  });
   rect(map, 18, 25, 5, 3, "X");
   rect(map, 31, 25, 7, 4, "X");
   rect(map, 14, 12, 4, 1, "L");
@@ -86,15 +84,9 @@ export const buildSatiriaMap = () => {
   rect(map, 46, 25, 2, 2, "Y");
   rect(map, 48, 28, 3, 3, "Y");
 
-  // Door / interaction tiles are written last so fences and landscaping cannot
-  // accidentally block entrances.
-  map[9][11] = "O";
-  map[10][23] = "O";
-  map[11][33] = "O";
-  map[12][44] = "O";
-  map[21][5] = "O";
-  map[21][16] = "O";
-  map[21][41] = "O";
+  SATIRIA_ENTRANCES.forEach(({ door }) => {
+    map[door.y][door.x] = "O";
+  });
   map[19][26] = "V";
 
   // Clear route exits through the tree wall.

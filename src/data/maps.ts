@@ -10,6 +10,7 @@ import { buildSurveilliaMap as buildSurveilliaCityMap } from "./cityMaps/surveil
 import { buildTariffMap as buildTariffCityMap } from "./cityMaps/tariff";
 import { buildTweetsburgMap as buildTweetsburgCityMap } from "./cityMaps/tweetsburg";
 import { buildWokeshireMap as buildWokeshireCityMap } from "./cityMaps/wokeshire";
+import { SATIRIA_ENTRANCES, coord } from "./cityMaps/satiriaLayout";
 
 // Tile key legend:
 //   T = Trees/Forest   G = Grass       W = Water      R = Road/Path/Floor
@@ -958,11 +959,13 @@ const themedRowsFor = (theme: TownTheme) => {
 
 const doorConfigFor = (theme: TownTheme): TownDoorConfig => {
   if (theme.id === "satiria") {
+    const byType = (type: "shop" | "healing" | "house" | "train") =>
+      SATIRIA_ENTRANCES.filter(entrance => entrance.type === type).map(entrance => coord(entrance.door));
     return {
-      shop: "5,21",
-      healing: "16,21",
-      homes: ["11,9", "23,10", "33,11", "44,12"],
-      train: ["41,21"],
+      shop: byType("shop")[0],
+      healing: byType("healing")[0],
+      homes: byType("house"),
+      train: byType("train"),
       save: "26,19",
       sign: "24,18",
     };

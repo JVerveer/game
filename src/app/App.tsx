@@ -36,6 +36,7 @@ import {
   INITIAL_HERO, HERO_STATS, REPUTATION_CATEGORIES, ALLIES,
   RARITY_COLORS as ALLY_RARITY_COLORS,
 } from "../data/hero";
+import { SATIRIA_BUILDINGS_LAYOUT } from "../data/cityMaps/satiriaLayout";
 import { PixelMapScene, type PixelBuilding, type PixelObject } from "./pixelTiles";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -2311,15 +2312,15 @@ const INITIAL_NPCS: MovingNpc[] = [
   })),
 ];
 
-const SATIRIA_BUILDINGS: PixelBuilding[] = [
-  { x: 8, y: 5, w: 7, h: 4, color: "red", kind: "house", crest: "★" },
-  { x: 19, y: 5, w: 8, h: 5, color: "green", kind: "house", crest: "⌂" },
-  { x: 30, y: 5, w: 7, h: 6, color: "purple", kind: "house", crest: "♦" },
-  { x: 40, y: 5, w: 8, h: 7, color: "red", kind: "house", crest: "□" },
-  { x: 3, y: 16, w: 5, h: 5, color: "green", kind: "shop", crest: "$" },
-  { x: 14, y: 16, w: 5, h: 5, color: "blue", kind: "hall", crest: "+" },
-  { x: 39, y: 18, w: 5, h: 3, color: "red", kind: "station", crest: "T" },
-];
+const SATIRIA_BUILDINGS: PixelBuilding[] = SATIRIA_BUILDINGS_LAYOUT.map(({ x, y, w, h, color, kind, crest }) => ({
+  x,
+  y,
+  w,
+  h,
+  color,
+  kind,
+  crest,
+}));
 
 const SATIRIA_OBJECTS: PixelObject[] = [
   { sprite: "pier", x: 8, y: 25, w: 2, h: 3 },
@@ -2606,6 +2607,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
   const hpPct = (hp.cur / hp.max) * 100;
   const hpColor = hpPct > 50 ? "#5de85d" : hpPct > 25 ? "#f5c518" : "#e84a4a";
+  const debugTile = currentMap.rows[pos.y]?.[pos.x] ?? "T";
+  const debugInteraction = currentMap.interactions[`${pos.x},${pos.y}`];
+  const debugFrontTile = currentMap.rows[pos.y - 1]?.[pos.x] ?? "T";
+  const debugFrontInteraction = currentMap.interactions[`${pos.x},${pos.y - 1}`];
 
   return (
     <div className="gameboy-shell">
@@ -2946,6 +2951,27 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         <button style={{ ...D_PAD_BTN, color: "#f5c518", borderColor: "rgba(245,197,24,0.3)" }} onClick={doInteract}>Z</button>
         <button style={D_PAD_BTN} onClick={() => doMove(1,0,"right")}>▶</button>
         <div /><button style={D_PAD_BTN} onClick={() => doMove(0,1,"down")}>▼</button><div />
+      </div>
+
+      <div style={{
+        position: "fixed",
+        left: 14,
+        top: 88,
+        zIndex: 1200,
+        background: "rgba(255,248,200,0.94)",
+        border: "3px solid #252018",
+        padding: "8px 10px",
+        color: "#252018",
+        pointerEvents: "none",
+        ...VT,
+        fontSize: "1rem",
+        lineHeight: 1.05,
+      }}>
+        <div>DEBUG TILE</div>
+        <div>Hero: {pos.x},{pos.y} tile {debugTile} walk {WALK.has(debugTile) ? "yes" : "no"}</div>
+        <div>Here: {debugInteraction?.name ?? "none"}</div>
+        <div>Up: {pos.x},{pos.y - 1} tile {debugFrontTile} walk {WALK.has(debugFrontTile) ? "yes" : "no"}</div>
+        <div>Up intr: {debugFrontInteraction?.name ?? "none"}</div>
       </div>
 
       {/* ── PAUSE MENU ── */}
