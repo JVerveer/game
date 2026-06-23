@@ -124,11 +124,22 @@ const buildingTileFor = (building: PixelBuilding, xx: number, yy: number) => {
   return "wall";
 };
 
+const windowColumnsFor = (buildingWidth: number, doorX: number, isGroundFloor: boolean) => {
+  const columns = buildingWidth <= 5
+    ? [doorX - 1, doorX + 1]
+    : [1, Math.max(1, Math.floor(buildingWidth / 2) - 2), Math.min(buildingWidth - 2, Math.floor(buildingWidth / 2) + 2), buildingWidth - 2];
+
+  return Array.from(new Set(columns))
+    .filter((x) => x > 0 && x < buildingWidth - 1)
+    .filter((x) => !isGroundFloor || Math.abs(x - doorX) > 0);
+};
+
 function PixelBuildingSprite({ building, index }: { building: PixelBuilding; index: number }) {
-  const doorX = Math.floor(building.w / 2) - 0.5;
-  const windowY = Math.max(2, building.h - 2);
+  const doorX = Math.floor(building.w / 2);
   const zIndex = 40 + building.y;
   const stories = Math.max(1, Math.min(5, building.h - 2));
+  const wallRows = Array.from({ length: building.h - 2 }, (_, row) => row + 2);
+  const signY = building.h > 3 ? 2 : 1;
 
   return (
     <div
@@ -151,10 +162,18 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
         )),
       )}
       <i className="pixel-sprite-tile pixel-building-door" style={spriteStyle("door", doorX, building.h - 1)} />
-      <i className="pixel-sprite-tile pixel-building-window" style={spriteStyle("window", 1, windowY)} />
-      <i className="pixel-sprite-tile pixel-building-window" style={spriteStyle("window", building.w - 2, windowY)} />
+      {wallRows.flatMap((yy) => {
+        const isGroundFloor = yy === building.h - 1;
+        return windowColumnsFor(building.w, doorX, isGroundFloor).map((xx) => (
+          <i
+            key={`window-${index}-${xx}-${yy}`}
+            className="pixel-sprite-tile pixel-building-window"
+            style={spriteStyle("window", xx, yy)}
+          />
+        ));
+      })}
       <i className="pixel-sprite-tile pixel-building-chimney" style={spriteStyle("chimney", building.w - 1.25, -0.45)} />
-      {building.crest && <i className="pixel-sprite-tile pixel-building-sign" style={spriteStyle("sign", doorX, 2)} />}
+      {building.crest && <i className="pixel-sprite-tile pixel-building-sign" style={spriteStyle("sign", doorX, signY)} />}
       {building.crest && <span className="pixel-building-crest">{building.crest}</span>}
       <span className="pixel-story-marker" aria-hidden="true">
         <b>{stories}F</b>

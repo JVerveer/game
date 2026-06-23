@@ -961,7 +961,7 @@ const doorConfigFor = (theme: TownTheme): TownDoorConfig => {
     return {
       shop: "8,21",
       healing: "19,21",
-      homes: ["12,10", "23,10", "33,10", "43,10"],
+      homes: ["11,9", "23,10", "33,11", "44,12"],
       train: ["41,21"],
       save: "26,19",
       sign: "24,18",

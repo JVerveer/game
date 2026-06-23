@@ -39,12 +39,6 @@ export const buildSatiriaMap = () => {
   rect(map, 14, 16, 10, 5, "H");
   rect(map, 39, 18, 5, 3, "P");
 
-  // Door spurs connect every entrance into the town road / plaza network.
-  vline(map, 12, 11, 13, "R");
-  vline(map, 23, 11, 13, "R");
-  vline(map, 33, 11, 13, "R");
-  vline(map, 43, 11, 13, "R");
-
   // Yards, fences, hedges, flower patches, and tree pockets.
   hline(map, 7, 11, 11, "F");
   hline(map, 13, 16, 11, "F");
@@ -59,6 +53,14 @@ export const buildSatiriaMap = () => {
   hline(map, 16, 20, 22, "F");
   hline(map, 36, 40, 24, "F");
   hline(map, 43, 48, 24, "F");
+
+  // Door spurs connect every entrance into the town road / plaza network.
+  vline(map, 11, 9, 13, "R");
+  vline(map, 23, 10, 13, "R");
+  vline(map, 33, 11, 13, "R");
+  vline(map, 44, 12, 13, "R");
+  vline(map, 8, 21, 24, "R");
+  vline(map, 19, 21, 24, "R");
   vline(map, 41, 21, 24, "R");
   rect(map, 18, 25, 5, 3, "X");
   rect(map, 31, 25, 7, 4, "X");
@@ -86,10 +88,10 @@ export const buildSatiriaMap = () => {
 
   // Door / interaction tiles are written last so fences and landscaping cannot
   // accidentally block entrances.
-  map[10][12] = "O";
+  map[9][11] = "O";
   map[10][23] = "O";
-  map[10][33] = "O";
-  map[10][43] = "O";
+  map[11][33] = "O";
+  map[12][44] = "O";
   map[21][8] = "O";
   map[21][19] = "O";
   map[21][41] = "O";
