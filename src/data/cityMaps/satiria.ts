@@ -45,25 +45,16 @@ export const buildSatiriaMap = () => {
   rect(map, 12, 17, 7, 5, "H");
   rect(map, 37, 17, 10, 6, "P");
 
-  // Door / interaction tiles.
-  map[10][12] = "O";
-  map[10][23] = "O";
-  map[10][33] = "O";
-  map[10][43] = "O";
-  map[22][7] = "O";
-  map[22][15] = "O";
-  map[23][41] = "O";
-  map[23][42] = "O";
-  map[19][26] = "V";
-
   // Yards, fences, hedges, flower patches, and tree pockets.
   hline(map, 7, 16, 11, "F");
   hline(map, 19, 27, 11, "F");
   hline(map, 30, 38, 11, "F");
   hline(map, 40, 49, 11, "F");
-  hline(map, 4, 12, 22, "F");
-  hline(map, 12, 20, 22, "F");
-  hline(map, 36, 48, 24, "F");
+  hline(map, 4, 6, 22, "F");
+  hline(map, 8, 14, 22, "F");
+  hline(map, 16, 20, 22, "F");
+  hline(map, 36, 40, 24, "F");
+  hline(map, 43, 48, 24, "F");
   rect(map, 4, 4, 3, 2, "X");
   rect(map, 39, 4, 3, 2, "X");
   rect(map, 18, 25, 5, 3, "X");
@@ -75,6 +66,18 @@ export const buildSatiriaMap = () => {
   rect(map, 43, 14, 3, 2, "L");
   rect(map, 34, 25, 4, 2, "L");
   rect(map, 44, 25, 3, 2, "L");
+
+  // Door / interaction tiles are written last so fences and landscaping cannot
+  // accidentally block entrances.
+  map[10][12] = "O";
+  map[10][23] = "O";
+  map[10][33] = "O";
+  map[10][43] = "O";
+  map[22][7] = "O";
+  map[22][15] = "O";
+  map[23][41] = "O";
+  map[23][42] = "O";
+  map[19][26] = "V";
 
   // Clear route exits through the tree wall.
   rect(map, 26, 0, 4, 4, "R");

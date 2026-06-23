@@ -2212,15 +2212,15 @@ const sceneStyle = (x: number, y: number, w = 1, h = 1): SceneStyle => ({
 });
 
 const SATIRIA_FLOWERS = [
-  [5, 5], [16, 4], [37, 5], [43, 7], [50, 14], [6, 16], [14, 15], [18, 24],
+  [5, 5], [16, 4], [37, 5], [43, 7], [50, 14], [6, 16], [14, 15],
   [31, 14], [35, 15], [43, 15], [33, 26], [36, 28], [42, 27], [17, 29], [21, 27],
-  [7, 32], [13, 31], [39, 31], [44, 30], [48, 25], [45, 22], [31, 23], [11, 20],
+  [7, 31], [13, 31], [39, 31], [44, 30], [48, 25], [45, 22], [11, 20],
 ];
 
 const SATIRIA_TREES = [
   [5, 8], [17, 8], [39, 8], [45, 8], [5, 14], [14, 14], [19, 14], [37, 14],
   [43, 14], [49, 17], [17, 24], [21, 25], [32, 25], [36, 24], [42, 25],
-  [50, 24], [8, 28], [18, 29], [23, 30], [34, 30], [41, 30], [47, 29],
+  [50, 24], [18, 29], [23, 30], [34, 30], [41, 30], [47, 29],
 ];
 
 const SATIRIA_BUILDINGS = [
@@ -2247,12 +2247,12 @@ function SatiriaScene() {
 
       <i className="satiria-road road-main-h" style={sceneStyle(6, 13, 43, 2)} />
       <i className="satiria-road road-main-v" style={sceneStyle(26.5, 0, 2, 35)} />
-      <i className="satiria-road road-west-lower" style={sceneStyle(5, 23, 23, 2)} />
+      <i className="satiria-road road-west-lower" style={sceneStyle(5, 23, 22, 2)} />
       <i className="satiria-road road-hall" style={sceneStyle(41.6, 23, 2, 6)} />
       <i className="satiria-plaza" style={sceneStyle(23, 16, 11, 7)} />
 
-      <i className="satiria-pond-coded" style={sceneStyle(3.6, 24.4, 9.6, 6.7)} />
-      <i className="satiria-pier-coded" style={sceneStyle(7.6, 23.2, 1.5, 3.5)} />
+      <i className="satiria-pond-coded" style={sceneStyle(3, 24, 11, 8)} />
+      <i className="satiria-pier-coded" style={sceneStyle(8, 23, 2, 4)} />
       <i className="satiria-mountains mountain-a" style={sceneStyle(47.7, 5, 5.2, 11.4)} />
       <i className="satiria-mountains mountain-b" style={sceneStyle(47.8, 23.7, 5.2, 8.4)} />
 
@@ -2274,7 +2274,8 @@ function SatiriaScene() {
 
       {[
         [6.5, 10.7, 10, 1], [18.8, 10.7, 8.8, 1], [29.7, 10.7, 7.6, 1], [39.8, 10.7, 8.8, 1],
-        [3.6, 21.8, 8.2, 1], [11.5, 21.8, 8.2, 1], [36, 24, 12, 1], [36, 16, 12, 1],
+        [3.6, 21.8, 3.2, 1], [8.2, 21.8, 6.2, 1], [16.2, 21.8, 4.8, 1],
+        [36, 24, 4.8, 1], [43.2, 24, 4.8, 1], [36, 16, 12, 1],
       ].map(([x, y, w, h], index) => (
         <i key={`fence-${index}`} className="satiria-coded-fence" style={sceneStyle(x, y, w, h)} />
       ))}
