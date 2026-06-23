@@ -1,0 +1,196 @@
+import type { CSSProperties } from "react";
+
+export type PixelBuildingColor = "red" | "blue" | "purple" | "green";
+
+export type PixelBuilding = {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  color: PixelBuildingColor;
+  kind: "house" | "shop" | "hall" | "station";
+  crest?: string;
+};
+
+export type PixelObject = {
+  sprite: string;
+  x: number;
+  y: number;
+  w?: number;
+  h?: number;
+  className?: string;
+};
+
+const TILESET_URL = "/tilesets/satiria.png";
+const TILE_SIZE = 48;
+const ATLAS_COLS = 8;
+
+const ATLAS: Record<string, number> = {
+  grass: 0,
+  path: 1,
+  tallGrass: 2,
+  water: 3,
+  shore: 4,
+  tree: 5,
+  fence: 6,
+  flower: 7,
+  redRoof: 8,
+  blueRoof: 9,
+  purpleRoof: 10,
+  greenRoof: 11,
+  wall: 12,
+  door: 13,
+  window: 14,
+  chimney: 15,
+  plaza: 16,
+  pier: 17,
+  bench: 18,
+  lamp: 19,
+  statue: 20,
+  fountain: 21,
+  sign: 22,
+  save: 23,
+  grassAlt: 24,
+  pathAlt: 25,
+  waterAlt: 26,
+  plazaAlt: 27,
+  tallGrassAlt: 28,
+  treeAlt: 29,
+  wallAlt: 30,
+  shoreAlt: 31,
+};
+
+const BUILDING_TILES = new Set(["A", "B", "H", "I", "P", "U"]);
+
+const hashTile = (x: number, y: number) => Math.abs((x * 928371 + y * 364479 + x * y * 97) % 100);
+
+const spriteStyle = (name: string, x: number, y: number, w = 1, h = 1): CSSProperties => {
+  const index = ATLAS[name] ?? ATLAS.grass;
+  const ax = index % ATLAS_COLS;
+  const ay = Math.floor(index / ATLAS_COLS);
+  return {
+    left: x * TILE_SIZE,
+    top: y * TILE_SIZE,
+    width: w * TILE_SIZE,
+    height: h * TILE_SIZE,
+    backgroundImage: `url(${TILESET_URL})`,
+    backgroundPosition: `-${ax * TILE_SIZE}px -${ay * TILE_SIZE}px`,
+    backgroundSize: `${ATLAS_COLS * TILE_SIZE}px auto`,
+  };
+};
+
+const terrainSpriteFor = (rows: string[][], x: number, y: number) => {
+  const tile = rows[y]?.[x] ?? "G";
+  const roll = hashTile(x, y);
+
+  if (tile === "R" || tile === "O" || tile === "V") return roll > 78 ? "pathAlt" : "path";
+  if (tile === "E") return roll > 70 ? "plazaAlt" : "plaza";
+  if (tile === "W") return roll > 60 ? "waterAlt" : "water";
+  if (tile === "S") return roll > 50 ? "shoreAlt" : "shore";
+  if (tile === "X") return roll > 55 ? "tallGrassAlt" : "tallGrass";
+  if (tile === "T") return roll > 67 ? "treeAlt" : "tree";
+  if (tile === "F") return "fence";
+  if (tile === "L") return "flower";
+  if (BUILDING_TILES.has(tile)) return roll > 82 ? "grassAlt" : "grass";
+  return roll > 76 ? "grassAlt" : "grass";
+};
+
+const edgeMaskFor = (rows: string[][], x: number, y: number, family: string) => {
+  const t = rows[y]?.[x];
+  const match = (nx: number, ny: number) => {
+    const n = rows[ny]?.[nx];
+    if (family === "road") return n === "R" || n === "O" || n === "V" || n === "E";
+    if (family === "water") return n === "W" || n === "S";
+    return n === t;
+  };
+  return [
+    !match(x, y - 1) ? "n" : "",
+    !match(x + 1, y) ? "e" : "",
+    !match(x, y + 1) ? "s" : "",
+    !match(x - 1, y) ? "w" : "",
+  ].filter(Boolean).join(" ");
+};
+
+const groundClassFor = (rows: string[][], x: number, y: number) => {
+  const tile = rows[y]?.[x];
+  if (tile === "R" || tile === "O" || tile === "V" || tile === "E") return `pixel-ground-road ${edgeMaskFor(rows, x, y, "road")}`;
+  if (tile === "W" || tile === "S") return `pixel-ground-water ${edgeMaskFor(rows, x, y, "water")}`;
+  if (tile === "X") return "pixel-ground-tall";
+  return "";
+};
+
+const roofFor = (color: PixelBuildingColor) => `${color}Roof`;
+
+const buildingTileFor = (building: PixelBuilding, xx: number, yy: number) => {
+  if (yy < 2) return roofFor(building.color);
+  if (yy === building.h - 1 && (xx === 0 || xx === building.w - 1)) return "wallAlt";
+  return hashTile(building.x + xx, building.y + yy) > 72 ? "wallAlt" : "wall";
+};
+
+function PixelBuildingSprite({ building, index }: { building: PixelBuilding; index: number }) {
+  const doorX = Math.floor(building.w / 2) - 0.5;
+  const windowY = Math.max(2, building.h - 2);
+  const zIndex = 40 + building.y;
+
+  return (
+    <div
+      className={`pixel-tileset-building pixel-building-${building.kind}`}
+      style={{
+        left: building.x * TILE_SIZE,
+        top: building.y * TILE_SIZE,
+        width: building.w * TILE_SIZE,
+        height: building.h * TILE_SIZE,
+        zIndex,
+      }}
+    >
+      {Array.from({ length: building.h }).map((_, yy) =>
+        Array.from({ length: building.w }).map((__, xx) => (
+          <i
+            key={`b-${index}-${xx}-${yy}`}
+            className="pixel-sprite-tile"
+            style={spriteStyle(buildingTileFor(building, xx, yy), xx, yy)}
+          />
+        )),
+      )}
+      <i className="pixel-sprite-tile pixel-building-door" style={spriteStyle("door", doorX, building.h - 1)} />
+      <i className="pixel-sprite-tile pixel-building-window" style={spriteStyle("window", 1, windowY)} />
+      <i className="pixel-sprite-tile pixel-building-window" style={spriteStyle("window", building.w - 2, windowY)} />
+      <i className="pixel-sprite-tile pixel-building-chimney" style={spriteStyle("chimney", building.w - 1.25, -0.45)} />
+      {building.crest && <i className="pixel-sprite-tile pixel-building-sign" style={spriteStyle("sign", doorX, 2)} />}
+    </div>
+  );
+}
+
+export function PixelMapScene({
+  rows,
+  buildings,
+  objects,
+}: {
+  rows: string[][];
+  buildings: PixelBuilding[];
+  objects: PixelObject[];
+}) {
+  return (
+    <div className="pixel-tileset-scene" aria-hidden="true">
+      {rows.map((row, y) => row.map((_, x) => (
+        <i
+          key={`ground-${x}-${y}`}
+          className={`pixel-sprite-tile ${groundClassFor(rows, x, y)}`}
+          style={spriteStyle(terrainSpriteFor(rows, x, y), x, y)}
+        />
+      )))}
+
+      {buildings.map((building, index) => (
+        <PixelBuildingSprite key={`${building.kind}-${building.x}-${building.y}`} building={building} index={index} />
+      ))}
+
+      {objects.map((object, index) => (
+        <i
+          key={`${object.sprite}-${index}`}
+          className={`pixel-sprite-object ${object.className ?? ""}`}
+          style={{ ...spriteStyle(object.sprite, object.x, object.y, object.w ?? 1, object.h ?? 1), zIndex: 35 + object.y }}
+        />
+      ))}
+    </div>
+  );
+}

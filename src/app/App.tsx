@@ -36,6 +36,7 @@ import {
   INITIAL_HERO, HERO_STATS, REPUTATION_CATEGORIES, ALLIES,
   RARITY_COLORS as ALLY_RARITY_COLORS,
 } from "../data/hero";
+import { PixelMapScene, type PixelBuilding, type PixelObject } from "./pixelTiles";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 type PageId =
@@ -2310,90 +2311,7 @@ const INITIAL_NPCS: MovingNpc[] = [
   })),
 ];
 
-type SceneStyle = React.CSSProperties & Record<"--w" | "--h", number>;
-
-const sceneStyle = (x: number, y: number, w = 1, h = 1): SceneStyle => ({
-  "--w": w,
-  "--h": h,
-  left: x * 48,
-  top: y * 48,
-  width: w * 48,
-  height: h * 48,
-});
-
-const SATIRIA_FLOWERS = [
-  [5, 5], [17, 4], [38, 5], [48, 8], [7, 15], [15, 14],
-  [35, 15], [17, 29], [22, 28], [7, 31], [13, 31], [39, 31], [44, 30],
-];
-
-const SATIRIA_TREES = [
-  [5, 8], [17, 8], [39, 8], [48, 12], [5, 15], [20, 15],
-  [17, 26], [22, 26], [32, 25], [36, 26], [18, 30], [24, 30], [34, 30], [41, 30],
-];
-
-const SATIRIA_TALL_GRASS = [
-  [18, 25, 5, 3],
-  [31, 25, 7, 4],
-];
-
-const SATIRIA_TILESET_URL = "/tilesets/satiria.png";
-const SATIRIA_TILE_SIZE = 48;
-const SATIRIA_ATLAS_COLS = 8;
-const SATIRIA_ATLAS: Record<string, number> = {
-  grass: 0,
-  path: 1,
-  tallGrass: 2,
-  water: 3,
-  shore: 4,
-  tree: 5,
-  fence: 6,
-  flower: 7,
-  redRoof: 8,
-  blueRoof: 9,
-  purpleRoof: 10,
-  greenRoof: 11,
-  wall: 12,
-  door: 13,
-  window: 14,
-  chimney: 15,
-  plaza: 16,
-  pier: 17,
-  bench: 18,
-  lamp: 19,
-  statue: 20,
-  fountain: 21,
-  sign: 22,
-  save: 23,
-};
-
-const satiriaSpriteStyle = (name: string, x: number, y: number, w = 1, h = 1): React.CSSProperties => {
-  const index = SATIRIA_ATLAS[name] ?? SATIRIA_ATLAS.grass;
-  const ax = index % SATIRIA_ATLAS_COLS;
-  const ay = Math.floor(index / SATIRIA_ATLAS_COLS);
-  return {
-    left: x * SATIRIA_TILE_SIZE,
-    top: y * SATIRIA_TILE_SIZE,
-    width: w * SATIRIA_TILE_SIZE,
-    height: h * SATIRIA_TILE_SIZE,
-    backgroundImage: `url(${SATIRIA_TILESET_URL})`,
-    backgroundPosition: `-${ax * SATIRIA_TILE_SIZE}px -${ay * SATIRIA_TILE_SIZE}px`,
-    backgroundSize: `${SATIRIA_ATLAS_COLS * SATIRIA_TILE_SIZE}px auto`,
-  };
-};
-
-const satiriaTileFor = (tile: string) => {
-  if (tile === "R" || tile === "O" || tile === "V") return "path";
-  if (tile === "E") return "plaza";
-  if (tile === "W") return "water";
-  if (tile === "S") return "shore";
-  if (tile === "X") return "tallGrass";
-  if (tile === "T") return "tree";
-  if (tile === "F") return "fence";
-  if (tile === "L") return "flower";
-  return "grass";
-};
-
-const SATIRIA_BUILDINGS = [
+const SATIRIA_BUILDINGS: PixelBuilding[] = [
   { x: 8, y: 5, w: 8, h: 5, color: "red", kind: "house", crest: "★" },
   { x: 19, y: 5, w: 8, h: 5, color: "blue", kind: "house", crest: "♜" },
   { x: 30, y: 5, w: 7, h: 5, color: "purple", kind: "house", crest: "♦" },
@@ -2403,54 +2321,22 @@ const SATIRIA_BUILDINGS = [
   { x: 37, y: 17, w: 10, h: 6, color: "red", kind: "hall", crest: "★" },
 ];
 
+const SATIRIA_OBJECTS: PixelObject[] = [
+  { sprite: "pier", x: 8, y: 25, w: 2, h: 3 },
+  { sprite: "fountain", x: 27, y: 18, w: 2, h: 2, className: "pixel-object-fountain" },
+  { sprite: "statue", x: 27, y: 17, h: 1.5 },
+  { sprite: "bench", x: 24, y: 16 },
+  { sprite: "bench", x: 32, y: 16 },
+  { sprite: "bench", x: 24, y: 22 },
+  { sprite: "bench", x: 32, y: 22 },
+  { sprite: "lamp", x: 25.4, y: 15.2 },
+  { sprite: "lamp", x: 31.2, y: 15.2 },
+  { sprite: "lamp", x: 25.4, y: 21.3 },
+  { sprite: "lamp", x: 31.2, y: 21.3 },
+];
+
 function SatiriaScene() {
-  const rows = GAME_MAPS.satiria.rows;
-  const roofFor = (color: string) => `${color}Roof`;
-
-  return (
-    <div className="satiria-tileset-scene" aria-hidden="true">
-      {rows.map((row, y) => row.map((tileName, x) => (
-        <i
-          key={`ground-${x}-${y}`}
-          className="satiria-sprite-tile"
-          style={satiriaSpriteStyle(satiriaTileFor(tileName), x, y)}
-        />
-      )))}
-
-      {SATIRIA_BUILDINGS.map((building, index) => (
-        <div
-          key={`${building.kind}-${index}`}
-          className="satiria-tileset-building"
-          style={sceneStyle(building.x, building.y, building.w, building.h)}
-        >
-          {Array.from({ length: building.h }).map((_, yy) =>
-            Array.from({ length: building.w }).map((__, xx) => (
-              <i
-                key={`b-${index}-${xx}-${yy}`}
-                className="satiria-sprite-tile"
-                style={satiriaSpriteStyle(yy < 2 ? roofFor(building.color) : "wall", xx, yy)}
-              />
-            )),
-          )}
-          <i className="satiria-sprite-tile satiria-building-door" style={satiriaSpriteStyle("door", Math.floor(building.w / 2) - 0.5, building.h - 1, 1, 1)} />
-          <i className="satiria-sprite-tile" style={satiriaSpriteStyle("window", 1, Math.max(2, building.h - 2), 1, 1)} />
-          <i className="satiria-sprite-tile" style={satiriaSpriteStyle("window", building.w - 2, Math.max(2, building.h - 2), 1, 1)} />
-          <i className="satiria-sprite-tile satiria-building-chimney" style={satiriaSpriteStyle("chimney", building.w - 1.4, -0.55, 1, 1)} />
-          {building.crest && <i className="satiria-sprite-tile satiria-building-sign" style={satiriaSpriteStyle("sign", Math.floor(building.w / 2) - 0.5, 2, 1, 1)} />}
-        </div>
-      ))}
-
-      <i className="satiria-sprite-object" style={satiriaSpriteStyle("pier", 8, 25, 2, 3)} />
-      <i className="satiria-sprite-object" style={satiriaSpriteStyle("fountain", 27, 18, 2, 2)} />
-      <i className="satiria-sprite-object" style={satiriaSpriteStyle("statue", 27, 17, 1, 1.5)} />
-      {[24, 32, 24, 32].map((x, index) => (
-        <i key={`bench-${index}`} className="satiria-sprite-object" style={satiriaSpriteStyle("bench", x, index < 2 ? 16 : 22, 1, 1)} />
-      ))}
-      {[25.4, 31.2, 25.4, 31.2].map((x, index) => (
-        <i key={`lamp-${index}`} className="satiria-sprite-object" style={satiriaSpriteStyle("lamp", x, index < 2 ? 15.2 : 21.3, 1, 1)} />
-      ))}
-    </div>
-  );
+  return <PixelMapScene rows={GAME_MAPS.satiria.rows} buildings={SATIRIA_BUILDINGS} objects={SATIRIA_OBJECTS} />;
 }
 
 const isTownMap = (id: GameMapId): id is TownMapId => MAIN_TOWN_IDS.includes(id as TownMapId);

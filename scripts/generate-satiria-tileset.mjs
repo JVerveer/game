@@ -223,6 +223,69 @@ tile(23, (x, y) => {
   rect(x + 14, y + 10, 20, 20, c.outline);
 });
 
+tile(24, (x, y) => {
+  fill(x, y, TILE, TILE, rgba("#7fb14d"));
+  checkerNoise(x, y, rgba("#a8ca70"), rgba("#4e8237"), 10);
+  for (let i = 2; i < 48; i += 11) blade(x, y, i, 43, 10 + (i % 4), c.grassDark);
+  fill(x + 32, y + 12, 5, 4, rgba("#e3d35d"));
+  fill(x + 10, y + 31, 3, 3, rgba("#f1eab8"));
+});
+
+tile(25, (x, y) => {
+  fill(x, y, TILE, TILE, rgba("#ad9366"));
+  for (let yy = 6; yy < TILE; yy += 13) fill(x, y + yy, TILE, 1, rgba("#826747"));
+  for (let xx = 8; xx < TILE; xx += 18) fill(x + xx, y, 1, TILE, rgba("#7a6040"));
+  fill(x + 7, y + 10, 5, 3, rgba("#d3bb82"));
+  fill(x + 31, y + 30, 4, 3, rgba("#876a47"));
+});
+
+tile(26, (x, y) => {
+  fill(x, y, TILE, TILE, rgba("#2f78a9"));
+  for (let yy = 5; yy < 48; yy += 10) {
+    fill(x + 3, y + yy, 19, 2, rgba("#7cc6eb"));
+    fill(x + 27, y + yy + 4, 14, 2, rgba("#b8e6f3", 180));
+  }
+});
+
+tile(27, (x, y) => {
+  fill(x, y, TILE, TILE, rgba("#c1b28b"));
+  for (let yy = 0; yy < TILE; yy += 16) fill(x, y + yy, TILE, 1, rgba("#81704e"));
+  for (let xx = 0; xx < TILE; xx += 16) fill(x + xx, y, 1, TILE, rgba("#81704e"));
+  fill(x + 18, y + 18, 5, 4, rgba("#dfd0a3"));
+  fill(x + 36, y + 8, 3, 3, rgba("#9b8d68"));
+});
+
+tile(28, (x, y) => {
+  fill(x, y, TILE, TILE, rgba("#639940"));
+  for (let i = 1; i < 48; i += 4) blade(x, y, i, 46, 19 + (i % 8), i % 3 ? c.tall : rgba("#74ad4b"));
+  fill(x + 8, y + 15, 5, 5, rgba("#f0da5f"));
+  fill(x + 34, y + 20, 5, 5, rgba("#df6a52"));
+});
+
+tile(29, (x, y) => {
+  fill(x, y, TILE, TILE, rgba("#76a846"));
+  fill(x + 20, y + 27, 9, 19, c.trunk);
+  fill(x + 8, y + 17, 25, 21, rgba("#34732b"));
+  fill(x + 18, y + 6, 24, 27, rgba("#2a6426"));
+  fill(x + 2, y + 25, 20, 14, rgba("#568f3d"));
+  fill(x + 29, y + 25, 15, 14, rgba("#49833a"));
+  fill(x + 19, y + 18, 4, 4, rgba("#79b55a"));
+});
+
+tile(30, (x, y) => {
+  fill(x, y, TILE, TILE, rgba("#c8ad7d"));
+  for (let yy = 6; yy < 48; yy += 11) fill(x, y + yy, TILE, 1, rgba("#9a744d"));
+  for (let xx = 8; xx < 48; xx += 16) fill(x + xx, y, 1, TILE, rgba("#9a744d"));
+  fill(x + 7, y + 10, 6, 4, rgba("#dfc08c"));
+  fill(x + 31, y + 28, 5, 3, rgba("#a47c52"));
+});
+
+tile(31, (x, y) => {
+  fill(x, y, TILE, TILE, rgba("#c9a973"));
+  checkerNoise(x, y, rgba("#e7c986"), rgba("#9a7648"), 12);
+  for (let xx = 0; xx < TILE; xx += 12) fill(x + xx, y + 39, 7, 2, rgba("#7f6848"));
+});
+
 const crcTable = new Uint32Array(256).map((_, n) => {
   let c = n;
   for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1;
