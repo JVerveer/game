@@ -3561,8 +3561,8 @@
   }
 
   .trainer-sprite {
-    --hero-frame-a: 0 -240px;
-    --hero-frame-b: -144px -240px;
+    --hero-frame-a: 0 -336px;
+    --hero-frame-b: -144px -336px;
     width: 40px;
     height: 46px;
     background-image: url("/tilesets/satiria.png");
@@ -3582,24 +3582,24 @@
   }
 
   .trainer-sprite.facing-down {
-    --hero-frame-a: 0 -240px;
-    --hero-frame-b: -144px -240px;
+    --hero-frame-a: 0 -336px;
+    --hero-frame-b: -144px -336px;
   }
 
   .trainer-sprite.facing-up {
-    --hero-frame-a: -48px -240px;
-    --hero-frame-b: -48px -240px;
+    --hero-frame-a: -48px -336px;
+    --hero-frame-b: -48px -336px;
     transform: none;
   }
 
   .trainer-sprite.facing-right {
-    --hero-frame-a: -96px -240px;
-    --hero-frame-b: -144px -240px;
+    --hero-frame-a: -96px -336px;
+    --hero-frame-b: -144px -336px;
   }
 
   .trainer-sprite.facing-left {
-    --hero-frame-a: -96px -240px;
-    --hero-frame-b: -144px -240px;
+    --hero-frame-a: -96px -336px;
+    --hero-frame-b: -144px -336px;
     transform: scaleX(-1);
   }
 
@@ -3608,8 +3608,8 @@
   }
 
   .npc-sprite {
-    --npc-frame-a: -192px -240px;
-    --npc-frame-b: -48px -288px;
+    --npc-frame-a: -192px -336px;
+    --npc-frame-b: -48px -384px;
     width: 40px;
     height: 46px;
     background-image: url("/tilesets/satiria.png");
@@ -3629,28 +3629,28 @@
   }
 
   .npc-sprite.npc-variant-0 {
-    --npc-frame-a: -192px -240px;
-    --npc-frame-b: -48px -288px;
+    --npc-frame-a: -192px -336px;
+    --npc-frame-b: -48px -384px;
   }
 
   .npc-sprite.npc-variant-1 {
-    --npc-frame-a: -240px -240px;
-    --npc-frame-b: -96px -288px;
+    --npc-frame-a: -240px -336px;
+    --npc-frame-b: -96px -384px;
   }
 
   .npc-sprite.npc-variant-2 {
-    --npc-frame-a: -288px -240px;
-    --npc-frame-b: -144px -288px;
+    --npc-frame-a: -288px -336px;
+    --npc-frame-b: -144px -384px;
   }
 
   .npc-sprite.npc-variant-3 {
-    --npc-frame-a: -336px -240px;
-    --npc-frame-b: -192px -288px;
+    --npc-frame-a: -336px -336px;
+    --npc-frame-b: -192px -384px;
   }
 
   .npc-sprite.npc-variant-4 {
-    --npc-frame-a: 0 -288px;
-    --npc-frame-b: -240px -288px;
+    --npc-frame-a: 0 -384px;
+    --npc-frame-b: -240px -384px;
   }
 
   .npc-sprite.walking {

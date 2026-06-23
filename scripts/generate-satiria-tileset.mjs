@@ -4,7 +4,7 @@ import { deflateSync } from "node:zlib";
 
 const TILE = 48;
 const COLS = 8;
-const ROWS = 7;
+const ROWS = 9;
 const W = TILE * COLS;
 const H = TILE * ROWS;
 const data = new Uint8Array(W * H * 4);
@@ -402,10 +402,10 @@ const drawHero = (index, direction) => {
   });
 };
 
-drawHero(40, "front");
-drawHero(41, "back");
-drawHero(42, "side");
-drawHero(43, "walk");
+drawHero(56, "front");
+drawHero(57, "back");
+drawHero(58, "side");
+drawHero(59, "walk");
 
 const drawNpc = (index, variant, walk = false) => {
   tile(index, (x, y) => {
@@ -468,8 +468,8 @@ const drawNpc = (index, variant, walk = false) => {
 };
 
 [0, 1, 2, 3, 4].forEach((variant) => {
-  drawNpc(44 + variant, variant);
-  drawNpc(49 + variant, variant, true);
+  drawNpc(60 + variant, variant);
+  drawNpc(65 + variant, variant, true);
 });
 
 const crcTable = new Uint32Array(256).map((_, n) => {
