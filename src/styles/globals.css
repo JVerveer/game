@@ -2628,6 +2628,7 @@
   }
 
   .satiria-mountains {
+    z-index: 2;
     background:
       linear-gradient(128deg, transparent 0 31%, #d0c9b1 31% 37%, #6b6a5f 37% 56%, transparent 56%),
       linear-gradient(56deg, transparent 0 38%, #f0ead0 38% 45%, #807b6b 45% 67%, transparent 67%),
@@ -2641,6 +2642,7 @@
   }
 
   .satiria-scene-tree {
+    z-index: 3;
     background:
       radial-gradient(circle at 50% 18%, #315f24 0 28%, transparent 29%),
       radial-gradient(circle at 28% 41%, #3f7a2e 0 26%, transparent 27%),
@@ -2656,10 +2658,12 @@
 
   .satiria-coded-building {
     z-index: 5;
-    filter: drop-shadow(8px 10px 0 rgba(44, 32, 24, 0.28));
+    filter: none;
+    box-shadow: 6px 7px 0 rgba(44, 32, 24, 0.18);
   }
 
   .satiria-coded-building .roof {
+    z-index: 4;
     left: 5%;
     right: 5%;
     top: 2%;
@@ -2679,6 +2683,7 @@
   .roof-green .roof { background-color: #3d7130; }
 
   .satiria-coded-building .walls {
+    z-index: 2;
     left: 13%;
     right: 13%;
     bottom: 4%;
@@ -2699,6 +2704,7 @@
   }
 
   .satiria-coded-building .gable {
+    z-index: 5;
     left: 38%;
     top: 28%;
     width: 24%;
@@ -2709,6 +2715,7 @@
   }
 
   .satiria-coded-building .door {
+    z-index: 6;
     left: 43%;
     bottom: 5%;
     width: 14%;
@@ -2728,6 +2735,7 @@
   }
 
   .satiria-coded-building .windows {
+    z-index: 6;
     left: 20%;
     top: 57%;
     width: 18%;
@@ -2749,6 +2757,7 @@
   }
 
   .satiria-coded-building .chimney {
+    z-index: 1;
     left: 82%;
     top: 0;
     width: 8%;
@@ -2758,6 +2767,7 @@
   }
 
   .satiria-coded-building .crest {
+    z-index: 7;
     left: 45%;
     top: 38%;
     width: 10%;
