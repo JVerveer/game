@@ -3607,6 +3607,56 @@
     animation: hero-sprite-step 0.28s steps(1, end) infinite;
   }
 
+  .npc-sprite {
+    --npc-frame-a: -192px -240px;
+    --npc-frame-b: -48px -288px;
+    width: 40px;
+    height: 46px;
+    background-image: url("/tilesets/satiria.png");
+    background-position: var(--npc-frame-a);
+    background-repeat: no-repeat;
+    background-size: 384px auto;
+    image-rendering: pixelated;
+    overflow: visible;
+    contain: paint;
+    filter: drop-shadow(0 3px 0 rgba(37, 32, 24, 0.24));
+  }
+
+  .npc-sprite::before,
+  .npc-sprite::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .npc-sprite.npc-variant-0 {
+    --npc-frame-a: -192px -240px;
+    --npc-frame-b: -48px -288px;
+  }
+
+  .npc-sprite.npc-variant-1 {
+    --npc-frame-a: -240px -240px;
+    --npc-frame-b: -96px -288px;
+  }
+
+  .npc-sprite.npc-variant-2 {
+    --npc-frame-a: -288px -240px;
+    --npc-frame-b: -144px -288px;
+  }
+
+  .npc-sprite.npc-variant-3 {
+    --npc-frame-a: -336px -240px;
+    --npc-frame-b: -192px -288px;
+  }
+
+  .npc-sprite.npc-variant-4 {
+    --npc-frame-a: 0 -288px;
+    --npc-frame-b: -240px -288px;
+  }
+
+  .npc-sprite.walking {
+    animation: npc-sprite-step 0.34s steps(1, end) infinite;
+  }
+
   @keyframes hero-sprite-step {
     0%, 100% {
       background-position: var(--hero-frame-a);
@@ -3614,6 +3664,17 @@
     }
     50% {
       background-position: var(--hero-frame-b);
+      translate: 0 -2px;
+    }
+  }
+
+  @keyframes npc-sprite-step {
+    0%, 100% {
+      background-position: var(--npc-frame-a);
+      translate: 0 0;
+    }
+    50% {
+      background-position: var(--npc-frame-b);
       translate: 0 -2px;
     }
   }

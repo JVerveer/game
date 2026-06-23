@@ -407,6 +407,71 @@ drawHero(41, "back");
 drawHero(42, "side");
 drawHero(43, "walk");
 
+const drawNpc = (index, variant, walk = false) => {
+  tile(index, (x, y) => {
+    const skin = rgba("#f0c18a");
+    const skinShade = rgba("#c9875d");
+    const shoe = rgba("#2a2119");
+    const palettes = [
+      { hair: "#6a3f24", top: "#315f2a", top2: "#244b20", accent: "#f6d746", female: false },
+      { hair: "#3b2a1f", top: "#7a4b9c", top2: "#57347a", accent: "#fff8c8", female: true },
+      { hair: "#8a4b25", top: "#ca4b36", top2: "#8e3328", accent: "#315f2a", female: false },
+      { hair: "#4a2d1f", top: "#b64272", top2: "#7f2e55", accent: "#f3df62", female: true },
+      { hair: "#252018", top: "#4d77b0", top2: "#2f507d", accent: "#fff8c8", female: false },
+    ];
+    const p = palettes[variant % palettes.length];
+    const hair = rgba(p.hair);
+    const top = rgba(p.top);
+    const top2 = rgba(p.top2);
+    const accent = rgba(p.accent);
+    const step = walk ? 2 : 0;
+
+    fill(x, y, TILE, TILE, rgba("#000000", 0));
+    fill(x + 14, y + 41, 20, 4, rgba("#000000", 70));
+
+    if (p.female) {
+      fill(x + 12, y + 4, 24, 5, hair);
+      fill(x + 10, y + 9, 6, 17, hair);
+      fill(x + 32, y + 9, 6, 17, hair);
+      fill(x + 15, y + 8, 18, 15, skin);
+      fill(x + 18, y + 15, 3, 3, shoe);
+      fill(x + 28, y + 15, 3, 3, shoe);
+      fill(x + 23, y + 21, 5, 2, skinShade);
+      fill(x + 13, y + 23, 22, 4, shoe);
+      fill(x + 15, y + 27, 18, 11, top);
+      fill(x + 18, y + 29, 12, 4, top2);
+      fill(x + 22, y + 26, 5, 12, accent);
+      fill(x + 9, y + 25 + step, 6, 10, skin);
+      fill(x + 34, y + 25 - step, 5, 10, skin);
+      fill(x + 13, y + 37 - step, 8, 5, shoe);
+      fill(x + 29, y + 37 + step, 8, 5, shoe);
+      return;
+    }
+
+    fill(x + 12, y + 5, 24, 5, hair);
+    fill(x + 14, y + 2, 18, 7, top);
+    fill(x + 15, y + 10, 18, 13, skin);
+    fill(x + 11, y + 13, 5, 8, hair);
+    fill(x + 32, y + 13, 5, 8, hair);
+    fill(x + 19, y + 15, 3, 3, shoe);
+    fill(x + 28, y + 15, 3, 3, shoe);
+    fill(x + 23, y + 21, 5, 2, skinShade);
+    fill(x + 13, y + 23, 22, 4, shoe);
+    fill(x + 16, y + 27, 17, 9, top);
+    fill(x + 22, y + 27, 5, 9, accent);
+    fill(x + 9, y + 25 + step, 6, 9, skin);
+    fill(x + 34, y + 25 - step, 5, 9, skin);
+    fill(x + 15, y + 36 - step, 7, 6, shoe);
+    fill(x + 27, y + 36 + step, 7, 6, shoe);
+    fill(x + 17, y + 30, 14, 3, top2);
+  });
+};
+
+[0, 1, 2, 3, 4].forEach((variant) => {
+  drawNpc(44 + variant, variant);
+  drawNpc(49 + variant, variant, true);
+});
+
 const crcTable = new Uint32Array(256).map((_, n) => {
   let c = n;
   for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1;
