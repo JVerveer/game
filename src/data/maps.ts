@@ -959,10 +959,10 @@ const themedRowsFor = (theme: TownTheme) => {
 const doorConfigFor = (theme: TownTheme): TownDoorConfig => {
   if (theme.id === "satiria") {
     return {
-      shop: "7,22",
-      healing: "15,22",
+      shop: "8,22",
+      healing: "17,22",
       homes: ["12,10", "23,10", "33,10", "43,10"],
-      train: ["41,23", "42,23", "41,24", "42,24"],
+      train: ["41,21"],
       save: "26,19",
       sign: "24,18",
     };

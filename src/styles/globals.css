@@ -2742,6 +2742,30 @@
     font-size: 19px;
   }
 
+  .pixel-story-marker {
+    position: absolute;
+    right: 10px;
+    top: 102px;
+    z-index: 9;
+    display: flex;
+    gap: 3px;
+    padding: 3px;
+    background: rgba(67, 44, 25, 0.8);
+    box-shadow: inset 0 0 0 2px #fff1a2;
+  }
+
+  .pixel-story-marker i {
+    display: block;
+    width: 6px;
+    height: 12px;
+    background: #f6d746;
+    box-shadow: inset 0 -3px 0 #b8742a;
+  }
+
+  .pixel-building-station .pixel-story-marker {
+    top: 96px;
+  }
+
   .pixel-object-fountain {
     animation: pixel-water-shimmer 1.05s steps(2, end) infinite;
   }

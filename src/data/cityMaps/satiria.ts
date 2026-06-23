@@ -35,9 +35,9 @@ export const buildSatiriaMap = () => {
   rect(map, 40, 5, 8, 5, "B");
 
   // Shops and larger town hall / station block.
-  rect(map, 3, 16, 9, 7, "A");
-  rect(map, 13, 17, 6, 5, "H");
-  rect(map, 36, 16, 12, 8, "P");
+  rect(map, 3, 16, 10, 6, "A");
+  rect(map, 14, 17, 6, 5, "H");
+  rect(map, 39, 18, 5, 3, "P");
 
   // Door spurs connect every entrance into the town road / plaza network.
   vline(map, 12, 11, 13, "R");
@@ -59,7 +59,7 @@ export const buildSatiriaMap = () => {
   hline(map, 16, 20, 22, "F");
   hline(map, 36, 40, 24, "F");
   hline(map, 43, 48, 24, "F");
-  hline(map, 34, 42, 24, "R");
+  vline(map, 41, 21, 24, "R");
   rect(map, 18, 25, 5, 3, "X");
   rect(map, 31, 25, 7, 4, "X");
   rect(map, 14, 12, 4, 1, "L");
@@ -90,10 +90,9 @@ export const buildSatiriaMap = () => {
   map[10][23] = "O";
   map[10][33] = "O";
   map[10][43] = "O";
-  map[22][7] = "O";
-  map[22][15] = "O";
-  map[23][41] = "O";
-  map[23][42] = "O";
+  map[22][8] = "O";
+  map[22][17] = "O";
+  map[21][41] = "O";
   map[19][26] = "V";
 
   // Clear route exits through the tree wall.

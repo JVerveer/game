@@ -10,6 +10,7 @@ export type PixelBuilding = {
   color: PixelBuildingColor;
   kind: "house" | "shop" | "hall" | "station";
   crest?: string;
+  stories?: 1 | 2 | 3 | 4 | 5;
 };
 
 export type PixelObject = {
@@ -128,6 +129,7 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
   const doorX = Math.floor(building.w / 2) - 0.5;
   const windowY = Math.max(2, building.h - 2);
   const zIndex = 40 + building.y;
+  const stories = building.stories ?? 1;
 
   return (
     <div
@@ -155,6 +157,11 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
       <i className="pixel-sprite-tile pixel-building-chimney" style={spriteStyle("chimney", building.w - 1.25, -0.45)} />
       {building.crest && <i className="pixel-sprite-tile pixel-building-sign" style={spriteStyle("sign", doorX, 2)} />}
       {building.crest && <span className="pixel-building-crest">{building.crest}</span>}
+      <span className="pixel-story-marker" aria-hidden="true">
+        {Array.from({ length: stories }).map((_, story) => (
+          <i key={`story-${story}`} />
+        ))}
+      </span>
     </div>
   );
 }
