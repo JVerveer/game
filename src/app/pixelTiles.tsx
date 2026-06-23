@@ -10,7 +10,6 @@ export type PixelBuilding = {
   color: PixelBuildingColor;
   kind: "house" | "shop" | "hall" | "station";
   crest?: string;
-  stories?: 1 | 2 | 3 | 4 | 5;
 };
 
 export type PixelObject = {
@@ -129,7 +128,7 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
   const doorX = Math.floor(building.w / 2) - 0.5;
   const windowY = Math.max(2, building.h - 2);
   const zIndex = 40 + building.y;
-  const stories = building.stories ?? 1;
+  const stories = Math.max(1, Math.min(5, building.h - 2));
 
   return (
     <div
