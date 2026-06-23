@@ -2313,11 +2313,11 @@ const INITIAL_NPCS: MovingNpc[] = [
 
 const SATIRIA_BUILDINGS: PixelBuilding[] = [
   { x: 8, y: 5, w: 7, h: 5, color: "red", kind: "house", crest: "★", stories: 1 },
-  { x: 19, y: 5, w: 10, h: 6, color: "blue", kind: "hall", crest: "+", stories: 2 },
+  { x: 19, y: 5, w: 8, h: 5, color: "green", kind: "house", crest: "⌂", stories: 3 },
   { x: 30, y: 5, w: 7, h: 5, color: "purple", kind: "house", crest: "♦", stories: 3 },
   { x: 40, y: 5, w: 8, h: 5, color: "red", kind: "house", crest: "□", stories: 4 },
   { x: 3, y: 16, w: 10, h: 6, color: "green", kind: "shop", crest: "$", stories: 2 },
-  { x: 14, y: 17, w: 6, h: 5, color: "blue", kind: "house", crest: "!", stories: 5 },
+  { x: 14, y: 16, w: 10, h: 6, color: "blue", kind: "hall", crest: "+", stories: 2 },
   { x: 39, y: 18, w: 5, h: 3, color: "red", kind: "station", crest: "T", stories: 1 },
 ];
 

@@ -30,13 +30,13 @@ export const buildSatiriaMap = () => {
 
   // Houses along the upper road.
   rect(map, 8, 5, 7, 5, "B");
-  rect(map, 19, 5, 10, 6, "H");
+  rect(map, 19, 5, 8, 5, "B");
   rect(map, 30, 5, 7, 5, "U");
   rect(map, 40, 5, 8, 5, "B");
 
   // Shops and larger town hall / station block.
   rect(map, 3, 16, 10, 6, "A");
-  rect(map, 14, 17, 6, 5, "B");
+  rect(map, 14, 16, 10, 6, "H");
   rect(map, 39, 18, 5, 3, "P");
 
   // Door spurs connect every entrance into the town road / plaza network.
@@ -64,7 +64,7 @@ export const buildSatiriaMap = () => {
   rect(map, 31, 25, 7, 4, "X");
   rect(map, 14, 12, 4, 1, "L");
   rect(map, 38, 12, 3, 1, "L");
-  rect(map, 20, 22, 3, 1, "L");
+  rect(map, 24, 22, 3, 1, "L");
   rect(map, 34, 15, 4, 1, "L");
   rect(map, 43, 15, 3, 1, "L");
   rect(map, 34, 25, 4, 2, "L");
@@ -91,7 +91,7 @@ export const buildSatiriaMap = () => {
   map[10][33] = "O";
   map[10][43] = "O";
   map[22][8] = "O";
-  map[22][17] = "O";
+  map[22][19] = "O";
   map[21][41] = "O";
   map[19][26] = "V";
 
