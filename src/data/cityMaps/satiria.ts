@@ -36,7 +36,7 @@ export const buildSatiriaMap = () => {
 
   // Shops and larger town hall / station block.
   rect(map, 3, 16, 10, 6, "A");
-  rect(map, 14, 17, 6, 5, "H");
+  rect(map, 14, 17, 6, 5, "B");
   rect(map, 39, 18, 5, 3, "P");
 
   // Door spurs connect every entrance into the town road / plaza network.
