@@ -21,8 +21,6 @@ import {
   GAME_MAPS,
   MAIN_TOWN_IDS,
   TOWN_THEMES,
-  TOWN_WORLD_POSITIONS,
-  WORLD_ROUTES,
   type GameMapId,
   type Portal,
   type TownMapId,
@@ -2421,7 +2419,6 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [saveMsg, setSaveMsg] = useState<string | null>(null);
   const [isWalking, setIsWalking] = useState(false);
   const [npcs, setNpcs] = useState<MovingNpc[]>(INITIAL_NPCS);
-  const [miniMapOpen, setMiniMapOpen] = useState(true);
   const [trainOpen, setTrainOpen] = useState(false);
   const [trainIndex, setTrainIndex] = useState(0);
   const viewRef = useRef<HTMLDivElement>(null);
@@ -2822,91 +2819,6 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           {saveMsg}
         </div>
       )}
-
-      {/* ── CLICKABLE WORLD MINIMAP ── */}
-      <button
-        type="button"
-        aria-label="Open world minimap"
-        onClick={() => setMiniMapOpen(open => !open)}
-        style={{
-          position: "fixed",
-          left: 14,
-          bottom: 38,
-          zIndex: 1000,
-          width: miniMapOpen ? 254 : 142,
-          minHeight: miniMapOpen ? 184 : 92,
-          border: "4px solid #252018",
-          backgroundColor: "#fff8c8",
-          boxShadow: "inset 0 0 0 3px #ffffff, 0 8px 0 rgba(90,60,34,0.55)",
-          padding: miniMapOpen ? 10 : 8,
-          cursor: "pointer",
-          textAlign: "left",
-          transition: "width 0.18s ease, min-height 0.18s ease",
-        }}
-      >
-        <div style={{ ...PX, fontSize: "0.42rem", color: "#315f2a", marginBottom: 6 }}>
-          WORLD MAP
-        </div>
-        <div style={{ position: "relative", height: miniMapOpen ? 94 : 54, backgroundColor: "#76ad56", border: "2px solid #252018", overflow: "hidden" }}>
-          <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle, rgba(37,32,24,0.16) 1px, transparent 2px)", backgroundSize: "10px 10px" }} />
-          {Object.entries(WORLD_ROUTES).flatMap(([from, routes]) =>
-            Object.values(routes).map(to => [from as TownMapId, to!] as const)
-          ).filter(([from, to], index, edges) =>
-            edges.findIndex(([a, b]) => [a, b].sort().join("-") === [from, to].sort().join("-")) === index
-          ).map(([from, to]) => {
-            const a = TOWN_WORLD_POSITIONS[from];
-            const b = TOWN_WORLD_POSITIONS[to];
-            return (
-              <div
-                key={`${from}-${to}`}
-                style={{
-                  position: "absolute",
-                  left: `${Math.min(a.x, b.x)}%`,
-                  top: `${Math.min(a.y, b.y)}%`,
-                  width: `${Math.abs(a.x - b.x) || 2}%`,
-                  height: `${Math.abs(a.y - b.y) || 2}%`,
-                  borderTop: "2px dashed rgba(90,60,34,0.78)",
-                  transform: a.y > b.y ? "skewY(-24deg)" : "skewY(24deg)",
-                  transformOrigin: "left center",
-                }}
-              />
-            );
-          })}
-          {TOWN_THEMES.map(town => {
-            const p = TOWN_WORLD_POSITIONS[town.id];
-            const active = town.id === mapId;
-            return (
-              <div
-                key={town.id}
-                title={town.name}
-                style={{
-                  position: "absolute",
-                  left: `calc(${p.x}% - ${active ? 6 : 4}px)`,
-                  top: `calc(${p.y}% - ${active ? 6 : 4}px)`,
-                  width: active ? 12 : 8,
-                  height: active ? 12 : 8,
-                  backgroundColor: active ? "#e84a4a" : "#f6d746",
-                  border: "2px solid #252018",
-                  boxShadow: active ? "0 0 0 3px rgba(232,74,74,0.24)" : "none",
-                }}
-              />
-            );
-          })}
-        </div>
-        <div style={{ ...VT, fontSize: miniMapOpen ? "1rem" : "0.88rem", color: "#252018", lineHeight: 1.1, marginTop: 7 }}>
-          Hero: {location}
-        </div>
-        {miniMapOpen && (
-          <div style={{ marginTop: 6 }}>
-            <div style={{ ...PX, fontSize: "0.38rem", color: "#b6422c", marginBottom: 4 }}>
-              {currentTown?.name ?? currentMap.name}
-            </div>
-            <div style={{ ...VT, fontSize: "0.9rem", color: "#66512c", lineHeight: 1.1 }}>
-              {currentTown ? currentTown.hook : "Interior area. Exit returns to the last town doorway."}
-            </div>
-          </div>
-        )}
-      </button>
 
       {/* ── TRAIN STATION MENU ── */}
       {trainOpen && (
