@@ -2612,14 +2612,7 @@
   }
 
   .satiria-tileset-building::after {
-    content: "";
-    position: absolute;
-    left: 10%;
-    right: 10%;
-    bottom: -5px;
-    height: 13px;
-    z-index: 0;
-    background: rgba(44, 32, 24, 0.22);
+    content: none;
   }
 
   .satiria-tileset-building .satiria-sprite-tile {
@@ -2696,16 +2689,7 @@
   }
 
   .pixel-tileset-building::after {
-    content: "";
-    position: absolute;
-    left: 12px;
-    right: 12px;
-    bottom: -7px;
-    height: 12px;
-    z-index: 0;
-    background:
-      linear-gradient(90deg, transparent 0 8px, rgba(38, 29, 21, 0.22) 8px calc(100% - 8px), transparent calc(100% - 8px)),
-      linear-gradient(0deg, rgba(38, 29, 21, 0.2), rgba(38, 29, 21, 0.08));
+    content: none;
   }
 
   .pixel-tileset-building .pixel-sprite-tile {

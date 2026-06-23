@@ -2459,6 +2459,15 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     const nx = cur.x + dx;
     const ny = cur.y + dy;
     const t = tile(nx, ny);
+    const targetInteraction = GAME_MAPS[mapIdRef.current].interactions[`${nx},${ny}`];
+
+    if (targetInteraction?.portal && targetInteraction.auto) {
+      if (dir === "up" || isIndoor(mapIdRef.current)) {
+        warpTo(targetInteraction.portal);
+      }
+      return;
+    }
+
     if (!WALK.has(t)) return;
     if (npcAt(mapIdRef.current, nx, ny)) return;
 
@@ -2467,12 +2476,6 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setTimeout(() => setIsWalking(false), 180);
     setSteps(s => s + 1);
     setLocation(LOCATION_FOR(mapIdRef.current, nx, ny, t));
-
-    const steppedInteraction = GAME_MAPS[mapIdRef.current].interactions[`${nx},${ny}`];
-    if (steppedInteraction?.portal && steppedInteraction.auto) {
-      window.setTimeout(() => warpTo(steppedInteraction.portal!), 120);
-      return;
-    }
 
     if (t === "X" && Math.random() < 0.13) {
       setFlash(true);
