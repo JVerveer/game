@@ -21,7 +21,6 @@ const ATLAS: Record<string, number> = {
   wall: 12,
   door: 13,
   window: 14,
-  chimney: 15,
   plaza: 16,
   pier: 17,
   bench: 18,
@@ -154,7 +153,6 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
           />
         ));
       })}
-      <i className="pixel-sprite-tile pixel-building-chimney" style={spriteStyle("chimney", building.w - 1.25, -0.45)} />
       {building.crest && <i className="pixel-sprite-tile pixel-building-sign" style={spriteStyle("sign", doorX, signY)} />}
       {building.crest && (
         <span
