@@ -221,14 +221,38 @@ tile(20, (x, y) => {
 });
 
 tile(21, (x, y) => {
-  fill(x, y, TILE, TILE, rgba("#000000", 0));
-  fill(x + 4, y + 7, 40, 34, c.stone);
-  rect(x + 4, y + 7, 40, 34, c.outline);
-  fill(x + 8, y + 11, 32, 26, c.water);
-  fill(x + 12, y + 15, 24, 16, c.waterLite);
-  fill(x + 20, y + 4, 9, 25, rgba("#a8a79d"));
-  fill(x + 17, y + 1, 15, 9, rgba("#c5c4b9"));
-  fill(x + 16, y + 30, 18, 4, rgba("#b8e6f3", 190));
+  fill(x, y, TILE, TILE, c.plaza);
+  checkerNoise(x, y, rgba("#d7c798"), rgba("#9a8b68"), 12);
+
+  // Hand-drawn octagonal basin with uneven stone chunks.
+  fill(x + 10, y + 6, 28, 3, c.outline);
+  fill(x + 7, y + 9, 34, 4, c.stone);
+  fill(x + 5, y + 13, 38, 22, c.stone);
+  fill(x + 8, y + 35, 32, 5, c.stone);
+  fill(x + 12, y + 40, 24, 3, c.outline);
+  fill(x + 5, y + 15, 3, 18, c.outline);
+  fill(x + 40, y + 14, 3, 19, c.outline);
+  fill(x + 9, y + 9, 5, 4, rgba("#b3b1a4"));
+  fill(x + 33, y + 34, 6, 4, rgba("#6f7169"));
+  fill(x + 14, y + 38, 5, 3, rgba("#c5c4b9"));
+
+  // Larger, irregular water pool.
+  fill(x + 10, y + 14, 28, 4, c.water);
+  fill(x + 8, y + 18, 32, 13, c.water);
+  fill(x + 11, y + 31, 26, 5, c.water);
+  fill(x + 13, y + 17, 22, 3, c.waterLite);
+  fill(x + 12, y + 23, 26, 2, rgba("#b8e6f3", 200));
+  fill(x + 16, y + 30, 17, 3, rgba("#72bde6", 220));
+
+  // Lopsided central spout and splashes.
+  fill(x + 21, y + 5, 7, 22, rgba("#a8a79d"));
+  fill(x + 19, y + 2, 12, 7, rgba("#c5c4b9"));
+  fill(x + 18, y + 8, 4, 3, rgba("#6f7169"));
+  fill(x + 27, y + 10, 5, 3, rgba("#e0ded1"));
+  fill(x + 22, y + 12, 3, 11, rgba("#d6f2ff", 190));
+  fill(x + 26, y + 15, 2, 8, rgba("#d6f2ff", 160));
+  fill(x + 17, y + 26, 5, 2, rgba("#d6f2ff", 180));
+  fill(x + 31, y + 21, 4, 2, rgba("#d6f2ff", 160));
 });
 
 tile(22, (x, y) => {
