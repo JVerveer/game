@@ -129,6 +129,8 @@ type TownTheme = {
   satire: string;
   hook: string;
   accent: "water" | "sand" | "mountain" | "forest" | "port" | "city";
+  motto: string;
+  population: number;
   sign: string[];
   npcName: string;
   npcLines: string[];
@@ -143,6 +145,8 @@ export const TOWN_THEMES: TownTheme[] = [
     satire: "A warm-up town where every joke still needs a tutorial.",
     hook: "Starting location with shop, healing center, save point, and routes outward.",
     accent: "forest",
+    motto: "Every quest starts with a smaller errand.",
+    population: 421,
     sign: ["★ SATIRIA TOWN ★", "Shop west. Healing Center north.", "Follow the east road to Brexiton."],
     npcName: "Route Guide",
     npcLines: ['"The east road is open now."', '"Eleven towns, one pair of shoes. Very heroic."'],
@@ -155,6 +159,8 @@ export const TOWN_THEMES: TownTheme[] = [
     satire: "Endless debates, bureaucracy, and exit negotiations.",
     hook: "Gates constantly open and close depending on town votes.",
     accent: "city",
+    motto: "Out means out, pending clarification.",
+    population: 12043,
     sign: ["★ BREXITON ★", "Mind the gap between promise and policy.", "The exit gate is having a consultation."],
     npcName: "Queue Minister",
     npcLines: ['"We voted to open this gate, then formed a committee to close it."', '"Please enjoy the paperwork maze."'],
@@ -167,6 +173,8 @@ export const TOWN_THEMES: TownTheme[] = [
     satire: "Social media discourse and online outrage.",
     hook: "NPCs spread rumors that alter quests in real time.",
     accent: "water",
+    motto: "Post first, verify eventually.",
+    population: 8808,
     sign: ["★ TWEETSBURG ★", "Every rumor has fiber internet.", "Quest facts may update without notice."],
     npcName: "Trend Watcher",
     npcLines: ['"A rumor just patched itself into the main quest."', '"Do not read the replies unless you brought potions."'],
@@ -179,6 +187,8 @@ export const TOWN_THEMES: TownTheme[] = [
     satire: "Crypto hype, speculation, and sudden crashes.",
     hook: "Currency value changes every few minutes.",
     accent: "sand",
+    motto: "Tomorrow is priced in until lunch.",
+    population: 17776,
     sign: ["★ CRYPTONIA CITY ★", "Prices moon at dawn and crash by lunch.", "No refunds on vibes."],
     npcName: "Token Baron",
     npcLines: ['"My wallet was full this morning. Now it is a learning experience."', '"The beach is real. The yield is theoretical."'],
@@ -191,6 +201,8 @@ export const TOWN_THEMES: TownTheme[] = [
     satire: "Culture-war debates, activism, and ideological purity tests.",
     hook: "Every faction has different rules for acceptable behavior.",
     accent: "forest",
+    motto: "Read the room, then read the footnotes.",
+    population: 6402,
     sign: ["★ WOKESHIRE ★", "Check the notice board before speaking.", "The notices disagree."],
     npcName: "Consensus Ranger",
     npcLines: ['"The north path is approved by three factions and denounced by four."', '"Bring empathy, patience, and a spare checklist."'],
@@ -203,6 +215,8 @@ export const TOWN_THEMES: TownTheme[] = [
     satire: "Trade wars and import/export restrictions.",
     hook: "Crossing districts requires paying changing tariffs.",
     accent: "port",
+    motto: "Nothing passes without a stamp.",
+    population: 15110,
     sign: ["★ TARIFF TOWN ★", "All roads are imports.", "Toll prices refresh when nobody is looking."],
     npcName: "Dock Broker",
     npcLines: ['"Crossing the street costs three stamps and one surprise fee."', '"The ships are punctual. The forms are not."'],
@@ -215,6 +229,8 @@ export const TOWN_THEMES: TownTheme[] = [
     satire: "Competing narratives, spin, and fact-checking.",
     hook: "Every NPC gives a different version of the same quest.",
     accent: "water",
+    motto: "Trust, but bring citations.",
+    population: 5309,
     sign: ["★ FACTCHECK FALLS ★", "Three plaques explain this waterfall.", "Only one is mostly true."],
     npcName: "Citation Clerk",
     npcLines: ['"The quest began here, unless you ask the mayor."', '"I rate that potion claim: needs context."'],
@@ -227,6 +243,8 @@ export const TOWN_THEMES: TownTheme[] = [
     satire: "Attention economy and outrage-driven media.",
     hook: "The more dramatic your actions, the more rewards you receive.",
     accent: "sand",
+    motto: "Keep calm, but louder.",
+    population: 9961,
     sign: ["★ RAGEBAIT BAY ★", "Quiet deeds earn quiet applause.", "Dramatic deeds get sponsored."],
     npcName: "Reaction Producer",
     npcLines: ['"Try entering the shop with a gasp. The algorithm loves commitment."', '"Subtlety was nerfed last season."'],
@@ -239,6 +257,8 @@ export const TOWN_THEMES: TownTheme[] = [
     satire: "Surveillance technology, data collection, and monitoring.",
     hook: "Guards know where you are unless you disable cameras.",
     accent: "city",
+    motto: "For your safety, we already know.",
+    population: 22001,
     sign: ["★ SURVEILLIA ★", "Smile. The signs already know you read them.", "Cameras cover every shortcut."],
     npcName: "Camera Guard",
     npcLines: ['"You are currently standing exactly there."', '"Disable the cameras and I will have to guess like everyone else."'],
@@ -251,6 +271,8 @@ export const TOWN_THEMES: TownTheme[] = [
     satire: "AI assistants, automation, and prompt engineering.",
     hook: "Citizens outsource every decision to AI oracles.",
     accent: "water",
+    motto: "Ask clearly, automate carefully.",
+    population: 7337,
     sign: ["★ PROMPTFORD ★", "Canals, startups, and oracles with opinions.", "Please phrase your destiny clearly."],
     npcName: "Oracle Intern",
     npcLines: ['"The oracle suggests taking the scenic route, with confidence 0.51."', '"I asked it what to eat. It opened a sprint board."'],
@@ -263,6 +285,8 @@ export const TOWN_THEMES: TownTheme[] = [
     satire: "Inflation, currency instability, and rising prices.",
     hook: "Shop prices increase as you play.",
     accent: "city",
+    motto: "Spend now, regret at market close.",
+    population: 14192,
     sign: ["★ INFLATOPOLIS ★", "Read prices quickly.", "Yesterday's bargain is today's museum exhibit."],
     npcName: "Price Sprinter",
     npcLines: ['"I saved up for bread. Now I can afford a receipt."', '"The shop sign updates faster than my legs."'],
@@ -920,6 +944,114 @@ const routeObjectsFor = (_theme: TownTheme) => ({});
 
 const routeInteractionsFor = (_theme: TownTheme) => ({});
 
+const TOWN_THEME_BY_ID = Object.fromEntries(TOWN_THEMES.map(theme => [theme.id, theme])) as Record<TownMapId, TownTheme>;
+
+const parseCoord = (coord: string) => {
+  const [x, y] = coord.split(",").map(Number);
+  return { x, y };
+};
+
+const keyFor = (x: number, y: number) => `${x},${y}`;
+
+const townSignLines = (theme: TownTheme) => [
+  `★ ${theme.name.toUpperCase()} ★`,
+  `Motto: "${theme.motto}"`,
+  `Population: ${theme.population.toLocaleString()}`,
+  theme.satire,
+];
+
+const routeSignBase = (direction: RouteDirection, rows: string[][]) => {
+  const height = rows.length;
+  const width = rows[0]?.length ?? 56;
+  if (direction === "N") return { x: 29, y: 4 };
+  if (direction === "S") return { x: 29, y: Math.max(0, height - 5) };
+  if (direction === "W") return { x: 4, y: 16 };
+  if (direction === "E") return { x: Math.max(0, width - 5), y: 16 };
+  return { x: 27, y: 18 };
+};
+
+const nearestSignCoord = (rows: string[][], preferred: { x: number; y: number }, reserved: Set<string>) => {
+  const height = rows.length;
+  const width = rows[0]?.length ?? 0;
+  const offsets = [
+    [0, 0], [-1, 0], [1, 0], [0, 1], [0, -1],
+    [-2, 0], [2, 0], [-1, 1], [1, 1], [-1, -1], [1, -1],
+    [0, 2], [0, -2], [-2, 1], [2, 1], [-2, -1], [2, -1],
+  ];
+  const fallback = keyFor(Math.max(0, Math.min(width - 1, preferred.x)), Math.max(0, Math.min(height - 1, preferred.y)));
+
+  for (const [dx, dy] of offsets) {
+    const x = preferred.x + dx;
+    const y = preferred.y + dy;
+    const key = keyFor(x, y);
+    const tile = rows[y]?.[x];
+    if (x < 0 || y < 0 || x >= width || y >= height || reserved.has(key)) continue;
+    if (tile === "O" || tile === "W" || tile === "T" || tile === "Y") continue;
+    reserved.add(key);
+    return key;
+  }
+
+  reserved.add(fallback);
+  return fallback;
+};
+
+const buildingSignName = (theme: TownTheme, kind: "shop" | "healing" | "home" | "train", index = 0) => {
+  if (kind === "shop") return `${theme.name} Shop`;
+  if (kind === "healing") return `${theme.name} Healing Center`;
+  if (kind === "train") return `${theme.name} Train Station`;
+  return index === 0 ? `${theme.name} House` : `Local House ${index + 1}`;
+};
+
+const buildingSignLines = (name: string, kind: "shop" | "healing" | "home" | "train") => {
+  if (kind === "shop") return [name, "Supplies, snacks, and economic optimism sold here."];
+  if (kind === "healing") return [name, "Rest, recover, and pretend the last battle was research."];
+  if (kind === "train") return [name, "Town-to-town travel boards here."];
+  return [name, "Private residence. Knock with plot relevance."];
+};
+
+const buildSignageFor = (
+  theme: TownTheme,
+  rows: string[][],
+  doors: TownDoorConfig,
+  reserved: Set<string>,
+) => {
+  const objects: Record<string, string> = {};
+  const interactions: Record<string, Interaction> = {};
+  const addSign = (preferred: { x: number; y: number }, name: string, lines: string[]) => {
+    const coord = nearestSignCoord(rows, preferred, reserved);
+    objects[coord] = "SIGN";
+    interactions[coord] = { name, lines };
+  };
+
+  addSign(parseCoord(doors.sign), `${theme.name} Town Sign`, townSignLines(theme));
+
+  Object.entries(WORLD_ROUTES[theme.id]).forEach(([direction, target]) => {
+    if (!target) return;
+    const targetTheme = TOWN_THEME_BY_ID[target];
+    addSign(routeSignBase(direction as RouteDirection, rows), `Route Sign: ${targetTheme.name}`, [
+      `To ${targetTheme.name}`,
+      `Motto: "${targetTheme.motto}"`,
+      `Population: ${targetTheme.population.toLocaleString()}`,
+    ]);
+  });
+
+  const doorSpecs = [
+    { coord: doors.shop, kind: "shop" as const, index: 0 },
+    { coord: doors.healing, kind: "healing" as const, index: 0 },
+    ...doors.homes.map((coord, index) => ({ coord, kind: "home" as const, index })),
+    ...doors.train.map((coord, index) => ({ coord, kind: "train" as const, index })),
+  ];
+
+  doorSpecs.forEach(({ coord, kind, index }) => {
+    const door = parseCoord(coord);
+    const name = buildingSignName(theme, kind, index);
+    const side = index % 2 === 0 ? -1 : 1;
+    addSign({ x: door.x + side, y: door.y }, `${name} Sign`, buildingSignLines(name, kind));
+  });
+
+  return { objects, interactions };
+};
+
 type TownDoorConfig = {
   shop: string;
   healing: string;
@@ -1183,14 +1315,6 @@ const specialObjectsFor = (theme: TownTheme): Record<string, string> => {
 const specialInteractionsFor = (theme: TownTheme): Record<string, Interaction> => {
   if (theme.id === "satiria") {
     return {
-      "28,18": {
-        name: "Town Fountain",
-        lines: ["The fountain marks Satiria's central square.", "The water looks suspiciously well-balanced."],
-      },
-      "28,19": {
-        name: "Founder Statue",
-        lines: ["A heroic statue, carefully positioned where everyone must walk around it."],
-      },
       "9,23": {
         name: "Pond Sign",
         lines: ["Satiria Pond", "Please do not debate the lily pads."],
@@ -1348,6 +1472,8 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
   const doors = doorConfigFromRows(theme, rows);
   const homeObjects = Object.fromEntries(doors.homes.map(coord => [coord, "DOOR_HOME"]));
   const trainObjects = Object.fromEntries(doors.train.slice(0, 2).map(coord => [coord, "TRAIN"]));
+  const specialObjects = specialObjectsFor(theme);
+  const specialInteractions = specialInteractionsFor(theme);
   const shopInteraction = {
     name: `${theme.name} Shop`,
     portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
@@ -1371,23 +1497,25 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
     train: true,
     lines: ["Choose a destination."],
   } satisfies Interaction]));
-  const showGenericSaveAndSign = theme.id !== "satiria";
+  const showGenericSave = theme.id !== "satiria";
   const entryDoorCoords = new Set([doors.shop, doors.healing, ...doors.homes, ...doors.train]);
-  const genericObjects = showGenericSaveAndSign ? Object.fromEntries([
+  const genericObjects = showGenericSave ? Object.fromEntries([
     [doors.save, "★"],
-    [doors.sign, "SIGN"],
   ].filter(([coord]) => !entryDoorCoords.has(coord))) : {};
-  const genericInteractions = showGenericSaveAndSign ? Object.fromEntries([
+  const genericInteractions = showGenericSave ? Object.fromEntries([
     [doors.save, {
       name: "Save Point",
       save: true,
       lines: ["★ PROGRESS SAVED ★", `${theme.name} - Lv. 15`, theme.hook],
     } satisfies Interaction],
-    [doors.sign, {
-      name: "Town Sign",
-      lines: [...theme.sign, `Hook: ${theme.hook}`],
-    } satisfies Interaction],
   ].filter(([coord]) => !entryDoorCoords.has(coord))) : {};
+  const signReserved = new Set([
+    ...entryDoorCoords,
+    ...Object.keys(genericObjects),
+    ...Object.keys(specialObjects),
+    ...Object.keys(specialInteractions),
+  ]);
+  const signage = buildSignageFor(theme, rows, doors, signReserved);
 
   return {
     id: theme.id,
@@ -1403,7 +1531,8 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
       ...homeObjects,
       ...trainObjects,
       ...genericObjects,
-      ...specialObjectsFor(theme),
+      ...signage.objects,
+      ...specialObjects,
     },
     interactions: {
       ...routeInteractionsFor(theme),
@@ -1412,7 +1541,8 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
       ...homeInteractions,
       ...trainInteractions,
       ...genericInteractions,
-      ...specialInteractionsFor(theme),
+      ...signage.interactions,
+      ...specialInteractions,
     },
   };
 };
