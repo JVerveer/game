@@ -130,17 +130,17 @@ export const SATIRIA_OBJECTS: PixelObject[] = [
   { sprite: "bench", x: 32, y: 16, className: "pixel-object-bench-large" },
   { sprite: "bench", x: 24, y: 22, className: "pixel-object-bench-large" },
   { sprite: "bench", x: 32, y: 22, className: "pixel-object-bench-large" },
-  { sprite: "lamp", x: 25.4, y: 15.2, className: "pixel-object-lamp-large" },
-  { sprite: "lamp", x: 31.2, y: 15.2, className: "pixel-object-lamp-large" },
-  { sprite: "lamp", x: 25.4, y: 21.3, className: "pixel-object-lamp-large" },
-  { sprite: "lamp", x: 31.2, y: 21.3, className: "pixel-object-lamp-large" },
+  { sprite: "lamp", x: 25, y: 17, className: "pixel-object-lamp-large" },
+  { sprite: "lamp", x: 31, y: 17, className: "pixel-object-lamp-large" },
+  { sprite: "lamp", x: 25, y: 21, className: "pixel-object-lamp-large" },
+  { sprite: "lamp", x: 31, y: 21, className: "pixel-object-lamp-large" },
   { sprite: "mediumTree", x: 15, y: 27, w: 2, h: 2 },
   { sprite: "mediumTree", x: 46, y: 25, w: 2, h: 2 },
   { sprite: "largeTree", x: 48, y: 28, w: 3, h: 3 },
 ];
 
 export const SATIRIA_OBJECT_MARKERS: Record<string, string> = {
-  "28,18": "SATIRIA_FOUNTAIN",
+  "28,28": "SATIRIA_FOUNTAIN",
   "9,23": "SATIRIA_POND_SIGN",
   "28,19": "SATIRIA_STATUE",
 };
