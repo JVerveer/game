@@ -3,10 +3,10 @@ import type { TownMapId } from "../maps";
 export type CitySizeTier = "small" | "medium" | "large" | "extraLarge";
 
 export const CITY_SIZE_DIMS: Record<CitySizeTier, { width: number; height: number; npcCount: number }> = {
-  small: { width: 56, height: 34, npcCount: 8 },
-  medium: { width: 80, height: 50, npcCount: 12 },
-  large: { width: 97, height: 60, npcCount: 16 },
-  extraLarge: { width: 132, height: 75, npcCount: 26 },
+  small: { width: 56, height: 34, npcCount: 10 },
+  medium: { width: 80, height: 50, npcCount: 20 },
+  large: { width: 97, height: 60, npcCount: 32 },
+  extraLarge: { width: 132, height: 75, npcCount: 52 },
 };
 
 export const CITY_SIZE_TIER_BY_TOWN: Record<TownMapId, CitySizeTier> = {

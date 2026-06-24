@@ -3895,7 +3895,7 @@
   .nurse-sprite {
     width: 48px;
     height: 48px;
-    background-image: url("/tilesets/characters.png?v=2") !important;
+    background-image: url("/tilesets/characters.png?v=4") !important;
     background-repeat: no-repeat;
     background-size: 384px auto;
     image-rendering: pixelated;
@@ -4111,7 +4111,7 @@
 .nurse-sprite {
   width: 48px !important;
   height: 48px !important;
-  background-image: url("/tilesets/characters.png?v=3") !important;
+  background-image: url("/tilesets/characters.png?v=4") !important;
   background-repeat: no-repeat !important;
   background-size: 384px auto !important;
   image-rendering: pixelated !important;

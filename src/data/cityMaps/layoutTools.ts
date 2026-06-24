@@ -48,6 +48,16 @@ const canDecorate = (map: string[][], x: number, y: number, w = 1, h = 1) => {
   return true;
 };
 
+const canBuildOn = (map: string[][], x: number, y: number, w = 1, h = 1) => {
+  for (let ry = y; ry < y + h; ry++) {
+    for (let cx = x; cx < x + w; cx++) {
+      const tile = map[ry]?.[cx];
+      if (tile !== "G" && tile !== "X" && tile !== "S") return false;
+    }
+  }
+  return true;
+};
+
 const BUILDING_TILES = new Set(["A", "B", "H", "P", "U", "O"]);
 const ROAD_SAFE_TILES = new Set(["G", "R", "E", "X", "S", "J"]);
 
@@ -71,6 +81,15 @@ const vlineSafe = (map: string[][], x: number, y1: number, y2: number, tile: Cit
 const inCenterSquare = (x: number, y: number, centerX: number, centerY: number) =>
   Math.abs(x - centerX) <= 9 && Math.abs(y - centerY) <= 6;
 
+const overlapsCenterSquare = (x: number, y: number, w: number, h: number, centerX: number, centerY: number) => {
+  for (let ry = y; ry < y + h; ry++) {
+    for (let cx = x; cx < x + w; cx++) {
+      if (inCenterSquare(cx, ry, centerX, centerY)) return true;
+    }
+  }
+  return false;
+};
+
 const clearCenterSquare = (map: string[][], centerX: number, centerY: number) => {
   for (let y = centerY - 5; y <= centerY + 5; y++) {
     for (let x = centerX - 8; x <= centerX + 8; x++) {
@@ -85,8 +104,59 @@ const clearCenterSquare = (map: string[][], centerX: number, centerY: number) =>
 };
 
 const placeIfGrass = (map: string[][], x: number, y: number, w: number, h: number, tile: CityMapTile, centerX: number, centerY: number) => {
-  if (inCenterSquare(x, y, centerX, centerY) || !canDecorate(map, x, y, w, h)) return;
+  if (overlapsCenterSquare(x, y, w, h, centerX, centerY) || !canDecorate(map, x, y, w, h)) return;
   rect(map, x, y, w, h, tile);
+};
+
+type ExpandedBuildingPlan = { x: number; y: number; w: number; h: number; tile: CityMapTile };
+
+const expandedBuildingPlansFor = (width: number, height: number): ExpandedBuildingPlan[] => {
+  const plans: ExpandedBuildingPlan[] = [
+    { x: 8, y: 8, w: 7, h: 4, tile: "B" },
+    { x: width - 16, y: 8, w: 7, h: 5, tile: "U" },
+    { x: 9, y: height - 16, w: 8, h: 4, tile: "B" },
+    { x: width - 17, y: height - 16, w: 7, h: 4, tile: "U" },
+  ];
+
+  if (width > 70) {
+    plans.push(
+      { x: 22, y: 6, w: 6, h: 5, tile: "B" },
+      { x: 34, y: 6, w: 7, h: 4, tile: "U" },
+      { x: width - 42, y: 6, w: 7, h: 4, tile: "B" },
+      { x: width - 28, y: 6, w: 6, h: 5, tile: "U" },
+      { x: 22, y: height - 13, w: 7, h: 4, tile: "B" },
+      { x: width - 30, y: height - 13, w: 7, h: 4, tile: "B" },
+      { x: 6, y: 21, w: 6, h: 4, tile: "U" },
+      { x: width - 13, y: 22, w: 6, h: 4, tile: "B" },
+    );
+  }
+
+  if (width > 90) {
+    plans.push(
+      { x: 45, y: 7, w: 7, h: 5, tile: "U" },
+      { x: width - 54, y: 7, w: 8, h: 5, tile: "B" },
+      { x: 38, y: height - 14, w: 8, h: 4, tile: "B" },
+      { x: width - 48, y: height - 14, w: 8, h: 4, tile: "U" },
+      { x: 7, y: 31, w: 7, h: 5, tile: "B" },
+      { x: width - 16, y: 32, w: 7, h: 5, tile: "U" },
+      { x: 25, y: 18, w: 6, h: 4, tile: "B" },
+      { x: width - 33, y: 18, w: 6, h: 4, tile: "U" },
+    );
+  }
+
+  if (width > 120) {
+    const columns = [18, 32, 48, 64, width - 72, width - 56, width - 40, width - 24];
+    columns.forEach((x, index) => {
+      plans.push({ x, y: 6, w: index % 2 === 0 ? 8 : 6, h: index % 3 === 0 ? 5 : 4, tile: index % 2 === 0 ? "B" : "U" });
+      plans.push({ x: Math.max(6, x - 2), y: height - 13, w: index % 2 === 0 ? 7 : 8, h: 4, tile: index % 2 === 0 ? "U" : "B" });
+    });
+    [16, 28, 40, height - 28, height - 18].forEach((y, index) => {
+      plans.push({ x: 6, y, w: 7, h: index % 2 === 0 ? 4 : 5, tile: index % 2 === 0 ? "B" : "U" });
+      plans.push({ x: width - 15, y, w: 7, h: index % 2 === 0 ? 5 : 4, tile: index % 2 === 0 ? "U" : "B" });
+    });
+  }
+
+  return plans;
 };
 
 const addExpandedCityDecor = (map: string[][], centerX: number, centerY: number) => {
@@ -100,33 +170,11 @@ const addExpandedCityDecor = (map: string[][], centerX: number, centerY: number)
   vlineSafe(map, Math.max(inset, centerX - 16), inset, height - inset - 1, "R");
   vlineSafe(map, Math.min(width - inset - 1, centerX + 16), inset, height - inset - 1, "R");
 
-  const buildingPlans = [
-    { x: 8, y: 8, w: 7, h: 4, tile: "B" as CityMapTile },
-    { x: width - 16, y: 8, w: 7, h: 5, tile: "U" as CityMapTile },
-    { x: 9, y: height - 16, w: 8, h: 4, tile: "B" as CityMapTile },
-    { x: width - 17, y: height - 16, w: 7, h: 4, tile: "U" as CityMapTile },
-  ];
-
-  if (width > 90) {
-    buildingPlans.push(
-      { x: 22, y: 10, w: 6, h: 5, tile: "B" },
-      { x: width - 29, y: 10, w: 6, h: 5, tile: "U" },
-      { x: 22, y: height - 18, w: 7, h: 4, tile: "B" },
-      { x: width - 30, y: height - 18, w: 7, h: 4, tile: "B" },
-    );
-  }
-
-  if (width > 120) {
-    buildingPlans.push(
-      { x: 40, y: 9, w: 8, h: 5, tile: "U" },
-      { x: width - 50, y: 9, w: 8, h: 5, tile: "B" },
-      { x: 38, y: height - 19, w: 8, h: 4, tile: "B" },
-      { x: width - 49, y: height - 19, w: 8, h: 4, tile: "U" },
-    );
-  }
+  const buildingPlans = expandedBuildingPlansFor(width, height);
 
   buildingPlans.forEach(({ x, y, w, h, tile }, index) => {
-    placeIfGrass(map, x, y, w, h, tile, centerX, centerY);
+    if (overlapsCenterSquare(x, y, w, h, centerX, centerY) || !canBuildOn(map, x, y, w, h)) return;
+    rect(map, x, y, w, h, tile);
     const doorX = x + Math.floor(w / 2);
     const doorY = y + h - 1;
     if (map[doorY]?.[doorX] === tile) map[doorY][doorX] = "O";

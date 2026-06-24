@@ -173,21 +173,60 @@ const drawPerson = (index, palette, frame = 0, opts = {}) => tile(index, (ox, oy
 });
 
 const drawHero = (index, frame = 0, dir = "down") => tile(index, (ox, oy) => {
-  const p = { skin: c.skinLight, skinDark: c.skinDark, hair: c.darkBrown, top: c.blue, bottom: c.navy, accent: c.white, shoe: c.black };
+  const p = { skin: c.skinLight, skinDark: c.skinDark, hair: c.darkBrown, top: c.teal, bottom: c.darkBrown, accent: c.yellow, shoe: c.black };
+  const step = frame ? 3 : 0;
   if (dir === "up") {
-    fill(ox + 12, oy + 5, 24, 18, c.outline);
-    fill(ox + 14, oy + 4, 20, 10, c.red);
-    fill(ox + 15, oy + 13, 18, 12, c.darkBrown);
-    drawBody(ox, oy, p, frame, { backpack: true });
+    fill(ox + 11, oy + 6, 26, 22, c.outline);
+    fill(ox + 13, oy + 7, 22, 19, p.hair);
+    fill(ox + 17, oy + 4, 15, 5, p.hair);
+    fill(ox + 20, oy + 27, 8, 4, p.skinDark);
+    fill(ox + 10, oy + 30, 28, 14, c.outline);
+    fill(ox + 13, oy + 31, 22, 11, p.top);
+    fill(ox + 11, oy + 30, 8, 14, c.brown);
+    fill(ox + 16, oy + 40, 8, 6, p.bottom);
+    fill(ox + 26, oy + 40, 8, 6, p.bottom);
+    fill(ox + 8 + step, oy + 32, 6, 10, p.skin);
+    fill(ox + 35 - step, oy + 32, 6, 10, p.skin);
+    fill(ox + 14 - step, oy + 44, 10, 4, p.shoe);
+    fill(ox + 27 + step, oy + 44, 10, 4, p.shoe);
     return;
   }
   if (dir === "side") {
-    drawFace(ox + 1, oy, p, { hat: c.red });
-    drawBody(ox, oy, p, frame, { backpack: true });
-    fill(ox + 31, oy + 16, 3, 3, c.outline);
+    fill(ox + 12, oy + 6, 22, 23, c.outline);
+    fill(ox + 15, oy + 8, 17, 19, p.skin);
+    fill(ox + 30, oy + 15, 5, 4, p.skin);
+    fill(ox + 11, oy + 5, 21, 8, p.hair);
+    fill(ox + 11, oy + 11, 7, 16, p.hair);
+    fill(ox + 26, oy + 16, 3, 3, c.outline);
+    fill(ox + 31, oy + 23, 4, 2, c.red);
+    fill(ox + 20, oy + 21, 3, 3, p.skinDark);
+    fill(ox + 12, oy + 30, 24, 14, c.outline);
+    fill(ox + 15, oy + 31, 18, 11, p.top);
+    fill(ox + 26, oy + 31, 5, 11, p.accent);
+    fill(ox + 8, oy + 31 + step, 7, 10, p.skin);
+    fill(ox + 33, oy + 32 - step, 7, 10, p.skin);
+    fill(ox + 9, oy + 29, 6, 14, c.brown);
+    rect(ox + 9, oy + 29, 6, 14, c.outline);
+    fill(ox + 15 - step, oy + 41, 9, 7, p.bottom);
+    fill(ox + 27 + step, oy + 41, 9, 7, p.bottom);
+    fill(ox + 13 - step, oy + 45, 11, 3, p.shoe);
+    fill(ox + 28 + step, oy + 45, 11, 3, p.shoe);
     return;
   }
-  drawPerson(index, p, frame, { hat: c.red, backpack: true });
+  drawFace(ox, oy, p, {});
+  fill(ox + 18, oy + 4, 14, 5, p.hair);
+  fill(ox + 21, oy + 27, 7, 4, p.skinDark);
+  fill(ox + 10, oy + 30, 28, 14, c.outline);
+  fill(ox + 13, oy + 31, 22, 11, p.top);
+  fill(ox + 21, oy + 31, 6, 12, p.accent);
+  fill(ox + 8 + step, oy + 31, 6, 11, p.skin);
+  fill(ox + 35 - step, oy + 31, 6, 11, p.skin);
+  fill(ox + 9, oy + 29, 6, 14, c.brown);
+  rect(ox + 9, oy + 29, 6, 14, c.outline);
+  fill(ox + 15 - step, oy + 40, 8, 6, p.bottom);
+  fill(ox + 27 + step, oy + 40, 8, 6, p.bottom);
+  fill(ox + 14 - step, oy + 44, 10, 4, p.shoe);
+  fill(ox + 28 + step, oy + 44, 10, 4, p.shoe);
 });
 
 const drawRobot = (index, frame = 0) => tile(index, (ox, oy) => {
