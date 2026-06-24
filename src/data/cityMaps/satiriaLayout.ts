@@ -76,7 +76,7 @@ export const SATIRIA_FENCES: SatiriaPaint[] = [
 
 export const SATIRIA_FLOWERS: SatiriaPaint[] = [
   { kind: "rect", x: 14, y: 12, w: 4, h: 1, tile: "L" },
-  { kind: "rect", x: 38, y: 12, w: 3, h: 1, tile: "L" },
+  { kind: "rect", x: 46, y: 17, w: 4, h: 3, tile: "L" },
   { kind: "rect", x: 24, y: 22, w: 3, h: 1, tile: "L" },
   { kind: "rect", x: 34, y: 15, w: 4, h: 1, tile: "L" },
   { kind: "rect", x: 43, y: 15, w: 3, h: 1, tile: "L" },
