@@ -76,10 +76,10 @@ export const SATIRIA_FENCES: SatiriaPaint[] = [
 export const SATIRIA_FLOWERS: SatiriaPaint[] = [
   { kind: "rect", x: 14, y: 12, w: 4, h: 1, tile: "L" },
   { kind: "rect", x: 46, y: 17, w: 4, h: 3, tile: "L" },
-  { kind: "rect", x: 24, y: 22, w: 3, h: 1, tile: "L" },
+  { kind: "rect", x: 24, y: 25, w: 3, h: 1, tile: "L" },
   { kind: "rect", x: 34, y: 15, w: 4, h: 1, tile: "L" },
   { kind: "rect", x: 43, y: 15, w: 3, h: 1, tile: "L" },
-  { kind: "rect", x: 34, y: 25, w: 4, h: 2, tile: "L" },
+  { kind: "rect", x: 40, y: 27, w: 4, h: 2, tile: "L" },
   { kind: "rect", x: 44, y: 25, w: 3, h: 2, tile: "L" },
 ];
 
@@ -115,7 +115,9 @@ export const SATIRIA_WATER_AND_DOCK: SatiriaPaint[] = [
   { kind: "rect", x: 3, y: 25, w: 11, h: 7, tile: "S", note: "Square pond shore" },
   { kind: "rect", x: 13, y: 28, w: 4, h: 4, tile: "S", note: "Square pond shore" },
   { kind: "rect", x: 4, y: 26, w: 9, h: 5, tile: "W", note: "Square pond water" },
+  { kind: "rect", x: 13, y: 29, w: 1, h: 2, tile: "W", note: "Square pond water" },
   { kind: "rect", x: 6, y: 25, w: 1, h: 4, tile: "J", note: "Dock starts on land and enters water" },
+  { kind: "rect", x: 5, y: 28, w: 1, h: 1, tile: "J", note: "Extra piece of dock" },
 ];
 
 export const SATIRIA_SAVE_POINTS: SatiriaPaint[] = [
