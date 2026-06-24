@@ -124,7 +124,6 @@ export const SATIRIA_SAVE_POINTS: SatiriaPaint[] = [
 ];
 
 export const SATIRIA_OBJECTS: PixelObject[] = [
-  { sprite: "statue", x: 27, y: 17, h: 1.5 },
   { sprite: "bench", x: 24, y: 16, className: "pixel-object-bench-large" },
   { sprite: "bench", x: 32, y: 16, className: "pixel-object-bench-large" },
   { sprite: "bench", x: 24, y: 22, className: "pixel-object-bench-large" },
@@ -140,7 +139,6 @@ export const SATIRIA_OBJECTS: PixelObject[] = [
 
 export const SATIRIA_OBJECT_MARKERS: Record<string, string> = {
   "9,23": "SATIRIA_POND_SIGN",
-  "28,19": "SATIRIA_STATUE",
 };
 
 export const SATIRIA_TERRAIN_LAYERS: SatiriaPaint[][] = [
