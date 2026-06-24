@@ -3,6 +3,7 @@ import type { CityMapLayout } from "./layoutTools";
 export const TWEETSBURG_LAYOUT: CityMapLayout = {
   width: 56,
   height: 34,
+  exits: { E: "R" },
   layers: [
     [
       { kind: "rect", x: 4, y: 4, w: 48, h: 25, tile: "S" },

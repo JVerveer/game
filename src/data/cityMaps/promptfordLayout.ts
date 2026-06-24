@@ -3,6 +3,8 @@ import type { CityMapLayout } from "./layoutTools";
 export const PROMPTFORD_LAYOUT: CityMapLayout = {
   width: 56,
   height: 34,
+  waterEdges: ["E"],
+  exits: { S: "R", E: "J" },
   layers: [
     [
       { kind: "rect", x: 3, y: 4, w: 50, h: 25, tile: "G" },
@@ -39,4 +41,3 @@ export const PROMPTFORD_LAYOUT: CityMapLayout = {
     ],
   ],
 };
-

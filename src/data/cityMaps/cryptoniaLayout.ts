@@ -3,6 +3,7 @@ import type { CityMapLayout } from "./layoutTools";
 export const CRYPTONIA_LAYOUT: CityMapLayout = {
   width: 56,
   height: 34,
+  exits: { W: "R" },
   layers: [
     [
       { kind: "rect", x: 3, y: 4, w: 50, h: 25, tile: "S" },
@@ -33,4 +34,3 @@ export const CRYPTONIA_LAYOUT: CityMapLayout = {
     ],
   ],
 };
-

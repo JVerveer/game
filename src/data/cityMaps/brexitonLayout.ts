@@ -3,6 +3,8 @@ import type { CityMapLayout } from "./layoutTools";
 export const BREXITON_LAYOUT: CityMapLayout = {
   width: 56,
   height: 34,
+  waterEdges: ["N", "S", "E", "W"],
+  exits: { W: "J" },
   layers: [
     [
       { kind: "rect", x: 3, y: 3, w: 50, h: 27, tile: "G" },
@@ -43,4 +45,3 @@ export const BREXITON_LAYOUT: CityMapLayout = {
     ],
   ],
 };
-

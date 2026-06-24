@@ -19,10 +19,14 @@ import {
   GAME_TILE_COLORS,
   WALKABLE_TILES as WALK,
   GAME_MAPS,
+  ENTRY_POS,
   MAIN_TOWN_IDS,
+  OPPOSITE_ROUTE_DIRECTION,
   TOWN_THEMES,
+  WORLD_ROUTES,
   type GameMapId,
   type Portal,
+  type RouteDirection,
   type TownMapId,
   getLocationName as LOCATION_FOR,
 } from "../data/maps";
@@ -2225,6 +2229,41 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       ? (GAME_MAPS[mapIdRef.current].rows[y][x] ?? "T")
       : "T";
 
+  const townMapId = (id: GameMapId): TownMapId | null =>
+    MAIN_TOWN_IDS.includes(id as TownMapId) ? id as TownMapId : null;
+
+  const edgeDirectionFor = (x: number, y: number): RouteDirection | null => {
+    const current = GAME_MAPS[mapIdRef.current];
+    if (y < 0) return "N";
+    if (y >= current.height) return "S";
+    if (x < 0) return "W";
+    if (x >= current.width) return "E";
+    return null;
+  };
+
+  const moveAcrossMapEdge = (x: number, y: number) => {
+    const fromTown = townMapId(mapIdRef.current);
+    const exitDirection = edgeDirectionFor(x, y);
+    if (!fromTown || !exitDirection) return false;
+
+    const targetTown = WORLD_ROUTES[fromTown][exitDirection];
+    if (!targetTown) return true;
+
+    const entryDirection = OPPOSITE_ROUTE_DIRECTION[exitDirection];
+    const entry = ENTRY_POS[entryDirection];
+    const targetMap = GAME_MAPS[targetTown];
+    const destination = {
+      mapId: targetTown,
+      x: Math.max(0, Math.min(targetMap.width - 1, entry.x)),
+      y: Math.max(0, Math.min(targetMap.height - 1, entry.y)),
+      facing: entry.facing,
+    };
+    warpTo(destination);
+    setIsWalking(true);
+    setTimeout(() => setIsWalking(false), 180);
+    return true;
+  };
+
   const npcAt = (id: GameMapId, x: number, y: number) =>
     npcsRef.current.find(npc => npc.mapId === id && npc.x === x && npc.y === y);
 
@@ -2268,6 +2307,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     const cur = posRef.current;
     const nx = cur.x + dx;
     const ny = cur.y + dy;
+    if (moveAcrossMapEdge(nx, ny)) return;
+
     const t = tile(nx, ny);
     const targetInteraction = GAME_MAPS[mapIdRef.current].interactions[`${nx},${ny}`];
 

@@ -274,17 +274,17 @@ export const MAIN_TOWN_IDS = TOWN_THEMES.map(town => town.id);
 export const TOWN_WORLD_POSITIONS = Object.fromEntries(TOWN_THEMES.map(town => [town.id, town.world])) as Record<TownMapId, { x: number; y: number }>;
 
 export const WORLD_ROUTES: Record<TownMapId, Partial<Record<RouteDirection, TownMapId>>> = {
-  satiria: {},
-  factcheck: {},
-  ragebait: {},
-  tweetsburg: {},
-  promptford: {},
-  inflatopolis: {},
-  cryptonia: {},
-  wokeshire: {},
-  tariff: {},
-  surveillia: {},
-  brexiton: {},
+  satiria: { N: "inflatopolis", E: "wokeshire" },
+  factcheck: { N: "wokeshire", W: "tweetsburg" },
+  ragebait: { N: "tariff", S: "surveillia" },
+  tweetsburg: { E: "factcheck" },
+  promptford: { S: "tariff", E: "brexiton" },
+  inflatopolis: { S: "satiria", E: "cryptonia" },
+  cryptonia: { W: "inflatopolis" },
+  wokeshire: { W: "satiria", E: "tariff", S: "factcheck" },
+  tariff: { W: "wokeshire", N: "promptford", S: "ragebait" },
+  surveillia: { N: "ragebait" },
+  brexiton: { W: "promptford" },
 };
 
 export type RouteDirection = "N" | "S" | "E" | "W" | "NE" | "NW" | "SE" | "SW";
@@ -300,7 +300,7 @@ const PORTAL_POS: Record<RouteDirection, { x: number; y: number }> = {
   SW: { x: 0, y: 29 },
 };
 
-const ENTRY_POS: Record<RouteDirection, { x: number; y: number; facing: "up" | "down" | "left" | "right" }> = {
+export const ENTRY_POS: Record<RouteDirection, { x: number; y: number; facing: "up" | "down" | "left" | "right" }> = {
   N: { x: 27, y: 2, facing: "down" },
   S: { x: 27, y: 31, facing: "up" },
   W: { x: 2, y: 18, facing: "right" },
@@ -309,6 +309,17 @@ const ENTRY_POS: Record<RouteDirection, { x: number; y: number; facing: "up" | "
   NW: { x: 2, y: 7, facing: "right" },
   SE: { x: 53, y: 28, facing: "left" },
   SW: { x: 2, y: 28, facing: "right" },
+};
+
+export const OPPOSITE_ROUTE_DIRECTION: Record<RouteDirection, RouteDirection> = {
+  N: "S",
+  S: "N",
+  E: "W",
+  W: "E",
+  NE: "SW",
+  NW: "SE",
+  SE: "NW",
+  SW: "NE",
 };
 
 const findEntryFrom = (target: TownMapId, from: TownMapId) => {
@@ -905,25 +916,9 @@ const buildHealingMap = () => {
   return map;
 };
 
-const routeObjectsFor = (theme: TownTheme) => Object.fromEntries(
-  Object.keys(WORLD_ROUTES[theme.id]).map(direction => {
-    const pos = PORTAL_POS[direction as RouteDirection];
-    return [`${pos.x},${pos.y}`, `ARROW_${direction}`];
-  }),
-);
+const routeObjectsFor = (_theme: TownTheme) => ({});
 
-const routeInteractionsFor = (theme: TownTheme) => Object.fromEntries(
-  Object.entries(WORLD_ROUTES[theme.id]).map(([direction, target]) => {
-    const pos = PORTAL_POS[direction as RouteDirection];
-    const entry = findEntryFrom(target!, theme.id);
-    return [`${pos.x},${pos.y}`, {
-      name: `${target ? TOWN_THEMES.find(town => town.id === target)?.name : "Route"} Route`,
-      portal: { mapId: target!, x: entry.x, y: entry.y, facing: entry.facing },
-      auto: true,
-      lines: [],
-    }];
-  }),
-);
+const routeInteractionsFor = (_theme: TownTheme) => ({});
 
 type TownDoorConfig = {
   shop: string;

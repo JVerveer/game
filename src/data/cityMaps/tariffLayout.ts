@@ -3,6 +3,8 @@ import type { CityMapLayout } from "./layoutTools";
 export const TARIFF_LAYOUT: CityMapLayout = {
   width: 56,
   height: 34,
+  waterEdges: ["E"],
+  exits: { W: "R", N: "R", S: "R" },
   layers: [
     [
       { kind: "rect", x: 3, y: 4, w: 50, h: 25, tile: "G" },
@@ -32,4 +34,3 @@ export const TARIFF_LAYOUT: CityMapLayout = {
     ],
   ],
 };
-

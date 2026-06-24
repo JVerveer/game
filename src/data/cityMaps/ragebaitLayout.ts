@@ -3,6 +3,8 @@ import type { CityMapLayout } from "./layoutTools";
 export const RAGEBAIT_LAYOUT: CityMapLayout = {
   width: 56,
   height: 34,
+  waterEdges: ["E"],
+  exits: { N: "R", S: "R" },
   layers: [
     [
       { kind: "rect", x: 4, y: 4, w: 48, h: 25, tile: "G" },
@@ -32,4 +34,3 @@ export const RAGEBAIT_LAYOUT: CityMapLayout = {
     ],
   ],
 };
-

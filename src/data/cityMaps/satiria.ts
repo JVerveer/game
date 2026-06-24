@@ -41,5 +41,9 @@ export const buildSatiriaMap = () => {
   });
 
   addTreeBorder(map, SATIRIA_TREE_BORDER_LAYERS);
+  vline(map, 27, 0, 18, "R");
+  vline(map, 28, 0, 18, "R");
+  hline(map, 27, 55, 18, "R");
+  hline(map, 27, 55, 19, "R");
   return map;
 };

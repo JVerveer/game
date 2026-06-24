@@ -3,6 +3,7 @@ import type { CityMapLayout } from "./layoutTools";
 export const FACTCHECK_LAYOUT: CityMapLayout = {
   width: 56,
   height: 34,
+  exits: { N: "R", W: "R" },
   layers: [
     [
       { kind: "rect", x: 4, y: 4, w: 48, h: 25, tile: "S" },
@@ -32,4 +33,3 @@ export const FACTCHECK_LAYOUT: CityMapLayout = {
     ],
   ],
 };
-
