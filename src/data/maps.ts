@@ -10,7 +10,7 @@ import { buildSurveilliaMap as buildSurveilliaCityMap } from "./cityMaps/surveil
 import { buildTariffMap as buildTariffCityMap } from "./cityMaps/tariff";
 import { buildTweetsburgMap as buildTweetsburgCityMap } from "./cityMaps/tweetsburg";
 import { buildWokeshireMap as buildWokeshireCityMap } from "./cityMaps/wokeshire";
-import { SATIRIA_ENTRANCES, coord } from "./cityMaps/satiriaLayout";
+import { SATIRIA_ENTRANCES, SATIRIA_OBJECT_MARKERS, coord } from "./cityMaps/satiriaLayout";
 
 // Tile key legend:
 //   T = Trees/Forest   G = Grass       W = Water      R = Road/Path/Floor
@@ -1076,19 +1076,7 @@ const doorConfigFor = (theme: TownTheme): TownDoorConfig => {
 
 const specialObjectsFor = (theme: TownTheme): Record<string, string> => {
   if (theme.id === "satiria") {
-    return {
-      "28,18": "SATIRIA_FOUNTAIN",
-      "9,23": "SATIRIA_POND_SIGN",
-      "28,19": "SATIRIA_STATUE",
-      "24,16": "SATIRIA_BENCH",
-      "32,16": "SATIRIA_BENCH",
-      "24,22": "SATIRIA_BENCH",
-      "32,22": "SATIRIA_BENCH",
-      "26,16": "SATIRIA_LAMP",
-      "31,16": "SATIRIA_LAMP",
-      "26,22": "SATIRIA_LAMP",
-      "31,22": "SATIRIA_LAMP",
-    };
+    return SATIRIA_OBJECT_MARKERS;
   }
   if (theme.id === "brexiton") {
     return {
