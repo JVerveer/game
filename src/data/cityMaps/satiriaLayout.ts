@@ -124,7 +124,7 @@ export const SATIRIA_SAVE_POINTS: SatiriaPaint[] = [
 ];
 
 export const SATIRIA_OBJECTS: PixelObject[] = [
-  { sprite: "fountain", x: 27, y: 18, className: "pixel-object-fountain pixel-object-fountain-large" },
+  { sprite: "fountain", x: 27, y: 22, className: "pixel-object-fountain pixel-object-fountain-large" },
   { sprite: "statue", x: 27, y: 17, h: 1.5 },
   { sprite: "bench", x: 24, y: 16, className: "pixel-object-bench-large" },
   { sprite: "bench", x: 32, y: 16, className: "pixel-object-bench-large" },
