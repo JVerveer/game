@@ -1046,7 +1046,7 @@ const buildSignageFor = (
     const door = parseCoord(coord);
     const name = buildingSignName(theme, kind, index);
     const side = index % 2 === 0 ? -1 : 1;
-    addSign({ x: door.x + side, y: door.y }, `${name} Sign`, buildingSignLines(name, kind));
+    addSign({ x: door.x + side, y: door.y + 1 }, `${name} Sign`, buildingSignLines(name, kind));
   });
 
   return { objects, interactions };

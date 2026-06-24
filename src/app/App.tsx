@@ -2482,6 +2482,31 @@ function GameScreen({ onExit }: { onExit: () => void }) {
             />
         )}
 
+        {isTownMap(mapId) && Object.entries(currentMap.objects)
+          .filter(([, obj]) => obj === "SIGN")
+          .map(([coord, obj]) => {
+            const [x, y] = coord.split(",").map(Number);
+            return (
+              <div
+                key={`visible-${obj}-${coord}`}
+                style={{
+                  position: "absolute",
+                  left: x * TS,
+                  top: y * TS,
+                  width: TS,
+                  height: TS,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  zIndex: 44 + y,
+                  pointerEvents: "none",
+                }}
+              >
+                <div className={objectClassFor(obj)} />
+              </div>
+            );
+          })}
+
         {/* Tiles rendered as flex rows */}
         <div className={isTownMap(mapId) ? "pixel-game-grid" : ""} style={{ display: "flex", flexDirection: "column" }}>
           {currentMap.rows.map((row, ry) => (
