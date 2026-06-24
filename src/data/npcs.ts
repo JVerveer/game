@@ -1,4 +1,5 @@
 import { GAME_MAPS, TOWN_THEMES, WALKABLE_TILES, type GameMapId, type TownMapId } from "./maps";
+import { cityNpcCountFor } from "./cityMaps/sizeTiers";
 
 export type MovingNpc = {
   id: string;
@@ -14,19 +15,27 @@ export type MovingNpc = {
 };
 
 const fallbackTownNpcSpots = (mapId: TownMapId, count: number) => {
+  const map = GAME_MAPS[mapId];
+  const center = { x: Math.floor(map.width / 2) - 1, y: Math.floor(map.height / 2) };
   const preferred = [
-    { x: 27, y: 15 },
-    { x: 28, y: 15 },
-    { x: 26, y: 16 },
-    { x: 29, y: 16 },
-    { x: 24, y: 18 },
-    { x: 31, y: 18 },
-    { x: 20, y: 20 },
-    { x: 35, y: 20 },
-    { x: 22, y: 24 },
-    { x: 39, y: 24 },
+    { x: center.x - 12, y: center.y - 8 },
+    { x: center.x + 12, y: center.y - 8 },
+    { x: center.x - 13, y: center.y + 8 },
+    { x: center.x + 13, y: center.y + 8 },
+    { x: center.x - 20, y: center.y },
+    { x: center.x + 20, y: center.y },
+    { x: center.x, y: center.y - 13 },
+    { x: center.x, y: center.y + 13 },
+    { x: 10, y: 10 },
+    { x: map.width - 12, y: 10 },
+    { x: 11, y: map.height - 12 },
+    { x: map.width - 13, y: map.height - 12 },
+    { x: 24, y: 14 },
+    { x: map.width - 25, y: 14 },
+    { x: 24, y: map.height - 16 },
+    { x: map.width - 25, y: map.height - 16 },
   ];
-  const rows = GAME_MAPS[mapId].rows;
+  const rows = map.rows;
   const spots: Array<{ x: number; y: number }> = [];
   const candidates = [
     ...preferred,
@@ -37,6 +46,7 @@ const fallbackTownNpcSpots = (mapId: TownMapId, count: number) => {
     const tile = rows[y]?.[x];
     const key = `${x},${y}`;
     if (spots.length >= count) return;
+    if (Math.abs(x - center.x) <= 8 && Math.abs(y - center.y) <= 5) return;
     if (!WALKABLE_TILES.has(tile) || tile === "O") return;
     if (spots.some((spot) => `${spot.x},${spot.y}` === key)) return;
     spots.push({ x, y });
@@ -45,14 +55,74 @@ const fallbackTownNpcSpots = (mapId: TownMapId, count: number) => {
   return spots;
 };
 
+const townNpcProfile = (mapId: TownMapId, index: number, fallbackName: string, fallbackLines: string[]) => {
+  const profiles: Partial<Record<TownMapId, Array<{ name: string; lines: string[]; variant: number }>>> = {
+    brexiton: [
+      { name: "Queue Minister", lines: ['"The bridge vote passed, then immediately entered review."', '"Please form an orderly line for disorder."'], variant: 1 },
+      { name: "Cab Driver", lines: ['"I can take you anywhere, assuming the street has not resigned."', '"Mind the fare gap."'], variant: 4 },
+      { name: "Tea Debater", lines: ['"The town motto was amended twice before breakfast."', '"Milk first is technically a policy platform."'], variant: 6 },
+    ],
+    promptford: [
+      { name: "Oracle Intern", lines: ['"The oracle suggests a bridge east, confidence 0.61."', '"It also suggests renaming the bridge Bridge v2."'], variant: 2 },
+      { name: "Prompt Baker", lines: ['"I asked for bread and received a product roadmap."', '"Still crusty, somehow."'], variant: 7 },
+      { name: "Canal Founder", lines: ['"Our startup automates indecision."', '"The demo mostly works near water."'], variant: 5 },
+    ],
+    ragebait: [
+      { name: "Reaction Producer", lines: ['"Can you enter that shop more dramatically?"', '"The south road performs well with a gasp."'], variant: 3 },
+      { name: "Headline Surfer", lines: ['"Small wave? Huge controversy."', '"I brought three thumbnails."'], variant: 5 },
+      { name: "Studio Runner", lines: ['"The bay rewards commitment to the bit."', '"Subtlety is still loading."'], variant: 1 },
+    ],
+    tariff: [
+      { name: "Dock Broker", lines: ['"Your shoes may count as imports."', '"Let me check the surprise-fee table."'], variant: 4 },
+      { name: "Customs Drummer", lines: ['"Every beat needs a stamp."', '"The east water is tariff-exempt for now."'], variant: 7 },
+      { name: "Port Clerk", lines: ['"North to Promptford, south to Ragebait, west after paperwork."', '"I adore a clean form."'], variant: 2 },
+    ],
+    wokeshire: [
+      { name: "Consensus Ranger", lines: ['"This path is approved by one canal and challenged by two bicycles."', '"Please use compassionate walking."'], variant: 6 },
+      { name: "Tulip Mediator", lines: ['"The flowers reached a temporary coalition."', '"The canals remain neutral."'], variant: 1 },
+      { name: "Canal Cyclist", lines: ['"I can ring my bell in seven acceptable tones."', '"Eight is discourse."'], variant: 3 },
+    ],
+    cryptonia: [
+      { name: "Token Baron", lines: ['"My skyline is up. My wallet is down."', '"Both are technically vertical."'], variant: 5 },
+      { name: "Yacht Analyst", lines: ['"The marina is real. The yield is vibes."', '"Do not stand too close to the crash."'], variant: 2 },
+      { name: "Gold ATM Clerk", lines: ['"Withdraw confidence. Deposit consequences."', '"Fees fluctuate with moonlight."'], variant: 8 },
+    ],
+    surveillia: [
+      { name: "Camera Guard", lines: ['"You are currently standing exactly there."', '"I admire your commitment to observable movement."'], variant: 4 },
+      { name: "Data Kiosk Minder", lines: ['"The kiosk predicted this conversation."', '"It rated your hesitation: tasteful."'], variant: 7 },
+      { name: "Neon Patrol", lines: ['"The north road sees everything."', '"Mostly because it is a road."'], variant: 1 },
+    ],
+    tweetsburg: [
+      { name: "Trend Watcher", lines: ['"The east route is trending with mixed sentiment."', '"Do not read the replies without armor."'], variant: 3 },
+      { name: "Rumor Kiosk Fan", lines: ['"I heard Factcheck moved west. Then I verified it by walking."', '"Exhausting but effective."'], variant: 6 },
+      { name: "Red Square Poster", lines: ['"Every announcement echoes through the plaza."', '"Some echoes have opinions."'], variant: 8 },
+    ],
+    factcheck: [
+      { name: "Citation Clerk", lines: ['"The north route is verified, provisionally."', '"The west route has three sources and one typo."'], variant: 2 },
+      { name: "Footnote Vendor", lines: ['"Every snack includes context."', '"The context costs extra."'], variant: 7 },
+      { name: "Narrative Auditor", lines: ['"I checked the center square. It is refreshingly empty."', '"Suspiciously empty, perhaps."'], variant: 4 },
+    ],
+  };
+  const list = profiles[mapId] ?? [];
+  const profile = list[index % Math.max(1, list.length)];
+  if (!profile) {
+    return { name: fallbackName, lines: fallbackLines, variant: index % 5 };
+  }
+  return {
+    name: index === 0 ? fallbackName : profile.name,
+    lines: index === 0 ? fallbackLines : profile.lines,
+    variant: profile.variant,
+  };
+};
+
 const INFLATOPOLIS_NPCS: MovingNpc[] = [
   {
     id: "inflatopolis-number-ten",
     mapId: "inflatopolis",
-    x: 24,
-    y: 16,
-    homeX: 24,
-    homeY: 16,
+    x: 14,
+    y: 20,
+    homeX: 14,
+    homeY: 20,
     name: "Rosario Number Ten",
     lines: ['"I dribble through price hikes like cones."', '"The ball is round, but the currency chart is not."'],
     variant: 5,
@@ -60,10 +130,10 @@ const INFLATOPOLIS_NPCS: MovingNpc[] = [
   {
     id: "inflatopolis-balcony-icon",
     mapId: "inflatopolis",
-    x: 32,
-    y: 16,
-    homeX: 32,
-    homeY: 16,
+    x: 42,
+    y: 20,
+    homeX: 42,
+    homeY: 20,
     name: "Balcony Icon",
     lines: ['"From this plaza, every speech becomes a song."', '"Do not cry for the exchange rate. It already cried first."'],
     variant: 6,
@@ -206,9 +276,9 @@ export const INITIAL_NPCS: MovingNpc[] = [
   {
     id: "satiria-bench-critic",
     mapId: "satiria",
-    x: 33,
+    x: 39,
     y: 22,
-    homeX: 33,
+    homeX: 39,
     homeY: 22,
     name: "Bench Critic",
     lines: ['"This bench has excellent sitting energy."', '"Four stars. Needs fewer speeches."'],
@@ -217,9 +287,9 @@ export const INITIAL_NPCS: MovingNpc[] = [
   {
     id: "satiria-lamp-lighter",
     mapId: "satiria",
-    x: 31,
+    x: 38,
     y: 13,
-    homeX: 31,
+    homeX: 38,
     homeY: 13,
     name: "Lamp Lighter",
     lines: ['"I keep the plaza lit and the rumors dim."', '"Usually."'],
@@ -272,20 +342,28 @@ export const INITIAL_NPCS: MovingNpc[] = [
   ...INFLATOPOLIS_NPCS,
   ...TOWN_THEMES.slice(1).flatMap((theme, townIndex) =>
     theme.id === "inflatopolis" ? [] :
-    fallbackTownNpcSpots(theme.id, 3).map((spot, npcIndex) => ({
-      id: `${theme.id}-local-${npcIndex + 1}`,
-      mapId: theme.id,
-      x: spot.x,
-      y: spot.y,
-      homeX: spot.x,
-      homeY: spot.y,
-      name: npcIndex === 0 ? theme.npcName : npcIndex === 1 ? "Station Regular" : "Local Wanderer",
-      lines: npcIndex === 0
-        ? theme.npcLines
-        : npcIndex === 1
-          ? ['"The train station is the only way out now."', '"Honestly, simpler."']
-          : [`"Welcome to ${theme.name}."`, `"Every town has its own rules, but the same useful shops."`],
-      variant: (townIndex + npcIndex + 2) % 5,
-    })),
+    fallbackTownNpcSpots(theme.id, cityNpcCountFor(theme.id)).map((spot, npcIndex) => {
+      const profile = townNpcProfile(
+        theme.id,
+        npcIndex,
+        npcIndex === 0 ? theme.npcName : npcIndex === 1 ? "Station Regular" : "Local Wanderer",
+        npcIndex === 0
+          ? theme.npcLines
+          : npcIndex === 1
+            ? ['"The train station is still the quickest way across the whole region."', '"Walking routes are better for gossip."']
+            : [`"Welcome to ${theme.name}."`, `"The town got bigger, so the errands did too."`],
+      );
+      return {
+        id: `${theme.id}-local-${npcIndex + 1}`,
+        mapId: theme.id,
+        x: spot.x,
+        y: spot.y,
+        homeX: spot.x,
+        homeY: spot.y,
+        name: profile.name,
+        lines: profile.lines,
+        variant: profile.variant ?? (townIndex + npcIndex + 2) % 5,
+      };
+    }),
   ),
 ];

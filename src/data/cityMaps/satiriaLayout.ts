@@ -124,14 +124,14 @@ export const SATIRIA_SAVE_POINTS: SatiriaPaint[] = [
 ];
 
 export const SATIRIA_OBJECTS: PixelObject[] = [
-  { sprite: "bench", x: 24, y: 16, className: "pixel-object-bench-large" },
-  { sprite: "bench", x: 32, y: 16, className: "pixel-object-bench-large" },
-  { sprite: "bench", x: 24, y: 22, className: "pixel-object-bench-large" },
-  { sprite: "bench", x: 32, y: 22, className: "pixel-object-bench-large" },
-  { sprite: "lamp", x: 25, y: 17, className: "pixel-object-lamp-large" },
-  { sprite: "lamp", x: 31, y: 17, className: "pixel-object-lamp-large" },
-  { sprite: "lamp", x: 25, y: 21, className: "pixel-object-lamp-large" },
-  { sprite: "lamp", x: 31, y: 21, className: "pixel-object-lamp-large" },
+  { sprite: "bench", x: 16, y: 10, className: "pixel-object-bench-large" },
+  { sprite: "bench", x: 40, y: 10, className: "pixel-object-bench-large" },
+  { sprite: "bench", x: 17, y: 26, className: "pixel-object-bench-large" },
+  { sprite: "bench", x: 40, y: 24, className: "pixel-object-bench-large" },
+  { sprite: "lamp", x: 18, y: 11, className: "pixel-object-lamp-large" },
+  { sprite: "lamp", x: 38, y: 11, className: "pixel-object-lamp-large" },
+  { sprite: "lamp", x: 18, y: 25, className: "pixel-object-lamp-large" },
+  { sprite: "lamp", x: 38, y: 24, className: "pixel-object-lamp-large" },
   { sprite: "mediumTree", x: 15, y: 27, w: 2, h: 2 },
   { sprite: "mediumTree", x: 46, y: 25, w: 2, h: 2 },
   { sprite: "largeTree", x: 48, y: 28, w: 3, h: 3 },

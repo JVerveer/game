@@ -346,6 +346,19 @@ export const OPPOSITE_ROUTE_DIRECTION: Record<RouteDirection, RouteDirection> = 
   SW: "NE",
 };
 
+export const routeEntryForMap = (
+  map: Pick<GameMapDef, "width" | "height">,
+  direction: RouteDirection,
+): { x: number; y: number; facing: "up" | "down" | "left" | "right" } => {
+  const centerX = Math.floor(map.width / 2) - 1;
+  const centerY = Math.floor(map.height / 2);
+  if (direction === "N") return { x: centerX, y: 2, facing: "down" };
+  if (direction === "S") return { x: centerX, y: Math.max(2, map.height - 3), facing: "up" };
+  if (direction === "W") return { x: 2, y: centerY, facing: "right" };
+  if (direction === "E") return { x: Math.max(2, map.width - 3), y: centerY, facing: "left" };
+  return ENTRY_POS[direction];
+};
+
 const findEntryFrom = (target: TownMapId, from: TownMapId) => {
   const entry = Object.entries(WORLD_ROUTES[target]).find(([, town]) => town === from);
   return ENTRY_POS[(entry?.[0] as RouteDirection | undefined) ?? "S"];
@@ -963,11 +976,13 @@ const townSignLines = (theme: TownTheme) => [
 const routeSignBase = (direction: RouteDirection, rows: string[][]) => {
   const height = rows.length;
   const width = rows[0]?.length ?? 56;
-  if (direction === "N") return { x: 29, y: 4 };
-  if (direction === "S") return { x: 29, y: Math.max(0, height - 5) };
-  if (direction === "W") return { x: 4, y: 16 };
-  if (direction === "E") return { x: Math.max(0, width - 5), y: 16 };
-  return { x: 27, y: 18 };
+  const centerX = Math.floor(width / 2) - 1;
+  const centerY = Math.floor(height / 2);
+  if (direction === "N") return { x: centerX + 2, y: 4 };
+  if (direction === "S") return { x: centerX + 2, y: Math.max(0, height - 5) };
+  if (direction === "W") return { x: 4, y: centerY - 2 };
+  if (direction === "E") return { x: Math.max(0, width - 5), y: centerY - 2 };
+  return { x: centerX, y: centerY };
 };
 
 const nearestSignCoord = (rows: string[][], preferred: { x: number; y: number }, reserved: Set<string>) => {
@@ -1023,7 +1038,8 @@ const buildSignageFor = (
     interactions[coord] = { name, lines };
   };
 
-  addSign(parseCoord(doors.sign), `${theme.name} Town Sign`, townSignLines(theme));
+  const center = { x: Math.floor((rows[0]?.length ?? 56) / 2) - 1, y: Math.floor(rows.length / 2) };
+  addSign({ x: center.x - 4, y: center.y - 7 }, `${theme.name} Town Sign`, townSignLines(theme));
 
   Object.entries(WORLD_ROUTES[theme.id]).forEach(([direction, target]) => {
     if (!target) return;
@@ -1050,6 +1066,24 @@ const buildSignageFor = (
   });
 
   return { objects, interactions };
+};
+
+const centralSpawnFor = (rows: string[][]) => {
+  const center = {
+    x: Math.floor((rows[0]?.length ?? 56) / 2) - 1,
+    y: Math.floor(rows.length / 2),
+  };
+  const offsets = [
+    [0, 0], [1, 0], [-1, 0], [0, 1], [0, -1],
+    [2, 0], [-2, 0], [1, 1], [-1, 1], [1, -1], [-1, -1],
+  ];
+  for (const [dx, dy] of offsets) {
+    const x = center.x + dx;
+    const y = center.y + dy;
+    const tile = rows[y]?.[x];
+    if (tile && WALKABLE_TILES.has(tile) && tile !== "O") return { x, y };
+  }
+  return center;
 };
 
 type TownDoorConfig = {
@@ -1523,7 +1557,7 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
     width: rows[0]?.length ?? 56,
     height: rows.length,
     rows,
-    spawn: { x: 27, y: 18 },
+    spawn: centralSpawnFor(rows),
     objects: {
       ...routeObjectsFor(theme),
       [doors.shop]: "DOOR_SHOP",

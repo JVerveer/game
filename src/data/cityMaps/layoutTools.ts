@@ -15,6 +15,8 @@ export type CityPaint =
 export type CityMapLayout = {
   width: number;
   height: number;
+  baseWidth?: number;
+  baseHeight?: number;
   fill?: CityMapTile;
   treeBorderLayers?: number;
   autoBuildingDoors?: boolean;
@@ -28,6 +30,89 @@ export const paintCityShape = (map: string[][], shape: CityPaint) => {
   if (shape.kind === "hline") hline(map, shape.x1, shape.x2, shape.y, shape.tile);
   if (shape.kind === "vline") vline(map, shape.x, shape.y1, shape.y2, shape.tile);
   if (shape.kind === "point" && map[shape.y]?.[shape.x] !== undefined) map[shape.y][shape.x] = shape.tile;
+};
+
+const shiftedShape = (shape: CityPaint, offsetX: number, offsetY: number): CityPaint => {
+  if (shape.kind === "rect") return { ...shape, x: shape.x + offsetX, y: shape.y + offsetY };
+  if (shape.kind === "hline") return { ...shape, x1: shape.x1 + offsetX, x2: shape.x2 + offsetX, y: shape.y + offsetY };
+  if (shape.kind === "vline") return { ...shape, x: shape.x + offsetX, y1: shape.y1 + offsetY, y2: shape.y2 + offsetY };
+  return { ...shape, x: shape.x + offsetX, y: shape.y + offsetY };
+};
+
+const canDecorate = (map: string[][], x: number, y: number, w = 1, h = 1) => {
+  for (let ry = y; ry < y + h; ry++) {
+    for (let cx = x; cx < x + w; cx++) {
+      if (map[ry]?.[cx] !== "G" && map[ry]?.[cx] !== "X") return false;
+    }
+  }
+  return true;
+};
+
+const inCenterSquare = (x: number, y: number, centerX: number, centerY: number) =>
+  Math.abs(x - centerX) <= 9 && Math.abs(y - centerY) <= 6;
+
+const placeIfGrass = (map: string[][], x: number, y: number, w: number, h: number, tile: CityMapTile, centerX: number, centerY: number) => {
+  if (inCenterSquare(x, y, centerX, centerY) || !canDecorate(map, x, y, w, h)) return;
+  rect(map, x, y, w, h, tile);
+};
+
+const addExpandedCityDecor = (map: string[][], centerX: number, centerY: number) => {
+  const height = map.length;
+  const width = map[0]?.length ?? 0;
+  if (width <= 60 && height <= 40) return;
+
+  const inset = 6;
+  hline(map, inset, width - inset - 1, Math.max(inset, centerY - 12), "R");
+  hline(map, inset, width - inset - 1, Math.min(height - inset - 1, centerY + 12), "R");
+  vline(map, Math.max(inset, centerX - 16), inset, height - inset - 1, "R");
+  vline(map, Math.min(width - inset - 1, centerX + 16), inset, height - inset - 1, "R");
+
+  const buildingPlans = [
+    { x: 8, y: 8, w: 7, h: 4, tile: "B" as CityMapTile },
+    { x: width - 16, y: 8, w: 7, h: 5, tile: "U" as CityMapTile },
+    { x: 9, y: height - 16, w: 8, h: 4, tile: "B" as CityMapTile },
+    { x: width - 17, y: height - 16, w: 7, h: 4, tile: "U" as CityMapTile },
+  ];
+
+  if (width > 90) {
+    buildingPlans.push(
+      { x: 22, y: 10, w: 6, h: 5, tile: "B" },
+      { x: width - 29, y: 10, w: 6, h: 5, tile: "U" },
+      { x: 22, y: height - 18, w: 7, h: 4, tile: "B" },
+      { x: width - 30, y: height - 18, w: 7, h: 4, tile: "B" },
+    );
+  }
+
+  if (width > 120) {
+    buildingPlans.push(
+      { x: 40, y: 9, w: 8, h: 5, tile: "U" },
+      { x: width - 50, y: 9, w: 8, h: 5, tile: "B" },
+      { x: 38, y: height - 19, w: 8, h: 4, tile: "B" },
+      { x: width - 49, y: height - 19, w: 8, h: 4, tile: "U" },
+    );
+  }
+
+  buildingPlans.forEach(({ x, y, w, h, tile }, index) => {
+    placeIfGrass(map, x, y, w, h, tile, centerX, centerY);
+    const doorX = x + Math.floor(w / 2);
+    const doorY = y + h - 1;
+    if (map[doorY]?.[doorX] === tile) map[doorY][doorX] = "O";
+    const roadY = doorY + 1 < height - 3 ? doorY + 1 : doorY - h;
+    if (roadY >= 3 && roadY < height - 3) {
+      hline(map, Math.min(doorX, centerX), Math.max(doorX, centerX), roadY, "R");
+      vline(map, doorX, Math.min(roadY, doorY), Math.max(roadY, doorY), "R");
+    }
+    if (index % 2 === 0) placeIfGrass(map, x - 2, y + h + 1, 2, 2, "X", centerX, centerY);
+  });
+
+  const treeSpots = [
+    [6, 18, 2, 2], [width - 9, 18, 2, 2], [12, height - 9, 2, 2], [width - 15, height - 9, 2, 2],
+    [centerX - 25, 6, 1, 1], [centerX + 24, 6, 1, 1], [centerX - 25, height - 8, 1, 1], [centerX + 24, height - 8, 1, 1],
+  ];
+  if (width > 90) treeSpots.push([34, 18, 2, 2], [width - 37, 18, 2, 2], [34, height - 12, 1, 1], [width - 36, height - 12, 1, 1]);
+  if (width > 120) treeSpots.push([54, 17, 2, 2], [width - 57, 17, 2, 2], [54, height - 12, 1, 1], [width - 56, height - 12, 1, 1]);
+
+  treeSpots.forEach(([x, y, w, h]) => placeIfGrass(map, x, y, w, h, h > 1 ? "Y" : "T", centerX, centerY));
 };
 
 const paintWaterEdge = (map: string[][], direction: CityExitDirection) => {
@@ -51,11 +136,9 @@ const paintWaterEdge = (map: string[][], direction: CityExitDirection) => {
   }
 };
 
-const paintExit = (map: string[][], direction: CityExitDirection, tile: CityMapTile) => {
+const paintExit = (map: string[][], direction: CityExitDirection, tile: CityMapTile, centerX: number, centerY: number) => {
   const height = map.length;
   const width = map[0]?.length ?? 0;
-  const centerX = 27;
-  const centerY = 18;
   if (direction === "N") {
     vline(map, centerX, 0, centerY, tile);
     vline(map, centerX + 1, 0, centerY, tile);
@@ -75,11 +158,18 @@ const paintExit = (map: string[][], direction: CityExitDirection, tile: CityMapT
 };
 
 export const buildCityMapFromLayout = (layout: CityMapLayout) => {
-  const map = makeBlankMap(layout.width, layout.height, layout.fill ?? "T");
-  layout.layers.forEach((layer) => layer.forEach((shape) => paintCityShape(map, shape)));
+  const baseWidth = layout.baseWidth ?? 56;
+  const baseHeight = layout.baseHeight ?? 34;
+  const offsetX = Math.floor((layout.width - baseWidth) / 2);
+  const offsetY = Math.floor((layout.height - baseHeight) / 2);
+  const centerX = offsetX + 27;
+  const centerY = offsetY + 18;
+  const translatedLayers = layout.layers.map((layer) => layer.map((shape) => shiftedShape(shape, offsetX, offsetY)));
+  const map = makeBlankMap(layout.width, layout.height, layout.fill ?? "G");
+  translatedLayers.forEach((layer) => layer.forEach((shape) => paintCityShape(map, shape)));
   if (layout.autoBuildingDoors ?? true) {
     const doorCoords = new Set<string>();
-    layout.layers.flat().forEach((shape) => {
+    translatedLayers.flat().forEach((shape) => {
       if (shape.kind !== "rect" || !["A", "B", "H", "P", "U"].includes(shape.tile)) return;
       const x = shape.x + Math.floor(shape.w / 2);
       const y = shape.y + shape.h - 1;
@@ -95,10 +185,11 @@ export const buildCityMapFromLayout = (layout: CityMapLayout) => {
       if (map[y]?.[x] !== undefined) map[y][x] = "O";
     });
   }
+  addExpandedCityDecor(map, centerX, centerY);
   addTreeBorder(map, layout.treeBorderLayers ?? 3);
   layout.waterEdges?.forEach((direction) => paintWaterEdge(map, direction));
   Object.entries(layout.exits ?? {}).forEach(([direction, tile]) => {
-    paintExit(map, direction as CityExitDirection, tile);
+    paintExit(map, direction as CityExitDirection, tile, centerX, centerY);
   });
   return map;
 };

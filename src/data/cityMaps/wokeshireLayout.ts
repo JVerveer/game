@@ -1,8 +1,8 @@
+import { cityDimsFor } from "./sizeTiers";
 import type { CityMapLayout } from "./layoutTools";
 
 export const WOKESHIRE_LAYOUT: CityMapLayout = {
-  width: 56,
-  height: 34,
+  ...cityDimsFor("wokeshire"),
   exits: { W: "R", E: "R", S: "R" },
   layers: [
     [

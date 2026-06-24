@@ -1,8 +1,8 @@
+import { cityDimsFor } from "./sizeTiers";
 import type { CityMapLayout } from "./layoutTools";
 
 export const CRYPTONIA_LAYOUT: CityMapLayout = {
-  width: 56,
-  height: 34,
+  ...cityDimsFor("cryptonia"),
   exits: { W: "R" },
   layers: [
     [

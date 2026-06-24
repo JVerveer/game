@@ -1,8 +1,8 @@
+import { cityDimsFor } from "./sizeTiers";
 import type { CityMapLayout } from "./layoutTools";
 
 export const RAGEBAIT_LAYOUT: CityMapLayout = {
-  width: 56,
-  height: 34,
+  ...cityDimsFor("ragebait"),
   waterEdges: ["E"],
   exits: { N: "R", S: "R" },
   layers: [

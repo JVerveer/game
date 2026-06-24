@@ -1,8 +1,8 @@
+import { cityDimsFor } from "./sizeTiers";
 import type { CityMapLayout } from "./layoutTools";
 
 export const TARIFF_LAYOUT: CityMapLayout = {
-  width: 56,
-  height: 34,
+  ...cityDimsFor("tariff"),
   waterEdges: ["E"],
   exits: { W: "R", N: "R", S: "R" },
   layers: [

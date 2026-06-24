@@ -19,11 +19,11 @@ import {
   GAME_TILE_COLORS,
   WALKABLE_TILES as WALK,
   GAME_MAPS,
-  ENTRY_POS,
   MAIN_TOWN_IDS,
   OPPOSITE_ROUTE_DIRECTION,
   TOWN_THEMES,
   WORLD_ROUTES,
+  routeEntryForMap,
   type GameMapId,
   type Portal,
   type RouteDirection,
@@ -2250,8 +2250,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     if (!targetTown) return true;
 
     const entryDirection = OPPOSITE_ROUTE_DIRECTION[exitDirection];
-    const entry = ENTRY_POS[entryDirection];
     const targetMap = GAME_MAPS[targetTown];
+    const entry = routeEntryForMap(targetMap, entryDirection);
     const destination = {
       mapId: targetTown,
       x: Math.max(0, Math.min(targetMap.width - 1, entry.x)),
@@ -2272,7 +2272,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const travelByTrain = (townId: TownMapId) => {
     setTrainOpen(false);
     setTrainIndex(0);
-    warpTo({ mapId: townId, x: 35, y: 25, facing: "up" });
+    const spawn = GAME_MAPS[townId].spawn;
+    warpTo({ mapId: townId, x: spawn.x, y: spawn.y, facing: "down" });
     setSaveMsg(`Arrived: ${TOWN_THEMES.find(town => town.id === townId)?.name ?? townId}`);
     window.setTimeout(() => setSaveMsg(null), 2200);
   };
