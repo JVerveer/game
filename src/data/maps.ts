@@ -12,6 +12,24 @@ import { buildTweetsburgMap as buildTweetsburgCityMap } from "./cityMaps/tweetsb
 import { buildWokeshireMap as buildWokeshireCityMap } from "./cityMaps/wokeshire";
 import { SATIRIA_ENTRANCES, SATIRIA_OBJECT_MARKERS, coord } from "./cityMaps/satiriaLayout";
 import { cityCoreOffsetFor } from "./cityMaps/sizeTiers";
+import { makeBlankMap, rect } from "./cityMaps/utils";
+import {
+  ENTRY_POS,
+  TOWN_THEMES,
+  WORLD_ROUTES,
+  type RouteDirection,
+  type TownTheme,
+} from "./towns";
+
+export {
+  ENTRY_POS,
+  MAIN_TOWN_IDS,
+  OPPOSITE_ROUTE_DIRECTION,
+  TOWN_THEMES,
+  TOWN_WORLD_POSITIONS,
+  WORLD_ROUTES,
+} from "./towns";
+export type { RouteDirection, TownTheme } from "./towns";
 
 // Tile key legend:
 //   T = Trees/Forest   G = Grass       W = Water      R = Road/Path/Floor
@@ -109,244 +127,6 @@ export interface GameMapDef {
   spawn: { x: number; y: number };
 }
 
-const makeBlankMap = (width: number, height: number, fill = "T") =>
-  Array.from({ length: height }, () => Array.from({ length: width }, () => fill));
-
-const rect = (map: string[][], x: number, y: number, w: number, h: number, tile: string) => {
-  for (let ry = y; ry < y + h; ry++) {
-    for (let cx = x; cx < x + w; cx++) {
-      if (map[ry]?.[cx] !== undefined) map[ry][cx] = tile;
-    }
-  }
-};
-
-const hline = (map: string[][], x1: number, x2: number, y: number, tile: string) => rect(map, x1, y, x2 - x1 + 1, 1, tile);
-const vline = (map: string[][], x: number, y1: number, y2: number, tile: string) => rect(map, x, y1, 1, y2 - y1 + 1, tile);
-
-type TownTheme = {
-  id: TownMapId;
-  name: string;
-  visual: string;
-  satire: string;
-  hook: string;
-  accent: "water" | "sand" | "mountain" | "forest" | "port" | "city";
-  motto: string;
-  population: number;
-  sign: string[];
-  npcName: string;
-  npcLines: string[];
-  world: { x: number; y: number };
-};
-
-export const TOWN_THEMES: TownTheme[] = [
-  {
-    id: "satiria",
-    name: "Satiria Town",
-    visual: "Starter village",
-    satire: "A warm-up town where every joke still needs a tutorial.",
-    hook: "Starting location with shop, healing center, save point, and routes outward.",
-    accent: "forest",
-    motto: "Every quest starts with a smaller errand.",
-    population: 421,
-    sign: ["★ SATIRIA TOWN ★", "Shop west. Healing Center north.", "Follow the east road to Brexiton."],
-    npcName: "Route Guide",
-    npcLines: ['"The east road is open now."', '"Eleven towns, one pair of shoes. Very heroic."'],
-    world: { x: 50, y: 96 },
-  },
-  {
-    id: "brexiton",
-    name: "Brexiton",
-    visual: "London",
-    satire: "Endless debates, bureaucracy, and exit negotiations.",
-    hook: "Gates constantly open and close depending on town votes.",
-    accent: "city",
-    motto: "Out means out, pending clarification.",
-    population: 12043,
-    sign: ["★ BREXITON ★", "Mind the gap between promise and policy.", "The exit gate is having a consultation."],
-    npcName: "Queue Minister",
-    npcLines: ['"We voted to open this gate, then formed a committee to close it."', '"Please enjoy the paperwork maze."'],
-    world: { x: 50, y: 7 },
-  },
-  {
-    id: "tweetsburg",
-    name: "Tweetsburg",
-    visual: "San Francisco",
-    satire: "Social media discourse and online outrage.",
-    hook: "NPCs spread rumors that alter quests in real time.",
-    accent: "water",
-    motto: "Post first, verify eventually.",
-    population: 8808,
-    sign: ["★ TWEETSBURG ★", "Every rumor has fiber internet.", "Quest facts may update without notice."],
-    npcName: "Trend Watcher",
-    npcLines: ['"A rumor just patched itself into the main quest."', '"Do not read the replies unless you brought potions."'],
-    world: { x: 68, y: 77 },
-  },
-  {
-    id: "cryptonia",
-    name: "Cryptonia City",
-    visual: "Miami",
-    satire: "Crypto hype, speculation, and sudden crashes.",
-    hook: "Currency value changes every few minutes.",
-    accent: "sand",
-    motto: "Tomorrow is priced in until lunch.",
-    population: 17776,
-    sign: ["★ CRYPTONIA CITY ★", "Prices moon at dawn and crash by lunch.", "No refunds on vibes."],
-    npcName: "Token Baron",
-    npcLines: ['"My wallet was full this morning. Now it is a learning experience."', '"The beach is real. The yield is theoretical."'],
-    world: { x: 68, y: 50 },
-  },
-  {
-    id: "wokeshire",
-    name: "Wokeshire",
-    visual: "Portland",
-    satire: "Culture-war debates, activism, and ideological purity tests.",
-    hook: "Every faction has different rules for acceptable behavior.",
-    accent: "forest",
-    motto: "Read the room, then read the footnotes.",
-    population: 6402,
-    sign: ["★ WOKESHIRE ★", "Check the notice board before speaking.", "The notices disagree."],
-    npcName: "Consensus Ranger",
-    npcLines: ['"The north path is approved by three factions and denounced by four."', '"Bring empathy, patience, and a spare checklist."'],
-    world: { x: 32, y: 34 },
-  },
-  {
-    id: "tariff",
-    name: "Tariff Town",
-    visual: "Shanghai and major port cities",
-    satire: "Trade wars and import/export restrictions.",
-    hook: "Crossing districts requires paying changing tariffs.",
-    accent: "port",
-    motto: "Nothing passes without a stamp.",
-    population: 15110,
-    sign: ["★ TARIFF TOWN ★", "All roads are imports.", "Toll prices refresh when nobody is looking."],
-    npcName: "Dock Broker",
-    npcLines: ['"Crossing the street costs three stamps and one surprise fee."', '"The ships are punctual. The forms are not."'],
-    world: { x: 68, y: 34 },
-  },
-  {
-    id: "factcheck",
-    name: "Factcheck Falls",
-    visual: "Washington",
-    satire: "Competing narratives, spin, and fact-checking.",
-    hook: "Every NPC gives a different version of the same quest.",
-    accent: "water",
-    motto: "Trust, but bring citations.",
-    population: 5309,
-    sign: ["★ FACTCHECK FALLS ★", "Three plaques explain this waterfall.", "Only one is mostly true."],
-    npcName: "Citation Clerk",
-    npcLines: ['"The quest began here, unless you ask the mayor."', '"I rate that potion claim: needs context."'],
-    world: { x: 50, y: 88 },
-  },
-  {
-    id: "ragebait",
-    name: "Ragebait Bay",
-    visual: "Los Angeles",
-    satire: "Attention economy and outrage-driven media.",
-    hook: "The more dramatic your actions, the more rewards you receive.",
-    accent: "sand",
-    motto: "Keep calm, but louder.",
-    population: 9961,
-    sign: ["★ RAGEBAIT BAY ★", "Quiet deeds earn quiet applause.", "Dramatic deeds get sponsored."],
-    npcName: "Reaction Producer",
-    npcLines: ['"Try entering the shop with a gasp. The algorithm loves commitment."', '"Subtlety was nerfed last season."'],
-    world: { x: 32, y: 77 },
-  },
-  {
-    id: "surveillia",
-    name: "Surveillia",
-    visual: "Beijing",
-    satire: "Surveillance technology, data collection, and monitoring.",
-    hook: "Guards know where you are unless you disable cameras.",
-    accent: "city",
-    motto: "For your safety, we already know.",
-    population: 22001,
-    sign: ["★ SURVEILLIA ★", "Smile. The signs already know you read them.", "Cameras cover every shortcut."],
-    npcName: "Camera Guard",
-    npcLines: ['"You are currently standing exactly there."', '"Disable the cameras and I will have to guess like everyone else."'],
-    world: { x: 50, y: 21 },
-  },
-  {
-    id: "promptford",
-    name: "Promptford",
-    visual: "Amsterdam mixed with AI startup hubs",
-    satire: "AI assistants, automation, and prompt engineering.",
-    hook: "Citizens outsource every decision to AI oracles.",
-    accent: "water",
-    motto: "Ask clearly, automate carefully.",
-    population: 7337,
-    sign: ["★ PROMPTFORD ★", "Canals, startups, and oracles with opinions.", "Please phrase your destiny clearly."],
-    npcName: "Oracle Intern",
-    npcLines: ['"The oracle suggests taking the scenic route, with confidence 0.51."', '"I asked it what to eat. It opened a sprint board."'],
-    world: { x: 50, y: 63 },
-  },
-  {
-    id: "inflatopolis",
-    name: "Inflatopolis",
-    visual: "Buenos Aires",
-    satire: "Inflation, currency instability, and rising prices.",
-    hook: "Shop prices increase as you play.",
-    accent: "city",
-    motto: "Spend now, regret at market close.",
-    population: 14192,
-    sign: ["★ INFLATOPOLIS ★", "Read prices quickly.", "Yesterday's bargain is today's museum exhibit."],
-    npcName: "Price Sprinter",
-    npcLines: ['"I saved up for bread. Now I can afford a receipt."', '"The shop sign updates faster than my legs."'],
-    world: { x: 32, y: 50 },
-  },
-];
-
-export const MAIN_TOWN_IDS = TOWN_THEMES.map(town => town.id);
-export const TOWN_WORLD_POSITIONS = Object.fromEntries(TOWN_THEMES.map(town => [town.id, town.world])) as Record<TownMapId, { x: number; y: number }>;
-
-export const WORLD_ROUTES: Record<TownMapId, Partial<Record<RouteDirection, TownMapId>>> = {
-  satiria: { N: "inflatopolis", E: "wokeshire" },
-  factcheck: { N: "wokeshire", W: "tweetsburg" },
-  ragebait: { N: "tariff", S: "surveillia" },
-  tweetsburg: { E: "factcheck" },
-  promptford: { S: "tariff", E: "brexiton" },
-  inflatopolis: { S: "satiria", E: "cryptonia" },
-  cryptonia: { W: "inflatopolis" },
-  wokeshire: { W: "satiria", E: "tariff", S: "factcheck" },
-  tariff: { W: "wokeshire", N: "promptford", S: "ragebait" },
-  surveillia: { N: "ragebait" },
-  brexiton: { W: "promptford" },
-};
-
-export type RouteDirection = "N" | "S" | "E" | "W" | "NE" | "NW" | "SE" | "SW";
-
-const PORTAL_POS: Record<RouteDirection, { x: number; y: number }> = {
-  N: { x: 27, y: 0 },
-  S: { x: 27, y: 33 },
-  W: { x: 0, y: 18 },
-  E: { x: 55, y: 18 },
-  NE: { x: 55, y: 6 },
-  NW: { x: 0, y: 6 },
-  SE: { x: 55, y: 29 },
-  SW: { x: 0, y: 29 },
-};
-
-export const ENTRY_POS: Record<RouteDirection, { x: number; y: number; facing: "up" | "down" | "left" | "right" }> = {
-  N: { x: 27, y: 2, facing: "down" },
-  S: { x: 27, y: 31, facing: "up" },
-  W: { x: 2, y: 18, facing: "right" },
-  E: { x: 53, y: 18, facing: "left" },
-  NE: { x: 53, y: 7, facing: "left" },
-  NW: { x: 2, y: 7, facing: "right" },
-  SE: { x: 53, y: 28, facing: "left" },
-  SW: { x: 2, y: 28, facing: "right" },
-};
-
-export const OPPOSITE_ROUTE_DIRECTION: Record<RouteDirection, RouteDirection> = {
-  N: "S",
-  S: "N",
-  E: "W",
-  W: "E",
-  NE: "SW",
-  NW: "SE",
-  SE: "NW",
-  SW: "NE",
-};
-
 export const routeEntryForMap = (
   map: Pick<GameMapDef, "width" | "height">,
   direction: RouteDirection,
@@ -358,574 +138,6 @@ export const routeEntryForMap = (
   if (direction === "W") return { x: 2, y: centerY, facing: "right" };
   if (direction === "E") return { x: Math.max(2, map.width - 3), y: centerY, facing: "left" };
   return ENTRY_POS[direction];
-};
-
-const findEntryFrom = (target: TownMapId, from: TownMapId) => {
-  const entry = Object.entries(WORLD_ROUTES[target]).find(([, town]) => town === from);
-  return ENTRY_POS[(entry?.[0] as RouteDirection | undefined) ?? "S"];
-};
-
-const buildThemedTownMap = (theme: TownTheme) => {
-  const map = makeBlankMap(56, 34, "T");
-  const setTile = (x: number, y: number, tile: string) => {
-    if (map[y]?.[x] !== undefined) map[y][x] = tile;
-  };
-  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
-    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      const x = Math.round(start.x + (end.x - start.x) * t);
-      const y = Math.round(start.y + (end.y - start.y) * t);
-      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
-    }
-  };
-
-  rect(map, 4, 4, 48, 24, "G");
-  rect(map, 6, 26, 9, 1, "F");
-  rect(map, 41, 26, 9, 1, "F");
-  rect(map, 7, 5, 6, 2, "L");
-  rect(map, 43, 23, 6, 2, "L");
-  rect(map, 15, 10, 24, 11, "R");
-  vline(map, 27, 8, 28, "R");
-  hline(map, 16, 38, 18, "R");
-
-  Object.keys(WORLD_ROUTES[theme.id]).forEach(direction => {
-    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
-  });
-
-  if (theme.accent === "water" || theme.accent === "port") {
-    rect(map, 41, 5, 8, 13, "W");
-    rect(map, 38, 18, 13, 4, theme.accent === "port" ? "R" : "S");
-  }
-  if (theme.accent === "sand") {
-    rect(map, 5, 22, 18, 5, "S");
-    rect(map, 36, 5, 10, 5, "S");
-  }
-  if (theme.accent === "mountain" || theme.accent === "city") {
-    rect(map, 43, 7, 7, 11, theme.accent === "mountain" ? "M" : "B");
-  }
-  if (theme.accent === "forest") {
-    rect(map, 6, 6, 8, 9, "X");
-    rect(map, 39, 21, 8, 5, "X");
-  }
-
-  rect(map, 16, 11, 6, 4, "B");
-  rect(map, 25, 11, 6, 4, "H");
-  rect(map, 34, 11, 6, 4, "B");
-  rect(map, 18, 21, 6, 4, "B");
-  rect(map, 32, 21, 6, 4, "B");
-  setTile(14, 19, "O");
-  setTile(14, 28, "O");
-  setTile(14, 37, "O");
-  setTile(24, 21, "O");
-  setTile(24, 34, "P");
-  setTile(24, 35, "P");
-  setTile(18, 27, "V");
-  Object.keys(WORLD_ROUTES[theme.id]).forEach(direction => {
-    const pos = PORTAL_POS[direction as RouteDirection];
-    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
-  });
-  return map;
-};
-
-const buildBrexitonMap = () => {
-  const map = makeBlankMap(56, 34, "T");
-  const setTile = (x: number, y: number, tile: string) => {
-    if (map[y]?.[x] !== undefined) map[y][x] = tile;
-  };
-  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
-    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      const x = Math.round(start.x + (end.x - start.x) * t);
-      const y = Math.round(start.y + (end.y - start.y) * t);
-      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
-    }
-  };
-
-  rect(map, 3, 3, 50, 27, "G");
-  rect(map, 5, 24, 46, 5, "W");
-  rect(map, 24, 23, 8, 7, "R");
-  rect(map, 33, 24, 10, 4, "R");
-  rect(map, 7, 6, 42, 17, "E");
-  hline(map, 7, 49, 18, "R");
-  vline(map, 27, 4, 30, "R");
-  hline(map, 13, 42, 10, "R");
-  hline(map, 13, 42, 15, "R");
-  vline(map, 13, 7, 22, "R");
-  vline(map, 42, 7, 22, "R");
-
-  Object.keys(WORLD_ROUTES.brexiton).forEach(direction => {
-    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
-  });
-
-  rect(map, 9, 7, 6, 3, "U");
-  rect(map, 17, 7, 6, 3, "U");
-  rect(map, 31, 7, 6, 3, "U");
-  rect(map, 39, 7, 6, 3, "U");
-  rect(map, 9, 12, 6, 3, "B");
-  rect(map, 23, 12, 8, 3, "H");
-  rect(map, 37, 12, 6, 3, "B");
-  rect(map, 8, 20, 14, 4, "A");
-  rect(map, 22, 18, 3, 6, "I");
-  rect(map, 34, 21, 8, 4, "P");
-  rect(map, 44, 20, 4, 3, "U");
-
-  setTile(14, 9, "O");
-  setTile(20, 9, "O");
-  setTile(34, 9, "O");
-  setTile(42, 9, "O");
-  setTile(12, 14, "O");
-  setTile(27, 14, "O");
-  setTile(40, 14, "O");
-  setTile(36, 24, "O");
-  setTile(37, 24, "O");
-
-  Object.keys(WORLD_ROUTES.brexiton).forEach(direction => {
-    const pos = PORTAL_POS[direction as RouteDirection];
-    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
-  });
-
-  return map;
-};
-
-const buildPromptfordMap = () => {
-  const map = makeBlankMap(56, 34, "T");
-  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
-    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      const x = Math.round(start.x + (end.x - start.x) * t);
-      const y = Math.round(start.y + (end.y - start.y) * t);
-      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
-    }
-  };
-
-  rect(map, 3, 4, 50, 25, "G");
-  rect(map, 6, 21, 44, 4, "W");
-  rect(map, 18, 20, 8, 6, "R");
-  rect(map, 33, 20, 9, 6, "R");
-  rect(map, 8, 7, 40, 13, "E");
-  hline(map, 8, 48, 13, "R");
-  vline(map, 27, 5, 29, "R");
-  hline(map, 12, 44, 8, "R");
-  hline(map, 12, 44, 18, "R");
-
-  Object.keys(WORLD_ROUTES.promptford).forEach(direction => {
-    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
-  });
-
-  rect(map, 9, 8, 7, 3, "A");
-  rect(map, 18, 8, 7, 3, "A");
-  rect(map, 31, 8, 7, 3, "A");
-  rect(map, 40, 8, 7, 3, "A");
-  rect(map, 10, 15, 7, 3, "B");
-  rect(map, 24, 15, 7, 3, "H");
-  rect(map, 39, 15, 7, 3, "B");
-  rect(map, 34, 23, 8, 3, "P");
-  rect(map, 23, 11, 3, 7, "I");
-
-  map[10][13] = "O";
-  map[10][22] = "O";
-  map[10][34] = "O";
-  map[10][43] = "O";
-  map[17][13] = "O";
-  map[17][27] = "O";
-  map[17][42] = "O";
-  map[25][36] = "O";
-  map[25][37] = "O";
-
-  Object.keys(WORLD_ROUTES.promptford).forEach(direction => {
-    const pos = PORTAL_POS[direction as RouteDirection];
-    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
-  });
-
-  return map;
-};
-
-const buildWokeshireMap = () => {
-  const map = makeBlankMap(56, 34, "T");
-  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
-    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      const x = Math.round(start.x + (end.x - start.x) * t);
-      const y = Math.round(start.y + (end.y - start.y) * t);
-      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
-    }
-  };
-
-  rect(map, 4, 4, 48, 25, "G");
-  rect(map, 7, 7, 42, 4, "W");
-  rect(map, 7, 18, 42, 4, "W");
-  rect(map, 16, 6, 5, 17, "R");
-  rect(map, 34, 6, 5, 17, "R");
-  rect(map, 9, 11, 38, 7, "E");
-  hline(map, 9, 47, 14, "R");
-  vline(map, 27, 10, 29, "R");
-  rect(map, 32, 23, 10, 4, "R");
-
-  Object.keys(WORLD_ROUTES.wokeshire).forEach(direction => {
-    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
-  });
-
-  rect(map, 10, 12, 4, 4, "U");
-  rect(map, 15, 12, 4, 4, "U");
-  rect(map, 20, 12, 4, 4, "B");
-  rect(map, 31, 12, 4, 4, "H");
-  rect(map, 36, 12, 4, 4, "U");
-  rect(map, 41, 12, 4, 4, "U");
-  rect(map, 35, 23, 6, 3, "P");
-  rect(map, 45, 23, 4, 4, "U");
-
-  map[15][12] = "O";
-  map[15][17] = "O";
-  map[15][22] = "O";
-  map[15][33] = "O";
-  map[15][38] = "O";
-  map[15][43] = "O";
-  map[25][36] = "O";
-  map[25][37] = "O";
-
-  Object.keys(WORLD_ROUTES.wokeshire).forEach(direction => {
-    const pos = PORTAL_POS[direction as RouteDirection];
-    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
-  });
-
-  return map;
-};
-
-const buildCryptoniaMap = () => {
-  const map = makeBlankMap(56, 34, "T");
-  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
-    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      const x = Math.round(start.x + (end.x - start.x) * t);
-      const y = Math.round(start.y + (end.y - start.y) * t);
-      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
-    }
-  };
-
-  rect(map, 3, 4, 50, 25, "S");
-  rect(map, 39, 5, 10, 24, "W");
-  rect(map, 34, 8, 8, 18, "R");
-  rect(map, 9, 8, 27, 15, "E");
-  hline(map, 9, 42, 16, "R");
-  vline(map, 27, 5, 30, "R");
-  hline(map, 12, 35, 10, "R");
-  hline(map, 12, 35, 22, "R");
-
-  Object.keys(WORLD_ROUTES.cryptonia).forEach(direction => {
-    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
-  });
-
-  rect(map, 11, 9, 5, 5, "I");
-  rect(map, 18, 8, 4, 6, "A");
-  rect(map, 24, 7, 4, 7, "I");
-  rect(map, 30, 8, 5, 6, "A");
-  rect(map, 11, 18, 6, 4, "B");
-  rect(map, 24, 18, 7, 4, "H");
-  rect(map, 34, 23, 8, 3, "P");
-  rect(map, 32, 18, 3, 5, "U");
-
-  map[21][14] = "O";
-  map[21][27] = "O";
-  map[21][35] = "O";
-  map[25][36] = "O";
-  map[25][37] = "O";
-
-  Object.keys(WORLD_ROUTES.cryptonia).forEach(direction => {
-    const pos = PORTAL_POS[direction as RouteDirection];
-    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
-  });
-
-  return map;
-};
-
-const buildSurveilliaMap = () => {
-  const map = makeBlankMap(56, 34, "T");
-  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
-    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      const x = Math.round(start.x + (end.x - start.x) * t);
-      const y = Math.round(start.y + (end.y - start.y) * t);
-      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
-    }
-  };
-
-  rect(map, 3, 4, 50, 25, "G");
-  rect(map, 6, 22, 44, 5, "W");
-  rect(map, 10, 7, 36, 14, "E");
-  hline(map, 10, 46, 16, "R");
-  vline(map, 27, 4, 30, "R");
-  hline(map, 12, 44, 10, "R");
-  hline(map, 12, 44, 20, "R");
-  rect(map, 33, 23, 10, 4, "R");
-
-  Object.keys(WORLD_ROUTES.surveillia).forEach(direction => {
-    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
-  });
-
-  rect(map, 11, 8, 5, 6, "I");
-  rect(map, 18, 7, 5, 7, "A");
-  rect(map, 25, 6, 5, 8, "I");
-  rect(map, 32, 7, 5, 7, "A");
-  rect(map, 39, 8, 5, 6, "I");
-  rect(map, 12, 17, 7, 3, "B");
-  rect(map, 24, 17, 7, 3, "H");
-  rect(map, 35, 23, 7, 3, "P");
-
-  map[19][15] = "O";
-  map[19][27] = "O";
-  map[25][36] = "O";
-  map[25][37] = "O";
-
-  Object.keys(WORLD_ROUTES.surveillia).forEach(direction => {
-    const pos = PORTAL_POS[direction as RouteDirection];
-    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
-  });
-
-  return map;
-};
-
-const buildTweetsburgMap = () => {
-  const map = makeBlankMap(56, 34, "T");
-  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
-    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      const x = Math.round(start.x + (end.x - start.x) * t);
-      const y = Math.round(start.y + (end.y - start.y) * t);
-      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
-    }
-  };
-
-  rect(map, 4, 4, 48, 25, "S");
-  rect(map, 8, 7, 40, 18, "E");
-  hline(map, 8, 48, 16, "R");
-  vline(map, 27, 5, 29, "R");
-  hline(map, 12, 44, 10, "R");
-  hline(map, 12, 44, 22, "R");
-  rect(map, 18, 12, 19, 8, "R");
-
-  Object.keys(WORLD_ROUTES.tweetsburg).forEach(direction => {
-    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
-  });
-
-  rect(map, 10, 8, 6, 4, "U");
-  rect(map, 18, 8, 6, 4, "B");
-  rect(map, 31, 8, 6, 4, "H");
-  rect(map, 40, 8, 6, 4, "U");
-  rect(map, 12, 21, 6, 3, "B");
-  rect(map, 35, 21, 7, 3, "P");
-  rect(map, 24, 12, 7, 7, "I");
-
-  map[11][13] = "O";
-  map[11][21] = "O";
-  map[11][34] = "O";
-  map[11][43] = "O";
-  map[23][15] = "O";
-  map[23][36] = "O";
-  map[23][37] = "O";
-
-  Object.keys(WORLD_ROUTES.tweetsburg).forEach(direction => {
-    const pos = PORTAL_POS[direction as RouteDirection];
-    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
-  });
-
-  return map;
-};
-
-const buildInflatopolisMap = () => {
-  const map = makeBlankMap(56, 34, "T");
-  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
-    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      const x = Math.round(start.x + (end.x - start.x) * t);
-      const y = Math.round(start.y + (end.y - start.y) * t);
-      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
-    }
-  };
-
-  rect(map, 4, 4, 48, 25, "G");
-  rect(map, 6, 21, 44, 5, "E");
-  rect(map, 8, 7, 40, 13, "R");
-  hline(map, 8, 48, 14, "R");
-  vline(map, 27, 5, 29, "R");
-  hline(map, 11, 45, 9, "R");
-  hline(map, 11, 45, 19, "R");
-
-  Object.keys(WORLD_ROUTES.inflatopolis).forEach(direction => {
-    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
-  });
-
-  rect(map, 10, 8, 6, 4, "A");
-  rect(map, 18, 8, 6, 4, "B");
-  rect(map, 31, 8, 6, 4, "H");
-  rect(map, 40, 8, 6, 4, "A");
-  rect(map, 11, 16, 6, 4, "U");
-  rect(map, 21, 16, 6, 4, "U");
-  rect(map, 35, 23, 7, 3, "P");
-
-  map[11][13] = "O";
-  map[11][21] = "O";
-  map[11][34] = "O";
-  map[11][43] = "O";
-  map[19][14] = "O";
-  map[19][24] = "O";
-  map[25][36] = "O";
-  map[25][37] = "O";
-
-  Object.keys(WORLD_ROUTES.inflatopolis).forEach(direction => {
-    const pos = PORTAL_POS[direction as RouteDirection];
-    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
-  });
-
-  return map;
-};
-
-const buildTariffMap = () => {
-  const map = makeBlankMap(56, 34, "T");
-  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
-    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      const x = Math.round(start.x + (end.x - start.x) * t);
-      const y = Math.round(start.y + (end.y - start.y) * t);
-      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
-    }
-  };
-
-  rect(map, 3, 4, 50, 25, "G");
-  rect(map, 5, 23, 46, 5, "W");
-  rect(map, 8, 18, 41, 5, "S");
-  rect(map, 11, 8, 35, 10, "E");
-  hline(map, 11, 46, 15, "R");
-  vline(map, 27, 5, 30, "R");
-  hline(map, 12, 44, 10, "R");
-  rect(map, 33, 22, 10, 5, "R");
-
-  Object.keys(WORLD_ROUTES.tariff).forEach(direction => {
-    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
-  });
-
-  rect(map, 12, 9, 6, 4, "U");
-  rect(map, 22, 9, 6, 4, "B");
-  rect(map, 32, 9, 6, 4, "H");
-  rect(map, 40, 9, 5, 4, "U");
-  rect(map, 35, 23, 7, 3, "P");
-  rect(map, 8, 16, 5, 4, "M");
-
-  map[12][15] = "O";
-  map[12][25] = "O";
-  map[12][35] = "O";
-  map[12][42] = "O";
-  map[25][36] = "O";
-  map[25][37] = "O";
-
-  Object.keys(WORLD_ROUTES.tariff).forEach(direction => {
-    const pos = PORTAL_POS[direction as RouteDirection];
-    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
-  });
-
-  return map;
-};
-
-const buildRagebaitMap = () => {
-  const map = makeBlankMap(56, 34, "T");
-  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
-    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      const x = Math.round(start.x + (end.x - start.x) * t);
-      const y = Math.round(start.y + (end.y - start.y) * t);
-      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
-    }
-  };
-
-  rect(map, 4, 4, 48, 25, "G");
-  rect(map, 5, 22, 46, 5, "W");
-  rect(map, 7, 18, 44, 4, "S");
-  rect(map, 8, 7, 41, 11, "E");
-  hline(map, 8, 49, 15, "R");
-  vline(map, 27, 5, 30, "R");
-  hline(map, 12, 44, 10, "R");
-  rect(map, 34, 22, 9, 5, "R");
-
-  Object.keys(WORLD_ROUTES.ragebait).forEach(direction => {
-    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
-  });
-
-  rect(map, 10, 8, 6, 4, "U");
-  rect(map, 18, 8, 6, 4, "B");
-  rect(map, 31, 8, 6, 4, "H");
-  rect(map, 40, 8, 6, 4, "A");
-  rect(map, 35, 23, 7, 3, "P");
-  rect(map, 15, 16, 9, 2, "M");
-
-  map[11][13] = "O";
-  map[11][21] = "O";
-  map[11][34] = "O";
-  map[11][43] = "O";
-  map[25][36] = "O";
-  map[25][37] = "O";
-
-  Object.keys(WORLD_ROUTES.ragebait).forEach(direction => {
-    const pos = PORTAL_POS[direction as RouteDirection];
-    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
-  });
-
-  return map;
-};
-
-const buildFactcheckMap = () => {
-  const map = makeBlankMap(56, 34, "T");
-  const roadLine = (start: { x: number; y: number }, end: { x: number; y: number }, width = 2) => {
-    const steps = Math.max(Math.abs(end.x - start.x), Math.abs(end.y - start.y), 1);
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      const x = Math.round(start.x + (end.x - start.x) * t);
-      const y = Math.round(start.y + (end.y - start.y) * t);
-      rect(map, x - Math.floor(width / 2), y - Math.floor(width / 2), width + 1, width + 1, "R");
-    }
-  };
-
-  rect(map, 4, 4, 48, 25, "S");
-  rect(map, 42, 5, 7, 22, "W");
-  rect(map, 8, 8, 34, 17, "E");
-  hline(map, 8, 42, 17, "R");
-  vline(map, 27, 5, 30, "R");
-  hline(map, 11, 40, 11, "R");
-  hline(map, 11, 40, 23, "R");
-  rect(map, 33, 23, 9, 4, "R");
-
-  Object.keys(WORLD_ROUTES.factcheck).forEach(direction => {
-    roadLine({ x: 27, y: 18 }, PORTAL_POS[direction as RouteDirection], 2);
-  });
-
-  rect(map, 10, 9, 7, 4, "A");
-  rect(map, 22, 9, 7, 4, "H");
-  rect(map, 33, 9, 7, 4, "B");
-  rect(map, 11, 20, 7, 4, "U");
-  rect(map, 35, 23, 7, 3, "P");
-  rect(map, 23, 15, 8, 5, "I");
-
-  map[12][13] = "O";
-  map[12][25] = "O";
-  map[12][36] = "O";
-  map[23][14] = "O";
-  map[25][36] = "O";
-  map[25][37] = "O";
-
-  Object.keys(WORLD_ROUTES.factcheck).forEach(direction => {
-    const pos = PORTAL_POS[direction as RouteDirection];
-    rect(map, pos.x - 1, pos.y - 1, 3, 3, "R");
-  });
-
-  return map;
 };
 
 const buildShopMap = () => {
@@ -954,9 +166,9 @@ const buildHealingMap = () => {
   return map;
 };
 
-const routeObjectsFor = (_theme: TownTheme) => ({});
+const routeObjectsFor = (_theme: TownTheme): Record<string, string> => ({});
 
-const routeInteractionsFor = (_theme: TownTheme) => ({});
+const routeInteractionsFor = (_theme: TownTheme): Record<string, Interaction> => ({});
 
 const TOWN_THEME_BY_ID = Object.fromEntries(TOWN_THEMES.map(theme => [theme.id, theme])) as Record<TownMapId, TownTheme>;
 
@@ -1122,20 +334,21 @@ const defaultDoorConfig: TownDoorConfig = {
   sign: "25,18",
 };
 
-const themedRowsFor = (theme: TownTheme) => {
-  if (theme.id === "satiria") return buildSatiriaMap();
-  if (theme.id === "brexiton") return buildBrexitonCityMap();
-  if (theme.id === "promptford") return buildPromptfordCityMap();
-  if (theme.id === "wokeshire") return buildWokeshireCityMap();
-  if (theme.id === "cryptonia") return buildCryptoniaCityMap();
-  if (theme.id === "surveillia") return buildSurveilliaCityMap();
-  if (theme.id === "tweetsburg") return buildTweetsburgCityMap();
-  if (theme.id === "inflatopolis") return buildInflatopolisCityMap();
-  if (theme.id === "tariff") return buildTariffCityMap();
-  if (theme.id === "ragebait") return buildRagebaitCityMap();
-  if (theme.id === "factcheck") return buildFactcheckCityMap();
-  return buildThemedTownMap(theme);
+const TOWN_ROW_BUILDERS: Record<TownMapId, () => string[][]> = {
+  satiria: buildSatiriaMap,
+  brexiton: buildBrexitonCityMap,
+  promptford: buildPromptfordCityMap,
+  wokeshire: buildWokeshireCityMap,
+  cryptonia: buildCryptoniaCityMap,
+  surveillia: buildSurveilliaCityMap,
+  tweetsburg: buildTweetsburgCityMap,
+  inflatopolis: buildInflatopolisCityMap,
+  tariff: buildTariffCityMap,
+  ragebait: buildRagebaitCityMap,
+  factcheck: buildFactcheckCityMap,
 };
+
+const themedRowsFor = (theme: TownTheme) => TOWN_ROW_BUILDERS[theme.id]();
 
 const doorConfigFor = (theme: TownTheme): TownDoorConfig => {
   if (theme.id === "satiria") {
@@ -1522,8 +735,8 @@ const doorConfigFromRows = (theme: TownTheme, rows: string[][]): TownDoorConfig 
 const createThemedTownDef = (theme: TownTheme): GameMapDef => {
   const rows = themedRowsFor(theme);
   const doors = doorConfigFromRows(theme, rows);
-  const homeObjects = Object.fromEntries(doors.homes.map(coord => [coord, "DOOR_HOME"]));
-  const trainObjects = Object.fromEntries(doors.train.slice(0, 2).map(coord => [coord, "TRAIN"]));
+  const homeObjects: Record<string, string> = Object.fromEntries(doors.homes.map(coord => [coord, "DOOR_HOME"]));
+  const trainObjects: Record<string, string> = Object.fromEntries(doors.train.slice(0, 2).map(coord => [coord, "TRAIN"]));
   const coreOffset = theme.id === "satiria" ? { x: 0, y: 0 } : cityCoreOffsetFor(theme.id);
   const specialObjects = offsetRecord(specialObjectsFor(theme), coreOffset);
   const specialInteractions = offsetRecord(specialInteractionsFor(theme), coreOffset);
@@ -1539,29 +752,29 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
     auto: true,
     lines: [],
   } satisfies Interaction;
-  const homeInteractions = Object.fromEntries(doors.homes.map((coord, index) => [coord, {
+  const homeInteractions: Record<string, Interaction> = Object.fromEntries(doors.homes.map((coord, index) => [coord, {
     name: index === 0 ? `${theme.name} House` : "Local House",
     portal: { mapId: "house", x: 6, y: 6, facing: "up" },
     auto: true,
     lines: [],
   } satisfies Interaction]));
-  const trainInteractions = Object.fromEntries(doors.train.map(coord => [coord, {
+  const trainInteractions: Record<string, Interaction> = Object.fromEntries(doors.train.map(coord => [coord, {
     name: `${theme.name} Train Station`,
     train: true,
     lines: ["Choose a destination."],
   } satisfies Interaction]));
   const showGenericSave = theme.id !== "satiria";
   const entryDoorCoords = new Set([doors.shop, doors.healing, ...doors.homes, ...doors.train]);
-  const genericObjects = showGenericSave ? Object.fromEntries([
-    [doors.save, "★"],
-  ].filter(([coord]) => !entryDoorCoords.has(coord))) : {};
-  const genericInteractions = showGenericSave ? Object.fromEntries([
-    [doors.save, {
+  const genericObjects: Record<string, string> = {};
+  const genericInteractions: Record<string, Interaction> = {};
+  if (showGenericSave && !entryDoorCoords.has(doors.save)) {
+    genericObjects[doors.save] = "★";
+    genericInteractions[doors.save] = {
       name: "Save Point",
       save: true,
       lines: ["★ PROGRESS SAVED ★", `${theme.name} - Lv. 15`, theme.hook],
-    } satisfies Interaction],
-  ].filter(([coord]) => !entryDoorCoords.has(coord))) : {};
+    };
+  }
   const signReserved = new Set([
     ...entryDoorCoords,
     ...Object.keys(genericObjects),
