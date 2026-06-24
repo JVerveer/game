@@ -64,12 +64,11 @@ export const SATIRIA_FENCES: SatiriaPaint[] = [
   { kind: "hline", x1: 12, x2: 22, y: 11, tile: "F" },
   { kind: "hline", x1: 24, x2: 26, y: 11, tile: "F" },
   { kind: "hline", x1: 30, x2: 32, y: 12, tile: "F" },
-  { kind: "hline", x1: 34, x2: 38, y: 12, tile: "F" },
-  { kind: "hline", x1: 40, x2: 42, y: 12, tile: "F" },
-  { kind: "hline", x1: 44, x2: 52, y: 12, tile: "F" },
-  { kind: "hline", x1: 3, x2: 6, y: 22, tile: "F" },
-  { kind: "hline", x1: 8, x2: 14, y: 22, tile: "F" },
-  { kind: "hline", x1: 16, x2: 20, y: 22, tile: "F" },
+  { kind: "hline", x1: 34, x2: 43, y: 12, tile: "F" },
+  { kind: "hline", x1: 44, x2: 51, y: 12, tile: "F" },
+  { kind: "hline", x1: 4, x2: 6, y: 22, tile: "F" },
+  { kind: "hline", x1: 8, x2: 15, y: 22, tile: "F" },
+  { kind: "hline", x1: 17, x2: 20, y: 22, tile: "F" },
   { kind: "hline", x1: 36, x2: 40, y: 24, tile: "F" },
   { kind: "hline", x1: 43, x2: 48, y: 24, tile: "F" },
 ];
@@ -115,7 +114,7 @@ export const SATIRIA_LARGE_TREE_BLOCKERS: SatiriaPaint[] = [
 export const SATIRIA_WATER_AND_DOCK: SatiriaPaint[] = [
   { kind: "rect", x: 3, y: 25, w: 11, h: 7, tile: "S", note: "Square pond shore" },
   { kind: "rect", x: 4, y: 26, w: 9, h: 5, tile: "W", note: "Square pond water" },
-  { kind: "rect", x: 8, y: 25, w: 1, h: 6, tile: "J", note: "Dock starts on land and enters water" },
+  { kind: "rect", x: 5, y: 25, w: 1, h: 4, tile: "J", note: "Dock starts on land and enters water" },
 ];
 
 export const SATIRIA_SAVE_POINTS: SatiriaPaint[] = [
