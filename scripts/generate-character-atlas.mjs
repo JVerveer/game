@@ -107,55 +107,64 @@ const townPalette = (town, role) => {
 };
 
 const drawFace = (ox, oy, p, opts = {}) => {
-  fill(ox + 13, oy + 7, 22, 20, c.outline);
-  fill(ox + 15, oy + 9, 18, 16, p.skin);
-  fill(ox + 13, oy + 11, 4, 9, p.skinDark);
-  fill(ox + 31, oy + 11, 4, 9, p.skinDark);
-  fill(ox + 13, oy + 5, 22, 8, p.hair);
+  fill(ox + 11, oy + 6, 26, 23, c.outline);
+  fill(ox + 13, oy + 8, 22, 19, p.skin);
+  fill(ox + 10, oy + 13, 4, 9, p.skinDark);
+  fill(ox + 34, oy + 13, 4, 9, p.skinDark);
+  fill(ox + 12, oy + 4, 24, 8, p.hair);
+  fill(ox + 12, oy + 10, 5, 5, p.hair);
+  fill(ox + 31, oy + 10, 5, 5, p.hair);
   if (opts.longHair) {
-    fill(ox + 10, oy + 10, 6, 18, p.hair);
-    fill(ox + 32, oy + 10, 6, 18, p.hair);
+    fill(ox + 8, oy + 9, 6, 22, p.hair);
+    fill(ox + 34, oy + 9, 6, 22, p.hair);
   }
   if (opts.hat) {
-    fill(ox + 10, oy + 3, 26, 7, c.outline);
-    fill(ox + 12, oy + 1, 20, 8, opts.hat);
-    fill(ox + 29, oy + 7, 9, 3, opts.hat);
+    fill(ox + 9, oy + 3, 30, 7, c.outline);
+    fill(ox + 12, oy + 1, 22, 8, opts.hat);
+    fill(ox + 30, oy + 7, 10, 3, opts.hat);
+    fill(ox + 15, oy + 2, 7, 3, c.white);
   }
   if (opts.sunglasses) {
-    fill(ox + 16, oy + 15, 7, 4, c.black);
-    fill(ox + 26, oy + 15, 7, 4, c.black);
-    fill(ox + 23, oy + 16, 3, 2, c.black);
+    fill(ox + 15, oy + 15, 8, 5, c.black);
+    fill(ox + 26, oy + 15, 8, 5, c.black);
+    fill(ox + 23, oy + 17, 3, 2, c.black);
+    fill(ox + 17, oy + 16, 3, 1, c.mint);
+    fill(ox + 28, oy + 16, 3, 1, c.mint);
   } else {
-    fill(ox + 18, oy + 16, 3, 3, c.outline);
-    fill(ox + 28, oy + 16, 3, 3, c.outline);
+    fill(ox + 17, oy + 16, 3, 3, c.outline);
+    fill(ox + 29, oy + 16, 3, 3, c.outline);
+    fill(ox + 18, oy + 16, 1, 1, c.white);
+    fill(ox + 30, oy + 16, 1, 1, c.white);
   }
-  fill(ox + 23, oy + 22, 5, 2, opts.smile ?? c.red);
-  if (opts.beard) fill(ox + 18, oy + 22, 14, 5, p.hair);
+  fill(ox + 23, oy + 20, 2, 3, p.skinDark);
+  fill(ox + 21, oy + 24, 7, 2, opts.smile ?? c.red);
+  if (opts.beard) fill(ox + 17, oy + 22, 15, 6, p.hair);
 };
 
 const drawBody = (ox, oy, p, frame = 0, opts = {}) => {
-  const step = frame ? 2 : 0;
-  fill(ox + 12, oy + 27, 24, 14, c.outline);
-  fill(ox + 15, oy + 28, 18, 11, p.top);
-  fill(ox + 22, oy + 28, 4, 11, p.accent);
+  const step = frame ? 3 : 0;
+  fill(ox + 21, oy + 27, 6, 4, p.skinDark);
+  fill(ox + 11, oy + 30, 26, 14, c.outline);
+  fill(ox + 14, oy + 31, 20, 11, p.top);
+  fill(ox + 22, oy + 31, 4, 11, p.accent);
   if (opts.dress) {
-    fill(ox + 13, oy + 31, 22, 11, p.top);
-    fill(ox + 17, oy + 38, 14, 5, p.top);
+    fill(ox + 12, oy + 34, 24, 10, p.top);
+    fill(ox + 16, oy + 41, 16, 5, p.top);
   } else if (opts.swim) {
-    fill(ox + 15, oy + 29, 18, 5, p.accent);
-    fill(ox + 16, oy + 34, 16, 7, p.bottom);
+    fill(ox + 14, oy + 31, 20, 5, p.accent);
+    fill(ox + 16, oy + 36, 16, 7, p.bottom);
   } else {
-    fill(ox + 16, oy + 38, 7, 7, p.bottom);
-    fill(ox + 26, oy + 38, 7, 7, p.bottom);
+    fill(ox + 15, oy + 40, 8, 6, p.bottom);
+    fill(ox + 26, oy + 40, 8, 6, p.bottom);
   }
-  fill(ox + 8, oy + 29, 6, 10, p.skin);
-  fill(ox + 34, oy + 29, 6, 10, p.skin);
+  fill(ox + 7 + step, oy + 31, 6, 11, p.skin);
+  fill(ox + 35 - step, oy + 31, 6, 11, p.skin);
   if (opts.backpack) {
-    fill(ox + 7, oy + 27, 5, 13, c.brown);
-    rect(ox + 7, oy + 27, 5, 13, c.outline);
+    fill(ox + 7, oy + 29, 6, 14, c.brown);
+    rect(ox + 7, oy + 29, 6, 14, c.outline);
   }
-  fill(ox + 15 - step, oy + 44, 9, 4, p.shoe);
-  fill(ox + 26 + step, oy + 44, 9, 4, p.shoe);
+  fill(ox + 14 - step, oy + 44, 10, 4, p.shoe);
+  fill(ox + 27 + step, oy + 44, 10, 4, p.shoe);
 };
 
 const drawPerson = (index, palette, frame = 0, opts = {}) => tile(index, (ox, oy) => {

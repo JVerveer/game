@@ -3895,7 +3895,7 @@
   .nurse-sprite {
     width: 48px;
     height: 48px;
-    background-image: url("/tilesets/characters.png") !important;
+    background-image: url("/tilesets/characters.png?v=2") !important;
     background-repeat: no-repeat;
     background-size: 384px auto;
     image-rendering: pixelated;
@@ -4100,4 +4100,86 @@
     50% { filter: brightness(1.35); }
     100% { filter: brightness(1); }
   }
+}
+
+/* Final unlayered sprite lock.
+   Tailwind layers can reorder or lower-prioritize earlier sprite rules, so these
+   rules intentionally live outside @layer and force the character atlas at runtime. */
+.trainer-sprite,
+.npc-sprite,
+.clerk-sprite,
+.nurse-sprite {
+  width: 48px !important;
+  height: 48px !important;
+  background-image: url("/tilesets/characters.png?v=3") !important;
+  background-repeat: no-repeat !important;
+  background-size: 384px auto !important;
+  image-rendering: pixelated !important;
+  overflow: visible !important;
+  contain: paint !important;
+  filter: drop-shadow(0 3px 0 rgba(37, 32, 24, 0.24)) !important;
+}
+
+.trainer-sprite::before,
+.trainer-sprite::after,
+.npc-sprite::before,
+.npc-sprite::after,
+.clerk-sprite::before,
+.clerk-sprite::after,
+.nurse-sprite::before,
+.nurse-sprite::after {
+  content: none !important;
+  display: none !important;
+}
+
+.trainer-sprite {
+  --char-a: 0 0;
+  --char-b: -48px 0;
+  background-position: var(--char-a) !important;
+}
+
+.trainer-sprite.facing-down {
+  --char-a: 0 0;
+  --char-b: -48px 0;
+}
+
+.trainer-sprite.facing-up {
+  --char-a: -96px 0;
+  --char-b: -96px 0;
+  transform: none !important;
+}
+
+.trainer-sprite.facing-right {
+  --char-a: -144px 0;
+  --char-b: -192px 0;
+  transform: none !important;
+}
+
+.trainer-sprite.facing-left {
+  --char-a: -144px 0;
+  --char-b: -192px 0;
+  transform: scaleX(-1) !important;
+}
+
+.npc-sprite {
+  background-position: var(--char-a, 0 -96px) !important;
+}
+
+.nurse-sprite {
+  --char-a: -240px 0;
+  --char-b: -288px 0;
+  background-position: var(--char-a) !important;
+}
+
+.clerk-sprite {
+  --char-a: -336px 0;
+  --char-b: 0 -48px;
+  background-position: var(--char-a) !important;
+}
+
+.trainer-sprite.walking,
+.npc-sprite.walking,
+.clerk-sprite,
+.nurse-sprite {
+  animation: character-atlas-step 0.32s steps(1, end) infinite !important;
 }
