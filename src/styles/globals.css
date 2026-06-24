@@ -3888,6 +3888,171 @@
     }
   }
 
+  /* Character atlas: explicit pixel sprites replace CSS-tinted blocks. */
+  .trainer-sprite,
+  .npc-sprite,
+  .clerk-sprite,
+  .nurse-sprite {
+    width: 48px;
+    height: 48px;
+    background-image: url("/tilesets/characters.png") !important;
+    background-repeat: no-repeat;
+    background-size: 384px auto;
+    image-rendering: pixelated;
+    overflow: visible;
+    contain: paint;
+    filter: drop-shadow(0 3px 0 rgba(37, 32, 24, 0.24)) !important;
+  }
+
+  .trainer-sprite::before,
+  .trainer-sprite::after,
+  .npc-sprite::before,
+  .npc-sprite::after,
+  .clerk-sprite::before,
+  .clerk-sprite::after,
+  .nurse-sprite::before,
+  .nurse-sprite::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .trainer-sprite {
+    --char-a: 0 0;
+    --char-b: -48px 0;
+    background-position: var(--char-a);
+  }
+
+  .trainer-sprite.facing-down {
+    --char-a: 0 0;
+    --char-b: -48px 0;
+  }
+
+  .trainer-sprite.facing-up {
+    --char-a: -96px 0;
+    --char-b: -96px 0;
+    transform: none;
+  }
+
+  .trainer-sprite.facing-right {
+    --char-a: -144px 0;
+    --char-b: -192px 0;
+    transform: none;
+  }
+
+  .trainer-sprite.facing-left {
+    --char-a: -144px 0;
+    --char-b: -192px 0;
+    transform: scaleX(-1);
+  }
+
+  .trainer-sprite.walking,
+  .npc-sprite.walking,
+  .clerk-sprite,
+  .nurse-sprite {
+    animation: character-atlas-step 0.32s steps(1, end) infinite;
+  }
+
+  .npc-sprite {
+    --char-a: 0 -96px;
+    --char-b: -48px -96px;
+    background-position: var(--char-a);
+  }
+
+  .npc-sprite[class*="npc-town-"] {
+    filter: drop-shadow(0 3px 0 rgba(37, 32, 24, 0.24)) !important;
+  }
+
+  .npc-sprite.npc-town-satiria.npc-role-older-man { --char-a: 0 -96px; --char-b: -48px -96px; }
+  .npc-sprite.npc-town-satiria.npc-role-older-woman { --char-a: -96px -96px; --char-b: -144px -96px; }
+  .npc-sprite.npc-town-satiria.npc-role-young-man { --char-a: -192px -96px; --char-b: -240px -96px; }
+  .npc-sprite.npc-town-satiria.npc-role-young-woman { --char-a: -288px -96px; --char-b: -336px -96px; }
+  .npc-sprite.npc-town-satiria.npc-role-crypto-bro { --char-a: 0 -144px; --char-b: -48px -144px; }
+  .npc-sprite.npc-town-satiria.npc-role-crypto-sister { --char-a: -96px -144px; --char-b: -144px -144px; }
+  .npc-sprite.npc-town-brexiton.npc-role-older-man { --char-a: -192px -144px; --char-b: -240px -144px; }
+  .npc-sprite.npc-town-brexiton.npc-role-older-woman { --char-a: -288px -144px; --char-b: -336px -144px; }
+  .npc-sprite.npc-town-brexiton.npc-role-young-man { --char-a: 0 -192px; --char-b: -48px -192px; }
+  .npc-sprite.npc-town-brexiton.npc-role-young-woman { --char-a: -96px -192px; --char-b: -144px -192px; }
+  .npc-sprite.npc-town-brexiton.npc-role-crypto-bro { --char-a: -192px -192px; --char-b: -240px -192px; }
+  .npc-sprite.npc-town-brexiton.npc-role-crypto-sister { --char-a: -288px -192px; --char-b: -336px -192px; }
+  .npc-sprite.npc-town-cryptonia.npc-role-older-man { --char-a: 0 -240px; --char-b: -48px -240px; }
+  .npc-sprite.npc-town-cryptonia.npc-role-older-woman { --char-a: -96px -240px; --char-b: -144px -240px; }
+  .npc-sprite.npc-town-cryptonia.npc-role-young-man { --char-a: -192px -240px; --char-b: -240px -240px; }
+  .npc-sprite.npc-town-cryptonia.npc-role-young-woman { --char-a: -288px -240px; --char-b: -336px -240px; }
+  .npc-sprite.npc-town-cryptonia.npc-role-crypto-bro { --char-a: 0 -288px; --char-b: -48px -288px; }
+  .npc-sprite.npc-town-cryptonia.npc-role-crypto-sister { --char-a: -96px -288px; --char-b: -144px -288px; }
+  .npc-sprite.npc-town-factcheck.npc-role-older-man { --char-a: -192px -288px; --char-b: -240px -288px; }
+  .npc-sprite.npc-town-factcheck.npc-role-older-woman { --char-a: -288px -288px; --char-b: -336px -288px; }
+  .npc-sprite.npc-town-factcheck.npc-role-young-man { --char-a: 0 -336px; --char-b: -48px -336px; }
+  .npc-sprite.npc-town-factcheck.npc-role-young-woman { --char-a: -96px -336px; --char-b: -144px -336px; }
+  .npc-sprite.npc-town-factcheck.npc-role-crypto-bro { --char-a: -192px -336px; --char-b: -240px -336px; }
+  .npc-sprite.npc-town-factcheck.npc-role-crypto-sister { --char-a: -288px -336px; --char-b: -336px -336px; }
+  .npc-sprite.npc-town-inflatopolis.npc-role-older-man { --char-a: 0 -384px; --char-b: -48px -384px; }
+  .npc-sprite.npc-town-inflatopolis.npc-role-older-woman { --char-a: -96px -384px; --char-b: -144px -384px; }
+  .npc-sprite.npc-town-inflatopolis.npc-role-young-man { --char-a: -192px -384px; --char-b: -240px -384px; }
+  .npc-sprite.npc-town-inflatopolis.npc-role-young-woman { --char-a: -288px -384px; --char-b: -336px -384px; }
+  .npc-sprite.npc-town-inflatopolis.npc-role-crypto-bro { --char-a: 0 -432px; --char-b: -48px -432px; }
+  .npc-sprite.npc-town-inflatopolis.npc-role-crypto-sister { --char-a: -96px -432px; --char-b: -144px -432px; }
+  .npc-sprite.npc-town-promptford.npc-role-older-man { --char-a: -192px -432px; --char-b: -240px -432px; }
+  .npc-sprite.npc-town-promptford.npc-role-older-woman { --char-a: -288px -432px; --char-b: -336px -432px; }
+  .npc-sprite.npc-town-promptford.npc-role-young-man { --char-a: 0 -480px; --char-b: -48px -480px; }
+  .npc-sprite.npc-town-promptford.npc-role-young-woman { --char-a: -96px -480px; --char-b: -144px -480px; }
+  .npc-sprite.npc-town-promptford.npc-role-crypto-bro { --char-a: -192px -480px; --char-b: -240px -480px; }
+  .npc-sprite.npc-town-promptford.npc-role-crypto-sister { --char-a: -288px -480px; --char-b: -336px -480px; }
+  .npc-sprite.npc-town-ragebait.npc-role-older-man { --char-a: 0 -528px; --char-b: -48px -528px; }
+  .npc-sprite.npc-town-ragebait.npc-role-older-woman { --char-a: -96px -528px; --char-b: -144px -528px; }
+  .npc-sprite.npc-town-ragebait.npc-role-young-man { --char-a: -192px -528px; --char-b: -240px -528px; }
+  .npc-sprite.npc-town-ragebait.npc-role-young-woman { --char-a: -288px -528px; --char-b: -336px -528px; }
+  .npc-sprite.npc-town-ragebait.npc-role-crypto-bro { --char-a: 0 -576px; --char-b: -48px -576px; }
+  .npc-sprite.npc-town-ragebait.npc-role-crypto-sister { --char-a: -96px -576px; --char-b: -144px -576px; }
+  .npc-sprite.npc-town-surveillia.npc-role-older-man { --char-a: -192px -576px; --char-b: -240px -576px; }
+  .npc-sprite.npc-town-surveillia.npc-role-older-woman { --char-a: -288px -576px; --char-b: -336px -576px; }
+  .npc-sprite.npc-town-surveillia.npc-role-young-man { --char-a: 0 -624px; --char-b: -48px -624px; }
+  .npc-sprite.npc-town-surveillia.npc-role-young-woman { --char-a: -96px -624px; --char-b: -144px -624px; }
+  .npc-sprite.npc-town-surveillia.npc-role-crypto-bro { --char-a: -192px -624px; --char-b: -240px -624px; }
+  .npc-sprite.npc-town-surveillia.npc-role-crypto-sister { --char-a: -288px -624px; --char-b: -336px -624px; }
+  .npc-sprite.npc-town-surveillia.npc-role-robot { --char-a: -48px -48px; --char-b: -96px -48px; }
+  .npc-sprite.npc-town-tariff.npc-role-older-man { --char-a: 0 -672px; --char-b: -48px -672px; }
+  .npc-sprite.npc-town-tariff.npc-role-older-woman { --char-a: -96px -672px; --char-b: -144px -672px; }
+  .npc-sprite.npc-town-tariff.npc-role-young-man { --char-a: -192px -672px; --char-b: -240px -672px; }
+  .npc-sprite.npc-town-tariff.npc-role-young-woman { --char-a: -288px -672px; --char-b: -336px -672px; }
+  .npc-sprite.npc-town-tariff.npc-role-crypto-bro { --char-a: 0 -720px; --char-b: -48px -720px; }
+  .npc-sprite.npc-town-tariff.npc-role-crypto-sister { --char-a: -96px -720px; --char-b: -144px -720px; }
+  .npc-sprite.npc-town-tweetsburg.npc-role-older-man { --char-a: -192px -720px; --char-b: -240px -720px; }
+  .npc-sprite.npc-town-tweetsburg.npc-role-older-woman { --char-a: -288px -720px; --char-b: -336px -720px; }
+  .npc-sprite.npc-town-tweetsburg.npc-role-young-man { --char-a: 0 -768px; --char-b: -48px -768px; }
+  .npc-sprite.npc-town-tweetsburg.npc-role-young-woman { --char-a: -96px -768px; --char-b: -144px -768px; }
+  .npc-sprite.npc-town-tweetsburg.npc-role-crypto-bro { --char-a: -192px -768px; --char-b: -240px -768px; }
+  .npc-sprite.npc-town-tweetsburg.npc-role-crypto-sister { --char-a: -288px -768px; --char-b: -336px -768px; }
+  .npc-sprite.npc-town-wokeshire.npc-role-older-man { --char-a: 0 -816px; --char-b: -48px -816px; }
+  .npc-sprite.npc-town-wokeshire.npc-role-older-woman { --char-a: -96px -816px; --char-b: -144px -816px; }
+  .npc-sprite.npc-town-wokeshire.npc-role-young-man { --char-a: -192px -816px; --char-b: -240px -816px; }
+  .npc-sprite.npc-town-wokeshire.npc-role-young-woman { --char-a: -288px -816px; --char-b: -336px -816px; }
+  .npc-sprite.npc-town-wokeshire.npc-role-crypto-bro { --char-a: 0 -864px; --char-b: -48px -864px; }
+  .npc-sprite.npc-town-wokeshire.npc-role-crypto-sister { --char-a: -96px -864px; --char-b: -144px -864px; }
+
+  .nurse-sprite {
+    --char-a: -240px 0;
+    --char-b: -288px 0;
+    background-position: var(--char-a);
+  }
+
+  .clerk-sprite {
+    --char-a: -336px 0;
+    --char-b: 0 -48px;
+    background-position: var(--char-a);
+  }
+
+  @keyframes character-atlas-step {
+    0%, 100% {
+      background-position: var(--char-a);
+      translate: 0 0;
+    }
+    50% {
+      background-position: var(--char-b);
+      translate: 0 -2px;
+    }
+  }
+
   @keyframes grass-sway {
     0% { transform: translateX(0); opacity: 0.8; }
     50% { transform: translateX(2px); opacity: 1; }
