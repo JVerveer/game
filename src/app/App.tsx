@@ -36,7 +36,7 @@ import {
 } from "../data/hero";
 import { INITIAL_NPCS, type MovingNpc } from "../data/npcs";
 import { pixelBuildingsFor } from "../data/cityMaps/pixelSceneData";
-import { SATIRIA_OBJECTS } from "../data/cityMaps/satiriaScene";
+import { citySceneObjectsFor } from "../data/cityMaps/scenes";
 import { PixelMapScene } from "./pixelTiles";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -2434,11 +2434,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         width: mapPxW, height: mapPxH,
       }} className={`map-layer map-${mapId}`}>
         {isTownMap(mapId) && (
-          <PixelMapScene
-            rows={currentMap.rows}
-            buildings={pixelBuildingsFor(mapId, currentMap.rows)}
-            objects={mapId === "satiria" ? SATIRIA_OBJECTS : []}
-          />
+            <PixelMapScene
+              rows={currentMap.rows}
+              buildings={pixelBuildingsFor(mapId, currentMap.rows)}
+              objects={isTownMap(mapId) ? citySceneObjectsFor(mapId) : []}
+            />
         )}
 
         {/* Tiles rendered as flex rows */}

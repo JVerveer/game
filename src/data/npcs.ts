@@ -13,7 +13,7 @@ export type MovingNpc = {
   variant?: number;
 };
 
-const fallbackTownNpcSpot = (mapId: TownMapId, index: number) => {
+const fallbackTownNpcSpots = (mapId: TownMapId, count: number) => {
   const preferred = [
     { x: 27, y: 15 },
     { x: 28, y: 15 },
@@ -21,18 +21,28 @@ const fallbackTownNpcSpot = (mapId: TownMapId, index: number) => {
     { x: 29, y: 16 },
     { x: 24, y: 18 },
     { x: 31, y: 18 },
+    { x: 20, y: 20 },
+    { x: 35, y: 20 },
+    { x: 22, y: 24 },
+    { x: 39, y: 24 },
   ];
   const rows = GAME_MAPS[mapId].rows;
-  const start = preferred[index % preferred.length];
+  const spots: Array<{ x: number; y: number }> = [];
   const candidates = [
-    start,
+    ...preferred,
     ...rows.flatMap((row, y) => row.map((_, x) => ({ x, y }))),
   ];
 
-  return candidates.find(({ x, y }) => {
+  candidates.forEach(({ x, y }) => {
     const tile = rows[y]?.[x];
-    return WALKABLE_TILES.has(tile) && tile !== "O";
-  }) ?? start;
+    const key = `${x},${y}`;
+    if (spots.length >= count) return;
+    if (!WALKABLE_TILES.has(tile) || tile === "O") return;
+    if (spots.some((spot) => `${spot.x},${spot.y}` === key)) return;
+    spots.push({ x, y });
+  });
+
+  return spots;
 };
 
 export const INITIAL_NPCS: MovingNpc[] = [
@@ -143,7 +153,7 @@ export const INITIAL_NPCS: MovingNpc[] = [
     homeX: 48,
     homeY: 14,
     name: "History Buff",
-    lines: ['"The statue predates the fountain by one committee meeting."', '"Very historic."'],
+    lines: ['"The old plaza monument was moved for future polishing."', '"Very historic. Very municipal."'],
     variant: 2,
   },
   {
@@ -168,18 +178,21 @@ export const INITIAL_NPCS: MovingNpc[] = [
     lines: ['"I sweep the roads so no invisible pebbles stop heroes."', '"You are welcome, probably."'],
     variant: 4,
   },
-  ...TOWN_THEMES.slice(1).map((theme, index) => {
-    const spot = fallbackTownNpcSpot(theme.id, index);
-    return {
-      id: `${theme.id}-local`,
+  ...TOWN_THEMES.slice(1).flatMap((theme, townIndex) =>
+    fallbackTownNpcSpots(theme.id, 3).map((spot, npcIndex) => ({
+      id: `${theme.id}-local-${npcIndex + 1}`,
       mapId: theme.id,
       x: spot.x,
       y: spot.y,
       homeX: spot.x,
       homeY: spot.y,
-      name: theme.npcName,
-      lines: theme.npcLines,
-      variant: (index + 2) % 5,
-    };
-  }),
+      name: npcIndex === 0 ? theme.npcName : npcIndex === 1 ? "Station Regular" : "Local Wanderer",
+      lines: npcIndex === 0
+        ? theme.npcLines
+        : npcIndex === 1
+          ? ['"The train station is the only way out now."', '"Honestly, simpler."']
+          : [`"Welcome to ${theme.name}."`, `"Every town has its own rules, but the same useful shops."`],
+      variant: (townIndex + npcIndex + 2) % 5,
+    })),
+  ),
 ];

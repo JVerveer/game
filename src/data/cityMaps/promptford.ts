@@ -1,34 +1,5 @@
-import { addTreeBorder, hline, makeBlankMap, rect, vline } from "./utils";
+import { buildCityMapFromLayout } from "./layoutTools";
+import { PROMPTFORD_LAYOUT } from "./promptfordLayout";
 
-export const buildPromptfordMap = () => {
-  const map = makeBlankMap(56, 34, "T");
-  rect(map, 3, 4, 50, 25, "G");
-  rect(map, 6, 21, 44, 4, "W");
-  rect(map, 18, 20, 8, 6, "R");
-  rect(map, 33, 20, 9, 6, "R");
-  rect(map, 8, 7, 40, 13, "E");
-  hline(map, 8, 48, 13, "R");
-  vline(map, 27, 5, 29, "R");
-  hline(map, 12, 44, 8, "R");
-  hline(map, 12, 44, 18, "R");
-  rect(map, 9, 8, 7, 3, "A");
-  rect(map, 18, 8, 7, 3, "A");
-  rect(map, 31, 8, 7, 3, "A");
-  rect(map, 40, 8, 7, 3, "A");
-  rect(map, 10, 15, 7, 3, "B");
-  rect(map, 24, 15, 7, 3, "H");
-  rect(map, 39, 15, 7, 3, "B");
-  rect(map, 34, 23, 8, 3, "P");
-  rect(map, 23, 11, 3, 7, "I");
-  map[10][13] = "O";
-  map[10][22] = "O";
-  map[10][34] = "O";
-  map[10][43] = "O";
-  map[17][13] = "O";
-  map[17][27] = "O";
-  map[17][42] = "O";
-  map[25][36] = "O";
-  map[25][37] = "O";
-  addTreeBorder(map, 3);
-  return map;
-};
+export const buildPromptfordMap = () => buildCityMapFromLayout(PROMPTFORD_LAYOUT);
+
