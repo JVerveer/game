@@ -2552,7 +2552,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
               transition: "left 0.28s linear, top 0.28s linear",
             }}
           >
-            <div className={`npc-sprite npc-variant-${npc.variant ?? 0} ${npc.walking ? "walking" : ""}`} />
+            <div className={`npc-sprite npc-variant-${npc.variant ?? 0} ${npc.style ?? ""} ${npc.walking ? "walking" : ""}`} />
           </div>
         ))}
 

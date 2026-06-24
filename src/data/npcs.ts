@@ -12,6 +12,7 @@ export type MovingNpc = {
   name: string;
   walking?: boolean;
   variant?: number;
+  style?: string;
 };
 
 const fallbackTownNpcSpots = (mapId: TownMapId, count: number) => {
@@ -53,6 +54,17 @@ const fallbackTownNpcSpots = (mapId: TownMapId, count: number) => {
   });
 
   return spots;
+};
+
+const townStyleFor = (mapId: TownMapId, index: number) => {
+  const roles = ["older-man", "older-woman", "young-man", "young-woman"];
+  const specialRoles: Partial<Record<TownMapId, string[]>> = {
+    cryptonia: ["older-man", "older-woman", "young-man", "young-woman", "crypto-bro", "crypto-sister"],
+    surveillia: ["older-man", "older-woman", "young-man", "young-woman", "robot"],
+  };
+  const roleList = specialRoles[mapId] ?? roles;
+  const role = roleList[index % roleList.length];
+  return `npc-town-${mapId} npc-role-${role}`;
 };
 
 const townNpcProfile = (mapId: TownMapId, index: number, fallbackName: string, fallbackLines: string[]) => {
@@ -106,12 +118,13 @@ const townNpcProfile = (mapId: TownMapId, index: number, fallbackName: string, f
   const list = profiles[mapId] ?? [];
   const profile = list[index % Math.max(1, list.length)];
   if (!profile) {
-    return { name: fallbackName, lines: fallbackLines, variant: index % 5 };
+    return { name: fallbackName, lines: fallbackLines, variant: index % 5, style: townStyleFor(mapId, index) };
   }
   return {
     name: index === 0 ? fallbackName : profile.name,
     lines: index === 0 ? fallbackLines : profile.lines,
     variant: profile.variant,
+    style: townStyleFor(mapId, index),
   };
 };
 
@@ -126,6 +139,7 @@ const INFLATOPOLIS_NPCS: MovingNpc[] = [
     name: "Rosario Number Ten",
     lines: ['"I dribble through price hikes like cones."', '"The ball is round, but the currency chart is not."'],
     variant: 5,
+    style: "npc-town-inflatopolis npc-role-young-man",
   },
   {
     id: "inflatopolis-balcony-icon",
@@ -137,6 +151,7 @@ const INFLATOPOLIS_NPCS: MovingNpc[] = [
     name: "Balcony Icon",
     lines: ['"From this plaza, every speech becomes a song."', '"Do not cry for the exchange rate. It already cried first."'],
     variant: 6,
+    style: "npc-town-inflatopolis npc-role-young-woman",
   },
   {
     id: "inflatopolis-tango-maestro",
@@ -148,6 +163,7 @@ const INFLATOPOLIS_NPCS: MovingNpc[] = [
     name: "Tango Maestro",
     lines: ['"Two steps forward, one devaluation back."', '"That is not panic. That is rhythm."'],
     variant: 7,
+    style: "npc-town-inflatopolis npc-role-older-man",
   },
   {
     id: "inflatopolis-story-elder",
@@ -159,6 +175,7 @@ const INFLATOPOLIS_NPCS: MovingNpc[] = [
     name: "Story Elder",
     lines: ['"I once wrote a maze where every path led to a new price tag."', '"Naturally, readers called it realism."'],
     variant: 8,
+    style: "npc-town-inflatopolis npc-role-older-woman",
   },
   {
     id: "inflatopolis-price-sprinter",
@@ -170,6 +187,7 @@ const INFLATOPOLIS_NPCS: MovingNpc[] = [
     name: "Price Sprinter",
     lines: ['"I saved up for bread. Now I can afford a receipt."', '"The shop sign updates faster than my legs."'],
     variant: 0,
+    style: "npc-town-inflatopolis npc-role-young-man",
   },
   {
     id: "inflatopolis-cafe-economist",
@@ -181,6 +199,7 @@ const INFLATOPOLIS_NPCS: MovingNpc[] = [
     name: "Cafe Economist",
     lines: ['"My espresso costs one chart and two opinions."', '"Sit down. I can explain inflation badly for hours."'],
     variant: 2,
+    style: "npc-town-inflatopolis npc-role-older-man",
   },
   {
     id: "inflatopolis-market-singer",
@@ -192,6 +211,7 @@ const INFLATOPOLIS_NPCS: MovingNpc[] = [
     name: "Market Singer",
     lines: ['"I sing the specials before they change."', '"The chorus is just everyone checking their wallets."'],
     variant: 3,
+    style: "npc-town-inflatopolis npc-role-young-woman",
   },
   {
     id: "inflatopolis-station-broker",
@@ -203,6 +223,7 @@ const INFLATOPOLIS_NPCS: MovingNpc[] = [
     name: "Station Broker",
     lines: ['"Train tickets are stable. This is considered suspicious."', '"Cryptonia is east if you enjoy financial weather."'],
     variant: 4,
+    style: "npc-town-inflatopolis npc-role-older-woman",
   },
 ];
 
@@ -217,6 +238,7 @@ export const INITIAL_NPCS: MovingNpc[] = [
     name: "Route Guide",
     lines: ['"The east road is open now."', '"Follow the path and keep an eye on the tall grass."'],
     variant: 0,
+    style: "npc-town-satiria npc-role-young-man",
   },
   {
     id: "satiria-kid",
@@ -228,6 +250,7 @@ export const INITIAL_NPCS: MovingNpc[] = [
     name: "Town Kid",
     lines: ['"I saw the shop clerk polish one potion for six hours."', '"That means it is probably rare."'],
     variant: 1,
+    style: "npc-town-satiria npc-role-young-woman",
   },
   {
     id: "satiria-gardener",
@@ -239,6 +262,7 @@ export const INITIAL_NPCS: MovingNpc[] = [
     name: "Garden Keeper",
     lines: ['"The flowers are placed by permit now."', '"No petals on the roads. We learned."'],
     variant: 2,
+    style: "npc-town-satiria npc-role-older-woman",
   },
   {
     id: "satiria-fisher",
@@ -250,6 +274,7 @@ export const INITIAL_NPCS: MovingNpc[] = [
     name: "Pond Fisher",
     lines: ['"The pond is square because the town planner loves grids."', '"The fish seem undecided."'],
     variant: 3,
+    style: "npc-town-satiria npc-role-older-man",
   },
   {
     id: "satiria-baker",
@@ -261,6 +286,7 @@ export const INITIAL_NPCS: MovingNpc[] = [
     name: "Early Baker",
     lines: ['"Fresh bread, old jokes, same oven."', '"Try not to battle near the baguettes."'],
     variant: 4,
+    style: "npc-town-satiria npc-role-older-woman",
   },
   {
     id: "satiria-runner",
@@ -272,6 +298,7 @@ export const INITIAL_NPCS: MovingNpc[] = [
     name: "Town Runner",
     lines: ['"I deliver mail between houses that are eight tiles apart."', '"It is honest cardio."'],
     variant: 2,
+    style: "npc-town-satiria npc-role-young-man",
   },
   {
     id: "satiria-bench-critic",
@@ -283,6 +310,7 @@ export const INITIAL_NPCS: MovingNpc[] = [
     name: "Bench Critic",
     lines: ['"This bench has excellent sitting energy."', '"Four stars. Needs fewer speeches."'],
     variant: 3,
+    style: "npc-town-satiria npc-role-older-man",
   },
   {
     id: "satiria-lamp-lighter",
@@ -294,6 +322,7 @@ export const INITIAL_NPCS: MovingNpc[] = [
     name: "Lamp Lighter",
     lines: ['"I keep the plaza lit and the rumors dim."', '"Usually."'],
     variant: 4,
+    style: "npc-town-satiria npc-role-young-woman",
   },
   {
     id: "satiria-station-aide",
@@ -305,6 +334,7 @@ export const INITIAL_NPCS: MovingNpc[] = [
     name: "Station Aide",
     lines: ['"The train doors are standardized now."', '"A tiny miracle of municipal design."'],
     variant: 1,
+    style: "npc-town-satiria npc-role-young-woman",
   },
   {
     id: "satiria-history-buff",
@@ -316,6 +346,7 @@ export const INITIAL_NPCS: MovingNpc[] = [
     name: "History Buff",
     lines: ['"The old plaza monument was moved for future polishing."', '"Very historic. Very municipal."'],
     variant: 2,
+    style: "npc-town-satiria npc-role-older-man",
   },
   {
     id: "satiria-tree-watcher",
@@ -327,6 +358,7 @@ export const INITIAL_NPCS: MovingNpc[] = [
     name: "Tree Watcher",
     lines: ['"Trees belong on grass, not rooftops."', '"I am glad someone finally said it."'],
     variant: 3,
+    style: "npc-town-satiria npc-role-older-woman",
   },
   {
     id: "satiria-path-sweeper",
@@ -338,6 +370,7 @@ export const INITIAL_NPCS: MovingNpc[] = [
     name: "Path Sweeper",
     lines: ['"I sweep the roads so no invisible pebbles stop heroes."', '"You are welcome, probably."'],
     variant: 4,
+    style: "npc-town-satiria npc-role-young-man",
   },
   ...INFLATOPOLIS_NPCS,
   ...TOWN_THEMES.slice(1).flatMap((theme, townIndex) =>
@@ -363,6 +396,7 @@ export const INITIAL_NPCS: MovingNpc[] = [
         name: profile.name,
         lines: profile.lines,
         variant: profile.variant ?? (townIndex + npcIndex + 2) % 5,
+        style: profile.style ?? townStyleFor(theme.id, npcIndex),
       };
     }),
   ),
