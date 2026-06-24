@@ -94,7 +94,7 @@ const clearCenterSquare = (map: string[][], centerX: number, centerY: number) =>
   for (let y = centerY - 5; y <= centerY + 5; y++) {
     for (let x = centerX - 8; x <= centerX + 8; x++) {
       const tile = map[y]?.[x];
-      if (tile === undefined || BUILDING_TILES.has(tile)) continue;
+      if (tile === undefined) continue;
       map[y][x] = "E";
     }
   }

@@ -2269,11 +2269,31 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
   const trainDestinations = () => TOWN_THEMES.filter(town => town.id !== mapIdRef.current);
 
+  const safeArrivalFor = (townId: TownMapId, preferred: { x: number; y: number }) => {
+    const map = GAME_MAPS[townId];
+    const rings = Array.from({ length: 9 }, (_, radius) => radius);
+    for (const radius of rings) {
+      for (let dy = -radius; dy <= radius; dy++) {
+        for (let dx = -radius; dx <= radius; dx++) {
+          if (Math.max(Math.abs(dx), Math.abs(dy)) !== radius) continue;
+          const x = preferred.x + dx;
+          const y = preferred.y + dy;
+          const tileName = map.rows[y]?.[x];
+          if (!tileName || !WALK.has(tileName) || tileName === "O") continue;
+          if (npcAt(townId, x, y)) continue;
+          return { x, y };
+        }
+      }
+    }
+    return preferred;
+  };
+
   const travelByTrain = (townId: TownMapId) => {
     setTrainOpen(false);
     setTrainIndex(0);
     const spawn = GAME_MAPS[townId].spawn;
-    warpTo({ mapId: townId, x: spawn.x, y: spawn.y, facing: "down" });
+    const arrival = safeArrivalFor(townId, spawn);
+    warpTo({ mapId: townId, x: arrival.x, y: arrival.y, facing: "down" });
     setSaveMsg(`Arrived: ${TOWN_THEMES.find(town => town.id === townId)?.name ?? townId}`);
     window.setTimeout(() => setSaveMsg(null), 2200);
   };

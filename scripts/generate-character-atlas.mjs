@@ -89,7 +89,6 @@ const defaultPalette = {
 
 const townPalette = (town, role) => {
   const p = { ...defaultPalette };
-  if (role.includes("older")) p.hair = c.hairGrey;
   if (town === "satiria") Object.assign(p, { top: c.green, bottom: c.brown, accent: c.yellow });
   if (town === "brexiton") Object.assign(p, { top: c.navy, bottom: c.grey, accent: c.red, hair: role.includes("older") ? c.hairGrey : c.darkBrown });
   if (town === "cryptonia") Object.assign(p, { skin: c.tan, top: c.white, bottom: c.gold, accent: c.teal, hair: c.hairBlack });
@@ -103,6 +102,7 @@ const townPalette = (town, role) => {
   if (town === "wokeshire") Object.assign(p, { top: c.orange, bottom: c.blue, accent: c.yellow });
   if (role === "young-woman" || role === "crypto-sister") p.hair = town === "cryptonia" ? c.hairBlack : c.darkBrown;
   if (role === "crypto-bro" || role === "crypto-sister") Object.assign(p, { top: c.black, bottom: c.gold, accent: c.mint });
+  if (role.includes("older")) p.hair = c.hairGrey;
   return p;
 };
 
@@ -264,7 +264,7 @@ for (const town of TOWNS) {
         longHair: role.includes("woman") || role.includes("sister"),
         beard: role === "older-man",
         sunglasses: role.includes("crypto"),
-        hat: town === "brexiton" ? c.navy : town === "wokeshire" ? c.yellow : undefined,
+        hat: role.includes("older") ? undefined : town === "brexiton" ? c.navy : town === "wokeshire" ? c.yellow : undefined,
         dress: role.includes("woman") && town !== "tariff",
         swim: town === "tariff",
         backpack: town === "wokeshire",
