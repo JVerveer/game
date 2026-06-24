@@ -55,7 +55,7 @@ export const SATIRIA_PATHS_AND_PLAZA: SatiriaPaint[] = [
 ];
 
 export const SATIRIA_FENCES: SatiriaPaint[] = [
-  { kind: "hline", x1: 7, x2: 11, y: 11, tile: "F" },
+  { kind: "hline", x1: 6, x2: 11, y: 11, tile: "F" },
   { kind: "hline", x1: 13, x2: 16, y: 11, tile: "F" },
   { kind: "hline", x1: 19, x2: 22, y: 11, tile: "F" },
   { kind: "hline", x1: 24, x2: 27, y: 11, tile: "F" },
@@ -63,7 +63,7 @@ export const SATIRIA_FENCES: SatiriaPaint[] = [
   { kind: "hline", x1: 34, x2: 38, y: 11, tile: "F" },
   { kind: "hline", x1: 40, x2: 42, y: 11, tile: "F" },
   { kind: "hline", x1: 44, x2: 49, y: 11, tile: "F" },
-  { kind: "hline", x1: 4, x2: 6, y: 22, tile: "F" },
+  { kind: "hline", x1: 3, x2: 6, y: 22, tile: "F" },
   { kind: "hline", x1: 8, x2: 14, y: 22, tile: "F" },
   { kind: "hline", x1: 16, x2: 20, y: 22, tile: "F" },
   { kind: "hline", x1: 36, x2: 40, y: 24, tile: "F" },
