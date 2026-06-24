@@ -45,6 +45,97 @@ const fallbackTownNpcSpots = (mapId: TownMapId, count: number) => {
   return spots;
 };
 
+const INFLATOPOLIS_NPCS: MovingNpc[] = [
+  {
+    id: "inflatopolis-number-ten",
+    mapId: "inflatopolis",
+    x: 24,
+    y: 16,
+    homeX: 24,
+    homeY: 16,
+    name: "Rosario Number Ten",
+    lines: ['"I dribble through price hikes like cones."', '"The ball is round, but the currency chart is not."'],
+    variant: 5,
+  },
+  {
+    id: "inflatopolis-balcony-icon",
+    mapId: "inflatopolis",
+    x: 32,
+    y: 16,
+    homeX: 32,
+    homeY: 16,
+    name: "Balcony Icon",
+    lines: ['"From this plaza, every speech becomes a song."', '"Do not cry for the exchange rate. It already cried first."'],
+    variant: 6,
+  },
+  {
+    id: "inflatopolis-tango-maestro",
+    mapId: "inflatopolis",
+    x: 13,
+    y: 20,
+    homeX: 13,
+    homeY: 20,
+    name: "Tango Maestro",
+    lines: ['"Two steps forward, one devaluation back."', '"That is not panic. That is rhythm."'],
+    variant: 7,
+  },
+  {
+    id: "inflatopolis-story-elder",
+    mapId: "inflatopolis",
+    x: 43,
+    y: 20,
+    homeX: 43,
+    homeY: 20,
+    name: "Story Elder",
+    lines: ['"I once wrote a maze where every path led to a new price tag."', '"Naturally, readers called it realism."'],
+    variant: 8,
+  },
+  {
+    id: "inflatopolis-price-sprinter",
+    mapId: "inflatopolis",
+    x: 26,
+    y: 27,
+    homeX: 26,
+    homeY: 27,
+    name: "Price Sprinter",
+    lines: ['"I saved up for bread. Now I can afford a receipt."', '"The shop sign updates faster than my legs."'],
+    variant: 0,
+  },
+  {
+    id: "inflatopolis-cafe-economist",
+    mapId: "inflatopolis",
+    x: 10,
+    y: 19,
+    homeX: 10,
+    homeY: 19,
+    name: "Cafe Economist",
+    lines: ['"My espresso costs one chart and two opinions."', '"Sit down. I can explain inflation badly for hours."'],
+    variant: 2,
+  },
+  {
+    id: "inflatopolis-market-singer",
+    mapId: "inflatopolis",
+    x: 45,
+    y: 19,
+    homeX: 45,
+    homeY: 19,
+    name: "Market Singer",
+    lines: ['"I sing the specials before they change."', '"The chorus is just everyone checking their wallets."'],
+    variant: 3,
+  },
+  {
+    id: "inflatopolis-station-broker",
+    mapId: "inflatopolis",
+    x: 34,
+    y: 24,
+    homeX: 34,
+    homeY: 24,
+    name: "Station Broker",
+    lines: ['"Train tickets are stable. This is considered suspicious."', '"Cryptonia is east if you enjoy financial weather."'],
+    variant: 4,
+  },
+];
+
 export const INITIAL_NPCS: MovingNpc[] = [
   {
     id: "satiria-guide",
@@ -178,7 +269,9 @@ export const INITIAL_NPCS: MovingNpc[] = [
     lines: ['"I sweep the roads so no invisible pebbles stop heroes."', '"You are welcome, probably."'],
     variant: 4,
   },
+  ...INFLATOPOLIS_NPCS,
   ...TOWN_THEMES.slice(1).flatMap((theme, townIndex) =>
+    theme.id === "inflatopolis" ? [] :
     fallbackTownNpcSpots(theme.id, 3).map((spot, npcIndex) => ({
       id: `${theme.id}-local-${npcIndex + 1}`,
       mapId: theme.id,

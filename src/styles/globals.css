@@ -3668,6 +3668,30 @@
     --npc-frame-b: -240px -384px;
   }
 
+  .npc-sprite.npc-variant-5 {
+    --npc-frame-a: -240px -336px;
+    --npc-frame-b: -96px -384px;
+    filter: hue-rotate(188deg) saturate(1.28) brightness(1.08) drop-shadow(0 3px 0 rgba(37, 32, 24, 0.24));
+  }
+
+  .npc-sprite.npc-variant-6 {
+    --npc-frame-a: -336px -336px;
+    --npc-frame-b: -192px -384px;
+    filter: sepia(0.18) saturate(0.92) brightness(1.1) drop-shadow(0 3px 0 rgba(37, 32, 24, 0.24));
+  }
+
+  .npc-sprite.npc-variant-7 {
+    --npc-frame-a: -288px -336px;
+    --npc-frame-b: -144px -384px;
+    filter: saturate(0.7) brightness(0.86) contrast(1.12) drop-shadow(0 3px 0 rgba(37, 32, 24, 0.24));
+  }
+
+  .npc-sprite.npc-variant-8 {
+    --npc-frame-a: 0 -384px;
+    --npc-frame-b: -240px -384px;
+    filter: grayscale(0.48) sepia(0.2) brightness(1.05) drop-shadow(0 3px 0 rgba(37, 32, 24, 0.24));
+  }
+
   .npc-sprite.walking {
     animation: npc-sprite-step 0.34s steps(1, end) infinite;
   }
