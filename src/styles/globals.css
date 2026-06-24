@@ -2658,6 +2658,7 @@
 
   .pixel-sprite-object {
     z-index: 35;
+    transform-origin: 50% 100%;
   }
 
   .pixel-tileset-building {
@@ -2778,6 +2779,20 @@
 
   .pixel-object-fountain {
     animation: pixel-water-shimmer 1.05s steps(2, end) infinite;
+  }
+
+  .pixel-object-fountain-large {
+    transform: translate(-10px, 3px) scale(1.55);
+    z-index: 39 !important;
+  }
+
+  .pixel-object-bench-large {
+    transform: translateY(5px) scale(1.28);
+  }
+
+  .pixel-object-lamp-large {
+    transform: translateY(2px) scale(1.28);
+    z-index: 40 !important;
   }
 
   @keyframes pixel-water-shimmer {

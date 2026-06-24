@@ -121,20 +121,19 @@ export const SATIRIA_WATER_AND_DOCK: SatiriaPaint[] = [
 ];
 
 export const SATIRIA_SAVE_POINTS: SatiriaPaint[] = [
-  { kind: "rect", x: 26, y: 19, w: 1, h: 1, tile: "V", note: "Central save point" },
 ];
 
 export const SATIRIA_OBJECTS: PixelObject[] = [
-  { sprite: "fountain", x: 27, y: 18, w: 2, h: 2, className: "pixel-object-fountain" },
+  { sprite: "fountain", x: 27, y: 18, className: "pixel-object-fountain pixel-object-fountain-large" },
   { sprite: "statue", x: 27, y: 17, h: 1.5 },
-  { sprite: "bench", x: 24, y: 16 },
-  { sprite: "bench", x: 32, y: 16 },
-  { sprite: "bench", x: 24, y: 22 },
-  { sprite: "bench", x: 32, y: 22 },
-  { sprite: "lamp", x: 25.4, y: 15.2 },
-  { sprite: "lamp", x: 31.2, y: 15.2 },
-  { sprite: "lamp", x: 25.4, y: 21.3 },
-  { sprite: "lamp", x: 31.2, y: 21.3 },
+  { sprite: "bench", x: 24, y: 16, className: "pixel-object-bench-large" },
+  { sprite: "bench", x: 32, y: 16, className: "pixel-object-bench-large" },
+  { sprite: "bench", x: 24, y: 22, className: "pixel-object-bench-large" },
+  { sprite: "bench", x: 32, y: 22, className: "pixel-object-bench-large" },
+  { sprite: "lamp", x: 25.4, y: 15.2, className: "pixel-object-lamp-large" },
+  { sprite: "lamp", x: 31.2, y: 15.2, className: "pixel-object-lamp-large" },
+  { sprite: "lamp", x: 25.4, y: 21.3, className: "pixel-object-lamp-large" },
+  { sprite: "lamp", x: 31.2, y: 21.3, className: "pixel-object-lamp-large" },
   { sprite: "mediumTree", x: 15, y: 27, w: 2, h: 2 },
   { sprite: "mediumTree", x: 46, y: 25, w: 2, h: 2 },
   { sprite: "largeTree", x: 48, y: 28, w: 3, h: 3 },
@@ -144,14 +143,6 @@ export const SATIRIA_OBJECT_MARKERS: Record<string, string> = {
   "28,18": "SATIRIA_FOUNTAIN",
   "9,23": "SATIRIA_POND_SIGN",
   "28,19": "SATIRIA_STATUE",
-  "24,16": "SATIRIA_BENCH",
-  "32,16": "SATIRIA_BENCH",
-  "24,22": "SATIRIA_BENCH",
-  "32,22": "SATIRIA_BENCH",
-  "26,16": "SATIRIA_LAMP",
-  "31,16": "SATIRIA_LAMP",
-  "26,22": "SATIRIA_LAMP",
-  "31,22": "SATIRIA_LAMP",
 };
 
 export const SATIRIA_TERRAIN_LAYERS: SatiriaPaint[][] = [

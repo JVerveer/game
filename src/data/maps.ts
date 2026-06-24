@@ -1353,6 +1353,22 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
     train: true,
     lines: ["Choose a destination."],
   } satisfies Interaction]));
+  const showGenericSaveAndSign = theme.id !== "satiria";
+  const genericObjects = showGenericSaveAndSign ? {
+    [doors.save]: "★",
+    [doors.sign]: "SIGN",
+  } : {};
+  const genericInteractions = showGenericSaveAndSign ? {
+    [doors.save]: {
+      name: "Save Point",
+      save: true,
+      lines: ["★ PROGRESS SAVED ★", `${theme.name} - Lv. 15`, theme.hook],
+    },
+    [doors.sign]: {
+      name: "Town Sign",
+      lines: [...theme.sign, `Hook: ${theme.hook}`],
+    },
+  } satisfies Record<string, Interaction> : {};
 
   return {
     id: theme.id,
@@ -1367,8 +1383,7 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
       [doors.healing]: "DOOR_HEAL",
       ...homeObjects,
       ...trainObjects,
-      [doors.save]: "★",
-      [doors.sign]: "SIGN",
+      ...genericObjects,
       ...specialObjectsFor(theme),
     },
     interactions: {
@@ -1377,15 +1392,7 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
       [doors.healing]: healingInteraction,
       ...homeInteractions,
       ...trainInteractions,
-      [doors.save]: {
-        name: "Save Point",
-        save: true,
-        lines: ["★ PROGRESS SAVED ★", `${theme.name} - Lv. 15`, theme.hook],
-      },
-      [doors.sign]: {
-        name: "Town Sign",
-        lines: [...theme.sign, `Hook: ${theme.hook}`],
-      },
+      ...genericInteractions,
       ...specialInteractionsFor(theme),
     },
   };

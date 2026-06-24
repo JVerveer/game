@@ -97,13 +97,18 @@ tile(1, (x, y) => {
 });
 
 tile(2, (x, y) => {
-  fill(x, y, TILE, TILE, rgba("#507f33"));
-  checkerNoise(x, y, rgba("#6fa64a"), rgba("#335f2b"), 8);
-  for (let i = 1; i < 48; i += 4) {
-    blade(x, y, i, 46, 24 + (i % 9), i % 3 ? rgba("#285d27") : rgba("#74ad4b"));
-    blade(x, y, i + 1, 42, 15 + (i % 7), rgba("#8bc65a"));
+  fill(x, y, TILE, TILE, rgba("#5f913b"));
+  checkerNoise(x, y, rgba("#74a94a"), rgba("#3e702f"), 10);
+  for (let i = 2; i < 48; i += 5) {
+    const base = 45 - (i % 4);
+    blade(x, y, i, base, 24 + (i % 8), rgba("#245829"));
+    blade(x, y, i + 1, base - 2, 19 + (i % 7), rgba("#6eb34b"));
+    blade(x, y, i + 3, base, 14 + (i % 6), rgba("#9bd36a"));
   }
-  for (let xx = 3; xx < 48; xx += 10) fill(x + xx, y + 38 - (xx % 6), 3, 8, rgba("#244f22", 190));
+  for (let i = 5; i < 48; i += 11) {
+    blade(x, y, i, 35, 10, rgba("#2d662b"));
+    blade(x, y, i + 4, 39, 12, rgba("#7fc25b"));
+  }
 });
 
 tile(3, (x, y) => {
@@ -184,23 +189,28 @@ tile(16, (x, y) => {
 
 tile(17, (x, y) => {
   fill(x, y, TILE, TILE, c.wood);
-  for (let yy = 0; yy < 48; yy += 9) fill(x, y + yy, TILE, 2, c.outline);
-  rect(x, y, TILE, TILE, c.outline);
+  for (let yy = 7; yy < 48; yy += 10) fill(x, y + yy, TILE, 2, rgba("#4e321d"));
+  for (let xx = 10; xx < 48; xx += 14) fill(x + xx, y + 2, 2, 43, rgba("#9a6737"));
+  fill(x + 3, y + 4, 4, 3, rgba("#a87342"));
+  fill(x + 34, y + 31, 5, 3, rgba("#4e321d"));
 });
 
 tile(18, (x, y) => {
   fill(x, y, TILE, TILE, rgba("#000000", 0));
-  fill(x + 11, y + 22, 26, 10, c.wood);
-  rect(x + 11, y + 22, 26, 10, c.outline);
-  fill(x + 15, y + 32, 4, 9, c.outline);
-  fill(x + 29, y + 32, 4, 9, c.outline);
+  fill(x + 6, y + 18, 36, 12, c.wood);
+  rect(x + 6, y + 18, 36, 12, c.outline);
+  fill(x + 9, y + 22, 30, 2, rgba("#b57b41"));
+  fill(x + 11, y + 30, 5, 12, c.outline);
+  fill(x + 32, y + 30, 5, 12, c.outline);
 });
 
 tile(19, (x, y) => {
   fill(x, y, TILE, TILE, rgba("#000000", 0));
-  fill(x + 21, y + 12, 5, 30, c.outline);
-  fill(x + 14, y + 6, 19, 15, c.window);
-  rect(x + 14, y + 6, 19, 15, c.outline);
+  fill(x + 20, y + 10, 7, 32, c.outline);
+  fill(x + 12, y + 2, 24, 20, c.window);
+  fill(x + 16, y + 5, 16, 8, rgba("#fff1a2"));
+  rect(x + 12, y + 2, 24, 20, c.outline);
+  fill(x + 17, y + 21, 14, 4, rgba("#42423a"));
 });
 
 tile(20, (x, y) => {
@@ -212,9 +222,13 @@ tile(20, (x, y) => {
 
 tile(21, (x, y) => {
   fill(x, y, TILE, TILE, rgba("#000000", 0));
-  fill(x + 8, y + 8, 32, 32, c.water);
-  fill(x + 15, y + 15, 18, 18, c.waterLite);
-  rect(x + 8, y + 8, 32, 32, c.stone);
+  fill(x + 4, y + 7, 40, 34, c.stone);
+  rect(x + 4, y + 7, 40, 34, c.outline);
+  fill(x + 8, y + 11, 32, 26, c.water);
+  fill(x + 12, y + 15, 24, 16, c.waterLite);
+  fill(x + 20, y + 4, 9, 25, rgba("#a8a79d"));
+  fill(x + 17, y + 1, 15, 9, rgba("#c5c4b9"));
+  fill(x + 16, y + 30, 18, 4, rgba("#b8e6f3", 190));
 });
 
 tile(22, (x, y) => {
@@ -262,15 +276,15 @@ tile(27, (x, y) => {
 });
 
 tile(28, (x, y) => {
-  fill(x, y, TILE, TILE, rgba("#5a8f39"));
-  checkerNoise(x, y, rgba("#77ae4d"), rgba("#356a2c"), 9);
+  fill(x, y, TILE, TILE, rgba("#63983e"));
+  checkerNoise(x, y, rgba("#79b24d"), rgba("#3d6b30"), 10);
   for (let i = 0; i < 48; i += 4) {
-    blade(x, y, i + 2, 47, 20 + (i % 11), i % 2 ? rgba("#2b6428") : rgba("#80ba50"));
-    blade(x, y, i, 43, 14 + (i % 8), rgba("#9ad06b"));
+    blade(x, y, i + 2, 47, 25 + (i % 10), i % 2 ? rgba("#255c29") : rgba("#75bd4f"));
+    blade(x, y, i, 43, 17 + (i % 8), rgba("#a0d86b"));
   }
-  fill(x + 8, y + 15, 4, 4, rgba("#f0da5f"));
-  fill(x + 34, y + 20, 4, 4, rgba("#df6a52"));
-  fill(x + 23, y + 11, 3, 3, rgba("#f7f0c0"));
+  for (let i = 4; i < 48; i += 12) blade(x, y, i, 34, 11, rgba("#2f6d2f"));
+  fill(x + 34, y + 26, 3, 3, rgba("#f0da5f"));
+  fill(x + 16, y + 33, 3, 3, rgba("#f7f0c0"));
 });
 
 tile(29, (x, y) => {
