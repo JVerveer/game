@@ -2782,7 +2782,7 @@
   }
 
   .pixel-object-fountain-large {
-    transform: translate(-10px, 3px) scale(1.55);
+    transform: translate(-10px, 3px) scale(4);
     z-index: 39 !important;
   }
 

@@ -140,7 +140,7 @@ export const SATIRIA_OBJECTS: PixelObject[] = [
 ];
 
 export const SATIRIA_OBJECT_MARKERS: Record<string, string> = {
-  "28,28": "SATIRIA_FOUNTAIN",
+  "28,18": "SATIRIA_FOUNTAIN",
   "9,23": "SATIRIA_POND_SIGN",
   "28,19": "SATIRIA_STATUE",
 };
