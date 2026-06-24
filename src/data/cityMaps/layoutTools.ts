@@ -48,8 +48,41 @@ const canDecorate = (map: string[][], x: number, y: number, w = 1, h = 1) => {
   return true;
 };
 
+const BUILDING_TILES = new Set(["A", "B", "H", "P", "U", "O"]);
+const ROAD_SAFE_TILES = new Set(["G", "R", "E", "X", "S", "J"]);
+
+const paintSafeRect = (map: string[][], x: number, y: number, w: number, h: number, tile: CityMapTile) => {
+  for (let ry = y; ry < y + h; ry++) {
+    for (let cx = x; cx < x + w; cx++) {
+      const current = map[ry]?.[cx];
+      if (current === undefined || BUILDING_TILES.has(current)) continue;
+      if (!ROAD_SAFE_TILES.has(current) && current !== "T" && current !== "Y" && !(tile === "J" && current === "W")) continue;
+      map[ry][cx] = tile;
+    }
+  }
+};
+
+const hlineSafe = (map: string[][], x1: number, x2: number, y: number, tile: CityMapTile) =>
+  paintSafeRect(map, x1, y, x2 - x1 + 1, 1, tile);
+
+const vlineSafe = (map: string[][], x: number, y1: number, y2: number, tile: CityMapTile) =>
+  paintSafeRect(map, x, y1, 1, y2 - y1 + 1, tile);
+
 const inCenterSquare = (x: number, y: number, centerX: number, centerY: number) =>
   Math.abs(x - centerX) <= 9 && Math.abs(y - centerY) <= 6;
+
+const clearCenterSquare = (map: string[][], centerX: number, centerY: number) => {
+  for (let y = centerY - 5; y <= centerY + 5; y++) {
+    for (let x = centerX - 8; x <= centerX + 8; x++) {
+      const tile = map[y]?.[x];
+      if (tile === undefined || BUILDING_TILES.has(tile)) continue;
+      map[y][x] = "E";
+    }
+  }
+  hlineSafe(map, centerX - 10, centerX + 10, centerY, "R");
+  vlineSafe(map, centerX, centerY - 7, centerY + 7, "R");
+  vlineSafe(map, centerX + 1, centerY - 7, centerY + 7, "R");
+};
 
 const placeIfGrass = (map: string[][], x: number, y: number, w: number, h: number, tile: CityMapTile, centerX: number, centerY: number) => {
   if (inCenterSquare(x, y, centerX, centerY) || !canDecorate(map, x, y, w, h)) return;
@@ -62,10 +95,10 @@ const addExpandedCityDecor = (map: string[][], centerX: number, centerY: number)
   if (width <= 60 && height <= 40) return;
 
   const inset = 6;
-  hline(map, inset, width - inset - 1, Math.max(inset, centerY - 12), "R");
-  hline(map, inset, width - inset - 1, Math.min(height - inset - 1, centerY + 12), "R");
-  vline(map, Math.max(inset, centerX - 16), inset, height - inset - 1, "R");
-  vline(map, Math.min(width - inset - 1, centerX + 16), inset, height - inset - 1, "R");
+  hlineSafe(map, inset, width - inset - 1, Math.max(inset, centerY - 12), "R");
+  hlineSafe(map, inset, width - inset - 1, Math.min(height - inset - 1, centerY + 12), "R");
+  vlineSafe(map, Math.max(inset, centerX - 16), inset, height - inset - 1, "R");
+  vlineSafe(map, Math.min(width - inset - 1, centerX + 16), inset, height - inset - 1, "R");
 
   const buildingPlans = [
     { x: 8, y: 8, w: 7, h: 4, tile: "B" as CityMapTile },
@@ -99,8 +132,9 @@ const addExpandedCityDecor = (map: string[][], centerX: number, centerY: number)
     if (map[doorY]?.[doorX] === tile) map[doorY][doorX] = "O";
     const roadY = doorY + 1 < height - 3 ? doorY + 1 : doorY - h;
     if (roadY >= 3 && roadY < height - 3) {
-      hline(map, Math.min(doorX, centerX), Math.max(doorX, centerX), roadY, "R");
-      vline(map, doorX, Math.min(roadY, doorY), Math.max(roadY, doorY), "R");
+      hlineSafe(map, Math.min(doorX, centerX), Math.max(doorX, centerX), roadY, "R");
+      vlineSafe(map, doorX, Math.min(roadY, doorY), Math.max(roadY, doorY), "R");
+      if (map[doorY + 1]?.[doorX] !== undefined && !BUILDING_TILES.has(map[doorY + 1][doorX])) map[doorY + 1][doorX] = "R";
     }
     if (index % 2 === 0) placeIfGrass(map, x - 2, y + h + 1, 2, 2, "X", centerX, centerY);
   });
@@ -140,20 +174,20 @@ const paintExit = (map: string[][], direction: CityExitDirection, tile: CityMapT
   const height = map.length;
   const width = map[0]?.length ?? 0;
   if (direction === "N") {
-    vline(map, centerX, 0, centerY, tile);
-    vline(map, centerX + 1, 0, centerY, tile);
+    vlineSafe(map, centerX, 0, centerY, tile);
+    vlineSafe(map, centerX + 1, 0, centerY, tile);
   }
   if (direction === "S") {
-    vline(map, centerX, centerY, height - 1, tile);
-    vline(map, centerX + 1, centerY, height - 1, tile);
+    vlineSafe(map, centerX, centerY, height - 1, tile);
+    vlineSafe(map, centerX + 1, centerY, height - 1, tile);
   }
   if (direction === "W") {
-    hline(map, 0, centerX, centerY, tile);
-    hline(map, 0, centerX, centerY + 1, tile);
+    hlineSafe(map, 0, centerX, centerY, tile);
+    hlineSafe(map, 0, centerX, centerY + 1, tile);
   }
   if (direction === "E") {
-    hline(map, centerX, width - 1, centerY, tile);
-    hline(map, centerX, width - 1, centerY + 1, tile);
+    hlineSafe(map, centerX, width - 1, centerY, tile);
+    hlineSafe(map, centerX, width - 1, centerY + 1, tile);
   }
 };
 
@@ -162,8 +196,8 @@ export const buildCityMapFromLayout = (layout: CityMapLayout) => {
   const baseHeight = layout.baseHeight ?? 34;
   const offsetX = Math.floor((layout.width - baseWidth) / 2);
   const offsetY = Math.floor((layout.height - baseHeight) / 2);
-  const centerX = offsetX + 27;
-  const centerY = offsetY + 18;
+  const centerX = Math.floor(layout.width / 2) - 1;
+  const centerY = Math.floor(layout.height / 2);
   const translatedLayers = layout.layers.map((layer) => layer.map((shape) => shiftedShape(shape, offsetX, offsetY)));
   const map = makeBlankMap(layout.width, layout.height, layout.fill ?? "G");
   translatedLayers.forEach((layer) => layer.forEach((shape) => paintCityShape(map, shape)));
@@ -186,6 +220,7 @@ export const buildCityMapFromLayout = (layout: CityMapLayout) => {
     });
   }
   addExpandedCityDecor(map, centerX, centerY);
+  clearCenterSquare(map, centerX, centerY);
   addTreeBorder(map, layout.treeBorderLayers ?? 3);
   layout.waterEdges?.forEach((direction) => paintWaterEdge(map, direction));
   Object.entries(layout.exits ?? {}).forEach(([direction, tile]) => {

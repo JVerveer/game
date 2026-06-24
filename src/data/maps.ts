@@ -11,6 +11,7 @@ import { buildTariffMap as buildTariffCityMap } from "./cityMaps/tariff";
 import { buildTweetsburgMap as buildTweetsburgCityMap } from "./cityMaps/tweetsburg";
 import { buildWokeshireMap as buildWokeshireCityMap } from "./cityMaps/wokeshire";
 import { SATIRIA_ENTRANCES, SATIRIA_OBJECT_MARKERS, coord } from "./cityMaps/satiriaLayout";
+import { cityCoreOffsetFor } from "./cityMaps/sizeTiers";
 
 // Tile key legend:
 //   T = Trees/Forest   G = Grass       W = Water      R = Road/Path/Floor
@@ -966,6 +967,8 @@ const parseCoord = (coord: string) => {
 
 const keyFor = (x: number, y: number) => `${x},${y}`;
 
+const MAP_BUILDING_TILES = new Set(["A", "B", "H", "P", "U", "O"]);
+
 const townSignLines = (theme: TownTheme) => [
   `★ ${theme.name.toUpperCase()} ★`,
   `Motto: "${theme.motto}"`,
@@ -988,11 +991,17 @@ const routeSignBase = (direction: RouteDirection, rows: string[][]) => {
 const nearestSignCoord = (rows: string[][], preferred: { x: number; y: number }, reserved: Set<string>) => {
   const height = rows.length;
   const width = rows[0]?.length ?? 0;
-  const offsets = [
-    [0, 0], [-1, 0], [1, 0], [0, 1], [0, -1],
-    [-2, 0], [2, 0], [-1, 1], [1, 1], [-1, -1], [1, -1],
-    [0, 2], [0, -2], [-2, 1], [2, 1], [-2, -1], [2, -1],
-  ];
+  const offsets = Array.from({ length: 15 }, (_, radius) => radius).flatMap((radius) => {
+    if (radius === 0) return [[0, 0]];
+    const ring: number[][] = [];
+    for (let dx = -radius; dx <= radius; dx++) {
+      ring.push([dx, -radius], [dx, radius]);
+    }
+    for (let dy = -radius + 1; dy <= radius - 1; dy++) {
+      ring.push([-radius, dy], [radius, dy]);
+    }
+    return ring;
+  });
   const fallback = keyFor(Math.max(0, Math.min(width - 1, preferred.x)), Math.max(0, Math.min(height - 1, preferred.y)));
 
   for (const [dx, dy] of offsets) {
@@ -1001,7 +1010,8 @@ const nearestSignCoord = (rows: string[][], preferred: { x: number; y: number },
     const key = keyFor(x, y);
     const tile = rows[y]?.[x];
     if (x < 0 || y < 0 || x >= width || y >= height || reserved.has(key)) continue;
-    if (tile === "O" || tile === "W" || tile === "T" || tile === "Y") continue;
+    if (!tile || MAP_BUILDING_TILES.has(tile) || tile === "W" || tile === "T" || tile === "Y") continue;
+    if (!WALKABLE_TILES.has(tile)) continue;
     reserved.add(key);
     return key;
   }
@@ -1067,6 +1077,14 @@ const buildSignageFor = (
 
   return { objects, interactions };
 };
+
+const offsetCoord = (coord: string, offset: { x: number; y: number }) => {
+  const { x, y } = parseCoord(coord);
+  return keyFor(x + offset.x, y + offset.y);
+};
+
+const offsetRecord = <T,>(record: Record<string, T>, offset: { x: number; y: number }) =>
+  Object.fromEntries(Object.entries(record).map(([coord, value]) => [offsetCoord(coord, offset), value])) as Record<string, T>;
 
 const centralSpawnFor = (rows: string[][]) => {
   const center = {
@@ -1506,8 +1524,9 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
   const doors = doorConfigFromRows(theme, rows);
   const homeObjects = Object.fromEntries(doors.homes.map(coord => [coord, "DOOR_HOME"]));
   const trainObjects = Object.fromEntries(doors.train.slice(0, 2).map(coord => [coord, "TRAIN"]));
-  const specialObjects = specialObjectsFor(theme);
-  const specialInteractions = specialInteractionsFor(theme);
+  const coreOffset = theme.id === "satiria" ? { x: 0, y: 0 } : cityCoreOffsetFor(theme.id);
+  const specialObjects = offsetRecord(specialObjectsFor(theme), coreOffset);
+  const specialInteractions = offsetRecord(specialInteractionsFor(theme), coreOffset);
   const shopInteraction = {
     name: `${theme.name} Shop`,
     portal: { mapId: "shop", x: 7, y: 7, facing: "up" },

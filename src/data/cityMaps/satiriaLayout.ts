@@ -94,7 +94,6 @@ export const SATIRIA_SMALL_TREES: SatiriaPaint[] = [
   { kind: "rect", x: 39, y: 8, w: 1, h: 1, tile: "T" },
   { kind: "rect", x: 48, y: 11, w: 1, h: 1, tile: "T" },
   { kind: "rect", x: 5, y: 15, w: 1, h: 1, tile: "T" },
-  { kind: "rect", x: 20, y: 15, w: 1, h: 1, tile: "T" },
   { kind: "rect", x: 17, y: 26, w: 1, h: 1, tile: "T" },
   { kind: "rect", x: 22, y: 26, w: 1, h: 1, tile: "T" },
   { kind: "rect", x: 32, y: 25, w: 1, h: 1, tile: "T" },
