@@ -1325,9 +1325,32 @@ const specialInteractionsFor = (theme: TownTheme): Record<string, Interaction> =
   return {};
 };
 
+const doorConfigFromRows = (theme: TownTheme, rows: string[][]): TownDoorConfig => {
+  const fallback = doorConfigFor(theme);
+  if (theme.id === "satiria") return fallback;
+
+  const byType: Record<string, string[]> = { A: [], B: [], H: [], P: [], U: [] };
+  rows.forEach((row, y) => row.forEach((tile, x) => {
+    if (tile !== "O") return;
+    const buildingTile = rows[y - 1]?.[x] ?? rows[y]?.[x - 1] ?? rows[y]?.[x + 1];
+    if (buildingTile && byType[buildingTile]) byType[buildingTile].push(`${x},${y}`);
+  }));
+
+  const shop = byType.A[0] ?? fallback.shop;
+  const healing = byType.H[0] ?? fallback.healing;
+  const used = new Set([shop, healing, ...byType.P]);
+  return {
+    ...fallback,
+    shop,
+    healing,
+    homes: [...byType.B, ...byType.U, ...byType.A.slice(1), ...byType.H.slice(1)].filter(coord => !used.has(coord)),
+    train: byType.P.length > 0 ? byType.P : fallback.train,
+  };
+};
+
 const createThemedTownDef = (theme: TownTheme): GameMapDef => {
-  const doors = doorConfigFor(theme);
   const rows = themedRowsFor(theme);
+  const doors = doorConfigFromRows(theme, rows);
   const homeObjects = Object.fromEntries(doors.homes.map(coord => [coord, "DOOR_HOME"]));
   const trainObjects = Object.fromEntries(doors.train.slice(0, 2).map(coord => [coord, "TRAIN"]));
   const shopInteraction = {
@@ -1354,21 +1377,22 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
     lines: ["Choose a destination."],
   } satisfies Interaction]));
   const showGenericSaveAndSign = theme.id !== "satiria";
-  const genericObjects = showGenericSaveAndSign ? {
-    [doors.save]: "★",
-    [doors.sign]: "SIGN",
-  } : {};
-  const genericInteractions = showGenericSaveAndSign ? {
-    [doors.save]: {
+  const entryDoorCoords = new Set([doors.shop, doors.healing, ...doors.homes, ...doors.train]);
+  const genericObjects = showGenericSaveAndSign ? Object.fromEntries([
+    [doors.save, "★"],
+    [doors.sign, "SIGN"],
+  ].filter(([coord]) => !entryDoorCoords.has(coord))) : {};
+  const genericInteractions = showGenericSaveAndSign ? Object.fromEntries([
+    [doors.save, {
       name: "Save Point",
       save: true,
       lines: ["★ PROGRESS SAVED ★", `${theme.name} - Lv. 15`, theme.hook],
-    },
-    [doors.sign]: {
+    } satisfies Interaction],
+    [doors.sign, {
       name: "Town Sign",
       lines: [...theme.sign, `Hook: ${theme.hook}`],
-    },
-  } satisfies Record<string, Interaction> : {};
+    } satisfies Interaction],
+  ].filter(([coord]) => !entryDoorCoords.has(coord))) : {};
 
   return {
     id: theme.id,

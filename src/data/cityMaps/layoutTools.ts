@@ -15,6 +15,7 @@ export type CityMapLayout = {
   height: number;
   fill?: CityMapTile;
   treeBorderLayers?: number;
+  autoBuildingDoors?: boolean;
   layers: CityPaint[][];
 };
 
@@ -28,7 +29,24 @@ export const paintCityShape = (map: string[][], shape: CityPaint) => {
 export const buildCityMapFromLayout = (layout: CityMapLayout) => {
   const map = makeBlankMap(layout.width, layout.height, layout.fill ?? "T");
   layout.layers.forEach((layer) => layer.forEach((shape) => paintCityShape(map, shape)));
+  if (layout.autoBuildingDoors ?? true) {
+    const doorCoords = new Set<string>();
+    layout.layers.flat().forEach((shape) => {
+      if (shape.kind !== "rect" || !["A", "B", "H", "P", "U"].includes(shape.tile)) return;
+      const x = shape.x + Math.floor(shape.w / 2);
+      const y = shape.y + shape.h - 1;
+      doorCoords.add(`${x},${y}`);
+    });
+
+    map.forEach((row, y) => row.forEach((tile, x) => {
+      if (tile === "O" && !doorCoords.has(`${x},${y}`)) row[x] = "R";
+    }));
+
+    doorCoords.forEach((coord) => {
+      const [x, y] = coord.split(",").map(Number);
+      if (map[y]?.[x] !== undefined) map[y][x] = "O";
+    });
+  }
   addTreeBorder(map, layout.treeBorderLayers ?? 3);
   return map;
 };
-
