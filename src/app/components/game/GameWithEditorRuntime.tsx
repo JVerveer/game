@@ -29,15 +29,9 @@ import { ACTIVE_MAP_OBJECT_DEFS, objectLabelForId } from "../../../data/objectRe
 import type { EditorNpcAsset, EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind } from "../../../data/cityMaps/mapAsset";
 import { applyBuildingsToRows, buildingCrestForKind, buildingTileForKind, doorForBuildingAsset } from "../../../data/cityMaps/mapAsset";
 import { InGameBattle } from "./InGameBattle";
-import { EditorToolbar } from "../editor/EditorToolbar";
-import { TerrainPalette } from "../editor/terrain/TerrainPalette";
-import { ObjectPalette } from "../editor/objects/ObjectPalette";
-import { BuildingPalette } from "../editor/buildings/BuildingPalette";
-import { NpcPalette } from "../editor/npcs/NpcPalette";
-import { ExportPanel } from "../editor/export/ExportPanel";
-import { SelectedInspector } from "../editor/selection/SelectedInspector";
 import { useEditorState } from "../editor/hooks/useEditorState";
 import { createMapAssetExport } from "../editor/export/exportHelpers";
+import { TerrainEditorOverlay } from "../editor/TerrainEditorOverlay";
 import {
   buildingAtCoord,
   clearBuildingFootprintFromRows,
@@ -1555,209 +1549,72 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
       {/* ── TERRAIN EDITOR ── */}
       {terrainEditorOpen && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 1300,
-            background: "rgba(37,32,24,0.94)",
-            padding: 24,
-            overflow: "auto",
-          }}
-        >
-          <div className="pixel-window" style={{ padding: 18, marginBottom: 12 }}>
-            <div style={{ ...PX, fontSize: "0.65rem", color: "#b6422c", marginBottom: 12 }}>
-              TERRAIN EDITOR · {String(mapId).toUpperCase()}
-            </div>
-
-            <div style={{ ...VT, fontSize: "1.1rem", color: "#252018", marginBottom: 10 }}>
-              Select a tile, then click or drag to paint. Your normal pixel-art map stays active. This editor is an overlay; changes feed into the normal map preview, collision, and export.
-            </div>
-
-            <EditorToolbar editorMode={editorMode} setEditorMode={setEditorMode} />
-
-            {editorMode === "terrain" && (
-              <TerrainPalette
-                editorTile={editorTile}
-                setEditorTile={setEditorTile}
-              />
-            )}
-
-            {editorMode === "buildings" && (
-              <BuildingPalette
-                editorBuildingKind={editorBuildingKind}
-                setEditorBuildingKind={setEditorBuildingKind}
-                editorBuildingColor={editorBuildingColor}
-                setEditorBuildingColor={setEditorBuildingColor}
-                editorBuildingW={editorBuildingW}
-                setEditorBuildingW={setEditorBuildingW}
-                editorBuildingH={editorBuildingH}
-                setEditorBuildingH={setEditorBuildingH}
-              />
-            )}
-
-            {editorMode === "objects" && (
-              <ObjectPalette
-                objectEditAction={objectEditAction}
-                setObjectEditAction={setObjectEditAction}
-                editorObjectId={editorObjectId}
-                setEditorObjectId={setEditorObjectId}
-              />
-            )}
-
-            {editorMode === "npcs" && (
-              <NpcPalette
-                npcEditorAction={npcEditorAction}
-                setNpcEditorAction={setNpcEditorAction}
-                editorNpcCategory={editorNpcCategory}
-                setEditorNpcCategory={setEditorNpcCategory}
-                editorNpcSearch={editorNpcSearch}
-                setEditorNpcSearch={setEditorNpcSearch}
-                editorNpcPresetId={editorNpcPresetId}
-                setEditorNpcPresetId={setEditorNpcPresetId}
-                editorNpcName={editorNpcName}
-                setEditorNpcName={setEditorNpcName}
-                editorNpcWalking={editorNpcWalking}
-                setEditorNpcWalking={setEditorNpcWalking}
-                editorNpcLines={editorNpcLines}
-                setEditorNpcLines={setEditorNpcLines}
-              />
-            )}
-
-            <SelectedInspector
-              editorMode={editorMode}
-              editorSelection={editorSelection}
-              selectedBuilding={selectedBuilding}
-              selectedNpc={selectedNpc}
-              mapId={mapId}
-              mapIdRef={mapIdRef}
-              rowsForMap={rowsForMap}
-              tileTypeFor={tileTypeFor}
-              displayObjects={displayObjects}
-              setEditedBuildingsByMap={setEditedBuildingsByMap}
-              editedBuildingsByMapRef={editedBuildingsByMapRef}
-              buildingsForMap={buildingsForMap}
-              setEditedObjectsByMap={setEditedObjectsByMap}
-              editedObjectsByMapRef={editedObjectsByMapRef}
-              objectsForMap={objectsForMap}
-              setEditorSelection={setEditorSelection}
-              duplicateSelectedBuilding={duplicateSelectedBuilding}
-              removeEditorBuilding={removeEditorBuilding}
-              moveEditorBuildingTo={(building, x, y) => moveEditorBuildingTo(building.id, x, y)}
-              duplicateSelectedObject={duplicateSelectedObject}
-              upsertEditedNpcsForMap={upsertEditedNpcsForMap}
-              isTownMap={isTownMap}
-            />
-
-            <ExportPanel
-              exportText={exportEditedRows()}
-              onCopy={copyEditedRows}
-              onReset={resetEditedTerrain}
-              onClose={() => setTerrainEditorOpen(false)}
-            />
-          </div>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: `repeat(${displayRows[0]?.length ?? 1}, 18px)`,
-              gap: 1,
-              background: "#252018",
-              width: "fit-content",
-              padding: 4,
-              border: "4px solid #fff8c8",
-              touchAction: "none",
-              userSelect: "none",
-            }}
-            onPointerUp={clearEditorDragState}
-            onPointerLeave={clearEditorDragState}
-          >
-            {displayRows.map((row, y) =>
-              row.map((tile, x) => (
-                <button
-                  key={`${x},${y}`}
-                  type="button"
-                  title={`${x},${y}: ${tileTypeFor(tile)?.name ?? tile} (${tile})${buildingAtCoord(displayBuildings, x, y) ? ` · Building: ${BUILDING_KIND_LABEL[buildingAtCoord(displayBuildings, x, y)!.kind]}` : ""}${displayObjects[`${x},${y}`] ? ` · Object: ${objectLabelForId(displayObjects[`${x},${y}`])}` : ""}${displayEditorNpcs.some(npc => npc.x === x && npc.y === y) ? " · NPC" : ""}`}
-                  onPointerDown={(e) => {
-                    e.preventDefault();
-                    isEditorDraggingRef.current = true;
-                    setIsEditorDragging(true);
-                    paintEditorTile(x, y);
-                  }}
-                  onPointerEnter={() => {
-                    if (isEditorDraggingRef.current && transformDragTo(x, y)) return;
-                    if (isEditorDraggingRef.current) paintEditorTile(x, y);
-                  }}
-                  style={{
-                    width: 18,
-                    height: 18,
-                    padding: 0,
-                    border: displayEditorNpcs.some(npc => npc.x === x && npc.y === y) ? "2px solid #c87aff" : buildingAtCoord(displayBuildings, x, y) ? "2px solid #38bdf8" : displayObjects[`${x},${y}`] ? "2px solid #ffef93" : "0",
-                    background: EDITOR_TILE_COLORS[tile] ?? GAME_TILE_COLORS[tile] ?? GAME_TILE_COLORS.G,
-                    cursor: "pointer",
-                    position: "relative",
-                    overflow: "hidden",
-                  }}
-                >
-                  {buildingAtCoord(displayBuildings, x, y) && (
-                    <span
-                      style={{
-                        position: "absolute",
-                        inset: 1,
-                        background: "rgba(56,189,248,0.58)",
-                        color: "#252018",
-                        fontSize: 9,
-                        lineHeight: "14px",
-                        fontWeight: 900,
-                        textAlign: "center",
-                        borderRadius: 2,
-                        pointerEvents: "none",
-                      }}
-                    >
-                      {buildingAtCoord(displayBuildings, x, y)?.id === selectedBuilding?.id && x === selectedBuilding!.x + selectedBuilding!.w - 1 && y === selectedBuilding!.y + selectedBuilding!.h - 1 ? "↘" : "⌂"}
-                    </span>
-                  )}
-                  {displayObjects[`${x},${y}`] && (
-                    <span
-                      style={{
-                        position: "absolute",
-                        inset: 2,
-                        background: objectEditAction === "erase" && editorMode === "objects" ? "#ca4b36" : "#252018",
-                        color: "#fff8c8",
-                        fontSize: 9,
-                        lineHeight: "12px",
-                        fontWeight: 900,
-                        textAlign: "center",
-                        borderRadius: 2,
-                        pointerEvents: "none",
-                      }}
-                    >
-                      ◆
-                    </span>
-                  )}
-                  {displayEditorNpcs.some(npc => npc.x === x && npc.y === y) && (
-                    <span
-                      style={{
-                        position: "absolute",
-                        inset: 3,
-                        background: npcEditAction === "erase" && editorMode === "npcs" ? "#ca4b36" : "#8a4bd6",
-                        color: "#fff8c8",
-                        fontSize: 9,
-                        lineHeight: "10px",
-                        fontWeight: 900,
-                        textAlign: "center",
-                        borderRadius: 999,
-                        pointerEvents: "none",
-                      }}
-                    >
-                      N
-                    </span>
-                  )}
-                </button>
-              ))
-            )}
-          </div>
-        </div>
+        <TerrainEditorOverlay
+          mapId={mapId}
+          displayRows={displayRows}
+          displayObjects={displayObjects}
+          displayBuildings={displayBuildings}
+          displayEditorNpcs={displayEditorNpcs}
+          selectedBuilding={selectedBuilding}
+          selectedNpc={selectedNpc}
+          editorMode={editorMode}
+          setEditorMode={setEditorMode}
+          editorTile={editorTile}
+          setEditorTile={setEditorTile}
+          editorBuildingKind={editorBuildingKind}
+          setEditorBuildingKind={setEditorBuildingKind}
+          editorBuildingColor={editorBuildingColor}
+          setEditorBuildingColor={setEditorBuildingColor}
+          editorBuildingW={editorBuildingW}
+          setEditorBuildingW={setEditorBuildingW}
+          editorBuildingH={editorBuildingH}
+          setEditorBuildingH={setEditorBuildingH}
+          objectEditAction={objectEditAction}
+          setObjectEditAction={setObjectEditAction}
+          editorObjectId={editorObjectId}
+          setEditorObjectId={setEditorObjectId}
+          npcEditAction={npcEditAction}
+          npcEditorAction={npcEditorAction}
+          setNpcEditorAction={setNpcEditorAction}
+          editorNpcCategory={editorNpcCategory}
+          setEditorNpcCategory={setEditorNpcCategory}
+          editorNpcSearch={editorNpcSearch}
+          setEditorNpcSearch={setEditorNpcSearch}
+          editorNpcPresetId={editorNpcPresetId}
+          setEditorNpcPresetId={setEditorNpcPresetId}
+          editorNpcName={editorNpcName}
+          setEditorNpcName={setEditorNpcName}
+          editorNpcWalking={editorNpcWalking}
+          setEditorNpcWalking={setEditorNpcWalking}
+          editorNpcLines={editorNpcLines}
+          setEditorNpcLines={setEditorNpcLines}
+          editorSelection={editorSelection}
+          mapIdRef={mapIdRef}
+          rowsForMap={rowsForMap}
+          tileTypeFor={tileTypeFor}
+          setEditedBuildingsByMap={setEditedBuildingsByMap}
+          editedBuildingsByMapRef={editedBuildingsByMapRef}
+          buildingsForMap={buildingsForMap}
+          setEditedObjectsByMap={setEditedObjectsByMap}
+          editedObjectsByMapRef={editedObjectsByMapRef}
+          objectsForMap={objectsForMap}
+          setEditorSelection={setEditorSelection}
+          duplicateSelectedBuilding={duplicateSelectedBuilding}
+          removeEditorBuilding={removeEditorBuilding}
+          moveEditorBuildingTo={(building, x, y) => moveEditorBuildingTo(building.id, x, y)}
+          duplicateSelectedObject={duplicateSelectedObject}
+          upsertEditedNpcsForMap={upsertEditedNpcsForMap}
+          isTownMap={isTownMap}
+          exportText={exportEditedRows()}
+          onCopyExport={copyEditedRows}
+          onReset={resetEditedTerrain}
+          onClose={() => setTerrainEditorOpen(false)}
+          clearEditorDragState={clearEditorDragState}
+          isEditorDraggingRef={isEditorDraggingRef}
+          setIsEditorDragging={setIsEditorDragging}
+          paintEditorTile={paintEditorTile}
+          transformDragTo={transformDragTo}
+        />
       )}
 
       {/* ── SAVE MESSAGE ── */}
