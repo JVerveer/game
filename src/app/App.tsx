@@ -990,8 +990,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     const t = tile(nx, ny);
     const staticTargetInteraction = GAME_MAPS[mapIdRef.current].interactions[`${nx},${ny}`];
     const dynamicTargetInteraction = dynamicDoorActionFor(mapIdRef.current, nx, ny);
+    const liveTargetTile = rowsForMap(mapIdRef.current)[ny]?.[nx];
+    const liveTargetObject = objectsForMap(mapIdRef.current)[`${nx},${ny}`];
     const targetInteraction = dynamicTargetInteraction ?? (
-      rowsForMap(mapIdRef.current)[ny]?.[nx] === "O" || staticTargetInteraction?.train || staticTargetInteraction?.save
+      liveTargetTile === "O" || (liveTargetTile === "V" && staticTargetInteraction?.save) || liveTargetObject
         ? staticTargetInteraction
         : undefined
     );
@@ -1066,8 +1068,9 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       const staticInteraction = GAME_MAPS[mapIdRef.current].interactions[key];
       const dynamicInteraction = dynamicDoorActionFor(mapIdRef.current, cx, cy);
       const tileAtInteraction = rowsForMap(mapIdRef.current)[cy]?.[cx];
+      const liveObjectAtInteraction = objectsForMap(mapIdRef.current)[key];
       const intr = dynamicInteraction ?? (
-        tileAtInteraction === "O" || staticInteraction?.train || staticInteraction?.save
+        tileAtInteraction === "O" || (tileAtInteraction === "V" && staticInteraction?.save) || liveObjectAtInteraction
           ? staticInteraction
           : undefined
       );
@@ -1436,9 +1439,39 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     });
   };
 
+  const transformDragTo = (x: number, y: number) => {
+    if (!isSelectEditorMode(editorModeRef.current)) return false;
+
+    if (resizeBuildingIdRef.current) {
+      resizeEditorBuildingTo(resizeBuildingIdRef.current, x, y);
+      return true;
+    }
+
+    if (draggedBuildingIdRef.current) {
+      moveEditorBuildingTo(draggedBuildingIdRef.current, x, y);
+      return true;
+    }
+
+    if (draggedObjectCoordRef.current) {
+      moveEditorObjectTo(draggedObjectCoordRef.current, x, y);
+      return true;
+    }
+
+    if (draggedNpcIdRef.current) {
+      moveSelectedNpcTo(x, y);
+      return true;
+    }
+
+    return false;
+  };
+
   const paintEditorTile = (x: number, y: number) => {
     const id = mapIdRef.current;
     const coord = `${x},${y}`;
+
+    if (isSelectEditorMode(editorModeRef.current) && isEditorDraggingRef.current && transformDragTo(x, y)) {
+      return;
+    }
 
     if (isSelectEditorMode(editorModeRef.current)) {
       const npc = npcsRef.current.find(item => item.mapId === id && item.x === x && item.y === y);
@@ -2623,8 +2656,8 @@ export const ${constantName}: EditorMapAsset = {
                     paintEditorTile(x, y);
                   }}
                   onPointerEnter={() => {
-                    if (isEditorDraggingRef.current && isSelectEditorMode(editorModeRef.current) && draggedNpcIdRef.current) moveSelectedNpcTo(x, y);
-                    else if (isEditorDraggingRef.current) paintEditorTile(x, y);
+                    if (isEditorDraggingRef.current && transformDragTo(x, y)) return;
+                    if (isEditorDraggingRef.current) paintEditorTile(x, y);
                   }}
                   style={{
                     width: 18,
