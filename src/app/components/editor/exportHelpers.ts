@@ -35,23 +35,3 @@ export const ${String(id).toUpperCase()}_MAP_ASSET: EditorMapAsset = {
   npcs: ${JSON.stringify(npcs, null, 2)},
   spawn: ${JSON.stringify(spawn, null, 2)},
 };`;
-
-export const createNpcAppearanceExport = (npcs: Array<{ id: string; variant?: number; style?: string }>) => `// Paste this in src/data/npcs.ts near your NPC definitions.
-// Then apply these values to matching NPC ids when constructing INITIAL_NPCS.
-export const NPC_APPEARANCE_OVERRIDES: Record<string, { variant: number; style: string }> = ${JSON.stringify(
-  Object.fromEntries(npcs.map(npc => [npc.id, { variant: npc.variant ?? 0, style: npc.style ?? "" }])),
-  null,
-  2
-)};
-
-export const applyNpcAppearanceOverrides = <T extends { id: string; variant?: number; style?: string }>(npc: T): T => {
-  const override = NPC_APPEARANCE_OVERRIDES[npc.id];
-  return override ? { ...npc, ...override } : npc;
-};
-
-// If your INITIAL_NPCS export is currently:
-// export const INITIAL_NPCS: MovingNpc[] = [...]
-//
-// Change the ending to:
-// export const INITIAL_NPCS: MovingNpc[] = ([ ... ]).map(applyNpcAppearanceOverrides);
-`;

@@ -29,6 +29,26 @@ import { ACTIVE_MAP_OBJECT_DEFS, objectLabelForId } from "../data/objectRegistry
 import type { EditorNpcAsset, EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind } from "../data/cityMaps/mapAsset";
 import { applyBuildingsToRows, buildingCrestForKind, buildingTileForKind, doorForBuildingAsset } from "../data/cityMaps/mapAsset";
 
+
+type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
+type ObjectEditAction = "place" | "erase";
+type NpcEditorAction = "create" | "edit" | "delete";
+
+type EditorSelection =
+  | { kind: "npc"; id: string }
+  | { kind: "building"; id: string }
+  | { kind: "object"; coord: string }
+  | { kind: "tile"; x: number; y: number }
+  | null;
+
+type NpcVisualCategory =
+  | "Generic"
+  | "Wokeshire"
+  | "Special"
+  | "Cryptonia"
+  | "Surveillia";
+
+
 // ─── Font helpers ────────────────────────────────────────────────────────────
 const PX = { fontFamily: "'Press Start 2P', monospace" } as const;
 const VT = { fontFamily: "'VT323', monospace" } as const;
@@ -362,31 +382,6 @@ const OBJECT_EDITOR_CATEGORIES = [
   "Custom",
 ] as const;
 
-type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
-type ObjectEditAction = "place" | "erase";
-type NpcEditorAction = "create" | "edit" | "delete";
-
-const BUILDING_TILE_IDS = new Set(["A", "B", "H", "P", "U", "I", "O"]);
-
-const BUILDING_TYPES: Array<{ kind: EditorBuildingKind; label: string; defaultColor: EditorBuildingColor; defaultW: number; defaultH: number; description: string }> = [
-  { kind: "house", label: "House", defaultColor: "purple", defaultW: 5, defaultH: 4, description: "Normal enterable house" },
-  { kind: "shop", label: "Shop", defaultColor: "green", defaultW: 5, defaultH: 4, description: "Auto-connects to shop interior" },
-  { kind: "healing", label: "Healing Center", defaultColor: "blue", defaultW: 5, defaultH: 4, description: "Auto-connects to healing center" },
-  { kind: "station", label: "Train Station", defaultColor: "red", defaultW: 7, defaultH: 4, description: "Auto-opens train menu" },
-  { kind: "hall", label: "Hall / Institution", defaultColor: "purple", defaultW: 6, defaultH: 5, description: "Large civic building" },
-];
-
-const BUILDING_COLORS: EditorBuildingColor[] = ["red", "blue", "purple", "green"];
-
-const BUILDING_KIND_LABEL: Record<EditorBuildingKind, string> = {
-  house: "House",
-  shop: "Shop",
-  healing: "Healing Center",
-  station: "Train Station",
-  hall: "Hall / Institution",
-};
-
-const UNIQUE_BUILDING_KINDS = new Set<EditorBuildingKind>(["shop", "healing", "station"]);
 
 const tileKindForEditorBuilding = (tile: string): EditorBuildingKind | null => {
   if (tile === "A" || tile === "B") return tile === "A" ? "shop" : "house";
@@ -523,76 +518,8 @@ const clearBuildingFootprintsFromRows = (rows: string[][], buildings: EditorBuil
 
 
 
-type EditorSelection =
-  | { kind: "npc"; id: string }
-  | { kind: "building"; id: string }
-  | { kind: "object"; coord: string }
-  | { kind: "tile"; x: number; y: number }
-  | null;
 
 
-type NpcVisualCategory =
-  | "Generic"
-  | "Wokeshire"
-  | "Special"
-  | "Cryptonia"
-  | "Surveillia";
-
-type NpcVisualPreset = {
-  id: string;
-  label: string;
-  variant: number;
-  styleRole: string;
-  category: NpcVisualCategory;
-};
-
-const NPC_VISUAL_PRESETS: NpcVisualPreset[] = [
-  // Generic base sprites
-  { id: "generic-young-man-0", label: "Young Man 1", variant: 0, styleRole: "young-man", category: "Generic" },
-  { id: "generic-young-woman-1", label: "Young Woman 1", variant: 1, styleRole: "young-woman", category: "Generic" },
-  { id: "generic-older-woman-2", label: "Older Woman 1", variant: 2, styleRole: "older-woman", category: "Generic" },
-  { id: "generic-older-man-3", label: "Older Man 1", variant: 3, styleRole: "older-man", category: "Generic" },
-  { id: "generic-guide-4", label: "Guide", variant: 4, styleRole: "young-man", category: "Generic" },
-  { id: "generic-young-man-5", label: "Young Man 2", variant: 5, styleRole: "young-man", category: "Generic" },
-  { id: "generic-young-woman-6", label: "Young Woman 2", variant: 6, styleRole: "young-woman", category: "Generic" },
-  { id: "generic-older-man-7", label: "Older Man 2", variant: 7, styleRole: "older-man", category: "Generic" },
-  { id: "generic-official-8", label: "Official", variant: 8, styleRole: "older-man", category: "Generic" },
-  { id: "generic-local-9", label: "Local 9", variant: 9, styleRole: "young-woman", category: "Generic" },
-
-  // Wokeshire-specific combinations
-  { id: "woke-consensus-ranger", label: "Consensus Ranger", variant: 6, styleRole: "young-woman", category: "Wokeshire" },
-  { id: "woke-tulip-mediator", label: "Tulip Mediator", variant: 1, styleRole: "older-woman", category: "Wokeshire" },
-  { id: "woke-canal-cyclist", label: "Canal Cyclist", variant: 3, styleRole: "young-man", category: "Wokeshire" },
-  { id: "woke-bike-activist", label: "Bike Activist", variant: 5, styleRole: "young-woman", category: "Wokeshire" },
-  { id: "woke-canal-elder", label: "Canal Elder", variant: 7, styleRole: "older-man", category: "Wokeshire" },
-  { id: "woke-tulip-kid", label: "Tulip Kid", variant: 0, styleRole: "young-man", category: "Wokeshire" },
-
-  // Special roles already supported by your CSS/NPC system
-  { id: "special-robot-8", label: "Robot", variant: 8, styleRole: "robot", category: "Special" },
-  { id: "special-robot-4", label: "Robot Guard", variant: 4, styleRole: "robot", category: "Special" },
-  { id: "special-clerk", label: "Clerk-Like", variant: 2, styleRole: "older-man", category: "Special" },
-  { id: "special-nurse", label: "Nurse-Like", variant: 1, styleRole: "young-woman", category: "Special" },
-
-  // Cryptonia roles
-  { id: "crypto-bro-5", label: "Crypto Bro", variant: 5, styleRole: "crypto-bro", category: "Cryptonia" },
-  { id: "crypto-sister-6", label: "Crypto Sister", variant: 6, styleRole: "crypto-sister", category: "Cryptonia" },
-  { id: "crypto-baron", label: "Token Baron", variant: 5, styleRole: "older-man", category: "Cryptonia" },
-  { id: "crypto-analyst", label: "Yacht Analyst", variant: 2, styleRole: "young-man", category: "Cryptonia" },
-
-  // Surveillia roles
-  { id: "surv-camera-guard", label: "Camera Guard", variant: 4, styleRole: "older-man", category: "Surveillia" },
-  { id: "surv-data-minder", label: "Data Minder", variant: 7, styleRole: "young-woman", category: "Surveillia" },
-  { id: "surv-neon-patrol", label: "Neon Patrol", variant: 1, styleRole: "young-man", category: "Surveillia" },
-  { id: "surv-robot", label: "Surveillance Bot", variant: 8, styleRole: "robot", category: "Surveillia" },
-];
-
-const NPC_VISUAL_CATEGORIES: NpcVisualCategory[] = [
-  "Generic",
-  "Wokeshire",
-  "Special",
-  "Cryptonia",
-  "Surveillia",
-];
 
 const EDITOR_TILE_COLORS: Record<string, string> = {
   G: "#56b447",
@@ -631,7 +558,77 @@ const D_PAD_BTN: React.CSSProperties = {
 
 const isTownMap = (id: GameMapId): id is TownMapId => MAIN_TOWN_IDS.includes(id as TownMapId);
 
+const BUILDING_TILE_IDS = new Set(["A", "B", "H", "P", "U", "I", "O"]);
+
+
+const BUILDING_TYPES = [
+  { kind: "house" as const, label: "House", defaultColor: "purple" as const, defaultW: 5, defaultH: 4, description: "Normal enterable house" },
+  { kind: "shop" as const, label: "Shop", defaultColor: "green" as const, defaultW: 5, defaultH: 4, description: "Auto-connects to shop interior" },
+  { kind: "healing" as const, label: "Healing Center", defaultColor: "blue" as const, defaultW: 5, defaultH: 4, description: "Auto-connects to healing center" },
+  { kind: "station" as const, label: "Train Station", defaultColor: "red" as const, defaultW: 7, defaultH: 4, description: "Auto-opens train menu" },
+  { kind: "hall" as const, label: "Hall / Institution", defaultColor: "purple" as const, defaultW: 6, defaultH: 5, description: "Large civic building" },
+];
+
+const BUILDING_COLORS = ["red", "blue", "purple", "green"] as const;
+
+const BUILDING_KIND_LABEL = {
+  house: "House",
+  shop: "Shop",
+  healing: "Healing Center",
+  station: "Train Station",
+  hall: "Hall / Institution",
+} as const;
+
+const UNIQUE_BUILDING_KINDS = new Set(["shop", "healing", "station"]);
+
+const NPC_VISUAL_CATEGORIES = [
+  "Generic",
+  "Wokeshire",
+  "Special",
+  "Cryptonia",
+  "Surveillia",
+] as const;
+
+const NPC_VISUAL_PRESETS = [
+  { id: "generic-young-man-0", label: "Young Man 1", variant: 0, styleRole: "young-man", category: "Generic" },
+  { id: "generic-young-woman-1", label: "Young Woman 1", variant: 1, styleRole: "young-woman", category: "Generic" },
+  { id: "generic-older-woman-2", label: "Older Woman 1", variant: 2, styleRole: "older-woman", category: "Generic" },
+  { id: "generic-older-man-3", label: "Older Man 1", variant: 3, styleRole: "older-man", category: "Generic" },
+  { id: "generic-guide-4", label: "Guide", variant: 4, styleRole: "young-man", category: "Generic" },
+  { id: "generic-young-man-5", label: "Young Man 2", variant: 5, styleRole: "young-man", category: "Generic" },
+  { id: "generic-young-woman-6", label: "Young Woman 2", variant: 6, styleRole: "young-woman", category: "Generic" },
+  { id: "generic-older-man-7", label: "Older Man 2", variant: 7, styleRole: "older-man", category: "Generic" },
+  { id: "generic-official-8", label: "Official", variant: 8, styleRole: "older-man", category: "Generic" },
+  { id: "generic-local-9", label: "Local 9", variant: 9, styleRole: "young-woman", category: "Generic" },
+
+  { id: "woke-consensus-ranger", label: "Consensus Ranger", variant: 6, styleRole: "young-woman", category: "Wokeshire" },
+  { id: "woke-tulip-mediator", label: "Tulip Mediator", variant: 1, styleRole: "older-woman", category: "Wokeshire" },
+  { id: "woke-canal-cyclist", label: "Canal Cyclist", variant: 3, styleRole: "young-man", category: "Wokeshire" },
+  { id: "woke-bike-activist", label: "Bike Activist", variant: 5, styleRole: "young-woman", category: "Wokeshire" },
+  { id: "woke-canal-elder", label: "Canal Elder", variant: 7, styleRole: "older-man", category: "Wokeshire" },
+  { id: "woke-tulip-kid", label: "Tulip Kid", variant: 0, styleRole: "young-man", category: "Wokeshire" },
+
+  { id: "special-robot-8", label: "Robot", variant: 8, styleRole: "robot", category: "Special" },
+  { id: "special-robot-4", label: "Robot Guard", variant: 4, styleRole: "robot", category: "Special" },
+  { id: "special-clerk", label: "Clerk-Like", variant: 2, styleRole: "older-man", category: "Special" },
+  { id: "special-nurse", label: "Nurse-Like", variant: 1, styleRole: "young-woman", category: "Special" },
+
+  { id: "crypto-bro-5", label: "Crypto Bro", variant: 5, styleRole: "crypto-bro", category: "Cryptonia" },
+  { id: "crypto-sister-6", label: "Crypto Sister", variant: 6, styleRole: "crypto-sister", category: "Cryptonia" },
+  { id: "crypto-baron", label: "Token Baron", variant: 5, styleRole: "older-man", category: "Cryptonia" },
+  { id: "crypto-analyst", label: "Yacht Analyst", variant: 2, styleRole: "young-man", category: "Cryptonia" },
+
+  { id: "surv-camera-guard", label: "Camera Guard", variant: 4, styleRole: "older-man", category: "Surveillia" },
+  { id: "surv-data-minder", label: "Data Minder", variant: 7, styleRole: "young-woman", category: "Surveillia" },
+  { id: "surv-neon-patrol", label: "Neon Patrol", variant: 1, styleRole: "young-man", category: "Surveillia" },
+  { id: "surv-robot", label: "Surveillance Bot", variant: 8, styleRole: "robot", category: "Surveillia" },
+] as const;
+
+
+
+
 const isSelectEditorMode = (mode: EditorMode) => mode === "select";
+
 
 function GameScreen({ onExit }: { onExit: () => void }) {
   const [mapId, setMapId] = useState<GameMapId>("satiria");
@@ -1698,22 +1695,16 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     const objects = editedObjectsByMapRef.current[id] ?? GAME_MAPS[id].objects;
     const npcs = editedNpcsByMapRef.current[id] ?? npcsForMap(id);
     const map = GAME_MAPS[id];
-    const constantName = `${String(id).toUpperCase()}_MAP_ASSET`;
-    return `import type { EditorMapAsset } from "./mapAsset";
 
-// Paste this whole block into src/data/cityMaps/${id}MapAsset.ts.
-// After saving, refresh the browser or press Reset This Map in the editor
-// so old in-memory edits do not override the new source file.
-export const ${constantName}: EditorMapAsset = {
-  id: "${id}",
-  name: "${map.name}",
-  rows: ${JSON.stringify(rows.map(row => row.join("")), null, 2)},
-  objects: ${JSON.stringify(objects, null, 2)},
-  interactions: {},
-  buildings: ${JSON.stringify(buildings, null, 2)},
-  npcs: ${JSON.stringify(npcs, null, 2)},
-  spawn: ${JSON.stringify(map.spawn, null, 2)},
-};`;
+    return createMapAssetExport({
+      id,
+      name: map.name,
+      rows,
+      objects,
+      buildings,
+      npcs,
+      spawn: map.spawn,
+    });
   };
 
   const copyEditedRows = async () => {
@@ -1938,78 +1929,7 @@ export const ${constantName}: EditorMapAsset = {
               Select a tile, then click or drag to paint. Your normal pixel-art map stays active. This editor is an overlay; changes feed into the normal map preview, collision, and export.
             </div>
 
-            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
-              <button
-                type="button"
-                onClick={() => setEditorMode("select")}
-                style={{
-                  padding: "8px 12px",
-                  cursor: "pointer",
-                  border: isSelectEditorMode(editorMode) ? "4px solid #ca4b36" : "2px solid #252018",
-                  background: isSelectEditorMode(editorMode) ? "#fff3a8" : "#fff8c8",
-                  color: "#252018",
-                  fontWeight: 900,
-                }}
-              >
-                Select
-              </button>
-              <button
-                type="button"
-                onClick={() => setEditorMode("terrain")}
-                style={{
-                  padding: "8px 12px",
-                  cursor: "pointer",
-                  border: editorMode === "terrain" ? "4px solid #ca4b36" : "2px solid #252018",
-                  background: editorMode === "terrain" ? "#fff3a8" : "#fff8c8",
-                  color: "#252018",
-                  fontWeight: 900,
-                }}
-              >
-                Terrain
-              </button>
-              <button
-                type="button"
-                onClick={() => setEditorMode("buildings")}
-                style={{
-                  padding: "8px 12px",
-                  cursor: "pointer",
-                  border: editorMode === "buildings" ? "4px solid #ca4b36" : "2px solid #252018",
-                  background: editorMode === "buildings" ? "#fff3a8" : "#fff8c8",
-                  color: "#252018",
-                  fontWeight: 900,
-                }}
-              >
-                Buildings
-              </button>
-              <button
-                type="button"
-                onClick={() => setEditorMode("objects")}
-                style={{
-                  padding: "8px 12px",
-                  cursor: "pointer",
-                  border: editorMode === "objects" ? "4px solid #ca4b36" : "2px solid #252018",
-                  background: editorMode === "objects" ? "#fff3a8" : "#fff8c8",
-                  color: "#252018",
-                  fontWeight: 900,
-                }}
-              >
-                Objects
-              </button>
-              <button
-                type="button"
-                onClick={() => setEditorMode("npcs")}
-                style={{
-                  padding: "8px 12px",
-                  cursor: "pointer",
-                  border: editorMode === "npcs" ? "4px solid #ca4b36" : "2px solid #252018",
-                  background: editorMode === "npcs" ? "#fff3a8" : "#fff8c8",
-                  color: "#252018",
-                  fontWeight: 900,
-                }}
-              >
-                NPCs
-              </button>
-            </div>
+            <EditorToolbar editorMode={editorMode} setEditorMode={setEditorMode} />
 
             {editorMode === "terrain" && (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(170px, 1fr))", gap: 8, marginBottom: 12 }}>
@@ -2985,6 +2905,78 @@ export const ${constantName}: EditorMapAsset = {
 // ─── APP ROOT ─────────────────────────────────────────────────────────────────
 function AppInner() {
   return <GameScreen onExit={() => undefined} />;
+}
+
+
+
+
+
+const cleanRowsForMapAssetExport = (rows: string[][]) =>
+  rows.map(row => row.map(tile => BUILDING_TILE_IDS.has(tile) ? "G" : tile));
+
+const createMapAssetExport = ({
+  id,
+  name,
+  rows,
+  objects,
+  buildings,
+  npcs,
+  spawn,
+}: {
+  id: string;
+  name: string;
+  rows: string[][];
+  objects: Record<string, string>;
+  buildings: EditorBuildingAsset[];
+  npcs: EditorNpcAsset[];
+  spawn: { x: number; y: number };
+}) => `import type { EditorMapAsset } from "./mapAsset";
+
+// Paste this whole block into src/data/cityMaps/${id}MapAsset.ts.
+// After saving, refresh the browser or press Reset This Map in the editor
+// so old in-memory edits do not override the new source file.
+export const ${String(id).toUpperCase()}_MAP_ASSET: EditorMapAsset = {
+  id: "${id}",
+  name: "${name}",
+  rows: ${JSON.stringify(cleanRowsForMapAssetExport(rows).map(row => row.join("")), null, 2)},
+  objects: ${JSON.stringify(objects, null, 2)},
+  interactions: {},
+  buildings: ${JSON.stringify(buildings, null, 2)},
+  npcs: ${JSON.stringify(npcs, null, 2)},
+  spawn: ${JSON.stringify(spawn, null, 2)},
+};`;
+
+function EditorToolbar({
+  editorMode,
+  setEditorMode,
+}: {
+  editorMode: EditorMode;
+  setEditorMode: (mode: EditorMode) => void;
+}) {
+  const modes: EditorMode[] = ["select", "terrain", "buildings", "objects", "npcs"];
+
+  return (
+    <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
+      {modes.map(mode => (
+        <button
+          key={mode}
+          type="button"
+          onClick={() => setEditorMode(mode)}
+          style={{
+            padding: "8px 12px",
+            cursor: "pointer",
+            border: editorMode === mode ? "4px solid #ca4b36" : "2px solid #252018",
+            background: editorMode === mode ? "#fff3a8" : "#fff8c8",
+            color: "#252018",
+            fontWeight: 900,
+            textTransform: "capitalize",
+          }}
+        >
+          {mode}
+        </button>
+      ))}
+    </div>
+  );
 }
 
 export default function App() {

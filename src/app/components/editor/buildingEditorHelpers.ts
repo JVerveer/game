@@ -1,6 +1,5 @@
-import type { GameMapId } from "../../data/maps";
-import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind } from "../../data/cityMaps/mapAsset";
-import { buildingCrestForKind, doorForBuildingAsset } from "../../data/cityMaps/mapAsset";
+import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind } from "../../../data/cityMaps/mapAsset";
+import { buildingCrestForKind, doorForBuildingAsset } from "../../../data/cityMaps/mapAsset";
 import { BUILDING_TILE_IDS } from "./editorConstants";
 
 export const tileKindForEditorBuilding = (tile: string): EditorBuildingKind | null => {
@@ -103,6 +102,7 @@ export const clearBuildingFootprintFromRows = (rows: string[][], building: Edito
     { x: building.x + building.w - 1, y: building.y + building.h - 1 },
     door,
   ];
+
   const seen = new Set<string>();
   const queue = seeds.filter(seed => BUILDING_TILE_IDS.has(rows[seed.y]?.[seed.x] ?? "") || rows[seed.y]?.[seed.x] === "O");
 
