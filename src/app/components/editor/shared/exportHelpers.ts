@@ -23,6 +23,8 @@ export const createMapAssetExport = ({
 }) => `import type { EditorMapAsset } from "./mapAsset";
 
 // Paste this whole block into src/data/cityMaps/${id}MapAsset.ts.
+// After saving, refresh the browser or press Reset This Map in the editor
+// so old in-memory edits do not override the new source file.
 export const ${String(id).toUpperCase()}_MAP_ASSET: EditorMapAsset = {
   id: "${id}",
   name: "${name}",

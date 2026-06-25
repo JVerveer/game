@@ -1,5 +1,4 @@
 import type { EditorMode } from "./shared/editorTypes";
-import { EDITOR_MODES } from "./shared/editorConstants";
 
 export function EditorToolbar({
   editorMode,
@@ -8,9 +7,11 @@ export function EditorToolbar({
   editorMode: EditorMode;
   setEditorMode: (mode: EditorMode) => void;
 }) {
+  const modes: EditorMode[] = ["select", "terrain", "buildings", "objects", "npcs"];
+
   return (
     <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
-      {EDITOR_MODES.map(mode => (
+      {modes.map(mode => (
         <button
           key={mode}
           type="button"

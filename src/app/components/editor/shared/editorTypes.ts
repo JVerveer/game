@@ -1,8 +1,10 @@
 import type { EditorBuildingColor, EditorBuildingKind } from "../../../../data/cityMaps/mapAsset";
 
 export type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
+
 export type ObjectEditAction = "place" | "erase";
-export type NpcEditorAction = "create" | "delete";
+
+export type NpcEditorAction = "create" | "edit" | "delete";
 
 export type EditorSelection =
   | { kind: "npc"; id: string }
