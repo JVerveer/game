@@ -12,71 +12,77 @@ export type MapObjectCategory =
   | "Tariff"
   | "Ragebait"
   | "Factcheck"
-  | "Custom";
+  | "Custom"
+  | "Legacy";
 
 export type MapObjectDef = {
   id: string;
   label: string;
   className: string;
   category: MapObjectCategory;
+  /**
+   * When false, object stays renderable for existing maps but is hidden
+   * from the editor object palette.
+   */
+  active?: boolean;
 };
 
 export const UNKNOWN_OBJECT_CLASS = "world-object object-unknown";
 
 export const MAP_OBJECT_DEFS: MapObjectDef[] = [
   // Core / generic
-  { id: "SHOP", label: "Shop Marker", className: "world-object object-shop", category: "Core" },
-  { id: "HEAL", label: "Healing Marker", className: "world-object object-heal", category: "Core" },
-  { id: "HOME", label: "Home Marker", className: "world-object object-home", category: "Core" },
-  { id: "⌂", label: "House Marker", className: "world-object object-house", category: "Core" },
+  { id: "SHOP", label: "Shop Marker", className: "world-object object-shop", category: "Legacy", active: false },
+  { id: "HEAL", label: "Healing Marker", className: "world-object object-heal", category: "Legacy", active: false },
+  { id: "HOME", label: "Home Marker", className: "world-object object-home", category: "Legacy", active: false },
+  { id: "⌂", label: "House Marker", className: "world-object object-house", category: "Legacy", active: false },
   { id: "DOOR_SHOP", label: "Shop Door", className: "world-object object-door-shop", category: "Core" },
   { id: "DOOR_HEAL", label: "Healing Door", className: "world-object object-door-heal", category: "Core" },
-  { id: "DOOR_HOME", label: "Home Door", className: "world-object object-door-home", category: "Core" },
+  { id: "DOOR_HOME", label: "House Door", className: "world-object object-door-home", category: "Core" },
   { id: "★", label: "Save Point", className: "world-object object-save", category: "Core" },
   { id: "SIGN", label: "Sign", className: "world-object object-sign", category: "Core" },
   { id: "CAVE", label: "Cave", className: "world-object object-cave", category: "Core" },
-  { id: "EXIT", label: "Exit", className: "world-object object-exit", category: "Core" },
-  { id: "TRAIN", label: "Train Station Object", className: "world-object object-train-station", category: "Core" },
+  { id: "EXIT", label: "Exit", className: "world-object object-exit", category: "Legacy", active: false },
+  { id: "TRAIN", label: "Train Station", className: "world-object object-train-station", category: "Core" },
 
   // Routes
-  { id: "ARROW_N", label: "Route Arrow North", className: "world-object object-route object-route-n", category: "Core" },
-  { id: "ARROW_S", label: "Route Arrow South", className: "world-object object-route object-route-s", category: "Core" },
-  { id: "ARROW_E", label: "Route Arrow East", className: "world-object object-route object-route-e", category: "Core" },
-  { id: "ARROW_W", label: "Route Arrow West", className: "world-object object-route object-route-w", category: "Core" },
-  { id: "ARROW_NE", label: "Route Arrow NE", className: "world-object object-route object-route-ne", category: "Core" },
-  { id: "ARROW_NW", label: "Route Arrow NW", className: "world-object object-route object-route-nw", category: "Core" },
-  { id: "ARROW_SE", label: "Route Arrow SE", className: "world-object object-route object-route-se", category: "Core" },
-  { id: "ARROW_SW", label: "Route Arrow SW", className: "world-object object-route object-route-sw", category: "Core" },
+  { id: "ARROW_N", label: "Route Arrow North", className: "world-object object-route object-route-n", category: "Legacy", active: false },
+  { id: "ARROW_S", label: "Route Arrow South", className: "world-object object-route object-route-s", category: "Legacy", active: false },
+  { id: "ARROW_E", label: "Route Arrow East", className: "world-object object-route object-route-e", category: "Legacy", active: false },
+  { id: "ARROW_W", label: "Route Arrow West", className: "world-object object-route object-route-w", category: "Legacy", active: false },
+  { id: "ARROW_NE", label: "Route Arrow NE", className: "world-object object-route object-route-ne", category: "Legacy", active: false },
+  { id: "ARROW_NW", label: "Route Arrow NW", className: "world-object object-route object-route-nw", category: "Legacy", active: false },
+  { id: "ARROW_SE", label: "Route Arrow SE", className: "world-object object-route object-route-se", category: "Legacy", active: false },
+  { id: "ARROW_SW", label: "Route Arrow SW", className: "world-object object-route object-route-sw", category: "Legacy", active: false },
 
   // Interior
-  { id: "POTN", label: "Potion", className: "world-object object-potion", category: "Interior" },
-  { id: "BALL", label: "Ball", className: "world-object object-ball", category: "Interior" },
-  { id: "BED", label: "Bed", className: "world-object object-bed", category: "Interior" },
-  { id: "TV", label: "TV", className: "world-object object-tv", category: "Interior" },
-  { id: "←", label: "Arrow Left", className: "world-object object-arrow-left", category: "Interior" },
-  { id: "→", label: "Arrow Right", className: "world-object object-arrow-right", category: "Interior" },
-  { id: "CLERK", label: "Clerk", className: "clerk-sprite", category: "Interior" },
-  { id: "NURSE", label: "Nurse", className: "nurse-sprite", category: "Interior" },
+  { id: "POTN", label: "Potion", className: "world-object object-potion", category: "Legacy", active: false },
+  { id: "BALL", label: "Ball", className: "world-object object-ball", category: "Legacy", active: false },
+  { id: "BED", label: "Bed", className: "world-object object-bed", category: "Legacy", active: false },
+  { id: "TV", label: "TV", className: "world-object object-tv", category: "Legacy", active: false },
+  { id: "←", label: "Arrow Left", className: "world-object object-arrow-left", category: "Legacy", active: false },
+  { id: "→", label: "Arrow Right", className: "world-object object-arrow-right", category: "Legacy", active: false },
+  { id: "CLERK", label: "Clerk", className: "clerk-sprite", category: "Legacy", active: false },
+  { id: "NURSE", label: "Nurse", className: "nurse-sprite", category: "Legacy", active: false },
 
   // Satiria
-  { id: "SATIRIA_SHOP", label: "Satiria Shop", className: "world-object satiria-building satiria-shop", category: "Satiria" },
-  { id: "SATIRIA_HEALING", label: "Satiria Healing", className: "world-object satiria-building satiria-healing", category: "Satiria" },
-  { id: "SATIRIA_HOUSE_BLUE", label: "Satiria Blue House", className: "world-object satiria-building satiria-house-blue", category: "Satiria" },
-  { id: "SATIRIA_HOUSE_RED", label: "Satiria Red House", className: "world-object satiria-building satiria-house-red", category: "Satiria" },
-  { id: "SATIRIA_INN", label: "Satiria Inn", className: "world-object satiria-building satiria-inn", category: "Satiria" },
-  { id: "SATIRIA_STATION", label: "Satiria Station", className: "world-object satiria-building satiria-station", category: "Satiria" },
-  { id: "SATIRIA_FOUNTAIN", label: "Satiria Fountain", className: "world-object satiria-fountain", category: "Satiria" },
-  { id: "SATIRIA_STATUE", label: "Satiria Statue", className: "world-object satiria-statue", category: "Satiria" },
-  { id: "SATIRIA_LAMP", label: "Satiria Lamp", className: "world-object satiria-lamp", category: "Satiria" },
-  { id: "SATIRIA_BENCH", label: "Satiria Bench", className: "world-object satiria-bench", category: "Satiria" },
-  { id: "SATIRIA_POND_SIGN", label: "Satiria Pond Sign", className: "world-object satiria-pond-sign", category: "Satiria" },
+  { id: "SATIRIA_SHOP", label: "Satiria Shop", className: "world-object satiria-building satiria-shop", category: "Legacy", active: false },
+  { id: "SATIRIA_HEALING", label: "Satiria Healing", className: "world-object satiria-building satiria-healing", category: "Legacy", active: false },
+  { id: "SATIRIA_HOUSE_BLUE", label: "Satiria Blue House", className: "world-object satiria-building satiria-house-blue", category: "Legacy", active: false },
+  { id: "SATIRIA_HOUSE_RED", label: "Satiria Red House", className: "world-object satiria-building satiria-house-red", category: "Legacy", active: false },
+  { id: "SATIRIA_INN", label: "Satiria Inn", className: "world-object satiria-building satiria-inn", category: "Legacy", active: false },
+  { id: "SATIRIA_STATION", label: "Satiria Station", className: "world-object satiria-building satiria-station", category: "Legacy", active: false },
+  { id: "SATIRIA_FOUNTAIN", label: "Satiria Fountain", className: "world-object satiria-fountain", category: "Legacy", active: false },
+  { id: "SATIRIA_STATUE", label: "Satiria Statue", className: "world-object satiria-statue", category: "Legacy", active: false },
+  { id: "SATIRIA_LAMP", label: "Satiria Lamp", className: "world-object satiria-lamp", category: "Legacy", active: false },
+  { id: "SATIRIA_BENCH", label: "Satiria Bench", className: "world-object satiria-bench", category: "Legacy", active: false },
+  { id: "SATIRIA_POND_SIGN", label: "Satiria Pond Sign", className: "world-object satiria-pond-sign", category: "Legacy", active: false },
 
   // Wokeshire / Amsterdam
   { id: "CANAL_BRIDGE", label: "Canal Bridge", className: "world-object object-canal-bridge", category: "Wokeshire" },
   { id: "BICYCLE", label: "Bicycle", className: "world-object object-bicycle", category: "Wokeshire" },
   { id: "BIKE_RACK", label: "Bike Rack", className: "world-object object-bike-rack", category: "Wokeshire" },
   { id: "TULIP_STAND", label: "Tulip Stand", className: "world-object object-tulip-stand", category: "Wokeshire" },
-  { id: "TULIP_FIELD_SIGN", label: "Tulip Field Sign", className: "world-object object-tulip-field-sign", category: "Wokeshire" },
+  { id: "TULIP_FIELD_SIGN", label: "Tulip Sign", className: "world-object object-tulip-field-sign", category: "Wokeshire" },
   { id: "WINDMILL", label: "Windmill", className: "world-object object-windmill", category: "Wokeshire" },
   { id: "CANAL_HOUSE", label: "Canal House", className: "world-object object-canal-house", category: "Wokeshire" },
   { id: "HOUSEBOAT", label: "Houseboat", className: "world-object object-houseboat", category: "Wokeshire" },
@@ -91,7 +97,7 @@ export const MAP_OBJECT_DEFS: MapObjectDef[] = [
   { id: "VOTE_GATE", label: "Vote Gate", className: "world-object object-vote-gate", category: "Brexiton" },
 
   // Promptford
-  { id: "EIFFEL_TOWER", label: "Tower", className: "world-object object-eiffel-tower", category: "Promptford" },
+  { id: "EIFFEL_TOWER", label: "Eiffel Tower", className: "world-object object-eiffel-tower", category: "Promptford" },
   { id: "PARIS_CAFE", label: "Cafe", className: "world-object object-paris-cafe", category: "Promptford" },
   { id: "BAGUETTE_STAND", label: "Baguette Stand", className: "world-object object-baguette-stand", category: "Promptford" },
   { id: "METRO_SIGN", label: "Metro Sign", className: "world-object object-metro-sign", category: "Promptford" },
@@ -153,6 +159,10 @@ export const MAP_OBJECT_DEFS: MapObjectDef[] = [
   { id: "NEWS_STAND", label: "News Stand", className: "world-object object-news-stand", category: "Factcheck" },
 ];
 
+export const ACTIVE_MAP_OBJECT_DEFS = MAP_OBJECT_DEFS.filter((def) => def.active !== false);
+
+export const LEGACY_MAP_OBJECT_DEFS = MAP_OBJECT_DEFS.filter((def) => def.active === false);
+
 export const MAP_OBJECT_CLASS_BY_ID: Record<string, string> = Object.fromEntries(
   MAP_OBJECT_DEFS.map((def) => [def.id, def.className]),
 );
@@ -162,3 +172,5 @@ export const objectDefFor = (id: string) => MAP_OBJECT_DEFS.find((def) => def.id
 export const objectClassForId = (id: string) => MAP_OBJECT_CLASS_BY_ID[id] ?? UNKNOWN_OBJECT_CLASS;
 
 export const objectLabelForId = (id: string) => objectDefFor(id)?.label ?? `Unknown object: ${id}`;
+
+export const isObjectActive = (id: string) => objectDefFor(id)?.active !== false;

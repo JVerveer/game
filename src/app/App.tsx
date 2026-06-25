@@ -25,7 +25,7 @@ import { pixelBuildingsFor } from "../data/cityMaps/pixelSceneData";
 import { citySceneObjectsFor } from "../data/cityMaps/scenes";
 import { PixelMapScene } from "./pixelTiles";
 import { objectClassFor, tileShapeClassFor } from "./mapRenderHelpers";
-import { MAP_OBJECT_DEFS, objectLabelForId } from "../data/objectRegistry";
+import { ACTIVE_MAP_OBJECT_DEFS, objectLabelForId } from "../data/objectRegistry";
 
 // ─── Font helpers ────────────────────────────────────────────────────────────
 const PX = { fontFamily: "'Press Start 2P', monospace" } as const;
@@ -1258,7 +1258,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))", gap: 8, maxHeight: 260, overflow: "auto", paddingRight: 4 }}>
                   {OBJECT_EDITOR_CATEGORIES.flatMap(category =>
-                    MAP_OBJECT_DEFS.filter(def => def.category === category).map(def => (
+                    ACTIVE_MAP_OBJECT_DEFS.filter(def => def.category === category).map(def => (
                       <button
                         key={def.id}
                         type="button"
