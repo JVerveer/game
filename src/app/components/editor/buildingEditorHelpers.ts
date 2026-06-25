@@ -1,5 +1,5 @@
-import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind } from "../../data/cityMaps/mapAsset";
-import { buildingCrestForKind, doorForBuildingAsset } from "../../data/cityMaps/mapAsset";
+import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind } from "../../../data/cityMaps/mapAsset";
+import { buildingCrestForKind, doorForBuildingAsset } from "../../../data/cityMaps/mapAsset";
 import { BUILDING_TILE_IDS } from "./editorConstants";
 
 export const tileKindForEditorBuilding = (tile: string): EditorBuildingKind | null => {
