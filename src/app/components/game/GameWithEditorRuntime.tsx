@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import { ThemeProvider } from "../context/ThemeContext";
+import { ThemeProvider } from "../../../context/ThemeContext";
 import {
   ATTACK_CATEGORIES, WILD_ENEMIES,
   type Enemy,
-} from "../data/enemies";
+} from "../../../data/enemies";
 import {
   GAME_TILE_COLORS,
   WALKABLE_TILES as WALK,
@@ -19,15 +19,15 @@ import {
   type RouteDirection,
   type TownMapId,
   getLocationName as LOCATION_FOR,
-} from "../data/maps";
-import { INITIAL_NPCS, type MovingNpc } from "../data/npcs";
-import { pixelBuildingsFor } from "../data/cityMaps/pixelSceneData";
-import { citySceneObjectsFor } from "../data/cityMaps/scenes";
-import { PixelMapScene } from "./pixelTiles";
-import { objectClassFor, tileShapeClassFor } from "./mapRenderHelpers";
-import { ACTIVE_MAP_OBJECT_DEFS, objectLabelForId } from "../data/objectRegistry";
-import type { EditorNpcAsset, EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind } from "../data/cityMaps/mapAsset";
-import { applyBuildingsToRows, buildingCrestForKind, buildingTileForKind, doorForBuildingAsset } from "../data/cityMaps/mapAsset";
+} from "../../../data/maps";
+import { INITIAL_NPCS, type MovingNpc } from "../../../data/npcs";
+import { pixelBuildingsFor } from "../../../data/cityMaps/pixelSceneData";
+import { citySceneObjectsFor } from "../../../data/cityMaps/scenes";
+import { PixelMapScene } from "../../pixelTiles";
+import { objectClassFor, tileShapeClassFor } from "../../mapRenderHelpers";
+import { ACTIVE_MAP_OBJECT_DEFS, objectLabelForId } from "../../../data/objectRegistry";
+import type { EditorNpcAsset, EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind } from "../../../data/cityMaps/mapAsset";
+import { applyBuildingsToRows, buildingCrestForKind, buildingTileForKind, doorForBuildingAsset } from "../../../data/cityMaps/mapAsset";
 
 
 type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
