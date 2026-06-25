@@ -372,6 +372,28 @@ type EditorMode = "terrain" | "objects" | "npcs";
 type ObjectEditAction = "place" | "erase";
 
 
+type NpcVisualPreset = {
+  id: string;
+  label: string;
+  variant: number;
+  styleRole: string;
+};
+
+const NPC_VISUAL_PRESETS: NpcVisualPreset[] = [
+  { id: "young-man", label: "Young Man", variant: 0, styleRole: "young-man" },
+  { id: "young-woman", label: "Young Woman", variant: 1, styleRole: "young-woman" },
+  { id: "older-man", label: "Older Man", variant: 2, styleRole: "older-man" },
+  { id: "older-woman", label: "Older Woman", variant: 3, styleRole: "older-woman" },
+  { id: "guide", label: "Guide", variant: 4, styleRole: "young-man" },
+  { id: "activist", label: "Activist", variant: 5, styleRole: "young-woman" },
+  { id: "cyclist", label: "Cyclist", variant: 6, styleRole: "young-man" },
+  { id: "official", label: "Official", variant: 7, styleRole: "older-man" },
+  { id: "robot", label: "Robot", variant: 8, styleRole: "robot" },
+  { id: "crypto-bro", label: "Crypto Bro", variant: 5, styleRole: "crypto-bro" },
+  { id: "crypto-sister", label: "Crypto Sister", variant: 6, styleRole: "crypto-sister" },
+];
+
+
 const EDITOR_TILE_COLORS: Record<string, string> = {
   G: "#56b447",
   R: "#d4a15f",
@@ -436,7 +458,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [editorObjectId, setEditorObjectId] = useState("SIGN");
   const [npcEditAction, setNpcEditAction] = useState<ObjectEditAction>("place");
   const [editorNpcName, setEditorNpcName] = useState("Local NPC");
-  const [editorNpcVariant, setEditorNpcVariant] = useState(1);
+  const [editorNpcPresetId, setEditorNpcPresetId] = useState("young-man");
+  const [editorNpcWalking, setEditorNpcWalking] = useState(true);
   const [editorNpcLines, setEditorNpcLines] = useState("Hello there!\nI was placed in the editor.");
   const viewRef = useRef<HTMLDivElement>(null);
   const [viewSize, setViewSize] = useState({ w: 900, h: 600 });
@@ -447,7 +470,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const displayObjects = editedObjects ?? currentMap.objects;
   const editedNpcs = editedNpcsByMap[mapId];
   const mapAssetNpcs = npcs.filter(npc => npc.mapId === mapId).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking }));
-  const displayEditorNpcs = editedNpcs ?? mapAssetNpcs;
+  const displayEditorNpcs = mapAssetNpcs;
   const currentTown = isTownMap(mapId) ? TOWN_THEMES.find(town => town.id === mapId) : null;
 
   // Mutable refs so event handler closure stays fresh
@@ -458,6 +481,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const pausedRef = useRef(paused);
   const battleRef = useRef(battleEnemy);
   const npcsRef = useRef(npcs);
+  const initialNpcsRef = useRef(npcs);
   const trainOpenRef = useRef(trainOpen);
   const trainIndexRef = useRef(trainIndex);
   const terrainEditorOpenRef = useRef(terrainEditorOpen);
@@ -469,7 +493,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const editorObjectIdRef = useRef(editorObjectId);
   const npcEditActionRef = useRef<ObjectEditAction>(npcEditAction);
   const editorNpcNameRef = useRef(editorNpcName);
-  const editorNpcVariantRef = useRef(editorNpcVariant);
+  const editorNpcPresetIdRef = useRef(editorNpcPresetId);
+  const editorNpcWalkingRef = useRef(editorNpcWalking);
   const editorNpcLinesRef = useRef(editorNpcLines);
   const editorTileRef = useRef(editorTile);
   const isEditorDraggingRef = useRef(false);
@@ -494,7 +519,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   editorObjectIdRef.current = editorObjectId;
   npcEditActionRef.current = npcEditAction;
   editorNpcNameRef.current = editorNpcName;
-  editorNpcVariantRef.current = editorNpcVariant;
+  editorNpcPresetIdRef.current = editorNpcPresetId;
+  editorNpcWalkingRef.current = editorNpcWalking;
   editorNpcLinesRef.current = editorNpcLines;
   editorTileRef.current = editorTile;
 
@@ -503,6 +529,27 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const rowsForMap = (id: GameMapId) => editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows;
   const objectsForMap = (id: GameMapId) => editedObjectsByMapRef.current[id] ?? GAME_MAPS[id].objects;
   const npcsForMap = (id: GameMapId) => editedNpcsByMapRef.current[id] ?? npcsRef.current.filter(npc => npc.mapId === id).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking }));
+
+  const movingNpcFromEditorAsset = (id: GameMapId, npc: EditorNpcAsset): MovingNpc => ({
+    id: npc.id,
+    mapId: id,
+    x: npc.x,
+    y: npc.y,
+    homeX: npc.homeX ?? npc.x,
+    homeY: npc.homeY ?? npc.y,
+    name: npc.name,
+    lines: npc.lines,
+    variant: npc.variant,
+    style: npc.style,
+    walking: npc.walking,
+  });
+
+  const syncRuntimeNpcsForMap = (id: GameMapId, editorNpcs: EditorNpcAsset[]) => {
+    setNpcs(prev => [
+      ...prev.filter(npc => npc.mapId !== id),
+      ...editorNpcs.map(npc => movingNpcFromEditorAsset(id, npc)),
+    ]);
+  };
 
   const warpTo = (portal: Portal) => {
     const fromMapId = mapIdRef.current;
@@ -906,23 +953,28 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       setEditedNpcsByMap(prev => {
         const base = prev[id] ?? npcsForMap(id).map(npc => ({ ...npc, lines: [...npc.lines] }));
         const withoutHere = base.filter(npc => !(npc.x === x && npc.y === y));
-        if (npcEditActionRef.current === "erase") {
-          return { ...prev, [id]: withoutHere };
-        }
-        const npcNumber = withoutHere.length + 1;
-        const newNpc: EditorNpcAsset = {
-          id: `${id}-editor-npc-${Date.now()}-${npcNumber}`,
-          x,
-          y,
-          homeX: x,
-          homeY: y,
-          name: editorNpcNameRef.current.trim() || "Local NPC",
-          lines: editorNpcLinesRef.current.split("\n").map(line => line.trim()).filter(Boolean),
-          variant: editorNpcVariantRef.current,
-          style: isTownMap(id) ? `npc-town-${id} npc-role-young-man` : undefined,
-          walking: true,
-        };
-        return { ...prev, [id]: [...withoutHere, newNpc] };
+        const nextNpcs = (() => {
+          if (npcEditActionRef.current === "erase") return withoutHere;
+
+          const preset = NPC_VISUAL_PRESETS.find(item => item.id === editorNpcPresetIdRef.current) ?? NPC_VISUAL_PRESETS[0];
+          const npcNumber = withoutHere.length + 1;
+          const newNpc: EditorNpcAsset = {
+            id: `${id}-editor-npc-${Date.now()}-${npcNumber}`,
+            x,
+            y,
+            homeX: x,
+            homeY: y,
+            name: editorNpcNameRef.current.trim() || preset.label,
+            lines: editorNpcLinesRef.current.split("\n").map(line => line.trim()).filter(Boolean),
+            variant: preset.variant,
+            style: isTownMap(id) ? `npc-town-${id} npc-role-${preset.styleRole}` : `npc-role-${preset.styleRole}`,
+            walking: editorNpcWalkingRef.current,
+          };
+          return [...withoutHere, newNpc];
+        })();
+
+        syncRuntimeNpcsForMap(id, nextNpcs);
+        return { ...prev, [id]: nextNpcs };
       });
       return;
     }
@@ -966,6 +1018,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       delete next[id];
       return next;
     });
+    setNpcs(prev => [
+      ...prev.filter(npc => npc.mapId !== id),
+      ...initialNpcsRef.current.filter(npc => npc.mapId === id),
+    ]);
   };
 
   const exportEditedRows = () => {
@@ -1421,23 +1477,12 @@ export const ${constantName}: EditorMapAsset = {
                   </span>
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "minmax(180px, 240px) 120px 1fr", gap: 8, alignItems: "start" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "minmax(180px, 240px) 1fr", gap: 10, alignItems: "start", marginBottom: 10 }}>
                   <label style={{ display: "grid", gap: 4 }}>
                     <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Name</span>
                     <input
                       value={editorNpcName}
                       onChange={(e) => setEditorNpcName(e.target.value)}
-                      style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
-                    />
-                  </label>
-                  <label style={{ display: "grid", gap: 4 }}>
-                    <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Variant</span>
-                    <input
-                      type="number"
-                      min={0}
-                      max={9}
-                      value={editorNpcVariant}
-                      onChange={(e) => setEditorNpcVariant(Number(e.target.value))}
                       style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
                     />
                   </label>
@@ -1449,6 +1494,59 @@ export const ${constantName}: EditorMapAsset = {
                       style={{ minHeight: 76, padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018", fontFamily: "monospace" }}
                     />
                   </label>
+                </div>
+
+                <label style={{ display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 10, color: "#252018", ...RJ, fontSize: "1rem", fontWeight: 800 }}>
+                  <input
+                    type="checkbox"
+                    checked={editorNpcWalking}
+                    onChange={(e) => setEditorNpcWalking(e.target.checked)}
+                  />
+                  Walks around home tile
+                </label>
+
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(145px, 1fr))", gap: 8 }}>
+                  {NPC_VISUAL_PRESETS.map(preset => {
+                    const style = isTownMap(mapId) ? `npc-town-${mapId} npc-role-${preset.styleRole}` : `npc-role-${preset.styleRole}`;
+                    return (
+                      <button
+                        key={preset.id}
+                        type="button"
+                        onClick={() => {
+                          setEditorNpcPresetId(preset.id);
+                          setEditorNpcName(name => name === "Local NPC" ? preset.label : name);
+                          setNpcEditAction("place");
+                        }}
+                        style={{
+                          minHeight: 66,
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 8,
+                          padding: "7px 9px",
+                          border: editorNpcPresetId === preset.id && npcEditAction === "place" ? "4px solid #315f2a" : "2px solid #252018",
+                          background: "#fff8c8",
+                          color: "#252018",
+                          cursor: "pointer",
+                          textAlign: "left",
+                        }}
+                      >
+                        <span style={{
+                          width: 42,
+                          height: 42,
+                          position: "relative",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          background: "#d7c58d",
+                          border: "2px solid #252018",
+                          flexShrink: 0,
+                        }}>
+                          <span className={`npc-sprite npc-variant-${preset.variant} ${style}`} />
+                        </span>
+                        <span style={{ ...VT, fontSize: "1.05rem", lineHeight: 1 }}>{preset.label}</span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}
