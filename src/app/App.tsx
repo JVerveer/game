@@ -468,14 +468,23 @@ const buildingAtCoord = (buildings: EditorBuildingAsset[], x: number, y: number)
 const clearBuildingFootprintFromRows = (rows: string[][], building: EditorBuildingAsset) => {
   const next = rows.map(row => [...row]);
   const door = doorForBuildingAsset(building);
+
+  // When deleting an editor building, clear its whole footprint back to walkable grass.
+  // Do this even if those tiles are currently colored as H/P/A/U/etc, because older
+  // procedural buildings can leave their colored tiles behind in the base terrain.
   for (let y = building.y; y < building.y + building.h; y++) {
     for (let x = building.x; x < building.x + building.w; x++) {
-      if (next[y]?.[x] !== undefined && BUILDING_TILE_IDS.has(next[y][x])) next[y][x] = "G";
+      if (next[y]?.[x] !== undefined) next[y][x] = "G";
     }
   }
-  // Door can be adjacent/inside old building footprint; always clear it if present.
-  if (next[door.y]?.[door.x] !== undefined && BUILDING_TILE_IDS.has(next[door.y][door.x])) next[door.y][door.x] = "G";
-  if (next[door.y]?.[door.x] === "O") next[door.y][door.x] = "G";
+
+  // Clear the generated door and the tile immediately in front of it if it still
+  // contains an old door/building marker.
+  if (next[door.y]?.[door.x] !== undefined) next[door.y][door.x] = "G";
+  if (next[door.y + 1]?.[door.x] !== undefined && BUILDING_TILE_IDS.has(next[door.y + 1][door.x])) {
+    next[door.y + 1][door.x] = "G";
+  }
+
   return next;
 };
 
@@ -1285,15 +1294,18 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     if (next.some(npc => npc.id === npcId)) setEditorSelection({ kind: "npc", id: npcId });
   };
 
+  const clearBuildingFromEditedRows = (id: GameMapId, building: EditorBuildingAsset) => {
+    const baseRows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows.map(row => [...row]);
+    const nextRows = clearBuildingFootprintFromRows(baseRows, building);
+    editedRowsByMapRef.current = { ...editedRowsByMapRef.current, [id]: nextRows };
+    setEditedRowsByMap(prev => ({ ...prev, [id]: nextRows }));
+    return nextRows;
+  };
+
   const removeEditorBuilding = (building: EditorBuildingAsset) => {
     const id = mapIdRef.current;
 
-    setEditedRowsByMap(prev => {
-      const baseRows = prev[id] ?? GAME_MAPS[id].rows.map(row => [...row]);
-      const nextRows = clearBuildingFootprintFromRows(baseRows, building);
-      editedRowsByMapRef.current = { ...editedRowsByMapRef.current, [id]: nextRows };
-      return { ...prev, [id]: nextRows };
-    });
+    clearBuildingFromEditedRows(id, building);
 
     setEditedBuildingsByMap(prev => {
       const current = prev[id] ?? buildingsForMap(id);
