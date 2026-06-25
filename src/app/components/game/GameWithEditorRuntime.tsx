@@ -34,6 +34,7 @@ import { TerrainPalette } from "../editor/terrain/TerrainPalette";
 import { ObjectPalette } from "../editor/objects/ObjectPalette";
 import { BuildingPalette } from "../editor/buildings/BuildingPalette";
 import { NpcPalette } from "../editor/npcs/NpcPalette";
+import { ExportPanel } from "../editor/export/ExportPanel";
 
 
 type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
@@ -2025,32 +2026,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
               </div>
             )}
 
-            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <button type="button" onClick={copyEditedRows} style={{ padding: "8px 12px", cursor: "pointer" }}>
-                Copy Export
-              </button>
-              <button type="button" onClick={resetEditedTerrain} style={{ padding: "8px 12px", cursor: "pointer" }}>
-                Reset This Map
-              </button>
-              <button type="button" onClick={() => setTerrainEditorOpen(false)} style={{ padding: "8px 12px", cursor: "pointer" }}>
-                Close
-              </button>
-            </div>
-
-            <textarea
-              readOnly
-              value={exportEditedRows()}
-              style={{
-                width: "100%",
-                minHeight: 110,
-                marginTop: 12,
-                padding: 10,
-                border: "3px solid #252018",
-                background: "#fff8c8",
-                color: "#252018",
-                fontFamily: "monospace",
-                fontSize: 12,
-              }}
+            <ExportPanel
+              exportText={exportEditedRows()}
+              onCopy={copyEditedRows}
+              onReset={resetEditedTerrain}
+              onClose={() => setTerrainEditorOpen(false)}
             />
           </div>
 
