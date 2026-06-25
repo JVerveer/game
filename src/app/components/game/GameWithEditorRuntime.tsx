@@ -367,12 +367,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [flash, setFlash] = useState(false);
   const [battleEnemy, setBattleEnemy] = useState<Enemy | null>(null);
   const [location, setLocation] = useState("Satiria Town");
-  const [saveMsg, setSaveMsg] = useState<string | null>(null);
   const [isWalking, setIsWalking] = useState(false);
   const [npcs, setNpcs] = useState<MovingNpc[]>(INITIAL_NPCS);
   const [trainOpen, setTrainOpen] = useState(false);
   const [trainIndex, setTrainIndex] = useState(0);
-  const [terrainEditorOpen, setTerrainEditorOpen] = useState(false);
   const [isEditorDragging, setIsEditorDragging] = useState(false);
   const [editedRowsByMap, setEditedRowsByMap] = useState<Partial<Record<GameMapId, string[][]>>>({});
   const [editedObjectsByMap, setEditedObjectsByMap] = useState<Partial<Record<GameMapId, Record<string, string>>>>({});
@@ -422,6 +420,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setDraggedObjectCoord,
     resizeBuildingId,
     setResizeBuildingId,
+    terrainEditorOpen,
+    setTerrainEditorOpen,
+    saveMsg,
+    setSaveMsg,
   } = useEditorState();
 
   const viewRef = useRef<HTMLDivElement>(null);
