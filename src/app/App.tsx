@@ -347,6 +347,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [trainIndex, setTrainIndex] = useState(0);
   const [terrainEditorOpen, setTerrainEditorOpen] = useState(false);
   const [editorTile, setEditorTile] = useState("G");
+  const [isEditorDragging, setIsEditorDragging] = useState(false);
   const [editedRowsByMap, setEditedRowsByMap] = useState<Partial<Record<GameMapId, string[][]>>>({});
   const viewRef = useRef<HTMLDivElement>(null);
   const [viewSize, setViewSize] = useState({ w: 900, h: 600 });
@@ -366,6 +367,9 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const trainOpenRef = useRef(trainOpen);
   const trainIndexRef = useRef(trainIndex);
   const terrainEditorOpenRef = useRef(terrainEditorOpen);
+  const editedRowsByMapRef = useRef(editedRowsByMap);
+  const editorTileRef = useRef(editorTile);
+  const isEditorDraggingRef = useRef(false);
   const pendingPortalRef = useRef<Portal | null>(null);
   const returnPortalRef = useRef<Portal>({ mapId: "satiria", x: 31, y: 17, facing: "down" });
   const lastMove = useRef(0);
@@ -379,8 +383,12 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   trainOpenRef.current = trainOpen;
   trainIndexRef.current = trainIndex;
   terrainEditorOpenRef.current = terrainEditorOpen;
+  editedRowsByMapRef.current = editedRowsByMap;
+  editorTileRef.current = editorTile;
 
   const isIndoor = (id: GameMapId) => id === "shop" || id === "house" || id === "healing";
+
+  const rowsForMap = (id: GameMapId) => editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows;
 
   const warpTo = (portal: Portal) => {
     const fromMapId = mapIdRef.current;
@@ -394,17 +402,21 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     }
 
     const nextMap = GAME_MAPS[destination.mapId];
-    const nextTile = nextMap.rows[destination.y]?.[destination.x] ?? "G";
+    const nextRows = rowsForMap(destination.mapId);
+    const nextTile = nextRows[destination.y]?.[destination.x] ?? "G";
     setMapId(destination.mapId);
     setPos({ x: destination.x, y: destination.y });
     setFacing(destination.facing ?? "down");
     setLocation(LOCATION_FOR(destination.mapId, destination.x, destination.y, nextTile));
   };
 
-  const tile = (x: number, y: number) =>
-    y >= 0 && y < GAME_MAPS[mapIdRef.current].height && x >= 0 && x < GAME_MAPS[mapIdRef.current].width
-      ? (GAME_MAPS[mapIdRef.current].rows[y][x] ?? "T")
+  const tile = (x: number, y: number) => {
+    const id = mapIdRef.current;
+    const rows = rowsForMap(id);
+    return y >= 0 && y < GAME_MAPS[id].height && x >= 0 && x < GAME_MAPS[id].width
+      ? (rows[y]?.[x] ?? "T")
       : "T";
+  };
 
   const townMapId = (id: GameMapId): TownMapId | null =>
     MAIN_TOWN_IDS.includes(id as TownMapId) ? id as TownMapId : null;
@@ -455,7 +467,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           if (Math.max(Math.abs(dx), Math.abs(dy)) !== radius) continue;
           const x = preferred.x + dx;
           const y = preferred.y + dy;
-          const tileName = map.rows[y]?.[x];
+          const rows = rowsForMap(townId);
+          const tileName = rows[y]?.[x];
           if (!tileName || !WALK.has(tileName) || tileName === "O") continue;
           if (npcAt(townId, x, y)) continue;
           return { x, y };
@@ -636,7 +649,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         const nx = npc.x + dx;
         const ny = npc.y + dy;
         const map = GAME_MAPS[npc.mapId];
-        const t = map.rows[ny]?.[nx] ?? "T";
+        const rows = rowsForMap(npc.mapId);
+        const t = rows[ny]?.[nx] ?? "T";
         const nearHome = Math.abs(nx - npc.homeX) + Math.abs(ny - npc.homeY) <= 4;
         const blockedByPlayer = mapIdRef.current === npc.mapId && posRef.current.x === nx && posRef.current.y === ny;
         const blockedByNpc = prev.some(other => other.id !== npc.id && other.mapId === npc.mapId && other.x === nx && other.y === ny);
@@ -657,6 +671,20 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     return () => window.removeEventListener("resize", upd);
   }, []);
 
+
+  useEffect(() => {
+    const stopPainting = () => {
+      isEditorDraggingRef.current = false;
+      setIsEditorDragging(false);
+    };
+    window.addEventListener("pointerup", stopPainting);
+    window.addEventListener("pointercancel", stopPainting);
+    return () => {
+      window.removeEventListener("pointerup", stopPainting);
+      window.removeEventListener("pointercancel", stopPainting);
+    };
+  }, []);
+
   // Camera: centre on player, clamped to map bounds
   const mapPxW = currentMap.width * TS;
   const mapPxH = currentMap.height * TS;
@@ -672,16 +700,16 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setTerrainEditorOpen(true);
     setEditedRowsByMap(prev => ({
       ...prev,
-      [mapIdRef.current]: prev[mapIdRef.current] ?? GAME_MAPS[mapIdRef.current].rows.map(row => [...row]),
+      [mapIdRef.current]: prev[mapIdRef.current] ?? rowsForMap(mapIdRef.current).map(row => [...row]),
     }));
   };
 
   const paintEditorTile = (x: number, y: number) => {
     const id = mapIdRef.current;
     setEditedRowsByMap(prev => {
-      const base = prev[id] ?? GAME_MAPS[id].rows.map(row => [...row]);
+      const base = prev[id] ?? rowsForMap(id).map(row => [...row]);
       const next = base.map(row => [...row]);
-      if (next[y]?.[x] !== undefined) next[y][x] = editorTile;
+      if (next[y]?.[x] !== undefined) next[y][x] = editorTileRef.current;
       return { ...prev, [id]: next };
     });
   };
@@ -697,7 +725,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
   const exportEditedRows = () => {
     const id = mapIdRef.current;
-    const rows = editedRowsByMap[id] ?? GAME_MAPS[id].rows;
+    const rows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows;
     const constantName = `${String(id).toUpperCase()}_ROWS`;
     return `export const ${constantName}: string[] = ${JSON.stringify(rows.map(row => row.join("")), null, 2)};`;
   };
@@ -729,7 +757,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         transition: "transform 0.1s linear",
         width: mapPxW, height: mapPxH,
       }} className={`map-layer map-${mapId}`}>
-        {isTownMap(mapId) && (
+        {isTownMap(mapId) && !editedRows && (
             <PixelMapScene
               rows={displayRows}
               buildings={pixelBuildingsFor(mapId, displayRows)}
@@ -737,7 +765,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
             />
         )}
 
-        {isTownMap(mapId) && Object.entries(currentMap.objects)
+        {isTownMap(mapId) && !editedRows && Object.entries(currentMap.objects)
           .filter(([, obj]) => obj !== "NPC")
           .map(([coord, obj]) => {
             const [x, y] = coord.split(",").map(Number);
@@ -763,7 +791,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           })}
 
         {/* Tiles rendered as flex rows */}
-        <div className={isTownMap(mapId) ? "pixel-game-grid" : ""} style={{ display: "flex", flexDirection: "column" }}>
+        <div className={isTownMap(mapId) && !editedRows ? "pixel-game-grid" : ""} style={{ display: "flex", flexDirection: "column" }}>
           {displayRows.map((row, ry) => (
             <div key={ry} style={{ display: "flex" }}>
               {row.map((t, cx) => {
@@ -781,7 +809,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
                       fontSize: TS * 0.62, lineHeight: 1, userSelect: "none",
                     }}
                   >
-                    {!isTownMap(mapId) && obj && obj !== "NPC" && <div className={objectClassFor(obj)} />}
+                    {(!isTownMap(mapId) || editedRows) && obj && obj !== "NPC" && <div className={objectClassFor(obj)} />}
                   </div>
                 );
               })}
@@ -897,11 +925,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
             </div>
 
             <div style={{ ...VT, fontSize: "1.1rem", color: "#252018", marginBottom: 10 }}>
-              Select a tile, then paint the full terrain map below. Press Q or ESC to close.
+              Select a tile, then click or drag to paint. While this editor has changes, the live map switches to editable tile rendering so buildings and terrain visibly update.
             </div>
 
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
-              {["G", "R", "W", "T", "E", "Y", "S", "X", "B", "H", "P", "U", "A", "O", "D", "C", "M", "J"].map(tile => (
+              {["G", "R", "W", "T", "E", "Y", "S", "X", "B", "H", "P", "U", "A", "I", "O", "D", "C", "M", "J", "F", "L", "Q", "V", "N"].map(tile => (
                 <button
                   key={tile}
                   type="button"
@@ -959,7 +987,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
               width: "fit-content",
               padding: 4,
               border: "4px solid #fff8c8",
+              touchAction: "none",
+              userSelect: "none",
             }}
+            onPointerUp={() => { isEditorDraggingRef.current = false; setIsEditorDragging(false); }}
+            onPointerLeave={() => { isEditorDraggingRef.current = false; setIsEditorDragging(false); }}
           >
             {displayRows.map((row, y) =>
               row.map((tile, x) => (
@@ -967,7 +999,15 @@ function GameScreen({ onExit }: { onExit: () => void }) {
                   key={`${x},${y}`}
                   type="button"
                   title={`${x},${y}: ${tile}`}
-                  onClick={() => paintEditorTile(x, y)}
+                  onPointerDown={(e) => {
+                    e.preventDefault();
+                    isEditorDraggingRef.current = true;
+                    setIsEditorDragging(true);
+                    paintEditorTile(x, y);
+                  }}
+                  onPointerEnter={() => {
+                    if (isEditorDraggingRef.current) paintEditorTile(x, y);
+                  }}
                   style={{
                     width: 18,
                     height: 18,
