@@ -26,7 +26,8 @@ import { citySceneObjectsFor } from "../data/cityMaps/scenes";
 import { PixelMapScene } from "./pixelTiles";
 import { objectClassFor, tileShapeClassFor } from "./mapRenderHelpers";
 import { ACTIVE_MAP_OBJECT_DEFS, objectLabelForId } from "../data/objectRegistry";
-import type { EditorNpcAsset } from "../data/cityMaps/mapAsset";
+import type { EditorNpcAsset, EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind } from "../data/cityMaps/mapAsset";
+import { applyBuildingsToRows, buildingCrestForKind, buildingTileForKind, doorForBuildingAsset } from "../data/cityMaps/mapAsset";
 
 // ─── Font helpers ────────────────────────────────────────────────────────────
 const PX = { fontFamily: "'Press Start 2P', monospace" } as const;
@@ -331,13 +332,6 @@ const TILE_TYPES = [
   { id: "Y", name: "Tulips / Flowers", description: "Flower beds and tulip fields" },
   { id: "S", name: "Sand / Beach", description: "Beach or desert terrain" },
   { id: "X", name: "Encounter Grass", description: "Wild battle zone" },
-  { id: "B", name: "Shop Building", description: "Building body for shops" },
-  { id: "H", name: "Healing Center", description: "Building body for healing center" },
-  { id: "P", name: "Train Station", description: "Train station building" },
-  { id: "U", name: "House / Urban Building", description: "Homes and canal houses" },
-  { id: "A", name: "Special Building", description: "Museum, forum, landmark building" },
-  { id: "I", name: "Institution", description: "Government, university, official building" },
-  { id: "O", name: "Door / Portal", description: "Walkable entrance trigger" },
   { id: "D", name: "Dungeon Floor", description: "Dark indoor or dungeon tile" },
   { id: "C", name: "Cave", description: "Cave entrance or rocky area" },
   { id: "M", name: "Mountain", description: "Rocky mountain terrain" },
@@ -368,8 +362,21 @@ const OBJECT_EDITOR_CATEGORIES = [
   "Custom",
 ] as const;
 
-type EditorMode = "select" | "terrain" | "objects" | "npcs";
+type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
 type ObjectEditAction = "place" | "erase";
+
+const BUILDING_TILE_IDS = new Set(["A", "B", "H", "P", "U", "I", "O"]);
+
+const BUILDING_TYPES: Array<{ kind: EditorBuildingKind; label: string; defaultColor: EditorBuildingColor; defaultW: number; defaultH: number; description: string }> = [
+  { kind: "house", label: "House", defaultColor: "purple", defaultW: 5, defaultH: 4, description: "Normal enterable house" },
+  { kind: "shop", label: "Shop", defaultColor: "green", defaultW: 5, defaultH: 4, description: "Auto-connects to shop interior" },
+  { kind: "healing", label: "Healing Center", defaultColor: "blue", defaultW: 5, defaultH: 4, description: "Auto-connects to healing center" },
+  { kind: "station", label: "Train Station", defaultColor: "red", defaultW: 7, defaultH: 4, description: "Auto-opens train menu" },
+  { kind: "hall", label: "Hall / Institution", defaultColor: "purple", defaultW: 6, defaultH: 5, description: "Large civic building" },
+];
+
+const BUILDING_COLORS: EditorBuildingColor[] = ["red", "blue", "purple", "green"];
+
 
 type EditorSelection =
   | { kind: "npc"; id: string }
@@ -501,12 +508,17 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [isEditorDragging, setIsEditorDragging] = useState(false);
   const [editedRowsByMap, setEditedRowsByMap] = useState<Partial<Record<GameMapId, string[][]>>>({});
   const [editedObjectsByMap, setEditedObjectsByMap] = useState<Partial<Record<GameMapId, Record<string, string>>>>({});
+  const [editedBuildingsByMap, setEditedBuildingsByMap] = useState<Partial<Record<GameMapId, EditorBuildingAsset[]>>>({});
   const [editedNpcsByMap, setEditedNpcsByMap] = useState<Partial<Record<GameMapId, EditorNpcAsset[]>>>({});
   const [editorMode, setEditorMode] = useState<EditorMode>("select");
   const [editorSelection, setEditorSelection] = useState<EditorSelection>(null);
   const [draggedNpcId, setDraggedNpcId] = useState<string | null>(null);
   const [objectEditAction, setObjectEditAction] = useState<ObjectEditAction>("place");
   const [editorObjectId, setEditorObjectId] = useState("SIGN");
+  const [editorBuildingKind, setEditorBuildingKind] = useState<EditorBuildingKind>("house");
+  const [editorBuildingColor, setEditorBuildingColor] = useState<EditorBuildingColor>("purple");
+  const [editorBuildingW, setEditorBuildingW] = useState(5);
+  const [editorBuildingH, setEditorBuildingH] = useState(4);
   const [npcEditAction, setNpcEditAction] = useState<ObjectEditAction>("place");
   const [editorNpcName, setEditorNpcName] = useState("Local NPC");
   const [editorNpcPresetId, setEditorNpcPresetId] = useState("generic-young-man-0");
@@ -521,6 +533,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const displayRows = editedRows ?? currentMap.rows;
   const editedObjects = editedObjectsByMap[mapId];
   const displayObjects = editedObjects ?? currentMap.objects;
+  const editedBuildings = editedBuildingsByMap[mapId] ?? [];
+  const displayRowsWithBuildings = applyBuildingsToRows(displayRows, editedBuildings);
   const editedNpcs = editedNpcsByMap[mapId];
   const mapAssetNpcs = npcs.filter(npc => npc.mapId === mapId).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking }));
   const displayEditorNpcs = mapAssetNpcs;
@@ -540,12 +554,17 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const terrainEditorOpenRef = useRef(terrainEditorOpen);
   const editedRowsByMapRef = useRef(editedRowsByMap);
   const editedObjectsByMapRef = useRef(editedObjectsByMap);
+  const editedBuildingsByMapRef = useRef(editedBuildingsByMap);
   const editedNpcsByMapRef = useRef(editedNpcsByMap);
   const editorModeRef = useRef<EditorMode>(editorMode);
   const editorSelectionRef = useRef<EditorSelection>(editorSelection);
   const draggedNpcIdRef = useRef<string | null>(draggedNpcId);
   const objectEditActionRef = useRef<ObjectEditAction>(objectEditAction);
   const editorObjectIdRef = useRef(editorObjectId);
+  const editorBuildingKindRef = useRef<EditorBuildingKind>(editorBuildingKind);
+  const editorBuildingColorRef = useRef<EditorBuildingColor>(editorBuildingColor);
+  const editorBuildingWRef = useRef(editorBuildingW);
+  const editorBuildingHRef = useRef(editorBuildingH);
   const npcEditActionRef = useRef<ObjectEditAction>(npcEditAction);
   const editorNpcNameRef = useRef(editorNpcName);
   const editorNpcPresetIdRef = useRef(editorNpcPresetId);
@@ -568,12 +587,17 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   terrainEditorOpenRef.current = terrainEditorOpen;
   editedRowsByMapRef.current = editedRowsByMap;
   editedObjectsByMapRef.current = editedObjectsByMap;
+  editedBuildingsByMapRef.current = editedBuildingsByMap;
   editedNpcsByMapRef.current = editedNpcsByMap;
   editorModeRef.current = editorMode;
   editorSelectionRef.current = editorSelection;
   draggedNpcIdRef.current = draggedNpcId;
   objectEditActionRef.current = objectEditAction;
   editorObjectIdRef.current = editorObjectId;
+  editorBuildingKindRef.current = editorBuildingKind;
+  editorBuildingColorRef.current = editorBuildingColor;
+  editorBuildingWRef.current = editorBuildingW;
+  editorBuildingHRef.current = editorBuildingH;
   npcEditActionRef.current = npcEditAction;
   editorNpcNameRef.current = editorNpcName;
   editorNpcPresetIdRef.current = editorNpcPresetId;
@@ -583,8 +607,9 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
   const isIndoor = (id: GameMapId) => id === "shop" || id === "house" || id === "healing";
 
-  const rowsForMap = (id: GameMapId) => editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows;
+  const rowsForMap = (id: GameMapId) => applyBuildingsToRows(editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows, editedBuildingsByMapRef.current[id] ?? []);
   const objectsForMap = (id: GameMapId) => editedObjectsByMapRef.current[id] ?? GAME_MAPS[id].objects;
+  const buildingsForMap = (id: GameMapId) => editedBuildingsByMapRef.current[id] ?? [];
   const npcsForMap = (id: GameMapId) => editedNpcsByMapRef.current[id] ?? npcsRef.current.filter(npc => npc.mapId === id).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking }));
 
   const movingNpcFromEditorAsset = (id: GameMapId, npc: EditorNpcAsset): MovingNpc => ({
@@ -1032,6 +1057,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       ...prev,
       [mapIdRef.current]: prev[mapIdRef.current] ?? { ...objectsForMap(mapIdRef.current) },
     }));
+    setEditedBuildingsByMap(prev => ({
+      ...prev,
+      [mapIdRef.current]: prev[mapIdRef.current] ?? buildingsForMap(mapIdRef.current).map(building => ({ ...building })),
+    }));
     setEditedNpcsByMap(prev => ({
       ...prev,
       [mapIdRef.current]: prev[mapIdRef.current] ?? npcsForMap(mapIdRef.current).map(npc => ({ ...npc, lines: [...npc.lines] })),
@@ -1046,6 +1075,38 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       npc.id === npcId ? { ...npc, x, y, homeX: x, homeY: y } : npc
     ));
     if (next.some(npc => npc.id === npcId)) setEditorSelection({ kind: "npc", id: npcId });
+  };
+
+  const placeEditorBuilding = (x: number, y: number) => {
+    const id = mapIdRef.current;
+    const kind = editorBuildingKindRef.current;
+    const building: EditorBuildingAsset = {
+      id: `${id}-building-${Date.now()}`,
+      x,
+      y,
+      w: Math.max(3, editorBuildingWRef.current),
+      h: Math.max(3, editorBuildingHRef.current),
+      kind,
+      color: editorBuildingColorRef.current,
+      crest: buildingCrestForKind(kind),
+    };
+
+    setEditedBuildingsByMap(prev => {
+      const current = prev[id] ?? buildingsForMap(id).map(item => ({ ...item }));
+      const door = doorForBuildingAsset(building);
+      const withoutOverlap = current.filter(item => {
+        const itemDoor = doorForBuildingAsset(item);
+        const overlaps =
+          building.x < item.x + item.w &&
+          building.x + building.w > item.x &&
+          building.y < item.y + item.h &&
+          building.y + building.h > item.y;
+        return !overlaps && !(itemDoor.x === door.x && itemDoor.y === door.y);
+      });
+      const next = [...withoutOverlap, building];
+      editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: next };
+      return { ...prev, [id]: next };
+    });
   };
 
   const paintEditorTile = (x: number, y: number) => {
@@ -1095,6 +1156,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       return;
     }
 
+    if (editorModeRef.current === "buildings") {
+      placeEditorBuilding(x, y);
+      return;
+    }
+
     if (editorModeRef.current === "objects") {
       setEditedObjectsByMap(prev => {
         const base = prev[id] ?? { ...objectsForMap(id) };
@@ -1129,6 +1195,12 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       delete next[id];
       return next;
     });
+    setEditedBuildingsByMap(prev => {
+      const next = { ...prev };
+      delete next[id];
+      editedBuildingsByMapRef.current = next;
+      return next;
+    });
     setEditedNpcsByMap(prev => {
       const next = { ...prev };
       delete next[id];
@@ -1143,7 +1215,9 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
   const exportEditedRows = () => {
     const id = mapIdRef.current;
-    const rows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows;
+    const rawRows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows;
+    const rows = rawRows.map(row => row.map(tile => BUILDING_TILE_IDS.has(tile) ? "G" : tile));
+    const buildings = editedBuildingsByMapRef.current[id] ?? buildingsForMap(id);
     const objects = editedObjectsByMapRef.current[id] ?? GAME_MAPS[id].objects;
     const npcs = editedNpcsByMapRef.current[id] ?? npcsForMap(id);
     const map = GAME_MAPS[id];
@@ -1159,6 +1233,7 @@ export const ${constantName}: EditorMapAsset = {
   rows: ${JSON.stringify(rows.map(row => row.join("")), null, 2)},
   objects: ${JSON.stringify(objects, null, 2)},
   interactions: {},
+  buildings: ${JSON.stringify(buildings, null, 2)},
   npcs: ${JSON.stringify(npcs, null, 2)},
   spawn: ${JSON.stringify(map.spawn, null, 2)},
 };`;
@@ -1193,8 +1268,8 @@ export const ${constantName}: EditorMapAsset = {
       }} className={`map-layer map-${mapId}`}>
         {isTownMap(mapId) && (
             <PixelMapScene
-              rows={displayRows}
-              buildings={pixelBuildingsFor(mapId, displayRows)}
+              rows={displayRowsWithBuildings}
+              buildings={pixelBuildingsFor(mapId, displayRowsWithBuildings)}
               objects={isTownMap(mapId) ? citySceneObjectsFor(mapId) : []}
             />
         )}
@@ -1226,11 +1301,11 @@ export const ${constantName}: EditorMapAsset = {
 
         {/* Tiles rendered as flex rows */}
         <div className={isTownMap(mapId) ? "pixel-game-grid" : ""} style={{ display: "flex", flexDirection: "column" }}>
-          {displayRows.map((row, ry) => (
+          {displayRowsWithBuildings.map((row, ry) => (
             <div key={ry} style={{ display: "flex" }}>
               {row.map((t, cx) => {
                 const obj = displayObjects[`${cx},${ry}`];
-                const tileShapeClass = tileShapeClassFor(displayRows, cx, ry, t);
+                const tileShapeClass = tileShapeClassFor(displayRowsWithBuildings, cx, ry, t);
                 return (
                   <div
                     key={cx}
@@ -1417,6 +1492,20 @@ export const ${constantName}: EditorMapAsset = {
               </button>
               <button
                 type="button"
+                onClick={() => setEditorMode("buildings")}
+                style={{
+                  padding: "8px 12px",
+                  cursor: "pointer",
+                  border: editorMode === "buildings" ? "4px solid #ca4b36" : "2px solid #252018",
+                  background: editorMode === "buildings" ? "#fff3a8" : "#fff8c8",
+                  color: "#252018",
+                  fontWeight: 900,
+                }}
+              >
+                Buildings
+              </button>
+              <button
+                type="button"
                 onClick={() => setEditorMode("objects")}
                 style={{
                   padding: "8px 12px",
@@ -1485,6 +1574,81 @@ export const ${constantName}: EditorMapAsset = {
               ))}
             </div>
 
+            )}
+
+            {editorMode === "buildings" && (
+              <div style={{ marginBottom: 12 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))", gap: 8, marginBottom: 12 }}>
+                  {BUILDING_TYPES.map(building => (
+                    <button
+                      key={building.kind}
+                      type="button"
+                      onClick={() => {
+                        setEditorBuildingKind(building.kind);
+                        setEditorBuildingColor(building.defaultColor);
+                        setEditorBuildingW(building.defaultW);
+                        setEditorBuildingH(building.defaultH);
+                      }}
+                      title={building.description}
+                      style={{
+                        minHeight: 64,
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 4,
+                        padding: "8px 10px",
+                        border: editorBuildingKind === building.kind ? "4px solid #315f2a" : "2px solid #252018",
+                        background: editorBuildingKind === building.kind ? "#d8f0b0" : "#fff8c8",
+                        color: "#252018",
+                        cursor: "pointer",
+                        textAlign: "left",
+                      }}
+                    >
+                      <span style={{ ...VT, fontSize: "1.2rem", lineHeight: 1 }}>{building.label}</span>
+                      <span style={{ ...RJ, fontSize: "0.68rem", fontWeight: 700, opacity: 0.7 }}>
+                        {building.defaultW}×{building.defaultH} · {building.description}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 10, alignItems: "end" }}>
+                  <label style={{ display: "grid", gap: 4 }}>
+                    <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Roof color</span>
+                    <select
+                      value={editorBuildingColor}
+                      onChange={(e) => setEditorBuildingColor(e.target.value as EditorBuildingColor)}
+                      style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
+                    >
+                      {BUILDING_COLORS.map(color => <option key={color} value={color}>{color}</option>)}
+                    </select>
+                  </label>
+                  <label style={{ display: "grid", gap: 4 }}>
+                    <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Width</span>
+                    <input
+                      type="number"
+                      min={3}
+                      max={14}
+                      value={editorBuildingW}
+                      onChange={(e) => setEditorBuildingW(Number(e.target.value))}
+                      style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
+                    />
+                  </label>
+                  <label style={{ display: "grid", gap: 4 }}>
+                    <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Height</span>
+                    <input
+                      type="number"
+                      min={3}
+                      max={10}
+                      value={editorBuildingH}
+                      onChange={(e) => setEditorBuildingH(Number(e.target.value))}
+                      style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
+                    />
+                  </label>
+                  <div style={{ ...VT, fontSize: "1.05rem", color: "#252018" }}>
+                    Click a top-left tile to place. Door is created automatically.
+                  </div>
+                </div>
+              </div>
             )}
 
             {editorMode === "objects" && (

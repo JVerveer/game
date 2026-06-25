@@ -1,4 +1,4 @@
-import { mapAssetRows } from "./mapAsset";
+import { mapAssetRowsWithBuildings } from "./mapAsset";
 import { WOKESHIRE_MAP_ASSET } from "./wokeshireMapAsset";
 
-export const buildWokeshireMap = () => mapAssetRows(WOKESHIRE_MAP_ASSET);
+export const buildWokeshireMap = () => mapAssetRowsWithBuildings(WOKESHIRE_MAP_ASSET);

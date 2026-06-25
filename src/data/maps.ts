@@ -375,7 +375,7 @@ const TOWN_ROW_BUILDERS: Record<TownMapId, () => string[][]> = {
 
 const EDITOR_NATIVE_TOWN_ASSETS = {
   wokeshire: WOKESHIRE_MAP_ASSET,
-} as const satisfies Partial<Record<TownMapId, { objects?: Record<string, string>; interactions?: Record<string, Interaction>; npcs?: unknown[]; spawn?: { x: number; y: number } }>>;
+} as const satisfies Partial<Record<TownMapId, { objects?: Record<string, string>; interactions?: Record<string, Interaction>; buildings?: unknown[]; npcs?: unknown[]; spawn?: { x: number; y: number } }>>;
 
 const editorNativeAssetFor = (townId: TownMapId) => EDITOR_NATIVE_TOWN_ASSETS[townId as keyof typeof EDITOR_NATIVE_TOWN_ASSETS];
 
