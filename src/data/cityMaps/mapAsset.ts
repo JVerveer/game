@@ -1,4 +1,17 @@
-import type { GameMapId, Interaction, TownMapId } from "../maps";
+import type { Interaction, TownMapId } from "../maps";
+
+export type EditorNpcAsset = {
+  id: string;
+  x: number;
+  y: number;
+  homeX?: number;
+  homeY?: number;
+  name: string;
+  lines: string[];
+  variant?: number;
+  style?: string;
+  walking?: boolean;
+};
 
 export type EditorMapAsset = {
   id: TownMapId;
@@ -6,6 +19,7 @@ export type EditorMapAsset = {
   rows: string[];
   objects: Record<string, string>;
   interactions?: Record<string, Interaction>;
+  npcs?: EditorNpcAsset[];
   spawn?: { x: number; y: number };
 };
 

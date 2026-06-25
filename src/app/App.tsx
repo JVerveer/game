@@ -26,6 +26,7 @@ import { citySceneObjectsFor } from "../data/cityMaps/scenes";
 import { PixelMapScene } from "./pixelTiles";
 import { objectClassFor, tileShapeClassFor } from "./mapRenderHelpers";
 import { ACTIVE_MAP_OBJECT_DEFS, objectLabelForId } from "../data/objectRegistry";
+import type { EditorNpcAsset } from "../data/cityMaps/mapAsset";
 
 // ─── Font helpers ────────────────────────────────────────────────────────────
 const PX = { fontFamily: "'Press Start 2P', monospace" } as const;
@@ -367,7 +368,7 @@ const OBJECT_EDITOR_CATEGORIES = [
   "Custom",
 ] as const;
 
-type EditorMode = "terrain" | "objects";
+type EditorMode = "terrain" | "objects" | "npcs";
 type ObjectEditAction = "place" | "erase";
 
 
@@ -429,9 +430,14 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [isEditorDragging, setIsEditorDragging] = useState(false);
   const [editedRowsByMap, setEditedRowsByMap] = useState<Partial<Record<GameMapId, string[][]>>>({});
   const [editedObjectsByMap, setEditedObjectsByMap] = useState<Partial<Record<GameMapId, Record<string, string>>>>({});
+  const [editedNpcsByMap, setEditedNpcsByMap] = useState<Partial<Record<GameMapId, EditorNpcAsset[]>>>({});
   const [editorMode, setEditorMode] = useState<EditorMode>("terrain");
   const [objectEditAction, setObjectEditAction] = useState<ObjectEditAction>("place");
   const [editorObjectId, setEditorObjectId] = useState("SIGN");
+  const [npcEditAction, setNpcEditAction] = useState<ObjectEditAction>("place");
+  const [editorNpcName, setEditorNpcName] = useState("Local NPC");
+  const [editorNpcVariant, setEditorNpcVariant] = useState(1);
+  const [editorNpcLines, setEditorNpcLines] = useState("Hello there!\nI was placed in the editor.");
   const viewRef = useRef<HTMLDivElement>(null);
   const [viewSize, setViewSize] = useState({ w: 900, h: 600 });
   const currentMap = GAME_MAPS[mapId];
@@ -439,6 +445,9 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const displayRows = editedRows ?? currentMap.rows;
   const editedObjects = editedObjectsByMap[mapId];
   const displayObjects = editedObjects ?? currentMap.objects;
+  const editedNpcs = editedNpcsByMap[mapId];
+  const mapAssetNpcs = npcs.filter(npc => npc.mapId === mapId).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking }));
+  const displayEditorNpcs = editedNpcs ?? mapAssetNpcs;
   const currentTown = isTownMap(mapId) ? TOWN_THEMES.find(town => town.id === mapId) : null;
 
   // Mutable refs so event handler closure stays fresh
@@ -454,9 +463,14 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const terrainEditorOpenRef = useRef(terrainEditorOpen);
   const editedRowsByMapRef = useRef(editedRowsByMap);
   const editedObjectsByMapRef = useRef(editedObjectsByMap);
+  const editedNpcsByMapRef = useRef(editedNpcsByMap);
   const editorModeRef = useRef<EditorMode>(editorMode);
   const objectEditActionRef = useRef<ObjectEditAction>(objectEditAction);
   const editorObjectIdRef = useRef(editorObjectId);
+  const npcEditActionRef = useRef<ObjectEditAction>(npcEditAction);
+  const editorNpcNameRef = useRef(editorNpcName);
+  const editorNpcVariantRef = useRef(editorNpcVariant);
+  const editorNpcLinesRef = useRef(editorNpcLines);
   const editorTileRef = useRef(editorTile);
   const isEditorDraggingRef = useRef(false);
   const pendingPortalRef = useRef<Portal | null>(null);
@@ -474,15 +488,21 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   terrainEditorOpenRef.current = terrainEditorOpen;
   editedRowsByMapRef.current = editedRowsByMap;
   editedObjectsByMapRef.current = editedObjectsByMap;
+  editedNpcsByMapRef.current = editedNpcsByMap;
   editorModeRef.current = editorMode;
   objectEditActionRef.current = objectEditAction;
   editorObjectIdRef.current = editorObjectId;
+  npcEditActionRef.current = npcEditAction;
+  editorNpcNameRef.current = editorNpcName;
+  editorNpcVariantRef.current = editorNpcVariant;
+  editorNpcLinesRef.current = editorNpcLines;
   editorTileRef.current = editorTile;
 
   const isIndoor = (id: GameMapId) => id === "shop" || id === "house" || id === "healing";
 
   const rowsForMap = (id: GameMapId) => editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows;
   const objectsForMap = (id: GameMapId) => editedObjectsByMapRef.current[id] ?? GAME_MAPS[id].objects;
+  const npcsForMap = (id: GameMapId) => editedNpcsByMapRef.current[id] ?? npcsRef.current.filter(npc => npc.mapId === id).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking }));
 
   const warpTo = (portal: Portal) => {
     const fromMapId = mapIdRef.current;
@@ -872,11 +892,40 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       ...prev,
       [mapIdRef.current]: prev[mapIdRef.current] ?? { ...objectsForMap(mapIdRef.current) },
     }));
+    setEditedNpcsByMap(prev => ({
+      ...prev,
+      [mapIdRef.current]: prev[mapIdRef.current] ?? npcsForMap(mapIdRef.current).map(npc => ({ ...npc, lines: [...npc.lines] })),
+    }));
   };
 
   const paintEditorTile = (x: number, y: number) => {
     const id = mapIdRef.current;
     const coord = `${x},${y}`;
+
+    if (editorModeRef.current === "npcs") {
+      setEditedNpcsByMap(prev => {
+        const base = prev[id] ?? npcsForMap(id).map(npc => ({ ...npc, lines: [...npc.lines] }));
+        const withoutHere = base.filter(npc => !(npc.x === x && npc.y === y));
+        if (npcEditActionRef.current === "erase") {
+          return { ...prev, [id]: withoutHere };
+        }
+        const npcNumber = withoutHere.length + 1;
+        const newNpc: EditorNpcAsset = {
+          id: `${id}-editor-npc-${Date.now()}-${npcNumber}`,
+          x,
+          y,
+          homeX: x,
+          homeY: y,
+          name: editorNpcNameRef.current.trim() || "Local NPC",
+          lines: editorNpcLinesRef.current.split("\n").map(line => line.trim()).filter(Boolean),
+          variant: editorNpcVariantRef.current,
+          style: isTownMap(id) ? `npc-town-${id} npc-role-young-man` : undefined,
+          walking: true,
+        };
+        return { ...prev, [id]: [...withoutHere, newNpc] };
+      });
+      return;
+    }
 
     if (editorModeRef.current === "objects") {
       setEditedObjectsByMap(prev => {
@@ -912,12 +961,18 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       delete next[id];
       return next;
     });
+    setEditedNpcsByMap(prev => {
+      const next = { ...prev };
+      delete next[id];
+      return next;
+    });
   };
 
   const exportEditedRows = () => {
     const id = mapIdRef.current;
     const rows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows;
     const objects = editedObjectsByMapRef.current[id] ?? GAME_MAPS[id].objects;
+    const npcs = editedNpcsByMapRef.current[id] ?? npcsForMap(id);
     const map = GAME_MAPS[id];
     const constantName = `${String(id).toUpperCase()}_MAP_ASSET`;
     return `import type { EditorMapAsset } from "./mapAsset";
@@ -931,6 +986,7 @@ export const ${constantName}: EditorMapAsset = {
   rows: ${JSON.stringify(rows.map(row => row.join("")), null, 2)},
   objects: ${JSON.stringify(objects, null, 2)},
   interactions: {},
+  npcs: ${JSON.stringify(npcs, null, 2)},
   spawn: ${JSON.stringify(map.spawn, null, 2)},
 };`;
   };
@@ -1022,7 +1078,7 @@ export const ${constantName}: EditorMapAsset = {
           ))}
         </div>
 
-        {npcs.filter(npc => npc.mapId === mapId).map(npc => (
+        {displayEditorNpcs.map(npc => (
           <div
             key={npc.id}
             style={{
@@ -1186,6 +1242,20 @@ export const ${constantName}: EditorMapAsset = {
               >
                 Objects
               </button>
+              <button
+                type="button"
+                onClick={() => setEditorMode("npcs")}
+                style={{
+                  padding: "8px 12px",
+                  cursor: "pointer",
+                  border: editorMode === "npcs" ? "4px solid #ca4b36" : "2px solid #252018",
+                  background: editorMode === "npcs" ? "#fff3a8" : "#fff8c8",
+                  color: "#252018",
+                  fontWeight: 900,
+                }}
+              >
+                NPCs
+              </button>
             </div>
 
             {editorMode === "terrain" && (
@@ -1315,6 +1385,74 @@ export const ${constantName}: EditorMapAsset = {
               </div>
             )}
 
+            {editorMode === "npcs" && (
+              <div style={{ marginBottom: 12 }}>
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
+                  <button
+                    type="button"
+                    onClick={() => setNpcEditAction("place")}
+                    style={{
+                      padding: "7px 10px",
+                      cursor: "pointer",
+                      border: npcEditAction === "place" ? "4px solid #315f2a" : "2px solid #252018",
+                      background: npcEditAction === "place" ? "#d8f0b0" : "#fff8c8",
+                      color: "#252018",
+                      fontWeight: 900,
+                    }}
+                  >
+                    Place NPC
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setNpcEditAction("erase")}
+                    style={{
+                      padding: "7px 10px",
+                      cursor: "pointer",
+                      border: npcEditAction === "erase" ? "4px solid #ca4b36" : "2px solid #252018",
+                      background: npcEditAction === "erase" ? "#ffd0c8" : "#fff8c8",
+                      color: "#252018",
+                      fontWeight: 900,
+                    }}
+                  >
+                    Remove NPC
+                  </button>
+                  <span style={{ ...VT, fontSize: "1.05rem", color: "#252018", alignSelf: "center" }}>
+                    NPCs on map: {displayEditorNpcs.length}
+                  </span>
+                </div>
+
+                <div style={{ display: "grid", gridTemplateColumns: "minmax(180px, 240px) 120px 1fr", gap: 8, alignItems: "start" }}>
+                  <label style={{ display: "grid", gap: 4 }}>
+                    <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Name</span>
+                    <input
+                      value={editorNpcName}
+                      onChange={(e) => setEditorNpcName(e.target.value)}
+                      style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
+                    />
+                  </label>
+                  <label style={{ display: "grid", gap: 4 }}>
+                    <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Variant</span>
+                    <input
+                      type="number"
+                      min={0}
+                      max={9}
+                      value={editorNpcVariant}
+                      onChange={(e) => setEditorNpcVariant(Number(e.target.value))}
+                      style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
+                    />
+                  </label>
+                  <label style={{ display: "grid", gap: 4 }}>
+                    <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Dialogue, one line per row</span>
+                    <textarea
+                      value={editorNpcLines}
+                      onChange={(e) => setEditorNpcLines(e.target.value)}
+                      style={{ minHeight: 76, padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018", fontFamily: "monospace" }}
+                    />
+                  </label>
+                </div>
+              </div>
+            )}
+
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               <button type="button" onClick={copyEditedRows} style={{ padding: "8px 12px", cursor: "pointer" }}>
                 Copy Export
@@ -1364,7 +1502,7 @@ export const ${constantName}: EditorMapAsset = {
                 <button
                   key={`${x},${y}`}
                   type="button"
-                  title={`${x},${y}: ${tileTypeFor(tile)?.name ?? tile} (${tile})${displayObjects[`${x},${y}`] ? ` · Object: ${objectLabelForId(displayObjects[`${x},${y}`])}` : ""}`}
+                  title={`${x},${y}: ${tileTypeFor(tile)?.name ?? tile} (${tile})${displayObjects[`${x},${y}`] ? ` · Object: ${objectLabelForId(displayObjects[`${x},${y}`])}` : ""}${displayEditorNpcs.some(npc => npc.x === x && npc.y === y) ? " · NPC" : ""}`}
                   onPointerDown={(e) => {
                     e.preventDefault();
                     isEditorDraggingRef.current = true;
@@ -1378,7 +1516,7 @@ export const ${constantName}: EditorMapAsset = {
                     width: 18,
                     height: 18,
                     padding: 0,
-                    border: displayObjects[`${x},${y}`] ? "2px solid #ffef93" : "0",
+                    border: displayEditorNpcs.some(npc => npc.x === x && npc.y === y) ? "2px solid #c87aff" : displayObjects[`${x},${y}`] ? "2px solid #ffef93" : "0",
                     background: EDITOR_TILE_COLORS[tile] ?? GAME_TILE_COLORS[tile] ?? GAME_TILE_COLORS.G,
                     cursor: "pointer",
                     position: "relative",
@@ -1401,6 +1539,24 @@ export const ${constantName}: EditorMapAsset = {
                       }}
                     >
                       ◆
+                    </span>
+                  )}
+                  {displayEditorNpcs.some(npc => npc.x === x && npc.y === y) && (
+                    <span
+                      style={{
+                        position: "absolute",
+                        inset: 3,
+                        background: npcEditAction === "erase" && editorMode === "npcs" ? "#ca4b36" : "#8a4bd6",
+                        color: "#fff8c8",
+                        fontSize: 9,
+                        lineHeight: "10px",
+                        fontWeight: 900,
+                        textAlign: "center",
+                        borderRadius: 999,
+                        pointerEvents: "none",
+                      }}
+                    >
+                      N
                     </span>
                   )}
                 </button>

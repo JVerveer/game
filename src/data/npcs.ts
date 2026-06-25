@@ -1,5 +1,7 @@
 import { GAME_MAPS, TOWN_THEMES, WALKABLE_TILES, type GameMapId, type TownMapId } from "./maps";
 import { cityNpcCountFor } from "./cityMaps/sizeTiers";
+import { WOKESHIRE_MAP_ASSET } from "./cityMaps/wokeshireMapAsset";
+import type { EditorNpcAsset } from "./cityMaps/mapAsset";
 
 export type MovingNpc = {
   id: string;
@@ -14,6 +16,27 @@ export type MovingNpc = {
   variant?: number;
   style?: string;
 };
+
+
+const movingNpcFromAsset = (mapId: TownMapId, npc: EditorNpcAsset): MovingNpc => ({
+  id: npc.id,
+  mapId,
+  x: npc.x,
+  y: npc.y,
+  homeX: npc.homeX ?? npc.x,
+  homeY: npc.homeY ?? npc.y,
+  name: npc.name,
+  lines: npc.lines,
+  variant: npc.variant,
+  style: npc.style,
+  walking: npc.walking,
+});
+
+const EDITOR_NATIVE_NPCS: Partial<Record<TownMapId, MovingNpc[]>> = {
+  wokeshire: (WOKESHIRE_MAP_ASSET.npcs ?? []).map((npc) => movingNpcFromAsset("wokeshire", npc)),
+};
+
+const isEditorNativeNpcTown = (mapId: TownMapId) => Boolean(EDITOR_NATIVE_NPCS[mapId]);
 
 const fallbackTownNpcSpots = (mapId: TownMapId, count: number) => {
   const map = GAME_MAPS[mapId];
@@ -373,8 +396,9 @@ export const INITIAL_NPCS: MovingNpc[] = [
     style: "npc-town-satiria npc-role-young-man",
   },
   ...INFLATOPOLIS_NPCS,
+  ...(EDITOR_NATIVE_NPCS.wokeshire ?? []),
   ...TOWN_THEMES.slice(1).flatMap((theme, townIndex) =>
-    theme.id === "inflatopolis" ? [] :
+    theme.id === "inflatopolis" || isEditorNativeNpcTown(theme.id) ? [] :
     fallbackTownNpcSpots(theme.id, cityNpcCountFor(theme.id)).map((spot, npcIndex) => {
       const profile = townNpcProfile(
         theme.id,

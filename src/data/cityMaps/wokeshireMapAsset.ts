@@ -1,8 +1,5 @@
 import type { EditorMapAsset } from "./mapAsset";
 
-// Paste this whole block into src/data/cityMaps/wokeshireMapAsset.ts.
-// After saving, refresh the browser or press Reset This Map in the editor
-// so old in-memory edits do not override the new source file.
 export const WOKESHIRE_MAP_ASSET: EditorMapAsset = {
   id: "wokeshire",
   name: "Wokeshire",
@@ -36,11 +33,11 @@ export const WOKESHIRE_MAP_ASSET: EditorMapAsset = {
   "RRRRRRRRRRRRRRRRRRRRRRRRRWWWRRRRRRRRRRRRRRRRRRRRRRRWWWRRRRRRRRRRRRRRRRRRRRRRRRRR",
   "TTTGXXGGGGGGGGGGGGGWWWWWWWWWWWWEEEEEEEERREEEEEEEWWWWWWWWWWWWWGGGGGGGGGGGGGGGGTTT",
   "TTTGGGGGGGGGGGGGGGGWWWWWWWWWWWWEEEEEEEERREEEEEEEWWWWWWWWWWWWWGGGGGGGGGGGGGGGGTTT",
-  "TTTGGGGGGGGGWWWWGGGWWWWWWWWWWWWEEEEEEEERREEEEEEEWWWWWWWWWWWWWGGGGGGGGGGGGGGGGTTT",
-  "TTTGGGGGGGGGWGGWGGGGGGGRGWWWGGGEEEEEEEERREEEEEEEGGGWWWGRGGGGGGGGGGGGGGGGGGGGGTTT",
-  "TTTGGGWWWWWWWGGWGGGGYYYRYYYYYYYYYYYYGGGRRGGGRRRPPPPPPRGRGGGGGGGGGGGGGGGGGGGGGTTT",
-  "TTTGGGGGGGGGGGGWGGGGYYYRAAAAAYYYYYYYGGGRRGGGRRRPPPPPPRGRGGGGGGGGGGGGGGGGGGGGGTTT",
-  "TTTGGGGGGGGGGGGWWWGGYYYRAAAAAYYYYYYYGGGRRGGGRRRPRROPPRGRGGGGGGGGGGGGGGGGGGGGGTTT",
+  "TTTGGGGGGGGGGGGGGGGWWWWWWWWWWWWEEEEEEEERREEEEEEEWWWWWWWWWWWWWGGGGGGGGGGGGGGGGTTT",
+  "TTTGGGGGGGGGGGGGGGGGGGGRGWWWGGGEEEEEEEERREEEEEEEGGGWWWGRGGGGGGGGGGGGGGGGGGGGGTTT",
+  "TTTGGGGGGGGGGGGGGGGGYYYRYYYYYYYYYYYYGGGRRGGGRRRPPPPPPRGRGGGGGGGGGGGGGGGGGGGGGTTT",
+  "TTTGGGGGGGGGGGGGGGGGYYYRAAAAAYYYYYYYGGGRRGGGRRRPPPPPPRGRGGGGGGGGGGGGGGGGGGGGGTTT",
+  "TTTGGGGGGGGGGGGGGGGGYYYRAAAAAYYYYYYYGGGRRGGGRRRPRROPPRGRGGGGGGGGGGGGGGGGGGGGGTTT",
   "TTTGGGGGGGGGGGGGGGGGYYYRAAORAYYYYYYYGGGRRGGGRRRRRRRRRRGRGGGGGGGGGGGGGGGGGGGGGTTT",
   "TTTGGGGGGGGGGGGGGGGGGGGRGGGGGGGGGGGGGGGRRGGGGGGGGGGGGGGRGGGGGGGGGGGGGGGGGGGGGTTT",
   "TTTGGGGGGGGGGGGGGGGGGGGRGGGGGGGGGGGGGGGRRGGGGGGGGGGGGGGRGGGGGGGGGGGGGGGGGGGGGTTT",
@@ -59,20 +56,64 @@ export const WOKESHIRE_MAP_ASSET: EditorMapAsset = {
   "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTRRTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
 ],
   objects: {
+  "41,45": "SIGN",
   "6,29": "WINDMILL",
   "10,30": "WINDMILL",
   "11,32": "WINDMILL",
   "16,32": "WINDMILL",
   "16,29": "WINDMILL",
   "13,31": "WINDMILL",
-  "7,33": "WINDMILL",
-  "9,28": "TULIP_STAND",
-  "13,28": "TULIP_STAND",
-  "16,27": "TULIP_STAND"
+  "7,33": "WINDMILL"
 },
-  interactions: {},
-  spawn: {
-  "x": 40,
-  "y": 44
-},
+  interactions: {
+    "41,45": {
+      name: "Wokeshire Sign",
+      lines: [
+        "Wokeshire Windmill Fields",
+        "Please keep cycling. The debate will catch up eventually.",
+      ],
+    },
+  },
+  npcs: [
+  {
+    "id": "wokeshire-consensus-ranger",
+    "x": 39,
+    "y": 18,
+    "name": "Consensus Ranger",
+    "lines": [
+      "\"This path is approved by one canal and challenged by two bicycles.\"",
+      "\"Please use compassionate walking.\""
+    ],
+    "variant": 6,
+    "style": "npc-town-wokeshire npc-role-young-woman",
+    "walking": true
+  },
+  {
+    "id": "wokeshire-tulip-mediator",
+    "x": 22,
+    "y": 32,
+    "name": "Tulip Mediator",
+    "lines": [
+      "\"The flowers reached a temporary coalition.\"",
+      "\"The canals remain neutral.\""
+    ],
+    "variant": 1,
+    "style": "npc-town-wokeshire npc-role-older-woman",
+    "walking": true
+  },
+  {
+    "id": "wokeshire-canal-cyclist",
+    "x": 41,
+    "y": 37,
+    "name": "Canal Cyclist",
+    "lines": [
+      "\"I can ring my bell in seven acceptable tones.\"",
+      "\"Eight is discourse.\""
+    ],
+    "variant": 3,
+    "style": "npc-town-wokeshire npc-role-young-man",
+    "walking": true
+  }
+],
+  spawn: { x: 40, y: 44 },
 };
