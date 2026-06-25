@@ -34,6 +34,7 @@ import { createMapAssetExport } from "../editor/export/exportHelpers";
 import { TerrainEditorOverlay } from "../editor/TerrainEditorOverlay";
 import { useBuildingMovement } from "../editor/buildings/useBuildingMovement";
 import { useBuildingResize } from "../editor/buildings/useBuildingResize";
+import { useBuildingPlacement } from "../editor/buildings/useBuildingPlacement";
 import {
   buildingAtCoord,
   clearBuildingFootprintFromRows,
@@ -994,6 +995,23 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     buildingsForMap,
   });
 
+  const {
+    duplicateSelectedBuilding,
+    placeEditorBuilding,
+  } = useBuildingPlacement({
+    mapIdRef,
+    editedRowsByMapRef,
+    editedBuildingsByMapRef,
+    editorBuildingKindRef,
+    editorBuildingColorRef,
+    editorBuildingWRef,
+    editorBuildingHRef,
+    setEditedRowsByMap,
+    setEditedBuildingsByMap,
+    setEditorSelection,
+    buildingsForMap,
+  });
+
 
 
 
@@ -1046,27 +1064,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setEditorSelection({ kind: "object", coord: toCoord });
   };
 
-  const duplicateSelectedBuilding = (building: EditorBuildingAsset) => {
-    const id = mapIdRef.current;
-    const clone: EditorBuildingAsset = {
-      ...building,
-      id: `${id}-building-${Date.now()}-copy`,
-      x: building.x + 1,
-      y: building.y + 1,
-    };
 
-    setEditedBuildingsByMap(prev => {
-      const current = prev[id] ?? buildingsForMap(id);
-      const withoutUnique = UNIQUE_BUILDING_KINDS.has(clone.kind)
-        ? current.filter(item => item.kind !== clone.kind)
-        : current;
-      const next = [...withoutUnique, clone];
-      editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: next };
-      return { ...prev, [id]: next };
-    });
-
-    setEditorSelection({ kind: "building", id: clone.id });
-  };
 
   const duplicateSelectedObject = (coord: string) => {
     const id = mapIdRef.current;
@@ -1085,47 +1083,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setEditorSelection({ kind: "object", coord: nextCoord });
   };
 
-  const placeEditorBuilding = (x: number, y: number) => {
-    const id = mapIdRef.current;
-    const kind = editorBuildingKindRef.current;
-    const building: EditorBuildingAsset = {
-      id: `${id}-building-${Date.now()}`,
-      x,
-      y,
-      w: Math.max(3, editorBuildingWRef.current),
-      h: Math.max(3, editorBuildingHRef.current),
-      kind,
-      color: editorBuildingColorRef.current,
-      crest: buildingCrestForKind(kind),
-    };
 
-    setEditedBuildingsByMap(prev => {
-      const current = prev[id] ?? buildingsForMap(id).map(item => ({ ...item }));
-      const door = doorForBuildingAsset(building);
-      const removedBuildings: EditorBuildingAsset[] = [];
-      const withoutOverlap = current.filter(item => {
-        const itemDoor = doorForBuildingAsset(item);
-        const overlaps =
-          building.x < item.x + item.w &&
-          building.x + building.w > item.x &&
-          building.y < item.y + item.h &&
-          building.y + building.h > item.y;
-        const sameUniqueKind = UNIQUE_BUILDING_KINDS.has(kind) && item.kind === kind;
-        const shouldRemove = overlaps || sameUniqueKind || (itemDoor.x === door.x && itemDoor.y === door.y);
-        if (shouldRemove) removedBuildings.push(item);
-        return !shouldRemove;
-      });
-      if (removedBuildings.length > 0) {
-        const baseRows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows.map(row => [...row]);
-        const nextRows = clearBuildingFootprintsFromRows(baseRows, removedBuildings);
-        editedRowsByMapRef.current = { ...editedRowsByMapRef.current, [id]: nextRows };
-        setEditedRowsByMap(rowsPrev => ({ ...rowsPrev, [id]: nextRows }));
-      }
-      const next = [...withoutOverlap, building];
-      editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: next };
-      return { ...prev, [id]: next };
-    });
-  };
 
   const transformDragTo = (x: number, y: number) => {
     if (!isSelectEditorMode(editorModeRef.current)) return false;
