@@ -1,4 +1,4 @@
-import type { EditorMode } from "./shared/editorTypes";
+type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
 
 export function EditorToolbar({
   editorMode,
