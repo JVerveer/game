@@ -371,7 +371,6 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [npcs, setNpcs] = useState<MovingNpc[]>(INITIAL_NPCS);
   const [trainOpen, setTrainOpen] = useState(false);
   const [trainIndex, setTrainIndex] = useState(0);
-  const [removedBuildingIdsByMap, setRemovedBuildingIdsByMap] = useState<Partial<Record<GameMapId, Set<string>>>>({});
   const {
     editorMode,
     setEditorMode,
@@ -429,6 +428,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setEditedBuildingsByMap,
     editedNpcsByMap,
     setEditedNpcsByMap,
+    removedBuildingIdsByMap,
+    setRemovedBuildingIdsByMap,
   } = useEditorState();
 
   const viewRef = useRef<HTMLDivElement>(null);

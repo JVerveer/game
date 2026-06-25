@@ -23,6 +23,7 @@ export type EditedRowsByMap = Partial<Record<GameMapId, string[][]>>;
 export type EditedObjectsByMap = Partial<Record<GameMapId, Record<string, string>>>;
 export type EditedBuildingsByMap = Partial<Record<GameMapId, EditorBuildingAsset[]>>;
 export type EditedNpcsByMap = Partial<Record<GameMapId, EditorNpcAsset[]>>;
+export type RemovedBuildingIdsByMap = Partial<Record<GameMapId, Set<string>>>;
 
 export function useEditorState() {
   const [editorMode, setEditorMode] = useState<EditorMode>("select");
@@ -53,6 +54,7 @@ export function useEditorState() {
   const [editedObjectsByMap, setEditedObjectsByMap] = useState<EditedObjectsByMap>({});
   const [editedBuildingsByMap, setEditedBuildingsByMap] = useState<EditedBuildingsByMap>({});
   const [editedNpcsByMap, setEditedNpcsByMap] = useState<EditedNpcsByMap>({});
+  const [removedBuildingIdsByMap, setRemovedBuildingIdsByMap] = useState<RemovedBuildingIdsByMap>({});
 
   return {
     editorMode,
@@ -111,5 +113,7 @@ export function useEditorState() {
     setEditedBuildingsByMap,
     editedNpcsByMap,
     setEditedNpcsByMap,
+    removedBuildingIdsByMap,
+    setRemovedBuildingIdsByMap,
   };
 }
