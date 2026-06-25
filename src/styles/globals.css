@@ -4809,3 +4809,102 @@ button .world-object {
   transform-origin: center center;
   filter: none;
 }
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Wokeshire Object Hotfix
+   Paste this BELOW pixel_object_visual_overhaul.css in globals.css.
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+/* Bigger windmill */
+.object-windmill {
+  transform: translate(-10px, -16px) scale(1.45);
+  transform-origin: 50% 100%;
+  z-index: 55;
+}
+
+/* Keep windmill palette/readability after scaling */
+.object-windmill::before {
+  left: 11px;
+  top: 18px;
+  width: 26px;
+  height: 27px;
+}
+
+.object-windmill::after {
+  left: 7px;
+  top: 1px;
+  width: 34px;
+  height: 34px;
+}
+
+/* Stop tulip stand flicker/animation inherited from tile/object previews */
+.object-tulip-stand,
+.object-tulip-stand::before,
+.object-tulip-stand::after {
+  animation: none !important;
+  transform: none;
+  filter: drop-shadow(3px 5px 0 rgba(37, 32, 24, 0.35));
+}
+
+/* Remove stray bicycle artifacts in top-right by clipping the object bounds */
+.object-bicycle {
+  overflow: hidden;
+  width: 48px;
+  height: 48px;
+}
+
+/* Redraw bike frame without far-out box-shadow artifacts */
+.object-bicycle::before {
+  left: 4px;
+  top: 28px;
+  width: 13px;
+  height: 13px;
+  border: 4px solid #252018;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 24px 0 0 -4px transparent, 24px 0 0 0 #252018;
+}
+
+.object-bicycle::after {
+  left: 12px;
+  top: 17px;
+  width: 26px;
+  height: 18px;
+  background:
+    linear-gradient(130deg, transparent 0 40%, #c53c31 41% 53%, transparent 54%),
+    linear-gradient(50deg, transparent 0 40%, #c53c31 41% 53%, transparent 54%),
+    linear-gradient(0deg, transparent 0 55%, #c53c31 56% 72%, transparent 73%);
+  border-bottom: 4px solid #c53c31;
+  box-shadow: none;
+}
+
+/* Bigger, cleaner houseboat with lighter border */
+.object-houseboat {
+  transform: translate(-8px, -6px) scale(1.28);
+  transform-origin: 50% 100%;
+  z-index: 52;
+}
+
+.object-houseboat::before {
+  left: 1px;
+  top: 25px;
+  width: 46px;
+  height: 14px;
+  background:
+    linear-gradient(0deg, rgba(37,32,24,0.16) 0 35%, transparent 35%),
+    #8b6138;
+  border: 2px solid #252018;
+  border-bottom-width: 3px;
+  border-radius: 2px 2px 13px 13px;
+}
+
+.object-houseboat::after {
+  left: 11px;
+  top: 12px;
+  width: 27px;
+  height: 16px;
+  background:
+    linear-gradient(90deg, transparent 0 16%, #fff3a8 16% 34%, transparent 34% 62%, #fff3a8 62% 80%, transparent 80%),
+    #9c4937;
+  border: 2px solid #252018;
+}
