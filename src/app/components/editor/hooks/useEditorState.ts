@@ -1,7 +1,8 @@
 import { useState } from "react";
-import type { EditorBuildingColor, EditorBuildingKind } from "../../../data/cityMaps/mapAsset";
+import type { EditorBuildingColor, EditorBuildingKind } from "../../../../data/cityMaps/mapAsset";
 
 export type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
+export type ObjectEditAction = "place" | "erase";
 
 export type EditorSelection =
   | { kind: "npc"; id: string }
@@ -18,6 +19,8 @@ export function useEditorState() {
   const [editorBuildingColor, setEditorBuildingColor] = useState<EditorBuildingColor>("purple");
   const [editorBuildingW, setEditorBuildingW] = useState(5);
   const [editorBuildingH, setEditorBuildingH] = useState(4);
+  const [objectEditAction, setObjectEditAction] = useState<ObjectEditAction>("place");
+  const [editorObjectId, setEditorObjectId] = useState("SIGN");
 
   return {
     editorMode,
@@ -34,5 +37,9 @@ export function useEditorState() {
     setEditorBuildingW,
     editorBuildingH,
     setEditorBuildingH,
+    objectEditAction,
+    setObjectEditAction,
+    editorObjectId,
+    setEditorObjectId,
   };
 }

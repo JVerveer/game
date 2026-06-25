@@ -394,14 +394,16 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setEditorBuildingW,
     editorBuildingH,
     setEditorBuildingH,
+    objectEditAction,
+    setObjectEditAction,
+    editorObjectId,
+    setEditorObjectId,
   } = useEditorState();
 
   const [draggedNpcId, setDraggedNpcId] = useState<string | null>(null);
   const [draggedBuildingId, setDraggedBuildingId] = useState<string | null>(null);
   const [draggedObjectCoord, setDraggedObjectCoord] = useState<string | null>(null);
   const [resizeBuildingId, setResizeBuildingId] = useState<string | null>(null);
-  const [objectEditAction, setObjectEditAction] = useState<ObjectEditAction>("place");
-  const [editorObjectId, setEditorObjectId] = useState("SIGN");
   const [npcEditAction, setNpcEditAction] = useState<ObjectEditAction>("place");
   const [npcEditorAction, setNpcEditorAction] = useState<NpcEditorAction>("create");
   const [editorNpcName, setEditorNpcName] = useState("Local NPC");
