@@ -4296,3 +4296,516 @@
     #9c4937;
   border: 3px solid #252018;
 }
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   Pixel Object Visual Overhaul
+   Paste this at the very bottom of globals.css.
+   It keeps your existing object class names and only improves visuals.
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+:root {
+  --px-ink: #252018;
+  --px-shadow: rgba(37, 32, 24, 0.35);
+  --px-cream: #fff3a8;
+  --px-paper: #fff8c8;
+  --px-wood: #8b6138;
+  --px-wood-dark: #5a3c22;
+  --px-red: #c53c31;
+  --px-blue: #4d77b0;
+  --px-green: #315f2a;
+  --px-green-light: #76ad56;
+  --px-yellow: #f4d76b;
+  --px-purple: #8a4bd6;
+  --px-water: #3d7d8c;
+  --px-water-light: #8fd6df;
+}
+
+.world-object {
+  width: 48px;
+  height: 48px;
+  position: relative;
+  overflow: visible;
+  image-rendering: pixelated;
+  filter: drop-shadow(3px 5px 0 var(--px-shadow));
+}
+
+.world-object::before,
+.world-object::after {
+  content: "";
+  position: absolute;
+  box-sizing: border-box;
+  image-rendering: pixelated;
+}
+
+/* Unknown objects should be loud and useful, not silently sign-like. */
+.object-unknown::before {
+  left: 5px;
+  top: 6px;
+  width: 38px;
+  height: 34px;
+  background: #ff4fd8;
+  border: 4px solid var(--px-ink);
+  box-shadow: inset 0 0 0 5px var(--px-cream);
+}
+
+.object-unknown::after {
+  content: "?";
+  left: 15px;
+  top: 7px;
+  color: var(--px-ink);
+  font: 900 24px/1 monospace;
+}
+
+/* â”€â”€ Shared small objects â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.object-sign::before {
+  left: 6px;
+  top: 8px;
+  width: 36px;
+  height: 22px;
+  background:
+    linear-gradient(0deg, rgba(90,60,34,0.18) 0 22%, transparent 22%),
+    var(--px-paper);
+  border: 4px solid var(--px-ink);
+  box-shadow: inset 0 4px 0 rgba(255,255,255,0.45);
+}
+
+.object-sign::after {
+  left: 20px;
+  top: 29px;
+  width: 8px;
+  height: 14px;
+  background: var(--px-wood-dark);
+  border-left: 2px solid var(--px-ink);
+  border-right: 2px solid var(--px-ink);
+}
+
+.object-save::before {
+  left: 12px;
+  top: 8px;
+  width: 24px;
+  height: 24px;
+  background:
+    radial-gradient(circle at 50% 50%, var(--px-cream) 0 4px, transparent 5px),
+    var(--px-yellow);
+  border: 4px solid var(--px-ink);
+  transform: rotate(45deg);
+  box-shadow: 0 0 0 4px rgba(244, 215, 107, 0.28);
+}
+
+.object-save::after {
+  left: 21px;
+  top: 17px;
+  width: 6px;
+  height: 14px;
+  background: var(--px-ink);
+  transform: rotate(45deg);
+  box-shadow: 0 0 0 0 var(--px-ink);
+}
+
+/* â”€â”€ Wokeshire / Amsterdam set â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.object-bicycle::before {
+  left: 3px;
+  top: 27px;
+  width: 14px;
+  height: 14px;
+  border: 4px solid var(--px-ink);
+  border-radius: 50%;
+  background: transparent;
+  box-shadow:
+    25px 0 0 -4px transparent,
+    25px 0 0 0 var(--px-ink);
+}
+
+.object-bicycle::after {
+  left: 11px;
+  top: 16px;
+  width: 28px;
+  height: 19px;
+  background:
+    linear-gradient(130deg, transparent 0 40%, var(--px-red) 41% 53%, transparent 54%),
+    linear-gradient(50deg, transparent 0 40%, var(--px-red) 41% 53%, transparent 54%),
+    linear-gradient(0deg, transparent 0 55%, var(--px-red) 56% 72%, transparent 73%);
+  border-bottom: 4px solid var(--px-red);
+  box-shadow:
+    10px -8px 0 -3px var(--px-ink),
+    20px -6px 0 -4px var(--px-ink),
+    3px -4px 0 -3px var(--px-ink);
+}
+
+.object-bike-rack::before {
+  left: 3px;
+  top: 26px;
+  width: 42px;
+  height: 13px;
+  background:
+    radial-gradient(circle at 10px 7px, transparent 0 5px, var(--px-ink) 6px 8px, transparent 9px),
+    radial-gradient(circle at 23px 7px, transparent 0 5px, var(--px-ink) 6px 8px, transparent 9px),
+    radial-gradient(circle at 36px 7px, transparent 0 5px, var(--px-ink) 6px 8px, transparent 9px);
+}
+
+.object-bike-rack::after {
+  left: 4px;
+  top: 18px;
+  width: 40px;
+  height: 6px;
+  background: var(--px-ink);
+  box-shadow: 0 8px 0 var(--px-ink);
+}
+
+.object-tulip-stand::before {
+  left: 4px;
+  top: 21px;
+  width: 40px;
+  height: 18px;
+  background:
+    repeating-linear-gradient(90deg, var(--px-wood) 0 8px, #a97745 8px 16px);
+  border: 4px solid var(--px-ink);
+  box-shadow: inset 0 5px 0 rgba(255,248,200,0.25);
+}
+
+.object-tulip-stand::after {
+  left: 6px;
+  top: 5px;
+  width: 7px;
+  height: 8px;
+  background: #e85a8a;
+  border-radius: 6px 6px 2px 2px;
+  box-shadow:
+    9px 2px 0 #f4d76b,
+    18px 0 0 #b34db8,
+    27px 2px 0 #c53c31,
+    4px 10px 0 -1px var(--px-green),
+    13px 11px 0 -1px var(--px-green),
+    22px 10px 0 -1px var(--px-green),
+    31px 11px 0 -1px var(--px-green);
+}
+
+.object-tulip-field-sign::before {
+  left: 5px;
+  top: 9px;
+  width: 38px;
+  height: 23px;
+  background:
+    radial-gradient(circle at 9px 8px, #e85a8a 0 4px, transparent 5px),
+    radial-gradient(circle at 19px 9px, #f4d76b 0 4px, transparent 5px),
+    radial-gradient(circle at 29px 8px, #b34db8 0 4px, transparent 5px),
+    linear-gradient(0deg, #76ad56 0 35%, transparent 35%),
+    var(--px-paper);
+  border: 4px solid var(--px-ink);
+}
+
+.object-tulip-field-sign::after {
+  left: 21px;
+  top: 32px;
+  width: 7px;
+  height: 13px;
+  background: var(--px-wood-dark);
+  border-left: 2px solid var(--px-ink);
+  border-right: 2px solid var(--px-ink);
+}
+
+.object-canal-bridge::before,
+.object-seine-bridge::before {
+  left: -6px;
+  top: 20px;
+  width: 60px;
+  height: 16px;
+  background:
+    repeating-linear-gradient(90deg, var(--px-ink) 0 4px, #c9a46a 4px 12px);
+  border: 4px solid var(--px-ink);
+}
+
+.object-canal-bridge::after,
+.object-seine-bridge::after {
+  left: 3px;
+  top: 10px;
+  width: 13px;
+  height: 13px;
+  border: 4px solid var(--px-ink);
+  border-bottom: 0;
+  box-shadow:
+    16px 0 0 -2px #c9a46a,
+    16px 0 0 1px var(--px-ink),
+    32px 0 0 -2px #c9a46a,
+    32px 0 0 1px var(--px-ink);
+}
+
+.object-windmill::before {
+  left: 11px;
+  top: 18px;
+  width: 26px;
+  height: 27px;
+  background:
+    linear-gradient(90deg, transparent 0 18%, var(--px-cream) 18% 36%, transparent 36% 64%, var(--px-cream) 64% 82%, transparent 82%),
+    #d8bd76;
+  border: 4px solid var(--px-ink);
+  clip-path: polygon(15% 100%, 85% 100%, 75% 0, 25% 0);
+  box-shadow: inset 0 8px 0 rgba(255,248,200,0.35);
+}
+
+.object-windmill::after {
+  left: 7px;
+  top: 1px;
+  width: 34px;
+  height: 34px;
+  background:
+    linear-gradient(90deg, transparent 0 44%, var(--px-ink) 44% 56%, transparent 56%),
+    linear-gradient(0deg, transparent 0 44%, var(--px-ink) 44% 56%, transparent 56%);
+  transform: rotate(45deg);
+  filter: drop-shadow(0 0 0 var(--px-ink));
+}
+
+.object-canal-house::before {
+  left: 6px;
+  top: 2px;
+  width: 36px;
+  height: 40px;
+  background:
+    linear-gradient(180deg, var(--px-ink) 0 7%, #643329 7% 20%, transparent 20%),
+    linear-gradient(90deg, transparent 0 15%, var(--px-cream) 15% 32%, transparent 32% 62%, var(--px-cream) 62% 79%, transparent 79%),
+    linear-gradient(0deg, #3b241d 0 13%, transparent 13%),
+    #9c4937;
+  border: 4px solid var(--px-ink);
+  box-shadow: inset 0 10px 0 rgba(255,248,200,0.1);
+}
+
+.object-canal-house::after {
+  left: 19px;
+  top: 28px;
+  width: 10px;
+  height: 14px;
+  background: var(--px-wood-dark);
+  border: 3px solid var(--px-ink);
+  box-shadow:
+    -8px -13px 0 -4px var(--px-cream),
+    10px -13px 0 -4px var(--px-cream);
+}
+
+.object-houseboat::before {
+  left: 2px;
+  top: 24px;
+  width: 44px;
+  height: 15px;
+  background:
+    linear-gradient(0deg, rgba(37,32,24,0.18) 0 35%, transparent 35%),
+    var(--px-wood);
+  border: 4px solid var(--px-ink);
+  border-radius: 2px 2px 14px 14px;
+}
+
+.object-houseboat::after {
+  left: 11px;
+  top: 11px;
+  width: 26px;
+  height: 16px;
+  background:
+    linear-gradient(90deg, transparent 0 16%, var(--px-cream) 16% 34%, transparent 34% 62%, var(--px-cream) 62% 80%, transparent 80%),
+    #9c4937;
+  border: 4px solid var(--px-ink);
+}
+
+/* â”€â”€ Better generic city objects â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.object-lamp-post::before,
+.satiria-lamp::before {
+  left: 20px;
+  top: 14px;
+  width: 7px;
+  height: 31px;
+  background: var(--px-ink);
+}
+
+.object-lamp-post::after,
+.satiria-lamp::after {
+  left: 13px;
+  top: 5px;
+  width: 22px;
+  height: 15px;
+  background:
+    radial-gradient(circle at 50% 45%, var(--px-cream) 0 5px, transparent 6px),
+    var(--px-yellow);
+  border: 4px solid var(--px-ink);
+  box-shadow: 0 12px 0 -4px var(--px-ink);
+}
+
+.satiria-bench::before,
+.object-bench::before {
+  left: 5px;
+  top: 18px;
+  width: 38px;
+  height: 15px;
+  background:
+    repeating-linear-gradient(0deg, var(--px-wood) 0 5px, var(--px-wood-dark) 5px 8px);
+  border: 4px solid var(--px-ink);
+}
+
+.satiria-bench::after,
+.object-bench::after {
+  left: 10px;
+  top: 33px;
+  width: 6px;
+  height: 10px;
+  background: var(--px-ink);
+  box-shadow: 21px 0 0 var(--px-ink);
+}
+
+/* â”€â”€ Vehicle polish â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.object-black-cab::before,
+.object-luxury-car::before,
+.object-tuktuk::before {
+  left: 3px;
+  top: 20px;
+  width: 42px;
+  height: 16px;
+  background:
+    linear-gradient(180deg, rgba(255,248,200,0.5) 0 25%, transparent 25%),
+    #232323;
+  border: 4px solid var(--px-ink);
+  border-radius: 9px 9px 3px 3px;
+}
+
+.object-black-cab::after,
+.object-luxury-car::after,
+.object-tuktuk::after {
+  left: 9px;
+  top: 34px;
+  width: 8px;
+  height: 8px;
+  background: var(--px-ink);
+  box-shadow:
+    22px 0 0 var(--px-ink),
+    8px -11px 0 #b8d9df,
+    18px -11px 0 #b8d9df;
+}
+
+.object-luxury-car::before {
+  background:
+    linear-gradient(180deg, rgba(255,248,200,0.55) 0 25%, transparent 25%),
+    var(--px-yellow);
+}
+
+.object-tuktuk::before {
+  background:
+    linear-gradient(180deg, #2e9c66 0 28%, transparent 28%),
+    var(--px-yellow);
+}
+
+/* â”€â”€ Landmark polish â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.object-eiffel-tower::before {
+  left: 8px;
+  top: -18px;
+  width: 32px;
+  height: 62px;
+  background:
+    linear-gradient(110deg, transparent 0 37%, var(--px-ink) 37% 45%, transparent 45%),
+    linear-gradient(70deg, transparent 0 37%, var(--px-ink) 37% 45%, transparent 45%),
+    linear-gradient(90deg, transparent 0 44%, #8b7658 44% 56%, transparent 56%),
+    linear-gradient(0deg, var(--px-ink) 0 8%, transparent 8% 48%, var(--px-ink) 48% 55%, transparent 55% 74%, var(--px-ink) 74% 80%, transparent 80%);
+}
+
+.object-eiffel-tower::after {
+  left: 19px;
+  top: -28px;
+  width: 8px;
+  height: 14px;
+  background: var(--px-ink);
+  box-shadow: 0 12px 0 #c9b47e;
+}
+
+.object-burj-tower::before,
+.object-shanghai-tower::before {
+  left: 13px;
+  top: -16px;
+  width: 22px;
+  height: 61px;
+  background:
+    repeating-linear-gradient(0deg, var(--px-water-light) 0 6px, #47515d 6px 10px);
+  border: 4px solid var(--px-ink);
+  border-radius: 11px 11px 2px 2px;
+}
+
+.object-burj-tower::after,
+.object-shanghai-tower::after {
+  left: 21px;
+  top: -29px;
+  width: 6px;
+  height: 16px;
+  background: var(--px-ink);
+}
+
+/* â”€â”€ Nature / readable small props â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+.object-beach-umbrella::before {
+  left: 3px;
+  top: 9px;
+  width: 42px;
+  height: 18px;
+  background:
+    repeating-linear-gradient(90deg, #b54035 0 8px, var(--px-cream) 8px 16px);
+  border: 4px solid var(--px-ink);
+  border-radius: 20px 20px 0 0;
+}
+
+.object-beach-umbrella::after {
+  left: 22px;
+  top: 26px;
+  width: 5px;
+  height: 18px;
+  background: var(--px-ink);
+}
+
+.object-market-stall::before,
+.object-tango-stage::before,
+.object-paris-cafe::before {
+  left: 2px;
+  top: 15px;
+  width: 44px;
+  height: 21px;
+  background: repeating-linear-gradient(90deg, var(--px-red) 0 8px, var(--px-cream) 8px 16px);
+  border: 4px solid var(--px-ink);
+}
+
+.object-market-stall::after,
+.object-tango-stage::after,
+.object-paris-cafe::after {
+  left: 10px;
+  top: 33px;
+  width: 7px;
+  height: 10px;
+  background: var(--px-ink);
+  box-shadow: 21px 0 0 var(--px-ink);
+}
+
+/* â”€â”€ Better tile flowers / encounter grass for editor + map â”€â”€ */
+
+.tile-L,
+.tile-Y {
+  background:
+    radial-gradient(circle at 18% 32%, #e85a8a 0 4px, transparent 5px),
+    radial-gradient(circle at 46% 24%, #f4d76b 0 4px, transparent 5px),
+    radial-gradient(circle at 76% 55%, #b34db8 0 4px, transparent 5px),
+    linear-gradient(105deg, transparent 0 35%, #315f2a 35% 44%, transparent 44%),
+    linear-gradient(70deg, transparent 0 60%, #3f7a2e 60% 68%, transparent 68%),
+    #76ad56 !important;
+  background-size: 48px 48px, 48px 48px, 48px 48px, 16px 18px, 19px 21px, 100% 100%;
+}
+
+.tile-X {
+  background:
+    linear-gradient(82deg, transparent 0 25%, #2f6b25 25% 34%, transparent 34%),
+    linear-gradient(105deg, transparent 0 46%, #1f5522 46% 56%, transparent 56%),
+    linear-gradient(72deg, transparent 0 66%, #3d7c2f 66% 76%, transparent 76%),
+    #5f9337 !important;
+  background-size: 14px 32px, 18px 36px, 22px 34px, 100% 100%;
+}
+
+/* Useful default for object palette previews inside buttons */
+button .world-object {
+  transform: scale(0.72);
+  transform-origin: center center;
+  filter: none;
+}
