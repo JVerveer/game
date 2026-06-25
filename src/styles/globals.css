@@ -4205,3 +4205,94 @@
 .nurse-sprite {
   animation: character-atlas-step 0.32s steps(1, end) infinite !important;
 }
+
+/* Object registry fallback + extra object sprites */
+
+.object-unknown {
+  position: relative;
+}
+
+.object-unknown::before {
+  left: 4px;
+  top: 6px;
+  width: 34px;
+  height: 30px;
+  background: #ff4fd8;
+  border: 4px solid #252018;
+  box-shadow: inset 0 0 0 4px #fff3a8;
+}
+
+.object-unknown::after {
+  content: "?";
+  left: 15px;
+  top: 8px;
+  color: #252018;
+  font: 900 22px/1 monospace;
+}
+
+/* New Wokeshire editor objects */
+.object-bike-rack::before {
+  left: 3px;
+  top: 22px;
+  width: 36px;
+  height: 14px;
+  border-top: 4px solid #252018;
+  border-bottom: 4px solid #252018;
+  background:
+    radial-gradient(circle at 8px 8px, transparent 0 5px, #252018 6px 8px, transparent 9px),
+    radial-gradient(circle at 26px 8px, transparent 0 5px, #252018 6px 8px, transparent 9px);
+}
+
+.object-bike-rack::after {
+  left: 6px;
+  top: 12px;
+  width: 30px;
+  height: 9px;
+  border-left: 4px solid #c53c31;
+  border-bottom: 4px solid #c53c31;
+  transform: skewX(-20deg);
+}
+
+.object-tulip-field-sign::before {
+  left: 6px;
+  top: 9px;
+  width: 30px;
+  height: 20px;
+  background:
+    radial-gradient(circle at 8px 8px, #e85a8a 0 3px, transparent 4px),
+    radial-gradient(circle at 16px 8px, #f4d76b 0 3px, transparent 4px),
+    radial-gradient(circle at 24px 8px, #b34db8 0 3px, transparent 4px),
+    #fff3a8;
+  border: 4px solid #252018;
+}
+
+.object-tulip-field-sign::after {
+  left: 19px;
+  top: 29px;
+  width: 5px;
+  height: 12px;
+  background: #6b4422;
+  border-left: 2px solid #252018;
+  border-right: 2px solid #252018;
+}
+
+.object-houseboat::before {
+  left: 1px;
+  top: 20px;
+  width: 40px;
+  height: 15px;
+  background: #8b6138;
+  border: 4px solid #252018;
+  border-radius: 2px 2px 12px 12px;
+}
+
+.object-houseboat::after {
+  left: 10px;
+  top: 9px;
+  width: 23px;
+  height: 15px;
+  background:
+    linear-gradient(90deg, transparent 0 18%, #fff3a8 18% 35%, transparent 35% 65%, #fff3a8 65% 82%, transparent 82%),
+    #9c4937;
+  border: 3px solid #252018;
+}
