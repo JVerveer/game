@@ -368,8 +368,14 @@ const OBJECT_EDITOR_CATEGORIES = [
   "Custom",
 ] as const;
 
-type EditorMode = "terrain" | "objects" | "npcs";
+type EditorMode = "select" | "terrain" | "objects" | "npcs";
 type ObjectEditAction = "place" | "erase";
+
+type EditorSelection =
+  | { kind: "npc"; id: string }
+  | { kind: "object"; coord: string }
+  | { kind: "tile"; x: number; y: number }
+  | null;
 
 
 type NpcVisualCategory =
@@ -472,6 +478,8 @@ const D_PAD_BTN: React.CSSProperties = {
 
 const isTownMap = (id: GameMapId): id is TownMapId => MAIN_TOWN_IDS.includes(id as TownMapId);
 
+const isSelectEditorMode = (mode: EditorMode) => mode === "select";
+
 function GameScreen({ onExit }: { onExit: () => void }) {
   const [mapId, setMapId] = useState<GameMapId>("satiria");
   const [pos, setPos] = useState(GAME_MAPS.satiria.spawn);
@@ -494,7 +502,9 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [editedRowsByMap, setEditedRowsByMap] = useState<Partial<Record<GameMapId, string[][]>>>({});
   const [editedObjectsByMap, setEditedObjectsByMap] = useState<Partial<Record<GameMapId, Record<string, string>>>>({});
   const [editedNpcsByMap, setEditedNpcsByMap] = useState<Partial<Record<GameMapId, EditorNpcAsset[]>>>({});
-  const [editorMode, setEditorMode] = useState<EditorMode>("terrain");
+  const [editorMode, setEditorMode] = useState<EditorMode>("select");
+  const [editorSelection, setEditorSelection] = useState<EditorSelection>(null);
+  const [draggedNpcId, setDraggedNpcId] = useState<string | null>(null);
   const [objectEditAction, setObjectEditAction] = useState<ObjectEditAction>("place");
   const [editorObjectId, setEditorObjectId] = useState("SIGN");
   const [npcEditAction, setNpcEditAction] = useState<ObjectEditAction>("place");
@@ -532,6 +542,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const editedObjectsByMapRef = useRef(editedObjectsByMap);
   const editedNpcsByMapRef = useRef(editedNpcsByMap);
   const editorModeRef = useRef<EditorMode>(editorMode);
+  const editorSelectionRef = useRef<EditorSelection>(editorSelection);
+  const draggedNpcIdRef = useRef<string | null>(draggedNpcId);
   const objectEditActionRef = useRef<ObjectEditAction>(objectEditAction);
   const editorObjectIdRef = useRef(editorObjectId);
   const npcEditActionRef = useRef<ObjectEditAction>(npcEditAction);
@@ -558,6 +570,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   editedObjectsByMapRef.current = editedObjectsByMap;
   editedNpcsByMapRef.current = editedNpcsByMap;
   editorModeRef.current = editorMode;
+  editorSelectionRef.current = editorSelection;
+  draggedNpcIdRef.current = draggedNpcId;
   objectEditActionRef.current = objectEditAction;
   editorObjectIdRef.current = editorObjectId;
   npcEditActionRef.current = npcEditAction;
@@ -593,6 +607,21 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       ...editorNpcs.map(npc => movingNpcFromEditorAsset(id, npc)),
     ]);
   };
+
+  const upsertEditedNpcsForMap = (id: GameMapId, updater: (current: EditorNpcAsset[]) => EditorNpcAsset[]) => {
+    let nextForMap: EditorNpcAsset[] = [];
+    setEditedNpcsByMap(prev => {
+      const base = prev[id] ?? npcsForMap(id).map(npc => ({ ...npc, lines: [...npc.lines] }));
+      nextForMap = updater(base.map(npc => ({ ...npc, lines: [...npc.lines] })));
+      return { ...prev, [id]: nextForMap };
+    });
+    syncRuntimeNpcsForMap(id, nextForMap);
+    return nextForMap;
+  };
+
+  const selectedNpc = editorSelection?.kind === "npc"
+    ? displayEditorNpcs.find(npc => npc.id === editorSelection.id)
+    : null;
 
   const warpTo = (portal: Portal) => {
     const fromMapId = mapIdRef.current;
@@ -952,6 +981,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     const stopPainting = () => {
       isEditorDraggingRef.current = false;
       setIsEditorDragging(false);
+      draggedNpcIdRef.current = null;
+      setDraggedNpcId(null);
     };
     window.addEventListener("pointerup", stopPainting);
     window.addEventListener("pointercancel", stopPainting);
@@ -988,37 +1019,69 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     }));
   };
 
+  const moveSelectedNpcTo = (x: number, y: number) => {
+    const id = mapIdRef.current;
+    const npcId = draggedNpcIdRef.current;
+    if (!npcId) return;
+    const next = upsertEditedNpcsForMap(id, current => current.map(npc =>
+      npc.id === npcId ? { ...npc, x, y, homeX: x, homeY: y } : npc
+    ));
+    if (next.some(npc => npc.id === npcId)) setEditorSelection({ kind: "npc", id: npcId });
+  };
+
   const paintEditorTile = (x: number, y: number) => {
     const id = mapIdRef.current;
     const coord = `${x},${y}`;
 
+    if (isSelectEditorMode(editorModeRef.current)) {
+      const npc = npcsRef.current.find(item => item.mapId === id && item.x === x && item.y === y);
+      if (npc) {
+        setEditorSelection({ kind: "npc", id: npc.id });
+        setDraggedNpcId(npc.id);
+        draggedNpcIdRef.current = npc.id;
+        return;
+      }
+      if (objectsForMap(id)[coord]) {
+        setEditorSelection({ kind: "object", coord });
+        return;
+      }
+      setEditorSelection({ kind: "tile", x, y });
+      return;
+    }
+
+    if (draggedNpcIdRef.current && isSelectEditorMode(editorModeRef.current)) {
+      const npcId = draggedNpcIdRef.current;
+      const next = upsertEditedNpcsForMap(id, current => current.map(npc =>
+        npc.id === npcId ? { ...npc, x, y, homeX: x, homeY: y } : npc
+      ));
+      if (next.some(npc => npc.id === npcId)) setEditorSelection({ kind: "npc", id: npcId });
+      return;
+    }
+
     if (editorModeRef.current === "npcs") {
-      setEditedNpcsByMap(prev => {
-        const base = prev[id] ?? npcsForMap(id).map(npc => ({ ...npc, lines: [...npc.lines] }));
-        const withoutHere = base.filter(npc => !(npc.x === x && npc.y === y));
-        const nextNpcs = (() => {
-          if (npcEditActionRef.current === "erase") return withoutHere;
+      const next = upsertEditedNpcsForMap(id, current => {
+        const withoutHere = current.filter(npc => !(npc.x === x && npc.y === y));
+        if (npcEditActionRef.current === "erase") return withoutHere;
 
-          const preset = NPC_VISUAL_PRESETS.find(item => item.id === editorNpcPresetIdRef.current) ?? NPC_VISUAL_PRESETS[0];
-          const npcNumber = withoutHere.length + 1;
-          const newNpc: EditorNpcAsset = {
-            id: `${id}-editor-npc-${Date.now()}-${npcNumber}`,
-            x,
-            y,
-            homeX: x,
-            homeY: y,
-            name: editorNpcNameRef.current.trim() || preset.label,
-            lines: editorNpcLinesRef.current.split("\n").map(line => line.trim()).filter(Boolean),
-            variant: preset.variant,
-            style: isTownMap(id) ? `npc-town-${id} npc-role-${preset.styleRole}` : `npc-role-${preset.styleRole}`,
-            walking: editorNpcWalkingRef.current,
-          };
-          return [...withoutHere, newNpc];
-        })();
-
-        syncRuntimeNpcsForMap(id, nextNpcs);
-        return { ...prev, [id]: nextNpcs };
+        const preset = NPC_VISUAL_PRESETS.find(item => item.id === editorNpcPresetIdRef.current) ?? NPC_VISUAL_PRESETS[0];
+        const npcNumber = withoutHere.length + 1;
+        const newNpc: EditorNpcAsset = {
+          id: `${id}-editor-npc-${Date.now()}-${npcNumber}`,
+          x,
+          y,
+          homeX: x,
+          homeY: y,
+          name: editorNpcNameRef.current.trim() || preset.label,
+          lines: editorNpcLinesRef.current.split("\n").map(line => line.trim()).filter(Boolean),
+          variant: preset.variant,
+          style: isTownMap(id) ? `npc-town-${id} npc-role-${preset.styleRole}` : `npc-role-${preset.styleRole}`,
+          walking: editorNpcWalkingRef.current,
+        };
+        return [...withoutHere, newNpc];
       });
+
+      const placed = next.find(npc => npc.x === x && npc.y === y);
+      if (placed && npcEditActionRef.current === "place") setEditorSelection({ kind: "npc", id: placed.id });
       return;
     }
 
@@ -1313,6 +1376,20 @@ export const ${constantName}: EditorMapAsset = {
             </div>
 
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
+              <button
+                type="button"
+                onClick={() => setEditorMode("select")}
+                style={{
+                  padding: "8px 12px",
+                  cursor: "pointer",
+                  border: isSelectEditorMode(editorMode) ? "4px solid #ca4b36" : "2px solid #252018",
+                  background: isSelectEditorMode(editorMode) ? "#fff3a8" : "#fff8c8",
+                  color: "#252018",
+                  fontWeight: 900,
+                }}
+              >
+                Select
+              </button>
               <button
                 type="button"
                 onClick={() => setEditorMode("terrain")}
@@ -1640,6 +1717,175 @@ export const ${constantName}: EditorMapAsset = {
               </div>
             )}
 
+            {isSelectEditorMode(editorMode) && (
+              <div style={{ marginBottom: 12 }}>
+                <div style={{ ...VT, fontSize: "1.25rem", color: "#252018", marginBottom: 8 }}>
+                  Inspector
+                </div>
+
+                {!editorSelection && (
+                  <div style={{ ...RJ, fontSize: "0.9rem", color: "#66512c" }}>
+                    Click an NPC, object, or tile on the map to inspect it. Drag an NPC to move it.
+                  </div>
+                )}
+
+                {editorSelection?.kind === "tile" && (
+                  <div style={{ ...RJ, fontSize: "0.95rem", color: "#252018" }}>
+                    Selected tile: {editorSelection.x},{editorSelection.y}
+                  </div>
+                )}
+
+                {editorSelection?.kind === "object" && (
+                  <div style={{ display: "grid", gap: 8 }}>
+                    <div style={{ ...RJ, fontSize: "0.95rem", color: "#252018" }}>
+                      Object at {editorSelection.coord}: <b>{displayObjects[editorSelection.coord]}</b>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const id = mapIdRef.current;
+                        setEditedObjectsByMap(prev => {
+                          const base = prev[id] ?? { ...objectsForMap(id) };
+                          const next = { ...base };
+                          delete next[editorSelection.coord];
+                          return { ...prev, [id]: next };
+                        });
+                        setEditorSelection(null);
+                      }}
+                      style={{ padding: "8px 12px", cursor: "pointer", border: "2px solid #ca4b36", background: "#ffd0c8", color: "#252018", fontWeight: 900 }}
+                    >
+                      Delete Object
+                    </button>
+                  </div>
+                )}
+
+                {selectedNpc && (
+                  <div style={{ display: "grid", gap: 10 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                      <span style={{
+                        width: 48,
+                        height: 48,
+                        position: "relative",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        background: "#d7c58d",
+                        border: "2px solid #252018",
+                      }}>
+                        <span className={`npc-sprite npc-variant-${selectedNpc.variant ?? 0} ${selectedNpc.style ?? ""}`} />
+                      </span>
+                      <div style={{ ...RJ, fontSize: "0.95rem", color: "#252018" }}>
+                        NPC at {selectedNpc.x},{selectedNpc.y}
+                      </div>
+                    </div>
+
+                    <label style={{ display: "grid", gap: 4 }}>
+                      <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Name</span>
+                      <input
+                        value={selectedNpc.name}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          upsertEditedNpcsForMap(mapIdRef.current, current => current.map(npc => npc.id === selectedNpc.id ? { ...npc, name: value } : npc));
+                        }}
+                        style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
+                      />
+                    </label>
+
+                    <label style={{ display: "grid", gap: 4 }}>
+                      <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Dialogue, one line per row</span>
+                      <textarea
+                        value={selectedNpc.lines.join("\n")}
+                        onChange={(e) => {
+                          const lines = e.target.value.split("\n").map(line => line.trim()).filter(Boolean);
+                          upsertEditedNpcsForMap(mapIdRef.current, current => current.map(npc => npc.id === selectedNpc.id ? { ...npc, lines } : npc));
+                        }}
+                        style={{ minHeight: 76, padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018", fontFamily: "monospace" }}
+                      />
+                    </label>
+
+                    <label style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "#252018", ...RJ, fontSize: "1rem", fontWeight: 800 }}>
+                      <input
+                        type="checkbox"
+                        checked={selectedNpc.walking !== false}
+                        onChange={(e) => {
+                          const walking = e.target.checked;
+                          upsertEditedNpcsForMap(mapIdRef.current, current => current.map(npc => npc.id === selectedNpc.id ? { ...npc, walking } : npc));
+                        }}
+                      />
+                      Walks around home tile
+                    </label>
+
+                    <div>
+                      <div style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018", marginBottom: 6 }}>Change visual</div>
+                      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))", gap: 8, maxHeight: 180, overflow: "auto", paddingRight: 4 }}>
+                        {NPC_VISUAL_PRESETS.map(preset => {
+                          const style = isTownMap(mapId) ? `npc-town-${mapId} npc-role-${preset.styleRole}` : `npc-role-${preset.styleRole}`;
+                          return (
+                            <button
+                              key={`selected-${preset.id}`}
+                              type="button"
+                              onClick={() => {
+                                upsertEditedNpcsForMap(mapIdRef.current, current => current.map(npc => npc.id === selectedNpc.id ? { ...npc, variant: preset.variant, style } : npc));
+                              }}
+                              style={{
+                                minHeight: 58,
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 8,
+                                padding: "6px 8px",
+                                border: selectedNpc.variant === preset.variant && selectedNpc.style === style ? "4px solid #315f2a" : "2px solid #252018",
+                                background: "#fff8c8",
+                                color: "#252018",
+                                cursor: "pointer",
+                                textAlign: "left",
+                              }}
+                            >
+                              <span style={{ width: 36, height: 36, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", background: "#d7c58d", border: "2px solid #252018", flexShrink: 0 }}>
+                                <span className={`npc-sprite npc-variant-${preset.variant} ${style}`} />
+                              </span>
+                              <span style={{ ...VT, fontSize: "0.95rem", lineHeight: 1 }}>{preset.label}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          upsertEditedNpcsForMap(mapIdRef.current, current => current.filter(npc => npc.id !== selectedNpc.id));
+                          setEditorSelection(null);
+                        }}
+                        style={{ padding: "8px 12px", cursor: "pointer", border: "2px solid #ca4b36", background: "#ffd0c8", color: "#252018", fontWeight: 900 }}
+                      >
+                        Delete NPC
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const clone: EditorNpcAsset = {
+                            ...selectedNpc,
+                            id: `${mapIdRef.current}-editor-npc-${Date.now()}-copy`,
+                            x: selectedNpc.x + 1,
+                            homeX: selectedNpc.x + 1,
+                            y: selectedNpc.y,
+                            homeY: selectedNpc.y,
+                            lines: [...selectedNpc.lines],
+                          };
+                          upsertEditedNpcsForMap(mapIdRef.current, current => [...current, clone]);
+                          setEditorSelection({ kind: "npc", id: clone.id });
+                        }}
+                        style={{ padding: "8px 12px", cursor: "pointer", border: "2px solid #315f2a", background: "#d8f0b0", color: "#252018", fontWeight: 900 }}
+                      >
+                        Duplicate NPC
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               <button type="button" onClick={copyEditedRows} style={{ padding: "8px 12px", cursor: "pointer" }}>
                 Copy Export
@@ -1681,8 +1927,8 @@ export const ${constantName}: EditorMapAsset = {
               touchAction: "none",
               userSelect: "none",
             }}
-            onPointerUp={() => { isEditorDraggingRef.current = false; setIsEditorDragging(false); }}
-            onPointerLeave={() => { isEditorDraggingRef.current = false; setIsEditorDragging(false); }}
+            onPointerUp={() => { isEditorDraggingRef.current = false; setIsEditorDragging(false); setDraggedNpcId(null); draggedNpcIdRef.current = null; }}
+            onPointerLeave={() => { isEditorDraggingRef.current = false; setIsEditorDragging(false); setDraggedNpcId(null); draggedNpcIdRef.current = null; }}
           >
             {displayRows.map((row, y) =>
               row.map((tile, x) => (
@@ -1697,7 +1943,8 @@ export const ${constantName}: EditorMapAsset = {
                     paintEditorTile(x, y);
                   }}
                   onPointerEnter={() => {
-                    if (isEditorDraggingRef.current) paintEditorTile(x, y);
+                    if (isEditorDraggingRef.current && isSelectEditorMode(editorModeRef.current) && draggedNpcIdRef.current) moveSelectedNpcTo(x, y);
+                    else if (isEditorDraggingRef.current) paintEditorTile(x, y);
                   }}
                   style={{
                     width: 18,
