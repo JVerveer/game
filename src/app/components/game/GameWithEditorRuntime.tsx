@@ -35,6 +35,7 @@ import { TerrainEditorOverlay } from "../editor/TerrainEditorOverlay";
 import { useBuildingMovement } from "../editor/buildings/useBuildingMovement";
 import { useBuildingResize } from "../editor/buildings/useBuildingResize";
 import { useBuildingPlacement } from "../editor/buildings/useBuildingPlacement";
+import { useBuildingDeletion } from "../editor/buildings/useBuildingDeletion";
 import {
   buildingAtCoord,
   clearBuildingFootprintFromRows,
@@ -1012,31 +1013,23 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     buildingsForMap,
   });
 
+  const {
+    removeEditorBuilding,
+  } = useBuildingDeletion({
+    mapIdRef,
+    removedBuildingIdsByMapRef,
+    editedBuildingsByMapRef,
+    setRemovedBuildingIdsByMap,
+    setEditedBuildingsByMap,
+    setEditorSelection,
+    clearBuildingFromEditedRows,
+    buildingsForMap,
+  });
 
 
 
-  const removeEditorBuilding = (building: EditorBuildingAsset) => {
-    const id = mapIdRef.current;
 
-    clearBuildingFromEditedRows(id, building);
 
-    setRemovedBuildingIdsByMap(prev => {
-      const nextSet = new Set(prev[id] ?? []);
-      nextSet.add(building.id);
-      const next = { ...prev, [id]: nextSet };
-      removedBuildingIdsByMapRef.current = next;
-      return next;
-    });
-
-    setEditedBuildingsByMap(prev => {
-      const current = prev[id] ?? buildingsForMap(id);
-      const nextBuildings = current.filter(item => item.id !== building.id);
-      editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: nextBuildings };
-      return { ...prev, [id]: nextBuildings };
-    });
-
-    setEditorSelection(null);
-  };
 
 
 
