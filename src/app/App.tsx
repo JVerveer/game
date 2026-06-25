@@ -1363,10 +1363,19 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
   const moveEditorBuildingTo = (buildingId: string, x: number, y: number) => {
     const id = mapIdRef.current;
+
     setEditedBuildingsByMap(prev => {
       const current = prev[id] ?? buildingsForMap(id);
       const currentBuilding = current.find(building => building.id === buildingId);
       if (!currentBuilding) return prev;
+
+      // Moving a legacy/procedural building must also clean its old terrain
+      // footprint. Otherwise the old blue/red/purple building tiles remain
+      // blocked and can still look like terrain.
+      const baseRows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows.map(row => [...row]);
+      const cleanedRows = clearBuildingFootprintFromRows(baseRows, currentBuilding);
+      editedRowsByMapRef.current = { ...editedRowsByMapRef.current, [id]: cleanedRows };
+      setEditedRowsByMap(rowsPrev => ({ ...rowsPrev, [id]: cleanedRows }));
 
       const movedBuilding = { ...currentBuilding, x, y };
       const next = current.map(building => building.id === buildingId ? movedBuilding : building);
@@ -1382,6 +1391,14 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       const current = prev[id] ?? buildingsForMap(id);
       const currentBuilding = current.find(building => building.id === buildingId);
       if (!currentBuilding) return prev;
+
+      // Clear old footprint first, then re-apply the resized building through
+      // displayRowsWithBuildings / rowsForMap. This prevents stale blocked tiles
+      // when the building is made smaller.
+      const baseRows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows.map(row => [...row]);
+      const cleanedRows = clearBuildingFootprintFromRows(baseRows, currentBuilding);
+      editedRowsByMapRef.current = { ...editedRowsByMapRef.current, [id]: cleanedRows };
+      setEditedRowsByMap(rowsPrev => ({ ...rowsPrev, [id]: cleanedRows }));
 
       const nextW = Math.max(3, x - currentBuilding.x + 1);
       const nextH = Math.max(3, y - currentBuilding.y + 1);
