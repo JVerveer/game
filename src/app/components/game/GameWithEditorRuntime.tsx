@@ -398,20 +398,28 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setObjectEditAction,
     editorObjectId,
     setEditorObjectId,
+    npcEditAction,
+    setNpcEditAction,
+    npcEditorAction,
+    setNpcEditorAction,
+    editorNpcName,
+    setEditorNpcName,
+    editorNpcPresetId,
+    setEditorNpcPresetId,
+    editorNpcCategory,
+    setEditorNpcCategory,
+    editorNpcSearch,
+    setEditorNpcSearch,
+    editorNpcWalking,
+    setEditorNpcWalking,
+    editorNpcLines,
+    setEditorNpcLines,
   } = useEditorState();
 
   const [draggedNpcId, setDraggedNpcId] = useState<string | null>(null);
   const [draggedBuildingId, setDraggedBuildingId] = useState<string | null>(null);
   const [draggedObjectCoord, setDraggedObjectCoord] = useState<string | null>(null);
   const [resizeBuildingId, setResizeBuildingId] = useState<string | null>(null);
-  const [npcEditAction, setNpcEditAction] = useState<ObjectEditAction>("place");
-  const [npcEditorAction, setNpcEditorAction] = useState<NpcEditorAction>("create");
-  const [editorNpcName, setEditorNpcName] = useState("Local NPC");
-  const [editorNpcPresetId, setEditorNpcPresetId] = useState("generic-young-man-0");
-  const [editorNpcCategory, setEditorNpcCategory] = useState<NpcVisualCategory>("Generic");
-  const [editorNpcSearch, setEditorNpcSearch] = useState("");
-  const [editorNpcWalking, setEditorNpcWalking] = useState(true);
-  const [editorNpcLines, setEditorNpcLines] = useState("Hello there!\nI was placed in the editor.");
   const viewRef = useRef<HTMLDivElement>(null);
   const [viewSize, setViewSize] = useState({ w: 900, h: 600 });
   const currentMap = GAME_MAPS[mapId];
