@@ -823,13 +823,41 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
       lines: ["★ PROGRESS SAVED ★", `${theme.name} - Lv. 15`, theme.hook],
     };
   }
+  const isEditorNativeTown = Boolean(nativeAsset);
+
   const signReserved = new Set([
     ...entryDoorCoords,
     ...Object.keys(genericObjects),
     ...Object.keys(specialObjects),
     ...Object.keys(specialInteractions),
   ]);
-  const signage = buildSignageFor(theme, rows, doors, signReserved);
+  const signage = isEditorNativeTown
+    ? { objects: {}, interactions: {} }
+    : buildSignageFor(theme, rows, doors, signReserved);
+
+  const generatedObjects = isEditorNativeTown
+    ? {}
+    : {
+        ...routeObjectsFor(theme),
+        [doors.shop]: "DOOR_SHOP",
+        [doors.healing]: "DOOR_HEAL",
+        ...homeObjects,
+        ...trainObjects,
+        ...genericObjects,
+        ...signage.objects,
+        ...specialObjects,
+      };
+
+  const generatedInteractions = {
+    ...routeInteractionsFor(theme),
+    [doors.shop]: shopInteraction,
+    [doors.healing]: healingInteraction,
+    ...homeInteractions,
+    ...trainInteractions,
+    ...genericInteractions,
+    ...signage.interactions,
+    ...(isEditorNativeTown ? {} : specialInteractions),
+  };
 
   return {
     id: theme.id,
@@ -839,25 +867,11 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
     rows,
     spawn: nativeAsset?.spawn ?? centralSpawnFor(rows),
     objects: {
-      ...routeObjectsFor(theme),
-      [doors.shop]: "DOOR_SHOP",
-      [doors.healing]: "DOOR_HEAL",
-      ...homeObjects,
-      ...trainObjects,
-      ...genericObjects,
-      ...signage.objects,
-      ...specialObjects,
+      ...generatedObjects,
       ...assetObjects,
     },
     interactions: {
-      ...routeInteractionsFor(theme),
-      [doors.shop]: shopInteraction,
-      [doors.healing]: healingInteraction,
-      ...homeInteractions,
-      ...trainInteractions,
-      ...genericInteractions,
-      ...signage.interactions,
-      ...specialInteractions,
+      ...generatedInteractions,
       ...assetInteractions,
     },
   };

@@ -922,6 +922,9 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     const constantName = `${String(id).toUpperCase()}_MAP_ASSET`;
     return `import type { EditorMapAsset } from "./mapAsset";
 
+// Paste this whole block into src/data/cityMaps/${id}MapAsset.ts.
+// After saving, refresh the browser or press Reset This Map in the editor
+// so old in-memory edits do not override the new source file.
 export const ${constantName}: EditorMapAsset = {
   id: "${id}",
   name: "${map.name}",
@@ -936,7 +939,7 @@ export const ${constantName}: EditorMapAsset = {
     const text = exportEditedRows();
     try {
       await navigator.clipboard.writeText(text);
-      setSaveMsg("Terrain export copied!");
+      setSaveMsg("Map asset export copied! Paste into this city’s MapAsset file, then refresh/reset editor.");
     } catch {
       setSaveMsg("Could not copy export");
     }
