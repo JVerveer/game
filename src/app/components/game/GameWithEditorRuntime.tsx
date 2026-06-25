@@ -30,6 +30,7 @@ import type { EditorNpcAsset, EditorBuildingAsset, EditorBuildingColor, EditorBu
 import { applyBuildingsToRows, buildingCrestForKind, buildingTileForKind, doorForBuildingAsset } from "../../../data/cityMaps/mapAsset";
 import { InGameBattle } from "./InGameBattle";
 import { EditorToolbar } from "../editor/EditorToolbar";
+import { TerrainPalette } from "../editor/terrain/TerrainPalette";
 
 
 type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
@@ -1651,45 +1652,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
             <EditorToolbar editorMode={editorMode} setEditorMode={setEditorMode} />
 
             {editorMode === "terrain" && (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(170px, 1fr))", gap: 8, marginBottom: 12 }}>
-              {TILE_TYPES.map(tile => (
-                <button
-                  key={tile.id}
-                  type="button"
-                  onClick={() => setEditorTile(tile.id)}
-                  title={`${tile.id} · ${tile.description}`}
-                  style={{
-                    minHeight: 56,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                    padding: "7px 9px",
-                    border: editorTile === tile.id ? "4px solid #ca4b36" : "2px solid #252018",
-                    background: editorTile === tile.id ? "#ffef93" : "#fff8c8",
-                    color: "#252018",
-                    cursor: "pointer",
-                    textAlign: "left",
-                  }}
-                >
-                  <span
-                    aria-hidden="true"
-                    style={{
-                      width: 28,
-                      height: 28,
-                      flex: "0 0 auto",
-                      background: EDITOR_TILE_COLORS[tile.id] ?? GAME_TILE_COLORS[tile.id] ?? GAME_TILE_COLORS.G,
-                      border: "3px solid #252018",
-                      boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.25)",
-                    }}
-                  />
-                  <span style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                    <span style={{ ...VT, fontSize: "1.1rem", lineHeight: 1 }}>{tile.name}</span>
-                    <span style={{ ...RJ, fontSize: "0.68rem", fontWeight: 700, opacity: 0.65 }}>{tile.id} · {tile.description}</span>
-                  </span>
-                </button>
-              ))}
-            </div>
-
+              <TerrainPalette
+                editorTile={editorTile}
+                setEditorTile={setEditorTile}
+              />
             )}
 
             {editorMode === "buildings" && (
