@@ -386,6 +386,14 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setEditorSelection,
     editorTile,
     setEditorTile,
+    editorBuildingKind,
+    setEditorBuildingKind,
+    editorBuildingColor,
+    setEditorBuildingColor,
+    editorBuildingW,
+    setEditorBuildingW,
+    editorBuildingH,
+    setEditorBuildingH,
   } = useEditorState();
 
   const [draggedNpcId, setDraggedNpcId] = useState<string | null>(null);
@@ -394,10 +402,6 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [resizeBuildingId, setResizeBuildingId] = useState<string | null>(null);
   const [objectEditAction, setObjectEditAction] = useState<ObjectEditAction>("place");
   const [editorObjectId, setEditorObjectId] = useState("SIGN");
-  const [editorBuildingKind, setEditorBuildingKind] = useState<EditorBuildingKind>("house");
-  const [editorBuildingColor, setEditorBuildingColor] = useState<EditorBuildingColor>("purple");
-  const [editorBuildingW, setEditorBuildingW] = useState(5);
-  const [editorBuildingH, setEditorBuildingH] = useState(4);
   const [npcEditAction, setNpcEditAction] = useState<ObjectEditAction>("place");
   const [npcEditorAction, setNpcEditorAction] = useState<NpcEditorAction>("create");
   const [editorNpcName, setEditorNpcName] = useState("Local NPC");
