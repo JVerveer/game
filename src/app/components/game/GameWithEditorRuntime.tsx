@@ -32,6 +32,8 @@ import { InGameBattle } from "./InGameBattle";
 import { EditorToolbar } from "../editor/EditorToolbar";
 import { TerrainPalette } from "../editor/terrain/TerrainPalette";
 import { ObjectPalette } from "../editor/objects/ObjectPalette";
+import { BuildingPalette } from "../editor/buildings/BuildingPalette";
+import { NpcPalette } from "../editor/npcs/NpcPalette";
 
 
 type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
@@ -1660,83 +1662,16 @@ function GameScreen({ onExit }: { onExit: () => void }) {
             )}
 
             {editorMode === "buildings" && (
-              <div style={{ marginBottom: 12 }}>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))", gap: 8, marginBottom: 12 }}>
-                  {BUILDING_TYPES.map(building => (
-                    <button
-                      key={building.kind}
-                      type="button"
-                      onClick={() => {
-                        setEditorBuildingKind(building.kind);
-                        setEditorBuildingColor(building.defaultColor);
-                        setEditorBuildingW(building.defaultW);
-                        setEditorBuildingH(building.defaultH);
-                      }}
-                      title={building.description}
-                      style={{
-                        minHeight: 64,
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: 4,
-                        padding: "8px 10px",
-                        border: editorBuildingKind === building.kind ? "4px solid #315f2a" : "2px solid #252018",
-                        background: editorBuildingKind === building.kind ? "#d8f0b0" : "#fff8c8",
-                        color: "#252018",
-                        cursor: "pointer",
-                        textAlign: "left",
-                      }}
-                    >
-                      <span style={{ ...VT, fontSize: "1.2rem", lineHeight: 1 }}>{building.label}</span>
-                      <span style={{ ...RJ, fontSize: "0.68rem", fontWeight: 700, opacity: 0.7 }}>
-                        {building.defaultW}×{building.defaultH} · {building.description}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 10, alignItems: "end" }}>
-                  <label style={{ display: "grid", gap: 4 }}>
-                    <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Roof color</span>
-                    <select
-                      value={editorBuildingColor}
-                      onChange={(e) => setEditorBuildingColor(e.target.value as EditorBuildingColor)}
-                      style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
-                    >
-                      {BUILDING_COLORS.map(color => <option key={color} value={color}>{color}</option>)}
-                    </select>
-                  </label>
-                  <label style={{ display: "grid", gap: 4 }}>
-                    <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Width</span>
-                    <input
-                      type="number"
-                      min={3}
-                      max={14}
-                      value={editorBuildingW}
-                      onChange={(e) => setEditorBuildingW(Number(e.target.value))}
-                      style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
-                    />
-                  </label>
-                  <label style={{ display: "grid", gap: 4 }}>
-                    <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Height</span>
-                    <input
-                      type="number"
-                      min={3}
-                      max={10}
-                      value={editorBuildingH}
-                      onChange={(e) => setEditorBuildingH(Number(e.target.value))}
-                      style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
-                    />
-                  </label>
-                  <div style={{ ...VT, fontSize: "1.05rem", color: "#252018" }}>
-                    Click a top-left tile to place. Door is created automatically. Use Select to edit, move, resize, duplicate, or delete buildings.
-                    {UNIQUE_BUILDING_KINDS.has(editorBuildingKind) && displayBuildings.some(building => building.kind === editorBuildingKind) && (
-                      <div style={{ color: "#b6422c", marginTop: 4 }}>
-                        Placing this will replace the existing {BUILDING_KIND_LABEL[editorBuildingKind]}.
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
+              <BuildingPalette
+                editorBuildingKind={editorBuildingKind}
+                setEditorBuildingKind={setEditorBuildingKind}
+                editorBuildingColor={editorBuildingColor}
+                setEditorBuildingColor={setEditorBuildingColor}
+                editorBuildingW={editorBuildingW}
+                setEditorBuildingW={setEditorBuildingW}
+                editorBuildingH={editorBuildingH}
+                setEditorBuildingH={setEditorBuildingH}
+              />
             )}
 
             {editorMode === "objects" && (
@@ -1749,158 +1684,22 @@ function GameScreen({ onExit }: { onExit: () => void }) {
             )}
 
             {editorMode === "npcs" && (
-              <div style={{ marginBottom: 12 }}>
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
-                  {(["create", "delete"] as NpcEditorAction[]).map(action => (
-                    <button
-                      key={action}
-                      type="button"
-                      onClick={() => {
-                        setNpcEditorAction(action);
-                        setNpcEditAction(action === "delete" ? "erase" : "place");
-                      }}
-                      style={{
-                        padding: "7px 10px",
-                        cursor: "pointer",
-                        border: npcEditorAction === action ? "4px solid #315f2a" : "2px solid #252018",
-                        background: npcEditorAction === action ? "#d8f0b0" : "#fff8c8",
-                        color: "#252018",
-                        fontWeight: 900,
-                        textTransform: "capitalize",
-                      }}
-                    >
-                      {action === "create" ? "Create NPC" : "Delete NPC"}
-                    </button>
-                  ))}
-                </div>
-
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
-                  <span style={{ ...VT, fontSize: "1.05rem", color: "#252018", alignSelf: "center" }}>
-                    NPCs on map: {displayEditorNpcs.length}
-                  </span>
-                  <span style={{ ...RJ, fontSize: "0.78rem", color: "#66512c", alignSelf: "center", fontWeight: 800 }}>
-                    {npcEditorAction === "create" ? "Click map to create." : "Click NPCs to delete."}
-                  </span>
-                </div>
-
-                <div style={{ display: "grid", gridTemplateColumns: "minmax(180px, 240px) 1fr", gap: 10, alignItems: "start", marginBottom: 10 }}>
-                  <label style={{ display: "grid", gap: 4 }}>
-                    <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Name</span>
-                    <input
-                      value={editorNpcName}
-                      onChange={(e) => setEditorNpcName(e.target.value)}
-                      style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
-                    />
-                  </label>
-                  <label style={{ display: "grid", gap: 4 }}>
-                    <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Dialogue, one line per row</span>
-                    <textarea
-                      value={editorNpcLines}
-                      onChange={(e) => setEditorNpcLines(e.target.value)}
-                      style={{ minHeight: 76, padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018", fontFamily: "monospace" }}
-                    />
-                  </label>
-                </div>
-
-                <label style={{ display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 10, color: "#252018", ...RJ, fontSize: "1rem", fontWeight: 800 }}>
-                  <input
-                    type="checkbox"
-                    checked={editorNpcWalking}
-                    onChange={(e) => setEditorNpcWalking(e.target.checked)}
-                  />
-                  Walks around home tile
-                </label>
-
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
-                  {NPC_VISUAL_CATEGORIES.map(category => (
-                    <button
-                      key={category}
-                      type="button"
-                      onClick={() => setEditorNpcCategory(category)}
-                      style={{
-                        padding: "6px 9px",
-                        cursor: "pointer",
-                        border: editorNpcCategory === category ? "4px solid #315f2a" : "2px solid #252018",
-                        background: editorNpcCategory === category ? "#d8f0b0" : "#fff8c8",
-                        color: "#252018",
-                        fontWeight: 900,
-                      }}
-                    >
-                      {category}
-                    </button>
-                  ))}
-                </div>
-
-                <input
-                  value={editorNpcSearch}
-                  onChange={(e) => setEditorNpcSearch(e.target.value)}
-                  placeholder="Search NPC visuals..."
-                  style={{
-                    width: "100%",
-                    marginBottom: 10,
-                    padding: 8,
-                    border: "2px solid #252018",
-                    background: "#fff8c8",
-                    color: "#252018",
-                  }}
-                />
-
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(145px, 1fr))", gap: 8, maxHeight: 310, overflow: "auto", paddingRight: 4 }}>
-                  {NPC_VISUAL_PRESETS
-                    .filter(preset => preset.category === editorNpcCategory)
-                    .filter(preset => {
-                      const query = editorNpcSearch.trim().toLowerCase();
-                      if (!query) return true;
-                      return preset.label.toLowerCase().includes(query) || preset.id.toLowerCase().includes(query) || preset.styleRole.toLowerCase().includes(query);
-                    })
-                    .map(preset => {
-                    const style = isTownMap(mapId) ? `npc-town-${mapId} npc-role-${preset.styleRole}` : `npc-role-${preset.styleRole}`;
-                    return (
-                      <button
-                        key={preset.id}
-                        type="button"
-                        onClick={() => {
-                          setEditorNpcPresetId(preset.id);
-                          setEditorNpcName(name => name === "Local NPC" ? preset.label : name);
-                          setNpcEditAction("place");
-                        }}
-                        style={{
-                          minHeight: 66,
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 8,
-                          padding: "7px 9px",
-                          border: editorNpcPresetId === preset.id && npcEditAction === "place" ? "4px solid #315f2a" : "2px solid #252018",
-                          background: "#fff8c8",
-                          color: "#252018",
-                          cursor: "pointer",
-                          textAlign: "left",
-                        }}
-                      >
-                        <span style={{
-                          width: 42,
-                          height: 42,
-                          position: "relative",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          background: "#d7c58d",
-                          border: "2px solid #252018",
-                          flexShrink: 0,
-                        }}>
-                          <span className={`npc-sprite npc-variant-${preset.variant} ${style}`} />
-                        </span>
-                        <span style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                          <span style={{ ...VT, fontSize: "1.05rem", lineHeight: 1 }}>{preset.label}</span>
-                          <span style={{ ...RJ, fontSize: "0.68rem", fontWeight: 700, opacity: 0.65 }}>
-                            v{preset.variant} · {preset.styleRole}
-                          </span>
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
+              <NpcPalette
+                npcEditorAction={npcEditorAction}
+                setNpcEditorAction={setNpcEditorAction}
+                editorNpcCategory={editorNpcCategory}
+                setEditorNpcCategory={setEditorNpcCategory}
+                editorNpcSearch={editorNpcSearch}
+                setEditorNpcSearch={setEditorNpcSearch}
+                editorNpcPresetId={editorNpcPresetId}
+                setEditorNpcPresetId={setEditorNpcPresetId}
+                editorNpcName={editorNpcName}
+                setEditorNpcName={setEditorNpcName}
+                editorNpcWalking={editorNpcWalking}
+                setEditorNpcWalking={setEditorNpcWalking}
+                editorNpcLines={editorNpcLines}
+                setEditorNpcLines={setEditorNpcLines}
+              />
             )}
 
             {isSelectEditorMode(editorMode) && (
