@@ -56,7 +56,6 @@ export const WOKESHIRE_MAP_ASSET: EditorMapAsset = {
   "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTRRTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
 ],
   objects: {
-  "41,45": "SIGN",
   "6,29": "WINDMILL",
   "10,30": "WINDMILL",
   "11,32": "WINDMILL",
@@ -65,14 +64,9 @@ export const WOKESHIRE_MAP_ASSET: EditorMapAsset = {
   "13,31": "WINDMILL",
   "7,33": "WINDMILL"
 },
-  interactions: {
-    "41,45": {
-      name: "Wokeshire Sign",
-      lines: [
-        "Wokeshire Windmill Fields",
-        "Please keep cycling. The debate will catch up eventually.",
-      ],
-    },
-  },
-  spawn: { x: 40, y: 44 },
+  interactions: {},
+  spawn: {
+  "x": 40,
+  "y": 44
+},
 };
