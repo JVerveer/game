@@ -609,12 +609,31 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   };
 
   const upsertEditedNpcsForMap = (id: GameMapId, updater: (current: EditorNpcAsset[]) => EditorNpcAsset[]) => {
-    let nextForMap: EditorNpcAsset[] = [];
-    setEditedNpcsByMap(prev => {
-      const base = prev[id] ?? npcsForMap(id).map(npc => ({ ...npc, lines: [...npc.lines] }));
-      nextForMap = updater(base.map(npc => ({ ...npc, lines: [...npc.lines] })));
-      return { ...prev, [id]: nextForMap };
-    });
+    // Compute synchronously first. Do not rely on React's async state callback
+    // before syncing runtime NPCs, otherwise the runtime list can be replaced
+    // with an empty array.
+    const base = editedNpcsByMapRef.current[id] ?? npcsRef.current
+      .filter(npc => npc.mapId === id)
+      .map(npc => ({
+        id: npc.id,
+        x: npc.x,
+        y: npc.y,
+        homeX: npc.homeX,
+        homeY: npc.homeY,
+        name: npc.name,
+        lines: [...npc.lines],
+        variant: npc.variant,
+        style: npc.style,
+        walking: npc.walking,
+      }));
+
+    const nextForMap = updater(base.map(npc => ({ ...npc, lines: [...npc.lines] })));
+
+    editedNpcsByMapRef.current = {
+      ...editedNpcsByMapRef.current,
+      [id]: nextForMap,
+    };
+    setEditedNpcsByMap(prev => ({ ...prev, [id]: nextForMap }));
     syncRuntimeNpcsForMap(id, nextForMap);
     return nextForMap;
   };
@@ -1049,15 +1068,6 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       return;
     }
 
-    if (draggedNpcIdRef.current && isSelectEditorMode(editorModeRef.current)) {
-      const npcId = draggedNpcIdRef.current;
-      const next = upsertEditedNpcsForMap(id, current => current.map(npc =>
-        npc.id === npcId ? { ...npc, x, y, homeX: x, homeY: y } : npc
-      ));
-      if (next.some(npc => npc.id === npcId)) setEditorSelection({ kind: "npc", id: npcId });
-      return;
-    }
-
     if (editorModeRef.current === "npcs") {
       const next = upsertEditedNpcsForMap(id, current => {
         const withoutHere = current.filter(npc => !(npc.x === x && npc.y === y));
@@ -1122,6 +1132,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setEditedNpcsByMap(prev => {
       const next = { ...prev };
       delete next[id];
+      editedNpcsByMapRef.current = next;
       return next;
     });
     setNpcs(prev => [
