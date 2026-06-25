@@ -1592,27 +1592,6 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     }
 
     if (editorModeRef.current === "npcs") {
-      const clickedNpc = npcsRef.current.find(item => item.mapId === id && item.x === x && item.y === y);
-
-      if (npcEditorActionRef.current === "edit") {
-        if (clickedNpc) {
-          setEditorSelection({ kind: "npc", id: clickedNpc.id });
-          setDraggedNpcId(clickedNpc.id);
-          draggedNpcIdRef.current = clickedNpc.id;
-        }
-        return;
-      }
-
-      if (npcEditorActionRef.current === "delete") {
-        if (clickedNpc) {
-          upsertEditedNpcsForMap(id, current => current.filter(npc => npc.id !== clickedNpc.id));
-          if (editorSelectionRef.current?.kind === "npc" && editorSelectionRef.current.id === clickedNpc.id) {
-            setEditorSelection(null);
-          }
-        }
-        return;
-      }
-
       const next = upsertEditedNpcsForMap(id, current => {
         const preset = NPC_VISUAL_PRESETS.find(item => item.id === editorNpcPresetIdRef.current) ?? NPC_VISUAL_PRESETS[0];
         const npcNumber = current.length + 1;
@@ -2131,7 +2110,7 @@ export const ${constantName}: EditorMapAsset = {
                     />
                   </label>
                   <div style={{ ...VT, fontSize: "1.05rem", color: "#252018" }}>
-                    Click a top-left tile to place. Door is created automatically.
+                    Click a top-left tile to place. Door is created automatically. Use Select to edit, move, resize, duplicate, or delete buildings.
                     {UNIQUE_BUILDING_KINDS.has(editorBuildingKind) && displayBuildings.some(building => building.kind === editorBuildingKind) && (
                       <div style={{ color: "#b6422c", marginTop: 4 }}>
                         Placing this will replace the existing {BUILDING_KIND_LABEL[editorBuildingKind]}.
@@ -2254,34 +2233,6 @@ export const ${constantName}: EditorMapAsset = {
                 </div>
 
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
-                  <button
-                    type="button"
-                    onClick={() => { setNpcEditAction("place"); setNpcEditorAction("create"); }}
-                    style={{
-                      padding: "7px 10px",
-                      cursor: "pointer",
-                      border: npcEditAction === "place" ? "4px solid #315f2a" : "2px solid #252018",
-                      background: npcEditAction === "place" ? "#d8f0b0" : "#fff8c8",
-                      color: "#252018",
-                      fontWeight: 900,
-                    }}
-                  >
-                    Place NPC
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => { setNpcEditAction("erase"); setNpcEditorAction("delete"); }}
-                    style={{
-                      padding: "7px 10px",
-                      cursor: "pointer",
-                      border: npcEditAction === "erase" ? "4px solid #ca4b36" : "2px solid #252018",
-                      background: npcEditAction === "erase" ? "#ffd0c8" : "#fff8c8",
-                      color: "#252018",
-                      fontWeight: 900,
-                    }}
-                  >
-                    Remove NPC
-                  </button>
                   <span style={{ ...VT, fontSize: "1.05rem", color: "#252018", alignSelf: "center" }}>
                     NPCs on map: {displayEditorNpcs.length}
                   </span>
@@ -2418,7 +2369,7 @@ export const ${constantName}: EditorMapAsset = {
 
                 {!editorSelection && (
                   <div style={{ ...RJ, fontSize: "0.9rem", color: "#66512c" }}>
-                    Click an NPC, object, or tile on the map to inspect it. Drag an NPC to move it.
+                    Click an NPC, building, object, or tile to inspect it. Drag NPCs/buildings/objects to move them. Use the inspector to edit, duplicate, or delete.
                   </div>
                 )}
 
@@ -2785,10 +2736,6 @@ export const ${constantName}: EditorMapAsset = {
                   }}
                   onPointerEnter={() => {
                     if (isEditorDraggingRef.current && transformDragTo(x, y)) return;
-                    if (isEditorDraggingRef.current && editorModeRef.current === "npcs" && npcEditorActionRef.current === "edit" && draggedNpcIdRef.current) {
-                      moveSelectedNpcTo(x, y);
-                      return;
-                    }
                     if (isEditorDraggingRef.current) paintEditorTile(x, y);
                   }}
                   style={{
