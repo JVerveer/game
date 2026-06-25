@@ -25,6 +25,7 @@ import { pixelBuildingsFor } from "../data/cityMaps/pixelSceneData";
 import { citySceneObjectsFor } from "../data/cityMaps/scenes";
 import { PixelMapScene } from "./pixelTiles";
 import { objectClassFor, tileShapeClassFor } from "./mapRenderHelpers";
+import { MAP_OBJECT_DEFS, objectLabelForId } from "../data/objectRegistry";
 
 // ─── Font helpers ────────────────────────────────────────────────────────────
 const PX = { fontFamily: "'Press Start 2P', monospace" } as const;
@@ -349,6 +350,27 @@ const TILE_TYPES = [
 
 const tileTypeFor = (id: string) => TILE_TYPES.find(tile => tile.id === id);
 
+const OBJECT_EDITOR_CATEGORIES = [
+  "Core",
+  "Wokeshire",
+  "Satiria",
+  "Brexiton",
+  "Promptford",
+  "Cryptonia",
+  "Surveillia",
+  "Tweetsburg",
+  "Inflatopolis",
+  "Tariff",
+  "Ragebait",
+  "Factcheck",
+  "Interior",
+  "Custom",
+] as const;
+
+type EditorMode = "terrain" | "objects";
+type ObjectEditAction = "place" | "erase";
+
+
 const EDITOR_TILE_COLORS: Record<string, string> = {
   G: "#56b447",
   R: "#d4a15f",
@@ -406,11 +428,17 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [editorTile, setEditorTile] = useState("G");
   const [isEditorDragging, setIsEditorDragging] = useState(false);
   const [editedRowsByMap, setEditedRowsByMap] = useState<Partial<Record<GameMapId, string[][]>>>({});
+  const [editedObjectsByMap, setEditedObjectsByMap] = useState<Partial<Record<GameMapId, Record<string, string>>>>({});
+  const [editorMode, setEditorMode] = useState<EditorMode>("terrain");
+  const [objectEditAction, setObjectEditAction] = useState<ObjectEditAction>("place");
+  const [editorObjectId, setEditorObjectId] = useState("SIGN");
   const viewRef = useRef<HTMLDivElement>(null);
   const [viewSize, setViewSize] = useState({ w: 900, h: 600 });
   const currentMap = GAME_MAPS[mapId];
   const editedRows = editedRowsByMap[mapId];
   const displayRows = editedRows ?? currentMap.rows;
+  const editedObjects = editedObjectsByMap[mapId];
+  const displayObjects = editedObjects ?? currentMap.objects;
   const currentTown = isTownMap(mapId) ? TOWN_THEMES.find(town => town.id === mapId) : null;
 
   // Mutable refs so event handler closure stays fresh
@@ -425,6 +453,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const trainIndexRef = useRef(trainIndex);
   const terrainEditorOpenRef = useRef(terrainEditorOpen);
   const editedRowsByMapRef = useRef(editedRowsByMap);
+  const editedObjectsByMapRef = useRef(editedObjectsByMap);
+  const editorModeRef = useRef<EditorMode>(editorMode);
+  const objectEditActionRef = useRef<ObjectEditAction>(objectEditAction);
+  const editorObjectIdRef = useRef(editorObjectId);
   const editorTileRef = useRef(editorTile);
   const isEditorDraggingRef = useRef(false);
   const pendingPortalRef = useRef<Portal | null>(null);
@@ -441,11 +473,16 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   trainIndexRef.current = trainIndex;
   terrainEditorOpenRef.current = terrainEditorOpen;
   editedRowsByMapRef.current = editedRowsByMap;
+  editedObjectsByMapRef.current = editedObjectsByMap;
+  editorModeRef.current = editorMode;
+  objectEditActionRef.current = objectEditAction;
+  editorObjectIdRef.current = editorObjectId;
   editorTileRef.current = editorTile;
 
   const isIndoor = (id: GameMapId) => id === "shop" || id === "house" || id === "healing";
 
   const rowsForMap = (id: GameMapId) => editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows;
+  const objectsForMap = (id: GameMapId) => editedObjectsByMapRef.current[id] ?? GAME_MAPS[id].objects;
 
   const warpTo = (portal: Portal) => {
     const fromMapId = mapIdRef.current;
@@ -831,10 +868,30 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       ...prev,
       [mapIdRef.current]: prev[mapIdRef.current] ?? rowsForMap(mapIdRef.current).map(row => [...row]),
     }));
+    setEditedObjectsByMap(prev => ({
+      ...prev,
+      [mapIdRef.current]: prev[mapIdRef.current] ?? { ...objectsForMap(mapIdRef.current) },
+    }));
   };
 
   const paintEditorTile = (x: number, y: number) => {
     const id = mapIdRef.current;
+    const coord = `${x},${y}`;
+
+    if (editorModeRef.current === "objects") {
+      setEditedObjectsByMap(prev => {
+        const base = prev[id] ?? { ...objectsForMap(id) };
+        const next = { ...base };
+        if (objectEditActionRef.current === "erase") {
+          delete next[coord];
+        } else {
+          next[coord] = editorObjectIdRef.current;
+        }
+        return { ...prev, [id]: next };
+      });
+      return;
+    }
+
     setEditedRowsByMap(prev => {
       const base = prev[id] ?? rowsForMap(id).map(row => [...row]);
       const next = base.map(row => [...row]);
@@ -850,13 +907,22 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       delete next[id];
       return next;
     });
+    setEditedObjectsByMap(prev => {
+      const next = { ...prev };
+      delete next[id];
+      return next;
+    });
   };
 
   const exportEditedRows = () => {
     const id = mapIdRef.current;
     const rows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows;
-    const constantName = `${String(id).toUpperCase()}_ROWS`;
-    return `export const ${constantName}: string[] = ${JSON.stringify(rows.map(row => row.join("")), null, 2)};`;
+    const objects = editedObjectsByMapRef.current[id] ?? GAME_MAPS[id].objects;
+    const constantName = `${String(id).toUpperCase()}_EDITOR_EXPORT`;
+    return `export const ${constantName} = {
+  rows: ${JSON.stringify(rows.map(row => row.join("")), null, 2)},
+  objects: ${JSON.stringify(objects, null, 2)},
+};`;
   };
 
   const copyEditedRows = async () => {
@@ -894,7 +960,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
             />
         )}
 
-        {isTownMap(mapId) && Object.entries(currentMap.objects)
+        {isTownMap(mapId) && Object.entries(displayObjects)
           .filter(([, obj]) => obj !== "NPC")
           .map(([coord, obj]) => {
             const [x, y] = coord.split(",").map(Number);
@@ -924,7 +990,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           {displayRows.map((row, ry) => (
             <div key={ry} style={{ display: "flex" }}>
               {row.map((t, cx) => {
-                const obj = currentMap.objects[`${cx},${ry}`];
+                const obj = displayObjects[`${cx},${ry}`];
                 const tileShapeClass = tileShapeClassFor(displayRows, cx, ry, t);
                 return (
                   <div
@@ -1081,6 +1147,38 @@ function GameScreen({ onExit }: { onExit: () => void }) {
               Select a tile, then click or drag to paint. Your normal pixel-art map stays active. This editor is an overlay; changes feed into the normal map preview, collision, and export.
             </div>
 
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
+              <button
+                type="button"
+                onClick={() => setEditorMode("terrain")}
+                style={{
+                  padding: "8px 12px",
+                  cursor: "pointer",
+                  border: editorMode === "terrain" ? "4px solid #ca4b36" : "2px solid #252018",
+                  background: editorMode === "terrain" ? "#fff3a8" : "#fff8c8",
+                  color: "#252018",
+                  fontWeight: 900,
+                }}
+              >
+                Terrain
+              </button>
+              <button
+                type="button"
+                onClick={() => setEditorMode("objects")}
+                style={{
+                  padding: "8px 12px",
+                  cursor: "pointer",
+                  border: editorMode === "objects" ? "4px solid #ca4b36" : "2px solid #252018",
+                  background: editorMode === "objects" ? "#fff3a8" : "#fff8c8",
+                  color: "#252018",
+                  fontWeight: 900,
+                }}
+              >
+                Objects
+              </button>
+            </div>
+
+            {editorMode === "terrain" && (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(170px, 1fr))", gap: 8, marginBottom: 12 }}>
               {TILE_TYPES.map(tile => (
                 <button
@@ -1119,6 +1217,93 @@ function GameScreen({ onExit }: { onExit: () => void }) {
                 </button>
               ))}
             </div>
+
+            )}
+
+            {editorMode === "objects" && (
+              <div style={{ marginBottom: 12 }}>
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
+                  <button
+                    type="button"
+                    onClick={() => setObjectEditAction("place")}
+                    style={{
+                      padding: "7px 10px",
+                      cursor: "pointer",
+                      border: objectEditAction === "place" ? "4px solid #315f2a" : "2px solid #252018",
+                      background: objectEditAction === "place" ? "#d8f0b0" : "#fff8c8",
+                      color: "#252018",
+                      fontWeight: 900,
+                    }}
+                  >
+                    Place
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setObjectEditAction("erase")}
+                    style={{
+                      padding: "7px 10px",
+                      cursor: "pointer",
+                      border: objectEditAction === "erase" ? "4px solid #ca4b36" : "2px solid #252018",
+                      background: objectEditAction === "erase" ? "#ffd0c8" : "#fff8c8",
+                      color: "#252018",
+                      fontWeight: 900,
+                    }}
+                  >
+                    Remove
+                  </button>
+                  <span style={{ ...VT, fontSize: "1.05rem", color: "#252018", alignSelf: "center" }}>
+                    Selected: {objectLabelForId(editorObjectId)}
+                  </span>
+                </div>
+
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))", gap: 8, maxHeight: 260, overflow: "auto", paddingRight: 4 }}>
+                  {OBJECT_EDITOR_CATEGORIES.flatMap(category =>
+                    MAP_OBJECT_DEFS.filter(def => def.category === category).map(def => (
+                      <button
+                        key={def.id}
+                        type="button"
+                        onClick={() => {
+                          setEditorObjectId(def.id);
+                          setObjectEditAction("place");
+                        }}
+                        title={def.id}
+                        style={{
+                          minHeight: 56,
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 10,
+                          padding: "7px 9px",
+                          border: editorObjectId === def.id && objectEditAction === "place" ? "4px solid #315f2a" : "2px solid #252018",
+                          background: "#fff8c8",
+                          color: "#252018",
+                          cursor: "pointer",
+                          textAlign: "left",
+                        }}
+                      >
+                        <span style={{
+                          width: 42,
+                          height: 42,
+                          position: "relative",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          background: "#d7c58d",
+                          border: "2px solid #252018",
+                          flexShrink: 0,
+                          overflow: "visible",
+                        }}>
+                          <span className={objectClassFor(def.id)} />
+                        </span>
+                        <span style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                          <span style={{ ...VT, fontSize: "1.05rem", lineHeight: 1 }}>{def.label}</span>
+                          <span style={{ ...RJ, fontSize: "0.68rem", fontWeight: 700, opacity: 0.65 }}>{def.id} · {def.category}</span>
+                        </span>
+                      </button>
+                    ))
+                  )}
+                </div>
+              </div>
+            )}
 
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               <button type="button" onClick={copyEditedRows} style={{ padding: "8px 12px", cursor: "pointer" }}>
@@ -1169,7 +1354,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
                 <button
                   key={`${x},${y}`}
                   type="button"
-                  title={`${x},${y}: ${tileTypeFor(tile)?.name ?? tile} (${tile})`}
+                  title={`${x},${y}: ${tileTypeFor(tile)?.name ?? tile} (${tile})${displayObjects[`${x},${y}`] ? ` · Object: ${objectLabelForId(displayObjects[`${x},${y}`])}` : ""}`}
                   onPointerDown={(e) => {
                     e.preventDefault();
                     isEditorDraggingRef.current = true;
@@ -1183,11 +1368,32 @@ function GameScreen({ onExit }: { onExit: () => void }) {
                     width: 18,
                     height: 18,
                     padding: 0,
-                    border: "0",
+                    border: displayObjects[`${x},${y}`] ? "2px solid #ffef93" : "0",
                     background: EDITOR_TILE_COLORS[tile] ?? GAME_TILE_COLORS[tile] ?? GAME_TILE_COLORS.G,
                     cursor: "pointer",
+                    position: "relative",
+                    overflow: "hidden",
                   }}
-                />
+                >
+                  {displayObjects[`${x},${y}`] && (
+                    <span
+                      style={{
+                        position: "absolute",
+                        inset: 2,
+                        background: objectEditAction === "erase" && editorMode === "objects" ? "#ca4b36" : "#252018",
+                        color: "#fff8c8",
+                        fontSize: 9,
+                        lineHeight: "12px",
+                        fontWeight: 900,
+                        textAlign: "center",
+                        borderRadius: 2,
+                        pointerEvents: "none",
+                      }}
+                    >
+                      ◆
+                    </span>
+                  )}
+                </button>
               ))
             )}
           </div>
