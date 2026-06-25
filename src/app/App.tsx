@@ -377,9 +377,99 @@ const BUILDING_TYPES: Array<{ kind: EditorBuildingKind; label: string; defaultCo
 
 const BUILDING_COLORS: EditorBuildingColor[] = ["red", "blue", "purple", "green"];
 
+const BUILDING_KIND_LABEL: Record<EditorBuildingKind, string> = {
+  house: "House",
+  shop: "Shop",
+  healing: "Healing Center",
+  station: "Train Station",
+  hall: "Hall / Institution",
+};
+
+const UNIQUE_BUILDING_KINDS = new Set<EditorBuildingKind>(["shop", "healing", "station"]);
+
+const tileKindForEditorBuilding = (tile: string): EditorBuildingKind | null => {
+  if (tile === "A" || tile === "B") return tile === "A" ? "shop" : "house";
+  if (tile === "H") return "healing";
+  if (tile === "P") return "station";
+  if (tile === "I") return "hall";
+  if (tile === "U") return "house";
+  return null;
+};
+
+const colorForEditorBuildingKind = (kind: EditorBuildingKind): EditorBuildingColor => {
+  if (kind === "shop") return "green";
+  if (kind === "healing") return "blue";
+  if (kind === "station") return "red";
+  return "purple";
+};
+
+const inferBuildingsFromRowsForEditor = (rows: string[][]): EditorBuildingAsset[] => {
+  const seen = new Set<string>();
+  const buildings: EditorBuildingAsset[] = [];
+  const height = rows.length;
+  const width = rows[0]?.length ?? 0;
+  const buildingTiles = new Set(["A", "B", "H", "I", "P", "U"]);
+
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const tile = rows[y]?.[x];
+      if (!tile || !buildingTiles.has(tile) || seen.has(`${x},${y}`)) continue;
+
+      const queue = [{ x, y }];
+      let minX = x;
+      let maxX = x;
+      let minY = y;
+      let maxY = y;
+      seen.add(`${x},${y}`);
+
+      for (let i = 0; i < queue.length; i++) {
+        const cur = queue[i];
+        minX = Math.min(minX, cur.x);
+        maxX = Math.max(maxX, cur.x);
+        minY = Math.min(minY, cur.y);
+        maxY = Math.max(maxY, cur.y);
+
+        [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(([dx, dy]) => {
+          const nx = cur.x + dx;
+          const ny = cur.y + dy;
+          const key = `${nx},${ny}`;
+          if (seen.has(key) || rows[ny]?.[nx] !== tile) return;
+          seen.add(key);
+          queue.push({ x: nx, y: ny });
+        });
+      }
+
+      const kind = tileKindForEditorBuilding(tile);
+      if (!kind) continue;
+      buildings.push({
+        id: `legacy-building-${minX}-${minY}-${tile}`,
+        x: minX,
+        y: minY,
+        w: maxX - minX + 1,
+        h: maxY - minY + 1,
+        kind,
+        color: colorForEditorBuildingKind(kind),
+        crest: buildingCrestForKind(kind),
+      });
+    }
+  }
+
+  return buildings;
+};
+
+const buildingAtCoord = (buildings: EditorBuildingAsset[], x: number, y: number) =>
+  buildings.find(building =>
+    x >= building.x &&
+    x < building.x + building.w &&
+    y >= building.y &&
+    y < building.y + building.h
+  );
+
+
 
 type EditorSelection =
   | { kind: "npc"; id: string }
+  | { kind: "building"; id: string }
   | { kind: "object"; coord: string }
   | { kind: "tile"; x: number; y: number }
   | null;
@@ -533,8 +623,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const displayRows = editedRows ?? currentMap.rows;
   const editedObjects = editedObjectsByMap[mapId];
   const displayObjects = editedObjects ?? currentMap.objects;
-  const editedBuildings = editedBuildingsByMap[mapId] ?? [];
-  const displayRowsWithBuildings = applyBuildingsToRows(displayRows, editedBuildings);
+  const inferredBuildings = inferBuildingsFromRowsForEditor(displayRows);
+  const editedBuildings = editedBuildingsByMap[mapId];
+  const displayBuildings = editedBuildings ?? inferredBuildings;
+  const baseRowsWithoutBuildingTiles = displayRows.map(row => row.map(tile => BUILDING_TILE_IDS.has(tile) ? "G" : tile));
+  const displayRowsWithBuildings = applyBuildingsToRows(baseRowsWithoutBuildingTiles, displayBuildings);
   const editedNpcs = editedNpcsByMap[mapId];
   const mapAssetNpcs = npcs.filter(npc => npc.mapId === mapId).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking }));
   const displayEditorNpcs = mapAssetNpcs;
@@ -609,7 +702,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
   const rowsForMap = (id: GameMapId) => applyBuildingsToRows(editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows, editedBuildingsByMapRef.current[id] ?? []);
   const objectsForMap = (id: GameMapId) => editedObjectsByMapRef.current[id] ?? GAME_MAPS[id].objects;
-  const buildingsForMap = (id: GameMapId) => editedBuildingsByMapRef.current[id] ?? [];
+  const buildingsForMap = (id: GameMapId) => editedBuildingsByMapRef.current[id] ?? inferBuildingsFromRowsForEditor(editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows);
   const npcsForMap = (id: GameMapId) => editedNpcsByMapRef.current[id] ?? npcsRef.current.filter(npc => npc.mapId === id).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking }));
 
   const movingNpcFromEditorAsset = (id: GameMapId, npc: EditorNpcAsset): MovingNpc => ({
@@ -665,6 +758,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
   const selectedNpc = editorSelection?.kind === "npc"
     ? displayEditorNpcs.find(npc => npc.id === editorSelection.id)
+    : null;
+
+  const selectedBuilding = editorSelection?.kind === "building"
+    ? displayBuildings.find(building => building.id === editorSelection.id)
     : null;
 
   const warpTo = (portal: Portal) => {
@@ -1101,7 +1198,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           building.x + building.w > item.x &&
           building.y < item.y + item.h &&
           building.y + building.h > item.y;
-        return !overlaps && !(itemDoor.x === door.x && itemDoor.y === door.y);
+        const sameUniqueKind = UNIQUE_BUILDING_KINDS.has(kind) && item.kind === kind;
+        return !overlaps && !sameUniqueKind && !(itemDoor.x === door.x && itemDoor.y === door.y);
       });
       const next = [...withoutOverlap, building];
       editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: next };
@@ -1119,6 +1217,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         setEditorSelection({ kind: "npc", id: npc.id });
         setDraggedNpcId(npc.id);
         draggedNpcIdRef.current = npc.id;
+        return;
+      }
+      const building = buildingAtCoord(buildingsForMap(id), x, y);
+      if (building) {
+        setEditorSelection({ kind: "building", id: building.id });
         return;
       }
       if (objectsForMap(id)[coord]) {
@@ -1646,6 +1749,11 @@ export const ${constantName}: EditorMapAsset = {
                   </label>
                   <div style={{ ...VT, fontSize: "1.05rem", color: "#252018" }}>
                     Click a top-left tile to place. Door is created automatically.
+                    {UNIQUE_BUILDING_KINDS.has(editorBuildingKind) && displayBuildings.some(building => building.kind === editorBuildingKind) && (
+                      <div style={{ color: "#b6422c", marginTop: 4 }}>
+                        Placing this will replace the existing {BUILDING_KIND_LABEL[editorBuildingKind]}.
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -1910,6 +2018,113 @@ export const ${constantName}: EditorMapAsset = {
                   </div>
                 )}
 
+                {selectedBuilding && (
+                  <div style={{ display: "grid", gap: 10 }}>
+                    <div style={{ ...RJ, fontSize: "0.95rem", color: "#252018" }}>
+                      Building: <b>{BUILDING_KIND_LABEL[selectedBuilding.kind]}</b> at {selectedBuilding.x},{selectedBuilding.y}
+                    </div>
+
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: 8 }}>
+                      <label style={{ display: "grid", gap: 4 }}>
+                        <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Type</span>
+                        <select
+                          value={selectedBuilding.kind}
+                          onChange={(e) => {
+                            const kind = e.target.value as EditorBuildingKind;
+                            setEditedBuildingsByMap(prev => {
+                              const current = prev[mapIdRef.current] ?? buildingsForMap(mapIdRef.current);
+                              const next = current.map(building => building.id === selectedBuilding.id
+                                ? { ...building, kind, crest: buildingCrestForKind(kind), color: colorForEditorBuildingKind(kind) }
+                                : building
+                              ).filter((building, _, all) => !UNIQUE_BUILDING_KINDS.has(building.kind) || building.id === selectedBuilding.id || all.find(other => other.kind === building.kind)?.id === building.id);
+                              editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [mapIdRef.current]: next };
+                              return { ...prev, [mapIdRef.current]: next };
+                            });
+                          }}
+                          style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
+                        >
+                          {BUILDING_TYPES.map(type => <option key={type.kind} value={type.kind}>{type.label}</option>)}
+                        </select>
+                      </label>
+
+                      <label style={{ display: "grid", gap: 4 }}>
+                        <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Color</span>
+                        <select
+                          value={selectedBuilding.color}
+                          onChange={(e) => {
+                            const color = e.target.value as EditorBuildingColor;
+                            setEditedBuildingsByMap(prev => {
+                              const current = prev[mapIdRef.current] ?? buildingsForMap(mapIdRef.current);
+                              const next = current.map(building => building.id === selectedBuilding.id ? { ...building, color } : building);
+                              editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [mapIdRef.current]: next };
+                              return { ...prev, [mapIdRef.current]: next };
+                            });
+                          }}
+                          style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
+                        >
+                          {BUILDING_COLORS.map(color => <option key={color} value={color}>{color}</option>)}
+                        </select>
+                      </label>
+
+                      <label style={{ display: "grid", gap: 4 }}>
+                        <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Width</span>
+                        <input
+                          type="number"
+                          min={3}
+                          max={14}
+                          value={selectedBuilding.w}
+                          onChange={(e) => {
+                            const w = Number(e.target.value);
+                            setEditedBuildingsByMap(prev => {
+                              const current = prev[mapIdRef.current] ?? buildingsForMap(mapIdRef.current);
+                              const next = current.map(building => building.id === selectedBuilding.id ? { ...building, w } : building);
+                              editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [mapIdRef.current]: next };
+                              return { ...prev, [mapIdRef.current]: next };
+                            });
+                          }}
+                          style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
+                        />
+                      </label>
+
+                      <label style={{ display: "grid", gap: 4 }}>
+                        <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Height</span>
+                        <input
+                          type="number"
+                          min={3}
+                          max={10}
+                          value={selectedBuilding.h}
+                          onChange={(e) => {
+                            const h = Number(e.target.value);
+                            setEditedBuildingsByMap(prev => {
+                              const current = prev[mapIdRef.current] ?? buildingsForMap(mapIdRef.current);
+                              const next = current.map(building => building.id === selectedBuilding.id ? { ...building, h } : building);
+                              editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [mapIdRef.current]: next };
+                              return { ...prev, [mapIdRef.current]: next };
+                            });
+                          }}
+                          style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
+                        />
+                      </label>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setEditedBuildingsByMap(prev => {
+                          const current = prev[mapIdRef.current] ?? buildingsForMap(mapIdRef.current);
+                          const nextBuildings = current.filter(building => building.id !== selectedBuilding.id);
+                          editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [mapIdRef.current]: nextBuildings };
+                          return { ...prev, [mapIdRef.current]: nextBuildings };
+                        });
+                        setEditorSelection(null);
+                      }}
+                      style={{ padding: "8px 12px", cursor: "pointer", border: "2px solid #ca4b36", background: "#ffd0c8", color: "#252018", fontWeight: 900 }}
+                    >
+                      Delete Building
+                    </button>
+                  </div>
+                )}
+
                 {editorSelection?.kind === "object" && (
                   <div style={{ display: "grid", gap: 8 }}>
                     <div style={{ ...RJ, fontSize: "0.95rem", color: "#252018" }}>
@@ -2110,7 +2325,7 @@ export const ${constantName}: EditorMapAsset = {
                 <button
                   key={`${x},${y}`}
                   type="button"
-                  title={`${x},${y}: ${tileTypeFor(tile)?.name ?? tile} (${tile})${displayObjects[`${x},${y}`] ? ` · Object: ${objectLabelForId(displayObjects[`${x},${y}`])}` : ""}${displayEditorNpcs.some(npc => npc.x === x && npc.y === y) ? " · NPC" : ""}`}
+                  title={`${x},${y}: ${tileTypeFor(tile)?.name ?? tile} (${tile})${buildingAtCoord(displayBuildings, x, y) ? ` · Building: ${BUILDING_KIND_LABEL[buildingAtCoord(displayBuildings, x, y)!.kind]}` : ""}${displayObjects[`${x},${y}`] ? ` · Object: ${objectLabelForId(displayObjects[`${x},${y}`])}` : ""}${displayEditorNpcs.some(npc => npc.x === x && npc.y === y) ? " · NPC" : ""}`}
                   onPointerDown={(e) => {
                     e.preventDefault();
                     isEditorDraggingRef.current = true;
@@ -2125,13 +2340,31 @@ export const ${constantName}: EditorMapAsset = {
                     width: 18,
                     height: 18,
                     padding: 0,
-                    border: displayEditorNpcs.some(npc => npc.x === x && npc.y === y) ? "2px solid #c87aff" : displayObjects[`${x},${y}`] ? "2px solid #ffef93" : "0",
+                    border: displayEditorNpcs.some(npc => npc.x === x && npc.y === y) ? "2px solid #c87aff" : buildingAtCoord(displayBuildings, x, y) ? "2px solid #38bdf8" : displayObjects[`${x},${y}`] ? "2px solid #ffef93" : "0",
                     background: EDITOR_TILE_COLORS[tile] ?? GAME_TILE_COLORS[tile] ?? GAME_TILE_COLORS.G,
                     cursor: "pointer",
                     position: "relative",
                     overflow: "hidden",
                   }}
                 >
+                  {buildingAtCoord(displayBuildings, x, y) && (
+                    <span
+                      style={{
+                        position: "absolute",
+                        inset: 1,
+                        background: "rgba(56,189,248,0.58)",
+                        color: "#252018",
+                        fontSize: 9,
+                        lineHeight: "14px",
+                        fontWeight: 900,
+                        textAlign: "center",
+                        borderRadius: 2,
+                        pointerEvents: "none",
+                      }}
+                    >
+                      ⌂
+                    </span>
+                  )}
                   {displayObjects[`${x},${y}`] && (
                     <span
                       style={{
