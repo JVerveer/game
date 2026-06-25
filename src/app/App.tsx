@@ -1259,6 +1259,19 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     }));
   };
 
+  const clearEditorDragState = () => {
+    isEditorDraggingRef.current = false;
+    setIsEditorDragging(false);
+    setDraggedNpcId(null);
+    setDraggedBuildingId(null);
+    setDraggedObjectCoord(null);
+    setResizeBuildingId(null);
+    draggedNpcIdRef.current = null;
+    draggedBuildingIdRef.current = null;
+    draggedObjectCoordRef.current = null;
+    resizeBuildingIdRef.current = null;
+  };
+
   const moveSelectedNpcTo = (x: number, y: number) => {
     const id = mapIdRef.current;
     const npcId = draggedNpcIdRef.current;
@@ -1435,10 +1448,25 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         draggedNpcIdRef.current = npc.id;
         return;
       }
+
+      // Objects are only 1 tile, so they should win over large building
+      // footprints when an object sits on/near a building.
+      if (objectsForMap(id)[coord]) {
+        setEditorSelection({ kind: "object", coord });
+        setDraggedObjectCoord(coord);
+        draggedObjectCoordRef.current = coord;
+        return;
+      }
+
       const building = buildingAtCoord(buildingsForMap(id), x, y);
       if (building) {
         const isResizeHandle = x === building.x + building.w - 1 && y === building.y + building.h - 1;
         setEditorSelection({ kind: "building", id: building.id });
+        setDraggedBuildingId(null);
+        draggedBuildingIdRef.current = null;
+        setResizeBuildingId(null);
+        resizeBuildingIdRef.current = null;
+
         if (isResizeHandle) {
           setResizeBuildingId(building.id);
           resizeBuildingIdRef.current = building.id;
@@ -1448,12 +1476,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         }
         return;
       }
-      if (objectsForMap(id)[coord]) {
-        setEditorSelection({ kind: "object", coord });
-        setDraggedObjectCoord(coord);
-        draggedObjectCoordRef.current = coord;
-        return;
-      }
+
       setEditorSelection({ kind: "tile", x, y });
       return;
     }
@@ -2584,30 +2607,8 @@ export const ${constantName}: EditorMapAsset = {
               touchAction: "none",
               userSelect: "none",
             }}
-            onPointerUp={() => {
-              isEditorDraggingRef.current = false;
-              setIsEditorDragging(false);
-              setDraggedNpcId(null);
-              setDraggedBuildingId(null);
-              setDraggedObjectCoord(null);
-              setResizeBuildingId(null);
-              draggedNpcIdRef.current = null;
-              draggedBuildingIdRef.current = null;
-              draggedObjectCoordRef.current = null;
-              resizeBuildingIdRef.current = null;
-            }}
-            onPointerLeave={() => {
-              isEditorDraggingRef.current = false;
-              setIsEditorDragging(false);
-              setDraggedNpcId(null);
-              setDraggedBuildingId(null);
-              setDraggedObjectCoord(null);
-              setResizeBuildingId(null);
-              draggedNpcIdRef.current = null;
-              draggedBuildingIdRef.current = null;
-              draggedObjectCoordRef.current = null;
-              resizeBuildingIdRef.current = null;
-            }}
+            onPointerUp={clearEditorDragState}
+            onPointerLeave={clearEditorDragState}
           >
             {displayRows.map((row, y) =>
               row.map((tile, x) => (
