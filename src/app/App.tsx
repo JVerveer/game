@@ -345,9 +345,14 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [npcs, setNpcs] = useState<MovingNpc[]>(INITIAL_NPCS);
   const [trainOpen, setTrainOpen] = useState(false);
   const [trainIndex, setTrainIndex] = useState(0);
+  const [terrainEditorOpen, setTerrainEditorOpen] = useState(false);
+  const [editorTile, setEditorTile] = useState("G");
+  const [editedRowsByMap, setEditedRowsByMap] = useState<Partial<Record<GameMapId, string[][]>>>({});
   const viewRef = useRef<HTMLDivElement>(null);
   const [viewSize, setViewSize] = useState({ w: 900, h: 600 });
   const currentMap = GAME_MAPS[mapId];
+  const editedRows = editedRowsByMap[mapId];
+  const displayRows = editedRows ?? currentMap.rows;
   const currentTown = isTownMap(mapId) ? TOWN_THEMES.find(town => town.id === mapId) : null;
 
   // Mutable refs so event handler closure stays fresh
@@ -360,6 +365,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const npcsRef = useRef(npcs);
   const trainOpenRef = useRef(trainOpen);
   const trainIndexRef = useRef(trainIndex);
+  const terrainEditorOpenRef = useRef(terrainEditorOpen);
   const pendingPortalRef = useRef<Portal | null>(null);
   const returnPortalRef = useRef<Portal>({ mapId: "satiria", x: 31, y: 17, facing: "down" });
   const lastMove = useRef(0);
@@ -372,6 +378,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   npcsRef.current = npcs;
   trainOpenRef.current = trainOpen;
   trainIndexRef.current = trainIndex;
+  terrainEditorOpenRef.current = terrainEditorOpen;
 
   const isIndoor = (id: GameMapId) => id === "shop" || id === "house" || id === "healing";
 
@@ -594,6 +601,18 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         handleTrainKey(e.key);
         return;
       }
+      if (terrainEditorOpenRef.current) {
+        if (e.key === "Escape" || e.key === "q" || e.key === "Q") {
+          e.preventDefault();
+          setTerrainEditorOpen(false);
+        }
+        return;
+      }
+      if (e.key === "q" || e.key === "Q") {
+        e.preventDefault();
+        openTerrainEditor();
+        return;
+      }
       if (e.key === "Escape") { setPaused(p => !p); return; }
       if (e.key === " " || e.key === "z" || e.key === "Z" || e.key === "Enter") {
         e.preventDefault(); doInteract(); return;
@@ -649,6 +668,51 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const hpPct = (hp.cur / hp.max) * 100;
   const hpColor = hpPct > 50 ? "#5de85d" : hpPct > 25 ? "#f5c518" : "#e84a4a";
 
+  const openTerrainEditor = () => {
+    setTerrainEditorOpen(true);
+    setEditedRowsByMap(prev => ({
+      ...prev,
+      [mapIdRef.current]: prev[mapIdRef.current] ?? GAME_MAPS[mapIdRef.current].rows.map(row => [...row]),
+    }));
+  };
+
+  const paintEditorTile = (x: number, y: number) => {
+    const id = mapIdRef.current;
+    setEditedRowsByMap(prev => {
+      const base = prev[id] ?? GAME_MAPS[id].rows.map(row => [...row]);
+      const next = base.map(row => [...row]);
+      if (next[y]?.[x] !== undefined) next[y][x] = editorTile;
+      return { ...prev, [id]: next };
+    });
+  };
+
+  const resetEditedTerrain = () => {
+    const id = mapIdRef.current;
+    setEditedRowsByMap(prev => {
+      const next = { ...prev };
+      delete next[id];
+      return next;
+    });
+  };
+
+  const exportEditedRows = () => {
+    const id = mapIdRef.current;
+    const rows = editedRowsByMap[id] ?? GAME_MAPS[id].rows;
+    const constantName = `${String(id).toUpperCase()}_ROWS`;
+    return `export const ${constantName}: string[] = ${JSON.stringify(rows.map(row => row.join("")), null, 2)};`;
+  };
+
+  const copyEditedRows = async () => {
+    const text = exportEditedRows();
+    try {
+      await navigator.clipboard.writeText(text);
+      setSaveMsg("Terrain export copied!");
+    } catch {
+      setSaveMsg("Could not copy export");
+    }
+    window.setTimeout(() => setSaveMsg(null), 2200);
+  };
+
   return (
     <div className="gameboy-shell">
       <div ref={viewRef} className={`gameboy-screen screen-${mapId}`}>
@@ -667,8 +731,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       }} className={`map-layer map-${mapId}`}>
         {isTownMap(mapId) && (
             <PixelMapScene
-              rows={currentMap.rows}
-              buildings={pixelBuildingsFor(mapId, currentMap.rows)}
+              rows={displayRows}
+              buildings={pixelBuildingsFor(mapId, displayRows)}
               objects={isTownMap(mapId) ? citySceneObjectsFor(mapId) : []}
             />
         )}
@@ -700,11 +764,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
         {/* Tiles rendered as flex rows */}
         <div className={isTownMap(mapId) ? "pixel-game-grid" : ""} style={{ display: "flex", flexDirection: "column" }}>
-          {currentMap.rows.map((row, ry) => (
+          {displayRows.map((row, ry) => (
             <div key={ry} style={{ display: "flex" }}>
               {row.map((t, cx) => {
                 const obj = currentMap.objects[`${cx},${ry}`];
-                const tileShapeClass = tileShapeClassFor(currentMap.rows, cx, ry, t);
+                const tileShapeClass = tileShapeClassFor(displayRows, cx, ry, t);
                 return (
                   <div
                     key={cx}
@@ -813,6 +877,110 @@ function GameScreen({ onExit }: { onExit: () => void }) {
             }
           }}
         />
+      )}
+
+      {/* ── TERRAIN EDITOR ── */}
+      {terrainEditorOpen && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 1300,
+            background: "rgba(37,32,24,0.94)",
+            padding: 24,
+            overflow: "auto",
+          }}
+        >
+          <div className="pixel-window" style={{ padding: 18, marginBottom: 12 }}>
+            <div style={{ ...PX, fontSize: "0.65rem", color: "#b6422c", marginBottom: 12 }}>
+              TERRAIN EDITOR · {String(mapId).toUpperCase()}
+            </div>
+
+            <div style={{ ...VT, fontSize: "1.1rem", color: "#252018", marginBottom: 10 }}>
+              Select a tile, then paint the full terrain map below. Press Q or ESC to close.
+            </div>
+
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
+              {["G", "R", "W", "T", "E", "Y", "S", "X", "B", "H", "P", "U", "A", "O", "D", "C", "M", "J"].map(tile => (
+                <button
+                  key={tile}
+                  type="button"
+                  onClick={() => setEditorTile(tile)}
+                  style={{
+                    width: 42,
+                    height: 42,
+                    border: editorTile === tile ? "4px solid #ca4b36" : "2px solid #252018",
+                    background: GAME_TILE_COLORS[tile] ?? GAME_TILE_COLORS.G,
+                    color: "#fff8c8",
+                    fontWeight: 900,
+                    cursor: "pointer",
+                  }}
+                >
+                  {tile}
+                </button>
+              ))}
+            </div>
+
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+              <button type="button" onClick={copyEditedRows} style={{ padding: "8px 12px", cursor: "pointer" }}>
+                Copy Export
+              </button>
+              <button type="button" onClick={resetEditedTerrain} style={{ padding: "8px 12px", cursor: "pointer" }}>
+                Reset This Map
+              </button>
+              <button type="button" onClick={() => setTerrainEditorOpen(false)} style={{ padding: "8px 12px", cursor: "pointer" }}>
+                Close
+              </button>
+            </div>
+
+            <textarea
+              readOnly
+              value={exportEditedRows()}
+              style={{
+                width: "100%",
+                minHeight: 110,
+                marginTop: 12,
+                padding: 10,
+                border: "3px solid #252018",
+                background: "#fff8c8",
+                color: "#252018",
+                fontFamily: "monospace",
+                fontSize: 12,
+              }}
+            />
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: `repeat(${displayRows[0]?.length ?? 1}, 18px)`,
+              gap: 1,
+              background: "#252018",
+              width: "fit-content",
+              padding: 4,
+              border: "4px solid #fff8c8",
+            }}
+          >
+            {displayRows.map((row, y) =>
+              row.map((tile, x) => (
+                <button
+                  key={`${x},${y}`}
+                  type="button"
+                  title={`${x},${y}: ${tile}`}
+                  onClick={() => paintEditorTile(x, y)}
+                  style={{
+                    width: 18,
+                    height: 18,
+                    padding: 0,
+                    border: "0",
+                    background: GAME_TILE_COLORS[tile] ?? GAME_TILE_COLORS.G,
+                    cursor: "pointer",
+                  }}
+                />
+              ))
+            )}
+          </div>
+        </div>
       )}
 
       {/* ── SAVE MESSAGE ── */}
