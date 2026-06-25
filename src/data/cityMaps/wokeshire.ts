@@ -1,5 +1,4 @@
-import { buildCityMapFromLayout } from "./layoutTools";
-import { WOKESHIRE_LAYOUT } from "./wokeshireLayout";
+import { mapAssetRows } from "./mapAsset";
+import { WOKESHIRE_MAP_ASSET } from "./wokeshireMapAsset";
 
-export const buildWokeshireMap = () => buildCityMapFromLayout(WOKESHIRE_LAYOUT);
-
+export const buildWokeshireMap = () => mapAssetRows(WOKESHIRE_MAP_ASSET);

@@ -10,6 +10,7 @@ import { buildSurveilliaMap as buildSurveilliaCityMap } from "./cityMaps/surveil
 import { buildTariffMap as buildTariffCityMap } from "./cityMaps/tariff";
 import { buildTweetsburgMap as buildTweetsburgCityMap } from "./cityMaps/tweetsburg";
 import { buildWokeshireMap as buildWokeshireCityMap } from "./cityMaps/wokeshire";
+import { WOKESHIRE_MAP_ASSET } from "./cityMaps/wokeshireMapAsset";
 import { SATIRIA_ENTRANCES, SATIRIA_OBJECT_MARKERS, coord } from "./cityMaps/satiriaLayout";
 import { cityCoreOffsetFor } from "./cityMaps/sizeTiers";
 import { makeBlankMap, rect } from "./cityMaps/utils";
@@ -371,6 +372,12 @@ const TOWN_ROW_BUILDERS: Record<TownMapId, () => string[][]> = {
   ragebait: buildRagebaitCityMap,
   factcheck: buildFactcheckCityMap,
 };
+
+const EDITOR_NATIVE_TOWN_ASSETS = {
+  wokeshire: WOKESHIRE_MAP_ASSET,
+} as const satisfies Partial<Record<TownMapId, { objects?: Record<string, string>; interactions?: Record<string, Interaction>; spawn?: { x: number; y: number } }>>;
+
+const editorNativeAssetFor = (townId: TownMapId) => EDITOR_NATIVE_TOWN_ASSETS[townId as keyof typeof EDITOR_NATIVE_TOWN_ASSETS];
 
 const themedRowsFor = (theme: TownTheme) => TOWN_ROW_BUILDERS[theme.id]();
 
@@ -765,6 +772,7 @@ const doorConfigFromRows = (theme: TownTheme, rows: string[][]): TownDoorConfig 
 };
 
 const createThemedTownDef = (theme: TownTheme): GameMapDef => {
+  const nativeAsset = editorNativeAssetFor(theme.id);
   const rows = themedRowsFor(theme);
   const doors = doorConfigFromRows(theme, rows);
   const homeObjects: Record<string, string> = Object.fromEntries(doors.homes.map(coord => [coord, "DOOR_HOME"]));
@@ -778,6 +786,8 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
     theme.id === "wokeshire"
       ? specialInteractionsFor(theme)
       : offsetRecord(specialInteractionsFor(theme), coreOffset);
+  const assetObjects = nativeAsset?.objects ?? {};
+  const assetInteractions = nativeAsset?.interactions ?? {};
   const shopInteraction = {
     name: `${theme.name} Shop`,
     portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
@@ -827,7 +837,7 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
     width: rows[0]?.length ?? 56,
     height: rows.length,
     rows,
-    spawn: centralSpawnFor(rows),
+    spawn: nativeAsset?.spawn ?? centralSpawnFor(rows),
     objects: {
       ...routeObjectsFor(theme),
       [doors.shop]: "DOOR_SHOP",
@@ -837,6 +847,7 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
       ...genericObjects,
       ...signage.objects,
       ...specialObjects,
+      ...assetObjects,
     },
     interactions: {
       ...routeInteractionsFor(theme),
@@ -847,6 +858,7 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
       ...genericInteractions,
       ...signage.interactions,
       ...specialInteractions,
+      ...assetInteractions,
     },
   };
 };

@@ -918,10 +918,17 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     const id = mapIdRef.current;
     const rows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows;
     const objects = editedObjectsByMapRef.current[id] ?? GAME_MAPS[id].objects;
-    const constantName = `${String(id).toUpperCase()}_EDITOR_EXPORT`;
-    return `export const ${constantName} = {
+    const map = GAME_MAPS[id];
+    const constantName = `${String(id).toUpperCase()}_MAP_ASSET`;
+    return `import type { EditorMapAsset } from "./mapAsset";
+
+export const ${constantName}: EditorMapAsset = {
+  id: "${id}",
+  name: "${map.name}",
   rows: ${JSON.stringify(rows.map(row => row.join("")), null, 2)},
   objects: ${JSON.stringify(objects, null, 2)},
+  interactions: {},
+  spawn: ${JSON.stringify(map.spawn, null, 2)},
 };`;
   };
 
