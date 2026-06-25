@@ -372,27 +372,68 @@ type EditorMode = "terrain" | "objects" | "npcs";
 type ObjectEditAction = "place" | "erase";
 
 
+type NpcVisualCategory =
+  | "Generic"
+  | "Wokeshire"
+  | "Special"
+  | "Cryptonia"
+  | "Surveillia";
+
 type NpcVisualPreset = {
   id: string;
   label: string;
   variant: number;
   styleRole: string;
+  category: NpcVisualCategory;
 };
 
 const NPC_VISUAL_PRESETS: NpcVisualPreset[] = [
-  { id: "young-man", label: "Young Man", variant: 0, styleRole: "young-man" },
-  { id: "young-woman", label: "Young Woman", variant: 1, styleRole: "young-woman" },
-  { id: "older-man", label: "Older Man", variant: 2, styleRole: "older-man" },
-  { id: "older-woman", label: "Older Woman", variant: 3, styleRole: "older-woman" },
-  { id: "guide", label: "Guide", variant: 4, styleRole: "young-man" },
-  { id: "activist", label: "Activist", variant: 5, styleRole: "young-woman" },
-  { id: "cyclist", label: "Cyclist", variant: 6, styleRole: "young-man" },
-  { id: "official", label: "Official", variant: 7, styleRole: "older-man" },
-  { id: "robot", label: "Robot", variant: 8, styleRole: "robot" },
-  { id: "crypto-bro", label: "Crypto Bro", variant: 5, styleRole: "crypto-bro" },
-  { id: "crypto-sister", label: "Crypto Sister", variant: 6, styleRole: "crypto-sister" },
+  // Generic base sprites
+  { id: "generic-young-man-0", label: "Young Man 1", variant: 0, styleRole: "young-man", category: "Generic" },
+  { id: "generic-young-woman-1", label: "Young Woman 1", variant: 1, styleRole: "young-woman", category: "Generic" },
+  { id: "generic-older-woman-2", label: "Older Woman 1", variant: 2, styleRole: "older-woman", category: "Generic" },
+  { id: "generic-older-man-3", label: "Older Man 1", variant: 3, styleRole: "older-man", category: "Generic" },
+  { id: "generic-guide-4", label: "Guide", variant: 4, styleRole: "young-man", category: "Generic" },
+  { id: "generic-young-man-5", label: "Young Man 2", variant: 5, styleRole: "young-man", category: "Generic" },
+  { id: "generic-young-woman-6", label: "Young Woman 2", variant: 6, styleRole: "young-woman", category: "Generic" },
+  { id: "generic-older-man-7", label: "Older Man 2", variant: 7, styleRole: "older-man", category: "Generic" },
+  { id: "generic-official-8", label: "Official", variant: 8, styleRole: "older-man", category: "Generic" },
+  { id: "generic-local-9", label: "Local 9", variant: 9, styleRole: "young-woman", category: "Generic" },
+
+  // Wokeshire-specific combinations
+  { id: "woke-consensus-ranger", label: "Consensus Ranger", variant: 6, styleRole: "young-woman", category: "Wokeshire" },
+  { id: "woke-tulip-mediator", label: "Tulip Mediator", variant: 1, styleRole: "older-woman", category: "Wokeshire" },
+  { id: "woke-canal-cyclist", label: "Canal Cyclist", variant: 3, styleRole: "young-man", category: "Wokeshire" },
+  { id: "woke-bike-activist", label: "Bike Activist", variant: 5, styleRole: "young-woman", category: "Wokeshire" },
+  { id: "woke-canal-elder", label: "Canal Elder", variant: 7, styleRole: "older-man", category: "Wokeshire" },
+  { id: "woke-tulip-kid", label: "Tulip Kid", variant: 0, styleRole: "young-man", category: "Wokeshire" },
+
+  // Special roles already supported by your CSS/NPC system
+  { id: "special-robot-8", label: "Robot", variant: 8, styleRole: "robot", category: "Special" },
+  { id: "special-robot-4", label: "Robot Guard", variant: 4, styleRole: "robot", category: "Special" },
+  { id: "special-clerk", label: "Clerk-Like", variant: 2, styleRole: "older-man", category: "Special" },
+  { id: "special-nurse", label: "Nurse-Like", variant: 1, styleRole: "young-woman", category: "Special" },
+
+  // Cryptonia roles
+  { id: "crypto-bro-5", label: "Crypto Bro", variant: 5, styleRole: "crypto-bro", category: "Cryptonia" },
+  { id: "crypto-sister-6", label: "Crypto Sister", variant: 6, styleRole: "crypto-sister", category: "Cryptonia" },
+  { id: "crypto-baron", label: "Token Baron", variant: 5, styleRole: "older-man", category: "Cryptonia" },
+  { id: "crypto-analyst", label: "Yacht Analyst", variant: 2, styleRole: "young-man", category: "Cryptonia" },
+
+  // Surveillia roles
+  { id: "surv-camera-guard", label: "Camera Guard", variant: 4, styleRole: "older-man", category: "Surveillia" },
+  { id: "surv-data-minder", label: "Data Minder", variant: 7, styleRole: "young-woman", category: "Surveillia" },
+  { id: "surv-neon-patrol", label: "Neon Patrol", variant: 1, styleRole: "young-man", category: "Surveillia" },
+  { id: "surv-robot", label: "Surveillance Bot", variant: 8, styleRole: "robot", category: "Surveillia" },
 ];
 
+const NPC_VISUAL_CATEGORIES: NpcVisualCategory[] = [
+  "Generic",
+  "Wokeshire",
+  "Special",
+  "Cryptonia",
+  "Surveillia",
+];
 
 const EDITOR_TILE_COLORS: Record<string, string> = {
   G: "#56b447",
@@ -458,7 +499,9 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [editorObjectId, setEditorObjectId] = useState("SIGN");
   const [npcEditAction, setNpcEditAction] = useState<ObjectEditAction>("place");
   const [editorNpcName, setEditorNpcName] = useState("Local NPC");
-  const [editorNpcPresetId, setEditorNpcPresetId] = useState("young-man");
+  const [editorNpcPresetId, setEditorNpcPresetId] = useState("generic-young-man-0");
+  const [editorNpcCategory, setEditorNpcCategory] = useState<NpcVisualCategory>("Generic");
+  const [editorNpcSearch, setEditorNpcSearch] = useState("");
   const [editorNpcWalking, setEditorNpcWalking] = useState(true);
   const [editorNpcLines, setEditorNpcLines] = useState("Hello there!\nI was placed in the editor.");
   const viewRef = useRef<HTMLDivElement>(null);
@@ -1505,8 +1548,49 @@ export const ${constantName}: EditorMapAsset = {
                   Walks around home tile
                 </label>
 
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(145px, 1fr))", gap: 8 }}>
-                  {NPC_VISUAL_PRESETS.map(preset => {
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
+                  {NPC_VISUAL_CATEGORIES.map(category => (
+                    <button
+                      key={category}
+                      type="button"
+                      onClick={() => setEditorNpcCategory(category)}
+                      style={{
+                        padding: "6px 9px",
+                        cursor: "pointer",
+                        border: editorNpcCategory === category ? "4px solid #315f2a" : "2px solid #252018",
+                        background: editorNpcCategory === category ? "#d8f0b0" : "#fff8c8",
+                        color: "#252018",
+                        fontWeight: 900,
+                      }}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+
+                <input
+                  value={editorNpcSearch}
+                  onChange={(e) => setEditorNpcSearch(e.target.value)}
+                  placeholder="Search NPC visuals..."
+                  style={{
+                    width: "100%",
+                    marginBottom: 10,
+                    padding: 8,
+                    border: "2px solid #252018",
+                    background: "#fff8c8",
+                    color: "#252018",
+                  }}
+                />
+
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(145px, 1fr))", gap: 8, maxHeight: 310, overflow: "auto", paddingRight: 4 }}>
+                  {NPC_VISUAL_PRESETS
+                    .filter(preset => preset.category === editorNpcCategory)
+                    .filter(preset => {
+                      const query = editorNpcSearch.trim().toLowerCase();
+                      if (!query) return true;
+                      return preset.label.toLowerCase().includes(query) || preset.id.toLowerCase().includes(query) || preset.styleRole.toLowerCase().includes(query);
+                    })
+                    .map(preset => {
                     const style = isTownMap(mapId) ? `npc-town-${mapId} npc-role-${preset.styleRole}` : `npc-role-${preset.styleRole}`;
                     return (
                       <button
@@ -1543,7 +1627,12 @@ export const ${constantName}: EditorMapAsset = {
                         }}>
                           <span className={`npc-sprite npc-variant-${preset.variant} ${style}`} />
                         </span>
-                        <span style={{ ...VT, fontSize: "1.05rem", lineHeight: 1 }}>{preset.label}</span>
+                        <span style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                          <span style={{ ...VT, fontSize: "1.05rem", lineHeight: 1 }}>{preset.label}</span>
+                          <span style={{ ...RJ, fontSize: "0.68rem", fontWeight: 700, opacity: 0.65 }}>
+                            v{preset.variant} · {preset.styleRole}
+                          </span>
+                        </span>
                       </button>
                     );
                   })}
