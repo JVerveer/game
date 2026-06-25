@@ -1,5 +1,5 @@
-import type { EditorMode } from "./editorTypes";
-import { EDITOR_MODES } from "./editorConstants";
+import type { EditorMode } from "./shared/editorTypes";
+import { EDITOR_MODES } from "./shared/editorConstants";
 
 export function EditorToolbar({
   editorMode,
