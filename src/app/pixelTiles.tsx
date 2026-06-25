@@ -60,11 +60,7 @@ const terrainSpriteFor = (rows: string[][], x: number, y: number) => {
   const roll = hashTile(x, y);
 
   if (tile === "G") return roll > 76 ? "grassAlt" : "grass";
-
-  // Walk/path-style terrain
   if (tile === "R" || tile === "O" || tile === "V" || tile === "Q" || tile === "N") return "path";
-
-  // Supported tileset sprites
   if (tile === "J") return "pier";
   if (tile === "E") return "plaza";
   if (tile === "W") return "water";
@@ -72,7 +68,7 @@ const terrainSpriteFor = (rows: string[][], x: number, y: number) => {
   if (tile === "X") return roll > 55 ? "tallGrassAlt" : "tallGrass";
   if (tile === "T") return roll > 67 ? "treeAlt" : "tree";
   if (tile === "F") return "fence";
-  if (tile === "L" || tile === "Y") return "flower";
+  if (tile === "L" || tile === "Y") return "grass";
 
   // Fallbacks for terrain that does not have unique sprites in satiria.png yet.
   if (tile === "M") return roll > 50 ? "largeTree" : "mediumTree";
@@ -82,6 +78,54 @@ const terrainSpriteFor = (rows: string[][], x: number, y: number) => {
   if (BUILDING_TILES.has(tile)) return roll > 82 ? "grassAlt" : "grass";
 
   return roll > 76 ? "grassAlt" : "grass";
+};
+
+const decorationStyleFor = (tile: string, x: number, y: number): CSSProperties | null => {
+  const roll = hashTile(x, y);
+
+  if (tile === "X") {
+    return {
+      left: x * TILE_SIZE,
+      top: y * TILE_SIZE,
+      width: TILE_SIZE,
+      height: TILE_SIZE,
+      zIndex: 3,
+      opacity: 0.94,
+      background:
+        roll % 2 === 0
+          ? `linear-gradient(78deg, transparent 0 25%, #b7e66d 25% 31%, transparent 31%),
+             linear-gradient(104deg, transparent 0 43%, #214f22 43% 54%, transparent 54%),
+             linear-gradient(82deg, transparent 0 66%, #75bd3e 66% 73%, transparent 73%)`
+          : `linear-gradient(92deg, transparent 0 20%, #c7ee7a 20% 27%, transparent 27%),
+             linear-gradient(67deg, transparent 0 46%, #2b6a25 46% 57%, transparent 57%),
+             linear-gradient(110deg, transparent 0 70%, #90cf4d 70% 77%, transparent 77%)`,
+      backgroundSize: "12px 38px, 16px 42px, 20px 36px",
+      pointerEvents: "none",
+    };
+  }
+
+  if (tile === "Y" || tile === "L") {
+    const flowerA = tile === "Y" ? "#ff4fa3" : "#ff7043";
+    const flowerB = tile === "Y" ? "#f6d746" : "#f8e87c";
+    const flowerC = tile === "Y" ? "#b34db8" : "#6fb8ff";
+    return {
+      left: x * TILE_SIZE,
+      top: y * TILE_SIZE,
+      width: TILE_SIZE,
+      height: TILE_SIZE,
+      zIndex: 4,
+      background:
+        `radial-gradient(circle at 22% 28%, ${flowerA} 0 4px, transparent 5px),
+         radial-gradient(circle at 50% 42%, ${flowerB} 0 4px, transparent 5px),
+         radial-gradient(circle at 75% 64%, ${flowerC} 0 4px, transparent 5px),
+         linear-gradient(100deg, transparent 0 31%, #315f2a 31% 39%, transparent 39%),
+         linear-gradient(75deg, transparent 0 58%, #4d8f35 58% 66%, transparent 66%)`,
+      backgroundSize: "48px 48px, 48px 48px, 48px 48px, 14px 28px, 19px 32px",
+      pointerEvents: "none",
+    };
+  }
+
+  return null;
 };
 
 const edgeMaskFor = (rows: string[][], x: number, y: number, family: string) => {
@@ -102,9 +146,7 @@ const edgeMaskFor = (rows: string[][], x: number, y: number, family: string) => 
 
 const groundClassFor = (rows: string[][], x: number, y: number) => {
   const tile = rows[y]?.[x];
-  if (tile === "R" || tile === "O" || tile === "V" || tile === "E" || tile === "Q" || tile === "N") {
-    return `pixel-ground-road ${edgeMaskFor(rows, x, y, "road")}`;
-  }
+  if (tile === "R" || tile === "O" || tile === "V" || tile === "E" || tile === "Q" || tile === "N") return `pixel-ground-road ${edgeMaskFor(rows, x, y, "road")}`;
   if (tile === "J") return "pixel-ground-pier";
   if (tile === "W") return `pixel-ground-water ${edgeMaskFor(rows, x, y, "water")}`;
   if (tile === "S") return "pixel-ground-shore";
@@ -202,13 +244,25 @@ export function PixelMapScene({
 }) {
   return (
     <div className="pixel-tileset-scene" aria-hidden="true">
-      {rows.map((row, y) => row.map((_, x) => (
-        <i
-          key={`ground-${x}-${y}`}
-          className={`pixel-sprite-tile ${groundClassFor(rows, x, y)}`}
-          style={spriteStyle(terrainSpriteFor(rows, x, y), x, y)}
-        />
-      )))}
+      {rows.map((row, y) => row.map((tileName, x) => {
+        const decoration = decorationStyleFor(tileName, x, y);
+        return (
+          <span key={`ground-wrap-${x}-${y}`}>
+            <i
+              key={`ground-${x}-${y}`}
+              className={`pixel-sprite-tile ${groundClassFor(rows, x, y)}`}
+              style={spriteStyle(terrainSpriteFor(rows, x, y), x, y)}
+            />
+            {decoration && (
+              <i
+                key={`decor-${x}-${y}`}
+                className="pixel-sprite-tile"
+                style={decoration}
+              />
+            )}
+          </span>
+        );
+      }))}
 
       {buildings.map((building, index) => (
         <PixelBuildingSprite key={`${building.kind}-${building.x}-${building.y}`} building={building} index={index} />

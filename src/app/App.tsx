@@ -15,6 +15,7 @@ import {
   routeEntryForMap,
   type GameMapId,
   type Portal,
+  type Interaction,
   type RouteDirection,
   type TownMapId,
   getLocationName as LOCATION_FOR,
@@ -348,6 +349,33 @@ const TILE_TYPES = [
 
 const tileTypeFor = (id: string) => TILE_TYPES.find(tile => tile.id === id);
 
+const EDITOR_TILE_COLORS: Record<string, string> = {
+  G: "#56b447",
+  R: "#d4a15f",
+  W: "#2f9bd2",
+  T: "#185c2b",
+  E: "#9a9a9a",
+  Y: "#ff4fa3",
+  L: "#ffcf33",
+  S: "#f0d079",
+  X: "#2f8d3a",
+  B: "#d94b36",
+  H: "#3f7ee8",
+  P: "#e07a28",
+  U: "#8a4bd6",
+  A: "#3fbf6f",
+  I: "#52b7b0",
+  O: "#3b2417",
+  D: "#29213f",
+  C: "#65412b",
+  M: "#676767",
+  J: "#9b5b2b",
+  F: "#8b4f25",
+  Q: "#f6d746",
+  V: "#ffd84d",
+  N: "#c87aff",
+};
+
 
 const D_PAD_BTN: React.CSSProperties = {
   height: 38, width: 38, border: "1px solid rgba(255,255,255,0.18)",
@@ -485,6 +513,73 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const npcAt = (id: GameMapId, x: number, y: number) =>
     npcsRef.current.find(npc => npc.mapId === id && npc.x === x && npc.y === y);
 
+  const generatedNpcAt = (id: GameMapId, x: number, y: number) => {
+    const tileName = rowsForMap(id)[y]?.[x];
+    if (tileName !== "N" && tileName !== "Q") return null;
+    return {
+      name: tileName === "Q" ? "Quest NPC" : "Local NPC",
+      lines: tileName === "Q"
+        ? [
+            '"I was painted into existence by the map editor."',
+            '"Give me a proper quest later and I will pretend this was always planned."',
+          ]
+        : [
+            '"Hello there!"',
+            '"I am an editor-placed NPC. Surprisingly affordable."',
+          ],
+    };
+  };
+
+  const blockingNpcAt = (id: GameMapId, x: number, y: number) =>
+    npcAt(id, x, y) || generatedNpcAt(id, x, y);
+
+  const buildingTileNearDoor = (id: GameMapId, x: number, y: number) => {
+    const rows = rowsForMap(id);
+    const candidates = [
+      rows[y - 1]?.[x],
+      rows[y]?.[x - 1],
+      rows[y]?.[x + 1],
+      rows[y - 1]?.[x - 1],
+      rows[y - 1]?.[x + 1],
+    ];
+    return candidates.find(tile => tile === "A" || tile === "B" || tile === "H" || tile === "I" || tile === "P" || tile === "U") ?? null;
+  };
+
+  const dynamicDoorActionFor = (id: GameMapId, x: number, y: number): Interaction | null => {
+    if (rowsForMap(id)[y]?.[x] !== "O") return null;
+    const buildingTile = buildingTileNearDoor(id, x, y);
+    if (!buildingTile) return null;
+
+    if (buildingTile === "P") {
+      return { name: `${GAME_MAPS[id].name} Train Station`, train: true, lines: ["Choose a destination."] };
+    }
+
+    if (buildingTile === "A") {
+      return {
+        name: `${GAME_MAPS[id].name} Shop`,
+        portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
+        auto: true,
+        lines: [],
+      };
+    }
+
+    if (buildingTile === "H") {
+      return {
+        name: `${GAME_MAPS[id].name} Healing Center`,
+        portal: { mapId: "healing", x: 7, y: 7, facing: "up" },
+        auto: true,
+        lines: [],
+      };
+    }
+
+    return {
+      name: `${GAME_MAPS[id].name} House`,
+      portal: { mapId: "house", x: 6, y: 6, facing: "up" },
+      auto: true,
+      lines: [],
+    };
+  };
+
   const trainDestinations = () => TOWN_THEMES.filter(town => town.id !== mapIdRef.current);
 
   const safeArrivalFor = (townId: TownMapId, preferred: { x: number; y: number }) => {
@@ -499,7 +594,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           const rows = rowsForMap(townId);
           const tileName = rows[y]?.[x];
           if (!tileName || !WALK.has(tileName) || tileName === "O") continue;
-          if (npcAt(townId, x, y)) continue;
+          if (blockingNpcAt(townId, x, y)) continue;
           return { x, y };
         }
       }
@@ -550,7 +645,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     if (moveAcrossMapEdge(nx, ny)) return;
 
     const t = tile(nx, ny);
-    const targetInteraction = GAME_MAPS[mapIdRef.current].interactions[`${nx},${ny}`];
+    const targetInteraction = GAME_MAPS[mapIdRef.current].interactions[`${nx},${ny}`] ?? dynamicDoorActionFor(mapIdRef.current, nx, ny);
 
     // Door tiles are walkable entry triggers: moving onto one enters.
     if (targetInteraction?.portal && targetInteraction.auto) {
@@ -564,7 +659,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     }
 
     if (!WALK.has(t)) return;
-    if (npcAt(mapIdRef.current, nx, ny)) return;
+    if (blockingNpcAt(mapIdRef.current, nx, ny)) return;
 
     setPos({ x: nx, y: ny });
     setIsWalking(true);
@@ -614,7 +709,12 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         setDlg({ name: npc.name, lines: npc.lines, idx: 0 });
         return;
       }
-      const intr = GAME_MAPS[mapIdRef.current].interactions[key];
+      const generatedNpc = generatedNpcAt(mapIdRef.current, cx, cy);
+      if (generatedNpc) {
+        setDlg({ name: generatedNpc.name, lines: generatedNpc.lines, idx: 0 });
+        return;
+      }
+      const intr = GAME_MAPS[mapIdRef.current].interactions[key] ?? dynamicDoorActionFor(mapIdRef.current, cx, cy);
       if (intr) {
         if (intr.heal) setHp(h => ({ ...h, cur: h.max }));
         if (intr.save) { setSaveMsg("★ Saved!"); setTimeout(() => setSaveMsg(null), 2500); }
@@ -682,7 +782,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         const t = rows[ny]?.[nx] ?? "T";
         const nearHome = Math.abs(nx - npc.homeX) + Math.abs(ny - npc.homeY) <= 4;
         const blockedByPlayer = mapIdRef.current === npc.mapId && posRef.current.x === nx && posRef.current.y === ny;
-        const blockedByNpc = prev.some(other => other.id !== npc.id && other.mapId === npc.mapId && other.x === nx && other.y === ny);
+        const blockedByNpc = prev.some(other => other.id !== npc.id && other.mapId === npc.mapId && other.x === nx && other.y === ny) || Boolean(generatedNpcAt(npc.mapId, nx, ny));
         if (!nearHome || !WALK.has(t) || t === "O" || blockedByPlayer || blockedByNpc) return { ...npc, walking: false };
         return { ...npc, x: nx, y: ny, walking: true };
       }));
@@ -867,6 +967,30 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           </div>
         ))}
 
+        {displayRows.flatMap((row, y) =>
+          row.map((tileName, x) => ({ tileName, x, y }))
+            .filter(({ tileName }) => tileName === "N" || tileName === "Q")
+            .filter(({ x, y }) => !npcAt(mapId, x, y))
+        ).map(({ tileName, x, y }) => (
+          <div
+            key={`generated-npc-${x}-${y}`}
+            style={{
+              position: "absolute",
+              left: x * TS,
+              top: y * TS,
+              width: TS,
+              height: TS,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 9,
+              pointerEvents: "none",
+            }}
+          >
+            <div className={`npc-sprite npc-variant-${tileName === "Q" ? 2 : 1}`} />
+          </div>
+        ))}
+
         {/* Player sprite — absolutely overlaid on the map */}
         <div style={{
           position: "absolute",
@@ -983,7 +1107,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
                       width: 28,
                       height: 28,
                       flex: "0 0 auto",
-                      background: GAME_TILE_COLORS[tile.id] ?? GAME_TILE_COLORS.G,
+                      background: EDITOR_TILE_COLORS[tile.id] ?? GAME_TILE_COLORS[tile.id] ?? GAME_TILE_COLORS.G,
                       border: "3px solid #252018",
                       boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.25)",
                     }}
@@ -1060,7 +1184,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
                     height: 18,
                     padding: 0,
                     border: "0",
-                    background: GAME_TILE_COLORS[tile] ?? GAME_TILE_COLORS.G,
+                    background: EDITOR_TILE_COLORS[tile] ?? GAME_TILE_COLORS[tile] ?? GAME_TILE_COLORS.G,
                     cursor: "pointer",
                   }}
                 />
