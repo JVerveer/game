@@ -36,6 +36,7 @@ import { BuildingPalette } from "../editor/buildings/BuildingPalette";
 import { NpcPalette } from "../editor/npcs/NpcPalette";
 import { ExportPanel } from "../editor/export/ExportPanel";
 import { SelectedInspector } from "../editor/selection/SelectedInspector";
+import { useEditorState } from "../editor/hooks/useEditorState";
 
 
 type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
@@ -372,15 +373,21 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [trainOpen, setTrainOpen] = useState(false);
   const [trainIndex, setTrainIndex] = useState(0);
   const [terrainEditorOpen, setTerrainEditorOpen] = useState(false);
-  const [editorTile, setEditorTile] = useState("G");
   const [isEditorDragging, setIsEditorDragging] = useState(false);
   const [editedRowsByMap, setEditedRowsByMap] = useState<Partial<Record<GameMapId, string[][]>>>({});
   const [editedObjectsByMap, setEditedObjectsByMap] = useState<Partial<Record<GameMapId, Record<string, string>>>>({});
   const [editedBuildingsByMap, setEditedBuildingsByMap] = useState<Partial<Record<GameMapId, EditorBuildingAsset[]>>>({});
   const [removedBuildingIdsByMap, setRemovedBuildingIdsByMap] = useState<Partial<Record<GameMapId, Set<string>>>>({});
   const [editedNpcsByMap, setEditedNpcsByMap] = useState<Partial<Record<GameMapId, EditorNpcAsset[]>>>({});
-  const [editorMode, setEditorMode] = useState<EditorMode>("select");
-  const [editorSelection, setEditorSelection] = useState<EditorSelection>(null);
+  const {
+    editorMode,
+    setEditorMode,
+    editorSelection,
+    setEditorSelection,
+    editorTile,
+    setEditorTile,
+  } = useEditorState();
+
   const [draggedNpcId, setDraggedNpcId] = useState<string | null>(null);
   const [draggedBuildingId, setDraggedBuildingId] = useState<string | null>(null);
   const [draggedObjectCoord, setDraggedObjectCoord] = useState<string | null>(null);
