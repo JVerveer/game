@@ -1,4 +1,4 @@
-import type { EditorBuildingColor, EditorBuildingKind } from "../../data/cityMaps/mapAsset";
+import type { EditorBuildingColor, EditorBuildingKind } from "../../../../data/cityMaps/mapAsset";
 import type { BuildingTypeOption, EditorMode, NpcVisualCategory, NpcVisualPreset } from "./editorTypes";
 
 export const EDITOR_MODES: EditorMode[] = ["select", "terrain", "buildings", "objects", "npcs"];

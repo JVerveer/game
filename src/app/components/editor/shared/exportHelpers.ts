@@ -1,4 +1,4 @@
-import type { EditorBuildingAsset, EditorNpcAsset } from "../../data/cityMaps/mapAsset";
+import type { EditorBuildingAsset, EditorNpcAsset } from "../../../../data/cityMaps/mapAsset";
 import { BUILDING_TILE_IDS } from "./editorConstants";
 
 export const cleanRowsForMapAssetExport = (rows: string[][]) =>
