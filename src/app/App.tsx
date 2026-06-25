@@ -1592,6 +1592,18 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     }
 
     if (editorModeRef.current === "npcs") {
+      const clickedNpc = npcsRef.current.find(item => item.mapId === id && item.x === x && item.y === y);
+
+      if (npcEditorActionRef.current === "delete" || npcEditActionRef.current === "erase") {
+        if (clickedNpc) {
+          upsertEditedNpcsForMap(id, current => current.filter(npc => npc.id !== clickedNpc.id));
+          if (editorSelectionRef.current?.kind === "npc" && editorSelectionRef.current.id === clickedNpc.id) {
+            setEditorSelection(null);
+          }
+        }
+        return;
+      }
+
       const next = upsertEditedNpcsForMap(id, current => {
         const preset = NPC_VISUAL_PRESETS.find(item => item.id === editorNpcPresetIdRef.current) ?? NPC_VISUAL_PRESETS[0];
         const npcNumber = current.length + 1;
@@ -2209,7 +2221,7 @@ export const ${constantName}: EditorMapAsset = {
             {editorMode === "npcs" && (
               <div style={{ marginBottom: 12 }}>
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
-                  {(["create", "edit", "delete"] as NpcEditorAction[]).map(action => (
+                  {(["create", "delete"] as NpcEditorAction[]).map(action => (
                     <button
                       key={action}
                       type="button"
@@ -2227,7 +2239,7 @@ export const ${constantName}: EditorMapAsset = {
                         textTransform: "capitalize",
                       }}
                     >
-                      {action === "create" ? "Create NPC" : action === "edit" ? "Edit / Move NPC" : "Delete NPC"}
+                      {action === "create" ? "Create NPC" : "Delete NPC"}
                     </button>
                   ))}
                 </div>
@@ -2237,7 +2249,7 @@ export const ${constantName}: EditorMapAsset = {
                     NPCs on map: {displayEditorNpcs.length}
                   </span>
                   <span style={{ ...RJ, fontSize: "0.78rem", color: "#66512c", alignSelf: "center", fontWeight: 800 }}>
-                    {npcEditorAction === "create" ? "Click map to create." : npcEditorAction === "edit" ? "Click/drag NPCs to edit or move." : "Click NPCs to delete."}
+                    {npcEditorAction === "create" ? "Click map to create." : "Click NPCs to delete."}
                   </span>
                 </div>
 
@@ -2373,11 +2385,17 @@ export const ${constantName}: EditorMapAsset = {
                   </div>
                 )}
 
-                {editorSelection?.kind === "tile" && (
-                  <div style={{ ...RJ, fontSize: "0.95rem", color: "#252018" }}>
-                    Selected tile: {editorSelection.x},{editorSelection.y}
-                  </div>
-                )}
+                {editorSelection?.kind === "tile" && (() => {
+                  const selectedTile = rowsForMap(mapId)[editorSelection.y]?.[editorSelection.x] ?? "G";
+                  const selectedTerrain = tileTypeFor(selectedTile);
+                  return (
+                    <div style={{ ...RJ, fontSize: "0.95rem", color: "#252018" }}>
+                      Selected tile: {editorSelection.x},{editorSelection.y}
+                      <br />
+                      Terrain: <b>{selectedTerrain?.name ?? selectedTile}</b> ({selectedTile})
+                    </div>
+                  );
+                })()}
 
                 {selectedBuilding && (
                   <div style={{ display: "grid", gap: 10 }}>
