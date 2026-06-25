@@ -469,20 +469,49 @@ const clearBuildingFootprintFromRows = (rows: string[][], building: EditorBuildi
   const next = rows.map(row => [...row]);
   const door = doorForBuildingAsset(building);
 
-  // When deleting an editor building, clear its whole footprint back to walkable grass.
-  // Do this even if those tiles are currently colored as H/P/A/U/etc, because older
-  // procedural buildings can leave their colored tiles behind in the base terrain.
+  const clearAt = (x: number, y: number) => {
+    if (next[y]?.[x] !== undefined) next[y][x] = "G";
+  };
+
+  // Clear the known rectangle.
   for (let y = building.y; y < building.y + building.h; y++) {
-    for (let x = building.x; x < building.x + building.w; x++) {
-      if (next[y]?.[x] !== undefined) next[y][x] = "G";
-    }
+    for (let x = building.x; x < building.x + building.w; x++) clearAt(x, y);
   }
 
-  // Clear the generated door and the tile immediately in front of it if it still
-  // contains an old door/building marker.
-  if (next[door.y]?.[door.x] !== undefined) next[door.y][door.x] = "G";
-  if (next[door.y + 1]?.[door.x] !== undefined && BUILDING_TILE_IDS.has(next[door.y + 1][door.x])) {
-    next[door.y + 1][door.x] = "G";
+  // Clear the door and the usual tile in front of it.
+  clearAt(door.x, door.y);
+  if (BUILDING_TILE_IDS.has(next[door.y + 1]?.[door.x] ?? "")) clearAt(door.x, door.y + 1);
+
+  // Legacy/procedural buildings sometimes infer oddly when doors split the blob.
+  // Flood clear any connected building/door tiles around the rectangle.
+  const seeds = [
+    { x: building.x, y: building.y },
+    { x: building.x + building.w - 1, y: building.y },
+    { x: building.x, y: building.y + building.h - 1 },
+    { x: building.x + building.w - 1, y: building.y + building.h - 1 },
+    door,
+  ];
+  const seen = new Set<string>();
+  const queue = seeds.filter(seed => BUILDING_TILE_IDS.has(rows[seed.y]?.[seed.x] ?? "") || rows[seed.y]?.[seed.x] === "O");
+
+  for (let i = 0; i < queue.length; i++) {
+    const cur = queue[i];
+    const key = `${cur.x},${cur.y}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+
+    const originalTile = rows[cur.y]?.[cur.x];
+    if (!BUILDING_TILE_IDS.has(originalTile ?? "") && originalTile !== "O") continue;
+    clearAt(cur.x, cur.y);
+
+    [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(([dx, dy]) => {
+      const nx = cur.x + dx;
+      const ny = cur.y + dy;
+      const nextKey = `${nx},${ny}`;
+      if (seen.has(nextKey)) return;
+      const tile = rows[ny]?.[nx];
+      if (BUILDING_TILE_IDS.has(tile ?? "") || tile === "O") queue.push({ x: nx, y: ny });
+    });
   }
 
   return next;
@@ -625,6 +654,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [editedRowsByMap, setEditedRowsByMap] = useState<Partial<Record<GameMapId, string[][]>>>({});
   const [editedObjectsByMap, setEditedObjectsByMap] = useState<Partial<Record<GameMapId, Record<string, string>>>>({});
   const [editedBuildingsByMap, setEditedBuildingsByMap] = useState<Partial<Record<GameMapId, EditorBuildingAsset[]>>>({});
+  const [removedBuildingIdsByMap, setRemovedBuildingIdsByMap] = useState<Partial<Record<GameMapId, Set<string>>>>({});
   const [editedNpcsByMap, setEditedNpcsByMap] = useState<Partial<Record<GameMapId, EditorNpcAsset[]>>>({});
   const [editorMode, setEditorMode] = useState<EditorMode>("select");
   const [editorSelection, setEditorSelection] = useState<EditorSelection>(null);
@@ -652,7 +682,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const displayRows = editedRows ?? currentMap.rows;
   const editedObjects = editedObjectsByMap[mapId];
   const displayObjects = editedObjects ?? currentMap.objects;
-  const inferredBuildings = inferBuildingsFromRowsForEditor(displayRows);
+  const removedBuildingIds = removedBuildingIdsByMap[mapId] ?? new Set<string>();
+  const inferredBuildings = inferBuildingsFromRowsForEditor(displayRows).filter(building => !removedBuildingIds.has(building.id));
   const editedBuildings = editedBuildingsByMap[mapId];
   const displayBuildings = editedBuildings ?? inferredBuildings;
   const baseRowsWithoutBuildingTiles = displayRows.map(row => row.map(tile => BUILDING_TILE_IDS.has(tile) ? "G" : tile));
@@ -677,6 +708,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const editedRowsByMapRef = useRef(editedRowsByMap);
   const editedObjectsByMapRef = useRef(editedObjectsByMap);
   const editedBuildingsByMapRef = useRef(editedBuildingsByMap);
+  const removedBuildingIdsByMapRef = useRef(removedBuildingIdsByMap);
   const editedNpcsByMapRef = useRef(editedNpcsByMap);
   const editorModeRef = useRef<EditorMode>(editorMode);
   const editorSelectionRef = useRef<EditorSelection>(editorSelection);
@@ -713,6 +745,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   editedRowsByMapRef.current = editedRowsByMap;
   editedObjectsByMapRef.current = editedObjectsByMap;
   editedBuildingsByMapRef.current = editedBuildingsByMap;
+  removedBuildingIdsByMapRef.current = removedBuildingIdsByMap;
   editedNpcsByMapRef.current = editedNpcsByMap;
   editorModeRef.current = editorMode;
   editorSelectionRef.current = editorSelection;
@@ -737,7 +770,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
   const rowsForMap = (id: GameMapId) => applyBuildingsToRows(editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows, editedBuildingsByMapRef.current[id] ?? []);
   const objectsForMap = (id: GameMapId) => editedObjectsByMapRef.current[id] ?? GAME_MAPS[id].objects;
-  const buildingsForMap = (id: GameMapId) => editedBuildingsByMapRef.current[id] ?? inferBuildingsFromRowsForEditor(editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows);
+  const buildingsForMap = (id: GameMapId) => {
+    const removed = removedBuildingIdsByMapRef.current[id] ?? new Set<string>();
+    return editedBuildingsByMapRef.current[id] ?? inferBuildingsFromRowsForEditor(editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows).filter(building => !removed.has(building.id));
+  };
   const npcsForMap = (id: GameMapId) => editedNpcsByMapRef.current[id] ?? npcsRef.current.filter(npc => npc.mapId === id).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking }));
 
   const movingNpcFromEditorAsset = (id: GameMapId, npc: EditorNpcAsset): MovingNpc => ({
@@ -1307,6 +1343,14 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
     clearBuildingFromEditedRows(id, building);
 
+    setRemovedBuildingIdsByMap(prev => {
+      const nextSet = new Set(prev[id] ?? []);
+      nextSet.add(building.id);
+      const next = { ...prev, [id]: nextSet };
+      removedBuildingIdsByMapRef.current = next;
+      return next;
+    });
+
     setEditedBuildingsByMap(prev => {
       const current = prev[id] ?? buildingsForMap(id);
       const nextBuildings = current.filter(item => item.id !== building.id);
@@ -1596,6 +1640,12 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       const next = { ...prev };
       delete next[id];
       editedBuildingsByMapRef.current = next;
+      return next;
+    });
+    setRemovedBuildingIdsByMap(prev => {
+      const next = { ...prev };
+      delete next[id];
+      removedBuildingIdsByMapRef.current = next;
       return next;
     });
     setEditedNpcsByMap(prev => {
