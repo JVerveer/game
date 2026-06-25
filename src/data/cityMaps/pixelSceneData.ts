@@ -73,6 +73,9 @@ const inferPixelBuildings = (rows: string[][]): PixelBuilding[] => {
   return buildings;
 };
 
+// Important for the terrain editor:
+// buildings should be inferred from the rows passed in, including edited rows.
+// Previously Satiria always used SATIRIA_BUILDINGS, so painted building tiles
+// would not show there.
 export const pixelBuildingsFor = (mapId: GameMapId, rows: string[][]): PixelBuilding[] =>
-  mapId === "satiria" ? SATIRIA_BUILDINGS : isTownMap(mapId) ? inferPixelBuildings(rows) : [];
-
+  isTownMap(mapId) ? inferPixelBuildings(rows) : [];

@@ -73,12 +73,36 @@ export const DS_MAP_ROWS: string[] = [
 
 // ── Playable game maps ───────────────────────────────────────────────────────
 export const GAME_TILE_COLORS: Record<string, string> = {
-  T: "#182e0a", G: "#265424", W: "#0f4466", R: "#5a4830",
-  B: "#32325a", H: "#1e3880", Q: "#5a3e08", X: "#1e4020",
-  C: "#2e1c08", D: "#08081a", S: "#7a6030", M: "#282838",
-  V: "#3c2e00", N: "#3a2460", O: "#5a4830", P: "#5a4830", J: "#7b4d2a",
-  A: "#b9a06d", I: "#927947", U: "#713224", E: "#4a4a4a",
-  Y: "#d85a7f",
+  T: "#182e0a",
+  G: "#265424",
+  W: "#0f4466",
+  R: "#5a4830",
+
+  B: "#32325a",
+  H: "#1e3880",
+  Q: "#5a3e08",
+  X: "#1e4020",
+
+  C: "#2e1c08",
+  D: "#08081a",
+  S: "#7a6030",
+  M: "#282838",
+
+  V: "#3c2e00",
+  N: "#3a2460",
+  O: "#5a4830",
+  P: "#5a4830",
+  J: "#7b4d2a",
+
+  A: "#b9a06d",
+  I: "#927947",
+  U: "#713224",
+  E: "#4a4a4a",
+
+  // Extra editor terrain
+  F: "#8b6138", // Fence
+  Y: "#d85a7f", // Tulips / flower field
+  L: "#d85a7f", // Flowers
 };
 
 export const WALKABLE_TILES = new Set(["G", "R", "S", "X", "Q", "V", "N", "O", "L", "E", "J"]);

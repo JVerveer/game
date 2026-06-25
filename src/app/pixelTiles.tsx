@@ -59,7 +59,12 @@ const terrainSpriteFor = (rows: string[][], x: number, y: number) => {
   const tile = rows[y]?.[x] ?? "G";
   const roll = hashTile(x, y);
 
-  if (tile === "R" || tile === "O" || tile === "V") return "path";
+  if (tile === "G") return roll > 76 ? "grassAlt" : "grass";
+
+  // Walk/path-style terrain
+  if (tile === "R" || tile === "O" || tile === "V" || tile === "Q" || tile === "N") return "path";
+
+  // Supported tileset sprites
   if (tile === "J") return "pier";
   if (tile === "E") return "plaza";
   if (tile === "W") return "water";
@@ -67,8 +72,15 @@ const terrainSpriteFor = (rows: string[][], x: number, y: number) => {
   if (tile === "X") return roll > 55 ? "tallGrassAlt" : "tallGrass";
   if (tile === "T") return roll > 67 ? "treeAlt" : "tree";
   if (tile === "F") return "fence";
-  if (tile === "L") return "flower";
+  if (tile === "L" || tile === "Y") return "flower";
+
+  // Fallbacks for terrain that does not have unique sprites in satiria.png yet.
+  if (tile === "M") return roll > 50 ? "largeTree" : "mediumTree";
+  if (tile === "C" || tile === "D") return "plaza";
+
+  // Building tiles use normal ground underneath the generated building sprite.
   if (BUILDING_TILES.has(tile)) return roll > 82 ? "grassAlt" : "grass";
+
   return roll > 76 ? "grassAlt" : "grass";
 };
 
@@ -76,7 +88,7 @@ const edgeMaskFor = (rows: string[][], x: number, y: number, family: string) => 
   const t = rows[y]?.[x];
   const match = (nx: number, ny: number) => {
     const n = rows[ny]?.[nx];
-    if (family === "road") return n === "R" || n === "O" || n === "V" || n === "E";
+    if (family === "road") return n === "R" || n === "O" || n === "V" || n === "E" || n === "Q" || n === "N";
     if (family === "water") return n === "W" || n === "S";
     return n === t;
   };
@@ -90,7 +102,9 @@ const edgeMaskFor = (rows: string[][], x: number, y: number, family: string) => 
 
 const groundClassFor = (rows: string[][], x: number, y: number) => {
   const tile = rows[y]?.[x];
-  if (tile === "R" || tile === "O" || tile === "V" || tile === "E") return `pixel-ground-road ${edgeMaskFor(rows, x, y, "road")}`;
+  if (tile === "R" || tile === "O" || tile === "V" || tile === "E" || tile === "Q" || tile === "N") {
+    return `pixel-ground-road ${edgeMaskFor(rows, x, y, "road")}`;
+  }
   if (tile === "J") return "pixel-ground-pier";
   if (tile === "W") return `pixel-ground-water ${edgeMaskFor(rows, x, y, "water")}`;
   if (tile === "S") return "pixel-ground-shore";
