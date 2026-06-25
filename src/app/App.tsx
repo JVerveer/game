@@ -620,6 +620,9 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [editorMode, setEditorMode] = useState<EditorMode>("select");
   const [editorSelection, setEditorSelection] = useState<EditorSelection>(null);
   const [draggedNpcId, setDraggedNpcId] = useState<string | null>(null);
+  const [draggedBuildingId, setDraggedBuildingId] = useState<string | null>(null);
+  const [draggedObjectCoord, setDraggedObjectCoord] = useState<string | null>(null);
+  const [resizeBuildingId, setResizeBuildingId] = useState<string | null>(null);
   const [objectEditAction, setObjectEditAction] = useState<ObjectEditAction>("place");
   const [editorObjectId, setEditorObjectId] = useState("SIGN");
   const [editorBuildingKind, setEditorBuildingKind] = useState<EditorBuildingKind>("house");
@@ -669,6 +672,9 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const editorModeRef = useRef<EditorMode>(editorMode);
   const editorSelectionRef = useRef<EditorSelection>(editorSelection);
   const draggedNpcIdRef = useRef<string | null>(draggedNpcId);
+  const draggedBuildingIdRef = useRef<string | null>(draggedBuildingId);
+  const draggedObjectCoordRef = useRef<string | null>(draggedObjectCoord);
+  const resizeBuildingIdRef = useRef<string | null>(resizeBuildingId);
   const objectEditActionRef = useRef<ObjectEditAction>(objectEditAction);
   const editorObjectIdRef = useRef(editorObjectId);
   const editorBuildingKindRef = useRef<EditorBuildingKind>(editorBuildingKind);
@@ -702,6 +708,9 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   editorModeRef.current = editorMode;
   editorSelectionRef.current = editorSelection;
   draggedNpcIdRef.current = draggedNpcId;
+  draggedBuildingIdRef.current = draggedBuildingId;
+  draggedObjectCoordRef.current = draggedObjectCoord;
+  resizeBuildingIdRef.current = resizeBuildingId;
   objectEditActionRef.current = objectEditAction;
   editorObjectIdRef.current = editorObjectId;
   editorBuildingKindRef.current = editorBuildingKind;
@@ -1091,6 +1100,56 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         return;
       }
       if (terrainEditorOpenRef.current) {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "d") {
+          e.preventDefault();
+          const selection = editorSelectionRef.current;
+          if (selection?.kind === "building") {
+            const building = buildingsForMap(mapIdRef.current).find(item => item.id === selection.id);
+            if (building) duplicateSelectedBuilding(building);
+          }
+          if (selection?.kind === "object") duplicateSelectedObject(selection.coord);
+          if (selection?.kind === "npc") {
+            const npc = npcsForMap(mapIdRef.current).find(item => item.id === selection.id);
+            if (npc) {
+              const clone: EditorNpcAsset = {
+                ...npc,
+                id: `${mapIdRef.current}-editor-npc-${Date.now()}-copy`,
+                x: npc.x + 1,
+                homeX: npc.x + 1,
+                y: npc.y,
+                homeY: npc.y,
+                lines: [...npc.lines],
+              };
+              upsertEditedNpcsForMap(mapIdRef.current, current => [...current, clone]);
+              setEditorSelection({ kind: "npc", id: clone.id });
+            }
+          }
+          return;
+        }
+        if (e.key === "Delete" || e.key === "Backspace") {
+          e.preventDefault();
+          const selection = editorSelectionRef.current;
+          if (selection?.kind === "building") {
+            const building = buildingsForMap(mapIdRef.current).find(item => item.id === selection.id);
+            if (building) removeEditorBuilding(building);
+          }
+          if (selection?.kind === "object") {
+            const id = mapIdRef.current;
+            setEditedObjectsByMap(prev => {
+              const base = prev[id] ?? { ...objectsForMap(id) };
+              const next = { ...base };
+              delete next[selection.coord];
+              editedObjectsByMapRef.current = { ...editedObjectsByMapRef.current, [id]: next };
+              return { ...prev, [id]: next };
+            });
+            setEditorSelection(null);
+          }
+          if (selection?.kind === "npc") {
+            upsertEditedNpcsForMap(mapIdRef.current, current => current.filter(npc => npc.id !== selection.id));
+            setEditorSelection(null);
+          }
+          return;
+        }
         if (e.key === "Escape" || e.key === "q" || e.key === "Q") {
           e.preventDefault();
           setTerrainEditorOpen(false);
@@ -1153,7 +1212,13 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       isEditorDraggingRef.current = false;
       setIsEditorDragging(false);
       draggedNpcIdRef.current = null;
+      draggedBuildingIdRef.current = null;
+      draggedObjectCoordRef.current = null;
+      resizeBuildingIdRef.current = null;
       setDraggedNpcId(null);
+      setDraggedBuildingId(null);
+      setDraggedObjectCoord(null);
+      setResizeBuildingId(null);
     };
     window.addEventListener("pointerup", stopPainting);
     window.addEventListener("pointercancel", stopPainting);
@@ -1224,6 +1289,98 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setEditorSelection(null);
   };
 
+  const moveEditorBuildingTo = (buildingId: string, x: number, y: number) => {
+    const id = mapIdRef.current;
+    setEditedBuildingsByMap(prev => {
+      const current = prev[id] ?? buildingsForMap(id);
+      const currentBuilding = current.find(building => building.id === buildingId);
+      if (!currentBuilding) return prev;
+
+      const movedBuilding = { ...currentBuilding, x, y };
+      const next = current.map(building => building.id === buildingId ? movedBuilding : building);
+
+      editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: next };
+      return { ...prev, [id]: next };
+    });
+  };
+
+  const resizeEditorBuildingTo = (buildingId: string, x: number, y: number) => {
+    const id = mapIdRef.current;
+    setEditedBuildingsByMap(prev => {
+      const current = prev[id] ?? buildingsForMap(id);
+      const currentBuilding = current.find(building => building.id === buildingId);
+      if (!currentBuilding) return prev;
+
+      const nextW = Math.max(3, x - currentBuilding.x + 1);
+      const nextH = Math.max(3, y - currentBuilding.y + 1);
+      const next = current.map(building => building.id === buildingId ? { ...building, w: nextW, h: nextH } : building);
+
+      editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: next };
+      return { ...prev, [id]: next };
+    });
+  };
+
+  const moveEditorObjectTo = (fromCoord: string, x: number, y: number) => {
+    const id = mapIdRef.current;
+    const toCoord = `${x},${y}`;
+    if (fromCoord === toCoord) return;
+
+    setEditedObjectsByMap(prev => {
+      const base = prev[id] ?? { ...objectsForMap(id) };
+      const obj = base[fromCoord];
+      if (!obj) return prev;
+
+      const next = { ...base };
+      delete next[fromCoord];
+      next[toCoord] = obj;
+      editedObjectsByMapRef.current = { ...editedObjectsByMapRef.current, [id]: next };
+      return { ...prev, [id]: next };
+    });
+
+    setDraggedObjectCoord(toCoord);
+    draggedObjectCoordRef.current = toCoord;
+    setEditorSelection({ kind: "object", coord: toCoord });
+  };
+
+  const duplicateSelectedBuilding = (building: EditorBuildingAsset) => {
+    const id = mapIdRef.current;
+    const clone: EditorBuildingAsset = {
+      ...building,
+      id: `${id}-building-${Date.now()}-copy`,
+      x: building.x + 1,
+      y: building.y + 1,
+    };
+
+    setEditedBuildingsByMap(prev => {
+      const current = prev[id] ?? buildingsForMap(id);
+      const withoutUnique = UNIQUE_BUILDING_KINDS.has(clone.kind)
+        ? current.filter(item => item.kind !== clone.kind)
+        : current;
+      const next = [...withoutUnique, clone];
+      editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: next };
+      return { ...prev, [id]: next };
+    });
+
+    setEditorSelection({ kind: "building", id: clone.id });
+  };
+
+  const duplicateSelectedObject = (coord: string) => {
+    const id = mapIdRef.current;
+    const [x, y] = coord.split(",").map(Number);
+    const nextCoord = `${x + 1},${y}`;
+
+    setEditedObjectsByMap(prev => {
+      const base = prev[id] ?? { ...objectsForMap(id) };
+      const obj = base[coord];
+      if (!obj) return prev;
+      const next = { ...base, [nextCoord]: obj };
+      editedObjectsByMapRef.current = { ...editedObjectsByMapRef.current, [id]: next };
+      return { ...prev, [id]: next };
+    });
+
+    setEditorSelection({ kind: "object", coord: nextCoord });
+  };
+
   const placeEditorBuilding = (x: number, y: number) => {
     const id = mapIdRef.current;
     const kind = editorBuildingKindRef.current;
@@ -1280,11 +1437,21 @@ function GameScreen({ onExit }: { onExit: () => void }) {
       }
       const building = buildingAtCoord(buildingsForMap(id), x, y);
       if (building) {
+        const isResizeHandle = x === building.x + building.w - 1 && y === building.y + building.h - 1;
         setEditorSelection({ kind: "building", id: building.id });
+        if (isResizeHandle) {
+          setResizeBuildingId(building.id);
+          resizeBuildingIdRef.current = building.id;
+        } else {
+          setDraggedBuildingId(building.id);
+          draggedBuildingIdRef.current = building.id;
+        }
         return;
       }
       if (objectsForMap(id)[coord]) {
         setEditorSelection({ kind: "object", coord });
+        setDraggedObjectCoord(coord);
+        draggedObjectCoordRef.current = coord;
         return;
       }
       setEditorSelection({ kind: "tile", x, y });
@@ -2080,22 +2247,22 @@ export const ${constantName}: EditorMapAsset = {
                 {selectedBuilding && (
                   <div style={{ display: "grid", gap: 10 }}>
                     <div style={{ ...RJ, fontSize: "0.95rem", color: "#252018" }}>
-                      Building: <b>{BUILDING_KIND_LABEL[selectedBuilding.kind]}</b> at {selectedBuilding.x},{selectedBuilding.y}
+                      Building: <b>{BUILDING_KIND_LABEL[selectedBuilding!.kind]}</b> at {selectedBuilding!.x},{selectedBuilding!.y}
                     </div>
 
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: 8 }}>
                       <label style={{ display: "grid", gap: 4 }}>
                         <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Type</span>
                         <select
-                          value={selectedBuilding.kind}
+                          value={selectedBuilding!.kind}
                           onChange={(e) => {
                             const kind = e.target.value as EditorBuildingKind;
                             setEditedBuildingsByMap(prev => {
                               const current = prev[mapIdRef.current] ?? buildingsForMap(mapIdRef.current);
-                              const next = current.map(building => building.id === selectedBuilding.id
+                              const next = current.map(building => building.id === selectedBuilding!.id
                                 ? { ...building, kind, crest: buildingCrestForKind(kind), color: colorForEditorBuildingKind(kind) }
                                 : building
-                              ).filter((building, _, all) => !UNIQUE_BUILDING_KINDS.has(building.kind) || building.id === selectedBuilding.id || all.find(other => other.kind === building.kind)?.id === building.id);
+                              ).filter((building, _, all) => !UNIQUE_BUILDING_KINDS.has(building.kind) || building.id === selectedBuilding!.id || all.find(other => other.kind === building.kind)?.id === building.id);
                               editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [mapIdRef.current]: next };
                               return { ...prev, [mapIdRef.current]: next };
                             });
@@ -2109,12 +2276,12 @@ export const ${constantName}: EditorMapAsset = {
                       <label style={{ display: "grid", gap: 4 }}>
                         <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Color</span>
                         <select
-                          value={selectedBuilding.color}
+                          value={selectedBuilding!.color}
                           onChange={(e) => {
                             const color = e.target.value as EditorBuildingColor;
                             setEditedBuildingsByMap(prev => {
                               const current = prev[mapIdRef.current] ?? buildingsForMap(mapIdRef.current);
-                              const next = current.map(building => building.id === selectedBuilding.id ? { ...building, color } : building);
+                              const next = current.map(building => building.id === selectedBuilding!.id ? { ...building, color } : building);
                               editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [mapIdRef.current]: next };
                               return { ...prev, [mapIdRef.current]: next };
                             });
@@ -2131,12 +2298,12 @@ export const ${constantName}: EditorMapAsset = {
                           type="number"
                           min={3}
                           max={14}
-                          value={selectedBuilding.w}
+                          value={selectedBuilding!.w}
                           onChange={(e) => {
                             const w = Number(e.target.value);
                             setEditedBuildingsByMap(prev => {
                               const current = prev[mapIdRef.current] ?? buildingsForMap(mapIdRef.current);
-                              const next = current.map(building => building.id === selectedBuilding.id ? { ...building, w } : building);
+                              const next = current.map(building => building.id === selectedBuilding!.id ? { ...building, w } : building);
                               editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [mapIdRef.current]: next };
                               return { ...prev, [mapIdRef.current]: next };
                             });
@@ -2151,12 +2318,12 @@ export const ${constantName}: EditorMapAsset = {
                           type="number"
                           min={3}
                           max={10}
-                          value={selectedBuilding.h}
+                          value={selectedBuilding!.h}
                           onChange={(e) => {
                             const h = Number(e.target.value);
                             setEditedBuildingsByMap(prev => {
                               const current = prev[mapIdRef.current] ?? buildingsForMap(mapIdRef.current);
-                              const next = current.map(building => building.id === selectedBuilding.id ? { ...building, h } : building);
+                              const next = current.map(building => building.id === selectedBuilding!.id ? { ...building, h } : building);
                               editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [mapIdRef.current]: next };
                               return { ...prev, [mapIdRef.current]: next };
                             });
@@ -2166,13 +2333,47 @@ export const ${constantName}: EditorMapAsset = {
                       </label>
                     </div>
 
-                    <button
-                      type="button"
-                      onClick={() => removeEditorBuilding(selectedBuilding)}
-                      style={{ padding: "8px 12px", cursor: "pointer", border: "2px solid #ca4b36", background: "#ffd0c8", color: "#252018", fontWeight: 900 }}
-                    >
-                      Delete Building
-                    </button>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: 8 }}>
+                      <label style={{ display: "grid", gap: 4 }}>
+                        <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>X</span>
+                        <input
+                          type="number"
+                          value={selectedBuilding!.x}
+                          onChange={(e) => moveEditorBuildingTo(selectedBuilding!.id, Number(e.target.value), selectedBuilding!.y)}
+                          style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
+                        />
+                      </label>
+                      <label style={{ display: "grid", gap: 4 }}>
+                        <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Y</span>
+                        <input
+                          type="number"
+                          value={selectedBuilding!.y}
+                          onChange={(e) => moveEditorBuildingTo(selectedBuilding!.id, selectedBuilding!.x, Number(e.target.value))}
+                          style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
+                        />
+                      </label>
+                    </div>
+
+                    <div style={{ ...RJ, fontSize: "0.82rem", color: "#66512c", fontWeight: 700 }}>
+                      Drag the building to move it. Drag its bottom-right tile to resize it.
+                    </div>
+
+                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                      <button
+                        type="button"
+                        onClick={() => duplicateSelectedBuilding(selectedBuilding)}
+                        style={{ padding: "8px 12px", cursor: "pointer", border: "2px solid #315f2a", background: "#d8f0b0", color: "#252018", fontWeight: 900 }}
+                      >
+                        Duplicate Building
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => removeEditorBuilding(selectedBuilding)}
+                        style={{ padding: "8px 12px", cursor: "pointer", border: "2px solid #ca4b36", background: "#ffd0c8", color: "#252018", fontWeight: 900 }}
+                      >
+                        Delete Building
+                      </button>
+                    </div>
                   </div>
                 )}
 
@@ -2181,22 +2382,37 @@ export const ${constantName}: EditorMapAsset = {
                     <div style={{ ...RJ, fontSize: "0.95rem", color: "#252018" }}>
                       Object at {editorSelection.coord}: <b>{displayObjects[editorSelection.coord]}</b>
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const id = mapIdRef.current;
-                        setEditedObjectsByMap(prev => {
-                          const base = prev[id] ?? { ...objectsForMap(id) };
-                          const next = { ...base };
-                          delete next[editorSelection.coord];
-                          return { ...prev, [id]: next };
-                        });
-                        setEditorSelection(null);
-                      }}
-                      style={{ padding: "8px 12px", cursor: "pointer", border: "2px solid #ca4b36", background: "#ffd0c8", color: "#252018", fontWeight: 900 }}
-                    >
-                      Delete Object
-                    </button>
+
+                    <div style={{ ...RJ, fontSize: "0.82rem", color: "#66512c", fontWeight: 700 }}>
+                      Drag the object on the editor grid to move it.
+                    </div>
+
+                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                      <button
+                        type="button"
+                        onClick={() => duplicateSelectedObject(editorSelection.coord)}
+                        style={{ padding: "8px 12px", cursor: "pointer", border: "2px solid #315f2a", background: "#d8f0b0", color: "#252018", fontWeight: 900 }}
+                      >
+                        Duplicate Object
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const id = mapIdRef.current;
+                          setEditedObjectsByMap(prev => {
+                            const base = prev[id] ?? { ...objectsForMap(id) };
+                            const next = { ...base };
+                            delete next[editorSelection.coord];
+                            editedObjectsByMapRef.current = { ...editedObjectsByMapRef.current, [id]: next };
+                            return { ...prev, [id]: next };
+                          });
+                          setEditorSelection(null);
+                        }}
+                        style={{ padding: "8px 12px", cursor: "pointer", border: "2px solid #ca4b36", background: "#ffd0c8", color: "#252018", fontWeight: 900 }}
+                      >
+                        Delete Object
+                      </button>
+                    </div>
                   </div>
                 )}
 
@@ -2368,8 +2584,30 @@ export const ${constantName}: EditorMapAsset = {
               touchAction: "none",
               userSelect: "none",
             }}
-            onPointerUp={() => { isEditorDraggingRef.current = false; setIsEditorDragging(false); setDraggedNpcId(null); draggedNpcIdRef.current = null; }}
-            onPointerLeave={() => { isEditorDraggingRef.current = false; setIsEditorDragging(false); setDraggedNpcId(null); draggedNpcIdRef.current = null; }}
+            onPointerUp={() => {
+              isEditorDraggingRef.current = false;
+              setIsEditorDragging(false);
+              setDraggedNpcId(null);
+              setDraggedBuildingId(null);
+              setDraggedObjectCoord(null);
+              setResizeBuildingId(null);
+              draggedNpcIdRef.current = null;
+              draggedBuildingIdRef.current = null;
+              draggedObjectCoordRef.current = null;
+              resizeBuildingIdRef.current = null;
+            }}
+            onPointerLeave={() => {
+              isEditorDraggingRef.current = false;
+              setIsEditorDragging(false);
+              setDraggedNpcId(null);
+              setDraggedBuildingId(null);
+              setDraggedObjectCoord(null);
+              setResizeBuildingId(null);
+              draggedNpcIdRef.current = null;
+              draggedBuildingIdRef.current = null;
+              draggedObjectCoordRef.current = null;
+              resizeBuildingIdRef.current = null;
+            }}
           >
             {displayRows.map((row, y) =>
               row.map((tile, x) => (
@@ -2413,7 +2651,7 @@ export const ${constantName}: EditorMapAsset = {
                         pointerEvents: "none",
                       }}
                     >
-                      ⌂
+                      {buildingAtCoord(displayBuildings, x, y)?.id === selectedBuilding?.id && x === selectedBuilding!.x + selectedBuilding!.w - 1 && y === selectedBuilding!.y + selectedBuilding!.h - 1 ? "↘" : "⌂"}
                     </span>
                   )}
                   {displayObjects[`${x},${y}`] && (
