@@ -364,6 +364,7 @@ const OBJECT_EDITOR_CATEGORIES = [
 
 type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
 type ObjectEditAction = "place" | "erase";
+type NpcEditorAction = "create" | "edit" | "delete";
 
 const BUILDING_TILE_IDS = new Set(["A", "B", "H", "P", "U", "I", "O"]);
 
@@ -669,6 +670,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [editorBuildingW, setEditorBuildingW] = useState(5);
   const [editorBuildingH, setEditorBuildingH] = useState(4);
   const [npcEditAction, setNpcEditAction] = useState<ObjectEditAction>("place");
+  const [npcEditorAction, setNpcEditorAction] = useState<NpcEditorAction>("create");
   const [editorNpcName, setEditorNpcName] = useState("Local NPC");
   const [editorNpcPresetId, setEditorNpcPresetId] = useState("generic-young-man-0");
   const [editorNpcCategory, setEditorNpcCategory] = useState<NpcVisualCategory>("Generic");
@@ -723,6 +725,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const editorBuildingWRef = useRef(editorBuildingW);
   const editorBuildingHRef = useRef(editorBuildingH);
   const npcEditActionRef = useRef<ObjectEditAction>(npcEditAction);
+  const npcEditorActionRef = useRef<NpcEditorAction>(npcEditorAction);
   const editorNpcNameRef = useRef(editorNpcName);
   const editorNpcPresetIdRef = useRef(editorNpcPresetId);
   const editorNpcWalkingRef = useRef(editorNpcWalking);
@@ -760,6 +763,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   editorBuildingWRef.current = editorBuildingW;
   editorBuildingHRef.current = editorBuildingH;
   npcEditActionRef.current = npcEditAction;
+  npcEditorActionRef.current = npcEditorAction;
   editorNpcNameRef.current = editorNpcName;
   editorNpcPresetIdRef.current = editorNpcPresetId;
   editorNpcWalkingRef.current = editorNpcWalking;
@@ -1588,12 +1592,30 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     }
 
     if (editorModeRef.current === "npcs") {
-      const next = upsertEditedNpcsForMap(id, current => {
-        const withoutHere = current.filter(npc => !(npc.x === x && npc.y === y));
-        if (npcEditActionRef.current === "erase") return withoutHere;
+      const clickedNpc = npcsRef.current.find(item => item.mapId === id && item.x === x && item.y === y);
 
+      if (npcEditorActionRef.current === "edit") {
+        if (clickedNpc) {
+          setEditorSelection({ kind: "npc", id: clickedNpc.id });
+          setDraggedNpcId(clickedNpc.id);
+          draggedNpcIdRef.current = clickedNpc.id;
+        }
+        return;
+      }
+
+      if (npcEditorActionRef.current === "delete") {
+        if (clickedNpc) {
+          upsertEditedNpcsForMap(id, current => current.filter(npc => npc.id !== clickedNpc.id));
+          if (editorSelectionRef.current?.kind === "npc" && editorSelectionRef.current.id === clickedNpc.id) {
+            setEditorSelection(null);
+          }
+        }
+        return;
+      }
+
+      const next = upsertEditedNpcsForMap(id, current => {
         const preset = NPC_VISUAL_PRESETS.find(item => item.id === editorNpcPresetIdRef.current) ?? NPC_VISUAL_PRESETS[0];
-        const npcNumber = withoutHere.length + 1;
+        const npcNumber = current.length + 1;
         const newNpc: EditorNpcAsset = {
           id: `${id}-editor-npc-${Date.now()}-${npcNumber}`,
           x,
@@ -1606,11 +1628,11 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           style: isTownMap(id) ? `npc-town-${id} npc-role-${preset.styleRole}` : `npc-role-${preset.styleRole}`,
           walking: editorNpcWalkingRef.current,
         };
-        return [...withoutHere, newNpc];
+        return [...current, newNpc];
       });
 
       const placed = next.find(npc => npc.x === x && npc.y === y);
-      if (placed && npcEditActionRef.current === "place") setEditorSelection({ kind: "npc", id: placed.id });
+      if (placed) setEditorSelection({ kind: "npc", id: placed.id });
       return;
     }
 
@@ -2208,9 +2230,33 @@ export const ${constantName}: EditorMapAsset = {
             {editorMode === "npcs" && (
               <div style={{ marginBottom: 12 }}>
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
+                  {(["create", "edit", "delete"] as NpcEditorAction[]).map(action => (
+                    <button
+                      key={action}
+                      type="button"
+                      onClick={() => {
+                        setNpcEditorAction(action);
+                        setNpcEditAction(action === "delete" ? "erase" : "place");
+                      }}
+                      style={{
+                        padding: "7px 10px",
+                        cursor: "pointer",
+                        border: npcEditorAction === action ? "4px solid #315f2a" : "2px solid #252018",
+                        background: npcEditorAction === action ? "#d8f0b0" : "#fff8c8",
+                        color: "#252018",
+                        fontWeight: 900,
+                        textTransform: "capitalize",
+                      }}
+                    >
+                      {action === "create" ? "Create NPC" : action === "edit" ? "Edit / Move NPC" : "Delete NPC"}
+                    </button>
+                  ))}
+                </div>
+
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
                   <button
                     type="button"
-                    onClick={() => setNpcEditAction("place")}
+                    onClick={() => { setNpcEditAction("place"); setNpcEditorAction("create"); }}
                     style={{
                       padding: "7px 10px",
                       cursor: "pointer",
@@ -2224,7 +2270,7 @@ export const ${constantName}: EditorMapAsset = {
                   </button>
                   <button
                     type="button"
-                    onClick={() => setNpcEditAction("erase")}
+                    onClick={() => { setNpcEditAction("erase"); setNpcEditorAction("delete"); }}
                     style={{
                       padding: "7px 10px",
                       cursor: "pointer",
@@ -2238,6 +2284,9 @@ export const ${constantName}: EditorMapAsset = {
                   </button>
                   <span style={{ ...VT, fontSize: "1.05rem", color: "#252018", alignSelf: "center" }}>
                     NPCs on map: {displayEditorNpcs.length}
+                  </span>
+                  <span style={{ ...RJ, fontSize: "0.78rem", color: "#66512c", alignSelf: "center", fontWeight: 800 }}>
+                    {npcEditorAction === "create" ? "Click map to create." : npcEditorAction === "edit" ? "Click/drag NPCs to edit or move." : "Click NPCs to delete."}
                   </span>
                 </div>
 
@@ -2736,6 +2785,10 @@ export const ${constantName}: EditorMapAsset = {
                   }}
                   onPointerEnter={() => {
                     if (isEditorDraggingRef.current && transformDragTo(x, y)) return;
+                    if (isEditorDraggingRef.current && editorModeRef.current === "npcs" && npcEditorActionRef.current === "edit" && draggedNpcIdRef.current) {
+                      moveSelectedNpcTo(x, y);
+                      return;
+                    }
                     if (isEditorDraggingRef.current) paintEditorTile(x, y);
                   }}
                   style={{
