@@ -1,5 +1,6 @@
 import { useState } from "react";
-import type { EditorBuildingColor, EditorBuildingKind } from "../../../../data/cityMaps/mapAsset";
+import type { GameMapId } from "../../../../data/maps";
+import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind, EditorNpcAsset } from "../../../../data/cityMaps/mapAsset";
 
 export type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
 export type ObjectEditAction = "place" | "erase";
@@ -17,6 +18,11 @@ export type EditorSelection =
   | { kind: "object"; coord: string }
   | { kind: "tile"; x: number; y: number }
   | null;
+
+export type EditedRowsByMap = Partial<Record<GameMapId, string[][]>>;
+export type EditedObjectsByMap = Partial<Record<GameMapId, Record<string, string>>>;
+export type EditedBuildingsByMap = Partial<Record<GameMapId, EditorBuildingAsset[]>>;
+export type EditedNpcsByMap = Partial<Record<GameMapId, EditorNpcAsset[]>>;
 
 export function useEditorState() {
   const [editorMode, setEditorMode] = useState<EditorMode>("select");
@@ -43,6 +49,10 @@ export function useEditorState() {
   const [terrainEditorOpen, setTerrainEditorOpen] = useState(false);
   const [saveMsg, setSaveMsg] = useState<string | null>(null);
   const [isEditorDragging, setIsEditorDragging] = useState(false);
+  const [editedRowsByMap, setEditedRowsByMap] = useState<EditedRowsByMap>({});
+  const [editedObjectsByMap, setEditedObjectsByMap] = useState<EditedObjectsByMap>({});
+  const [editedBuildingsByMap, setEditedBuildingsByMap] = useState<EditedBuildingsByMap>({});
+  const [editedNpcsByMap, setEditedNpcsByMap] = useState<EditedNpcsByMap>({});
 
   return {
     editorMode,
@@ -93,5 +103,13 @@ export function useEditorState() {
     setSaveMsg,
     isEditorDragging,
     setIsEditorDragging,
+    editedRowsByMap,
+    setEditedRowsByMap,
+    editedObjectsByMap,
+    setEditedObjectsByMap,
+    editedBuildingsByMap,
+    setEditedBuildingsByMap,
+    editedNpcsByMap,
+    setEditedNpcsByMap,
   };
 }

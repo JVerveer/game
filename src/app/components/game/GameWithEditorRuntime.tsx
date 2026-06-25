@@ -371,11 +371,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [npcs, setNpcs] = useState<MovingNpc[]>(INITIAL_NPCS);
   const [trainOpen, setTrainOpen] = useState(false);
   const [trainIndex, setTrainIndex] = useState(0);
-  const [editedRowsByMap, setEditedRowsByMap] = useState<Partial<Record<GameMapId, string[][]>>>({});
-  const [editedObjectsByMap, setEditedObjectsByMap] = useState<Partial<Record<GameMapId, Record<string, string>>>>({});
-  const [editedBuildingsByMap, setEditedBuildingsByMap] = useState<Partial<Record<GameMapId, EditorBuildingAsset[]>>>({});
   const [removedBuildingIdsByMap, setRemovedBuildingIdsByMap] = useState<Partial<Record<GameMapId, Set<string>>>>({});
-  const [editedNpcsByMap, setEditedNpcsByMap] = useState<Partial<Record<GameMapId, EditorNpcAsset[]>>>({});
   const {
     editorMode,
     setEditorMode,
@@ -425,6 +421,14 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setSaveMsg,
     isEditorDragging,
     setIsEditorDragging,
+    editedRowsByMap,
+    setEditedRowsByMap,
+    editedObjectsByMap,
+    setEditedObjectsByMap,
+    editedBuildingsByMap,
+    setEditedBuildingsByMap,
+    editedNpcsByMap,
+    setEditedNpcsByMap,
   } = useEditorState();
 
   const viewRef = useRef<HTMLDivElement>(null);
