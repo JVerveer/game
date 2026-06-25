@@ -319,6 +319,35 @@ function InGameBattle({ enemy, playerHp, playerMaxHp, onEnd }: {
 
 const TS = 48; // tile size in px
 
+const TILE_TYPES = [
+  { id: "G", name: "Grass", description: "Default walkable ground" },
+  { id: "R", name: "Road / Bike Path", description: "Main walkable path" },
+  { id: "W", name: "Water / Canal", description: "Canals, rivers, lakes" },
+  { id: "T", name: "Trees / Forest", description: "Tree border or forest block" },
+  { id: "E", name: "Plaza / Stone", description: "Town square or paved area" },
+  { id: "Y", name: "Tulips / Flowers", description: "Flower beds and tulip fields" },
+  { id: "S", name: "Sand / Beach", description: "Beach or desert terrain" },
+  { id: "X", name: "Encounter Grass", description: "Wild battle zone" },
+  { id: "B", name: "Shop Building", description: "Building body for shops" },
+  { id: "H", name: "Healing Center", description: "Building body for healing center" },
+  { id: "P", name: "Train Station", description: "Train station building" },
+  { id: "U", name: "House / Urban Building", description: "Homes and canal houses" },
+  { id: "A", name: "Special Building", description: "Museum, forum, landmark building" },
+  { id: "I", name: "Institution", description: "Government, university, official building" },
+  { id: "O", name: "Door / Portal", description: "Walkable entrance trigger" },
+  { id: "D", name: "Dungeon Floor", description: "Dark indoor or dungeon tile" },
+  { id: "C", name: "Cave", description: "Cave entrance or rocky area" },
+  { id: "M", name: "Mountain", description: "Rocky mountain terrain" },
+  { id: "J", name: "Wooden Dock", description: "Dock, pier, boardwalk" },
+  { id: "F", name: "Fence", description: "Fence or barrier decoration" },
+  { id: "L", name: "Flower Patch", description: "Decorative flowers / garden" },
+  { id: "Q", name: "Quest Marker", description: "Quest/NPC marker tile" },
+  { id: "V", name: "Save Point", description: "Save marker tile" },
+  { id: "N", name: "NPC Tile", description: "NPC marker tile" },
+] as const;
+
+const tileTypeFor = (id: string) => TILE_TYPES.find(tile => tile.id === id);
+
 
 const D_PAD_BTN: React.CSSProperties = {
   height: 38, width: 38, border: "1px solid rgba(255,255,255,0.18)",
@@ -757,7 +786,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         transition: "transform 0.1s linear",
         width: mapPxW, height: mapPxH,
       }} className={`map-layer map-${mapId}`}>
-        {isTownMap(mapId) && !editedRows && (
+        {isTownMap(mapId) && (
             <PixelMapScene
               rows={displayRows}
               buildings={pixelBuildingsFor(mapId, displayRows)}
@@ -765,7 +794,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
             />
         )}
 
-        {isTownMap(mapId) && !editedRows && Object.entries(currentMap.objects)
+        {isTownMap(mapId) && Object.entries(currentMap.objects)
           .filter(([, obj]) => obj !== "NPC")
           .map(([coord, obj]) => {
             const [x, y] = coord.split(",").map(Number);
@@ -791,7 +820,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           })}
 
         {/* Tiles rendered as flex rows */}
-        <div className={isTownMap(mapId) && !editedRows ? "pixel-game-grid" : ""} style={{ display: "flex", flexDirection: "column" }}>
+        <div className={isTownMap(mapId) ? "pixel-game-grid" : ""} style={{ display: "flex", flexDirection: "column" }}>
           {displayRows.map((row, ry) => (
             <div key={ry} style={{ display: "flex" }}>
               {row.map((t, cx) => {
@@ -809,7 +838,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
                       fontSize: TS * 0.62, lineHeight: 1, userSelect: "none",
                     }}
                   >
-                    {(!isTownMap(mapId) || editedRows) && obj && obj !== "NPC" && <div className={objectClassFor(obj)} />}
+                    {!isTownMap(mapId) && obj && obj !== "NPC" && <div className={objectClassFor(obj)} />}
                   </div>
                 );
               })}
@@ -925,26 +954,44 @@ function GameScreen({ onExit }: { onExit: () => void }) {
             </div>
 
             <div style={{ ...VT, fontSize: "1.1rem", color: "#252018", marginBottom: 10 }}>
-              Select a tile, then click or drag to paint. While this editor has changes, the live map switches to editable tile rendering so buildings and terrain visibly update.
+              Select a tile, then click or drag to paint. Your normal pixel-art map stays active. This editor is an overlay; changes feed into the normal map preview, collision, and export.
             </div>
 
-            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
-              {["G", "R", "W", "T", "E", "Y", "S", "X", "B", "H", "P", "U", "A", "I", "O", "D", "C", "M", "J", "F", "L", "Q", "V", "N"].map(tile => (
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(170px, 1fr))", gap: 8, marginBottom: 12 }}>
+              {TILE_TYPES.map(tile => (
                 <button
-                  key={tile}
+                  key={tile.id}
                   type="button"
-                  onClick={() => setEditorTile(tile)}
+                  onClick={() => setEditorTile(tile.id)}
+                  title={`${tile.id} · ${tile.description}`}
                   style={{
-                    width: 42,
-                    height: 42,
-                    border: editorTile === tile ? "4px solid #ca4b36" : "2px solid #252018",
-                    background: GAME_TILE_COLORS[tile] ?? GAME_TILE_COLORS.G,
-                    color: "#fff8c8",
-                    fontWeight: 900,
+                    minHeight: 56,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 10,
+                    padding: "7px 9px",
+                    border: editorTile === tile.id ? "4px solid #ca4b36" : "2px solid #252018",
+                    background: editorTile === tile.id ? "#ffef93" : "#fff8c8",
+                    color: "#252018",
                     cursor: "pointer",
+                    textAlign: "left",
                   }}
                 >
-                  {tile}
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      width: 28,
+                      height: 28,
+                      flex: "0 0 auto",
+                      background: GAME_TILE_COLORS[tile.id] ?? GAME_TILE_COLORS.G,
+                      border: "3px solid #252018",
+                      boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.25)",
+                    }}
+                  />
+                  <span style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                    <span style={{ ...VT, fontSize: "1.1rem", lineHeight: 1 }}>{tile.name}</span>
+                    <span style={{ ...RJ, fontSize: "0.68rem", fontWeight: 700, opacity: 0.65 }}>{tile.id} · {tile.description}</span>
+                  </span>
                 </button>
               ))}
             </div>
@@ -998,7 +1045,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
                 <button
                   key={`${x},${y}`}
                   type="button"
-                  title={`${x},${y}: ${tile}`}
+                  title={`${x},${y}: ${tileTypeFor(tile)?.name ?? tile} (${tile})`}
                   onPointerDown={(e) => {
                     e.preventDefault();
                     isEditorDraggingRef.current = true;
