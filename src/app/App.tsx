@@ -674,7 +674,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         )}
 
         {isTownMap(mapId) && Object.entries(currentMap.objects)
-          .filter(([, obj]) => obj === "SIGN")
+          .filter(([, obj]) => obj !== "NPC")
           .map(([coord, obj]) => {
             const [x, y] = coord.split(",").map(Number);
             return (
@@ -717,7 +717,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
                       fontSize: TS * 0.62, lineHeight: 1, userSelect: "none",
                     }}
                   >
-                    {obj && obj !== "NPC" && <div className={objectClassFor(obj)} />}
+                    {!isTownMap(mapId) && obj && obj !== "NPC" && <div className={objectClassFor(obj)} />}
                   </div>
                 );
               })}
