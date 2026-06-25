@@ -32,6 +32,8 @@ import { InGameBattle } from "./InGameBattle";
 import { useEditorState } from "../editor/hooks/useEditorState";
 import { createMapAssetExport } from "../editor/export/exportHelpers";
 import { TerrainEditorOverlay } from "../editor/TerrainEditorOverlay";
+import { useBuildingMovement } from "../editor/buildings/useBuildingMovement";
+import { useBuildingResize } from "../editor/buildings/useBuildingResize";
 import {
   buildingAtCoord,
   clearBuildingFootprintFromRows,
@@ -969,14 +971,31 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     ));
     if (next.some(npc => npc.id === npcId)) setEditorSelection({ kind: "npc", id: npcId });
   };
+  const {
+    clearBuildingFromEditedRows,
+    moveEditorBuildingTo,
+  } = useBuildingMovement({
+    mapIdRef,
+    editedRowsByMapRef,
+    editedBuildingsByMapRef,
+    setEditedRowsByMap,
+    setEditedBuildingsByMap,
+    buildingsForMap,
+  });
 
-  const clearBuildingFromEditedRows = (id: GameMapId, building: EditorBuildingAsset) => {
-    const baseRows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows.map(row => [...row]);
-    const nextRows = clearBuildingFootprintFromRows(baseRows, building);
-    editedRowsByMapRef.current = { ...editedRowsByMapRef.current, [id]: nextRows };
-    setEditedRowsByMap(prev => ({ ...prev, [id]: nextRows }));
-    return nextRows;
-  };
+  const {
+    resizeEditorBuildingTo,
+  } = useBuildingResize({
+    mapIdRef,
+    editedRowsByMapRef,
+    editedBuildingsByMapRef,
+    setEditedRowsByMap,
+    setEditedBuildingsByMap,
+    buildingsForMap,
+  });
+
+
+
 
   const removeEditorBuilding = (building: EditorBuildingAsset) => {
     const id = mapIdRef.current;
@@ -1001,53 +1020,9 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setEditorSelection(null);
   };
 
-  const moveEditorBuildingTo = (buildingId: string, x: number, y: number) => {
-    const id = mapIdRef.current;
 
-    setEditedBuildingsByMap(prev => {
-      const current = prev[id] ?? buildingsForMap(id);
-      const currentBuilding = current.find(building => building.id === buildingId);
-      if (!currentBuilding) return prev;
 
-      // Moving a legacy/procedural building must also clean its old terrain
-      // footprint. Otherwise the old blue/red/purple building tiles remain
-      // blocked and can still look like terrain.
-      const baseRows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows.map(row => [...row]);
-      const cleanedRows = clearBuildingFootprintFromRows(baseRows, currentBuilding);
-      editedRowsByMapRef.current = { ...editedRowsByMapRef.current, [id]: cleanedRows };
-      setEditedRowsByMap(rowsPrev => ({ ...rowsPrev, [id]: cleanedRows }));
 
-      const movedBuilding = { ...currentBuilding, x, y };
-      const next = current.map(building => building.id === buildingId ? movedBuilding : building);
-
-      editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: next };
-      return { ...prev, [id]: next };
-    });
-  };
-
-  const resizeEditorBuildingTo = (buildingId: string, x: number, y: number) => {
-    const id = mapIdRef.current;
-    setEditedBuildingsByMap(prev => {
-      const current = prev[id] ?? buildingsForMap(id);
-      const currentBuilding = current.find(building => building.id === buildingId);
-      if (!currentBuilding) return prev;
-
-      // Clear old footprint first, then re-apply the resized building through
-      // displayRowsWithBuildings / rowsForMap. This prevents stale blocked tiles
-      // when the building is made smaller.
-      const baseRows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows.map(row => [...row]);
-      const cleanedRows = clearBuildingFootprintFromRows(baseRows, currentBuilding);
-      editedRowsByMapRef.current = { ...editedRowsByMapRef.current, [id]: cleanedRows };
-      setEditedRowsByMap(rowsPrev => ({ ...rowsPrev, [id]: cleanedRows }));
-
-      const nextW = Math.max(3, x - currentBuilding.x + 1);
-      const nextH = Math.max(3, y - currentBuilding.y + 1);
-      const next = current.map(building => building.id === buildingId ? { ...building, w: nextW, h: nextH } : building);
-
-      editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: next };
-      return { ...prev, [id]: next };
-    });
-  };
 
   const moveEditorObjectTo = (fromCoord: string, x: number, y: number) => {
     const id = mapIdRef.current;
