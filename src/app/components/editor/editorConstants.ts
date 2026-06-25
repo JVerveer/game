@@ -1,29 +1,7 @@
 import type { EditorBuildingColor, EditorBuildingKind } from "../../../data/cityMaps/mapAsset";
+import type { BuildingTypeOption, EditorMode, NpcVisualCategory, NpcVisualPreset } from "./editorTypes";
 
-export type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
-export type ObjectEditAction = "place" | "erase";
-
-export type EditorSelection =
-  | { kind: "npc"; id: string }
-  | { kind: "building"; id: string }
-  | { kind: "object"; coord: string }
-  | { kind: "tile"; x: number; y: number }
-  | null;
-
-export type NpcVisualCategory =
-  | "Generic"
-  | "Wokeshire"
-  | "Special"
-  | "Cryptonia"
-  | "Surveillia";
-
-export type NpcVisualPreset = {
-  id: string;
-  label: string;
-  variant: number;
-  styleRole: string;
-  category: NpcVisualCategory;
-};
+export const EDITOR_MODES: EditorMode[] = ["select", "terrain", "buildings", "objects", "npcs"];
 
 export const NPC_VISUAL_CATEGORIES: NpcVisualCategory[] = [
   "Generic",
@@ -70,14 +48,7 @@ export const NPC_VISUAL_PRESETS: NpcVisualPreset[] = [
 
 export const BUILDING_TILE_IDS = new Set(["A", "B", "H", "P", "U", "I", "O"]);
 
-export const BUILDING_TYPES: Array<{
-  kind: EditorBuildingKind;
-  label: string;
-  defaultColor: EditorBuildingColor;
-  defaultW: number;
-  defaultH: number;
-  description: string;
-}> = [
+export const BUILDING_TYPES: BuildingTypeOption[] = [
   { kind: "house", label: "House", defaultColor: "purple", defaultW: 5, defaultH: 4, description: "Normal enterable house" },
   { kind: "shop", label: "Shop", defaultColor: "green", defaultW: 5, defaultH: 4, description: "Auto-connects to shop interior" },
   { kind: "healing", label: "Healing Center", defaultColor: "blue", defaultW: 5, defaultH: 4, description: "Auto-connects to healing center" },

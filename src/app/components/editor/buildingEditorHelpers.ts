@@ -1,5 +1,6 @@
-import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind } from "../../../data/cityMaps/mapAsset";
-import { buildingCrestForKind, doorForBuildingAsset } from "../../../data/cityMaps/mapAsset";
+import type { GameMapId } from "../../data/maps";
+import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind } from "../../data/cityMaps/mapAsset";
+import { buildingCrestForKind, doorForBuildingAsset } from "../../data/cityMaps/mapAsset";
 import { BUILDING_TILE_IDS } from "./editorConstants";
 
 export const tileKindForEditorBuilding = (tile: string): EditorBuildingKind | null => {
@@ -83,13 +84,48 @@ export const buildingAtCoord = (buildings: EditorBuildingAsset[], x: number, y: 
 export const clearBuildingFootprintFromRows = (rows: string[][], building: EditorBuildingAsset) => {
   const next = rows.map(row => [...row]);
   const door = doorForBuildingAsset(building);
+
+  const clearAt = (x: number, y: number) => {
+    if (next[y]?.[x] !== undefined) next[y][x] = "G";
+  };
+
   for (let y = building.y; y < building.y + building.h; y++) {
-    for (let x = building.x; x < building.x + building.w; x++) {
-      if (next[y]?.[x] !== undefined && BUILDING_TILE_IDS.has(next[y][x])) next[y][x] = "G";
-    }
+    for (let x = building.x; x < building.x + building.w; x++) clearAt(x, y);
   }
-  if (next[door.y]?.[door.x] !== undefined && BUILDING_TILE_IDS.has(next[door.y][door.x])) next[door.y][door.x] = "G";
-  if (next[door.y]?.[door.x] === "O") next[door.y][door.x] = "G";
+
+  clearAt(door.x, door.y);
+  if (BUILDING_TILE_IDS.has(next[door.y + 1]?.[door.x] ?? "")) clearAt(door.x, door.y + 1);
+
+  const seeds = [
+    { x: building.x, y: building.y },
+    { x: building.x + building.w - 1, y: building.y },
+    { x: building.x, y: building.y + building.h - 1 },
+    { x: building.x + building.w - 1, y: building.y + building.h - 1 },
+    door,
+  ];
+  const seen = new Set<string>();
+  const queue = seeds.filter(seed => BUILDING_TILE_IDS.has(rows[seed.y]?.[seed.x] ?? "") || rows[seed.y]?.[seed.x] === "O");
+
+  for (let i = 0; i < queue.length; i++) {
+    const cur = queue[i];
+    const key = `${cur.x},${cur.y}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+
+    const originalTile = rows[cur.y]?.[cur.x];
+    if (!BUILDING_TILE_IDS.has(originalTile ?? "") && originalTile !== "O") continue;
+    clearAt(cur.x, cur.y);
+
+    [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(([dx, dy]) => {
+      const nx = cur.x + dx;
+      const ny = cur.y + dy;
+      const nextKey = `${nx},${ny}`;
+      if (seen.has(nextKey)) return;
+      const tile = rows[ny]?.[nx];
+      if (BUILDING_TILE_IDS.has(tile ?? "") || tile === "O") queue.push({ x: nx, y: ny });
+    });
+  }
+
   return next;
 };
 
