@@ -414,12 +414,16 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setEditorNpcWalking,
     editorNpcLines,
     setEditorNpcLines,
+    draggedNpcId,
+    setDraggedNpcId,
+    draggedBuildingId,
+    setDraggedBuildingId,
+    draggedObjectCoord,
+    setDraggedObjectCoord,
+    resizeBuildingId,
+    setResizeBuildingId,
   } = useEditorState();
 
-  const [draggedNpcId, setDraggedNpcId] = useState<string | null>(null);
-  const [draggedBuildingId, setDraggedBuildingId] = useState<string | null>(null);
-  const [draggedObjectCoord, setDraggedObjectCoord] = useState<string | null>(null);
-  const [resizeBuildingId, setResizeBuildingId] = useState<string | null>(null);
   const viewRef = useRef<HTMLDivElement>(null);
   const [viewSize, setViewSize] = useState({ w: 900, h: 600 });
   const currentMap = GAME_MAPS[mapId];

@@ -36,6 +36,10 @@ export function useEditorState() {
   const [editorNpcSearch, setEditorNpcSearch] = useState("");
   const [editorNpcWalking, setEditorNpcWalking] = useState(true);
   const [editorNpcLines, setEditorNpcLines] = useState("Hello there!\nI was placed in the editor.");
+  const [draggedNpcId, setDraggedNpcId] = useState<string | null>(null);
+  const [draggedBuildingId, setDraggedBuildingId] = useState<string | null>(null);
+  const [draggedObjectCoord, setDraggedObjectCoord] = useState<string | null>(null);
+  const [resizeBuildingId, setResizeBuildingId] = useState<string | null>(null);
 
   return {
     editorMode,
@@ -72,5 +76,13 @@ export function useEditorState() {
     setEditorNpcWalking,
     editorNpcLines,
     setEditorNpcLines,
+    draggedNpcId,
+    setDraggedNpcId,
+    draggedBuildingId,
+    setDraggedBuildingId,
+    draggedObjectCoord,
+    setDraggedObjectCoord,
+    resizeBuildingId,
+    setResizeBuildingId,
   };
 }
