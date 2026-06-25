@@ -42,6 +42,7 @@ export function useEditorState() {
   const [resizeBuildingId, setResizeBuildingId] = useState<string | null>(null);
   const [terrainEditorOpen, setTerrainEditorOpen] = useState(false);
   const [saveMsg, setSaveMsg] = useState<string | null>(null);
+  const [isEditorDragging, setIsEditorDragging] = useState(false);
 
   return {
     editorMode,
@@ -90,5 +91,7 @@ export function useEditorState() {
     setTerrainEditorOpen,
     saveMsg,
     setSaveMsg,
+    isEditorDragging,
+    setIsEditorDragging,
   };
 }

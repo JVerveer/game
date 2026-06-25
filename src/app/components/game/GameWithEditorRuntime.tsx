@@ -371,7 +371,6 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [npcs, setNpcs] = useState<MovingNpc[]>(INITIAL_NPCS);
   const [trainOpen, setTrainOpen] = useState(false);
   const [trainIndex, setTrainIndex] = useState(0);
-  const [isEditorDragging, setIsEditorDragging] = useState(false);
   const [editedRowsByMap, setEditedRowsByMap] = useState<Partial<Record<GameMapId, string[][]>>>({});
   const [editedObjectsByMap, setEditedObjectsByMap] = useState<Partial<Record<GameMapId, Record<string, string>>>>({});
   const [editedBuildingsByMap, setEditedBuildingsByMap] = useState<Partial<Record<GameMapId, EditorBuildingAsset[]>>>({});
@@ -424,6 +423,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setTerrainEditorOpen,
     saveMsg,
     setSaveMsg,
+    isEditorDragging,
+    setIsEditorDragging,
   } = useEditorState();
 
   const viewRef = useRef<HTMLDivElement>(null);
