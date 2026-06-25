@@ -1,6 +1,7 @@
 import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind } from "../../../../data/cityMaps/mapAsset";
 import { buildingCrestForKind, doorForBuildingAsset } from "../../../../data/cityMaps/mapAsset";
-import { BUILDING_TILE_IDS } from "../shared/editorConstants";
+
+export const BUILDING_TILE_IDS = new Set(["A", "B", "H", "P", "U", "I", "O"]);
 
 export const tileKindForEditorBuilding = (tile: string): EditorBuildingKind | null => {
   if (tile === "A" || tile === "B") return tile === "A" ? "shop" : "house";
