@@ -465,6 +465,23 @@ const buildingAtCoord = (buildings: EditorBuildingAsset[], x: number, y: number)
     y < building.y + building.h
   );
 
+const clearBuildingFootprintFromRows = (rows: string[][], building: EditorBuildingAsset) => {
+  const next = rows.map(row => [...row]);
+  const door = doorForBuildingAsset(building);
+  for (let y = building.y; y < building.y + building.h; y++) {
+    for (let x = building.x; x < building.x + building.w; x++) {
+      if (next[y]?.[x] !== undefined && BUILDING_TILE_IDS.has(next[y][x])) next[y][x] = "G";
+    }
+  }
+  // Door can be adjacent/inside old building footprint; always clear it if present.
+  if (next[door.y]?.[door.x] !== undefined && BUILDING_TILE_IDS.has(next[door.y][door.x])) next[door.y][door.x] = "G";
+  if (next[door.y]?.[door.x] === "O") next[door.y][door.x] = "G";
+  return next;
+};
+
+const clearBuildingFootprintsFromRows = (rows: string[][], buildings: EditorBuildingAsset[]) =>
+  buildings.reduce((current, building) => clearBuildingFootprintFromRows(current, building), rows);
+
 
 
 type EditorSelection =
@@ -962,7 +979,13 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     if (moveAcrossMapEdge(nx, ny)) return;
 
     const t = tile(nx, ny);
-    const targetInteraction = GAME_MAPS[mapIdRef.current].interactions[`${nx},${ny}`] ?? dynamicDoorActionFor(mapIdRef.current, nx, ny);
+    const staticTargetInteraction = GAME_MAPS[mapIdRef.current].interactions[`${nx},${ny}`];
+    const dynamicTargetInteraction = dynamicDoorActionFor(mapIdRef.current, nx, ny);
+    const targetInteraction = dynamicTargetInteraction ?? (
+      rowsForMap(mapIdRef.current)[ny]?.[nx] === "O" || staticTargetInteraction?.train || staticTargetInteraction?.save
+        ? staticTargetInteraction
+        : undefined
+    );
 
     // Door tiles are walkable entry triggers: moving onto one enters.
     if (targetInteraction?.portal && targetInteraction.auto) {
@@ -1031,7 +1054,14 @@ function GameScreen({ onExit }: { onExit: () => void }) {
         setDlg({ name: generatedNpc.name, lines: generatedNpc.lines, idx: 0 });
         return;
       }
-      const intr = GAME_MAPS[mapIdRef.current].interactions[key] ?? dynamicDoorActionFor(mapIdRef.current, cx, cy);
+      const staticInteraction = GAME_MAPS[mapIdRef.current].interactions[key];
+      const dynamicInteraction = dynamicDoorActionFor(mapIdRef.current, cx, cy);
+      const tileAtInteraction = rowsForMap(mapIdRef.current)[cy]?.[cx];
+      const intr = dynamicInteraction ?? (
+        tileAtInteraction === "O" || staticInteraction?.train || staticInteraction?.save
+          ? staticInteraction
+          : undefined
+      );
       if (intr) {
         if (intr.heal) setHp(h => ({ ...h, cur: h.max }));
         if (intr.save) { setSaveMsg("★ Saved!"); setTimeout(() => setSaveMsg(null), 2500); }
@@ -1174,6 +1204,26 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     if (next.some(npc => npc.id === npcId)) setEditorSelection({ kind: "npc", id: npcId });
   };
 
+  const removeEditorBuilding = (building: EditorBuildingAsset) => {
+    const id = mapIdRef.current;
+
+    setEditedRowsByMap(prev => {
+      const baseRows = prev[id] ?? GAME_MAPS[id].rows.map(row => [...row]);
+      const nextRows = clearBuildingFootprintFromRows(baseRows, building);
+      editedRowsByMapRef.current = { ...editedRowsByMapRef.current, [id]: nextRows };
+      return { ...prev, [id]: nextRows };
+    });
+
+    setEditedBuildingsByMap(prev => {
+      const current = prev[id] ?? buildingsForMap(id);
+      const nextBuildings = current.filter(item => item.id !== building.id);
+      editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: nextBuildings };
+      return { ...prev, [id]: nextBuildings };
+    });
+
+    setEditorSelection(null);
+  };
+
   const placeEditorBuilding = (x: number, y: number) => {
     const id = mapIdRef.current;
     const kind = editorBuildingKindRef.current;
@@ -1191,6 +1241,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setEditedBuildingsByMap(prev => {
       const current = prev[id] ?? buildingsForMap(id).map(item => ({ ...item }));
       const door = doorForBuildingAsset(building);
+      const removedBuildings: EditorBuildingAsset[] = [];
       const withoutOverlap = current.filter(item => {
         const itemDoor = doorForBuildingAsset(item);
         const overlaps =
@@ -1199,8 +1250,16 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           building.y < item.y + item.h &&
           building.y + building.h > item.y;
         const sameUniqueKind = UNIQUE_BUILDING_KINDS.has(kind) && item.kind === kind;
-        return !overlaps && !sameUniqueKind && !(itemDoor.x === door.x && itemDoor.y === door.y);
+        const shouldRemove = overlaps || sameUniqueKind || (itemDoor.x === door.x && itemDoor.y === door.y);
+        if (shouldRemove) removedBuildings.push(item);
+        return !shouldRemove;
       });
+      if (removedBuildings.length > 0) {
+        const baseRows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows.map(row => [...row]);
+        const nextRows = clearBuildingFootprintsFromRows(baseRows, removedBuildings);
+        editedRowsByMapRef.current = { ...editedRowsByMapRef.current, [id]: nextRows };
+        setEditedRowsByMap(rowsPrev => ({ ...rowsPrev, [id]: nextRows }));
+      }
       const next = [...withoutOverlap, building];
       editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: next };
       return { ...prev, [id]: next };
@@ -2109,15 +2168,7 @@ export const ${constantName}: EditorMapAsset = {
 
                     <button
                       type="button"
-                      onClick={() => {
-                        setEditedBuildingsByMap(prev => {
-                          const current = prev[mapIdRef.current] ?? buildingsForMap(mapIdRef.current);
-                          const nextBuildings = current.filter(building => building.id !== selectedBuilding.id);
-                          editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [mapIdRef.current]: nextBuildings };
-                          return { ...prev, [mapIdRef.current]: nextBuildings };
-                        });
-                        setEditorSelection(null);
-                      }}
+                      onClick={() => removeEditorBuilding(selectedBuilding)}
                       style={{ padding: "8px 12px", cursor: "pointer", border: "2px solid #ca4b36", background: "#ffd0c8", color: "#252018", fontWeight: 900 }}
                     >
                       Delete Building
