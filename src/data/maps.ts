@@ -78,7 +78,7 @@ export const GAME_TILE_COLORS: Record<string, string> = {
   C: "#2e1c08", D: "#08081a", S: "#7a6030", M: "#282838",
   V: "#3c2e00", N: "#3a2460", O: "#5a4830", P: "#5a4830", J: "#7b4d2a",
   A: "#b9a06d", I: "#927947", U: "#713224", E: "#4a4a4a",
-  Y: "#76a846",
+  Y: "#d85a7f",
 };
 
 export const WALKABLE_TILES = new Set(["G", "R", "S", "X", "Q", "V", "N", "O", "L", "E", "J"]);
@@ -385,10 +385,10 @@ const doorConfigFor = (theme: TownTheme): TownDoorConfig => {
   }
   if (theme.id === "wokeshire") {
     return {
-      shop: "22,15",
-      healing: "33,15",
-      homes: ["12,15", "17,15", "38,15", "43,15"],
-      train: ["36,25", "37,25", "36,26", "37,26"],
+      shop: "23,14",
+      healing: "32,14",
+      homes: ["10,14", "19,14", "36,14", "45,14"],
+      train: ["36,25", "37,25"],
       save: "27,18",
       sign: "25,18",
     };
@@ -494,14 +494,22 @@ const specialObjectsFor = (theme: TownTheme): Record<string, string> => {
   }
   if (theme.id === "wokeshire") {
     return {
-      "17,9": "CANAL_BRIDGE",
-      "35,9": "CANAL_BRIDGE",
-      "17,20": "CANAL_BRIDGE",
-      "35,20": "CANAL_BRIDGE",
-      "24,14": "BICYCLE",
-      "29,14": "TULIP_STAND",
+      "14,14": "CANAL_BRIDGE",
+      "40,14": "CANAL_BRIDGE",
+      "27,8": "CANAL_BRIDGE",
+      "27,20": "CANAL_BRIDGE",
+
+      "24,13": "BICYCLE",
+      "25,13": "BICYCLE",
+      "26,13": "BICYCLE",
+
+      "10,24": "TULIP_STAND",
+      "13,24": "TULIP_STAND",
+      "16,24": "TULIP_STAND",
+
       "47,22": "WINDMILL",
-      "11,17": "CANAL_HOUSE",
+      "11,11": "CANAL_HOUSE",
+      "44,11": "CANAL_HOUSE",
     };
   }
   if (theme.id === "cryptonia") {
@@ -738,8 +746,14 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
   const homeObjects: Record<string, string> = Object.fromEntries(doors.homes.map(coord => [coord, "DOOR_HOME"]));
   const trainObjects: Record<string, string> = Object.fromEntries(doors.train.slice(0, 2).map(coord => [coord, "TRAIN"]));
   const coreOffset = theme.id === "satiria" ? { x: 0, y: 0 } : cityCoreOffsetFor(theme.id);
-  const specialObjects = offsetRecord(specialObjectsFor(theme), coreOffset);
-  const specialInteractions = offsetRecord(specialInteractionsFor(theme), coreOffset);
+  const specialObjects =
+    theme.id === "wokeshire"
+      ? specialObjectsFor(theme)
+      : offsetRecord(specialObjectsFor(theme), coreOffset);
+  const specialInteractions =
+    theme.id === "wokeshire"
+      ? specialInteractionsFor(theme)
+      : offsetRecord(specialInteractionsFor(theme), coreOffset);
   const shopInteraction = {
     name: `${theme.name} Shop`,
     portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
