@@ -650,7 +650,6 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [trainOpen, setTrainOpen] = useState(false);
   const [trainIndex, setTrainIndex] = useState(0);
   const [terrainEditorOpen, setTerrainEditorOpen] = useState(false);
-  const [npcAppearanceEditorOpen, setNpcAppearanceEditorOpen] = useState(false);
   const [editorTile, setEditorTile] = useState("G");
   const [isEditorDragging, setIsEditorDragging] = useState(false);
   const [editedRowsByMap, setEditedRowsByMap] = useState<Partial<Record<GameMapId, string[][]>>>({});
@@ -1726,49 +1725,6 @@ export const ${constantName}: EditorMapAsset = {
 };`;
   };
 
-
-  const exportNpcAppearanceOverrides = () => {
-    const allNpcs = npcsRef.current
-      .filter(npc => isTownMap(npc.mapId))
-      .map(npc => ({
-        id: npc.id,
-        mapId: npc.mapId,
-        name: npc.name,
-        variant: npc.variant ?? 0,
-        style: npc.style ?? "",
-      }));
-
-    return `// Paste this in src/data/npcs.ts near your NPC definitions.
-// Then apply these values to matching NPC ids when constructing INITIAL_NPCS.
-export const NPC_APPEARANCE_OVERRIDES: Record<string, { variant: number; style: string }> = ${JSON.stringify(
-      Object.fromEntries(allNpcs.map(npc => [npc.id, { variant: npc.variant, style: npc.style }])),
-      null,
-      2
-    )};
-
-export const applyNpcAppearanceOverrides = <T extends { id: string; variant?: number; style?: string }>(npc: T): T => {
-  const override = NPC_APPEARANCE_OVERRIDES[npc.id];
-  return override ? { ...npc, ...override } : npc;
-};
-
-// If your INITIAL_NPCS export is currently:
-// export const INITIAL_NPCS: MovingNpc[] = [...]
-//
-// Change the ending to:
-// export const INITIAL_NPCS: MovingNpc[] = ([ ... ]).map(applyNpcAppearanceOverrides);
-`;
-  };
-
-  const copyNpcAppearanceExport = async () => {
-    const text = exportNpcAppearanceOverrides();
-    try {
-      await navigator.clipboard.writeText(text);
-      setSaveMsg("NPC appearance export copied!");
-    } catch {
-      setSaveMsg("Copy failed. Select and copy the export manually.");
-    }
-  };
-
   const copyEditedRows = async () => {
     const text = exportEditedRows();
     try {
@@ -2772,13 +2728,6 @@ export const applyNpcAppearanceOverrides = <T extends { id: string; variant?: nu
             )}
 
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <button
-                type="button"
-                onClick={() => setNpcAppearanceEditorOpen(true)}
-                style={{ padding: "8px 12px", cursor: "pointer", border: "2px solid #252018", background: "#e8d7ff", color: "#252018", fontWeight: 900 }}
-              >
-                NPC Appearance Editor
-              </button>
               <button type="button" onClick={copyEditedRows} style={{ padding: "8px 12px", cursor: "pointer" }}>
                 Copy Export
               </button>
