@@ -41,7 +41,10 @@ import { useNpcEditor } from "../editor/npcs/useNpcEditor";
 import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
-import { HERO_PRESETS, type HeroPresetId } from "../editor/hero/heroPresets";
+import {
+  DEFAULT_HERO_APPEARANCE,
+  type HeroAppearance,
+} from "../editor/hero/heroAppearance";
 import {
   buildingAtCoord,
   clearBuildingFootprintFromRows,
@@ -264,7 +267,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [trainIndex, setTrainIndex] = useState(0);
   const [heroEditorOpen, setHeroEditorOpen] = useState(false);
   const [heroName, setHeroName] = useState("Hero");
-  const [heroPresetId, setHeroPresetId] = useState<HeroPresetId>("classic");
+  const [heroAppearance, setHeroAppearance] = useState<HeroAppearance>(DEFAULT_HERO_APPEARANCE);
   const {
     editorMode,
     setEditorMode,
@@ -343,7 +346,6 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const mapAssetNpcs = npcs.filter(npc => npc.mapId === mapId).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking }));
   const displayEditorNpcs = mapAssetNpcs;
   const currentTown = isTownMap(mapId) ? TOWN_THEMES.find(town => town.id === mapId) : null;
-  const selectedHeroPreset = HERO_PRESETS.find(preset => preset.id === heroPresetId) ?? HERO_PRESETS[0];
 
   // Mutable refs so event handler closure stays fresh
   const mapIdRef = useRef(mapId);
@@ -1163,7 +1165,20 @@ useRuntimeEffects({
           zIndex: 10, pointerEvents: "none",
           transition: "left 0.18s steps(3, end), top 0.18s steps(3, end)",
         }}>
-          <div title={heroName} className={`trainer-sprite ${selectedHeroPreset.spriteClass} facing-${facing} ${isWalking ? "walking" : ""}`} />
+          <div
+            title={heroName}
+            className={`trainer-sprite facing-${facing} ${isWalking ? "walking" : ""}`}
+            style={{
+              "--hero-skin": heroAppearance.skin,
+              "--hero-hair": heroAppearance.hair,
+              "--hero-facial-hair": heroAppearance.facialHair,
+              "--hero-sunglasses": heroAppearance.sunglasses,
+              "--hero-hat": heroAppearance.hat,
+              "--hero-shirt": heroAppearance.shirt,
+              "--hero-pants": heroAppearance.pants,
+              "--hero-shoes": heroAppearance.shoes,
+            } as React.CSSProperties}
+          />
         </div>
       </div>
 
@@ -1297,8 +1312,8 @@ useRuntimeEffects({
         <HeroEditorOverlay
           heroName={heroName}
           setHeroName={setHeroName}
-          heroPresetId={heroPresetId}
-          setHeroPresetId={setHeroPresetId}
+          heroAppearance={heroAppearance}
+          setHeroAppearance={setHeroAppearance}
           facing={facing}
           onClose={() => setHeroEditorOpen(false)}
         />
