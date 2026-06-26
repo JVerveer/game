@@ -39,10 +39,6 @@ const FULL_BODY_WALK: Record<CharacterFacing, CharacterFrame[]> = {
   ],
 };
 
-// V5 fix:
-// All visible character layers use the same full-body frame coordinate.
-// The V4 "hair row offset" was wrong and caused hair to appear under the body.
-// Keeping this function makes future per-layer exceptions easy.
 export function frameForLayer({
   baseFrame,
   category,
@@ -62,4 +58,8 @@ export function baseFramesFor({
 }) {
   if (animation === "walk") return FULL_BODY_WALK[facing];
   return [FULL_BODY_IDLE[facing]];
+}
+
+export function thumbnailFrame() {
+  return FULL_BODY_IDLE.down;
 }

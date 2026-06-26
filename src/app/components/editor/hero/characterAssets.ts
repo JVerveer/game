@@ -627,3 +627,58 @@ export function optionFor(category: CharacterLayerCategory, id: string) {
   return CHARACTER_ASSET_MANIFEST[category].find(option => option.id === id)
     ?? CHARACTER_ASSET_MANIFEST[category][0];
 }
+
+
+export const CHARACTER_CATEGORIES = [
+  {
+    id: "body",
+    label: "Body",
+    description: "Choose the base body / skin tone.",
+  },
+  {
+    id: "eyes",
+    label: "Eyes",
+    description: "Choose the eye style.",
+  },
+  {
+    id: "hair",
+    label: "Hair",
+    description: "Choose the hairstyle.",
+  },
+  {
+    id: "outfit",
+    label: "Outfit",
+    description: "Choose clothing.",
+  },
+  {
+    id: "accessory",
+    label: "Accessory",
+    description: "Choose extras, hats, effects, or overlays.",
+  },
+] as const;
+
+export function nextOptionId(category: CharacterLayerCategory, currentId: string, direction: 1 | -1) {
+  const options = CHARACTER_ASSET_MANIFEST[category];
+  const currentIndex = Math.max(0, options.findIndex(option => option.id === currentId));
+  const nextIndex = (currentIndex + direction + options.length) % options.length;
+  return options[nextIndex]?.id ?? currentId;
+}
+
+export function randomCharacterAppearance(): CharacterAppearance {
+  const pick = (category: CharacterLayerCategory) => {
+    const options = CHARACTER_ASSET_MANIFEST[category];
+    const usable = category === "body"
+      ? options
+      : options.filter(option => option.id !== "none");
+
+    return (usable[Math.floor(Math.random() * usable.length)] ?? options[0])?.id ?? "none";
+  };
+
+  return {
+    body: pick("body"),
+    eyes: pick("eyes"),
+    hair: pick("hair"),
+    outfit: pick("outfit"),
+    accessory: Math.random() > 0.65 ? pick("accessory") : "none",
+  };
+}

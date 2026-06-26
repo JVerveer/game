@@ -32,4 +32,8 @@ export type CharacterFrame = {
   row: number;
 };
 
-export type CharacterLayerFrame = Partial<Record<CharacterLayerCategory, CharacterFrame>>;
+export type CharacterCategoryConfig = {
+  id: CharacterLayerCategory;
+  label: string;
+  description: string;
+};

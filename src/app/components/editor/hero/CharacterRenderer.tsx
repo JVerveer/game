@@ -7,6 +7,7 @@ import {
 import {
   baseFramesFor,
   frameForLayer,
+  thumbnailFrame,
 } from "./characterFrames";
 import type {
   CharacterAnimation,
@@ -57,12 +58,6 @@ function AtlasLayer({
   const backgroundWidth = option.atlasWidth * pixelSize;
   const backgroundHeight = option.atlasHeight * pixelSize;
 
-  // LimeZu hair/accessory layers can extend above the 48x48 body cell.
-  // The pixels that visually belong to the current full-body frame can be split
-  // across the previous atlas row and the current atlas row.
-  //
-  // So for those layers we render a 48x96 crop positioned one tile above the body.
-  // This keeps hair tips/bangs visible instead of clipping them away.
   const useOverflow = layerUsesOverflowCrop(category) && frame.row > 0;
   const sourceRow = useOverflow ? frame.row - 1 : frame.row;
   const layerTop = useOverflow ? -displaySize : 0;
@@ -105,6 +100,27 @@ export function CharacterRenderer({
   const frameIndex = useAnimationFrameIndex(frameList.length, animation);
   const baseFrame = frameList[frameIndex] ?? frameList[0];
 
+  return (
+    <CharacterComposite
+      appearance={appearance}
+      baseFrame={baseFrame}
+      pixelSize={pixelSize}
+      showShadow={showShadow}
+    />
+  );
+}
+
+export function CharacterComposite({
+  appearance,
+  baseFrame,
+  pixelSize = 1,
+  showShadow = true,
+}: {
+  appearance: CharacterAppearance;
+  baseFrame: CharacterFrame;
+  pixelSize?: number;
+  showShadow?: boolean;
+}) {
   const size = CHARACTER_TILE_SIZE * pixelSize;
 
   return (
@@ -142,5 +158,32 @@ export function CharacterRenderer({
         />
       ))}
     </div>
+  );
+}
+
+export function CharacterLayerThumbnail({
+  category,
+  optionId,
+  pixelSize = 1,
+}: {
+  category: CharacterLayerCategory;
+  optionId: string;
+  pixelSize?: number;
+}) {
+  const appearance = {
+    body: category === "body" ? optionId : "none",
+    eyes: category === "eyes" ? optionId : "none",
+    hair: category === "hair" ? optionId : "none",
+    outfit: category === "outfit" ? optionId : "none",
+    accessory: category === "accessory" ? optionId : "none",
+  } as CharacterAppearance;
+
+  return (
+    <CharacterComposite
+      appearance={appearance}
+      baseFrame={thumbnailFrame()}
+      pixelSize={pixelSize}
+      showShadow={false}
+    />
   );
 }
