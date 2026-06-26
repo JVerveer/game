@@ -16,7 +16,7 @@ export function AnimatedHero({
   hurt = false,
   dead = false,
   animation,
-  pixelHeight = 54,
+  pixelHeight = 58,
 }: {
   appearance?: HeroAppearance;
   facing: WizardFacing;
@@ -42,12 +42,12 @@ export function AnimatedHero({
   const frame = useSpriteFrame(def);
 
   const scale = pixelHeight / def.frameHeight;
-  const displayWidth = def.frameWidth * scale;
-  const displayHeight = def.frameHeight * scale;
+  const displayWidth = Math.round(def.frameWidth * scale);
+  const displayHeight = Math.round(def.frameHeight * scale);
+  const sheetWidth = displayWidth * def.frames;
 
-  // Uploaded wizard sheets face right. Left is mirrored.
-  // For now up/down still use the same side-facing professional sheet.
-  // Later we can add separate up/down sheets if you buy/draw them.
+  // Uploaded wizard sheets face right. Left movement is mirrored.
+  // Up/down temporarily use the same side-facing animation until we add front/back sheets.
   const flipX = facing === "left";
 
   return (
@@ -60,18 +60,20 @@ export function AnimatedHero({
         imageRendering: "pixelated",
         transform: flipX ? "scaleX(-1)" : undefined,
         transformOrigin: "center bottom",
+        flex: "0 0 auto",
       }}
     >
-      <img
-        src={def.src}
-        alt=""
-        draggable={false}
+      <div
+        aria-hidden
         style={{
           position: "absolute",
-          left: -frame * displayWidth,
-          top: 0,
-          width: def.frameWidth * def.frames * scale,
+          inset: 0,
+          width: displayWidth,
           height: displayHeight,
+          backgroundImage: `url(${def.src})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: `${-frame * displayWidth}px 0px`,
+          backgroundSize: `${sheetWidth}px ${displayHeight}px`,
           imageRendering: "pixelated",
         }}
       />

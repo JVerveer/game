@@ -1179,6 +1179,7 @@ useRuntimeEffects({
               justifyContent: "center",
               transformOrigin: "center bottom",
               translate: "0 5px",
+              overflow: "visible",
             }}
           >
             <AnimatedHero
