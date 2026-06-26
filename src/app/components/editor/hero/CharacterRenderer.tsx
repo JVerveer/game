@@ -33,6 +33,10 @@ function useAnimationFrameIndex(frameCount: number, animation: CharacterAnimatio
   return index;
 }
 
+function layerUsesOverflowCrop(category: CharacterLayerCategory) {
+  return category === "hair" || category === "accessory";
+}
+
 function AtlasLayer({
   category,
   optionId,
@@ -53,18 +57,30 @@ function AtlasLayer({
   const backgroundWidth = option.atlasWidth * pixelSize;
   const backgroundHeight = option.atlasHeight * pixelSize;
 
+  // LimeZu hair/accessory layers can extend above the 48x48 body cell.
+  // The pixels that visually belong to the current full-body frame can be split
+  // across the previous atlas row and the current atlas row.
+  //
+  // So for those layers we render a 48x96 crop positioned one tile above the body.
+  // This keeps hair tips/bangs visible instead of clipping them away.
+  const useOverflow = layerUsesOverflowCrop(category) && frame.row > 0;
+  const sourceRow = useOverflow ? frame.row - 1 : frame.row;
+  const layerTop = useOverflow ? -displaySize : 0;
+  const layerHeight = useOverflow ? displaySize * 2 : displaySize;
+
   return (
     <div
       aria-hidden
       style={{
         position: "absolute",
-        inset: 0,
+        left: 0,
+        top: layerTop,
         width: displaySize,
-        height: displaySize,
+        height: layerHeight,
         backgroundImage: `url(${option.src})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: `${backgroundWidth}px ${backgroundHeight}px`,
-        backgroundPosition: `${-frame.col * displaySize}px ${-frame.row * displaySize}px`,
+        backgroundPosition: `${-frame.col * displaySize}px ${-sourceRow * displaySize}px`,
         imageRendering: "pixelated",
         pointerEvents: "none",
       }}
@@ -99,6 +115,7 @@ export function CharacterRenderer({
         height: size,
         imageRendering: "pixelated",
         flex: "0 0 auto",
+        overflow: "visible",
       }}
     >
       {showShadow && (

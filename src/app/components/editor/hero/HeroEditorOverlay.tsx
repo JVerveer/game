@@ -88,7 +88,7 @@ export function HeroEditorOverlay({
             </div>
 
             <div style={noteStyle}>
-              V5 uses the same full-body atlas coordinate for every visible layer and fixes the hair rendering below the body.
+              V6 supports overflowing LimeZu hair/accessory layers, so hair tips and bangs are no longer clipped.
             </div>
           </section>
 
@@ -155,7 +155,7 @@ function Preview({
   return (
     <div style={smallPreviewStyle}>
       <div style={smallPreviewTitleStyle}>{title}</div>
-      <div style={{ height: 110, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ height: 110, display: "flex", alignItems: "center", justifyContent: "center", overflow: "visible" }}>
         {children}
       </div>
     </div>
@@ -231,6 +231,7 @@ const bigPreviewStyle: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  overflow: "visible",
 };
 
 const mainGridStyle: React.CSSProperties = {
