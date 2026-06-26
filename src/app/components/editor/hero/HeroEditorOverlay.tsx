@@ -24,7 +24,10 @@ export function HeroEditorOverlay({
   facing: "up" | "down" | "left" | "right";
   onClose: () => void;
 }) {
-  function updateAppearance<K extends HeroAppearanceKey>(key: K, value: HeroAppearance[K]) {
+  function updateAppearance<K extends HeroAppearanceKey>(
+    key: K,
+    value: HeroAppearance[K],
+  ) {
     setHeroAppearance({
       ...heroAppearance,
       [key]: value,
@@ -101,59 +104,113 @@ function HeroPreview({
 
   return (
     <div style={previewBoxStyle}>
-      <div style={{ position: "relative", width: 96, height: 144, imageRendering: "pixelated" }}>
-        <div style={pixel(32, 92, 14, 36, pantsColor)} />
-        <div style={pixel(50, 92, 14, 36, pantsColor)} />
+      <div
+        style={{
+          position: "relative",
+          width: 132,
+          height: 174,
+          filter: "drop-shadow(4px 6px 0 rgba(37,32,24,0.22))",
+        }}
+      >
+        <div style={drawnShape(48, 104, 15, 42, pantsColor, "10px 9px 6px 7px", -2)} />
+        <div style={drawnShape(68, 104, 15, 42, pantsColor, "9px 10px 7px 6px", 2)} />
 
-        <div style={pixel(26, 126, 22, 10, shoesColor)} />
-        <div style={pixel(48, 126, 22, 10, shoesColor)} />
+        <div style={drawnShape(39, 141, 29, 12, shoesColor, "12px 7px 8px 5px", -3)} />
+        <div style={drawnShape(65, 141, 29, 12, shoesColor, "7px 12px 5px 8px", 3)} />
 
-        <div style={pixel(26, 54, 44, 42, shirtColor)} />
+        <div style={drawnShape(39, 66, 54, 46, shirtColor, "18px 16px 13px 15px", -1)} />
 
-        <div style={pixel(14, 60, 14, 38, skinColor)} />
-        <div style={pixel(68, 60, 14, 38, skinColor)} />
+        <div
+          style={{
+            position: "absolute",
+            left: 48,
+            top: 74,
+            width: 24,
+            height: 6,
+            backgroundColor: "rgba(255,255,255,0.28)",
+            borderRadius: "999px",
+            transform: "rotate(-7deg)",
+          }}
+        />
 
-        <div style={pixel(40, 44, 16, 14, skinColor)} />
-        <div style={pixel(28, 18, 40, 36, skinColor)} />
+        <div style={drawnShape(25, 72, 18, 42, skinColor, "12px 9px 13px 7px", 7)} />
+        <div style={drawnShape(88, 72, 18, 42, skinColor, "9px 12px 7px 13px", -7)} />
+
+        <div style={drawnShape(22, 109, 20, 17, skinColor, "12px 10px 8px 9px", -6)} />
+        <div style={drawnShape(90, 109, 20, 17, skinColor, "10px 12px 9px 8px", 6)} />
+
+        <div style={drawnShape(57, 55, 18, 18, skinColor, "7px 8px 6px 7px", 1)} />
+        <div style={drawnShape(43, 25, 47, 42, skinColor, "20px 18px 17px 19px", -1)} />
+
+        <div style={drawnShape(36, 39, 12, 18, skinColor, "8px 4px 7px 5px", -5)} />
+        <div style={drawnShape(85, 39, 12, 18, skinColor, "4px 8px 5px 7px", 5)} />
 
         {appearance.hair !== "none" && (
           <>
-            <div style={pixel(26, 12, 44, 14, hairColor)} />
-            <div style={pixel(24, 24, 10, 20, hairColor)} />
-            <div style={pixel(62, 24, 10, 20, hairColor)} />
+            <div style={drawnShape(40, 18, 53, 20, hairColor, "18px 22px 8px 12px", -3)} />
+            <div style={drawnShape(39, 33, 13, 24, hairColor, "9px 4px 10px 6px", -5)} />
+            <div style={drawnShape(80, 31, 13, 25, hairColor, "4px 9px 6px 10px", 5)} />
           </>
         )}
 
         {appearance.hat !== "none" && (
           <>
-            <div style={pixel(24, 6, 48, 12, hatColor)} />
-            <div style={pixel(32, 0, 32, 10, hatColor)} />
-            <div style={pixel(64, 10, 18, 8, hatColor)} />
+            <div style={drawnShape(38, 13, 58, 17, hatColor, "18px 21px 7px 9px", -2)} />
+            <div style={drawnShape(51, 4, 33, 15, hatColor, "13px 15px 5px 6px", 2)} />
+            <div style={drawnShape(82, 20, 22, 9, hatColor, "4px 11px 5px 8px", 5)} />
           </>
         )}
 
-        <div style={pixel(38, 32, 6, 6, "#252018")} />
-        <div style={pixel(54, 32, 6, 6, "#252018")} />
-
-        {appearance.sunglasses !== "none" && (
+        {appearance.sunglasses === "none" ? (
           <>
-            <div style={pixel(34, 29, 14, 10, "#111")} />
-            <div style={pixel(50, 29, 14, 10, "#111")} />
-            <div style={pixel(48, 33, 4, 3, "#111")} />
+            <div style={drawnShape(55, 43, 6, 7, "#252018", "50%", -4, false)} />
+            <div style={drawnShape(72, 42, 6, 7, "#252018", "50%", 4, false)} />
+          </>
+        ) : (
+          <>
+            <div style={drawnShape(50, 39, 17, 11, "#111", "7px 5px 6px 4px", -4)} />
+            <div style={drawnShape(69, 39, 17, 11, "#111", "5px 7px 4px 6px", 4)} />
+            <div style={drawnShape(65, 43, 7, 4, "#111", "999px", 0, false)} />
           </>
         )}
 
-        {appearance.facialHair === "mustache" && <div style={pixel(40, 43, 18, 5, "#252018")} />}
+        <div
+          style={{
+            position: "absolute",
+            left: 65,
+            top: 48,
+            width: 6,
+            height: 9,
+            borderRight: "3px solid rgba(37,32,24,0.55)",
+            borderBottom: "3px solid rgba(37,32,24,0.35)",
+            borderRadius: "0 0 8px 0",
+            transform: "rotate(5deg)",
+          }}
+        />
+
+        <div
+          style={{
+            position: "absolute",
+            left: 58,
+            top: 59,
+            width: 18,
+            height: 7,
+            borderBottom: "3px solid #252018",
+            borderRadius: "0 0 999px 999px",
+            transform: "rotate(-2deg)",
+          }}
+        />
+
+        {appearance.facialHair === "mustache" && (
+          <div style={drawnShape(55, 55, 24, 6, "#252018", "50%", -2, false)} />
+        )}
 
         {appearance.facialHair === "beard" && (
           <>
-            <div style={pixel(36, 43, 26, 7, "#252018")} />
-            <div style={pixel(40, 50, 18, 8, "#252018")} />
+            <div style={drawnShape(51, 55, 31, 10, "#252018", "10px 9px 11px 8px", -1)} />
+            <div style={drawnShape(56, 63, 22, 10, "#252018", "7px 8px 12px 11px", 1)} />
           </>
         )}
-
-        <div style={outline(28, 18, 40, 36)} />
-        <div style={outline(26, 54, 44, 42)} />
       </div>
 
       <div style={{ ...VT, fontSize: "1.2rem", color: "#252018" }}>
@@ -223,37 +280,43 @@ function getOptionColor<K extends HeroAppearanceKey>(
   category: K,
   id: HeroAppearance[K],
 ): string {
-  const options = HERO_APPEARANCE_OPTIONS[category] as readonly { id: string; color?: string }[];
+  const options = HERO_APPEARANCE_OPTIONS[category] as readonly {
+    id: string;
+    color?: string;
+  }[];
+
   const option = options.find(option => option.id === id);
   return option?.color ?? "transparent";
 }
 
-function pixel(left: number, top: number, width: number, height: number, backgroundColor: string) {
+function drawnShape(
+  left: number,
+  top: number,
+  width: number,
+  height: number,
+  backgroundColor: string,
+  borderRadius: string,
+  rotate = 0,
+  outlined = true,
+): React.CSSProperties {
   return {
-    position: "absolute" as const,
+    position: "absolute",
     left,
     top,
     width,
     height,
     backgroundColor,
-    boxSizing: "border-box" as const,
+    borderRadius,
+    border: outlined ? "3px solid #252018" : undefined,
+    boxSizing: "border-box",
+    transform: `rotate(${rotate}deg)`,
+    boxShadow: outlined
+      ? "inset 2px 2px 0 rgba(255,255,255,0.25), inset -2px -2px 0 rgba(37,32,24,0.12)"
+      : undefined,
   };
 }
 
-function outline(left: number, top: number, width: number, height: number) {
-  return {
-    position: "absolute" as const,
-    left,
-    top,
-    width,
-    height,
-    border: "3px solid #252018",
-    boxSizing: "border-box" as const,
-    pointerEvents: "none" as const,
-  };
-}
-
-function buttonStyle(backgroundColor: string, color: string) {
+function buttonStyle(backgroundColor: string, color: string): React.CSSProperties {
   return {
     ...PX,
     fontSize: "0.48rem",
