@@ -4,7 +4,10 @@ import {
   CHARACTER_TILE_SIZE,
   optionFor,
 } from "./characterAssets";
-import { framesFor } from "./characterFrames";
+import {
+  baseFramesFor,
+  frameForLayer,
+} from "./characterFrames";
 import type {
   CharacterAnimation,
   CharacterAppearance,
@@ -33,17 +36,18 @@ function useAnimationFrameIndex(frameCount: number, animation: CharacterAnimatio
 function AtlasLayer({
   category,
   optionId,
-  frame,
+  baseFrame,
   pixelSize,
 }: {
   category: CharacterLayerCategory;
   optionId: string;
-  frame: CharacterFrame;
+  baseFrame: CharacterFrame;
   pixelSize: number;
 }) {
   const option = optionFor(category, optionId);
   if (!option || option.id === "none") return null;
 
+  const frame = frameForLayer({ baseFrame, category });
   const tile = CHARACTER_TILE_SIZE;
   const displaySize = tile * pixelSize;
   const backgroundWidth = option.atlasWidth * pixelSize;
@@ -81,9 +85,9 @@ export function CharacterRenderer({
   pixelSize?: number;
   showShadow?: boolean;
 }) {
-  const frameList = useMemo(() => framesFor({ facing, animation }), [facing, animation]);
+  const frameList = useMemo(() => baseFramesFor({ facing, animation }), [facing, animation]);
   const frameIndex = useAnimationFrameIndex(frameList.length, animation);
-  const frame = frameList[frameIndex] ?? frameList[0];
+  const baseFrame = frameList[frameIndex] ?? frameList[0];
 
   const size = CHARACTER_TILE_SIZE * pixelSize;
 
@@ -113,10 +117,10 @@ export function CharacterRenderer({
 
       {CHARACTER_LAYER_ORDER.map(category => (
         <AtlasLayer
-          key={`${category}-${appearance[category]}-${frame.col}-${frame.row}`}
+          key={`${category}-${appearance[category]}-${baseFrame.col}-${baseFrame.row}`}
           category={category}
           optionId={appearance[category]}
-          frame={frame}
+          baseFrame={baseFrame}
           pixelSize={pixelSize}
         />
       ))}

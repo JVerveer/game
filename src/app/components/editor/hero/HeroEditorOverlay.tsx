@@ -88,7 +88,7 @@ export function HeroEditorOverlay({
             </div>
 
             <div style={noteStyle}>
-              V3 renders the correct full-body 48×48 cells from the LimeZu atlas. The previous version accidentally cropped the partial head row.
+              V4 fixes layer-specific atlas offsets, so the body uses the full-body row while hair/accessories use their matching head overlay row.
             </div>
           </section>
 
@@ -121,7 +121,7 @@ export function HeroEditorOverlay({
                                 backgroundImage: `url(${option.src})`,
                                 backgroundRepeat: "no-repeat",
                                 backgroundSize: `${option.atlasWidth}px ${option.atlasHeight}px`,
-                                backgroundPosition: "-144px -48px",
+                                backgroundPosition: category.id === "hair" || category.id === "accessory" ? "-144px 0px" : "-144px -48px",
                                 imageRendering: "pixelated",
                               }}
                             />

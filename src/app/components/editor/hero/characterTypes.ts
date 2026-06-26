@@ -30,5 +30,6 @@ export type CharacterAssetManifest = Record<CharacterLayerCategory, readonly Cha
 export type CharacterFrame = {
   col: number;
   row: number;
-  mirror?: boolean;
 };
+
+export type CharacterLayerFrame = Partial<Record<CharacterLayerCategory, CharacterFrame>>;
