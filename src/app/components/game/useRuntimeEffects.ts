@@ -21,6 +21,7 @@ export function useRuntimeEffects({
   deleteSelectedNpc,
   setTerrainEditorOpen,
   openTerrainEditor,
+  setHeroEditorOpen,
   setPaused,
   doInteract,
   doMove,
@@ -58,6 +59,7 @@ export function useRuntimeEffects({
   deleteSelectedNpc: (npcId: string) => void;
   setTerrainEditorOpen: Dispatch<SetStateAction<boolean>>;
   openTerrainEditor: () => void;
+  setHeroEditorOpen: Dispatch<SetStateAction<boolean>>;
   setPaused: Dispatch<SetStateAction<boolean>>;
   doInteract: () => void;
   doMove: (dx: number, dy: number, dir: "up" | "down" | "left" | "right", isRepeat?: boolean) => void;
@@ -121,6 +123,11 @@ export function useRuntimeEffects({
           e.preventDefault();
           setTerrainEditorOpen(false);
         }
+        return;
+      }
+      if (e.key === "h" || e.key === "H") {
+        e.preventDefault();
+        setHeroEditorOpen(open => !open);
         return;
       }
       if (e.key === "q" || e.key === "Q") {
