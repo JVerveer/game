@@ -41,7 +41,7 @@ import { useNpcEditor } from "../editor/npcs/useNpcEditor";
 import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
-import { PixelHeroSprite, heroPoseFor } from "../editor/hero/PixelHeroSprite";
+import { PngHeroSprite, heroPoseFor } from "../editor/hero/PngHeroSprite";
 import {
   DEFAULT_HERO_APPEARANCE,
   type HeroAppearance,
@@ -1166,25 +1166,27 @@ useRuntimeEffects({
           width: TS, height: TS,
           display: "flex", alignItems: "center", justifyContent: "center",
           filter: "drop-shadow(0 3px 2px rgba(37,32,24,0.28))",
-          zIndex: 10, pointerEvents: "none",
-          transition: "left 0.18s steps(3, end), top 0.18s steps(3, end)",
+          zIndex: 80 + pos.y, pointerEvents: "none",
+          transition: "left 0.16s steps(3, end), top 0.16s steps(3, end)",
         }}>
           <div
             title={heroName}
             style={{
+              position: "relative",
               width: TS,
               height: TS,
               display: "flex",
-              alignItems: "center",
+              alignItems: "flex-end",
               justifyContent: "center",
               transform: facing === "left" ? "scaleX(-1)" : undefined,
-              transformOrigin: "center",
+              transformOrigin: "center bottom",
+              translate: "0 3px",
             }}
           >
-            <PixelHeroSprite
+            <PngHeroSprite
               appearance={heroAppearance}
               pose={heroPoseFor(facing, isWalking, walkFrame)}
-              pixelSize={2}
+              pixelSize={1}
               showShadow={false}
             />
           </div>
