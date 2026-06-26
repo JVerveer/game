@@ -3,7 +3,6 @@ import type {
   CharacterFacing,
   CharacterFrame,
   CharacterLayerCategory,
-  CharacterLayerFrame,
 } from "./characterTypes";
 
 const FULL_BODY_IDLE: Record<CharacterFacing, CharacterFrame> = {
@@ -40,10 +39,10 @@ const FULL_BODY_WALK: Record<CharacterFacing, CharacterFrame[]> = {
   ],
 };
 
-// LimeZu body/outfit/eyes use the full-body rows above.
-// Some hairstyle/accessory atlases store the matching top/head overlay one row above.
-// The first V3 patch cropped hair from the body row, causing the top of the hair to disappear.
-// V4 lets each layer resolve its own crop cell.
+// V5 fix:
+// All visible character layers use the same full-body frame coordinate.
+// The V4 "hair row offset" was wrong and caused hair to appear under the body.
+// Keeping this function makes future per-layer exceptions easy.
 export function frameForLayer({
   baseFrame,
   category,
@@ -51,13 +50,6 @@ export function frameForLayer({
   baseFrame: CharacterFrame;
   category: CharacterLayerCategory;
 }): CharacterFrame {
-  if (category === "hair" || category === "accessory") {
-    return {
-      col: baseFrame.col,
-      row: Math.max(0, baseFrame.row - 1),
-    };
-  }
-
   return baseFrame;
 }
 
