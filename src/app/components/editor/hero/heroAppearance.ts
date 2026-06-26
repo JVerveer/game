@@ -1,5 +1,3 @@
-// heroAppearance.ts
-
 export const HERO_APPEARANCE_OPTIONS = {
   skin: [
     { id: "light", label: "Light", color: "#f2c49b" },
@@ -10,18 +8,18 @@ export const HERO_APPEARANCE_OPTIONS = {
   hair: [
     { id: "none", label: "None", color: "transparent" },
     { id: "brown", label: "Brown", color: "#5a321d" },
-    { id: "black", label: "Black", color: "#1d1714" },
+    { id: "black", label: "Black", color: "#171411" },
     { id: "blonde", label: "Blonde", color: "#d9a441" },
     { id: "red", label: "Red", color: "#a9432c" },
   ],
   facialHair: [
-    { id: "none", label: "None" },
-    { id: "mustache", label: "Mustache" },
-    { id: "beard", label: "Beard" },
+    { id: "none", label: "None", color: "transparent" },
+    { id: "mustache", label: "Mustache", color: "#252018" },
+    { id: "beard", label: "Beard", color: "#252018" },
   ],
   sunglasses: [
-    { id: "none", label: "None" },
-    { id: "black", label: "Black Shades" },
+    { id: "none", label: "None", color: "transparent" },
+    { id: "black", label: "Black Shades", color: "#111111" },
   ],
   hat: [
     { id: "none", label: "None", color: "transparent" },
@@ -72,9 +70,17 @@ export const DEFAULT_HERO_APPEARANCE: HeroAppearance = {
   shoes: "black",
 };
 
-export function getHeroAppearanceOption<K extends keyof typeof HERO_APPEARANCE_OPTIONS>(
+export type HeroAppearanceKey = keyof HeroAppearance;
+
+export function getHeroOptionColor<K extends HeroAppearanceKey>(
   category: K,
   id: HeroAppearance[K],
-) {
-  return HERO_APPEARANCE_OPTIONS[category].find(option => option.id === id) ?? HERO_APPEARANCE_OPTIONS[category][0];
+): string {
+  const options = HERO_APPEARANCE_OPTIONS[category] as readonly {
+    id: string;
+    color?: string;
+  }[];
+
+  const option = options.find(option => option.id === id);
+  return option?.color ?? "transparent";
 }
