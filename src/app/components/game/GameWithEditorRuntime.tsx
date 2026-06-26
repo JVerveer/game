@@ -41,7 +41,7 @@ import { useNpcEditor } from "../editor/npcs/useNpcEditor";
 import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
-import { BetterHeroSprite, heroPoseFor } from "../editor/hero/BetterHeroSprite";
+import { ChibiHeroSprite, heroPoseFor } from "../editor/hero/ChibiHeroSprite";
 import {
   DEFAULT_HERO_APPEARANCE,
   type HeroAppearance,
@@ -1182,7 +1182,7 @@ useRuntimeEffects({
               translate: "0 0",
             }}
           >
-            <BetterHeroSprite
+            <ChibiHeroSprite
               appearance={heroAppearance}
               pose={heroPoseFor(facing, isWalking, walkFrame)}
               pixelSize={1}

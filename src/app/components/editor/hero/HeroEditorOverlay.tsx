@@ -3,7 +3,7 @@ import {
   type HeroAppearance,
   getHeroOptionColor,
 } from "./heroAppearance";
-import { BetterHeroSprite, type HeroPose } from "./BetterHeroSprite";
+import { ChibiHeroSprite, type HeroPose } from "./ChibiHeroSprite";
 
 const PX = { fontFamily: "'Press Start 2P', monospace" } as const;
 const VT = { fontFamily: "'VT323', monospace" } as const;
@@ -107,7 +107,7 @@ export function HeroEditorOverlay({
                         transform: group.title === "LEFT" ? "scaleX(-1)" : undefined,
                       }}
                     >
-                      <BetterHeroSprite
+                      <ChibiHeroSprite
                         appearance={heroAppearance}
                         pose={item.pose}
                         pixelSize={2}
@@ -147,7 +147,7 @@ export function HeroEditorOverlay({
               <div style={miniPreviewPanelStyle}>
                 <div style={panelHeaderStyle}>PREVIEW</div>
                 <div style={miniPreviewBoxStyle}>
-                  <BetterHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={3} />
+                  <ChibiHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={3} />
                 </div>
               </div>
             </aside>
@@ -173,7 +173,7 @@ export function HeroEditorOverlay({
               </div>
 
               <div style={largePreviewBoxStyle}>
-                <BetterHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={5} />
+                <ChibiHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={5} />
               </div>
 
               <label style={{ display: "grid", gap: 8 }}>
@@ -205,7 +205,7 @@ export function HeroEditorOverlay({
                     transform: group.title === "LEFT" ? "scaleX(-1)" : undefined,
                   }}
                 >
-                  <BetterHeroSprite appearance={heroAppearance} pose={item.pose} pixelSize={1.6} />
+                  <ChibiHeroSprite appearance={heroAppearance} pose={item.pose} pixelSize={1.6} />
                   <div style={bottomPoseLabelStyle}>{item.label}</div>
                 </div>
               )),
