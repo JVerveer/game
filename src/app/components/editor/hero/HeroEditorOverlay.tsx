@@ -3,7 +3,7 @@ import {
   type HeroAppearance,
   getHeroOptionColor,
 } from "./heroAppearance";
-import { ProfessionalPixelHeroSprite, type HeroPose } from "./ProfessionalPixelHeroSprite";
+import { LayeredHeroSprite, type HeroPose } from "./LayeredHeroSprite";
 
 const PX = { fontFamily: "'Press Start 2P', monospace" } as const;
 const VT = { fontFamily: "'VT323', monospace" } as const;
@@ -11,11 +11,10 @@ const RJ = { fontFamily: "'Rajdhani', sans-serif" } as const;
 
 type HeroAppearanceKey = keyof HeroAppearance;
 
-const PREVIEW_GROUPS: { title: string; poses: { pose: HeroPose; label: string }[] }[] = [
-  { title: "FRONT", poses: [{ pose: "frontIdle", label: "IDLE" }, { pose: "frontWalk1", label: "WALK 1" }, { pose: "frontWalk2", label: "WALK 2" }] },
-  { title: "BACK", poses: [{ pose: "backIdle", label: "IDLE" }, { pose: "backWalk1", label: "WALK 1" }, { pose: "backWalk2", label: "WALK 2" }] },
-  { title: "LEFT", poses: [{ pose: "sideIdle", label: "IDLE" }, { pose: "sideWalk1", label: "WALK 1" }, { pose: "sideWalk2", label: "WALK 2" }] },
-  { title: "RIGHT", poses: [{ pose: "sideIdle", label: "IDLE" }, { pose: "sideWalk1", label: "WALK 1" }, { pose: "sideWalk2", label: "WALK 2" }] },
+const PREVIEWS: { title: string; poses: { pose: HeroPose; label: string }[] }[] = [
+  { title: "FRONT", poses: [{ pose: "front_idle", label: "IDLE" }, { pose: "front_walk_1", label: "WALK 1" }, { pose: "front_walk_2", label: "WALK 2" }] },
+  { title: "BACK", poses: [{ pose: "back_idle", label: "IDLE" }, { pose: "back_walk_1", label: "WALK 1" }, { pose: "back_walk_2", label: "WALK 2" }] },
+  { title: "SIDE", poses: [{ pose: "side_idle", label: "IDLE" }, { pose: "side_walk_1", label: "WALK 1" }, { pose: "side_walk_2", label: "WALK 2" }] },
 ];
 
 export function HeroEditorOverlay({
@@ -41,23 +40,17 @@ export function HeroEditorOverlay({
       <div style={windowStyle}>
         <button type="button" onClick={onClose} style={topCloseStyle}>×</button>
 
-        <div style={topPreviewPanelStyle}>
-          <div style={floatingLabelStyle}>IN-GAME PREVIEW</div>
-          <div style={directionGridStyle}>
-            {PREVIEW_GROUPS.map(group => (
-              <div key={group.title} style={directionColumnStyle}>
-                <div style={directionTitleStyle}>{group.title}</div>
+        <div style={topPreviewStyle}>
+          <div style={floatingLabelStyle}>PRODUCTION SPRITE PREVIEW</div>
+          <div style={previewGridStyle}>
+            {PREVIEWS.map(group => (
+              <div key={group.title} style={previewGroupStyle}>
+                <div style={previewTitleStyle}>{group.title}</div>
                 <div style={poseRowStyle}>
                   {group.poses.map(item => (
-                    <div
-                      key={`${group.title}-${item.pose}`}
-                      style={{
-                        ...topSpriteCellStyle,
-                        transform: group.title === "LEFT" ? "scaleX(-1)" : undefined,
-                      }}
-                    >
-                      <ProfessionalPixelHeroSprite appearance={heroAppearance} pose={item.pose} pixelSize={2} />
-                      <div style={smallPoseLabelStyle}>{item.label}</div>
+                    <div key={item.pose} style={poseCellStyle}>
+                      <LayeredHeroSprite appearance={heroAppearance} pose={item.pose} pixelSize={2} />
+                      <div style={poseLabelStyle}>{item.label}</div>
                     </div>
                   ))}
                 </div>
@@ -66,41 +59,30 @@ export function HeroEditorOverlay({
           </div>
         </div>
 
-        <div style={mainEditorPanelStyle}>
-          <div style={sectionLabelStyle}>HERO EDITOR</div>
+        <div style={editorGridStyle}>
+          <section style={optionsPanelStyle}>
+            <div style={panelTitleStyle}>OPTIONS</div>
+            <AppearanceSection title="Skin Tone" category="skin" value={heroAppearance.skin} onChange={updateAppearance} />
+            <AppearanceSection title="Hair" category="hair" value={heroAppearance.hair} onChange={updateAppearance} />
+            <AppearanceSection title="Hat" category="hat" value={heroAppearance.hat} onChange={updateAppearance} />
+            <AppearanceSection title="Top" category="shirt" value={heroAppearance.shirt} onChange={updateAppearance} />
+            <AppearanceSection title="Bottom" category="pants" value={heroAppearance.pants} onChange={updateAppearance} />
+            <AppearanceSection title="Shoes" category="shoes" value={heroAppearance.shoes} onChange={updateAppearance} />
+            <AppearanceSection title="Sunglasses" category="sunglasses" value={heroAppearance.sunglasses} onChange={updateAppearance} />
+            <AppearanceSection title="Facial Hair" category="facialHair" value={heroAppearance.facialHair} onChange={updateAppearance} />
+          </section>
 
-          <div style={editorGridStyle}>
-            <aside style={categoryPanelStyle}>
-              <div style={panelHeaderStyle}>PREVIEW</div>
-              <div style={miniPreviewBoxStyle}>
-                <ProfessionalPixelHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={3} />
-              </div>
-            </aside>
-
-            <main style={optionsPanelStyle}>
-              <div style={panelHeaderStyle}>OPTIONS</div>
-              <AppearanceSection title="Skin Tone" category="skin" value={heroAppearance.skin} onChange={updateAppearance} />
-              <AppearanceSection title="Hair" category="hair" value={heroAppearance.hair} onChange={updateAppearance} />
-              <AppearanceSection title="Hat" category="hat" value={heroAppearance.hat} onChange={updateAppearance} />
-              <AppearanceSection title="Top" category="shirt" value={heroAppearance.shirt} onChange={updateAppearance} />
-              <AppearanceSection title="Bottom" category="pants" value={heroAppearance.pants} onChange={updateAppearance} />
-              <AppearanceSection title="Shoes" category="shoes" value={heroAppearance.shoes} onChange={updateAppearance} />
-              <AppearanceSection title="Sunglasses" category="sunglasses" value={heroAppearance.sunglasses} onChange={updateAppearance} />
-              <AppearanceSection title="Facial Hair" category="facialHair" value={heroAppearance.facialHair} onChange={updateAppearance} />
-            </main>
-
-            <aside style={equipmentPanelStyle}>
-              <div style={panelHeaderStyle}>EQUIPMENT PREVIEW</div>
-              <div style={largePreviewBoxStyle}>
-                <ProfessionalPixelHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={5} />
-              </div>
-              <label style={{ display: "grid", gap: 8 }}>
-                <span style={rightLabelStyle}>HERO NAME</span>
-                <input value={heroName} onChange={event => setHeroName(event.target.value)} maxLength={18} style={inputStyle} />
-              </label>
-              <button type="button" onClick={onClose} style={saveButtonStyle}>SAVE APPEARANCE</button>
-            </aside>
-          </div>
+          <section style={heroPanelStyle}>
+            <div style={panelTitleStyle}>EQUIPMENT PREVIEW</div>
+            <div style={largePreviewStyle}>
+              <LayeredHeroSprite appearance={heroAppearance} pose="front_idle" pixelSize={5} />
+            </div>
+            <label style={{ display: "grid", gap: 8 }}>
+              <span style={fieldLabelStyle}>HERO NAME</span>
+              <input value={heroName} onChange={event => setHeroName(event.target.value)} maxLength={18} style={inputStyle} />
+            </label>
+            <button type="button" onClick={onClose} style={saveButtonStyle}>SAVE APPEARANCE</button>
+          </section>
         </div>
       </div>
     </div>
@@ -123,7 +105,7 @@ function AppearanceSection<K extends HeroAppearanceKey>({
   return (
     <section style={optionSectionStyle}>
       <div style={optionTitleStyle}>{title}</div>
-      <div style={swatchGridStyle}>
+      <div style={swatchRowStyle}>
         {options.map(option => {
           const selected = option.id === value;
           const color = getHeroOptionColor(category, option.id as HeroAppearance[K]);
@@ -135,23 +117,20 @@ function AppearanceSection<K extends HeroAppearanceKey>({
               title={option.label}
               onClick={() => onChange(category, option.id as HeroAppearance[K])}
               style={{
-                ...swatchStyle,
+                ...swatchButtonStyle,
                 borderColor: selected ? "#e33c38" : "rgba(255,255,255,0.16)",
-                boxShadow: selected ? "0 0 0 2px rgba(227,60,56,0.45)" : "none",
               }}
             >
               <span
                 style={{
                   display: "block",
-                  width: 26,
-                  height: 26,
+                  width: 28,
+                  height: 28,
                   backgroundColor: color === "transparent" ? "#1d2324" : color,
                   border: "2px solid rgba(0,0,0,0.55)",
                   boxSizing: "border-box",
                 }}
-              >
-                {color === "transparent" && <span style={noneIconStyle}>×</span>}
-              </span>
+              />
             </button>
           );
         })}
@@ -173,12 +152,11 @@ const overlayStyle: React.CSSProperties = {
 
 const windowStyle: React.CSSProperties = {
   position: "relative",
-  width: "min(1220px, calc(100vw - 28px))",
+  width: "min(1180px, calc(100vw - 28px))",
   maxHeight: "calc(100vh - 28px)",
   overflow: "auto",
   background: "linear-gradient(#263034, #151c1f)",
   border: "3px solid rgba(255,255,255,0.1)",
-  boxShadow: "0 18px 60px rgba(0,0,0,0.65), inset 0 0 0 1px rgba(255,255,255,0.08)",
   color: "#f3ead7",
 };
 
@@ -193,7 +171,6 @@ const topCloseStyle: React.CSSProperties = {
   backgroundColor: "#20282b",
   color: "#f3ead7",
   fontSize: 28,
-  lineHeight: 1,
   cursor: "pointer",
 };
 
@@ -207,109 +184,60 @@ const floatingLabelStyle: React.CSSProperties = {
   color: "#f7f0df",
   padding: "13px 28px",
   fontSize: "0.72rem",
-  zIndex: 2,
 };
 
-const topPreviewPanelStyle: React.CSSProperties = {
+const topPreviewStyle: React.CSSProperties = {
   position: "relative",
-  minHeight: 320,
+  minHeight: 280,
   paddingTop: 54,
-  background:
-    "linear-gradient(rgba(240,230,180,0.78), rgba(190,170,116,0.74)), linear-gradient(180deg, #99b46d, #cfb36e)",
+  background: "linear-gradient(rgba(240,230,180,0.78), rgba(190,170,116,0.74))",
   borderBottom: "4px solid #11191d",
 };
 
-const directionGridStyle: React.CSSProperties = {
+const previewGridStyle: React.CSSProperties = {
   display: "grid",
-  gridTemplateColumns: "repeat(4, 1fr)",
-  height: "100%",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gap: 0,
 };
 
-const directionColumnStyle: React.CSSProperties = {
-  minHeight: 258,
+const previewGroupStyle: React.CSSProperties = {
+  minHeight: 220,
   borderRight: "1px solid rgba(0,0,0,0.17)",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "space-between",
-  padding: "20px 14px 24px",
+  display: "grid",
+  justifyItems: "center",
+  alignContent: "space-between",
+  padding: "18px 14px 22px",
 };
 
-const directionTitleStyle: React.CSSProperties = {
+const previewTitleStyle: React.CSSProperties = {
   ...PX,
   color: "#1c2527",
   fontSize: "0.65rem",
-  marginBottom: 10,
 };
 
 const poseRowStyle: React.CSSProperties = {
   display: "flex",
-  gap: 16,
+  gap: 18,
   alignItems: "flex-end",
-  justifyContent: "center",
-  width: "100%",
 };
 
-const topSpriteCellStyle: React.CSSProperties = {
+const poseCellStyle: React.CSSProperties = {
   display: "grid",
   justifyItems: "center",
-  gap: 10,
+  gap: 8,
 };
 
-const smallPoseLabelStyle: React.CSSProperties = {
+const poseLabelStyle: React.CSSProperties = {
   ...PX,
   color: "#263034",
-  fontSize: "0.45rem",
-};
-
-const mainEditorPanelStyle: React.CSSProperties = {
-  position: "relative",
-  padding: "44px 10px 10px",
-  backgroundColor: "#1a2225",
-};
-
-const sectionLabelStyle: React.CSSProperties = {
-  ...PX,
-  position: "absolute",
-  left: 0,
-  top: 0,
-  backgroundColor: "#11191d",
-  border: "2px solid rgba(255,255,255,0.09)",
-  color: "#f7f0df",
-  padding: "13px 28px",
-  fontSize: "0.72rem",
+  fontSize: "0.42rem",
 };
 
 const editorGridStyle: React.CSSProperties = {
   display: "grid",
-  gridTemplateColumns: "230px 1fr 390px",
+  gridTemplateColumns: "1fr 390px",
   gap: 10,
-};
-
-const categoryPanelStyle: React.CSSProperties = {
-  backgroundColor: "#151c1f",
-  border: "2px solid rgba(255,255,255,0.08)",
-  borderRadius: 8,
-  padding: 14,
-};
-
-const panelHeaderStyle: React.CSSProperties = {
-  ...PX,
-  color: "#f7f0df",
-  fontSize: "0.52rem",
-  marginBottom: 14,
-};
-
-const miniPreviewBoxStyle: React.CSSProperties = {
-  height: 260,
-  background:
-    "linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,0.05) 25%, transparent 25%)",
-  backgroundSize: "16px 16px",
-  backgroundColor: "#242d31",
-  border: "1px solid rgba(255,255,255,0.08)",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+  padding: 10,
 };
 
 const optionsPanelStyle: React.CSSProperties = {
@@ -319,7 +247,7 @@ const optionsPanelStyle: React.CSSProperties = {
   padding: 18,
 };
 
-const equipmentPanelStyle: React.CSSProperties = {
+const heroPanelStyle: React.CSSProperties = {
   backgroundColor: "#151c1f",
   border: "2px solid rgba(255,255,255,0.08)",
   borderRadius: 8,
@@ -328,10 +256,17 @@ const equipmentPanelStyle: React.CSSProperties = {
   gap: 14,
 };
 
+const panelTitleStyle: React.CSSProperties = {
+  ...PX,
+  color: "#f7f0df",
+  fontSize: "0.55rem",
+  marginBottom: 14,
+};
+
 const optionSectionStyle: React.CSSProperties = {
   borderBottom: "1px solid rgba(255,255,255,0.08)",
-  padding: "0 0 16px",
-  marginBottom: 16,
+  padding: "0 0 14px",
+  marginBottom: 14,
 };
 
 const optionTitleStyle: React.CSSProperties = {
@@ -342,15 +277,15 @@ const optionTitleStyle: React.CSSProperties = {
   marginBottom: 9,
 };
 
-const swatchGridStyle: React.CSSProperties = {
+const swatchRowStyle: React.CSSProperties = {
   display: "flex",
   flexWrap: "wrap",
   gap: 9,
 };
 
-const swatchStyle: React.CSSProperties = {
-  width: 46,
-  height: 46,
+const swatchButtonStyle: React.CSSProperties = {
+  width: 48,
+  height: 48,
   padding: 7,
   border: "2px solid rgba(255,255,255,0.15)",
   borderRadius: 5,
@@ -358,19 +293,8 @@ const swatchStyle: React.CSSProperties = {
   backgroundColor: "rgba(255,255,255,0.06)",
 };
 
-const noneIconStyle: React.CSSProperties = {
-  ...PX,
-  display: "block",
-  color: "#f7f0df",
-  fontSize: "0.65rem",
-  lineHeight: "21px",
-};
-
-const largePreviewBoxStyle: React.CSSProperties = {
+const largePreviewStyle: React.CSSProperties = {
   height: 270,
-  background:
-    "linear-gradient(45deg, rgba(255,255,255,0.04) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,0.04) 25%, transparent 25%)",
-  backgroundSize: "22px 22px",
   backgroundColor: "#232b2f",
   border: "1px solid rgba(255,255,255,0.09)",
   display: "flex",
@@ -378,7 +302,7 @@ const largePreviewBoxStyle: React.CSSProperties = {
   justifyContent: "center",
 };
 
-const rightLabelStyle: React.CSSProperties = {
+const fieldLabelStyle: React.CSSProperties = {
   ...PX,
   fontSize: "0.47rem",
   color: "#f7f0df",

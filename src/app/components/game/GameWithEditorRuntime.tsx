@@ -41,7 +41,8 @@ import { useNpcEditor } from "../editor/npcs/useNpcEditor";
 import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
-import { ProfessionalPixelHeroSprite, heroPoseFor } from "../editor/hero/ProfessionalPixelHeroSprite";
+import { LayeredHeroSprite, heroPoseFor } from "../editor/hero/LayeredHeroSprite";
+import { LayeredHeroSprite, heroPoseFor } from "../editor/hero/LayeredHeroSprite";
 import {
   DEFAULT_HERO_APPEARANCE,
   type HeroAppearance,
@@ -1182,7 +1183,7 @@ useRuntimeEffects({
               translate: "0 0",
             }}
           >
-            <ProfessionalPixelHeroSprite
+            <LayeredHeroSprite
               appearance={heroAppearance}
               pose={heroPoseFor(facing, isWalking, walkFrame)}
               pixelSize={1}
