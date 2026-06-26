@@ -7,6 +7,8 @@ import {
 } from "./heroAnimations";
 import { useSpriteFrame } from "./SpriteSheet";
 
+export const DEFAULT_HERO_PIXEL_HEIGHT = 116;
+
 export function AnimatedHero({
   facing,
   moving,
@@ -16,7 +18,7 @@ export function AnimatedHero({
   hurt = false,
   dead = false,
   animation,
-  pixelHeight = 58,
+  pixelHeight = DEFAULT_HERO_PIXEL_HEIGHT,
 }: {
   appearance?: HeroAppearance;
   facing: WizardFacing;
@@ -46,8 +48,6 @@ export function AnimatedHero({
   const displayHeight = Math.round(def.frameHeight * scale);
   const sheetWidth = displayWidth * def.frames;
 
-  // Uploaded wizard sheets face right. Left movement is mirrored.
-  // Up/down temporarily use the same side-facing animation until we add front/back sheets.
   const flipX = facing === "left";
 
   return (

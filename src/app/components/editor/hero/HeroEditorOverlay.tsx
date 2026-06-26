@@ -1,4 +1,4 @@
-import { AnimatedHero } from "./AnimatedHero";
+import { AnimatedHero, DEFAULT_HERO_PIXEL_HEIGHT } from "./AnimatedHero";
 import type { HeroAppearance } from "./heroAppearance";
 
 const PX = { fontFamily: "'Press Start 2P', monospace" } as const;
@@ -9,15 +9,21 @@ export function HeroEditorOverlay({
   heroName,
   setHeroName,
   heroAppearance,
+  heroPixelHeight,
+  setHeroPixelHeight,
   onClose,
 }: {
   heroName: string;
   setHeroName: (name: string) => void;
   heroAppearance: HeroAppearance;
   setHeroAppearance: (appearance: HeroAppearance) => void;
+  heroPixelHeight: number;
+  setHeroPixelHeight: (height: number) => void;
   facing: "up" | "down" | "left" | "right";
   onClose: () => void;
 }) {
+  const previewHeight = Math.max(90, Math.min(190, heroPixelHeight + 40));
+
   return (
     <div style={overlayStyle}>
       <div style={windowStyle}>
@@ -34,23 +40,23 @@ export function HeroEditorOverlay({
               appearance={heroAppearance}
               facing="right"
               moving={false}
-              pixelHeight={150}
+              pixelHeight={previewHeight}
             />
           </div>
         </div>
 
         <div style={previewGridStyle}>
           <Preview title="IDLE">
-            <AnimatedHero appearance={heroAppearance} facing="right" moving={false} pixelHeight={100} />
+            <AnimatedHero appearance={heroAppearance} facing="right" moving={false} pixelHeight={110} />
           </Preview>
           <Preview title="WALK">
-            <AnimatedHero appearance={heroAppearance} facing="right" moving pixelHeight={100} />
+            <AnimatedHero appearance={heroAppearance} facing="right" moving pixelHeight={110} />
           </Preview>
           <Preview title="RUN">
-            <AnimatedHero appearance={heroAppearance} facing="right" moving running pixelHeight={100} />
+            <AnimatedHero appearance={heroAppearance} facing="right" moving running pixelHeight={110} />
           </Preview>
           <Preview title="ATTACK">
-            <AnimatedHero appearance={heroAppearance} facing="right" moving={false} attacking pixelHeight={100} />
+            <AnimatedHero appearance={heroAppearance} facing="right" moving={false} attacking pixelHeight={110} />
           </Preview>
         </div>
 
@@ -65,8 +71,37 @@ export function HeroEditorOverlay({
             />
           </label>
 
+          <div style={sizePanelStyle}>
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
+              <span style={fieldLabelStyle}>IN-GAME HERO SIZE</span>
+              <span style={sizeValueStyle}>{heroPixelHeight}px</span>
+            </div>
+
+            <input
+              type="range"
+              min={64}
+              max={150}
+              step={2}
+              value={heroPixelHeight}
+              onChange={event => setHeroPixelHeight(Number(event.target.value))}
+              style={rangeStyle}
+            />
+
+            <div style={sizeButtonRowStyle}>
+              <button type="button" onClick={() => setHeroPixelHeight(90)} style={smallButtonStyle}>
+                SMALL
+              </button>
+              <button type="button" onClick={() => setHeroPixelHeight(DEFAULT_HERO_PIXEL_HEIGHT)} style={smallButtonStyle}>
+                2× DEFAULT
+              </button>
+              <button type="button" onClick={() => setHeroPixelHeight(128)} style={smallButtonStyle}>
+                LARGE
+              </button>
+            </div>
+          </div>
+
           <div style={noteStyle}>
-            The uploaded wizard sprite is now the active in-game hero. The next step is adding separate up/down sheets or layered customization.
+            Size changes apply to the in-game hero immediately. If the hero feels too tall, lower this until the feet sit naturally on the tile.
           </div>
 
           <button type="button" onClick={onClose} style={saveButtonStyle}>
@@ -155,13 +190,14 @@ const subtitleStyle: React.CSSProperties = {
 };
 
 const heroCardStyle: React.CSSProperties = {
-  width: 220,
-  height: 180,
+  width: 260,
+  height: 220,
   backgroundColor: "#20282b",
   border: "1px solid rgba(255,255,255,0.12)",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  overflow: "hidden",
 };
 
 const previewGridStyle: React.CSSProperties = {
@@ -185,11 +221,12 @@ const previewTitleStyle: React.CSSProperties = {
 };
 
 const previewStageStyle: React.CSSProperties = {
-  height: 120,
+  height: 130,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   backgroundColor: "#20282b",
+  overflow: "hidden",
 };
 
 const formPanelStyle: React.CSSProperties = {
@@ -213,6 +250,42 @@ const inputStyle: React.CSSProperties = {
   backgroundColor: "#101619",
   color: "#f7f0df",
   padding: "10px 12px",
+};
+
+const sizePanelStyle: React.CSSProperties = {
+  display: "grid",
+  gap: 10,
+  border: "1px solid rgba(255,255,255,0.1)",
+  backgroundColor: "#101619",
+  padding: 14,
+};
+
+const sizeValueStyle: React.CSSProperties = {
+  ...PX,
+  color: "#d8463d",
+  fontSize: "0.52rem",
+};
+
+const rangeStyle: React.CSSProperties = {
+  width: "100%",
+  accentColor: "#d8463d",
+  cursor: "pointer",
+};
+
+const sizeButtonRowStyle: React.CSSProperties = {
+  display: "flex",
+  gap: 8,
+  flexWrap: "wrap",
+};
+
+const smallButtonStyle: React.CSSProperties = {
+  ...PX,
+  border: "1px solid rgba(255,255,255,0.16)",
+  backgroundColor: "#20282b",
+  color: "#f7f0df",
+  padding: "9px 10px",
+  cursor: "pointer",
+  fontSize: "0.42rem",
 };
 
 const noteStyle: React.CSSProperties = {
