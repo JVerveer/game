@@ -41,7 +41,7 @@ import { useNpcEditor } from "../editor/npcs/useNpcEditor";
 import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
-import { PixelHeroSprite, type HeroPose } from "../editor/hero/PixelHeroSprite";
+import { PixelHeroSprite, heroPoseFor } from "../editor/hero/PixelHeroSprite";
 import {
   DEFAULT_HERO_APPEARANCE,
   type HeroAppearance,
@@ -251,16 +251,6 @@ const NPC_VISUAL_PRESETS = [
 const isSelectEditorMode = (mode: EditorMode) => mode === "select";
 
 
-const heroPoseFor = (
-  facing: "up" | "down" | "left" | "right",
-  isWalking: boolean,
-): HeroPose => {
-  if (facing === "up") return isWalking ? "backWalk" : "backIdle";
-  if (facing === "left" || facing === "right") return isWalking ? "sideWalk" : "sideIdle";
-  return isWalking ? "frontWalk" : "frontIdle";
-};
-
-
 function GameScreen({ onExit }: { onExit: () => void }) {
   const [mapId, setMapId] = useState<GameMapId>("satiria");
   const [pos, setPos] = useState(GAME_MAPS.satiria.spawn);
@@ -273,6 +263,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [battleEnemy, setBattleEnemy] = useState<Enemy | null>(null);
   const [location, setLocation] = useState("Satiria Town");
   const [isWalking, setIsWalking] = useState(false);
+  const [walkFrame, setWalkFrame] = useState(0);
   const [npcs, setNpcs] = useState<MovingNpc[]>(INITIAL_NPCS);
   const [trainOpen, setTrainOpen] = useState(false);
   const [trainIndex, setTrainIndex] = useState(0);
@@ -510,6 +501,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     };
     warpTo(destination);
     setIsWalking(true);
+    setWalkFrame(frame => frame + 1);
     setTimeout(() => setIsWalking(false), 180);
     return true;
   };
@@ -675,6 +667,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
     setPos({ x: nx, y: ny });
     setIsWalking(true);
+    setWalkFrame(frame => frame + 1);
     setTimeout(() => setIsWalking(false), 180);
     setSteps(s => s + 1);
     setLocation(LOCATION_FOR(mapIdRef.current, nx, ny, t));
@@ -1179,18 +1172,18 @@ useRuntimeEffects({
           <div
             title={heroName}
             style={{
-              transform: facing === "left" ? "scaleX(-1)" : undefined,
-              transformOrigin: "center",
               width: TS,
               height: TS,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              transform: facing === "left" ? "scaleX(-1)" : undefined,
+              transformOrigin: "center",
             }}
           >
             <PixelHeroSprite
               appearance={heroAppearance}
-              pose={heroPoseFor(facing, isWalking)}
+              pose={heroPoseFor(facing, isWalking, walkFrame)}
               pixelSize={2}
               showShadow={false}
             />

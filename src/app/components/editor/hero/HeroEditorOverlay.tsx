@@ -13,11 +13,14 @@ type HeroAppearanceKey = keyof HeroAppearance;
 
 const POSES: { pose: HeroPose; label: string }[] = [
   { pose: "frontIdle", label: "FRONT IDLE" },
-  { pose: "frontWalk", label: "FRONT WALK" },
+  { pose: "frontWalk1", label: "FRONT WALK 1" },
+  { pose: "frontWalk2", label: "FRONT WALK 2" },
   { pose: "backIdle", label: "BACK IDLE" },
-  { pose: "backWalk", label: "BACK WALK" },
+  { pose: "backWalk1", label: "BACK WALK 1" },
+  { pose: "backWalk2", label: "BACK WALK 2" },
   { pose: "sideIdle", label: "SIDE IDLE" },
-  { pose: "sideWalk", label: "SIDE WALK" },
+  { pose: "sideWalk1", label: "SIDE WALK 1" },
+  { pose: "sideWalk2", label: "SIDE WALK 2" },
 ];
 
 export function HeroEditorOverlay({
@@ -54,7 +57,7 @@ export function HeroEditorOverlay({
         <div style={heroHeaderStyle}>
           <div>
             <div style={titleBannerStyle}>HERO EDITOR</div>
-            <div style={subtitleStyle}>Build your pixel-art manga inspired hero.</div>
+            <div style={subtitleStyle}>Build your layered pixel-art hero.</div>
             <div style={nameCardStyle}>{heroName.trim() || "Hero"}</div>
           </div>
 
@@ -65,18 +68,18 @@ export function HeroEditorOverlay({
 
         <div style={contentGridStyle}>
           <div>
-            <PanelTitle>CHARACTER DISPLAYS</PanelTitle>
+            <PanelTitle>SPRITE SHEET PREVIEW</PanelTitle>
             <div style={previewGridStyle}>
               {POSES.map(({ pose, label }) => (
                 <PreviewCard key={pose} label={label}>
-                  <PixelHeroSprite appearance={heroAppearance} pose={pose} pixelSize={4} />
+                  <PixelHeroSprite appearance={heroAppearance} pose={pose} pixelSize={3} />
                 </PreviewCard>
               ))}
             </div>
 
             <div style={hintBoxStyle}>
               <span style={{ fontSize: 26 }}>▣</span>
-              <span>Six sprite displays: front, back and side — standing and walking.</span>
+              <span>Layered pixel sprite: front, back and side with two walk frames.</span>
             </div>
           </div>
 
@@ -319,7 +322,7 @@ const previewGridStyle: React.CSSProperties = {
 };
 
 const previewCardStyle: React.CSSProperties = {
-  minHeight: 180,
+  minHeight: 145,
   backgroundColor: "#fff6d0",
   border: "3px solid #5d4528",
   display: "flex",
@@ -343,7 +346,7 @@ const spriteFrameStyle: React.CSSProperties = {
 const previewLabelStyle: React.CSSProperties = {
   ...PX,
   color: "#252018",
-  fontSize: "0.39rem",
+  fontSize: "0.34rem",
   marginTop: 8,
 };
 
