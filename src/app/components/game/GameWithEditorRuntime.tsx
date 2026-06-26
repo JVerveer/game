@@ -41,7 +41,7 @@ import { useNpcEditor } from "../editor/npcs/useNpcEditor";
 import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
-import { LayeredHeroSprite, heroPoseFor } from "../editor/hero/LayeredHeroSprite";
+import { AnimatedHero } from "../editor/hero/AnimatedHero";
 import {
   DEFAULT_HERO_APPEARANCE,
   type HeroAppearance,
@@ -1166,7 +1166,7 @@ useRuntimeEffects({
           width: TS, height: TS,
           display: "flex", alignItems: "center", justifyContent: "center",
           filter: "drop-shadow(0 3px 2px rgba(37,32,24,0.28))",
-          zIndex: 80 + pos.y, pointerEvents: "none",
+          zIndex: 100 + pos.y, pointerEvents: "none",
           transition: "left 0.18s steps(3, end), top 0.18s steps(3, end)",
         }}>
           <div
@@ -1177,16 +1177,15 @@ useRuntimeEffects({
               display: "flex",
               alignItems: "flex-end",
               justifyContent: "center",
-              transform: facing === "left" ? "scaleX(-1)" : undefined,
               transformOrigin: "center bottom",
-              translate: "0 0",
+              translate: "0 5px",
             }}
           >
-            <LayeredHeroSprite
+            <AnimatedHero
               appearance={heroAppearance}
-              pose={heroPoseFor(facing, isWalking, walkFrame)}
-              pixelSize={1}
-              showShadow={false}
+              facing={facing}
+              moving={isWalking}
+              pixelHeight={58}
             />
           </div>
         </div>

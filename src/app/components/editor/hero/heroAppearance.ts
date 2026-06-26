@@ -6,47 +6,25 @@ export const HERO_APPEARANCE_OPTIONS = {
     { id: "dark", label: "Dark", color: "#4a2d22" },
   ],
   hair: [
-    { id: "messy-brown", label: "Messy Brown", color: "#5a321d", style: "messy" },
-    { id: "messy-black", label: "Messy Black", color: "#171411", style: "messy" },
-    { id: "spiky-blonde", label: "Spiky Blonde", color: "#d9a441", style: "spiky" },
-    { id: "short-red", label: "Short Red", color: "#a9432c", style: "short" },
-    { id: "swept-black", label: "Swept Black", color: "#171411", style: "swept" },
-    { id: "none", label: "None", color: "transparent", style: "none" },
+    { id: "wizard-default", label: "Wizard Hair", color: "#2d1622" },
   ],
   facialHair: [
     { id: "none", label: "None", color: "transparent" },
-    { id: "mustache", label: "Mustache", color: "#252018" },
-    { id: "beard", label: "Beard", color: "#252018" },
   ],
   sunglasses: [
     { id: "none", label: "None", color: "transparent" },
-    { id: "black", label: "Black Shades", color: "#111111" },
   ],
   hat: [
     { id: "none", label: "None", color: "transparent" },
-    { id: "red-cap", label: "Red Cap", color: "#ca4b36" },
-    { id: "blue-cap", label: "Blue Cap", color: "#2f63b7" },
-    { id: "green-cap", label: "Green Cap", color: "#315f2a" },
-    { id: "dark-beanie", label: "Dark Beanie", color: "#252018" },
   ],
   shirt: [
-    { id: "red-jacket", label: "Red Jacket", color: "#ca4b36", style: "jacket" },
-    { id: "blue-jacket", label: "Blue Jacket", color: "#2f63b7", style: "jacket" },
-    { id: "green-hoodie", label: "Green Hoodie", color: "#315f2a", style: "hoodie" },
-    { id: "yellow-tee", label: "Yellow Tee", color: "#e0a92f", style: "tee" },
-    { id: "black-coat", label: "Black Coat", color: "#252018", style: "coat" },
+    { id: "wizard-robe", label: "Wizard Robe", color: "#12292d" },
   ],
   pants: [
-    { id: "jeans", label: "Jeans", color: "#315f8f" },
-    { id: "brown", label: "Brown", color: "#66512c" },
-    { id: "black", label: "Black", color: "#252018" },
-    { id: "green", label: "Green", color: "#315f2a" },
+    { id: "wizard-pants", label: "Wizard Pants", color: "#14233a" },
   ],
   shoes: [
-    { id: "black", label: "Black", color: "#252018" },
-    { id: "brown", label: "Brown", color: "#66512c" },
-    { id: "red", label: "Red", color: "#ca4b36" },
-    { id: "white", label: "White", color: "#fffef0" },
+    { id: "wizard-boots", label: "Wizard Boots", color: "#101015" },
   ],
 } as const;
 
@@ -65,27 +43,24 @@ export type HeroAppearanceKey = keyof HeroAppearance;
 
 export const DEFAULT_HERO_APPEARANCE: HeroAppearance = {
   skin: "light",
-  hair: "messy-brown",
+  hair: "wizard-default",
   facialHair: "none",
   sunglasses: "none",
-  hat: "red-cap",
-  shirt: "red-jacket",
-  pants: "jeans",
-  shoes: "black",
+  hat: "none",
+  shirt: "wizard-robe",
+  pants: "wizard-pants",
+  shoes: "wizard-boots",
 };
-
-export function getHeroOption<K extends HeroAppearanceKey>(
-  category: K,
-  id: HeroAppearance[K],
-) {
-  const options = HERO_APPEARANCE_OPTIONS[category];
-  return options.find(option => option.id === id) ?? options[0];
-}
 
 export function getHeroOptionColor<K extends HeroAppearanceKey>(
   category: K,
   id: HeroAppearance[K],
 ): string {
-  const options = HERO_APPEARANCE_OPTIONS[category] as readonly { id: string; color?: string }[];
-  return options.find(option => option.id === id)?.color ?? "transparent";
+  const options = HERO_APPEARANCE_OPTIONS[category] as readonly {
+    id: string;
+    color?: string;
+  }[];
+
+  const option = options.find(option => option.id === id);
+  return option?.color ?? "transparent";
 }
