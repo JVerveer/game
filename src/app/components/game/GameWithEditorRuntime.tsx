@@ -42,7 +42,6 @@ import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
 import { LayeredHeroSprite, heroPoseFor } from "../editor/hero/LayeredHeroSprite";
-import { LayeredHeroSprite, heroPoseFor } from "../editor/hero/LayeredHeroSprite";
 import {
   DEFAULT_HERO_APPEARANCE,
   type HeroAppearance,
