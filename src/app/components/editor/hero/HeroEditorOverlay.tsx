@@ -43,7 +43,7 @@ export function HeroEditorOverlay({
               HERO EDITOR
             </div>
             <div style={{ ...VT, fontSize: "1.25rem", color: "#315f2a" }}>
-              Customize your in-game hero.
+              Build your manga-inspired pixel hero.
             </div>
           </div>
 
@@ -52,14 +52,14 @@ export function HeroEditorOverlay({
           </button>
         </div>
 
-        <div style={{ height: 4, backgroundColor: "#252018", margin: "18px 0" }} />
+        <div style={dividerStyle} />
 
-        <div style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 22 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "250px 1fr", gap: 24 }}>
           <HeroPreview heroName={heroName} appearance={heroAppearance} facing={facing} />
 
           <div style={{ display: "grid", gap: 16 }}>
             <label style={{ display: "grid", gap: 8 }}>
-              <span style={{ ...PX, fontSize: "0.48rem", color: "#252018" }}>NAME</span>
+              <span style={sectionTitleStyle}>NAME</span>
               <input
                 value={heroName}
                 onChange={event => setHeroName(event.target.value)}
@@ -104,118 +104,143 @@ function HeroPreview({
 
   return (
     <div style={previewBoxStyle}>
-      <div
-        style={{
-          position: "relative",
-          width: 132,
-          height: 174,
-          filter: "drop-shadow(4px 6px 0 rgba(37,32,24,0.22))",
-        }}
-      >
-        <div style={drawnShape(48, 104, 15, 42, pantsColor, "10px 9px 6px 7px", -2)} />
-        <div style={drawnShape(68, 104, 15, 42, pantsColor, "9px 10px 7px 6px", 2)} />
+      <div style={mangaCardStyle}>
+        <div style={speedLine(12, 24, 55, -18)} />
+        <div style={speedLine(176, 42, 48, 18)} />
+        <div style={speedLine(22, 182, 70, 14)} />
+        <div style={speedLine(168, 172, 52, -15)} />
 
-        <div style={drawnShape(39, 141, 29, 12, shoesColor, "12px 7px 8px 5px", -3)} />
-        <div style={drawnShape(65, 141, 29, 12, shoesColor, "7px 12px 5px 8px", 3)} />
+        <div style={characterStageStyle}>
+          {/* shadow */}
+          <div
+            style={{
+              position: "absolute",
+              left: 42,
+              bottom: 4,
+              width: 116,
+              height: 22,
+              backgroundColor: "rgba(37,32,24,0.18)",
+              borderRadius: "50%",
+              transform: "rotate(-2deg)",
+            }}
+          />
 
-        <div style={drawnShape(39, 66, 54, 46, shirtColor, "18px 16px 13px 15px", -1)} />
+          {/* cape-ish manga silhouette shadow */}
+          <div style={block(43, 72, 78, 86, "rgba(37,32,24,0.12)", 0)} />
 
-        <div
-          style={{
-            position: "absolute",
-            left: 48,
-            top: 74,
-            width: 24,
-            height: 6,
-            backgroundColor: "rgba(255,255,255,0.28)",
-            borderRadius: "999px",
-            transform: "rotate(-7deg)",
-          }}
-        />
+          {/* legs */}
+          <div style={pixelBlock(73, 126, 18, 45, pantsColor)} />
+          <div style={pixelBlock(105, 126, 18, 45, pantsColor)} />
 
-        <div style={drawnShape(25, 72, 18, 42, skinColor, "12px 9px 13px 7px", 7)} />
-        <div style={drawnShape(88, 72, 18, 42, skinColor, "9px 12px 7px 13px", -7)} />
+          {/* leg highlights */}
+          <div style={pixelBlock(78, 132, 5, 28, "rgba(255,255,255,0.22)", 0, false)} />
+          <div style={pixelBlock(110, 132, 5, 28, "rgba(255,255,255,0.22)", 0, false)} />
 
-        <div style={drawnShape(22, 109, 20, 17, skinColor, "12px 10px 8px 9px", -6)} />
-        <div style={drawnShape(90, 109, 20, 17, skinColor, "10px 12px 9px 8px", 6)} />
+          {/* shoes */}
+          <div style={pixelBlock(62, 164, 34, 15, shoesColor)} />
+          <div style={pixelBlock(100, 164, 34, 15, shoesColor)} />
 
-        <div style={drawnShape(57, 55, 18, 18, skinColor, "7px 8px 6px 7px", 1)} />
-        <div style={drawnShape(43, 25, 47, 42, skinColor, "20px 18px 17px 19px", -1)} />
+          {/* torso */}
+          <div style={pixelBlock(61, 83, 72, 53, shirtColor)} />
 
-        <div style={drawnShape(36, 39, 12, 18, skinColor, "8px 4px 7px 5px", -5)} />
-        <div style={drawnShape(85, 39, 12, 18, skinColor, "4px 8px 5px 7px", 5)} />
+          {/* manga jacket folds */}
+          <div style={pixelLine(74, 89, 3, 40, "#252018")} />
+          <div style={pixelLine(118, 89, 3, 40, "#252018")} />
+          <div style={pixelBlock(83, 92, 30, 6, "rgba(255,255,255,0.25)", 0, false)} />
 
-        {appearance.hair !== "none" && (
-          <>
-            <div style={drawnShape(40, 18, 53, 20, hairColor, "18px 22px 8px 12px", -3)} />
-            <div style={drawnShape(39, 33, 13, 24, hairColor, "9px 4px 10px 6px", -5)} />
-            <div style={drawnShape(80, 31, 13, 25, hairColor, "4px 9px 6px 10px", 5)} />
-          </>
-        )}
+          {/* arms */}
+          <div style={pixelBlock(43, 90, 22, 52, skinColor)} />
+          <div style={pixelBlock(130, 90, 22, 52, skinColor)} />
 
-        {appearance.hat !== "none" && (
-          <>
-            <div style={drawnShape(38, 13, 58, 17, hatColor, "18px 21px 7px 9px", -2)} />
-            <div style={drawnShape(51, 4, 33, 15, hatColor, "13px 15px 5px 6px", 2)} />
-            <div style={drawnShape(82, 20, 22, 9, hatColor, "4px 11px 5px 8px", 5)} />
-          </>
-        )}
+          {/* hands */}
+          <div style={pixelBlock(39, 135, 27, 22, skinColor)} />
+          <div style={pixelBlock(130, 135, 27, 22, skinColor)} />
 
-        {appearance.sunglasses === "none" ? (
-          <>
-            <div style={drawnShape(55, 43, 6, 7, "#252018", "50%", -4, false)} />
-            <div style={drawnShape(72, 42, 6, 7, "#252018", "50%", 4, false)} />
-          </>
-        ) : (
-          <>
-            <div style={drawnShape(50, 39, 17, 11, "#111", "7px 5px 6px 4px", -4)} />
-            <div style={drawnShape(69, 39, 17, 11, "#111", "5px 7px 4px 6px", 4)} />
-            <div style={drawnShape(65, 43, 7, 4, "#111", "999px", 0, false)} />
-          </>
-        )}
+          {/* neck */}
+          <div style={pixelBlock(88, 70, 22, 20, skinColor)} />
 
-        <div
-          style={{
-            position: "absolute",
-            left: 65,
-            top: 48,
-            width: 6,
-            height: 9,
-            borderRight: "3px solid rgba(37,32,24,0.55)",
-            borderBottom: "3px solid rgba(37,32,24,0.35)",
-            borderRadius: "0 0 8px 0",
-            transform: "rotate(5deg)",
-          }}
-        />
+          {/* head */}
+          <div style={pixelBlock(65, 30, 68, 55, skinColor)} />
 
-        <div
-          style={{
-            position: "absolute",
-            left: 58,
-            top: 59,
-            width: 18,
-            height: 7,
-            borderBottom: "3px solid #252018",
-            borderRadius: "0 0 999px 999px",
-            transform: "rotate(-2deg)",
-          }}
-        />
+          {/* manga face shape lower jaw */}
+          <div style={pixelBlock(75, 72, 48, 22, skinColor)} />
 
-        {appearance.facialHair === "mustache" && (
-          <div style={drawnShape(55, 55, 24, 6, "#252018", "50%", -2, false)} />
-        )}
+          {/* ears */}
+          <div style={pixelBlock(55, 51, 14, 23, skinColor)} />
+          <div style={pixelBlock(129, 51, 14, 23, skinColor)} />
 
-        {appearance.facialHair === "beard" && (
-          <>
-            <div style={drawnShape(51, 55, 31, 10, "#252018", "10px 9px 11px 8px", -1)} />
-            <div style={drawnShape(56, 63, 22, 10, "#252018", "7px 8px 12px 11px", 1)} />
-          </>
-        )}
+          {/* hair */}
+          {appearance.hair !== "none" && (
+            <>
+              <div style={pixelBlock(59, 20, 78, 24, hairColor)} />
+              <div style={pixelBlock(53, 35, 24, 39, hairColor)} />
+              <div style={pixelBlock(122, 35, 22, 39, hairColor)} />
+
+              {/* spiky manga bangs */}
+              <div style={spike(62, 39, 20, 35, hairColor, -14)} />
+              <div style={spike(80, 33, 21, 42, hairColor, -5)} />
+              <div style={spike(98, 34, 22, 39, hairColor, 6)} />
+              <div style={spike(116, 40, 18, 31, hairColor, 15)} />
+
+              {/* hair shine */}
+              <div style={pixelBlock(73, 27, 28, 6, "rgba(255,255,255,0.25)", 0, false)} />
+            </>
+          )}
+
+          {/* hat */}
+          {appearance.hat !== "none" && (
+            <>
+              <div style={pixelBlock(57, 18, 84, 18, hatColor)} />
+              <div style={pixelBlock(77, 5, 43, 18, hatColor)} />
+              <div style={pixelBlock(126, 28, 31, 10, hatColor)} />
+              <div style={pixelBlock(83, 10, 25, 5, "rgba(255,255,255,0.28)", 0, false)} />
+            </>
+          )}
+
+          {/* eyes */}
+          {appearance.sunglasses === "none" ? (
+            <>
+              <div style={mangaEye(79, 55)} />
+              <div style={mangaEye(108, 55)} />
+              <div style={pixelBlock(76, 49, 17, 4, "#252018", -5, false)} />
+              <div style={pixelBlock(105, 49, 17, 4, "#252018", 5, false)} />
+            </>
+          ) : (
+            <>
+              <div style={pixelBlock(75, 52, 24, 14, "#111")} />
+              <div style={pixelBlock(101, 52, 24, 14, "#111")} />
+              <div style={pixelBlock(97, 57, 8, 4, "#111", 0, false)} />
+              <div style={pixelBlock(80, 55, 8, 3, "rgba(255,255,255,0.35)", 0, false)} />
+              <div style={pixelBlock(106, 55, 8, 3, "rgba(255,255,255,0.35)", 0, false)} />
+            </>
+          )}
+
+          {/* nose */}
+          <div style={pixelLine(98, 65, 4, 11, "rgba(37,32,24,0.65)")} />
+
+          {/* mouth */}
+          <div style={pixelBlock(88, 79, 23, 4, "#252018", 0, false)} />
+
+          {/* facial hair */}
+          {appearance.facialHair === "mustache" && (
+            <div style={pixelBlock(84, 75, 30, 6, "#252018", 0, false)} />
+          )}
+
+          {appearance.facialHair === "beard" && (
+            <>
+              <div style={pixelBlock(78, 75, 43, 11, "#252018")} />
+              <div style={pixelBlock(86, 85, 28, 12, "#252018")} />
+            </>
+          )}
+
+          {/* outline accents */}
+          <div style={pixelLine(63, 82, 4, 45, "#252018")} />
+          <div style={pixelLine(131, 82, 4, 45, "#252018")} />
+          <div style={pixelLine(68, 29, 60, 4, "#252018")} />
+        </div>
       </div>
 
-      <div style={{ ...VT, fontSize: "1.2rem", color: "#252018" }}>
-        {heroName.trim() || "Hero"}
-      </div>
+      <div style={namePlateStyle}>{heroName.trim() || "Hero"}</div>
     </div>
   );
 }
@@ -235,9 +260,7 @@ function AppearanceSection<K extends HeroAppearanceKey>({
 
   return (
     <div>
-      <div style={{ ...PX, fontSize: "0.48rem", color: "#252018", marginBottom: 8 }}>
-        {title}
-      </div>
+      <div style={sectionTitleStyle}>{title}</div>
 
       <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
         {options.map(option => {
@@ -252,6 +275,9 @@ function AppearanceSection<K extends HeroAppearanceKey>({
               style={{
                 ...buttonStyle(selected ? "#ffe58a" : "#fffef0", "#252018"),
                 borderColor: selected ? "#ca4b36" : "#252018",
+                boxShadow: selected
+                  ? "3px 3px 0 #252018"
+                  : "2px 2px 0 rgba(37,32,24,0.45)",
               }}
             >
               {color !== "transparent" && (
@@ -289,13 +315,12 @@ function getOptionColor<K extends HeroAppearanceKey>(
   return option?.color ?? "transparent";
 }
 
-function drawnShape(
+function pixelBlock(
   left: number,
   top: number,
   width: number,
   height: number,
   backgroundColor: string,
-  borderRadius: string,
   rotate = 0,
   outlined = true,
 ): React.CSSProperties {
@@ -306,13 +331,105 @@ function drawnShape(
     width,
     height,
     backgroundColor,
-    borderRadius,
-    border: outlined ? "3px solid #252018" : undefined,
+    border: outlined ? "4px solid #252018" : undefined,
     boxSizing: "border-box",
     transform: `rotate(${rotate}deg)`,
+    imageRendering: "pixelated",
     boxShadow: outlined
-      ? "inset 2px 2px 0 rgba(255,255,255,0.25), inset -2px -2px 0 rgba(37,32,24,0.12)"
+      ? "inset 3px 3px 0 rgba(255,255,255,0.22), inset -3px -3px 0 rgba(37,32,24,0.12)"
       : undefined,
+  };
+}
+
+function pixelLine(
+  left: number,
+  top: number,
+  width: number,
+  height: number,
+  backgroundColor: string,
+): React.CSSProperties {
+  return {
+    position: "absolute",
+    left,
+    top,
+    width,
+    height,
+    backgroundColor,
+    boxShadow: "1px 1px 0 rgba(255,255,255,0.16)",
+  };
+}
+
+function block(
+  left: number,
+  top: number,
+  width: number,
+  height: number,
+  backgroundColor: string,
+  rotate = 0,
+): React.CSSProperties {
+  return {
+    position: "absolute",
+    left,
+    top,
+    width,
+    height,
+    backgroundColor,
+    transform: `rotate(${rotate}deg)`,
+  };
+}
+
+function spike(
+  left: number,
+  top: number,
+  width: number,
+  height: number,
+  backgroundColor: string,
+  rotate = 0,
+): React.CSSProperties {
+  return {
+    position: "absolute",
+    left,
+    top,
+    width,
+    height,
+    backgroundColor,
+    borderLeft: "4px solid #252018",
+    borderRight: "4px solid #252018",
+    borderBottom: "4px solid #252018",
+    boxSizing: "border-box",
+    clipPath: "polygon(50% 100%, 0 0, 100% 0)",
+    transform: `rotate(${rotate}deg)`,
+  };
+}
+
+function mangaEye(left: number, top: number): React.CSSProperties {
+  return {
+    position: "absolute",
+    left,
+    top,
+    width: 14,
+    height: 18,
+    backgroundColor: "#252018",
+    border: "3px solid #252018",
+    boxSizing: "border-box",
+    boxShadow: "inset 4px 3px 0 rgba(255,255,255,0.85)",
+  };
+}
+
+function speedLine(
+  left: number,
+  top: number,
+  width: number,
+  rotate: number,
+): React.CSSProperties {
+  return {
+    position: "absolute",
+    left,
+    top,
+    width,
+    height: 4,
+    backgroundColor: "rgba(37,32,24,0.28)",
+    transform: `rotate(${rotate}deg)`,
   };
 }
 
@@ -332,7 +449,7 @@ const overlayStyle: React.CSSProperties = {
   position: "fixed",
   inset: 0,
   zIndex: 1300,
-  backgroundColor: "rgba(37,32,24,0.56)",
+  backgroundColor: "rgba(37,32,24,0.62)",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -340,11 +457,27 @@ const overlayStyle: React.CSSProperties = {
 };
 
 const windowStyle: React.CSSProperties = {
-  width: "min(860px, calc(100vw - 48px))",
+  width: "min(920px, calc(100vw - 48px))",
   maxHeight: "calc(100vh - 48px)",
   overflow: "auto",
   backgroundColor: "#fff8c8",
   padding: 24,
+  boxShadow:
+    "inset 0 0 0 4px #ffffff, inset 0 0 0 8px #ffef93, 8px 8px 0 rgba(37,32,24,0.55)",
+};
+
+const dividerStyle: React.CSSProperties = {
+  height: 4,
+  backgroundColor: "#252018",
+  margin: "18px 0",
+  boxShadow: "0 3px 0 rgba(202,75,54,0.35)",
+};
+
+const sectionTitleStyle: React.CSSProperties = {
+  ...PX,
+  fontSize: "0.48rem",
+  color: "#252018",
+  marginBottom: 8,
 };
 
 const inputStyle: React.CSSProperties = {
@@ -354,16 +487,50 @@ const inputStyle: React.CSSProperties = {
   backgroundColor: "#fffef0",
   padding: "8px 10px",
   color: "#252018",
+  boxShadow: "3px 3px 0 rgba(37,32,24,0.35)",
 };
 
 const previewBoxStyle: React.CSSProperties = {
   border: "4px solid #252018",
-  backgroundColor: "#9fdc7a",
-  boxShadow: "inset 0 0 0 4px rgba(255,255,255,0.35)",
-  minHeight: 260,
+  background:
+    "linear-gradient(135deg, #fff4b0 0%, #9fdc7a 52%, #73b9d8 100%)",
+  boxShadow:
+    "inset 0 0 0 4px rgba(255,255,255,0.55), 5px 5px 0 rgba(37,32,24,0.45)",
+  minHeight: 330,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   flexDirection: "column",
-  gap: 12,
+  gap: 10,
+  overflow: "hidden",
+};
+
+const mangaCardStyle: React.CSSProperties = {
+  position: "relative",
+  width: 220,
+  height: 250,
+  backgroundColor: "rgba(255,254,240,0.38)",
+  border: "4px solid #252018",
+  boxShadow: "inset 0 0 0 3px rgba(255,255,255,0.55)",
+  overflow: "hidden",
+};
+
+const characterStageStyle: React.CSSProperties = {
+  position: "absolute",
+  left: 12,
+  top: 28,
+  width: 196,
+  height: 190,
+  transform: "scale(0.95)",
+  transformOrigin: "center bottom",
+};
+
+const namePlateStyle: React.CSSProperties = {
+  ...VT,
+  fontSize: "1.35rem",
+  color: "#252018",
+  backgroundColor: "#fffef0",
+  border: "3px solid #252018",
+  padding: "4px 14px",
+  boxShadow: "3px 3px 0 rgba(37,32,24,0.35)",
 };
