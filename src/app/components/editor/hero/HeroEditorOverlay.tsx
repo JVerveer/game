@@ -11,16 +11,53 @@ const RJ = { fontFamily: "'Rajdhani', sans-serif" } as const;
 
 type HeroAppearanceKey = keyof HeroAppearance;
 
-const POSES: { pose: HeroPose; label: string }[] = [
-  { pose: "frontIdle", label: "FRONT IDLE" },
-  { pose: "frontWalk1", label: "FRONT WALK 1" },
-  { pose: "frontWalk2", label: "FRONT WALK 2" },
-  { pose: "backIdle", label: "BACK IDLE" },
-  { pose: "backWalk1", label: "BACK WALK 1" },
-  { pose: "backWalk2", label: "BACK WALK 2" },
-  { pose: "sideIdle", label: "SIDE IDLE" },
-  { pose: "sideWalk1", label: "SIDE WALK 1" },
-  { pose: "sideWalk2", label: "SIDE WALK 2" },
+const PREVIEW_GROUPS: { title: string; poses: { pose: HeroPose; label: string }[] }[] = [
+  {
+    title: "FRONT",
+    poses: [
+      { pose: "frontIdle", label: "IDLE" },
+      { pose: "frontWalk1", label: "WALK 1" },
+      { pose: "frontWalk2", label: "WALK 2" },
+    ],
+  },
+  {
+    title: "BACK",
+    poses: [
+      { pose: "backIdle", label: "IDLE" },
+      { pose: "backWalk1", label: "WALK 1" },
+      { pose: "backWalk2", label: "WALK 2" },
+    ],
+  },
+  {
+    title: "LEFT",
+    poses: [
+      { pose: "sideIdle", label: "IDLE" },
+      { pose: "sideWalk1", label: "WALK 1" },
+      { pose: "sideWalk2", label: "WALK 2" },
+    ],
+  },
+  {
+    title: "RIGHT",
+    poses: [
+      { pose: "sideIdle", label: "IDLE" },
+      { pose: "sideWalk1", label: "WALK 1" },
+      { pose: "sideWalk2", label: "WALK 2" },
+    ],
+  },
+];
+
+const EDITOR_SECTIONS: {
+  title: string;
+  category: HeroAppearanceKey;
+  icon: string;
+}[] = [
+  { title: "Body", category: "skin", icon: "●" },
+  { title: "Hair", category: "hair", icon: "◆" },
+  { title: "Hat", category: "hat", icon: "▰" },
+  { title: "Top", category: "shirt", icon: "▣" },
+  { title: "Bottom", category: "pants", icon: "▥" },
+  { title: "Shoes", category: "shoes", icon: "▱" },
+  { title: "Accessory", category: "sunglasses", icon: "◇" },
 ];
 
 export function HeroEditorOverlay({
@@ -54,99 +91,128 @@ export function HeroEditorOverlay({
           ×
         </button>
 
-        <div style={heroHeaderStyle}>
-          <div>
-            <div style={titleBannerStyle}>HERO EDITOR</div>
-            <div style={subtitleStyle}>Polished 32×48 pixel hero.</div>
-            <div style={nameCardStyle}>{heroName.trim() || "Hero"}</div>
-          </div>
+        <div style={topPreviewPanelStyle}>
+          <div style={floatingLabelStyle}>IN-GAME PREVIEW</div>
 
-          <div style={headerSpriteStyle}>
-            <BetterHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={4} />
-          </div>
-        </div>
-
-        <div style={contentGridStyle}>
-          <div>
-            <PanelTitle>SPRITE PREVIEW</PanelTitle>
-            <div style={previewGridStyle}>
-              {POSES.map(({ pose, label }) => (
-                <PreviewCard key={pose} label={label}>
-                  <BetterHeroSprite appearance={heroAppearance} pose={pose} pixelSize={2.5} />
-                </PreviewCard>
-              ))}
-            </div>
-
-            <div style={hintBoxStyle}>
-              <span style={{ fontSize: 26 }}>▣</span>
-              <span>This is a cleaner 32×48 sprite designed to fit a 48×48 game tile.</span>
-            </div>
-          </div>
-
-          <div style={{ display: "grid", gap: 14 }}>
-            <FieldPanel title="NAME">
-              <input
-                value={heroName}
-                onChange={event => setHeroName(event.target.value)}
-                maxLength={18}
-                style={inputStyle}
-              />
-            </FieldPanel>
-
-            <AppearanceSection title="SKIN COLOR" category="skin" value={heroAppearance.skin} onChange={updateAppearance} />
-            <AppearanceSection title="HAIR" category="hair" value={heroAppearance.hair} onChange={updateAppearance} />
-            <AppearanceSection title="FACIAL HAIR" category="facialHair" value={heroAppearance.facialHair} onChange={updateAppearance} />
-            <AppearanceSection title="SUNGLASSES" category="sunglasses" value={heroAppearance.sunglasses} onChange={updateAppearance} />
-            <AppearanceSection title="HATS" category="hat" value={heroAppearance.hat} onChange={updateAppearance} />
-            <AppearanceSection title="SHIRT" category="shirt" value={heroAppearance.shirt} onChange={updateAppearance} />
-            <AppearanceSection title="PANTS" category="pants" value={heroAppearance.pants} onChange={updateAppearance} />
-            <AppearanceSection title="SHOES" category="shoes" value={heroAppearance.shoes} onChange={updateAppearance} />
+          <div style={directionGridStyle}>
+            {PREVIEW_GROUPS.map(group => (
+              <div key={group.title} style={directionColumnStyle}>
+                <div style={directionTitleStyle}>{group.title}</div>
+                <div style={poseRowStyle}>
+                  {group.poses.map(item => (
+                    <div
+                      key={`${group.title}-${item.pose}`}
+                      style={{
+                        ...topSpriteCellStyle,
+                        transform: group.title === "LEFT" ? "scaleX(-1)" : undefined,
+                      }}
+                    >
+                      <BetterHeroSprite
+                        appearance={heroAppearance}
+                        pose={item.pose}
+                        pixelSize={2}
+                      />
+                      <div style={smallPoseLabelStyle}>{item.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div style={bottomBarStyle}>
-          <div style={{ ...RJ, color: "#5d4528", fontWeight: 700 }}>
-            Press H in-game to open or close this editor.
+        <div style={mainEditorPanelStyle}>
+          <div style={sectionLabelStyle}>HERO EDITOR</div>
+
+          <div style={editorGridStyle}>
+            <aside style={categoryPanelStyle}>
+              <div style={panelHeaderStyle}>CATEGORIES</div>
+              <div style={{ display: "grid", gap: 8 }}>
+                {EDITOR_SECTIONS.map(section => (
+                  <div
+                    key={section.category}
+                    style={{
+                      ...categoryButtonStyle,
+                      background: section.category === "skin"
+                        ? "linear-gradient(#d63f37, #9f2524)"
+                        : "rgba(255,255,255,0.035)",
+                    }}
+                  >
+                    <span style={{ width: 24, textAlign: "center" }}>{section.icon}</span>
+                    <span>{section.title}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div style={miniPreviewPanelStyle}>
+                <div style={panelHeaderStyle}>PREVIEW</div>
+                <div style={miniPreviewBoxStyle}>
+                  <BetterHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={3} />
+                </div>
+              </div>
+            </aside>
+
+            <main style={optionsPanelStyle}>
+              <div style={panelHeaderStyle}>OPTIONS</div>
+              <AppearanceSection title="Skin Tone" category="skin" value={heroAppearance.skin} onChange={updateAppearance} />
+              <AppearanceSection title="Hair" category="hair" value={heroAppearance.hair} onChange={updateAppearance} />
+              <AppearanceSection title="Hat" category="hat" value={heroAppearance.hat} onChange={updateAppearance} />
+              <AppearanceSection title="Top" category="shirt" value={heroAppearance.shirt} onChange={updateAppearance} />
+              <AppearanceSection title="Bottom" category="pants" value={heroAppearance.pants} onChange={updateAppearance} />
+              <AppearanceSection title="Shoes" category="shoes" value={heroAppearance.shoes} onChange={updateAppearance} />
+              <AppearanceSection title="Sunglasses" category="sunglasses" value={heroAppearance.sunglasses} onChange={updateAppearance} />
+              <AppearanceSection title="Facial Hair" category="facialHair" value={heroAppearance.facialHair} onChange={updateAppearance} />
+            </main>
+
+            <aside style={equipmentPanelStyle}>
+              <div style={panelHeaderStyle}>EQUIPMENT PREVIEW</div>
+              <div style={tabRowStyle}>
+                <button type="button" style={{ ...tabStyle, backgroundColor: "#b42d2c" }}>IDLE</button>
+                <button type="button" style={tabStyle}>WALK 1</button>
+                <button type="button" style={tabStyle}>WALK 2</button>
+              </div>
+
+              <div style={largePreviewBoxStyle}>
+                <BetterHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={5} />
+              </div>
+
+              <label style={{ display: "grid", gap: 8 }}>
+                <span style={rightLabelStyle}>HERO NAME</span>
+                <input
+                  value={heroName}
+                  onChange={event => setHeroName(event.target.value)}
+                  maxLength={18}
+                  style={inputStyle}
+                />
+              </label>
+
+              <button type="button" onClick={onClose} style={saveButtonStyle}>
+                SAVE APPEARANCE
+              </button>
+            </aside>
           </div>
-          <button type="button" onClick={onClose} style={closeButtonStyle}>
-            CLOSE
-          </button>
+        </div>
+
+        <div style={bottomStripStyle}>
+          <div style={bottomStripTitleStyle}>ALL PREVIEW DIRECTIONS</div>
+          <div style={bottomPoseRowStyle}>
+            {PREVIEW_GROUPS.flatMap(group =>
+              group.poses.map(item => (
+                <div
+                  key={`bottom-${group.title}-${item.pose}`}
+                  style={{
+                    ...bottomPoseCellStyle,
+                    transform: group.title === "LEFT" ? "scaleX(-1)" : undefined,
+                  }}
+                >
+                  <BetterHeroSprite appearance={heroAppearance} pose={item.pose} pixelSize={1.6} />
+                  <div style={bottomPoseLabelStyle}>{item.label}</div>
+                </div>
+              )),
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function PreviewCard({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div style={previewCardStyle}>
-      <div style={spriteFrameStyle}>{children}</div>
-      <div style={previewLabelStyle}>{label}</div>
-    </div>
-  );
-}
-
-function PanelTitle({ children }: { children: React.ReactNode }) {
-  return <div style={panelTitleStyle}>{children}</div>;
-}
-
-function FieldPanel({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div style={fieldPanelStyle}>
-      <div style={fieldRibbonStyle}>{title}</div>
-      {children}
     </div>
   );
 }
@@ -165,8 +231,9 @@ function AppearanceSection<K extends HeroAppearanceKey>({
   const options = HERO_APPEARANCE_OPTIONS[category];
 
   return (
-    <FieldPanel title={title}>
-      <div style={optionRowStyle}>
+    <section style={optionSectionStyle}>
+      <div style={optionTitleStyle}>{title}</div>
+      <div style={swatchGridStyle}>
         {options.map(option => {
           const selected = option.id === value;
           const color = getHeroOptionColor(category, option.id as HeroAppearance[K]);
@@ -178,30 +245,29 @@ function AppearanceSection<K extends HeroAppearanceKey>({
               title={option.label}
               onClick={() => onChange(category, option.id as HeroAppearance[K])}
               style={{
-                ...optionButtonStyle,
-                borderColor: selected ? "#ca4b36" : "#252018",
-                boxShadow: selected ? "4px 4px 0 #252018" : "2px 2px 0 rgba(37,32,24,0.35)",
-                backgroundColor: selected ? "#ffe58a" : "#fff6d0",
+                ...swatchStyle,
+                borderColor: selected ? "#e33c38" : "rgba(255,255,255,0.16)",
+                boxShadow: selected ? "0 0 0 2px rgba(227,60,56,0.45)" : "none",
+                backgroundColor: "rgba(255,255,255,0.06)",
               }}
             >
               <span
                 style={{
-                  display: "inline-block",
-                  width: 22,
-                  height: 22,
-                  border: "3px solid #252018",
-                  backgroundColor: color === "transparent" ? "#fff6d0" : color,
+                  display: "block",
+                  width: 26,
+                  height: 26,
+                  backgroundColor: color === "transparent" ? "#1d2324" : color,
+                  border: "2px solid rgba(0,0,0,0.55)",
                   boxSizing: "border-box",
                 }}
               >
                 {color === "transparent" && <span style={noneIconStyle}>×</span>}
               </span>
-              <span>{option.label}</span>
             </button>
           );
         })}
       </div>
-    </FieldPanel>
+    </section>
   );
 }
 
@@ -209,238 +275,309 @@ const overlayStyle: React.CSSProperties = {
   position: "fixed",
   inset: 0,
   zIndex: 1300,
-  backgroundColor: "rgba(37,32,24,0.72)",
+  backgroundColor: "rgba(9,14,16,0.88)",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  padding: 18,
+  padding: 14,
 };
 
 const windowStyle: React.CSSProperties = {
   position: "relative",
-  width: "min(1120px, calc(100vw - 36px))",
-  maxHeight: "calc(100vh - 36px)",
+  width: "min(1220px, calc(100vw - 28px))",
+  maxHeight: "calc(100vh - 28px)",
   overflow: "auto",
-  backgroundColor: "#f7e7b7",
-  border: "5px solid #252018",
-  boxShadow:
-    "inset 0 0 0 4px #fff6d0, inset 0 0 0 8px #b58a4a, 10px 10px 0 rgba(0,0,0,0.35)",
-  padding: 18,
+  background: "linear-gradient(#263034, #151c1f)",
+  border: "3px solid rgba(255,255,255,0.1)",
+  boxShadow: "0 18px 60px rgba(0,0,0,0.65), inset 0 0 0 1px rgba(255,255,255,0.08)",
+  color: "#f3ead7",
 };
 
 const topCloseStyle: React.CSSProperties = {
   position: "absolute",
-  top: 16,
-  right: 16,
-  width: 48,
-  height: 48,
-  border: "4px solid #252018",
-  backgroundColor: "#f7d894",
-  color: "#252018",
-  fontSize: 36,
+  top: 14,
+  right: 14,
+  zIndex: 3,
+  width: 42,
+  height: 42,
+  border: "2px solid rgba(255,255,255,0.2)",
+  backgroundColor: "#20282b",
+  color: "#f3ead7",
+  fontSize: 28,
   lineHeight: 1,
   cursor: "pointer",
-  boxShadow: "4px 4px 0 rgba(37,32,24,0.45)",
 };
 
-const heroHeaderStyle: React.CSSProperties = {
+const floatingLabelStyle: React.CSSProperties = {
+  ...PX,
+  position: "absolute",
+  top: -1,
+  left: 0,
+  backgroundColor: "#11191d",
+  border: "2px solid rgba(255,255,255,0.08)",
+  color: "#f7f0df",
+  padding: "13px 28px",
+  fontSize: "0.72rem",
+  zIndex: 2,
+};
+
+const topPreviewPanelStyle: React.CSSProperties = {
   position: "relative",
-  minHeight: 178,
-  borderBottom: "4px solid #252018",
-  marginBottom: 16,
-  display: "flex",
-  justifyContent: "space-between",
-  gap: 24,
-  overflow: "hidden",
+  minHeight: 320,
+  paddingTop: 54,
   background:
-    "linear-gradient(135deg, rgba(255,246,208,0.92), rgba(247,216,148,0.7))",
-  padding: 16,
+    "linear-gradient(rgba(240,230,180,0.78), rgba(190,170,116,0.74)), linear-gradient(180deg, #99b46d, #cfb36e)",
+  borderBottom: "4px solid #11191d",
 };
 
-const titleBannerStyle: React.CSSProperties = {
-  ...PX,
-  display: "inline-block",
-  backgroundColor: "#b94a2e",
-  color: "#fff6d0",
-  fontSize: "1rem",
-  padding: "18px 38px",
-  border: "4px solid #252018",
-  boxShadow: "5px 5px 0 rgba(37,32,24,0.35)",
-};
-
-const subtitleStyle: React.CSSProperties = {
-  ...VT,
-  fontSize: "1.6rem",
-  color: "#252018",
-  marginTop: 18,
-};
-
-const nameCardStyle: React.CSSProperties = {
-  ...VT,
-  display: "inline-block",
-  marginTop: 12,
-  fontSize: "1.6rem",
-  color: "#252018",
-  backgroundColor: "#fff6d0",
-  border: "3px solid #252018",
-  padding: "6px 16px",
-};
-
-const headerSpriteStyle: React.CSSProperties = {
-  width: 170,
-  height: 150,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  marginRight: 74,
-};
-
-const contentGridStyle: React.CSSProperties = {
+const directionGridStyle: React.CSSProperties = {
   display: "grid",
-  gridTemplateColumns: "560px 1fr",
-  gap: 22,
+  gridTemplateColumns: "repeat(4, 1fr)",
+  height: "100%",
 };
 
-const panelTitleStyle: React.CSSProperties = {
-  ...PX,
-  backgroundColor: "#b94a2e",
-  color: "#fff6d0",
-  border: "4px solid #252018",
-  padding: "10px 14px",
-  fontSize: "0.62rem",
-  textAlign: "center",
-};
-
-const previewGridStyle: React.CSSProperties = {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr 1fr",
-  gap: 10,
-  border: "4px solid #252018",
-  borderTop: 0,
-  padding: 10,
-  backgroundColor: "#fcefc5",
-};
-
-const previewCardStyle: React.CSSProperties = {
-  minHeight: 155,
-  backgroundColor: "#fff6d0",
-  border: "3px solid #5d4528",
+const directionColumnStyle: React.CSSProperties = {
+  minHeight: 258,
+  borderRight: "1px solid rgba(0,0,0,0.17)",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "space-between",
-  padding: 8,
+  padding: "20px 14px 24px",
 };
 
-const spriteFrameStyle: React.CSSProperties = {
-  flex: 1,
+const directionTitleStyle: React.CSSProperties = {
+  ...PX,
+  color: "#1c2527",
+  fontSize: "0.65rem",
+  marginBottom: 10,
+};
+
+const poseRowStyle: React.CSSProperties = {
+  display: "flex",
+  gap: 16,
+  alignItems: "flex-end",
+  justifyContent: "center",
   width: "100%",
+};
+
+const topSpriteCellStyle: React.CSSProperties = {
+  display: "grid",
+  justifyItems: "center",
+  gap: 10,
+};
+
+const smallPoseLabelStyle: React.CSSProperties = {
+  ...PX,
+  color: "#263034",
+  fontSize: "0.45rem",
+};
+
+const mainEditorPanelStyle: React.CSSProperties = {
+  position: "relative",
+  padding: "44px 10px 10px",
+  backgroundColor: "#1a2225",
+};
+
+const sectionLabelStyle: React.CSSProperties = {
+  ...PX,
+  position: "absolute",
+  left: 0,
+  top: 0,
+  backgroundColor: "#11191d",
+  border: "2px solid rgba(255,255,255,0.09)",
+  color: "#f7f0df",
+  padding: "13px 28px",
+  fontSize: "0.72rem",
+};
+
+const editorGridStyle: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "230px 1fr 390px",
+  gap: 10,
+};
+
+const categoryPanelStyle: React.CSSProperties = {
+  backgroundColor: "#151c1f",
+  border: "2px solid rgba(255,255,255,0.08)",
+  borderRadius: 8,
+  padding: 14,
+};
+
+const panelHeaderStyle: React.CSSProperties = {
+  ...PX,
+  color: "#f7f0df",
+  fontSize: "0.52rem",
+  marginBottom: 14,
+};
+
+const categoryButtonStyle: React.CSSProperties = {
+  ...PX,
+  display: "flex",
+  alignItems: "center",
+  gap: 10,
+  border: "1px solid rgba(255,255,255,0.08)",
+  color: "#f7f0df",
+  padding: "11px 12px",
+  borderRadius: 4,
+  fontSize: "0.42rem",
+};
+
+const miniPreviewPanelStyle: React.CSSProperties = {
+  marginTop: 16,
+  borderTop: "1px solid rgba(255,255,255,0.08)",
+  paddingTop: 14,
+};
+
+const miniPreviewBoxStyle: React.CSSProperties = {
+  height: 180,
+  background:
+    "linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,0.05) 25%, transparent 25%)",
+  backgroundSize: "16px 16px",
+  backgroundColor: "#242d31",
+  border: "1px solid rgba(255,255,255,0.08)",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  background:
-    "linear-gradient(135deg, rgba(181,138,74,0.22), rgba(255,255,255,0.18))",
-  border: "2px solid rgba(37,32,24,0.35)",
 };
 
-const previewLabelStyle: React.CSSProperties = {
-  ...PX,
-  color: "#252018",
-  fontSize: "0.34rem",
-  marginTop: 8,
+const optionsPanelStyle: React.CSSProperties = {
+  backgroundColor: "#151c1f",
+  border: "2px solid rgba(255,255,255,0.08)",
+  borderRadius: 8,
+  padding: 18,
 };
 
-const hintBoxStyle: React.CSSProperties = {
-  ...VT,
-  marginTop: 16,
-  border: "4px solid #b58a4a",
-  backgroundColor: "#fff6d0",
-  padding: "14px 16px",
-  display: "flex",
+const equipmentPanelStyle: React.CSSProperties = {
+  backgroundColor: "#151c1f",
+  border: "2px solid rgba(255,255,255,0.08)",
+  borderRadius: 8,
+  padding: 18,
+  display: "grid",
   gap: 14,
-  alignItems: "center",
-  color: "#252018",
-  fontSize: "1.25rem",
 };
 
-const fieldPanelStyle: React.CSSProperties = {
-  position: "relative",
-  border: "4px solid #b58a4a",
-  backgroundColor: "#fcefc5",
-  padding: "18px 16px 14px",
+const optionSectionStyle: React.CSSProperties = {
+  borderBottom: "1px solid rgba(255,255,255,0.08)",
+  padding: "0 0 16px",
+  marginBottom: 16,
 };
 
-const fieldRibbonStyle: React.CSSProperties = {
-  ...PX,
-  position: "absolute",
-  top: -13,
-  left: 16,
-  backgroundColor: "#b94a2e",
-  color: "#fff6d0",
-  border: "3px solid #252018",
-  padding: "5px 13px",
-  fontSize: "0.5rem",
-};
-
-const inputStyle: React.CSSProperties = {
-  ...VT,
-  width: "100%",
-  boxSizing: "border-box",
-  fontSize: "1.8rem",
-  border: "4px solid #5d4528",
-  backgroundColor: "#fff6d0",
-  padding: "8px 12px",
-  color: "#252018",
-};
-
-const optionRowStyle: React.CSSProperties = {
-  display: "flex",
-  alignItems: "center",
-  gap: 9,
-  flexWrap: "wrap",
-};
-
-const optionButtonStyle: React.CSSProperties = {
+const optionTitleStyle: React.CSSProperties = {
   ...RJ,
-  display: "flex",
-  alignItems: "center",
-  gap: 7,
-  minHeight: 34,
-  border: "3px solid #252018",
-  color: "#252018",
-  padding: "5px 8px",
-  cursor: "pointer",
-  fontSize: "0.78rem",
+  color: "#f7f0df",
+  fontSize: "1rem",
   fontWeight: 800,
+  marginBottom: 9,
+};
+
+const swatchGridStyle: React.CSSProperties = {
+  display: "flex",
+  flexWrap: "wrap",
+  gap: 9,
+};
+
+const swatchStyle: React.CSSProperties = {
+  width: 46,
+  height: 46,
+  padding: 7,
+  border: "2px solid rgba(255,255,255,0.15)",
+  borderRadius: 5,
+  cursor: "pointer",
 };
 
 const noneIconStyle: React.CSSProperties = {
   ...PX,
   display: "block",
-  color: "#252018",
-  fontSize: "0.7rem",
-  lineHeight: "16px",
+  color: "#f7f0df",
+  fontSize: "0.65rem",
+  lineHeight: "21px",
 };
 
-const bottomBarStyle: React.CSSProperties = {
-  marginTop: 20,
-  minHeight: 76,
-  border: "4px solid #252018",
+const tabRowStyle: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr 1fr",
+  gap: 4,
+};
+
+const tabStyle: React.CSSProperties = {
+  ...PX,
+  border: "1px solid rgba(255,255,255,0.12)",
+  backgroundColor: "#20282b",
+  color: "#f7f0df",
+  padding: "10px 12px",
+  cursor: "pointer",
+  fontSize: "0.46rem",
+};
+
+const largePreviewBoxStyle: React.CSSProperties = {
+  height: 270,
   background:
-    "linear-gradient(135deg, rgba(37,32,24,0.2), rgba(255,246,208,0.5))",
+    "linear-gradient(45deg, rgba(255,255,255,0.04) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,0.04) 25%, transparent 25%)",
+  backgroundSize: "22px 22px",
+  backgroundColor: "#232b2f",
+  border: "1px solid rgba(255,255,255,0.09)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+const rightLabelStyle: React.CSSProperties = {
+  ...PX,
+  fontSize: "0.47rem",
+  color: "#f7f0df",
+};
+
+const inputStyle: React.CSSProperties = {
+  ...VT,
+  fontSize: "1.45rem",
+  border: "1px solid rgba(255,255,255,0.13)",
+  backgroundColor: "#101619",
+  color: "#f7f0df",
+  padding: "10px 12px",
+};
+
+const saveButtonStyle: React.CSSProperties = {
+  ...PX,
+  border: "1px solid #d8463d",
+  background: "linear-gradient(#d5423a, #9b2524)",
+  color: "#fff7e6",
+  padding: "15px 16px",
+  cursor: "pointer",
+  fontSize: "0.5rem",
+};
+
+const bottomStripStyle: React.CSSProperties = {
+  margin: 10,
+  border: "2px solid rgba(255,255,255,0.08)",
+  borderRadius: 8,
+  backgroundColor: "#151c1f",
+  padding: 14,
+};
+
+const bottomStripTitleStyle: React.CSSProperties = {
+  ...PX,
+  color: "#f7f0df",
+  fontSize: "0.46rem",
+  marginBottom: 12,
+};
+
+const bottomPoseRowStyle: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
-  alignItems: "center",
-  padding: 18,
+  gap: 12,
+  overflowX: "auto",
 };
 
-const closeButtonStyle: React.CSSProperties = {
+const bottomPoseCellStyle: React.CSSProperties = {
+  minWidth: 78,
+  display: "grid",
+  justifyItems: "center",
+  gap: 8,
+};
+
+const bottomPoseLabelStyle: React.CSSProperties = {
   ...PX,
-  backgroundColor: "#b94a2e",
-  color: "#fff6d0",
-  border: "4px solid #252018",
-  padding: "16px 34px",
-  cursor: "pointer",
-  fontSize: "0.68rem",
-  boxShadow: "5px 5px 0 rgba(37,32,24,0.55)",
+  color: "#f7f0df",
+  fontSize: "0.35rem",
 };

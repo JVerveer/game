@@ -18,10 +18,10 @@ export type HeroFacing = "up" | "down" | "left" | "right";
 const WIDTH = 32;
 const HEIGHT = 48;
 
-const OUTLINE = "#1d1712";
-const EYE = "#14100d";
-const WHITE = "#fff9e8";
-const BLUSH = "#d77666";
+const OUTLINE = "#1b1511";
+const EYE = "#120e0b";
+const WHITE = "#fff8e8";
+const BLUSH = "#d66d62";
 
 type PixelKey =
   | "."
@@ -31,7 +31,6 @@ type PixelKey =
   | "R"
   | "H"
   | "h"
-  | "x"
   | "E"
   | "W"
   | "M"
@@ -91,7 +90,7 @@ function line(c: Canvas, x1: number, y1: number, x2: number, y2: number, v: Pixe
 function outline(c: Canvas): Canvas {
   const out = c.map(row => [...row]);
   const solid = new Set<PixelKey>([
-    "S", "s", "R", "H", "h", "x", "E", "W", "M",
+    "S", "s", "R", "H", "h", "E", "W", "M",
     "T", "t", "l", "v", "P", "p", "K", "k", "C", "c",
   ]);
 
@@ -126,98 +125,110 @@ function info(pose: HeroPose) {
 }
 
 function drawFrontFace(c: Canvas, appearance: HeroAppearance) {
-  hline(c, 8, 13, 18, "S");
-  hline(c, 9, 11, 20, "S");
-  hline(c, 10, 10, 21, "S");
-  hline(c, 11, 10, 21, "S");
-  hline(c, 12, 9, 22, "S");
-  hline(c, 13, 9, 22, "S");
-  hline(c, 14, 9, 22, "S");
-  hline(c, 15, 10, 21, "S");
-  hline(c, 16, 10, 21, "S");
-  hline(c, 17, 11, 20, "S");
-  hline(c, 18, 12, 19, "S");
-  hline(c, 19, 13, 18, "S");
+  // Bigger 14x15 chibi face
+  hline(c, 7, 13, 18, "S");
+  hline(c, 8, 11, 20, "S");
+  hline(c, 9, 10, 21, "S");
+  hline(c, 10, 9, 22, "S");
+  hline(c, 11, 9, 22, "S");
+  hline(c, 12, 8, 23, "S");
+  hline(c, 13, 8, 23, "S");
+  hline(c, 14, 8, 23, "S");
+  hline(c, 15, 9, 22, "S");
+  hline(c, 16, 9, 22, "S");
+  hline(c, 17, 10, 21, "S");
+  hline(c, 18, 10, 21, "S");
+  hline(c, 19, 11, 20, "S");
+  hline(c, 20, 12, 19, "S");
+  hline(c, 21, 13, 18, "S");
 
-  rect(c, 8, 13, 2, 4, "S");
-  rect(c, 22, 13, 2, 4, "S");
-  put(c, 8, 16, "s");
-  put(c, 23, 16, "s");
+  rect(c, 7, 13, 2, 5, "S");
+  rect(c, 23, 13, 2, 5, "S");
+  put(c, 7, 17, "s");
+  put(c, 24, 17, "s");
 
   if (appearance.sunglasses !== "none") {
-    rect(c, 12, 13, 5, 3, "E");
-    rect(c, 18, 13, 5, 3, "E");
-    put(c, 17, 14, "E");
-    put(c, 13, 13, "W");
+    rect(c, 11, 13, 6, 3, "E");
+    rect(c, 18, 13, 6, 3, "E");
+    put(c, 17, 15, "E");
+    put(c, 12, 13, "W");
     put(c, 19, 13, "W");
   } else {
-    rect(c, 13, 13, 2, 4, "E");
-    rect(c, 18, 13, 2, 4, "E");
-    put(c, 13, 13, "W");
-    put(c, 18, 13, "W");
-    hline(c, 12, 12, 15, "O");
-    hline(c, 12, 18, 20, "O");
+    // Larger manga eyes
+    rect(c, 12, 13, 3, 5, "E");
+    rect(c, 18, 13, 3, 5, "E");
+    rect(c, 12, 13, 1, 2, "W");
+    rect(c, 18, 13, 1, 2, "W");
+    put(c, 14, 17, "s");
+    put(c, 20, 17, "s");
+    hline(c, 12, 11, 15, "O");
+    hline(c, 12, 18, 21, "O");
   }
 
-  put(c, 11, 17, "R");
-  put(c, 21, 17, "R");
-  hline(c, 19, 14, 18, "M");
+  put(c, 10, 18, "R");
+  put(c, 22, 18, "R");
+  hline(c, 20, 14, 18, "M");
 
-  if (appearance.facialHair === "mustache") hline(c, 18, 13, 18, "M");
+  if (appearance.facialHair === "mustache") hline(c, 19, 13, 18, "M");
   if (appearance.facialHair === "beard") {
-    hline(c, 18, 12, 19, "M");
-    hline(c, 19, 13, 18, "M");
-    hline(c, 20, 14, 17, "M");
+    hline(c, 19, 12, 19, "M");
+    hline(c, 20, 13, 18, "M");
+    hline(c, 21, 14, 17, "M");
   }
 }
 
 function drawBackHead(c: Canvas) {
-  hline(c, 8, 13, 18, "H");
-  hline(c, 9, 11, 20, "H");
-  hline(c, 10, 10, 21, "H");
+  hline(c, 7, 13, 18, "H");
+  hline(c, 8, 11, 20, "H");
+  hline(c, 9, 10, 21, "H");
+  hline(c, 10, 9, 22, "H");
   hline(c, 11, 9, 22, "H");
-  hline(c, 12, 9, 22, "H");
-  hline(c, 13, 9, 22, "H");
-  hline(c, 14, 9, 22, "H");
-  hline(c, 15, 10, 21, "H");
-  hline(c, 16, 10, 21, "H");
-  hline(c, 17, 11, 20, "H");
-  hline(c, 18, 12, 19, "H");
-  hline(c, 19, 13, 18, "H");
-  hline(c, 20, 14, 17, "H");
+  hline(c, 12, 8, 23, "H");
+  hline(c, 13, 8, 23, "H");
+  hline(c, 14, 8, 23, "H");
+  hline(c, 15, 9, 22, "H");
+  hline(c, 16, 9, 22, "H");
+  hline(c, 17, 10, 21, "H");
+  hline(c, 18, 10, 21, "H");
+  hline(c, 19, 11, 20, "H");
+  hline(c, 20, 12, 19, "H");
+  hline(c, 21, 13, 18, "H");
+  hline(c, 22, 14, 17, "H");
 }
 
 function drawSideFace(c: Canvas, appearance: HeroAppearance) {
-  hline(c, 8, 13, 18, "S");
-  hline(c, 9, 11, 20, "S");
-  hline(c, 10, 10, 22, "S");
-  hline(c, 11, 10, 23, "S");
-  hline(c, 12, 10, 23, "S");
-  hline(c, 13, 10, 22, "S");
-  hline(c, 14, 11, 22, "S");
-  hline(c, 15, 11, 21, "S");
-  hline(c, 16, 12, 21, "S");
-  hline(c, 17, 13, 20, "S");
-  hline(c, 18, 14, 19, "S");
-  hline(c, 19, 15, 18, "S");
+  hline(c, 7, 13, 18, "S");
+  hline(c, 8, 11, 20, "S");
+  hline(c, 9, 10, 22, "S");
+  hline(c, 10, 9, 23, "S");
+  hline(c, 11, 9, 24, "S");
+  hline(c, 12, 9, 24, "S");
+  hline(c, 13, 10, 23, "S");
+  hline(c, 14, 10, 23, "S");
+  hline(c, 15, 11, 22, "S");
+  hline(c, 16, 11, 22, "S");
+  hline(c, 17, 12, 21, "S");
+  hline(c, 18, 13, 21, "S");
+  hline(c, 19, 14, 20, "S");
+  hline(c, 20, 15, 19, "S");
 
   if (appearance.sunglasses !== "none") {
-    rect(c, 17, 13, 5, 3, "E");
-    put(c, 18, 13, "W");
+    rect(c, 18, 13, 6, 3, "E");
+    put(c, 19, 13, "W");
   } else {
-    rect(c, 18, 13, 2, 4, "E");
-    put(c, 18, 13, "W");
-    hline(c, 12, 17, 20, "O");
+    rect(c, 18, 13, 3, 5, "E");
+    rect(c, 18, 13, 1, 2, "W");
+    hline(c, 12, 17, 21, "O");
   }
 
-  put(c, 21, 15, "s");
-  hline(c, 18, 17, 20, "M");
+  put(c, 22, 17, "s");
+  hline(c, 19, 18, 21, "M");
 
-  if (appearance.facialHair === "mustache") hline(c, 17, 17, 21, "M");
+  if (appearance.facialHair === "mustache") hline(c, 18, 18, 22, "M");
   if (appearance.facialHair === "beard") {
-    hline(c, 17, 17, 22, "M");
-    hline(c, 18, 16, 20, "M");
-    hline(c, 19, 16, 18, "M");
+    hline(c, 18, 18, 23, "M");
+    hline(c, 19, 17, 21, "M");
+    hline(c, 20, 16, 19, "M");
   }
 }
 
@@ -228,41 +239,42 @@ function drawHair(c: Canvas, appearance: HeroAppearance, pose: HeroPose) {
   const style = ((getHeroOption("hair", appearance.hair) as { style?: string }).style ?? "messy");
 
   if (side) {
-    hline(c, 4, 12, 19, "H");
-    hline(c, 5, 10, 21, "H");
-    hline(c, 6, 9, 22, "H");
-    hline(c, 7, 8, 22, "H");
-    hline(c, 8, 8, 16, "H");
+    hline(c, 3, 12, 20, "H");
+    hline(c, 4, 10, 22, "H");
+    hline(c, 5, 9, 23, "H");
+    hline(c, 6, 8, 23, "H");
+    hline(c, 7, 8, 17, "H");
+    hline(c, 8, 8, 14, "H");
     hline(c, 9, 8, 13, "H");
     hline(c, 10, 8, 12, "H");
-    hline(c, 11, 8, 11, "H");
-    hline(c, 8, 21, 23, "H");
-    hline(c, 9, 22, 22, "H");
-    hline(c, 10, 22, 22, "H");
+    hline(c, 8, 21, 24, "H");
+    hline(c, 9, 22, 23, "H");
+    hline(c, 10, 23, 22, "H");
 
     if (style === "spiky") {
-      line(c, 10, 6, 6, 1, "H");
-      line(c, 14, 5, 14, 0, "H");
-      line(c, 18, 6, 25, 2, "H");
+      line(c, 10, 5, 6, 0, "H");
+      line(c, 14, 4, 14, 0, "H");
+      line(c, 18, 5, 25, 1, "H");
     } else if (style === "swept") {
-      line(c, 13, 8, 25, 10, "H");
-      line(c, 14, 10, 23, 14, "H");
+      line(c, 12, 8, 26, 10, "H");
+      line(c, 14, 10, 24, 14, "H");
     } else if (style === "short") {
-      hline(c, 8, 10, 21, "H");
-      hline(c, 9, 10, 19, "H");
+      hline(c, 8, 10, 22, "H");
+      hline(c, 9, 10, 20, "H");
     } else {
-      put(c, 22, 11, "H");
-      put(c, 21, 12, "H");
-      put(c, 20, 13, "H");
+      put(c, 23, 11, "H");
+      put(c, 22, 12, "H");
+      put(c, 21, 13, "H");
     }
 
-    hline(c, 6, 11, 16, "h");
+    hline(c, 5, 11, 17, "h");
     return;
   }
 
   if (back) {
-    hline(c, 4, 11, 20, "H");
-    hline(c, 5, 9, 22, "H");
+    hline(c, 3, 11, 20, "H");
+    hline(c, 4, 9, 22, "H");
+    hline(c, 5, 8, 23, "H");
     hline(c, 6, 8, 23, "H");
     hline(c, 7, 8, 23, "H");
     hline(c, 8, 8, 23, "H");
@@ -270,48 +282,49 @@ function drawHair(c: Canvas, appearance: HeroAppearance, pose: HeroPose) {
     hline(c, 10, 8, 23, "H");
     hline(c, 11, 9, 22, "H");
     hline(c, 12, 9, 22, "H");
-    hline(c, 13, 10, 21, "H");
+    hline(c, 13, 9, 22, "H");
     hline(c, 14, 10, 21, "H");
-    hline(c, 15, 11, 20, "H");
-    hline(c, 16, 12, 19, "H");
-    hline(c, 17, 13, 18, "H");
-    hline(c, 18, 14, 17, "H");
-    hline(c, 6, 12, 18, "h");
+    hline(c, 15, 10, 21, "H");
+    hline(c, 16, 11, 20, "H");
+    hline(c, 17, 12, 19, "H");
+    hline(c, 18, 13, 18, "H");
+    hline(c, 19, 14, 17, "H");
+    hline(c, 5, 12, 18, "h");
 
     if (style === "spiky") {
-      line(c, 9, 6, 6, 1, "H");
-      line(c, 15, 5, 15, 0, "H");
-      line(c, 21, 6, 26, 2, "H");
+      line(c, 9, 5, 6, 0, "H");
+      line(c, 15, 4, 15, 0, "H");
+      line(c, 21, 5, 27, 1, "H");
     }
     return;
   }
 
-  hline(c, 4, 11, 20, "H");
-  hline(c, 5, 9, 22, "H");
-  hline(c, 6, 8, 23, "H");
+  hline(c, 3, 11, 20, "H");
+  hline(c, 4, 9, 22, "H");
+  hline(c, 5, 8, 23, "H");
+  hline(c, 6, 7, 24, "H");
   hline(c, 7, 7, 24, "H");
-  hline(c, 8, 7, 24, "H");
-  hline(c, 9, 7, 12, "H");
-  hline(c, 9, 19, 24, "H");
-  hline(c, 10, 7, 11, "H");
-  hline(c, 10, 20, 23, "H");
-  hline(c, 11, 8, 10, "H");
-  hline(c, 11, 21, 22, "H");
-  hline(c, 6, 11, 17, "h");
+  hline(c, 8, 7, 12, "H");
+  hline(c, 8, 19, 24, "H");
+  hline(c, 9, 7, 11, "H");
+  hline(c, 9, 20, 23, "H");
+  hline(c, 10, 8, 10, "H");
+  hline(c, 10, 21, 22, "H");
+  hline(c, 5, 11, 18, "h");
 
   if (style === "spiky") {
-    line(c, 9, 6, 5, 1, "H");
-    line(c, 13, 5, 13, 0, "H");
-    line(c, 17, 5, 20, 0, "H");
-    line(c, 21, 6, 27, 2, "H");
+    line(c, 9, 5, 5, 0, "H");
+    line(c, 13, 4, 13, 0, "H");
+    line(c, 17, 4, 20, 0, "H");
+    line(c, 21, 5, 28, 1, "H");
   } else if (style === "short") {
     hline(c, 8, 9, 22, "H");
     hline(c, 9, 9, 21, "H");
     hline(c, 10, 10, 20, "H");
   } else if (style === "swept") {
-    line(c, 9, 9, 23, 7, "H");
-    line(c, 10, 10, 24, 10, "H");
-    line(c, 12, 12, 22, 15, "H");
+    line(c, 9, 9, 24, 7, "H");
+    line(c, 10, 10, 25, 10, "H");
+    line(c, 12, 12, 23, 15, "H");
   } else {
     put(c, 11, 11, "H");
     put(c, 12, 12, "H");
@@ -329,22 +342,22 @@ function drawHat(c: Canvas, appearance: HeroAppearance, pose: HeroPose) {
   const beanie = appearance.hat === "dark-beanie";
 
   if (beanie) {
-    hline(c, 4, 11, 20, "C");
-    hline(c, 5, 9, 22, "C");
-    hline(c, 6, 8, 23, "C");
-    hline(c, 7, 9, 22, "c");
-    hline(c, 8, 10, 21, "c");
+    hline(c, 3, 8, 21, "C");
+    hline(c, 4, 9, 22, "C");
+    hline(c, 5, 8, 23, "C");
+    hline(c, 6, 9, 22, "c");
+    hline(c, 7, 10, 21, "c");
     return;
   }
 
-  hline(c, 3, 10, 21, "C");
-  hline(c, 4, 8, 23, "C");
-  hline(c, 5, 7, 24, "C");
-  hline(c, 6, 9, 22, "c");
+  hline(c, 2, 10, 21, "C");
+  hline(c, 3, 8, 23, "C");
+  hline(c, 4, 7, 24, "C");
+  hline(c, 5, 9, 22, "c");
 
   if (!back) {
-    if (side) hline(c, 8, 21, 28, "C");
-    else hline(c, 8, 20, 28, "C");
+    if (side) hline(c, 7, 21, 29, "C");
+    else hline(c, 7, 20, 29, "C");
   }
 }
 
@@ -357,69 +370,72 @@ function drawClothesAndBody(c: Canvas, appearance: HeroAppearance, pose: HeroPos
   else drawFrontFace(c, appearance);
 
   // neck
-  rect(c, 14, 20, 4, 4, back ? "H" : "S");
+  rect(c, 14, 21, 4, 4, back ? "H" : "S");
 
   // torso
   if (side) {
-    hline(c, 23, 12, 20, "T");
-    hline(c, 24, 11, 21, "T");
-    hline(c, 25, 11, 21, "T");
-    hline(c, 26, 10, 21, "T");
-    hline(c, 27, 10, 21, "T");
-    hline(c, 28, 11, 20, "T");
-    hline(c, 29, 12, 19, "T");
-    hline(c, 30, 12, 19, "T");
-    hline(c, 24, 12, 14, "t");
-    hline(c, 25, 12, 14, "t");
-    hline(c, 26, 19, 20, "l");
-
-    if (shirtStyle === "hoodie") {
-      hline(c, 22, 12, 19, "v");
-      put(c, 20, 23, "v");
-    }
-    if (shirtStyle === "coat") {
-      hline(c, 31, 12, 19, "T");
-      hline(c, 32, 13, 18, "T");
-    }
-
-    rect(c, 20, 24 + (step < 0 ? 1 : 0), 3, 10, "s");
-    rect(c, 20, 33 + (step < 0 ? 1 : 0), 4, 4, "S");
-  } else {
-    hline(c, 23, 10, 21, "T");
-    hline(c, 24, 9, 22, "T");
-    hline(c, 25, 9, 22, "T");
-    hline(c, 26, 9, 22, "T");
-    hline(c, 27, 9, 22, "T");
+    hline(c, 25, 12, 20, "T");
+    hline(c, 26, 11, 21, "T");
+    hline(c, 27, 11, 21, "T");
     hline(c, 28, 10, 21, "T");
     hline(c, 29, 10, 21, "T");
     hline(c, 30, 11, 20, "T");
+    hline(c, 31, 12, 19, "T");
+    hline(c, 32, 12, 19, "T");
+    hline(c, 26, 12, 14, "t");
+    hline(c, 27, 12, 14, "t");
+    hline(c, 28, 19, 20, "l");
 
-    hline(c, 24, 10, 12, "t");
-    hline(c, 25, 10, 12, "t");
-    hline(c, 26, 19, 21, "l");
-
-    if (shirtStyle === "jacket" || shirtStyle === "coat") {
-      line(c, 15, 23, 15, 30, "O");
-      put(c, 16, 26, "l");
-    }
     if (shirtStyle === "hoodie") {
-      hline(c, 22, 11, 20, "v");
-      put(c, 12, 23, "v");
-      put(c, 20, 23, "v");
+      hline(c, 24, 12, 19, "v");
+      put(c, 20, 25, "v");
     }
     if (shirtStyle === "coat") {
-      hline(c, 31, 10, 21, "T");
-      hline(c, 32, 11, 20, "T");
+      hline(c, 33, 12, 19, "T");
+      hline(c, 34, 13, 18, "T");
+    }
+
+    // thinner side arm
+    rect(c, 21, 26 + (step < 0 ? 1 : 0), 2, 9, "s");
+    rect(c, 20, 34 + (step < 0 ? 1 : 0), 3, 3, "S");
+  } else {
+    hline(c, 25, 10, 21, "T");
+    hline(c, 26, 9, 22, "T");
+    hline(c, 27, 9, 22, "T");
+    hline(c, 28, 9, 22, "T");
+    hline(c, 29, 9, 22, "T");
+    hline(c, 30, 10, 21, "T");
+    hline(c, 31, 10, 21, "T");
+    hline(c, 32, 11, 20, "T");
+
+    hline(c, 26, 10, 12, "t");
+    hline(c, 27, 10, 12, "t");
+    hline(c, 28, 19, 21, "l");
+
+    if (shirtStyle === "jacket" || shirtStyle === "coat") {
+      line(c, 15, 25, 15, 32, "O");
+      put(c, 16, 28, "l");
+    }
+    if (shirtStyle === "hoodie") {
+      hline(c, 24, 11, 20, "v");
+      put(c, 12, 25, "v");
+      put(c, 20, 25, "v");
+    }
+    if (shirtStyle === "coat") {
+      hline(c, 33, 10, 21, "T");
+      hline(c, 34, 11, 20, "T");
     }
 
     if (back) {
-      rect(c, 6, 24 + (step < 0 ? 1 : 0), 4, 11, "T");
-      rect(c, 22, 24 + (step > 0 ? 1 : 0), 4, 11, "T");
+      // thinner back arms
+      rect(c, 7, 26 + (step < 0 ? 1 : 0), 2, 10, "T");
+      rect(c, 23, 26 + (step > 0 ? 1 : 0), 2, 10, "T");
     } else {
-      rect(c, 5, 24 + (step < 0 ? 1 : 0), 4, 10, "S");
-      rect(c, 23, 24 + (step > 0 ? 1 : 0), 4, 10, "S");
-      rect(c, 5, 33 + (step < 0 ? 1 : 0), 4, 4, "S");
-      rect(c, 23, 33 + (step > 0 ? 1 : 0), 4, 4, "S");
+      // thinner front arms
+      rect(c, 6, 26 + (step < 0 ? 1 : 0), 2, 9, "S");
+      rect(c, 24, 26 + (step > 0 ? 1 : 0), 2, 9, "S");
+      rect(c, 5, 34 + (step < 0 ? 1 : 0), 3, 3, "S");
+      rect(c, 24, 34 + (step > 0 ? 1 : 0), 3, 3, "S");
     }
   }
 
@@ -428,23 +444,23 @@ function drawClothesAndBody(c: Canvas, appearance: HeroAppearance, pose: HeroPos
   const rightLegH = step > 0 ? 10 : 8;
 
   if (side) {
-    rect(c, 12, 31, 5, leftLegH, "P");
-    rect(c, 18, 31, 5, rightLegH, "P");
-    rect(c, step < 0 ? 9 : 11, 40, 8, 3, "K");
-    rect(c, step > 0 ? 18 : 17, step > 0 ? 40 : 39, 8, 3, "K");
-    put(c, 13, 32, "p");
-    put(c, 19, 32, "p");
+    rect(c, 12, 33, 5, leftLegH, "P");
+    rect(c, 18, 33, 5, rightLegH, "P");
+    rect(c, step < 0 ? 9 : 11, 42, 8, 3, "K");
+    rect(c, step > 0 ? 18 : 17, step > 0 ? 42 : 41, 8, 3, "K");
+    put(c, 13, 34, "p");
+    put(c, 19, 34, "p");
   } else {
-    rect(c, 10, 31, 5, leftLegH, "P");
-    rect(c, 17, 31, 5, rightLegH, "P");
-    rect(c, step < 0 ? 7 : 9, 40, 8, 3, "K");
-    rect(c, step > 0 ? 17 : 16, step > 0 ? 40 : 39, 8, 3, "K");
-    put(c, 11, 32, "p");
-    put(c, 18, 32, "p");
+    rect(c, 10, 33, 5, leftLegH, "P");
+    rect(c, 17, 33, 5, rightLegH, "P");
+    rect(c, step < 0 ? 7 : 9, 42, 8, 3, "K");
+    rect(c, step > 0 ? 17 : 16, step > 0 ? 42 : 41, 8, 3, "K");
+    put(c, 11, 34, "p");
+    put(c, 18, 34, "p");
   }
 
-  put(c, side ? 13 : 11, 40, "k");
-  put(c, side ? 20 : 18, step > 0 ? 40 : 39, "k");
+  put(c, side ? 13 : 11, 42, "k");
+  put(c, side ? 20 : 18, step > 0 ? 42 : 41, "k");
 }
 
 function buildSprite(appearance: HeroAppearance, pose: HeroPose) {
@@ -452,8 +468,7 @@ function buildSprite(appearance: HeroAppearance, pose: HeroPose) {
   drawClothesAndBody(c, appearance, pose);
   drawHair(c, appearance, pose);
   drawHat(c, appearance, pose);
-  c = outline(c);
-  return c;
+  return outline(c);
 }
 
 function palette(appearance: HeroAppearance): Record<PixelKey, string> {
@@ -472,7 +487,6 @@ function palette(appearance: HeroAppearance): Record<PixelKey, string> {
     R: BLUSH,
     H: appearance.hair === "none" ? skin : hair,
     h: appearance.hair === "none" ? skin : shade(hair, 34),
-    x: appearance.hair === "none" ? skin : shade(hair, -36),
     E: appearance.sunglasses === "none" ? EYE : "#111111",
     W: WHITE,
     M: OUTLINE,
@@ -530,7 +544,7 @@ export function BetterHeroSprite({
           style={{
             position: "absolute",
             left: 8 * pixelSize,
-            top: 43 * pixelSize,
+            top: 44 * pixelSize,
             width: 16 * pixelSize,
             height: 3 * pixelSize,
             backgroundColor: "rgba(37,32,24,0.28)",
