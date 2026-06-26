@@ -35,8 +35,6 @@ import { TerrainEditorOverlay } from "../editor/TerrainEditorOverlay";
 import { useBuildingMovement } from "../editor/buildings/useBuildingMovement";
 import { useBuildingResize } from "../editor/buildings/useBuildingResize";
 import { useBuildingPlacement } from "../editor/buildings/useBuildingPlacement";
-import { useBuildingDeletion } from "../editor/buildings/useBuildingDeletion";
-import { useObjectEditor } from "../editor/objects/useObjectEditor";
 import {
   buildingAtCoord,
   clearBuildingFootprintFromRows,
@@ -827,7 +825,15 @@ function GameScreen({ onExit }: { onExit: () => void }) {
             if (building) removeEditorBuilding(building);
           }
           if (selection?.kind === "object") {
-            deleteSelectedObject(selection.coord);
+            const id = mapIdRef.current;
+            setEditedObjectsByMap(prev => {
+              const base = prev[id] ?? { ...objectsForMap(id) };
+              const next = { ...base };
+              delete next[selection.coord];
+              editedObjectsByMapRef.current = { ...editedObjectsByMapRef.current, [id]: next };
+              return { ...prev, [id]: next };
+            });
+            setEditorSelection(null);
           }
           if (selection?.kind === "npc") {
             upsertEditedNpcsForMap(mapIdRef.current, current => current.filter(npc => npc.id !== selection.id));
@@ -1006,47 +1012,76 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     buildingsForMap,
   });
 
-  const {
-    removeEditorBuilding,
-  } = useBuildingDeletion({
-    mapIdRef,
-    removedBuildingIdsByMapRef,
-    editedBuildingsByMapRef,
-    setRemovedBuildingIdsByMap,
-    setEditedBuildingsByMap,
-    setEditorSelection,
-    clearBuildingFromEditedRows,
-    buildingsForMap,
-  });
 
-  const {
-    deleteSelectedObject,
-    duplicateSelectedObject,
-    moveEditorObjectTo,
-  } = useObjectEditor({
-    mapIdRef,
-    editedObjectsByMapRef,
-    setEditedObjectsByMap,
-    setDraggedObjectCoord,
-    setEditorSelection,
-    objectsForMap,
-    draggedObjectCoordRef,
-  });
 
+
+  const removeEditorBuilding = (building: EditorBuildingAsset) => {
+    const id = mapIdRef.current;
+
+    clearBuildingFromEditedRows(id, building);
+
+    setRemovedBuildingIdsByMap(prev => {
+      const nextSet = new Set(prev[id] ?? []);
+      nextSet.add(building.id);
+      const next = { ...prev, [id]: nextSet };
+      removedBuildingIdsByMapRef.current = next;
+      return next;
+    });
+
+    setEditedBuildingsByMap(prev => {
+      const current = prev[id] ?? buildingsForMap(id);
+      const nextBuildings = current.filter(item => item.id !== building.id);
+      editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: nextBuildings };
+      return { ...prev, [id]: nextBuildings };
+    });
+
+    setEditorSelection(null);
+  };
 
 
 
 
 
+  const moveEditorObjectTo = (fromCoord: string, x: number, y: number) => {
+    const id = mapIdRef.current;
+    const toCoord = `${x},${y}`;
+    if (fromCoord === toCoord) return;
+
+    setEditedObjectsByMap(prev => {
+      const base = prev[id] ?? { ...objectsForMap(id) };
+      const obj = base[fromCoord];
+      if (!obj) return prev;
+
+      const next = { ...base };
+      delete next[fromCoord];
+      next[toCoord] = obj;
+      editedObjectsByMapRef.current = { ...editedObjectsByMapRef.current, [id]: next };
+      return { ...prev, [id]: next };
+    });
+
+    setDraggedObjectCoord(toCoord);
+    draggedObjectCoordRef.current = toCoord;
+    setEditorSelection({ kind: "object", coord: toCoord });
+  };
 
 
 
+  const duplicateSelectedObject = (coord: string) => {
+    const id = mapIdRef.current;
+    const [x, y] = coord.split(",").map(Number);
+    const nextCoord = `${x + 1},${y}`;
 
+    setEditedObjectsByMap(prev => {
+      const base = prev[id] ?? { ...objectsForMap(id) };
+      const obj = base[coord];
+      if (!obj) return prev;
+      const next = { ...base, [nextCoord]: obj };
+      editedObjectsByMapRef.current = { ...editedObjectsByMapRef.current, [id]: next };
+      return { ...prev, [id]: next };
+    });
 
-
-
-
-
+    setEditorSelection({ kind: "object", coord: nextCoord });
+  };
 
 
 
