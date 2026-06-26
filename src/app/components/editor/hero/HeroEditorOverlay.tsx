@@ -3,7 +3,7 @@ import {
   type HeroAppearance,
   getHeroOptionColor,
 } from "./heroAppearance";
-import { PolishedHeroSprite, type HeroPose } from "./PolishedHeroSprite";
+import { BetterHeroSprite, type HeroPose } from "./BetterHeroSprite";
 
 const PX = { fontFamily: "'Press Start 2P', monospace" } as const;
 const VT = { fontFamily: "'VT323', monospace" } as const;
@@ -57,12 +57,12 @@ export function HeroEditorOverlay({
         <div style={heroHeaderStyle}>
           <div>
             <div style={titleBannerStyle}>HERO EDITOR</div>
-            <div style={subtitleStyle}>Cleaner in-game sprite renderer.</div>
+            <div style={subtitleStyle}>Polished 32×48 pixel hero.</div>
             <div style={nameCardStyle}>{heroName.trim() || "Hero"}</div>
           </div>
 
           <div style={headerSpriteStyle}>
-            <PolishedHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={4} />
+            <BetterHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={4} />
           </div>
         </div>
 
@@ -72,14 +72,14 @@ export function HeroEditorOverlay({
             <div style={previewGridStyle}>
               {POSES.map(({ pose, label }) => (
                 <PreviewCard key={pose} label={label}>
-                  <PolishedHeroSprite appearance={heroAppearance} pose={pose} pixelSize={3} />
+                  <BetterHeroSprite appearance={heroAppearance} pose={pose} pixelSize={2.5} />
                 </PreviewCard>
               ))}
             </div>
 
             <div style={hintBoxStyle}>
               <span style={{ fontSize: 26 }}>▣</span>
-              <span>This version prioritizes a cleaner, more cohesive sprite over rough placeholder PNG layers.</span>
+              <span>This is a cleaner 32×48 sprite designed to fit a 48×48 game tile.</span>
             </div>
           </div>
 
@@ -322,7 +322,7 @@ const previewGridStyle: React.CSSProperties = {
 };
 
 const previewCardStyle: React.CSSProperties = {
-  minHeight: 145,
+  minHeight: 155,
   backgroundColor: "#fff6d0",
   border: "3px solid #5d4528",
   display: "flex",

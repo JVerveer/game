@@ -41,7 +41,7 @@ import { useNpcEditor } from "../editor/npcs/useNpcEditor";
 import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
-import { PolishedHeroSprite, heroPoseFor } from "../editor/hero/PolishedHeroSprite";
+import { BetterHeroSprite, heroPoseFor } from "../editor/hero/BetterHeroSprite";
 import {
   DEFAULT_HERO_APPEARANCE,
   type HeroAppearance,
@@ -1179,13 +1179,13 @@ useRuntimeEffects({
               justifyContent: "center",
               transform: facing === "left" ? "scaleX(-1)" : undefined,
               transformOrigin: "center bottom",
-              translate: "0 1px",
+              translate: "0 0",
             }}
           >
-            <PolishedHeroSprite
+            <BetterHeroSprite
               appearance={heroAppearance}
               pose={heroPoseFor(facing, isWalking, walkFrame)}
-              pixelSize={1.5}
+              pixelSize={1}
               showShadow={false}
             />
           </div>
