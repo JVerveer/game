@@ -35,6 +35,10 @@ import { TerrainEditorOverlay } from "../editor/TerrainEditorOverlay";
 import { useBuildingMovement } from "../editor/buildings/useBuildingMovement";
 import { useBuildingResize } from "../editor/buildings/useBuildingResize";
 import { useBuildingPlacement } from "../editor/buildings/useBuildingPlacement";
+import { useBuildingDeletion } from "../editor/buildings/useBuildingDeletion";
+import { useObjectEditor } from "../editor/objects/useObjectEditor";
+import { useNpcEditor } from "../editor/npcs/useNpcEditor";
+import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import {
   buildingAtCoord,
   clearBuildingFootprintFromRows,
@@ -419,57 +423,6 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   };
   const npcsForMap = (id: GameMapId) => editedNpcsByMapRef.current[id] ?? npcsRef.current.filter(npc => npc.mapId === id).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking }));
 
-  const movingNpcFromEditorAsset = (id: GameMapId, npc: EditorNpcAsset): MovingNpc => ({
-    id: npc.id,
-    mapId: id,
-    x: npc.x,
-    y: npc.y,
-    homeX: npc.homeX ?? npc.x,
-    homeY: npc.homeY ?? npc.y,
-    name: npc.name,
-    lines: npc.lines,
-    variant: npc.variant,
-    style: npc.style,
-    walking: npc.walking,
-  });
-
-  const syncRuntimeNpcsForMap = (id: GameMapId, editorNpcs: EditorNpcAsset[]) => {
-    setNpcs(prev => [
-      ...prev.filter(npc => npc.mapId !== id),
-      ...editorNpcs.map(npc => movingNpcFromEditorAsset(id, npc)),
-    ]);
-  };
-
-  const upsertEditedNpcsForMap = (id: GameMapId, updater: (current: EditorNpcAsset[]) => EditorNpcAsset[]) => {
-    // Compute synchronously first. Do not rely on React's async state callback
-    // before syncing runtime NPCs, otherwise the runtime list can be replaced
-    // with an empty array.
-    const base = editedNpcsByMapRef.current[id] ?? npcsRef.current
-      .filter(npc => npc.mapId === id)
-      .map(npc => ({
-        id: npc.id,
-        x: npc.x,
-        y: npc.y,
-        homeX: npc.homeX,
-        homeY: npc.homeY,
-        name: npc.name,
-        lines: [...npc.lines],
-        variant: npc.variant,
-        style: npc.style,
-        walking: npc.walking,
-      }));
-
-    const nextForMap = updater(base.map(npc => ({ ...npc, lines: [...npc.lines] })));
-
-    editedNpcsByMapRef.current = {
-      ...editedNpcsByMapRef.current,
-      [id]: nextForMap,
-    };
-    setEditedNpcsByMap(prev => ({ ...prev, [id]: nextForMap }));
-    syncRuntimeNpcsForMap(id, nextForMap);
-    return nextForMap;
-  };
-
   const selectedNpc = editorSelection?.kind === "npc"
     ? displayEditorNpcs.find(npc => npc.id === editorSelection.id)
     : null;
@@ -800,20 +753,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
           }
           if (selection?.kind === "object") duplicateSelectedObject(selection.coord);
           if (selection?.kind === "npc") {
-            const npc = npcsForMap(mapIdRef.current).find(item => item.id === selection.id);
-            if (npc) {
-              const clone: EditorNpcAsset = {
-                ...npc,
-                id: `${mapIdRef.current}-editor-npc-${Date.now()}-copy`,
-                x: npc.x + 1,
-                homeX: npc.x + 1,
-                y: npc.y,
-                homeY: npc.y,
-                lines: [...npc.lines],
-              };
-              upsertEditedNpcsForMap(mapIdRef.current, current => [...current, clone]);
-              setEditorSelection({ kind: "npc", id: clone.id });
-            }
+            duplicateSelectedNpc(selection.id);
           }
           return;
         }
@@ -825,19 +765,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
             if (building) removeEditorBuilding(building);
           }
           if (selection?.kind === "object") {
-            const id = mapIdRef.current;
-            setEditedObjectsByMap(prev => {
-              const base = prev[id] ?? { ...objectsForMap(id) };
-              const next = { ...base };
-              delete next[selection.coord];
-              editedObjectsByMapRef.current = { ...editedObjectsByMapRef.current, [id]: next };
-              return { ...prev, [id]: next };
-            });
-            setEditorSelection(null);
+            deleteSelectedObject(selection.coord);
           }
           if (selection?.kind === "npc") {
-            upsertEditedNpcsForMap(mapIdRef.current, current => current.filter(npc => npc.id !== selection.id));
-            setEditorSelection(null);
+            deleteSelectedNpc(selection.id);
           }
           return;
         }
@@ -963,17 +894,8 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     resizeBuildingIdRef.current = null;
   };
 
-  const moveSelectedNpcTo = (x: number, y: number) => {
-    const id = mapIdRef.current;
-    const npcId = draggedNpcIdRef.current;
-    if (!npcId) return;
-    const next = upsertEditedNpcsForMap(id, current => current.map(npc =>
-      npc.id === npcId ? { ...npc, x, y, homeX: x, homeY: y } : npc
-    ));
-    if (next.some(npc => npc.id === npcId)) setEditorSelection({ kind: "npc", id: npcId });
-  };
   const {
-    clearBuildingFromEditedRows,
+    clearBuildingFromEditedRows: clearBuildingRowsForMovement,
     moveEditorBuildingTo,
   } = useBuildingMovement({
     mapIdRef,
@@ -1012,216 +934,92 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     buildingsForMap,
   });
 
+  const {
+    removeEditorBuilding,
+  } = useBuildingDeletion({
+    mapIdRef,
+    removedBuildingIdsByMapRef,
+    editedBuildingsByMapRef,
+    setRemovedBuildingIdsByMap,
+    setEditedBuildingsByMap,
+    setEditorSelection,
+    clearBuildingFromEditedRows: clearBuildingRowsForMovement,
+    buildingsForMap,
+  });
 
+  const {
+    deleteSelectedObject,
+    duplicateSelectedObject,
+    moveEditorObjectTo,
+  } = useObjectEditor({
+    mapIdRef,
+    editedObjectsByMapRef,
+    setEditedObjectsByMap,
+    setDraggedObjectCoord,
+    setEditorSelection,
+    objectsForMap,
+    draggedObjectCoordRef,
+  });
 
+  const {
+    deleteSelectedNpc,
+    duplicateSelectedNpc,
+    moveSelectedNpcTo,
+    paintNpcEditorTile,
+    upsertEditedNpcsForMap,
+  } = useNpcEditor({
+    mapIdRef,
+    npcsRef,
+    editedNpcsByMapRef,
+    draggedNpcIdRef,
+    editorSelectionRef,
+    npcEditActionRef,
+    npcEditorActionRef,
+    editorNpcNameRef,
+    editorNpcPresetIdRef,
+    editorNpcWalkingRef,
+    editorNpcLinesRef,
+    setEditedNpcsByMap,
+    setNpcs,
+    setEditorSelection,
+    npcsForMap,
+    isTownMap,
+    npcVisualPresets: NPC_VISUAL_PRESETS,
+  });
 
-  const removeEditorBuilding = (building: EditorBuildingAsset) => {
-    const id = mapIdRef.current;
-
-    clearBuildingFromEditedRows(id, building);
-
-    setRemovedBuildingIdsByMap(prev => {
-      const nextSet = new Set(prev[id] ?? []);
-      nextSet.add(building.id);
-      const next = { ...prev, [id]: nextSet };
-      removedBuildingIdsByMapRef.current = next;
-      return next;
-    });
-
-    setEditedBuildingsByMap(prev => {
-      const current = prev[id] ?? buildingsForMap(id);
-      const nextBuildings = current.filter(item => item.id !== building.id);
-      editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: nextBuildings };
-      return { ...prev, [id]: nextBuildings };
-    });
-
-    setEditorSelection(null);
-  };
-
-
-
-
-
-  const moveEditorObjectTo = (fromCoord: string, x: number, y: number) => {
-    const id = mapIdRef.current;
-    const toCoord = `${x},${y}`;
-    if (fromCoord === toCoord) return;
-
-    setEditedObjectsByMap(prev => {
-      const base = prev[id] ?? { ...objectsForMap(id) };
-      const obj = base[fromCoord];
-      if (!obj) return prev;
-
-      const next = { ...base };
-      delete next[fromCoord];
-      next[toCoord] = obj;
-      editedObjectsByMapRef.current = { ...editedObjectsByMapRef.current, [id]: next };
-      return { ...prev, [id]: next };
-    });
-
-    setDraggedObjectCoord(toCoord);
-    draggedObjectCoordRef.current = toCoord;
-    setEditorSelection({ kind: "object", coord: toCoord });
-  };
-
-
-
-  const duplicateSelectedObject = (coord: string) => {
-    const id = mapIdRef.current;
-    const [x, y] = coord.split(",").map(Number);
-    const nextCoord = `${x + 1},${y}`;
-
-    setEditedObjectsByMap(prev => {
-      const base = prev[id] ?? { ...objectsForMap(id) };
-      const obj = base[coord];
-      if (!obj) return prev;
-      const next = { ...base, [nextCoord]: obj };
-      editedObjectsByMapRef.current = { ...editedObjectsByMapRef.current, [id]: next };
-      return { ...prev, [id]: next };
-    });
-
-    setEditorSelection({ kind: "object", coord: nextCoord });
-  };
-
-
-
-  const transformDragTo = (x: number, y: number) => {
-    if (!isSelectEditorMode(editorModeRef.current)) return false;
-
-    if (resizeBuildingIdRef.current) {
-      resizeEditorBuildingTo(resizeBuildingIdRef.current, x, y);
-      return true;
-    }
-
-    if (draggedBuildingIdRef.current) {
-      moveEditorBuildingTo(draggedBuildingIdRef.current, x, y);
-      return true;
-    }
-
-    if (draggedObjectCoordRef.current) {
-      moveEditorObjectTo(draggedObjectCoordRef.current, x, y);
-      return true;
-    }
-
-    if (draggedNpcIdRef.current) {
-      moveSelectedNpcTo(x, y);
-      return true;
-    }
-
-    return false;
-  };
-
-  const paintEditorTile = (x: number, y: number) => {
-    const id = mapIdRef.current;
-    const coord = `${x},${y}`;
-
-    if (isSelectEditorMode(editorModeRef.current) && isEditorDraggingRef.current && transformDragTo(x, y)) {
-      return;
-    }
-
-    if (isSelectEditorMode(editorModeRef.current)) {
-      const npc = npcsRef.current.find(item => item.mapId === id && item.x === x && item.y === y);
-      if (npc) {
-        setEditorSelection({ kind: "npc", id: npc.id });
-        setDraggedNpcId(npc.id);
-        draggedNpcIdRef.current = npc.id;
-        return;
-      }
-
-      // Objects are only 1 tile, so they should win over large building
-      // footprints when an object sits on/near a building.
-      if (objectsForMap(id)[coord]) {
-        setEditorSelection({ kind: "object", coord });
-        setDraggedObjectCoord(coord);
-        draggedObjectCoordRef.current = coord;
-        return;
-      }
-
-      const building = buildingAtCoord(buildingsForMap(id), x, y);
-      if (building) {
-        const isResizeHandle = x === building.x + building.w - 1 && y === building.y + building.h - 1;
-        setEditorSelection({ kind: "building", id: building.id });
-        setDraggedBuildingId(null);
-        draggedBuildingIdRef.current = null;
-        setResizeBuildingId(null);
-        resizeBuildingIdRef.current = null;
-
-        if (isResizeHandle) {
-          setResizeBuildingId(building.id);
-          resizeBuildingIdRef.current = building.id;
-        } else {
-          setDraggedBuildingId(building.id);
-          draggedBuildingIdRef.current = building.id;
-        }
-        return;
-      }
-
-      setEditorSelection({ kind: "tile", x, y });
-      return;
-    }
-
-    if (editorModeRef.current === "npcs") {
-      const clickedNpc = npcsRef.current.find(item => item.mapId === id && item.x === x && item.y === y);
-
-      if (npcEditorActionRef.current === "delete" || npcEditActionRef.current === "erase") {
-        if (clickedNpc) {
-          upsertEditedNpcsForMap(id, current => current.filter(npc => npc.id !== clickedNpc.id));
-          if (editorSelectionRef.current?.kind === "npc" && editorSelectionRef.current.id === clickedNpc.id) {
-            setEditorSelection(null);
-          }
-        }
-        return;
-      }
-
-      const next = upsertEditedNpcsForMap(id, current => {
-        const preset = NPC_VISUAL_PRESETS.find(item => item.id === editorNpcPresetIdRef.current) ?? NPC_VISUAL_PRESETS[0];
-        const npcNumber = current.length + 1;
-        const newNpc: EditorNpcAsset = {
-          id: `${id}-editor-npc-${Date.now()}-${npcNumber}`,
-          x,
-          y,
-          homeX: x,
-          homeY: y,
-          name: editorNpcNameRef.current.trim() || preset.label,
-          lines: editorNpcLinesRef.current.split("\n").map(line => line.trim()).filter(Boolean),
-          variant: preset.variant,
-          style: isTownMap(id) ? `npc-town-${id} npc-role-${preset.styleRole}` : `npc-role-${preset.styleRole}`,
-          walking: editorNpcWalkingRef.current,
-        };
-        return [...current, newNpc];
-      });
-
-      const placed = next.find(npc => npc.x === x && npc.y === y);
-      if (placed) setEditorSelection({ kind: "npc", id: placed.id });
-      return;
-    }
-
-    if (editorModeRef.current === "buildings") {
-      placeEditorBuilding(x, y);
-      return;
-    }
-
-    if (editorModeRef.current === "objects") {
-      setEditedObjectsByMap(prev => {
-        const base = prev[id] ?? { ...objectsForMap(id) };
-        const next = { ...base };
-        if (objectEditActionRef.current === "erase") {
-          delete next[coord];
-        } else {
-          next[coord] = editorObjectIdRef.current;
-        }
-        return { ...prev, [id]: next };
-      });
-      return;
-    }
-
-    setEditedRowsByMap(prev => {
-      const base = prev[id] ?? rowsForMap(id).map(row => [...row]);
-      const next = base.map(row => [...row]);
-      if (next[y]?.[x] !== undefined) next[y][x] = editorTileRef.current;
-      return { ...prev, [id]: next };
-    });
-  };
+  const {
+    paintEditorTile,
+    transformDragTo,
+  } = useTerrainPainter({
+    mapIdRef,
+    editorModeRef,
+    isEditorDraggingRef,
+    resizeBuildingIdRef,
+    draggedBuildingIdRef,
+    draggedObjectCoordRef,
+    draggedNpcIdRef,
+    objectEditActionRef,
+    editorObjectIdRef,
+    editorTileRef,
+    npcsRef,
+    setEditorSelection,
+    setDraggedNpcId,
+    setDraggedObjectCoord,
+    setDraggedBuildingId,
+    setResizeBuildingId,
+    buildingsForMap,
+    objectsForMap,
+    rowsForMap,
+    buildingAtCoord,
+    resizeEditorBuildingTo,
+    moveEditorBuildingTo,
+    moveEditorObjectTo,
+    moveSelectedNpcTo,
+    paintNpcEditorTile,
+    placeEditorBuilding,
+    setEditedObjectsByMap,
+    setEditedRowsByMap,
+  });
 
   const resetEditedTerrain = () => {
     const id = mapIdRef.current;
