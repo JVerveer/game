@@ -1,27 +1,71 @@
+import { useEffect, useMemo, useState } from "react";
+import {
+  CHARACTER_LAYER_ORDER,
+  CHARACTER_TILE_SIZE,
+  optionFor,
+} from "./characterAssets";
+import { framesFor } from "./characterFrames";
 import type {
   CharacterAnimation,
   CharacterAppearance,
   CharacterFacing,
+  CharacterFrame,
   CharacterLayerCategory,
 } from "./characterTypes";
-import {
-  CHARACTER_LAYER_ORDER,
-  optionFor,
-} from "./characterAssets";
 
-const BASE_SIZE = 48;
+function useAnimationFrameIndex(frameCount: number, animation: CharacterAnimation) {
+  const [index, setIndex] = useState(0);
 
-function animationTransform({
-  animation,
-  facing,
+  useEffect(() => {
+    setIndex(0);
+    if (animation !== "walk" || frameCount <= 1) return;
+
+    const id = window.setInterval(() => {
+      setIndex(current => (current + 1) % frameCount);
+    }, 135);
+
+    return () => window.clearInterval(id);
+  }, [animation, frameCount]);
+
+  return index;
+}
+
+function AtlasLayer({
+  category,
+  optionId,
+  frame,
+  pixelSize,
 }: {
-  animation: CharacterAnimation;
-  facing: CharacterFacing;
+  category: CharacterLayerCategory;
+  optionId: string;
+  frame: CharacterFrame;
+  pixelSize: number;
 }) {
-  const mirror = facing === "left";
-  const bob = animation === "walk" ? "translateY(-1px)" : "translateY(0)";
-  const scale = mirror ? "scaleX(-1)" : "scaleX(1)";
-  return `${scale} ${bob}`;
+  const option = optionFor(category, optionId);
+  if (!option || option.id === "none") return null;
+
+  const tile = CHARACTER_TILE_SIZE;
+  const displaySize = tile * pixelSize;
+  const backgroundWidth = option.atlasWidth * pixelSize;
+  const backgroundHeight = option.atlasHeight * pixelSize;
+
+  return (
+    <div
+      aria-hidden
+      style={{
+        position: "absolute",
+        inset: 0,
+        width: displaySize,
+        height: displaySize,
+        backgroundImage: `url(${option.src})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: `${backgroundWidth}px ${backgroundHeight}px`,
+        backgroundPosition: `${-frame.col * displaySize}px ${-frame.row * displaySize}px`,
+        imageRendering: "pixelated",
+        pointerEvents: "none",
+      }}
+    />
+  );
 }
 
 export function CharacterRenderer({
@@ -37,7 +81,11 @@ export function CharacterRenderer({
   pixelSize?: number;
   showShadow?: boolean;
 }) {
-  const size = BASE_SIZE * pixelSize;
+  const frameList = useMemo(() => framesFor({ facing, animation }), [facing, animation]);
+  const frameIndex = useAnimationFrameIndex(frameList.length, animation);
+  const frame = frameList[frameIndex] ?? frameList[0];
+
+  const size = CHARACTER_TILE_SIZE * pixelSize;
 
   return (
     <div
@@ -46,9 +94,6 @@ export function CharacterRenderer({
         width: size,
         height: size,
         imageRendering: "pixelated",
-        transform: animationTransform({ animation, facing }),
-        transformOrigin: "center bottom",
-        transition: animation === "walk" ? "transform 80ms steps(1, end)" : undefined,
         flex: "0 0 auto",
       }}
     >
@@ -66,28 +111,15 @@ export function CharacterRenderer({
         />
       )}
 
-      {CHARACTER_LAYER_ORDER.map((category: CharacterLayerCategory) => {
-        const selectedId = appearance[category];
-        const option = optionFor(category, selectedId);
-        if (!option || option.id === "none") return null;
-
-        return (
-          <img
-            key={`${category}-${option.id}`}
-            src={option.src}
-            alt=""
-            draggable={false}
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: size,
-              height: size,
-              imageRendering: "pixelated",
-              pointerEvents: "none",
-            }}
-          />
-        );
-      })}
+      {CHARACTER_LAYER_ORDER.map(category => (
+        <AtlasLayer
+          key={`${category}-${appearance[category]}-${frame.col}-${frame.row}`}
+          category={category}
+          optionId={appearance[category]}
+          frame={frame}
+          pixelSize={pixelSize}
+        />
+      ))}
     </div>
   );
 }

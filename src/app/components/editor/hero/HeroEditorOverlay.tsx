@@ -46,7 +46,7 @@ export function HeroEditorOverlay({
         <div style={headerStyle}>
           <div>
             <div style={titleStyle}>LIMEZU HERO CREATOR</div>
-            <div style={subtitleStyle}>Modular character generator v1.</div>
+            <div style={subtitleStyle}>Atlas-cropped modular character system.</div>
           </div>
 
           <div style={bigPreviewStyle}>
@@ -76,19 +76,19 @@ export function HeroEditorOverlay({
               <Preview title="FRONT">
                 <CharacterRenderer appearance={heroAppearance} facing="down" pixelSize={2} />
               </Preview>
+              <Preview title="BACK">
+                <CharacterRenderer appearance={heroAppearance} facing="up" pixelSize={2} />
+              </Preview>
               <Preview title="LEFT">
                 <CharacterRenderer appearance={heroAppearance} facing="left" pixelSize={2} />
               </Preview>
               <Preview title="RIGHT">
                 <CharacterRenderer appearance={heroAppearance} facing="right" pixelSize={2} />
               </Preview>
-              <Preview title="WALK">
-                <CharacterRenderer appearance={heroAppearance} facing="right" animation="walk" pixelSize={2} />
-              </Preview>
             </div>
 
             <div style={noteStyle}>
-              This first version uses the LimeZu character-generator layers directly. Some options may need renaming/curation after we inspect the exact pack structure.
+              V2 renders a single 48×48 cell from each LimeZu atlas. This fixes the “whole sheet of heroes” issue.
             </div>
           </section>
 
@@ -113,13 +113,15 @@ export function HeroEditorOverlay({
                       >
                         <span style={thumbStageStyle}>
                           {option.id !== "none" && (
-                            <img
-                              src={option.src}
-                              alt=""
-                              draggable={false}
+                            <span
                               style={{
+                                display: "block",
                                 width: 48,
                                 height: 48,
+                                backgroundImage: `url(${option.src})`,
+                                backgroundRepeat: "no-repeat",
+                                backgroundSize: `${option.atlasWidth}px ${option.atlasHeight}px`,
+                                backgroundPosition: category.id === "body" ? "-144px 0px" : "-144px 0px",
                                 imageRendering: "pixelated",
                               }}
                             />

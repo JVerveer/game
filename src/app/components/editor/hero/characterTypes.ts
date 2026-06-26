@@ -17,11 +17,18 @@ export type CharacterFacing = "up" | "down" | "left" | "right";
 
 export type CharacterAnimation = "idle" | "walk";
 
-export type CharacterAssetOption = {
+export type CharacterAtlasOption = {
   id: string;
   label: string;
   src: string;
-  size: [number, number];
+  atlasWidth: number;
+  atlasHeight: number;
 };
 
-export type CharacterAssetManifest = Record<CharacterLayerCategory, CharacterAssetOption[]>;
+export type CharacterAssetManifest = Record<CharacterLayerCategory, readonly CharacterAtlasOption[]>;
+
+export type CharacterFrame = {
+  col: number;
+  row: number;
+  mirror?: boolean;
+};

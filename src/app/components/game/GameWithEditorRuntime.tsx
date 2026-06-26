@@ -1177,7 +1177,6 @@ useRuntimeEffects({
               display: "flex",
               alignItems: "flex-end",
               justifyContent: "center",
-              transform: facing === "left" ? "scaleX(-1)" : undefined,
               transformOrigin: "center bottom",
               translate: "0 0",
             }}
