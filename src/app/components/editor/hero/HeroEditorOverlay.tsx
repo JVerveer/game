@@ -57,7 +57,7 @@ export function HeroEditorOverlay({
         <div style={heroHeaderStyle}>
           <div>
             <div style={titleBannerStyle}>HERO EDITOR</div>
-            <div style={subtitleStyle}>Build your layered pixel-art hero.</div>
+            <div style={subtitleStyle}>Build your polished pixel-art hero.</div>
             <div style={nameCardStyle}>{heroName.trim() || "Hero"}</div>
           </div>
 
@@ -79,7 +79,7 @@ export function HeroEditorOverlay({
 
             <div style={hintBoxStyle}>
               <span style={{ fontSize: 26 }}>▣</span>
-              <span>Layered pixel sprite: front, back and side with two walk frames.</span>
+              <span>Polished layered sprite with idle and two walking frames per direction.</span>
             </div>
           </div>
 

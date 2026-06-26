@@ -10,6 +10,7 @@ export const HERO_APPEARANCE_OPTIONS = {
     { id: "messy-black", label: "Messy Black", color: "#171411", style: "messy" },
     { id: "spiky-blonde", label: "Spiky Blonde", color: "#d9a441", style: "spiky" },
     { id: "short-red", label: "Short Red", color: "#a9432c", style: "short" },
+    { id: "swept-black", label: "Swept Black", color: "#171411", style: "swept" },
     { id: "none", label: "None", color: "transparent", style: "none" },
   ],
   facialHair: [
@@ -26,13 +27,14 @@ export const HERO_APPEARANCE_OPTIONS = {
     { id: "red-cap", label: "Red Cap", color: "#ca4b36" },
     { id: "blue-cap", label: "Blue Cap", color: "#2f63b7" },
     { id: "green-cap", label: "Green Cap", color: "#315f2a" },
+    { id: "dark-beanie", label: "Dark Beanie", color: "#252018" },
   ],
   shirt: [
-    { id: "red-jacket", label: "Red Jacket", color: "#ca4b36" },
-    { id: "blue-jacket", label: "Blue Jacket", color: "#2f63b7" },
-    { id: "green-hoodie", label: "Green Hoodie", color: "#315f2a" },
-    { id: "yellow-tee", label: "Yellow Tee", color: "#e0a92f" },
-    { id: "black-coat", label: "Black Coat", color: "#252018" },
+    { id: "red-jacket", label: "Red Jacket", color: "#ca4b36", style: "jacket" },
+    { id: "blue-jacket", label: "Blue Jacket", color: "#2f63b7", style: "jacket" },
+    { id: "green-hoodie", label: "Green Hoodie", color: "#315f2a", style: "hoodie" },
+    { id: "yellow-tee", label: "Yellow Tee", color: "#e0a92f", style: "tee" },
+    { id: "black-coat", label: "Black Coat", color: "#252018", style: "coat" },
   ],
   pants: [
     { id: "jeans", label: "Jeans", color: "#315f8f" },
