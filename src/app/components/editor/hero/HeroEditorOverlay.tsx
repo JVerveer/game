@@ -88,7 +88,7 @@ export function HeroEditorOverlay({
             </div>
 
             <div style={noteStyle}>
-              V2 renders a single 48×48 cell from each LimeZu atlas. This fixes the “whole sheet of heroes” issue.
+              V3 renders the correct full-body 48×48 cells from the LimeZu atlas. The previous version accidentally cropped the partial head row.
             </div>
           </section>
 
@@ -121,7 +121,7 @@ export function HeroEditorOverlay({
                                 backgroundImage: `url(${option.src})`,
                                 backgroundRepeat: "no-repeat",
                                 backgroundSize: `${option.atlasWidth}px ${option.atlasHeight}px`,
-                                backgroundPosition: category.id === "body" ? "-144px 0px" : "-144px 0px",
+                                backgroundPosition: "-144px -48px",
                                 imageRendering: "pixelated",
                               }}
                             />

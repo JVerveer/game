@@ -610,8 +610,8 @@ export const CHARACTER_ASSET_MANIFEST = {
 export const CHARACTER_LAYER_ORDER: CharacterLayerCategory[] = [
   "body",
   "eyes",
-  "hair",
   "outfit",
+  "hair",
   "accessory",
 ];
 
