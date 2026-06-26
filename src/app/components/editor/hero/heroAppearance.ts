@@ -74,23 +74,18 @@ export const DEFAULT_HERO_APPEARANCE: HeroAppearance = {
   shoes: "black",
 };
 
-export function getHeroOptionColor<K extends HeroAppearanceKey>(
-  category: K,
-  id: HeroAppearance[K],
-): string {
-  const options = HERO_APPEARANCE_OPTIONS[category] as readonly {
-    id: string;
-    color?: string;
-  }[];
-
-  const option = options.find(option => option.id === id);
-  return option?.color ?? "transparent";
-}
-
 export function getHeroOption<K extends HeroAppearanceKey>(
   category: K,
   id: HeroAppearance[K],
 ) {
   const options = HERO_APPEARANCE_OPTIONS[category];
   return options.find(option => option.id === id) ?? options[0];
+}
+
+export function getHeroOptionColor<K extends HeroAppearanceKey>(
+  category: K,
+  id: HeroAppearance[K],
+): string {
+  const options = HERO_APPEARANCE_OPTIONS[category] as readonly { id: string; color?: string }[];
+  return options.find(option => option.id === id)?.color ?? "transparent";
 }

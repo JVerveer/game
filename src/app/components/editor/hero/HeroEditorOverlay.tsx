@@ -3,7 +3,7 @@ import {
   type HeroAppearance,
   getHeroOptionColor,
 } from "./heroAppearance";
-import { ChibiHeroSprite, type HeroPose } from "./ChibiHeroSprite";
+import { ProfessionalPixelHeroSprite, type HeroPose } from "./ProfessionalPixelHeroSprite";
 
 const PX = { fontFamily: "'Press Start 2P', monospace" } as const;
 const VT = { fontFamily: "'VT323', monospace" } as const;
@@ -12,52 +12,10 @@ const RJ = { fontFamily: "'Rajdhani', sans-serif" } as const;
 type HeroAppearanceKey = keyof HeroAppearance;
 
 const PREVIEW_GROUPS: { title: string; poses: { pose: HeroPose; label: string }[] }[] = [
-  {
-    title: "FRONT",
-    poses: [
-      { pose: "frontIdle", label: "IDLE" },
-      { pose: "frontWalk1", label: "WALK 1" },
-      { pose: "frontWalk2", label: "WALK 2" },
-    ],
-  },
-  {
-    title: "BACK",
-    poses: [
-      { pose: "backIdle", label: "IDLE" },
-      { pose: "backWalk1", label: "WALK 1" },
-      { pose: "backWalk2", label: "WALK 2" },
-    ],
-  },
-  {
-    title: "LEFT",
-    poses: [
-      { pose: "sideIdle", label: "IDLE" },
-      { pose: "sideWalk1", label: "WALK 1" },
-      { pose: "sideWalk2", label: "WALK 2" },
-    ],
-  },
-  {
-    title: "RIGHT",
-    poses: [
-      { pose: "sideIdle", label: "IDLE" },
-      { pose: "sideWalk1", label: "WALK 1" },
-      { pose: "sideWalk2", label: "WALK 2" },
-    ],
-  },
-];
-
-const EDITOR_SECTIONS: {
-  title: string;
-  category: HeroAppearanceKey;
-  icon: string;
-}[] = [
-  { title: "Body", category: "skin", icon: "●" },
-  { title: "Hair", category: "hair", icon: "◆" },
-  { title: "Hat", category: "hat", icon: "▰" },
-  { title: "Top", category: "shirt", icon: "▣" },
-  { title: "Bottom", category: "pants", icon: "▥" },
-  { title: "Shoes", category: "shoes", icon: "▱" },
-  { title: "Accessory", category: "sunglasses", icon: "◇" },
+  { title: "FRONT", poses: [{ pose: "frontIdle", label: "IDLE" }, { pose: "frontWalk1", label: "WALK 1" }, { pose: "frontWalk2", label: "WALK 2" }] },
+  { title: "BACK", poses: [{ pose: "backIdle", label: "IDLE" }, { pose: "backWalk1", label: "WALK 1" }, { pose: "backWalk2", label: "WALK 2" }] },
+  { title: "LEFT", poses: [{ pose: "sideIdle", label: "IDLE" }, { pose: "sideWalk1", label: "WALK 1" }, { pose: "sideWalk2", label: "WALK 2" }] },
+  { title: "RIGHT", poses: [{ pose: "sideIdle", label: "IDLE" }, { pose: "sideWalk1", label: "WALK 1" }, { pose: "sideWalk2", label: "WALK 2" }] },
 ];
 
 export function HeroEditorOverlay({
@@ -74,26 +32,17 @@ export function HeroEditorOverlay({
   facing: "up" | "down" | "left" | "right";
   onClose: () => void;
 }) {
-  function updateAppearance<K extends HeroAppearanceKey>(
-    key: K,
-    value: HeroAppearance[K],
-  ) {
-    setHeroAppearance({
-      ...heroAppearance,
-      [key]: value,
-    });
+  function updateAppearance<K extends HeroAppearanceKey>(key: K, value: HeroAppearance[K]) {
+    setHeroAppearance({ ...heroAppearance, [key]: value });
   }
 
   return (
     <div style={overlayStyle}>
       <div style={windowStyle}>
-        <button type="button" onClick={onClose} style={topCloseStyle}>
-          ×
-        </button>
+        <button type="button" onClick={onClose} style={topCloseStyle}>×</button>
 
         <div style={topPreviewPanelStyle}>
           <div style={floatingLabelStyle}>IN-GAME PREVIEW</div>
-
           <div style={directionGridStyle}>
             {PREVIEW_GROUPS.map(group => (
               <div key={group.title} style={directionColumnStyle}>
@@ -107,11 +56,7 @@ export function HeroEditorOverlay({
                         transform: group.title === "LEFT" ? "scaleX(-1)" : undefined,
                       }}
                     >
-                      <ChibiHeroSprite
-                        appearance={heroAppearance}
-                        pose={item.pose}
-                        pixelSize={2}
-                      />
+                      <ProfessionalPixelHeroSprite appearance={heroAppearance} pose={item.pose} pixelSize={2} />
                       <div style={smallPoseLabelStyle}>{item.label}</div>
                     </div>
                   ))}
@@ -126,29 +71,9 @@ export function HeroEditorOverlay({
 
           <div style={editorGridStyle}>
             <aside style={categoryPanelStyle}>
-              <div style={panelHeaderStyle}>CATEGORIES</div>
-              <div style={{ display: "grid", gap: 8 }}>
-                {EDITOR_SECTIONS.map(section => (
-                  <div
-                    key={section.category}
-                    style={{
-                      ...categoryButtonStyle,
-                      background: section.category === "skin"
-                        ? "linear-gradient(#d63f37, #9f2524)"
-                        : "rgba(255,255,255,0.035)",
-                    }}
-                  >
-                    <span style={{ width: 24, textAlign: "center" }}>{section.icon}</span>
-                    <span>{section.title}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div style={miniPreviewPanelStyle}>
-                <div style={panelHeaderStyle}>PREVIEW</div>
-                <div style={miniPreviewBoxStyle}>
-                  <ChibiHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={3} />
-                </div>
+              <div style={panelHeaderStyle}>PREVIEW</div>
+              <div style={miniPreviewBoxStyle}>
+                <ProfessionalPixelHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={3} />
               </div>
             </aside>
 
@@ -166,50 +91,15 @@ export function HeroEditorOverlay({
 
             <aside style={equipmentPanelStyle}>
               <div style={panelHeaderStyle}>EQUIPMENT PREVIEW</div>
-              <div style={tabRowStyle}>
-                <button type="button" style={{ ...tabStyle, backgroundColor: "#b42d2c" }}>IDLE</button>
-                <button type="button" style={tabStyle}>WALK 1</button>
-                <button type="button" style={tabStyle}>WALK 2</button>
-              </div>
-
               <div style={largePreviewBoxStyle}>
-                <ChibiHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={5} />
+                <ProfessionalPixelHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={5} />
               </div>
-
               <label style={{ display: "grid", gap: 8 }}>
                 <span style={rightLabelStyle}>HERO NAME</span>
-                <input
-                  value={heroName}
-                  onChange={event => setHeroName(event.target.value)}
-                  maxLength={18}
-                  style={inputStyle}
-                />
+                <input value={heroName} onChange={event => setHeroName(event.target.value)} maxLength={18} style={inputStyle} />
               </label>
-
-              <button type="button" onClick={onClose} style={saveButtonStyle}>
-                SAVE APPEARANCE
-              </button>
+              <button type="button" onClick={onClose} style={saveButtonStyle}>SAVE APPEARANCE</button>
             </aside>
-          </div>
-        </div>
-
-        <div style={bottomStripStyle}>
-          <div style={bottomStripTitleStyle}>ALL PREVIEW DIRECTIONS</div>
-          <div style={bottomPoseRowStyle}>
-            {PREVIEW_GROUPS.flatMap(group =>
-              group.poses.map(item => (
-                <div
-                  key={`bottom-${group.title}-${item.pose}`}
-                  style={{
-                    ...bottomPoseCellStyle,
-                    transform: group.title === "LEFT" ? "scaleX(-1)" : undefined,
-                  }}
-                >
-                  <ChibiHeroSprite appearance={heroAppearance} pose={item.pose} pixelSize={1.6} />
-                  <div style={bottomPoseLabelStyle}>{item.label}</div>
-                </div>
-              )),
-            )}
           </div>
         </div>
       </div>
@@ -248,7 +138,6 @@ function AppearanceSection<K extends HeroAppearanceKey>({
                 ...swatchStyle,
                 borderColor: selected ? "#e33c38" : "rgba(255,255,255,0.16)",
                 boxShadow: selected ? "0 0 0 2px rgba(227,60,56,0.45)" : "none",
-                backgroundColor: "rgba(255,255,255,0.06)",
               }}
             >
               <span
@@ -411,26 +300,8 @@ const panelHeaderStyle: React.CSSProperties = {
   marginBottom: 14,
 };
 
-const categoryButtonStyle: React.CSSProperties = {
-  ...PX,
-  display: "flex",
-  alignItems: "center",
-  gap: 10,
-  border: "1px solid rgba(255,255,255,0.08)",
-  color: "#f7f0df",
-  padding: "11px 12px",
-  borderRadius: 4,
-  fontSize: "0.42rem",
-};
-
-const miniPreviewPanelStyle: React.CSSProperties = {
-  marginTop: 16,
-  borderTop: "1px solid rgba(255,255,255,0.08)",
-  paddingTop: 14,
-};
-
 const miniPreviewBoxStyle: React.CSSProperties = {
-  height: 180,
+  height: 260,
   background:
     "linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,0.05) 25%, transparent 25%)",
   backgroundSize: "16px 16px",
@@ -484,6 +355,7 @@ const swatchStyle: React.CSSProperties = {
   border: "2px solid rgba(255,255,255,0.15)",
   borderRadius: 5,
   cursor: "pointer",
+  backgroundColor: "rgba(255,255,255,0.06)",
 };
 
 const noneIconStyle: React.CSSProperties = {
@@ -492,22 +364,6 @@ const noneIconStyle: React.CSSProperties = {
   color: "#f7f0df",
   fontSize: "0.65rem",
   lineHeight: "21px",
-};
-
-const tabRowStyle: React.CSSProperties = {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr 1fr",
-  gap: 4,
-};
-
-const tabStyle: React.CSSProperties = {
-  ...PX,
-  border: "1px solid rgba(255,255,255,0.12)",
-  backgroundColor: "#20282b",
-  color: "#f7f0df",
-  padding: "10px 12px",
-  cursor: "pointer",
-  fontSize: "0.46rem",
 };
 
 const largePreviewBoxStyle: React.CSSProperties = {
@@ -545,39 +401,4 @@ const saveButtonStyle: React.CSSProperties = {
   padding: "15px 16px",
   cursor: "pointer",
   fontSize: "0.5rem",
-};
-
-const bottomStripStyle: React.CSSProperties = {
-  margin: 10,
-  border: "2px solid rgba(255,255,255,0.08)",
-  borderRadius: 8,
-  backgroundColor: "#151c1f",
-  padding: 14,
-};
-
-const bottomStripTitleStyle: React.CSSProperties = {
-  ...PX,
-  color: "#f7f0df",
-  fontSize: "0.46rem",
-  marginBottom: 12,
-};
-
-const bottomPoseRowStyle: React.CSSProperties = {
-  display: "flex",
-  justifyContent: "space-between",
-  gap: 12,
-  overflowX: "auto",
-};
-
-const bottomPoseCellStyle: React.CSSProperties = {
-  minWidth: 78,
-  display: "grid",
-  justifyItems: "center",
-  gap: 8,
-};
-
-const bottomPoseLabelStyle: React.CSSProperties = {
-  ...PX,
-  color: "#f7f0df",
-  fontSize: "0.35rem",
 };
