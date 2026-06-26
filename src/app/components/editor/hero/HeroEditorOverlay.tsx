@@ -1,113 +1,143 @@
-import { AnimatedHero, DEFAULT_HERO_PIXEL_HEIGHT } from "./AnimatedHero";
-import type { HeroAppearance } from "./heroAppearance";
+import {
+  CHARACTER_ASSET_MANIFEST,
+} from "./characterAssets";
+import { CharacterRenderer } from "./CharacterRenderer";
+import type { CharacterAppearance, CharacterLayerCategory } from "./characterTypes";
 
 const PX = { fontFamily: "'Press Start 2P', monospace" } as const;
 const VT = { fontFamily: "'VT323', monospace" } as const;
 const RJ = { fontFamily: "'Rajdhani', sans-serif" } as const;
 
+const CATEGORIES: { id: CharacterLayerCategory; label: string }[] = [
+  { id: "body", label: "Body" },
+  { id: "eyes", label: "Eyes" },
+  { id: "hair", label: "Hair" },
+  { id: "outfit", label: "Outfit" },
+  { id: "accessory", label: "Accessory" },
+];
+
 export function HeroEditorOverlay({
   heroName,
   setHeroName,
   heroAppearance,
-  heroPixelHeight,
-  setHeroPixelHeight,
+  setHeroAppearance,
+  facing,
   onClose,
 }: {
   heroName: string;
   setHeroName: (name: string) => void;
-  heroAppearance: HeroAppearance;
-  setHeroAppearance: (appearance: HeroAppearance) => void;
-  heroPixelHeight: number;
-  setHeroPixelHeight: (height: number) => void;
+  heroAppearance: CharacterAppearance;
+  setHeroAppearance: (appearance: CharacterAppearance) => void;
   facing: "up" | "down" | "left" | "right";
   onClose: () => void;
 }) {
-  const previewHeight = Math.max(90, Math.min(190, heroPixelHeight + 40));
+  function update(category: CharacterLayerCategory, id: string) {
+    setHeroAppearance({
+      ...heroAppearance,
+      [category]: id,
+    });
+  }
 
   return (
     <div style={overlayStyle}>
       <div style={windowStyle}>
-        <button type="button" onClick={onClose} style={closeXStyle}>×</button>
+        <button type="button" onClick={onClose} style={closeStyle}>×</button>
 
         <div style={headerStyle}>
           <div>
-            <div style={titleStyle}>HERO EDITOR</div>
-            <div style={subtitleStyle}>Professional wizard sprite active.</div>
+            <div style={titleStyle}>LIMEZU HERO CREATOR</div>
+            <div style={subtitleStyle}>Modular character generator v1.</div>
           </div>
 
-          <div style={heroCardStyle}>
-            <AnimatedHero
+          <div style={bigPreviewStyle}>
+            <CharacterRenderer
               appearance={heroAppearance}
-              facing="right"
-              moving={false}
-              pixelHeight={previewHeight}
+              facing={facing}
+              animation="idle"
+              pixelSize={3}
+              showShadow
             />
           </div>
         </div>
 
-        <div style={previewGridStyle}>
-          <Preview title="IDLE">
-            <AnimatedHero appearance={heroAppearance} facing="right" moving={false} pixelHeight={110} />
-          </Preview>
-          <Preview title="WALK">
-            <AnimatedHero appearance={heroAppearance} facing="right" moving pixelHeight={110} />
-          </Preview>
-          <Preview title="RUN">
-            <AnimatedHero appearance={heroAppearance} facing="right" moving running pixelHeight={110} />
-          </Preview>
-          <Preview title="ATTACK">
-            <AnimatedHero appearance={heroAppearance} facing="right" moving={false} attacking pixelHeight={110} />
-          </Preview>
-        </div>
+        <div style={mainGridStyle}>
+          <section style={leftPanelStyle}>
+            <label style={{ display: "grid", gap: 8, marginBottom: 16 }}>
+              <span style={fieldLabelStyle}>HERO NAME</span>
+              <input
+                value={heroName}
+                onChange={event => setHeroName(event.target.value)}
+                maxLength={18}
+                style={inputStyle}
+              />
+            </label>
 
-        <div style={formPanelStyle}>
-          <label style={{ display: "grid", gap: 8 }}>
-            <span style={fieldLabelStyle}>HERO NAME</span>
-            <input
-              value={heroName}
-              onChange={event => setHeroName(event.target.value)}
-              maxLength={18}
-              style={inputStyle}
-            />
-          </label>
-
-          <div style={sizePanelStyle}>
-            <div style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
-              <span style={fieldLabelStyle}>IN-GAME HERO SIZE</span>
-              <span style={sizeValueStyle}>{heroPixelHeight}px</span>
+            <div style={previewRowStyle}>
+              <Preview title="FRONT">
+                <CharacterRenderer appearance={heroAppearance} facing="down" pixelSize={2} />
+              </Preview>
+              <Preview title="LEFT">
+                <CharacterRenderer appearance={heroAppearance} facing="left" pixelSize={2} />
+              </Preview>
+              <Preview title="RIGHT">
+                <CharacterRenderer appearance={heroAppearance} facing="right" pixelSize={2} />
+              </Preview>
+              <Preview title="WALK">
+                <CharacterRenderer appearance={heroAppearance} facing="right" animation="walk" pixelSize={2} />
+              </Preview>
             </div>
 
-            <input
-              type="range"
-              min={64}
-              max={150}
-              step={2}
-              value={heroPixelHeight}
-              onChange={event => setHeroPixelHeight(Number(event.target.value))}
-              style={rangeStyle}
-            />
-
-            <div style={sizeButtonRowStyle}>
-              <button type="button" onClick={() => setHeroPixelHeight(90)} style={smallButtonStyle}>
-                SMALL
-              </button>
-              <button type="button" onClick={() => setHeroPixelHeight(DEFAULT_HERO_PIXEL_HEIGHT)} style={smallButtonStyle}>
-                2× DEFAULT
-              </button>
-              <button type="button" onClick={() => setHeroPixelHeight(128)} style={smallButtonStyle}>
-                LARGE
-              </button>
+            <div style={noteStyle}>
+              This first version uses the LimeZu character-generator layers directly. Some options may need renaming/curation after we inspect the exact pack structure.
             </div>
-          </div>
+          </section>
 
-          <div style={noteStyle}>
-            Size changes apply to the in-game hero immediately. If the hero feels too tall, lower this until the feet sit naturally on the tile.
-          </div>
-
-          <button type="button" onClick={onClose} style={saveButtonStyle}>
-            SAVE APPEARANCE
-          </button>
+          <section style={optionsPanelStyle}>
+            {CATEGORIES.map(category => (
+              <div key={category.id} style={optionSectionStyle}>
+                <div style={optionTitleStyle}>{category.label}</div>
+                <div style={optionGridStyle}>
+                  {CHARACTER_ASSET_MANIFEST[category.id].map(option => {
+                    const selected = heroAppearance[category.id] === option.id;
+                    return (
+                      <button
+                        key={option.id}
+                        type="button"
+                        onClick={() => update(category.id, option.id)}
+                        title={option.label}
+                        style={{
+                          ...optionButtonStyle,
+                          borderColor: selected ? "#e33c38" : "rgba(255,255,255,0.12)",
+                          backgroundColor: selected ? "rgba(227,60,56,0.22)" : "rgba(255,255,255,0.04)",
+                        }}
+                      >
+                        <span style={thumbStageStyle}>
+                          {option.id !== "none" && (
+                            <img
+                              src={option.src}
+                              alt=""
+                              draggable={false}
+                              style={{
+                                width: 48,
+                                height: 48,
+                                imageRendering: "pixelated",
+                              }}
+                            />
+                          )}
+                        </span>
+                        <span style={optionLabelStyle}>{option.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </section>
         </div>
+
+        <button type="button" onClick={onClose} style={saveButtonStyle}>
+          SAVE HERO
+        </button>
       </div>
     </div>
   );
@@ -121,9 +151,11 @@ function Preview({
   children: React.ReactNode;
 }) {
   return (
-    <div style={previewCardStyle}>
-      <div style={previewTitleStyle}>{title}</div>
-      <div style={previewStageStyle}>{children}</div>
+    <div style={smallPreviewStyle}>
+      <div style={smallPreviewTitleStyle}>{title}</div>
+      <div style={{ height: 110, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        {children}
+      </div>
     </div>
   );
 }
@@ -141,17 +173,17 @@ const overlayStyle: React.CSSProperties = {
 
 const windowStyle: React.CSSProperties = {
   position: "relative",
-  width: "min(960px, calc(100vw - 36px))",
+  width: "min(1180px, calc(100vw - 36px))",
   maxHeight: "calc(100vh - 36px)",
   overflow: "auto",
   background: "linear-gradient(#263034, #151c1f)",
   border: "3px solid rgba(255,255,255,0.1)",
-  boxShadow: "0 18px 60px rgba(0,0,0,0.65), inset 0 0 0 1px rgba(255,255,255,0.08)",
+  boxShadow: "0 18px 60px rgba(0,0,0,0.65)",
   color: "#f3ead7",
   padding: 22,
 };
 
-const closeXStyle: React.CSSProperties = {
+const closeStyle: React.CSSProperties = {
   position: "absolute",
   top: 14,
   right: 14,
@@ -169,69 +201,49 @@ const closeXStyle: React.CSSProperties = {
 const headerStyle: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
-  gap: 24,
   alignItems: "center",
+  gap: 22,
   borderBottom: "2px solid rgba(255,255,255,0.1)",
-  paddingBottom: 20,
-  marginBottom: 20,
+  paddingBottom: 18,
+  marginBottom: 18,
 };
 
 const titleStyle: React.CSSProperties = {
   ...PX,
   color: "#f7f0df",
-  fontSize: "0.95rem",
+  fontSize: "0.9rem",
   marginBottom: 12,
 };
 
 const subtitleStyle: React.CSSProperties = {
   ...VT,
   color: "#d8cba8",
-  fontSize: "1.4rem",
+  fontSize: "1.35rem",
 };
 
-const heroCardStyle: React.CSSProperties = {
-  width: 260,
-  height: 220,
+const bigPreviewStyle: React.CSSProperties = {
+  width: 210,
+  height: 180,
   backgroundColor: "#20282b",
   border: "1px solid rgba(255,255,255,0.12)",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  overflow: "hidden",
 };
 
-const previewGridStyle: React.CSSProperties = {
+const mainGridStyle: React.CSSProperties = {
   display: "grid",
-  gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-  gap: 12,
-  marginBottom: 18,
+  gridTemplateColumns: "360px 1fr",
+  gap: 18,
 };
 
-const previewCardStyle: React.CSSProperties = {
-  backgroundColor: "#151c1f",
-  border: "1px solid rgba(255,255,255,0.1)",
-  padding: 10,
-};
-
-const previewTitleStyle: React.CSSProperties = {
-  ...PX,
-  color: "#f7f0df",
-  fontSize: "0.45rem",
-  marginBottom: 8,
-};
-
-const previewStageStyle: React.CSSProperties = {
-  height: 130,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  backgroundColor: "#20282b",
-  overflow: "hidden",
-};
-
-const formPanelStyle: React.CSSProperties = {
+const leftPanelStyle: React.CSSProperties = {
   display: "grid",
   gap: 14,
+  alignContent: "start",
+};
+
+const optionsPanelStyle: React.CSSProperties = {
   backgroundColor: "#151c1f",
   border: "1px solid rgba(255,255,255,0.1)",
   padding: 16,
@@ -252,51 +264,82 @@ const inputStyle: React.CSSProperties = {
   padding: "10px 12px",
 };
 
-const sizePanelStyle: React.CSSProperties = {
+const previewRowStyle: React.CSSProperties = {
   display: "grid",
+  gridTemplateColumns: "1fr 1fr",
   gap: 10,
+};
+
+const smallPreviewStyle: React.CSSProperties = {
+  backgroundColor: "#151c1f",
   border: "1px solid rgba(255,255,255,0.1)",
-  backgroundColor: "#101619",
-  padding: 14,
+  padding: 10,
 };
 
-const sizeValueStyle: React.CSSProperties = {
+const smallPreviewTitleStyle: React.CSSProperties = {
   ...PX,
-  color: "#d8463d",
-  fontSize: "0.52rem",
-};
-
-const rangeStyle: React.CSSProperties = {
-  width: "100%",
-  accentColor: "#d8463d",
-  cursor: "pointer",
-};
-
-const sizeButtonRowStyle: React.CSSProperties = {
-  display: "flex",
-  gap: 8,
-  flexWrap: "wrap",
-};
-
-const smallButtonStyle: React.CSSProperties = {
-  ...PX,
-  border: "1px solid rgba(255,255,255,0.16)",
-  backgroundColor: "#20282b",
   color: "#f7f0df",
-  padding: "9px 10px",
-  cursor: "pointer",
-  fontSize: "0.42rem",
+  fontSize: "0.4rem",
 };
 
 const noteStyle: React.CSSProperties = {
   ...RJ,
-  fontSize: "0.95rem",
   color: "#d8cba8",
   fontWeight: 700,
+  fontSize: "0.95rem",
+  lineHeight: 1.35,
+};
+
+const optionSectionStyle: React.CSSProperties = {
+  borderBottom: "1px solid rgba(255,255,255,0.08)",
+  paddingBottom: 16,
+  marginBottom: 16,
+};
+
+const optionTitleStyle: React.CSSProperties = {
+  ...PX,
+  color: "#f7f0df",
+  fontSize: "0.5rem",
+  marginBottom: 10,
+};
+
+const optionGridStyle: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fill, minmax(96px, 1fr))",
+  gap: 8,
+};
+
+const optionButtonStyle: React.CSSProperties = {
+  border: "2px solid rgba(255,255,255,0.12)",
+  color: "#f7f0df",
+  cursor: "pointer",
+  padding: 8,
+  display: "grid",
+  gap: 6,
+  justifyItems: "center",
+};
+
+const thumbStageStyle: React.CSSProperties = {
+  width: 54,
+  height: 54,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundColor: "#20282b",
+  border: "1px solid rgba(255,255,255,0.08)",
+};
+
+const optionLabelStyle: React.CSSProperties = {
+  ...RJ,
+  fontWeight: 800,
+  fontSize: "0.72rem",
+  lineHeight: 1.1,
 };
 
 const saveButtonStyle: React.CSSProperties = {
   ...PX,
+  marginTop: 18,
+  width: "100%",
   border: "1px solid #d8463d",
   background: "linear-gradient(#d5423a, #9b2524)",
   color: "#fff7e6",

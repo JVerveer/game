@@ -41,7 +41,7 @@ import { useNpcEditor } from "../editor/npcs/useNpcEditor";
 import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
-import { AnimatedHero, DEFAULT_HERO_PIXEL_HEIGHT } from "../editor/hero/AnimatedHero";
+import { CharacterRenderer } from "../editor/hero/CharacterRenderer";
 import {
   DEFAULT_HERO_APPEARANCE,
   type HeroAppearance,
@@ -270,7 +270,6 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const [heroEditorOpen, setHeroEditorOpen] = useState(false);
   const [heroName, setHeroName] = useState("Hero");
   const [heroAppearance, setHeroAppearance] = useState<HeroAppearance>(DEFAULT_HERO_APPEARANCE);
-  const [heroPixelHeight, setHeroPixelHeight] = useState(DEFAULT_HERO_PIXEL_HEIGHT);
   const {
     editorMode,
     setEditorMode,
@@ -1167,7 +1166,7 @@ useRuntimeEffects({
           width: TS, height: TS,
           display: "flex", alignItems: "center", justifyContent: "center",
           filter: "drop-shadow(0 3px 2px rgba(37,32,24,0.28))",
-          zIndex: 100 + pos.y, pointerEvents: "none",
+          zIndex: 80 + pos.y, pointerEvents: "none",
           transition: "left 0.18s steps(3, end), top 0.18s steps(3, end)",
         }}>
           <div
@@ -1178,16 +1177,17 @@ useRuntimeEffects({
               display: "flex",
               alignItems: "flex-end",
               justifyContent: "center",
+              transform: facing === "left" ? "scaleX(-1)" : undefined,
               transformOrigin: "center bottom",
-              translate: "0 8px",
-              overflow: "visible",
+              translate: "0 0",
             }}
           >
-            <AnimatedHero
+            <CharacterRenderer
               appearance={heroAppearance}
               facing={facing}
-              moving={isWalking}
-              pixelHeight={heroPixelHeight}
+              animation={isWalking ? "walk" : "idle"}
+              pixelSize={1}
+              showShadow={false}
             />
           </div>
         </div>
@@ -1325,8 +1325,6 @@ useRuntimeEffects({
           setHeroName={setHeroName}
           heroAppearance={heroAppearance}
           setHeroAppearance={setHeroAppearance}
-          heroPixelHeight={heroPixelHeight}
-          setHeroPixelHeight={setHeroPixelHeight}
           facing={facing}
           onClose={() => setHeroEditorOpen(false)}
         />
