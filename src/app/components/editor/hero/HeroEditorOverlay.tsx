@@ -3,7 +3,7 @@ import {
   type HeroAppearance,
   getHeroOptionColor,
 } from "./heroAppearance";
-import { PngHeroSprite, type HeroPose } from "./PngHeroSprite";
+import { PolishedHeroSprite, type HeroPose } from "./PolishedHeroSprite";
 
 const PX = { fontFamily: "'Press Start 2P', monospace" } as const;
 const VT = { fontFamily: "'VT323', monospace" } as const;
@@ -57,29 +57,29 @@ export function HeroEditorOverlay({
         <div style={heroHeaderStyle}>
           <div>
             <div style={titleBannerStyle}>HERO EDITOR</div>
-            <div style={subtitleStyle}>PNG layered sprite system.</div>
+            <div style={subtitleStyle}>Cleaner in-game sprite renderer.</div>
             <div style={nameCardStyle}>{heroName.trim() || "Hero"}</div>
           </div>
 
           <div style={headerSpriteStyle}>
-            <PngHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={4} />
+            <PolishedHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={4} />
           </div>
         </div>
 
         <div style={contentGridStyle}>
           <div>
-            <PanelTitle>SPRITE SHEET PREVIEW</PanelTitle>
+            <PanelTitle>SPRITE PREVIEW</PanelTitle>
             <div style={previewGridStyle}>
               {POSES.map(({ pose, label }) => (
                 <PreviewCard key={pose} label={label}>
-                  <PngHeroSprite appearance={heroAppearance} pose={pose} pixelSize={2} />
+                  <PolishedHeroSprite appearance={heroAppearance} pose={pose} pixelSize={3} />
                 </PreviewCard>
               ))}
             </div>
 
             <div style={hintBoxStyle}>
               <span style={{ fontSize: 26 }}>▣</span>
-              <span>Each hero part is now a separate PNG layer you can replace with better art.</span>
+              <span>This version prioritizes a cleaner, more cohesive sprite over rough placeholder PNG layers.</span>
             </div>
           </div>
 
@@ -322,7 +322,7 @@ const previewGridStyle: React.CSSProperties = {
 };
 
 const previewCardStyle: React.CSSProperties = {
-  minHeight: 135,
+  minHeight: 145,
   backgroundColor: "#fff6d0",
   border: "3px solid #5d4528",
   display: "flex",
