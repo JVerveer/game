@@ -41,6 +41,7 @@ import { useNpcEditor } from "../editor/npcs/useNpcEditor";
 import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
+import { PixelHeroSprite, type HeroPose } from "../editor/hero/PixelHeroSprite";
 import {
   DEFAULT_HERO_APPEARANCE,
   type HeroAppearance,
@@ -248,6 +249,16 @@ const NPC_VISUAL_PRESETS = [
 
 
 const isSelectEditorMode = (mode: EditorMode) => mode === "select";
+
+
+const heroPoseFor = (
+  facing: "up" | "down" | "left" | "right",
+  isWalking: boolean,
+): HeroPose => {
+  if (facing === "up") return isWalking ? "backWalk" : "backIdle";
+  if (facing === "left" || facing === "right") return isWalking ? "sideWalk" : "sideIdle";
+  return isWalking ? "frontWalk" : "frontIdle";
+};
 
 
 function GameScreen({ onExit }: { onExit: () => void }) {
@@ -1167,18 +1178,23 @@ useRuntimeEffects({
         }}>
           <div
             title={heroName}
-            className={`trainer-sprite facing-${facing} ${isWalking ? "walking" : ""}`}
             style={{
-              "--hero-skin": heroAppearance.skin,
-              "--hero-hair": heroAppearance.hair,
-              "--hero-facial-hair": heroAppearance.facialHair,
-              "--hero-sunglasses": heroAppearance.sunglasses,
-              "--hero-hat": heroAppearance.hat,
-              "--hero-shirt": heroAppearance.shirt,
-              "--hero-pants": heroAppearance.pants,
-              "--hero-shoes": heroAppearance.shoes,
-            } as React.CSSProperties}
-          />
+              transform: facing === "left" ? "scaleX(-1)" : undefined,
+              transformOrigin: "center",
+              width: TS,
+              height: TS,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <PixelHeroSprite
+              appearance={heroAppearance}
+              pose={heroPoseFor(facing, isWalking)}
+              pixelSize={2}
+              showShadow={false}
+            />
+          </div>
         </div>
       </div>
 

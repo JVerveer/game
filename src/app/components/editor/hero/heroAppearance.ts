@@ -59,6 +59,8 @@ export type HeroAppearance = {
   shoes: typeof HERO_APPEARANCE_OPTIONS.shoes[number]["id"];
 };
 
+export type HeroAppearanceKey = keyof HeroAppearance;
+
 export const DEFAULT_HERO_APPEARANCE: HeroAppearance = {
   skin: "light",
   hair: "brown",
@@ -69,8 +71,6 @@ export const DEFAULT_HERO_APPEARANCE: HeroAppearance = {
   pants: "jeans",
   shoes: "black",
 };
-
-export type HeroAppearanceKey = keyof HeroAppearance;
 
 export function getHeroOptionColor<K extends HeroAppearanceKey>(
   category: K,

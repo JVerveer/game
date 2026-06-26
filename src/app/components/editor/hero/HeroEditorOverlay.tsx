@@ -59,7 +59,7 @@ export function HeroEditorOverlay({
           </div>
 
           <div style={headerSpriteStyle}>
-            <PixelHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={8} />
+            <PixelHeroSprite appearance={heroAppearance} pose="frontIdle" pixelSize={5} />
           </div>
         </div>
 
@@ -69,7 +69,7 @@ export function HeroEditorOverlay({
             <div style={previewGridStyle}>
               {POSES.map(({ pose, label }) => (
                 <PreviewCard key={pose} label={label}>
-                  <PixelHeroSprite appearance={heroAppearance} pose={pose} pixelSize={6} />
+                  <PixelHeroSprite appearance={heroAppearance} pose={pose} pixelSize={4} />
                 </PreviewCard>
               ))}
             </div>
@@ -215,7 +215,7 @@ const overlayStyle: React.CSSProperties = {
 
 const windowStyle: React.CSSProperties = {
   position: "relative",
-  width: "min(1080px, calc(100vw - 36px))",
+  width: "min(1120px, calc(100vw - 36px))",
   maxHeight: "calc(100vh - 36px)",
   overflow: "auto",
   backgroundColor: "#f7e7b7",
@@ -294,7 +294,7 @@ const headerSpriteStyle: React.CSSProperties = {
 
 const contentGridStyle: React.CSSProperties = {
   display: "grid",
-  gridTemplateColumns: "500px 1fr",
+  gridTemplateColumns: "560px 1fr",
   gap: 22,
 };
 
@@ -319,7 +319,7 @@ const previewGridStyle: React.CSSProperties = {
 };
 
 const previewCardStyle: React.CSSProperties = {
-  minHeight: 165,
+  minHeight: 180,
   backgroundColor: "#fff6d0",
   border: "3px solid #5d4528",
   display: "flex",
