@@ -5,12 +5,20 @@ export type CharacterLayerCategory =
   | "outfit"
   | "accessory";
 
+export type CharacterColorCategory =
+  | "skinColor"
+  | "hairColor"
+  | "outfitColor";
+
 export type CharacterAppearance = {
   body: string;
   eyes: string;
   hair: string;
   outfit: string;
   accessory: string;
+  skinColor: string;
+  hairColor: string;
+  outfitColor: string;
 };
 
 export type CharacterFacing = "up" | "down" | "left" | "right";
@@ -25,7 +33,17 @@ export type CharacterAtlasOption = {
   atlasHeight: number;
 };
 
+export type CharacterColorOption = {
+  id: string;
+  label: string;
+  color: string;
+  filter: string;
+  opacity?: number;
+};
+
 export type CharacterAssetManifest = Record<CharacterLayerCategory, readonly CharacterAtlasOption[]>;
+
+export type CharacterColorManifest = Record<CharacterColorCategory, readonly CharacterColorOption[]>;
 
 export type CharacterFrame = {
   col: number;
@@ -33,7 +51,8 @@ export type CharacterFrame = {
 };
 
 export type CharacterCategoryConfig = {
-  id: CharacterLayerCategory;
+  id: CharacterLayerCategory | CharacterColorCategory;
   label: string;
   description: string;
+  kind: "asset" | "color";
 };

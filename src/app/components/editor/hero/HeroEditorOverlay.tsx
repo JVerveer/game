@@ -2,7 +2,10 @@ import { useMemo, useState } from "react";
 import {
   CHARACTER_ASSET_MANIFEST,
   CHARACTER_CATEGORIES,
+  CHARACTER_COLOR_MANIFEST,
   DEFAULT_CHARACTER_APPEARANCE,
+  colorOptionFor,
+  nextColorId,
   nextOptionId,
   optionFor,
   randomCharacterAppearance,
@@ -13,12 +16,21 @@ import {
 } from "./CharacterRenderer";
 import type {
   CharacterAppearance,
+  CharacterColorCategory,
   CharacterLayerCategory,
 } from "./characterTypes";
 
 const PX = { fontFamily: "'Press Start 2P', monospace" } as const;
 const VT = { fontFamily: "'VT323', monospace" } as const;
 const RJ = { fontFamily: "'Rajdhani', sans-serif" } as const;
+
+function isColorCategory(id: string): id is CharacterColorCategory {
+  return id === "skinColor" || id === "hairColor" || id === "outfitColor";
+}
+
+function isAssetCategory(id: string): id is CharacterLayerCategory {
+  return id === "body" || id === "eyes" || id === "hair" || id === "outfit" || id === "accessory";
+}
 
 export function HeroEditorOverlay({
   heroName,
@@ -35,28 +47,46 @@ export function HeroEditorOverlay({
   facing: "up" | "down" | "left" | "right";
   onClose: () => void;
 }) {
-  const [selectedCategory, setSelectedCategory] = useState<CharacterLayerCategory>("hair");
+  const [selectedCategory, setSelectedCategory] = useState<CharacterLayerCategory | CharacterColorCategory>("hair");
   const selectedConfig = CHARACTER_CATEGORIES.find(category => category.id === selectedCategory) ?? CHARACTER_CATEGORIES[0];
-  const selectedOption = optionFor(selectedCategory, heroAppearance[selectedCategory]);
 
-  function update(category: CharacterLayerCategory, id: string) {
+  function updateAsset(category: CharacterLayerCategory, id: string) {
     setHeroAppearance({
       ...heroAppearance,
       [category]: id,
     });
   }
 
-  function step(category: CharacterLayerCategory, direction: 1 | -1) {
-    update(category, nextOptionId(category, heroAppearance[category], direction));
+  function updateColor(category: CharacterColorCategory, id: string) {
+    setHeroAppearance({
+      ...heroAppearance,
+      [category]: id,
+    });
   }
 
-  const optionCount = CHARACTER_ASSET_MANIFEST[selectedCategory].length;
-  const selectedIndex = Math.max(
-    0,
-    CHARACTER_ASSET_MANIFEST[selectedCategory].findIndex(option => option.id === heroAppearance[selectedCategory]),
-  );
+  function step(direction: 1 | -1) {
+    if (isColorCategory(selectedCategory)) {
+      updateColor(selectedCategory, nextColorId(selectedCategory, heroAppearance[selectedCategory], direction));
+      return;
+    }
+
+    updateAsset(selectedCategory, nextOptionId(selectedCategory, heroAppearance[selectedCategory], direction));
+  }
 
   const livePreviewAnimation = useMemo(() => selectedCategory === "outfit" ? "walk" : "idle", [selectedCategory]);
+
+  const selectedOptionLabel = isColorCategory(selectedCategory)
+    ? colorOptionFor(selectedCategory, heroAppearance[selectedCategory])?.label ?? "Default"
+    : optionFor(selectedCategory, heroAppearance[selectedCategory])?.label ?? "None";
+
+  const selectedOptions = isColorCategory(selectedCategory)
+    ? CHARACTER_COLOR_MANIFEST[selectedCategory]
+    : CHARACTER_ASSET_MANIFEST[selectedCategory];
+
+  const selectedIndex = Math.max(
+    0,
+    selectedOptions.findIndex(option => option.id === heroAppearance[selectedCategory]),
+  );
 
   return (
     <div style={overlayStyle}>
@@ -66,7 +96,7 @@ export function HeroEditorOverlay({
         <div style={topBarStyle}>
           <div>
             <div style={titleStyle}>CHARACTER CREATOR</div>
-            <div style={subtitleStyle}>LimeZu modular atlas system</div>
+            <div style={subtitleStyle}>V8 color customization</div>
           </div>
 
           <div style={topActionsStyle}>
@@ -89,6 +119,10 @@ export function HeroEditorOverlay({
             <div style={categoryListStyle}>
               {CHARACTER_CATEGORIES.map(category => {
                 const selected = category.id === selectedCategory;
+                const value = isColorCategory(category.id)
+                  ? colorOptionFor(category.id, heroAppearance[category.id])?.label
+                  : optionFor(category.id, heroAppearance[category.id])?.label;
+
                 return (
                   <button
                     key={category.id}
@@ -101,9 +135,7 @@ export function HeroEditorOverlay({
                     }}
                   >
                     <span>{category.label}</span>
-                    <span style={categoryValueStyle}>
-                      {optionFor(category.id, heroAppearance[category.id])?.label ?? "None"}
-                    </span>
+                    <span style={categoryValueStyle}>{value ?? "None"}</span>
                   </button>
                 );
               })}
@@ -154,55 +186,126 @@ export function HeroEditorOverlay({
             <div style={descriptionStyle}>{selectedConfig.description}</div>
 
             <div style={stepperStyle}>
-              <button type="button" onClick={() => step(selectedCategory, -1)} style={stepButtonStyle}>
+              <button type="button" onClick={() => step(-1)} style={stepButtonStyle}>
                 ◀
               </button>
 
               <div style={selectedOptionStyle}>
-                <div style={selectedOptionNameStyle}>{selectedOption?.label ?? "None"}</div>
+                <div style={selectedOptionNameStyle}>{selectedOptionLabel}</div>
                 <div style={selectedOptionCountStyle}>
-                  {selectedIndex + 1} / {optionCount}
+                  {selectedIndex + 1} / {selectedOptions.length}
                 </div>
               </div>
 
-              <button type="button" onClick={() => step(selectedCategory, 1)} style={stepButtonStyle}>
+              <button type="button" onClick={() => step(1)} style={stepButtonStyle}>
                 ▶
               </button>
             </div>
 
-            <div style={optionsGridStyle}>
-              {CHARACTER_ASSET_MANIFEST[selectedCategory].map(option => {
-                const selected = heroAppearance[selectedCategory] === option.id;
-
-                return (
-                  <button
-                    key={option.id}
-                    type="button"
-                    title={option.label}
-                    onClick={() => update(selectedCategory, option.id)}
-                    style={{
-                      ...optionButtonStyle,
-                      borderColor: selected ? "#d8463d" : "rgba(255,255,255,0.12)",
-                      backgroundColor: selected ? "rgba(216,70,61,0.2)" : "rgba(255,255,255,0.04)",
-                    }}
-                  >
-                    <div style={optionThumbStageStyle}>
-                      {option.id !== "none" && (
-                        <CharacterLayerThumbnail
-                          category={selectedCategory}
-                          optionId={option.id}
-                          pixelSize={1}
-                        />
-                      )}
-                    </div>
-                    <div style={optionLabelStyle}>{option.label}</div>
-                  </button>
-                );
-              })}
-            </div>
+            {isColorCategory(selectedCategory) ? (
+              <ColorGrid
+                category={selectedCategory}
+                heroAppearance={heroAppearance}
+                onChange={updateColor}
+              />
+            ) : (
+              <AssetGrid
+                category={selectedCategory}
+                heroAppearance={heroAppearance}
+                onChange={updateAsset}
+              />
+            )}
           </section>
         </div>
       </div>
+    </div>
+  );
+}
+
+function ColorGrid({
+  category,
+  heroAppearance,
+  onChange,
+}: {
+  category: CharacterColorCategory;
+  heroAppearance: CharacterAppearance;
+  onChange: (category: CharacterColorCategory, id: string) => void;
+}) {
+  return (
+    <div style={optionsGridStyle}>
+      {CHARACTER_COLOR_MANIFEST[category].map(option => {
+        const selected = heroAppearance[category] === option.id;
+        return (
+          <button
+            key={option.id}
+            type="button"
+            title={option.label}
+            onClick={() => onChange(category, option.id)}
+            style={{
+              ...optionButtonStyle,
+              borderColor: selected ? "#d8463d" : "rgba(255,255,255,0.12)",
+              backgroundColor: selected ? "rgba(216,70,61,0.2)" : "rgba(255,255,255,0.04)",
+            }}
+          >
+            <div style={colorThumbStageStyle}>
+              <span
+                style={{
+                  width: 38,
+                  height: 38,
+                  backgroundColor: option.color,
+                  border: "2px solid rgba(0,0,0,0.45)",
+                  boxSizing: "border-box",
+                }}
+              />
+            </div>
+            <div style={optionLabelStyle}>{option.label}</div>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function AssetGrid({
+  category,
+  heroAppearance,
+  onChange,
+}: {
+  category: CharacterLayerCategory;
+  heroAppearance: CharacterAppearance;
+  onChange: (category: CharacterLayerCategory, id: string) => void;
+}) {
+  return (
+    <div style={optionsGridStyle}>
+      {CHARACTER_ASSET_MANIFEST[category].map(option => {
+        const selected = heroAppearance[category] === option.id;
+
+        return (
+          <button
+            key={option.id}
+            type="button"
+            title={option.label}
+            onClick={() => onChange(category, option.id)}
+            style={{
+              ...optionButtonStyle,
+              borderColor: selected ? "#d8463d" : "rgba(255,255,255,0.12)",
+              backgroundColor: selected ? "rgba(216,70,61,0.2)" : "rgba(255,255,255,0.04)",
+            }}
+          >
+            <div style={optionThumbStageStyle}>
+              {option.id !== "none" && (
+                <CharacterLayerThumbnail
+                  category={category}
+                  optionId={option.id}
+                  appearance={heroAppearance}
+                  pixelSize={1}
+                />
+              )}
+            </div>
+            <div style={optionLabelStyle}>{option.label}</div>
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -473,6 +576,16 @@ const optionThumbStageStyle: React.CSSProperties = {
   alignItems: "center",
   justifyContent: "center",
   overflow: "visible",
+};
+
+const colorThumbStageStyle: React.CSSProperties = {
+  width: 58,
+  height: 58,
+  backgroundColor: "#20282b",
+  border: "1px solid rgba(255,255,255,0.08)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 };
 
 const optionLabelStyle: React.CSSProperties = {

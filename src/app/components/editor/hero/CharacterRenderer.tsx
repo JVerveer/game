@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import {
   CHARACTER_LAYER_ORDER,
   CHARACTER_TILE_SIZE,
+  colorOptionFor,
   optionFor,
 } from "./characterAssets";
 import {
@@ -12,6 +13,7 @@ import {
 import type {
   CharacterAnimation,
   CharacterAppearance,
+  CharacterColorCategory,
   CharacterFacing,
   CharacterFrame,
   CharacterLayerCategory,
@@ -38,14 +40,31 @@ function layerUsesOverflowCrop(category: CharacterLayerCategory) {
   return category === "hair" || category === "accessory";
 }
 
+function colorCategoryForLayer(category: CharacterLayerCategory): CharacterColorCategory | null {
+  if (category === "body") return "skinColor";
+  if (category === "hair") return "hairColor";
+  if (category === "outfit") return "outfitColor";
+  return null;
+}
+
+function filterForLayer(category: CharacterLayerCategory, appearance: CharacterAppearance) {
+  const colorCategory = colorCategoryForLayer(category);
+  if (!colorCategory) return "none";
+
+  const selectedColorId = appearance[colorCategory];
+  return colorOptionFor(colorCategory, selectedColorId).filter;
+}
+
 function AtlasLayer({
   category,
   optionId,
+  appearance,
   baseFrame,
   pixelSize,
 }: {
   category: CharacterLayerCategory;
   optionId: string;
+  appearance: CharacterAppearance;
   baseFrame: CharacterFrame;
   pixelSize: number;
 }) {
@@ -78,6 +97,7 @@ function AtlasLayer({
         backgroundPosition: `${-frame.col * displaySize}px ${-sourceRow * displaySize}px`,
         imageRendering: "pixelated",
         pointerEvents: "none",
+        filter: filterForLayer(category, appearance),
       }}
     />
   );
@@ -150,9 +170,10 @@ export function CharacterComposite({
 
       {CHARACTER_LAYER_ORDER.map(category => (
         <AtlasLayer
-          key={`${category}-${appearance[category]}-${baseFrame.col}-${baseFrame.row}`}
+          key={`${category}-${appearance[category]}-${appearance.skinColor}-${appearance.hairColor}-${appearance.outfitColor}-${baseFrame.col}-${baseFrame.row}`}
           category={category}
           optionId={appearance[category]}
+          appearance={appearance}
           baseFrame={baseFrame}
           pixelSize={pixelSize}
         />
@@ -164,23 +185,28 @@ export function CharacterComposite({
 export function CharacterLayerThumbnail({
   category,
   optionId,
+  appearance,
   pixelSize = 1,
 }: {
   category: CharacterLayerCategory;
   optionId: string;
+  appearance?: CharacterAppearance;
   pixelSize?: number;
 }) {
-  const appearance = {
+  const thumbnailAppearance = {
     body: category === "body" ? optionId : "none",
     eyes: category === "eyes" ? optionId : "none",
     hair: category === "hair" ? optionId : "none",
     outfit: category === "outfit" ? optionId : "none",
     accessory: category === "accessory" ? optionId : "none",
+    skinColor: appearance?.skinColor ?? "default",
+    hairColor: appearance?.hairColor ?? "default",
+    outfitColor: appearance?.outfitColor ?? "default",
   } as CharacterAppearance;
 
   return (
     <CharacterComposite
-      appearance={appearance}
+      appearance={thumbnailAppearance}
       baseFrame={thumbnailFrame()}
       pixelSize={pixelSize}
       showShadow={false}
