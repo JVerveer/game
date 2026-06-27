@@ -1,58 +1,102 @@
 import type { CSSProperties } from "react";
 import type { PixelBuilding, PixelObject, PixelBuildingColor } from "../data/cityMaps/sceneTypes";
 
-const TILESET_URL = "/tilesets/satiria.png";
+const TILESET_URL = "/assets/limezu/world/terrain/modern_exteriors_complete_48x48.png";
 const TILE_SIZE = 48;
-const ATLAS_COLS = 8;
-
-const ATLAS: Record<string, number> = {
-  grass: 0,
-  path: 1,
-  tallGrass: 2,
-  water: 3,
-  shore: 4,
-  tree: 5,
-  fence: 6,
-  flower: 7,
-  redRoof: 8,
-  blueRoof: 9,
-  purpleRoof: 10,
-  greenRoof: 11,
-  wall: 12,
-  door: 13,
-  window: 14,
-  plaza: 16,
-  pier: 17,
-  bench: 18,
-  lamp: 19,
-  statue: 20,
-  fountain: 21,
-  sign: 22,
-  save: 23,
-  grassAlt: 24,
-  mediumTree: 32,
-  largeTree: 34,
-  tallGrassAlt: 28,
-  treeAlt: 29,
-};
 
 const BUILDING_TILES = new Set(["A", "B", "H", "I", "P", "U"]);
 
-const hashTile = (x: number, y: number) => Math.abs((x * 928371 + y * 364479 + x * y * 97) % 100);
+const hashTile = (x: number, y: number) =>
+  Math.abs((x * 928371 + y * 364479 + x * y * 97) % 100);
+
+const atlasTileStyle = (
+  col: number,
+  row: number,
+  x: number,
+  y: number,
+  w = 1,
+  h = 1,
+): CSSProperties => ({
+  left: x * TILE_SIZE,
+  top: y * TILE_SIZE,
+  width: w * TILE_SIZE,
+  height: h * TILE_SIZE,
+  backgroundImage: `url(${TILESET_URL})`,
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: `-${col * TILE_SIZE}px -${row * TILE_SIZE}px`,
+  imageRendering: "pixelated",
+});
+
+const spriteCoordFor = (name: string, x: number, y: number) => {
+  const roll = hashTile(x, y);
+
+  switch (name) {
+    case "grass":
+      return { col: roll > 76 ? 1 : 0, row: 0 };
+    case "grassAlt":
+      return { col: 1, row: 0 };
+    case "path":
+      return { col: roll > 60 ? 3 : 2, row: 0 };
+    case "tallGrass":
+      return { col: roll > 55 ? 1 : 0, row: 0 };
+    case "tallGrassAlt":
+      return { col: 1, row: 0 };
+    case "water":
+      return { col: roll > 50 ? 5 : 4, row: 0 };
+    case "shore":
+      return { col: 5, row: 0 };
+    case "tree":
+      return { col: roll > 67 ? 1 : 0, row: 8 };
+    case "treeAlt":
+      return { col: 1, row: 8 };
+    case "mediumTree":
+      return { col: 0, row: 8 };
+    case "largeTree":
+      return { col: 1, row: 8 };
+    case "fence":
+      return { col: 4, row: 8 };
+    case "flower":
+      return { col: 6, row: 0 };
+    case "plaza":
+      return { col: roll > 50 ? 4 : 3, row: 0 };
+    case "pier":
+      return { col: 10, row: 0 };
+    case "bench":
+      return { col: 7, row: 8 };
+    case "lamp":
+      return { col: 6, row: 8 };
+    case "statue":
+      return { col: 8, row: 8 };
+    case "fountain":
+      return { col: 9, row: 8 };
+    case "sign":
+      return { col: 5, row: 8 };
+    case "save":
+      return { col: 3, row: 0 };
+
+    case "redRoof":
+      return { col: 0, row: 12 };
+    case "blueRoof":
+      return { col: 1, row: 12 };
+    case "purpleRoof":
+      return { col: 2, row: 12 };
+    case "greenRoof":
+      return { col: 3, row: 12 };
+    case "wall":
+      return { col: 0, row: 13 };
+    case "door":
+      return { col: 1, row: 13 };
+    case "window":
+      return { col: 2, row: 13 };
+
+    default:
+      return { col: 0, row: 0 };
+  }
+};
 
 const spriteStyle = (name: string, x: number, y: number, w = 1, h = 1): CSSProperties => {
-  const index = ATLAS[name] ?? ATLAS.grass;
-  const ax = index % ATLAS_COLS;
-  const ay = Math.floor(index / ATLAS_COLS);
-  return {
-    left: x * TILE_SIZE,
-    top: y * TILE_SIZE,
-    width: w * TILE_SIZE,
-    height: h * TILE_SIZE,
-    backgroundImage: `url(${TILESET_URL})`,
-    backgroundPosition: `-${ax * TILE_SIZE}px -${ay * TILE_SIZE}px`,
-    backgroundSize: `${ATLAS_COLS * TILE_SIZE}px auto`,
-  };
+  const coord = spriteCoordFor(name, x, y);
+  return atlasTileStyle(coord.col, coord.row, x, y, w, h);
 };
 
 const terrainSpriteFor = (rows: string[][], x: number, y: number) => {
@@ -69,12 +113,8 @@ const terrainSpriteFor = (rows: string[][], x: number, y: number) => {
   if (tile === "T") return roll > 67 ? "treeAlt" : "tree";
   if (tile === "F") return "fence";
   if (tile === "L" || tile === "Y") return "grass";
-
-  // Fallbacks for terrain that does not have unique sprites in satiria.png yet.
   if (tile === "M") return roll > 50 ? "largeTree" : "mediumTree";
   if (tile === "C" || tile === "D") return "plaza";
-
-  // Building tiles use normal ground underneath the generated building sprite.
   if (BUILDING_TILES.has(tile)) return roll > 82 ? "grassAlt" : "grass";
 
   return roll > 76 ? "grassAlt" : "grass";
@@ -85,42 +125,17 @@ const decorationStyleFor = (tile: string, x: number, y: number): CSSProperties |
 
   if (tile === "X") {
     return {
-      left: x * TILE_SIZE,
-      top: y * TILE_SIZE,
-      width: TILE_SIZE,
-      height: TILE_SIZE,
+      ...spriteStyle(roll > 50 ? "tallGrassAlt" : "tallGrass", x, y),
       zIndex: 3,
-      opacity: 0.94,
-      background:
-        roll % 2 === 0
-          ? `linear-gradient(78deg, transparent 0 25%, #b7e66d 25% 31%, transparent 31%),
-             linear-gradient(104deg, transparent 0 43%, #214f22 43% 54%, transparent 54%),
-             linear-gradient(82deg, transparent 0 66%, #75bd3e 66% 73%, transparent 73%)`
-          : `linear-gradient(92deg, transparent 0 20%, #c7ee7a 20% 27%, transparent 27%),
-             linear-gradient(67deg, transparent 0 46%, #2b6a25 46% 57%, transparent 57%),
-             linear-gradient(110deg, transparent 0 70%, #90cf4d 70% 77%, transparent 77%)`,
-      backgroundSize: "12px 38px, 16px 42px, 20px 36px",
+      opacity: 0.95,
       pointerEvents: "none",
     };
   }
 
   if (tile === "Y" || tile === "L") {
-    const flowerA = tile === "Y" ? "#ff4fa3" : "#ff7043";
-    const flowerB = tile === "Y" ? "#f6d746" : "#f8e87c";
-    const flowerC = tile === "Y" ? "#b34db8" : "#6fb8ff";
     return {
-      left: x * TILE_SIZE,
-      top: y * TILE_SIZE,
-      width: TILE_SIZE,
-      height: TILE_SIZE,
+      ...spriteStyle("flower", x, y),
       zIndex: 4,
-      background:
-        `radial-gradient(circle at 22% 28%, ${flowerA} 0 4px, transparent 5px),
-         radial-gradient(circle at 50% 42%, ${flowerB} 0 4px, transparent 5px),
-         radial-gradient(circle at 75% 64%, ${flowerC} 0 4px, transparent 5px),
-         linear-gradient(100deg, transparent 0 31%, #315f2a 31% 39%, transparent 39%),
-         linear-gradient(75deg, transparent 0 58%, #4d8f35 58% 66%, transparent 66%)`,
-      backgroundSize: "48px 48px, 48px 48px, 48px 48px, 14px 28px, 19px 32px",
       pointerEvents: "none",
     };
   }
