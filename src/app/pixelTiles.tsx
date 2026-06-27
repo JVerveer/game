@@ -1,59 +1,64 @@
 import type { CSSProperties } from "react";
 import type { PixelBuilding, PixelObject, PixelBuildingColor } from "../data/cityMaps/sceneTypes";
 import {
+  OBJECT_IMAGES,
+  TERRAIN_IMAGES,
   hashTile,
   terrainImageForTile,
-} from "../rendering/limezuTerrainRegistry";
+} from "../rendering/TerrainRegistry";
 
 const TILE_SIZE = 48;
-
 const BUILDING_TILES = new Set(["A", "B", "H", "I", "P", "U"]);
 
-const terrainStyle = (tile: string, x: number, y: number): CSSProperties => ({
+const imageTileStyle = (src: string, x: number, y: number, w = 1, h = 1): CSSProperties => ({
   left: x * TILE_SIZE,
   top: y * TILE_SIZE,
-  width: TILE_SIZE,
-  height: TILE_SIZE,
-  backgroundImage: `url(${terrainImageForTile(tile, x, y)})`,
-  backgroundRepeat: "no-repeat",
+  width: w * TILE_SIZE,
+  height: h * TILE_SIZE,
+  backgroundImage: `url(${src})`,
+  backgroundRepeat: w > 1 || h > 1 ? "repeat" : "no-repeat",
   backgroundSize: `${TILE_SIZE}px ${TILE_SIZE}px`,
   imageRendering: "pixelated",
 });
 
-const objectStyle = (sprite: string, x: number, y: number, w = 1, h = 1): CSSProperties => {
-  // Temporary fallback: object sprites still use terrain-like placeholders.
-  // Next step will replace this with LimeZu object singles.
-  const tile = sprite === "sign" ? "F" : sprite === "fountain" ? "W" : sprite === "flower" ? "Y" : "G";
-
-  return {
-    left: x * TILE_SIZE,
-    top: y * TILE_SIZE,
-    width: w * TILE_SIZE,
-    height: h * TILE_SIZE,
-    backgroundImage: `url(${terrainImageForTile(tile, x, y)})`,
-    backgroundRepeat: "repeat",
-    backgroundSize: `${TILE_SIZE}px ${TILE_SIZE}px`,
-    imageRendering: "pixelated",
-  };
-};
+const terrainStyle = (tile: string, x: number, y: number): CSSProperties =>
+  imageTileStyle(terrainImageForTile(tile, x, y), x, y);
 
 const decorationStyleFor = (tile: string, x: number, y: number): CSSProperties | null => {
   if (tile === "Y" || tile === "L") {
     return {
-      ...terrainStyle("Y", x, y),
+      ...imageTileStyle(TERRAIN_IMAGES.flower, x, y),
       zIndex: 4,
       pointerEvents: "none",
-      opacity: 0.96,
     };
   }
 
   if (tile === "X") {
     return {
-      ...terrainStyle("X", x, y),
+      ...imageTileStyle(TERRAIN_IMAGES.tallGrass, x, y),
       zIndex: 3,
+      opacity: 0.86,
       pointerEvents: "none",
-      opacity: 0.78,
     };
+  }
+
+  if (tile === "F") {
+    return {
+      ...imageTileStyle(OBJECT_IMAGES.fence, x, y),
+      zIndex: 5,
+      pointerEvents: "none",
+    };
+  }
+
+  if (tile === "T") {
+    // A subtle bush/tree overlay on forest tiles, not every tile.
+    if (hashTile(x, y) < 38) {
+      return {
+        ...imageTileStyle(OBJECT_IMAGES.bush, x, y),
+        zIndex: 5,
+        pointerEvents: "none",
+      };
+    }
   }
 
   return null;
@@ -85,21 +90,17 @@ const groundClassFor = (rows: string[][], x: number, y: number) => {
   return "";
 };
 
-const roofFor = (color: PixelBuildingColor) => {
+const roofTileFor = (color: PixelBuildingColor) => {
   if (color === "blue") return "E";
   if (color === "green") return "G";
   if (color === "red") return "R";
   return "E";
 };
 
-const buildingTileFor = (building: PixelBuilding, xx: number, yy: number) => {
-  if (yy < 2) return roofFor(building.color);
+const buildingTileFor = (building: PixelBuilding, yy: number) => {
+  if (yy < 2) return roofTileFor(building.color);
   return "E";
 };
-
-const buildingTileStyle = (tile: string, x: number, y: number): CSSProperties => ({
-  ...terrainStyle(tile, x, y),
-});
 
 const windowColumnsFor = (buildingWidth: number, doorX: number, isGroundFloor: boolean) => {
   const columns = buildingWidth <= 5
@@ -134,17 +135,19 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
           <i
             key={`b-${index}-${xx}-${yy}`}
             className="pixel-sprite-tile"
-            style={buildingTileStyle(buildingTileFor(building, xx, yy), xx, yy)}
+            style={terrainStyle(buildingTileFor(building, yy), xx, yy)}
           />
         )),
       )}
+
       <i
         className="pixel-sprite-tile pixel-building-door"
         style={{
-          ...buildingTileStyle("R", doorX, building.h - 1),
-          filter: "brightness(0.65)",
+          ...terrainStyle("R", doorX, building.h - 1),
+          filter: "brightness(0.55)",
         }}
       />
+
       {wallRows.flatMap((yy) => {
         const isGroundFloor = yy === building.h - 1;
         return windowColumnsFor(building.w, doorX, isGroundFloor).map((xx) => (
@@ -152,12 +155,13 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
             key={`window-${index}-${xx}-${yy}`}
             className="pixel-sprite-tile pixel-building-window"
             style={{
-              ...buildingTileStyle("W", xx, yy),
-              filter: "brightness(1.25)",
+              ...terrainStyle("W", xx, yy),
+              filter: "brightness(1.25) saturate(0.7)",
             }}
           />
         ));
       })}
+
       {building.crest && (
         <span
           className="pixel-building-crest"
@@ -171,6 +175,7 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
           {building.crest}
         </span>
       )}
+
       <span className="pixel-story-marker" aria-hidden="true">
         <b>{stories}F</b>
         {Array.from({ length: stories }).map((_, story) => (
@@ -179,6 +184,18 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
       </span>
     </div>
   );
+}
+
+function objectImageFor(sprite: string) {
+  const key = sprite.toLowerCase();
+
+  if (key.includes("tree") || key.includes("windmill")) return OBJECT_IMAGES.tree;
+  if (key.includes("rock")) return OBJECT_IMAGES.rock;
+  if (key.includes("fence")) return OBJECT_IMAGES.fence;
+  if (key.includes("sign")) return OBJECT_IMAGES.fence;
+  if (key.includes("tulip") || key.includes("flower")) return TERRAIN_IMAGES.flower;
+
+  return OBJECT_IMAGES.bush;
 }
 
 export function PixelMapScene({
@@ -222,7 +239,10 @@ export function PixelMapScene({
         <i
           key={`${object.sprite}-${index}`}
           className={`pixel-sprite-object ${object.className ?? ""}`}
-          style={{ ...objectStyle(object.sprite, object.x, object.y, object.w ?? 1, object.h ?? 1), zIndex: 35 + object.y }}
+          style={{
+            ...imageTileStyle(objectImageFor(object.sprite), object.x, object.y, object.w ?? 1, object.h ?? 1),
+            zIndex: 35 + object.y,
+          }}
         />
       ))}
     </div>
