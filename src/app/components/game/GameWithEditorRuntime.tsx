@@ -1042,6 +1042,41 @@ useRuntimeEffects({
   return (
     <div className="gameboy-shell">
       <div ref={viewRef} className={`gameboy-screen screen-${mapId}`}>
+        <style>
+          {`
+            .map-layer .map-tile {
+              background: transparent !important;
+              background-color: transparent !important;
+              background-image: none !important;
+              box-shadow: none !important;
+            }
+
+            .map-layer .map-tile::before,
+            .map-layer .map-tile::after,
+            .map-layer .tile-G::before,
+            .map-layer .tile-G::after,
+            .map-layer .tile-R::before,
+            .map-layer .tile-R::after,
+            .map-layer .tile-W::before,
+            .map-layer .tile-W::after,
+            .map-layer .tile-T::before,
+            .map-layer .tile-T::after,
+            .map-layer .tile-E::before,
+            .map-layer .tile-E::after,
+            .map-layer .tile-Y::before,
+            .map-layer .tile-Y::after,
+            .map-layer .tile-L::before,
+            .map-layer .tile-L::after,
+            .map-layer .tile-S::before,
+            .map-layer .tile-S::after,
+            .map-layer .tile-X::before,
+            .map-layer .tile-X::after {
+              display: none !important;
+              opacity: 0 !important;
+              background: transparent !important;
+            }
+          `}
+        </style>
 
       {/* White battle flash */}
       {flash && (
@@ -1109,6 +1144,7 @@ useRuntimeEffects({
                     style={{
                       width: TS, height: TS, flexShrink: 0,
                       backgroundColor: "transparent",
+                      backgroundImage: "none",
                       boxShadow: "none",
                       display: "flex", alignItems: "center", justifyContent: "center",
                       fontSize: TS * 0.62, lineHeight: 1, userSelect: "none",

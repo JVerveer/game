@@ -49,14 +49,6 @@ const TILE_VISUALS: Record<string, TileVisual> = {
   O: { label: "Door / Entry", col: 2, row: 0, fallback: "#d4a15f" },
 };
 
-const OBJECT_VISUALS: Record<string, { col: number; row: number; fallback: string }> = {
-  NPC: { col: 0, row: 0, fallback: "transparent" },
-  TREE: { col: 0, row: 8, fallback: "#185c2b" },
-  ROCK: { col: 3, row: 8, fallback: "#676767" },
-  SIGN: { col: 5, row: 8, fallback: "#8b4f25" },
-  FENCE: { col: 4, row: 8, fallback: "#8b4f25" },
-};
-
 function visualFor(tileId: string): TileVisual {
   return TILE_VISUALS[tileId] ?? TILE_VISUALS.G;
 }
@@ -68,9 +60,7 @@ function coordsFor(tileId: string, x: number, y: number) {
 
 export function LimeZuEditorTerrainLayer({
   rows,
-  objects = {},
   tileSize = 48,
-  showObjects = false,
 }: LimeZuEditorTerrainLayerProps) {
   const width = rows[0]?.length ?? 0;
   const height = rows.length;
@@ -80,11 +70,12 @@ export function LimeZuEditorTerrainLayer({
       aria-hidden
       style={{
         position: "absolute",
-        inset: 0,
+        left: 0,
+        top: 0,
         width: width * tileSize,
         height: height * tileSize,
         pointerEvents: "none",
-        zIndex: 0,
+        zIndex: 1,
         imageRendering: "pixelated",
       }}
     >
@@ -96,7 +87,6 @@ export function LimeZuEditorTerrainLayer({
           return (
             <div
               key={`limezu-editor-terrain-${x}-${y}`}
-              title={visual.label}
               style={{
                 position: "absolute",
                 left: x * tileSize,
@@ -113,32 +103,6 @@ export function LimeZuEditorTerrainLayer({
           );
         }),
       )}
-
-      {showObjects &&
-        Object.entries(objects).map(([coord, objectId]) => {
-          if (objectId === "NPC") return null;
-
-          const [x, y] = coord.split(",").map(Number);
-          const visual = OBJECT_VISUALS[objectId] ?? OBJECT_VISUALS.SIGN;
-
-          return (
-            <div
-              key={`limezu-editor-object-${coord}-${objectId}`}
-              style={{
-                position: "absolute",
-                left: x * tileSize,
-                top: y * tileSize,
-                width: tileSize,
-                height: tileSize,
-                backgroundColor: visual.fallback,
-                backgroundImage: `url(${ATLAS})`,
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: `${-visual.col * tileSize}px ${-visual.row * tileSize}px`,
-                imageRendering: "pixelated",
-              }}
-            />
-          );
-        })}
     </div>
   );
 }
