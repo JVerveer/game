@@ -94,7 +94,7 @@ export function HeroEditorOverlay({
         <div style={topBarStyle}>
           <div>
             <div style={titleStyle}>CHARACTER CREATOR</div>
-            <div style={subtitleStyle}>V9 curated options</div>
+            <div style={subtitleStyle}>V10 animation polish</div>
           </div>
 
           <div style={topActionsStyle}>

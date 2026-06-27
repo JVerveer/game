@@ -48,6 +48,15 @@ export type CharacterColorManifest = Record<CharacterColorCategory, readonly Cha
 export type CharacterFrame = {
   col: number;
   row: number;
+  durationMs?: number;
+  offsetX?: number;
+  offsetY?: number;
+};
+
+export type CharacterAnimationConfig = {
+  id: CharacterAnimation;
+  loop: boolean;
+  frames: CharacterFrame[];
 };
 
 export type CharacterCategoryConfig = {
