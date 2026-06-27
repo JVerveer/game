@@ -42,6 +42,7 @@ import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
 import { CharacterRenderer } from "../editor/hero/CharacterRenderer";
+import { LimeZuTileLayer } from "../world/LimeZuTileLayer";
 import {
   DEFAULT_HERO_APPEARANCE,
   type HeroAppearance,
@@ -1054,6 +1055,12 @@ useRuntimeEffects({
         transition: "transform 0.1s linear",
         width: mapPxW, height: mapPxH,
       }} className={`map-layer map-${mapId}`}>
+        <LimeZuTileLayer
+          rows={displayRowsWithBuildings}
+          tileSize={TS}
+          isTown={isTownMap(mapId)}
+        />
+
         {isTownMap(mapId) && (
             <PixelMapScene
               rows={displayRowsWithBuildings}
@@ -1100,8 +1107,8 @@ useRuntimeEffects({
                     className={`map-tile tile-${t} ${tileShapeClass}`}
                     style={{
                       width: TS, height: TS, flexShrink: 0,
-                      backgroundColor: GAME_TILE_COLORS[t] ?? GAME_TILE_COLORS.G,
-                      boxShadow: "inset 0 0 0 1px rgba(37,32,24,0.2)",
+                      backgroundColor: "transparent",
+                      boxShadow: "none",
                       display: "flex", alignItems: "center", justifyContent: "center",
                       fontSize: TS * 0.62, lineHeight: 1, userSelect: "none",
                     }}
