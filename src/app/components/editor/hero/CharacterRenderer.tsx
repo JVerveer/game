@@ -164,9 +164,6 @@ export function CharacterComposite({
   debug?: string;
 }) {
   const size = CHARACTER_TILE_SIZE * pixelSize;
-  const offsetX = (baseFrame.offsetX ?? 0) * pixelSize;
-  const offsetY = (baseFrame.offsetY ?? 0) * pixelSize;
-
   return (
     <div
       style={{
@@ -176,7 +173,6 @@ export function CharacterComposite({
         imageRendering: "pixelated",
         flex: "0 0 auto",
         overflow: "visible",
-        transform: `translate(${offsetX}px, ${offsetY}px)`,
         transformOrigin: "center bottom",
       }}
     >
