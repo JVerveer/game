@@ -1,103 +1,58 @@
 import type { CSSProperties } from "react";
 import type { PixelBuilding, PixelObject, PixelBuildingColor } from "../data/cityMaps/sceneTypes";
+import {
+  hashTile,
+  terrainImageForTile,
+} from "../rendering/limezuTerrainRegistry";
 
-const TILESET_URL = "/assets/limezu/world/terrain/modern_exteriors_complete_48x48.png";
 const TILE_SIZE = 48;
-
-// This file is intentionally easy to tune.
-// Change only these coordinates until the terrain looks right.
-const LIMEZU_TERRAIN = {
-  grass: { col: 0, row: 0 },
-  grassAlt: { col: 1, row: 0 },
-  path: { col: 2, row: 0 },
-  pathAlt: { col: 3, row: 0 },
-  water: { col: 4, row: 0 },
-  waterAlt: { col: 5, row: 0 },
-  plaza: { col: 6, row: 0 },
-  sand: { col: 7, row: 0 },
-  tree: { col: 0, row: 8 },
-  treeAlt: { col: 1, row: 8 },
-  fence: { col: 4, row: 8 },
-  flower: { col: 6, row: 8 },
-  pier: { col: 10, row: 0 },
-  mountain: { col: 9, row: 0 },
-  cave: { col: 8, row: 0 },
-
-  redRoof: { col: 0, row: 12 },
-  blueRoof: { col: 1, row: 12 },
-  purpleRoof: { col: 2, row: 12 },
-  greenRoof: { col: 3, row: 12 },
-  wall: { col: 0, row: 13 },
-  door: { col: 1, row: 13 },
-  window: { col: 2, row: 13 },
-  bench: { col: 7, row: 8 },
-  lamp: { col: 6, row: 8 },
-  statue: { col: 8, row: 8 },
-  fountain: { col: 9, row: 8 },
-  sign: { col: 5, row: 8 },
-  save: { col: 3, row: 0 },
-} as const;
-
-type LimeZuSpriteName = keyof typeof LIMEZU_TERRAIN;
 
 const BUILDING_TILES = new Set(["A", "B", "H", "I", "P", "U"]);
 
-const hashTile = (x: number, y: number) =>
-  Math.abs((x * 928371 + y * 364479 + x * y * 97) % 100);
+const terrainStyle = (tile: string, x: number, y: number): CSSProperties => ({
+  left: x * TILE_SIZE,
+  top: y * TILE_SIZE,
+  width: TILE_SIZE,
+  height: TILE_SIZE,
+  backgroundImage: `url(${terrainImageForTile(tile, x, y)})`,
+  backgroundRepeat: "no-repeat",
+  backgroundSize: `${TILE_SIZE}px ${TILE_SIZE}px`,
+  imageRendering: "pixelated",
+});
 
-const spriteStyle = (name: LimeZuSpriteName, x: number, y: number, w = 1, h = 1): CSSProperties => {
-  const coord = LIMEZU_TERRAIN[name] ?? LIMEZU_TERRAIN.grass;
+const objectStyle = (sprite: string, x: number, y: number, w = 1, h = 1): CSSProperties => {
+  // Temporary fallback: object sprites still use terrain-like placeholders.
+  // Next step will replace this with LimeZu object singles.
+  const tile = sprite === "sign" ? "F" : sprite === "fountain" ? "W" : sprite === "flower" ? "Y" : "G";
 
   return {
     left: x * TILE_SIZE,
     top: y * TILE_SIZE,
     width: w * TILE_SIZE,
     height: h * TILE_SIZE,
-    backgroundImage: `url(${TILESET_URL})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: `-${coord.col * TILE_SIZE}px -${coord.row * TILE_SIZE}px`,
+    backgroundImage: `url(${terrainImageForTile(tile, x, y)})`,
+    backgroundRepeat: "repeat",
+    backgroundSize: `${TILE_SIZE}px ${TILE_SIZE}px`,
     imageRendering: "pixelated",
   };
 };
 
-const terrainSpriteFor = (rows: string[][], x: number, y: number): LimeZuSpriteName => {
-  const tile = rows[y]?.[x] ?? "G";
-  const roll = hashTile(x, y);
-
-  if (tile === "G") return roll > 76 ? "grassAlt" : "grass";
-  if (tile === "R" || tile === "O" || tile === "V" || tile === "Q" || tile === "N") return roll > 60 ? "pathAlt" : "path";
-  if (tile === "J") return "pier";
-  if (tile === "E") return "plaza";
-  if (tile === "W") return roll > 50 ? "waterAlt" : "water";
-  if (tile === "S") return "sand";
-  if (tile === "X") return roll > 55 ? "grassAlt" : "grass";
-  if (tile === "T") return roll > 67 ? "treeAlt" : "tree";
-  if (tile === "F") return "fence";
-  if (tile === "L" || tile === "Y") return "grass";
-  if (tile === "M") return "mountain";
-  if (tile === "C" || tile === "D") return "cave";
-  if (BUILDING_TILES.has(tile)) return roll > 82 ? "grassAlt" : "grass";
-
-  return roll > 76 ? "grassAlt" : "grass";
-};
-
 const decorationStyleFor = (tile: string, x: number, y: number): CSSProperties | null => {
-  const roll = hashTile(x, y);
-
-  if (tile === "X") {
+  if (tile === "Y" || tile === "L") {
     return {
-      ...spriteStyle(roll > 50 ? "grassAlt" : "grass", x, y),
-      zIndex: 3,
-      opacity: 0.72,
+      ...terrainStyle("Y", x, y),
+      zIndex: 4,
       pointerEvents: "none",
+      opacity: 0.96,
     };
   }
 
-  if (tile === "Y" || tile === "L") {
+  if (tile === "X") {
     return {
-      ...spriteStyle("flower", x, y),
-      zIndex: 4,
+      ...terrainStyle("X", x, y),
+      zIndex: 3,
       pointerEvents: "none",
+      opacity: 0.78,
     };
   }
 
@@ -130,12 +85,21 @@ const groundClassFor = (rows: string[][], x: number, y: number) => {
   return "";
 };
 
-const roofFor = (color: PixelBuildingColor): LimeZuSpriteName => `${color}Roof` as LimeZuSpriteName;
-
-const buildingTileFor = (building: PixelBuilding, xx: number, yy: number): LimeZuSpriteName => {
-  if (yy < 2) return roofFor(building.color);
-  return "wall";
+const roofFor = (color: PixelBuildingColor) => {
+  if (color === "blue") return "E";
+  if (color === "green") return "G";
+  if (color === "red") return "R";
+  return "E";
 };
+
+const buildingTileFor = (building: PixelBuilding, xx: number, yy: number) => {
+  if (yy < 2) return roofFor(building.color);
+  return "E";
+};
+
+const buildingTileStyle = (tile: string, x: number, y: number): CSSProperties => ({
+  ...terrainStyle(tile, x, y),
+});
 
 const windowColumnsFor = (buildingWidth: number, doorX: number, isGroundFloor: boolean) => {
   const columns = buildingWidth <= 5
@@ -170,22 +134,30 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
           <i
             key={`b-${index}-${xx}-${yy}`}
             className="pixel-sprite-tile"
-            style={spriteStyle(buildingTileFor(building, xx, yy), xx, yy)}
+            style={buildingTileStyle(buildingTileFor(building, xx, yy), xx, yy)}
           />
         )),
       )}
-      <i className="pixel-sprite-tile pixel-building-door" style={spriteStyle("door", doorX, building.h - 1)} />
+      <i
+        className="pixel-sprite-tile pixel-building-door"
+        style={{
+          ...buildingTileStyle("R", doorX, building.h - 1),
+          filter: "brightness(0.65)",
+        }}
+      />
       {wallRows.flatMap((yy) => {
         const isGroundFloor = yy === building.h - 1;
         return windowColumnsFor(building.w, doorX, isGroundFloor).map((xx) => (
           <i
             key={`window-${index}-${xx}-${yy}`}
             className="pixel-sprite-tile pixel-building-window"
-            style={spriteStyle("window", xx, yy)}
+            style={{
+              ...buildingTileStyle("W", xx, yy),
+              filter: "brightness(1.25)",
+            }}
           />
         ));
       })}
-      {building.crest && <i className="pixel-sprite-tile pixel-building-sign" style={spriteStyle("sign", doorX, signY)} />}
       {building.crest && (
         <span
           className="pixel-building-crest"
@@ -209,52 +181,6 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
   );
 }
 
-export function LimeZuTerrainCoordinateDebug() {
-  const entries = Object.entries(LIMEZU_TERRAIN);
-
-  return (
-    <div
-      style={{
-        position: "fixed",
-        right: 12,
-        top: 86,
-        zIndex: 2000,
-        width: 260,
-        maxHeight: "70vh",
-        overflow: "auto",
-        backgroundColor: "rgba(15,20,22,0.96)",
-        border: "2px solid rgba(255,255,255,0.18)",
-        padding: 10,
-        color: "#f7f0df",
-        fontFamily: "monospace",
-        fontSize: 11,
-        pointerEvents: "auto",
-      }}
-    >
-      <b>LimeZu terrain coords</b>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 6, marginTop: 8 }}>
-        {entries.map(([name, coord]) => (
-          <div key={name} style={{ display: "grid", gap: 2 }}>
-            <div
-              style={{
-                width: 48,
-                height: 48,
-                backgroundImage: `url(${TILESET_URL})`,
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: `-${coord.col * TILE_SIZE}px -${coord.row * TILE_SIZE}px`,
-                imageRendering: "pixelated",
-                border: "1px solid rgba(255,255,255,0.18)",
-              }}
-            />
-            <span>{name}</span>
-            <span>c{coord.col} r{coord.row}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export function PixelMapScene({
   rows,
   buildings,
@@ -268,12 +194,14 @@ export function PixelMapScene({
     <div className="pixel-tileset-scene" aria-hidden="true">
       {rows.map((row, y) => row.map((tileName, x) => {
         const decoration = decorationStyleFor(tileName, x, y);
+        const groundTile = BUILDING_TILES.has(tileName) ? "G" : tileName;
+
         return (
           <span key={`ground-wrap-${x}-${y}`}>
             <i
               key={`ground-${x}-${y}`}
               className={`pixel-sprite-tile ${groundClassFor(rows, x, y)}`}
-              style={spriteStyle(terrainSpriteFor(rows, x, y), x, y)}
+              style={terrainStyle(groundTile, x, y)}
             />
             {decoration && (
               <i
@@ -294,7 +222,7 @@ export function PixelMapScene({
         <i
           key={`${object.sprite}-${index}`}
           className={`pixel-sprite-object ${object.className ?? ""}`}
-          style={{ ...spriteStyle(object.sprite as LimeZuSpriteName, object.x, object.y, object.w ?? 1, object.h ?? 1), zIndex: 35 + object.y }}
+          style={{ ...objectStyle(object.sprite, object.x, object.y, object.w ?? 1, object.h ?? 1), zIndex: 35 + object.y }}
         />
       ))}
     </div>
