@@ -9461,26 +9461,20 @@ export const EDITOR_TERRAIN_IDS = [
 
 const STORAGE_KEY = "satiria.limezuTerrainAssignment.v1";
 
-let cachedAssignment: TerrainAssignment | null = null;
-
-export function getTerrainAsset(id: string | undefined): TerrainAsset {
-  return TERRAIN_LIBRARY.find(asset => asset.id === id) ?? TERRAIN_LIBRARY[0];
-}
+let cachedAssignment: TerrainAssignment = { ...DEFAULT_TERRAIN_ASSIGNMENT };
 
 export function readTerrainAssignment(): TerrainAssignment {
-  if (cachedAssignment) return cachedAssignment;
-
   if (typeof window === "undefined") {
-    return DEFAULT_TERRAIN_ASSIGNMENT;
+    return cachedAssignment;
   }
 
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     cachedAssignment = raw
       ? { ...DEFAULT_TERRAIN_ASSIGNMENT, ...JSON.parse(raw) }
-      : DEFAULT_TERRAIN_ASSIGNMENT;
+      : { ...DEFAULT_TERRAIN_ASSIGNMENT };
   } catch {
-    cachedAssignment = DEFAULT_TERRAIN_ASSIGNMENT;
+    cachedAssignment = { ...DEFAULT_TERRAIN_ASSIGNMENT };
   }
 
   return cachedAssignment;
@@ -9496,7 +9490,7 @@ export function writeTerrainAssignment(next: TerrainAssignment) {
 }
 
 export function resetTerrainAssignment() {
-  cachedAssignment = DEFAULT_TERRAIN_ASSIGNMENT;
+  cachedAssignment = { ...DEFAULT_TERRAIN_ASSIGNMENT };
 
   if (typeof window !== "undefined") {
     window.localStorage.removeItem(STORAGE_KEY);
