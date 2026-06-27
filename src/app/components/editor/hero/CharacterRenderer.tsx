@@ -89,8 +89,7 @@ function AtlasLayer({
   if (!option || option.id === "none") return null;
 
   const frame = frameForLayer({ baseFrame, category });
-  const tile = CHARACTER_TILE_SIZE;
-  const displaySize = tile * pixelSize;
+  const displaySize = CHARACTER_TILE_SIZE * pixelSize;
   const backgroundWidth = option.atlasWidth * pixelSize;
   const backgroundHeight = option.atlasHeight * pixelSize;
 
@@ -145,6 +144,7 @@ export function CharacterRenderer({
       baseFrame={baseFrame}
       pixelSize={pixelSize}
       showShadow={showShadow}
+      walking={animation === "walk"}
       debug={debug ? `${animation} ${facing} c${baseFrame.col} r${baseFrame.row}` : undefined}
     />
   );
@@ -155,71 +155,95 @@ export function CharacterComposite({
   baseFrame,
   pixelSize = 1,
   showShadow = true,
+  walking = false,
   debug,
 }: {
   appearance: CharacterAppearance;
   baseFrame: CharacterFrame;
   pixelSize?: number;
   showShadow?: boolean;
+  walking?: boolean;
   debug?: string;
 }) {
   const size = CHARACTER_TILE_SIZE * pixelSize;
+
   return (
-    <div
-      style={{
-        position: "relative",
-        width: size,
-        height: size,
-        imageRendering: "pixelated",
-        flex: "0 0 auto",
-        overflow: "visible",
-        transformOrigin: "center bottom",
-      }}
-    >
-      {showShadow && (
-        <div
-          style={{
-            position: "absolute",
-            left: 13 * pixelSize,
-            top: 39 * pixelSize,
-            width: 22 * pixelSize,
-            height: 5 * pixelSize,
-            backgroundColor: "rgba(0,0,0,0.24)",
-            borderRadius: 999,
-          }}
-        />
-      )}
+    <>
+      <style>
+        {`
+          @keyframes limezuHeroSafeWalk {
+            0% { transform: translateY(0px) scaleY(1); }
+            50% { transform: translateY(-1px) scaleY(0.985); }
+            100% { transform: translateY(0px) scaleY(1); }
+          }
 
-      {CHARACTER_LAYER_ORDER.map(category => (
-        <AtlasLayer
-          key={`${category}-${appearance[category]}-${appearance.skinColor}-${appearance.hairColor}-${appearance.outfitColor}-${baseFrame.col}-${baseFrame.row}`}
-          category={category}
-          optionId={appearance[category]}
-          appearance={appearance}
-          baseFrame={baseFrame}
-          pixelSize={pixelSize}
-        />
-      ))}
+          @keyframes limezuHeroSafeShadow {
+            0% { opacity: 0.24; transform: scaleX(1); }
+            50% { opacity: 0.18; transform: scaleX(0.88); }
+            100% { opacity: 0.24; transform: scaleX(1); }
+          }
+        `}
+      </style>
 
-      {debug && (
-        <div
-          style={{
-            position: "absolute",
-            left: 0,
-            top: -18,
-            fontFamily: "monospace",
-            fontSize: 9,
-            color: "#fff",
-            background: "rgba(0,0,0,0.65)",
-            padding: "1px 3px",
-            whiteSpace: "nowrap",
-            imageRendering: "auto",
-          }}
-        >
-          {debug}
-        </div>
-      )}
-    </div>
+      <div
+        style={{
+          position: "relative",
+          width: size,
+          height: size,
+          imageRendering: "pixelated",
+          flex: "0 0 auto",
+          overflow: "visible",
+          transformOrigin: "center bottom",
+          animation: walking ? "limezuHeroSafeWalk 260ms steps(2, end) infinite" : undefined,
+        }}
+      >
+        {showShadow && (
+          <div
+            style={{
+              position: "absolute",
+              left: 13 * pixelSize,
+              top: 39 * pixelSize,
+              width: 22 * pixelSize,
+              height: 5 * pixelSize,
+              backgroundColor: "rgba(0,0,0,0.24)",
+              borderRadius: 999,
+              transformOrigin: "center",
+              animation: walking ? "limezuHeroSafeShadow 260ms steps(2, end) infinite" : undefined,
+            }}
+          />
+        )}
+
+        {CHARACTER_LAYER_ORDER.map(category => (
+          <AtlasLayer
+            key={`${category}-${appearance[category]}-${appearance.skinColor}-${appearance.hairColor}-${appearance.outfitColor}-${baseFrame.col}-${baseFrame.row}`}
+            category={category}
+            optionId={appearance[category]}
+            appearance={appearance}
+            baseFrame={baseFrame}
+            pixelSize={pixelSize}
+          />
+        ))}
+
+        {debug && (
+          <div
+            style={{
+              position: "absolute",
+              left: 0,
+              top: -18,
+              fontFamily: "monospace",
+              fontSize: 9,
+              color: "#fff",
+              background: "rgba(0,0,0,0.65)",
+              padding: "1px 3px",
+              whiteSpace: "nowrap",
+              imageRendering: "auto",
+            }}
+          >
+            {debug}
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
@@ -251,6 +275,7 @@ export function CharacterLayerThumbnail({
       baseFrame={thumbnailFrame()}
       pixelSize={pixelSize}
       showShadow={false}
+      walking={false}
     />
   );
 }
