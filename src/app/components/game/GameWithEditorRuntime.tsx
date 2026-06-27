@@ -42,7 +42,7 @@ import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
 import { CharacterRenderer } from "../editor/hero/CharacterRenderer";
-import { LimeZuTileLayer } from "../world/LimeZuTileLayer";
+import { LimeZuTileLayer } from "../../../world/LimeZuTileLayer";
 import {
   DEFAULT_HERO_APPEARANCE,
   type HeroAppearance,
