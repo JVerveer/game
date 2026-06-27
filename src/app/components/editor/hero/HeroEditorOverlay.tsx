@@ -3,11 +3,16 @@ import {
   CHARACTER_ASSET_MANIFEST,
   CHARACTER_CATEGORIES,
   CHARACTER_COLOR_MANIFEST,
+  CHARACTER_PRESETS,
   DEFAULT_CHARACTER_APPEARANCE,
-  colorOptionFor,
+  categoryOptionCount,
+  colorIndexFor,
+  curatedOptionsFor,
+  displayColorLabelFor,
+  displayLabelFor,
   nextColorId,
   nextOptionId,
-  optionFor,
+  optionIndexFor,
   randomCharacterAppearance,
 } from "./characterAssets";
 import {
@@ -26,10 +31,6 @@ const RJ = { fontFamily: "'Rajdhani', sans-serif" } as const;
 
 function isColorCategory(id: string): id is CharacterColorCategory {
   return id === "skinColor" || id === "hairColor" || id === "outfitColor";
-}
-
-function isAssetCategory(id: string): id is CharacterLayerCategory {
-  return id === "body" || id === "eyes" || id === "hair" || id === "outfit" || id === "accessory";
 }
 
 export function HeroEditorOverlay({
@@ -76,17 +77,14 @@ export function HeroEditorOverlay({
   const livePreviewAnimation = useMemo(() => selectedCategory === "outfit" ? "walk" : "idle", [selectedCategory]);
 
   const selectedOptionLabel = isColorCategory(selectedCategory)
-    ? colorOptionFor(selectedCategory, heroAppearance[selectedCategory])?.label ?? "Default"
-    : optionFor(selectedCategory, heroAppearance[selectedCategory])?.label ?? "None";
+    ? displayColorLabelFor(selectedCategory, heroAppearance[selectedCategory])
+    : displayLabelFor(selectedCategory, heroAppearance[selectedCategory]);
 
-  const selectedOptions = isColorCategory(selectedCategory)
-    ? CHARACTER_COLOR_MANIFEST[selectedCategory]
-    : CHARACTER_ASSET_MANIFEST[selectedCategory];
+  const selectedIndex = isColorCategory(selectedCategory)
+    ? colorIndexFor(selectedCategory, heroAppearance[selectedCategory])
+    : optionIndexFor(selectedCategory, heroAppearance[selectedCategory]);
 
-  const selectedIndex = Math.max(
-    0,
-    selectedOptions.findIndex(option => option.id === heroAppearance[selectedCategory]),
-  );
+  const optionCount = categoryOptionCount(selectedCategory);
 
   return (
     <div style={overlayStyle}>
@@ -96,7 +94,7 @@ export function HeroEditorOverlay({
         <div style={topBarStyle}>
           <div>
             <div style={titleStyle}>CHARACTER CREATOR</div>
-            <div style={subtitleStyle}>V8 color customization</div>
+            <div style={subtitleStyle}>V9 curated options</div>
           </div>
 
           <div style={topActionsStyle}>
@@ -120,8 +118,8 @@ export function HeroEditorOverlay({
               {CHARACTER_CATEGORIES.map(category => {
                 const selected = category.id === selectedCategory;
                 const value = isColorCategory(category.id)
-                  ? colorOptionFor(category.id, heroAppearance[category.id])?.label
-                  : optionFor(category.id, heroAppearance[category.id])?.label;
+                  ? displayColorLabelFor(category.id, heroAppearance[category.id])
+                  : displayLabelFor(category.id, heroAppearance[category.id]);
 
                 return (
                   <button
@@ -135,7 +133,7 @@ export function HeroEditorOverlay({
                     }}
                   >
                     <span>{category.label}</span>
-                    <span style={categoryValueStyle}>{value ?? "None"}</span>
+                    <span style={categoryValueStyle}>{value}</span>
                   </button>
                 );
               })}
@@ -150,6 +148,22 @@ export function HeroEditorOverlay({
                 style={inputStyle}
               />
             </label>
+
+            <div style={presetPanelStyle}>
+              <div style={panelTitleStyle}>PRESETS</div>
+              <div style={presetGridStyle}>
+                {CHARACTER_PRESETS.map(preset => (
+                  <button
+                    key={preset.id}
+                    type="button"
+                    onClick={() => setHeroAppearance(preset.appearance)}
+                    style={presetButtonStyle}
+                  >
+                    {preset.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </aside>
 
           <main style={previewPanelStyle}>
@@ -193,7 +207,7 @@ export function HeroEditorOverlay({
               <div style={selectedOptionStyle}>
                 <div style={selectedOptionNameStyle}>{selectedOptionLabel}</div>
                 <div style={selectedOptionCountStyle}>
-                  {selectedIndex + 1} / {selectedOptions.length}
+                  {selectedIndex + 1} / {optionCount}
                 </div>
               </div>
 
@@ -277,14 +291,14 @@ function AssetGrid({
 }) {
   return (
     <div style={optionsGridStyle}>
-      {CHARACTER_ASSET_MANIFEST[category].map(option => {
+      {curatedOptionsFor(category).map(option => {
         const selected = heroAppearance[category] === option.id;
 
         return (
           <button
             key={option.id}
             type="button"
-            title={option.label}
+            title={displayLabelFor(category, option.id)}
             onClick={() => onChange(category, option.id)}
             style={{
               ...optionButtonStyle,
@@ -302,7 +316,7 @@ function AssetGrid({
                 />
               )}
             </div>
-            <div style={optionLabelStyle}>{option.label}</div>
+            <div style={optionLabelStyle}>{displayLabelFor(category, option.id)}</div>
           </button>
         );
       })}
@@ -464,6 +478,28 @@ const inputStyle: React.CSSProperties = {
   backgroundColor: "#101619",
   color: "#f7f0df",
   padding: "10px 12px",
+};
+
+const presetPanelStyle: React.CSSProperties = {
+  marginTop: 18,
+  borderTop: "1px solid rgba(255,255,255,0.1)",
+  paddingTop: 14,
+};
+
+const presetGridStyle: React.CSSProperties = {
+  display: "grid",
+  gap: 8,
+};
+
+const presetButtonStyle: React.CSSProperties = {
+  ...RJ,
+  border: "1px solid rgba(255,255,255,0.14)",
+  backgroundColor: "#20282b",
+  color: "#f7f0df",
+  cursor: "pointer",
+  padding: "9px 10px",
+  fontWeight: 800,
+  textAlign: "left",
 };
 
 const largeStageStyle: React.CSSProperties = {

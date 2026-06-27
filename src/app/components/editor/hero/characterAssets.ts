@@ -761,3 +761,108 @@ export function randomCharacterAppearance(): CharacterAppearance {
     outfitColor: pickColor("outfitColor"),
   };
 }
+
+
+function prettyOptionLabel(id: string, fallback: string) {
+  if (id === "none") return "None";
+
+  const normalized = id
+    .replace(/_48x48/g, "")
+    .replace(/^body_/, "Body ")
+    .replace(/^eyes_/, "Eyes ")
+    .replace(/^hairstyle_/, "Hairstyle ")
+    .replace(/^outfit_/, "Outfit ")
+    .replace(/^accessory_/, "Accessory ")
+    .replace(/_/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  return normalized
+    .replace(/\b\w/g, char => char.toUpperCase())
+    .replace(/\b0+(\d+)/g, "$1");
+}
+
+export function displayLabelFor(category: CharacterLayerCategory, id: string) {
+  const option = optionFor(category, id);
+  return prettyOptionLabel(id, option?.label ?? id);
+}
+
+export function displayColorLabelFor(category: CharacterColorCategory, id: string) {
+  return colorOptionFor(category, id)?.label ?? id;
+}
+
+export function curatedOptionsFor(category: CharacterLayerCategory) {
+  const options = CHARACTER_ASSET_MANIFEST[category];
+
+  if (category === "body") return [...options];
+
+  const none = options.filter(option => option.id === "none");
+  const rest = options.filter(option => option.id !== "none");
+
+  return [
+    ...none,
+    ...rest,
+  ];
+}
+
+export function optionIndexFor(category: CharacterLayerCategory, id: string) {
+  const options = curatedOptionsFor(category);
+  return Math.max(0, options.findIndex(option => option.id === id));
+}
+
+export function colorIndexFor(category: CharacterColorCategory, id: string) {
+  const options = CHARACTER_COLOR_MANIFEST[category];
+  return Math.max(0, options.findIndex(option => option.id === id));
+}
+
+export function categoryOptionCount(category: CharacterLayerCategory | CharacterColorCategory) {
+  if (category === "skinColor" || category === "hairColor" || category === "outfitColor") {
+    return CHARACTER_COLOR_MANIFEST[category].length;
+  }
+
+  return curatedOptionsFor(category).length;
+}
+
+export const CHARACTER_PRESETS = [
+  {
+    id: "classic",
+    label: "Classic Hero",
+    appearance: DEFAULT_CHARACTER_APPEARANCE,
+  },
+  {
+    id: "dark",
+    label: "Dark Outfit",
+    appearance: {
+      ...DEFAULT_CHARACTER_APPEARANCE,
+      hairColor: "black",
+      outfitColor: "black",
+    },
+  },
+  {
+    id: "bright",
+    label: "Bright Hero",
+    appearance: {
+      ...DEFAULT_CHARACTER_APPEARANCE,
+      hairColor: "blonde",
+      outfitColor: "yellow",
+    },
+  },
+  {
+    id: "cool",
+    label: "Cool Blue",
+    appearance: {
+      ...DEFAULT_CHARACTER_APPEARANCE,
+      hairColor: "blue",
+      outfitColor: "blue",
+    },
+  },
+  {
+    id: "forest",
+    label: "Forest Green",
+    appearance: {
+      ...DEFAULT_CHARACTER_APPEARANCE,
+      hairColor: "brown",
+      outfitColor: "green",
+    },
+  },
+] as const;
