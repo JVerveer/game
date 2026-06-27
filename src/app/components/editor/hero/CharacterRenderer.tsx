@@ -166,21 +166,51 @@ export function CharacterComposite({
   debug?: string;
 }) {
   const size = CHARACTER_TILE_SIZE * pixelSize;
+  const walkDistance = Math.max(1, Math.round(pixelSize * 1.2));
 
   return (
     <>
       <style>
         {`
-          @keyframes limezuHeroSafeWalk {
-            0% { transform: translateY(0px) scaleY(1); }
-            50% { transform: translateY(-1px) scaleY(0.985); }
-            100% { transform: translateY(0px) scaleY(1); }
+          @keyframes limezuHeroObviousWalk {
+            0% {
+              transform: translate(0px, 0px) rotate(0deg) scaleY(1);
+            }
+            25% {
+              transform: translate(${-walkDistance}px, -3px) rotate(-1deg) scaleY(0.985);
+            }
+            50% {
+              transform: translate(0px, 0px) rotate(0deg) scaleY(1);
+            }
+            75% {
+              transform: translate(${walkDistance}px, -3px) rotate(1deg) scaleY(0.985);
+            }
+            100% {
+              transform: translate(0px, 0px) rotate(0deg) scaleY(1);
+            }
           }
 
-          @keyframes limezuHeroSafeShadow {
-            0% { opacity: 0.24; transform: scaleX(1); }
-            50% { opacity: 0.18; transform: scaleX(0.88); }
-            100% { opacity: 0.24; transform: scaleX(1); }
+          @keyframes limezuHeroObviousShadow {
+            0% {
+              opacity: 0.26;
+              transform: scaleX(1);
+            }
+            25% {
+              opacity: 0.16;
+              transform: scaleX(0.82);
+            }
+            50% {
+              opacity: 0.26;
+              transform: scaleX(1);
+            }
+            75% {
+              opacity: 0.16;
+              transform: scaleX(0.82);
+            }
+            100% {
+              opacity: 0.26;
+              transform: scaleX(1);
+            }
           }
         `}
       </style>
@@ -194,7 +224,7 @@ export function CharacterComposite({
           flex: "0 0 auto",
           overflow: "visible",
           transformOrigin: "center bottom",
-          animation: walking ? "limezuHeroSafeWalk 260ms steps(2, end) infinite" : undefined,
+          animation: walking ? "limezuHeroObviousWalk 420ms steps(4, end) infinite" : undefined,
         }}
       >
         {showShadow && (
@@ -205,10 +235,10 @@ export function CharacterComposite({
               top: 39 * pixelSize,
               width: 22 * pixelSize,
               height: 5 * pixelSize,
-              backgroundColor: "rgba(0,0,0,0.24)",
+              backgroundColor: "rgba(0,0,0,0.26)",
               borderRadius: 999,
               transformOrigin: "center",
-              animation: walking ? "limezuHeroSafeShadow 260ms steps(2, end) infinite" : undefined,
+              animation: walking ? "limezuHeroObviousShadow 420ms steps(4, end) infinite" : undefined,
             }}
           />
         )}
