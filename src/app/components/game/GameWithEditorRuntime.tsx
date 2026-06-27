@@ -42,7 +42,7 @@ import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
 import { CharacterRenderer } from "../editor/hero/CharacterRenderer";
-import { LimeZuEditorTerrainLayer } from "../../../world/LimeZuEditorTerrainLayer";
+import { limeZuTileStyle } from "../../../world/limeZuTileStyle";
 import {
   DEFAULT_HERO_APPEARANCE,
   type HeroAppearance,
@@ -1044,36 +1044,12 @@ useRuntimeEffects({
       <div ref={viewRef} className={`gameboy-screen screen-${mapId}`}>
         <style>
           {`
-            .map-layer .map-tile {
-              background: transparent !important;
-              background-color: transparent !important;
-              background-image: none !important;
-              box-shadow: none !important;
-            }
-
             .map-layer .map-tile::before,
-            .map-layer .map-tile::after,
-            .map-layer .tile-G::before,
-            .map-layer .tile-G::after,
-            .map-layer .tile-R::before,
-            .map-layer .tile-R::after,
-            .map-layer .tile-W::before,
-            .map-layer .tile-W::after,
-            .map-layer .tile-T::before,
-            .map-layer .tile-T::after,
-            .map-layer .tile-E::before,
-            .map-layer .tile-E::after,
-            .map-layer .tile-Y::before,
-            .map-layer .tile-Y::after,
-            .map-layer .tile-L::before,
-            .map-layer .tile-L::after,
-            .map-layer .tile-S::before,
-            .map-layer .tile-S::after,
-            .map-layer .tile-X::before,
-            .map-layer .tile-X::after {
+            .map-layer .map-tile::after {
               display: none !important;
               opacity: 0 !important;
               background: transparent !important;
+              content: none !important;
             }
           `}
         </style>
@@ -1090,13 +1066,6 @@ useRuntimeEffects({
         transition: "transform 0.1s linear",
         width: mapPxW, height: mapPxH,
       }} className={`map-layer map-${mapId}`}>
-        <LimeZuEditorTerrainLayer
-          rows={displayRowsWithBuildings}
-          objects={displayObjects}
-          tileSize={TS}
-          showObjects={false}
-        />
-
         {isTownMap(mapId) && (
             <PixelMapScene
               rows={displayRowsWithBuildings}
@@ -1143,9 +1112,8 @@ useRuntimeEffects({
                     className={`map-tile tile-${t} ${tileShapeClass}`}
                     style={{
                       width: TS, height: TS, flexShrink: 0,
-                      backgroundColor: "transparent",
-                      backgroundImage: "none",
-                      boxShadow: "none",
+                      ...limeZuTileStyle(t, cx, ry, TS),
+                      boxShadow: "inset 0 0 0 1px rgba(37,32,24,0.10)",
                       display: "flex", alignItems: "center", justifyContent: "center",
                       fontSize: TS * 0.62, lineHeight: 1, userSelect: "none",
                     }}
