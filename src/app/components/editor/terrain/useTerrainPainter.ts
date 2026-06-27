@@ -3,6 +3,7 @@ import type { GameMapId } from "../../../../data/maps";
 import type { MovingNpc } from "../../../../data/npcs";
 import type { EditorBuildingAsset } from "../../../../data/cityMaps/mapAsset";
 import type { EditedObjectsByMap, EditedRowsByMap, EditorMode, EditorSelection, ObjectEditAction } from "../hooks/useEditorState";
+import { getSelectedTerrainAssetId, paintTerrainAssetAt } from "./TerrainLibrary";
 
 const isSelectEditorMode = (mode: EditorMode) => mode === "select";
 
@@ -159,6 +160,23 @@ export function useTerrainPainter({
         } else {
           next[coord] = editorObjectIdRef.current;
         }
+        return { ...prev, [id]: next };
+      });
+      return;
+    }
+
+    if (editorModeRef.current === "terrain") {
+      const selectedTerrainAssetId = getSelectedTerrainAssetId();
+      if (selectedTerrainAssetId) {
+        paintTerrainAssetAt(x, y, selectedTerrainAssetId);
+      }
+
+      // Keep the underlying map compatible with the old one-character terrain system.
+      // Direct LimeZu terrain is stored separately per coordinate.
+      setEditedRowsByMap(prev => {
+        const base = prev[id] ?? rowsForMap(id).map(row => [...row]);
+        const next = base.map(row => [...row]);
+        if (next[y]?.[x] !== undefined) next[y][x] = "G";
         return { ...prev, [id]: next };
       });
       return;

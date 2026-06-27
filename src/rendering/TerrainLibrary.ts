@@ -9405,63 +9405,17 @@ export const TERRAIN_LIBRARY: TerrainAsset[] = [
   }
 ];
 
-export const DEFAULT_TERRAIN_ASSIGNMENT: TerrainAssignment = {
-  "G": "terrain_0",
-  "R": "terrain_482",
-  "W": "terrain_0",
-  "T": "terrain_0",
-  "E": "terrain_245",
-  "Y": "terrain_547",
-  "L": "terrain_547",
-  "S": "terrain_566",
-  "X": "terrain_0",
-  "D": "terrain_222",
-  "C": "terrain_222",
-  "M": "terrain_0",
-  "J": "terrain_482",
-  "F": "terrain_0",
-  "Q": "terrain_0",
-  "V": "terrain_245",
-  "N": "terrain_0",
-  "A": "terrain_0",
-  "B": "terrain_0",
-  "H": "terrain_0",
-  "P": "terrain_0",
-  "U": "terrain_0",
-  "I": "terrain_0",
-  "O": "terrain_482"
-};
 
-export const EDITOR_TERRAIN_IDS = [
-  "G",
-  "R",
-  "W",
-  "T",
-  "E",
-  "Y",
-  "L",
-  "S",
-  "X",
-  "D",
-  "C",
-  "M",
-  "J",
-  "F",
-  "Q",
-  "V",
-  "N",
-  "A",
-  "B",
-  "H",
-  "P",
-  "U",
-  "I",
-  "O",
-] as const;
+export type TerrainPaintMap = Record<string, string>;
 
-const STORAGE_KEY = "satiria.limezuTerrainAssignment.v1";
+const PAINT_STORAGE_KEY = "satiria.limezuDirectTerrainPaint.v1";
+const SELECTED_STORAGE_KEY = "satiria.limezuSelectedTerrainAsset.v1";
 
-let cachedAssignment: TerrainAssignment = { ...DEFAULT_TERRAIN_ASSIGNMENT };
+let cachedPaintMap: TerrainPaintMap = {};
+
+export function terrainCoordKey(x: number, y: number) {
+  return `${x},${y}`;
+}
 
 export function getTerrainAsset(id: string | undefined): TerrainAsset {
   return (
@@ -9470,51 +9424,74 @@ export function getTerrainAsset(id: string | undefined): TerrainAsset {
   );
 }
 
-export function readTerrainAssignment(): TerrainAssignment {
+export function readTerrainPaintMap(): TerrainPaintMap {
   if (typeof window === "undefined") {
-    return cachedAssignment;
+    return cachedPaintMap;
   }
 
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    cachedAssignment = raw
-      ? { ...DEFAULT_TERRAIN_ASSIGNMENT, ...JSON.parse(raw) }
-      : { ...DEFAULT_TERRAIN_ASSIGNMENT };
+    const raw = window.localStorage.getItem(PAINT_STORAGE_KEY);
+    cachedPaintMap = raw ? JSON.parse(raw) : {};
   } catch {
-    cachedAssignment = { ...DEFAULT_TERRAIN_ASSIGNMENT };
+    cachedPaintMap = {};
   }
 
-  return cachedAssignment;
+  return cachedPaintMap;
 }
 
-export function writeTerrainAssignment(next: TerrainAssignment) {
-  cachedAssignment = { ...DEFAULT_TERRAIN_ASSIGNMENT, ...next };
+export function writeTerrainPaintMap(next: TerrainPaintMap) {
+  cachedPaintMap = { ...next };
 
   if (typeof window !== "undefined") {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(cachedAssignment));
-    window.dispatchEvent(new CustomEvent("satiria:terrain-assignment-changed"));
+    window.localStorage.setItem(PAINT_STORAGE_KEY, JSON.stringify(cachedPaintMap));
+    window.dispatchEvent(new CustomEvent("satiria:limezu-terrain-paint-changed"));
   }
 }
 
-export function resetTerrainAssignment() {
-  cachedAssignment = { ...DEFAULT_TERRAIN_ASSIGNMENT };
+export function paintTerrainAssetAt(x: number, y: number, assetId: string) {
+  const next = {
+    ...readTerrainPaintMap(),
+    [terrainCoordKey(x, y)]: assetId,
+  };
+  writeTerrainPaintMap(next);
+}
+
+export function eraseTerrainAssetAt(x: number, y: number) {
+  const next = { ...readTerrainPaintMap() };
+  delete next[terrainCoordKey(x, y)];
+  writeTerrainPaintMap(next);
+}
+
+export function terrainAssetForCoord(x: number, y: number): TerrainAsset | undefined {
+  const paintMap = readTerrainPaintMap();
+  const assetId = paintMap[terrainCoordKey(x, y)];
+  return assetId ? getTerrainAsset(assetId) : undefined;
+}
+
+export function terrainImageForCoord(x: number, y: number): string | undefined {
+  return terrainAssetForCoord(x, y)?.src;
+}
+
+export function getSelectedTerrainAssetId(): string {
+  if (typeof window === "undefined") {
+    return TERRAIN_LIBRARY[0]?.id ?? "";
+  }
+
+  return window.localStorage.getItem(SELECTED_STORAGE_KEY) ?? TERRAIN_LIBRARY[0]?.id ?? "";
+}
+
+export function setSelectedTerrainAssetId(assetId: string) {
+  if (typeof window !== "undefined") {
+    window.localStorage.setItem(SELECTED_STORAGE_KEY, assetId);
+    window.dispatchEvent(new CustomEvent("satiria:limezu-selected-terrain-changed"));
+  }
+}
+
+export function clearAllDirectTerrainPaint() {
+  cachedPaintMap = {};
 
   if (typeof window !== "undefined") {
-    window.localStorage.removeItem(STORAGE_KEY);
-    window.dispatchEvent(new CustomEvent("satiria:terrain-assignment-changed"));
+    window.localStorage.removeItem(PAINT_STORAGE_KEY);
+    window.dispatchEvent(new CustomEvent("satiria:limezu-terrain-paint-changed"));
   }
-}
-
-export function terrainAssetForTile(tileId: string, x = 0, y = 0): TerrainAsset {
-  const assignment = readTerrainAssignment();
-  const assignedId =
-    assignment[tileId] ??
-    DEFAULT_TERRAIN_ASSIGNMENT[tileId] ??
-    DEFAULT_TERRAIN_ASSIGNMENT.G;
-
-  return getTerrainAsset(assignedId);
-}
-
-export function terrainImageForTile(tileId: string, x = 0, y = 0) {
-  return terrainAssetForTile(tileId, x, y).src;
 }
