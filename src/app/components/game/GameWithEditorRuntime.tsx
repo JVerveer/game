@@ -41,7 +41,7 @@ import { useNpcEditor } from "../editor/npcs/useNpcEditor";
 import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
-import { CharacterRenderer } from "../editor/hero/CharacterRenderer";
+import { LimeZuWorldRenderer } from "../world/LimeZuWorldRenderer";
 import {
   DEFAULT_HERO_APPEARANCE,
   type HeroAppearance,
@@ -1177,17 +1177,11 @@ useRuntimeEffects({
               display: "flex",
               alignItems: "flex-end",
               justifyContent: "center",
+              transform: facing === "left" ? "scaleX(-1)" : undefined,
               transformOrigin: "center bottom",
               translate: "0 0",
             }}
           >
-            <CharacterRenderer
-              appearance={heroAppearance}
-              facing={facing}
-              animation={isWalking ? "walk" : "idle"}
-              pixelSize={1}
-              showShadow={false}
-            />
           </div>
         </div>
       </div>
