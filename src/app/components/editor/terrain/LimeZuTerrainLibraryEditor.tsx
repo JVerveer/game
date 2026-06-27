@@ -3,12 +3,14 @@ import {
   DEFAULT_TERRAIN_ASSIGNMENT,
   EDITOR_TERRAIN_IDS,
   TERRAIN_LIBRARY,
-  getTerrainAsset,
   readTerrainAssignment,
   resetTerrainAssignment,
   writeTerrainAssignment,
   type TerrainAssignment,
 } from "./TerrainLibrary";
+
+const PX = { fontFamily: "'Press Start 2P', monospace" } as const;
+const RJ = { fontFamily: "'Rajdhani', sans-serif" } as const;
 
 const TILE_LABELS: Record<string, string> = {
   G: "Grass",
@@ -37,10 +39,17 @@ const TILE_LABELS: Record<string, string> = {
   O: "Door / Entry",
 };
 
+function terrainAssetForId(assetId: string | undefined) {
+  return (
+    TERRAIN_LIBRARY.find(asset => asset.id === assetId) ??
+    TERRAIN_LIBRARY[0]
+  );
+}
+
 export function LimeZuTerrainLibraryEditor({
   onClose,
 }: {
-  onClose: () => void;
+  onClose?: () => void;
 }) {
   const [assignment, setAssignment] = useState<TerrainAssignment>(() => readTerrainAssignment());
   const [selectedTile, setSelectedTile] = useState<string>("G");
@@ -76,7 +85,7 @@ export function LimeZuTerrainLibraryEditor({
     setAssignment(DEFAULT_TERRAIN_ASSIGNMENT);
   }
 
-  const selectedAsset = getTerrainAsset(assignment[selectedTile]);
+  const selectedAsset = terrainAssetForId(assignment[selectedTile]);
 
   return (
     <div style={overlayStyle}>
@@ -84,23 +93,21 @@ export function LimeZuTerrainLibraryEditor({
         <div style={topBarStyle}>
           <div>
             <div style={titleStyle}>LIMEZU TERRAIN LIBRARY</div>
-            <div style={subtitleStyle}>
-              Assign LimeZu sprites to your existing terrain IDs. Changes save automatically.
-            </div>
+            <div style={subtitleStyle}>Assign any LimeZu terrain sprite to your existing editor IDs</div>
           </div>
 
           <div style={buttonRowStyle}>
-            <button type="button" onClick={reset} style={buttonStyle}>Reset</button>
-            <button type="button" onClick={onClose} style={saveButtonStyle}>Done</button>
+            <button type="button" onClick={reset} style={buttonStyle}>RESET</button>
+            {onClose && <button type="button" onClick={onClose} style={saveButtonStyle}>DONE</button>}
           </div>
         </div>
 
         <div style={layoutStyle}>
           <aside style={panelStyle}>
-            <div style={panelTitleStyle}>Editor terrain IDs</div>
+            <div style={panelTitleStyle}>EDITOR IDS</div>
             <div style={idGridStyle}>
               {EDITOR_TERRAIN_IDS.map(id => {
-                const asset = getTerrainAsset(assignment[id]);
+                const asset = terrainAssetForId(assignment[id]);
                 const selected = selectedTile === id;
 
                 return (
@@ -110,8 +117,8 @@ export function LimeZuTerrainLibraryEditor({
                     onClick={() => setSelectedTile(id)}
                     style={{
                       ...idButtonStyle,
-                      borderColor: selected ? "#ca4b36" : "#252018",
-                      background: selected ? "#fff3a8" : "#fff8c8",
+                      borderColor: selected ? "#d8463d" : "rgba(255,255,255,0.12)",
+                      backgroundColor: selected ? "rgba(216,70,61,0.18)" : "#20282b",
                     }}
                   >
                     <span style={idCodeStyle}>{id}</span>
@@ -124,8 +131,7 @@ export function LimeZuTerrainLibraryEditor({
           </aside>
 
           <main style={panelStyle}>
-            <div style={panelTitleStyle}>Selected tile</div>
-
+            <div style={panelTitleStyle}>SELECTED TILE</div>
             <div style={selectedStyle}>
               <div style={bigIdStyle}>{selectedTile}</div>
               <img src={selectedAsset.src} alt="" style={bigPreviewStyle} />
@@ -154,8 +160,7 @@ export function LimeZuTerrainLibraryEditor({
                     title={asset.source}
                     style={{
                       ...assetButtonStyle,
-                      borderColor: active ? "#ca4b36" : "#252018",
-                      background: active ? "#fff3a8" : "#fff8c8",
+                      borderColor: active ? "#d8463d" : "rgba(255,255,255,0.12)",
                     }}
                   >
                     <img src={asset.src} alt="" style={assetPreviewStyle} />
@@ -187,8 +192,8 @@ const windowStyle: React.CSSProperties = {
   maxHeight: "calc(100vh - 36px)",
   overflow: "auto",
   background: "linear-gradient(#263034, #151c1f)",
-  border: "3px solid #252018",
-  color: "#252018",
+  border: "3px solid rgba(255,255,255,0.12)",
+  color: "#f7f0df",
   padding: 18,
 };
 
@@ -197,21 +202,21 @@ const topBarStyle: React.CSSProperties = {
   justifyContent: "space-between",
   gap: 16,
   alignItems: "center",
-  background: "#fff8c8",
-  border: "2px solid #252018",
-  padding: 12,
+  borderBottom: "1px solid rgba(255,255,255,0.12)",
+  paddingBottom: 14,
   marginBottom: 14,
 };
 
 const titleStyle: React.CSSProperties = {
-  fontWeight: 900,
-  fontSize: "1rem",
+  ...PX,
+  fontSize: "0.8rem",
+  marginBottom: 8,
 };
 
 const subtitleStyle: React.CSSProperties = {
+  ...RJ,
   fontWeight: 800,
-  color: "#584c35",
-  marginTop: 4,
+  color: "#d8cba8",
 };
 
 const buttonRowStyle: React.CSSProperties = {
@@ -220,18 +225,19 @@ const buttonRowStyle: React.CSSProperties = {
 };
 
 const buttonStyle: React.CSSProperties = {
-  border: "2px solid #252018",
-  background: "#fff8c8",
-  color: "#252018",
+  ...PX,
+  border: "1px solid rgba(255,255,255,0.16)",
+  backgroundColor: "#20282b",
+  color: "#f7f0df",
   padding: "10px 12px",
   cursor: "pointer",
-  fontWeight: 900,
+  fontSize: "0.45rem",
 };
 
 const saveButtonStyle: React.CSSProperties = {
   ...buttonStyle,
-  background: "#ca4b36",
-  color: "#fff8c8",
+  borderColor: "#d8463d",
+  background: "linear-gradient(#d5423a, #9b2524)",
 };
 
 const layoutStyle: React.CSSProperties = {
@@ -241,16 +247,15 @@ const layoutStyle: React.CSSProperties = {
 };
 
 const panelStyle: React.CSSProperties = {
-  background: "#fff8c8",
-  border: "2px solid #252018",
+  backgroundColor: "#151c1f",
+  border: "1px solid rgba(255,255,255,0.1)",
   padding: 14,
 };
 
 const panelTitleStyle: React.CSSProperties = {
-  fontWeight: 900,
-  fontSize: "0.9rem",
+  ...PX,
+  fontSize: "0.55rem",
   marginBottom: 12,
-  textTransform: "uppercase",
 };
 
 const idGridStyle: React.CSSProperties = {
@@ -259,8 +264,8 @@ const idGridStyle: React.CSSProperties = {
 };
 
 const idButtonStyle: React.CSSProperties = {
-  border: "2px solid #252018",
-  color: "#252018",
+  border: "2px solid rgba(255,255,255,0.12)",
+  color: "#f7f0df",
   cursor: "pointer",
   padding: 8,
   display: "grid",
@@ -268,12 +273,12 @@ const idButtonStyle: React.CSSProperties = {
   gap: 8,
   alignItems: "center",
   textAlign: "left",
-  fontWeight: 900,
 };
 
 const idCodeStyle: React.CSSProperties = {
-  color: "#ca4b36",
-  fontWeight: 900,
+  ...PX,
+  fontSize: "0.6rem",
+  color: "#d8463d",
 };
 
 const smallPreviewStyle: React.CSSProperties = {
@@ -283,7 +288,8 @@ const smallPreviewStyle: React.CSSProperties = {
 };
 
 const idLabelStyle: React.CSSProperties = {
-  fontWeight: 900,
+  ...RJ,
+  fontWeight: 800,
 };
 
 const selectedStyle: React.CSSProperties = {
@@ -295,9 +301,9 @@ const selectedStyle: React.CSSProperties = {
 };
 
 const bigIdStyle: React.CSSProperties = {
-  color: "#ca4b36",
-  fontWeight: 900,
-  fontSize: "2rem",
+  ...PX,
+  color: "#d8463d",
+  fontSize: "1.5rem",
 };
 
 const bigPreviewStyle: React.CSSProperties = {
@@ -305,29 +311,31 @@ const bigPreviewStyle: React.CSSProperties = {
   height: 96,
   imageRendering: "pixelated",
   backgroundColor: "#20282b",
-  border: "2px solid #252018",
+  border: "1px solid rgba(255,255,255,0.12)",
 };
 
 const selectedNameStyle: React.CSSProperties = {
+  ...RJ,
   fontWeight: 900,
   fontSize: "1.2rem",
 };
 
 const sourceStyle: React.CSSProperties = {
-  color: "#584c35",
-  fontWeight: 800,
+  ...RJ,
+  color: "#d8cba8",
   fontSize: "0.85rem",
   overflowWrap: "anywhere",
 };
 
 const searchStyle: React.CSSProperties = {
+  ...RJ,
   width: "100%",
   boxSizing: "border-box",
-  border: "2px solid #252018",
-  backgroundColor: "#fff3a8",
-  color: "#252018",
+  border: "1px solid rgba(255,255,255,0.12)",
+  backgroundColor: "#101619",
+  color: "#f7f0df",
   padding: "10px 12px",
-  fontWeight: 900,
+  fontWeight: 800,
   marginBottom: 12,
 };
 
@@ -341,14 +349,14 @@ const assetGridStyle: React.CSSProperties = {
 };
 
 const assetButtonStyle: React.CSSProperties = {
-  border: "2px solid #252018",
-  color: "#252018",
+  border: "2px solid rgba(255,255,255,0.12)",
+  backgroundColor: "#20282b",
+  color: "#f7f0df",
   cursor: "pointer",
   padding: 8,
   display: "grid",
   gap: 6,
   justifyItems: "center",
-  fontWeight: 900,
 };
 
 const assetPreviewStyle: React.CSSProperties = {
@@ -358,7 +366,8 @@ const assetPreviewStyle: React.CSSProperties = {
 };
 
 const assetLabelStyle: React.CSSProperties = {
-  fontWeight: 900,
+  ...RJ,
+  fontWeight: 800,
   fontSize: "0.72rem",
   lineHeight: 1.05,
   textAlign: "center",
