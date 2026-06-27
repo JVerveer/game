@@ -1,10 +1,11 @@
-import type { Dispatch, MutableRefObject, SetStateAction } from "react";
+import { useEffect, useState, type Dispatch, type MutableRefObject, type SetStateAction } from "react";
 import type { GameMapId, TownMapId } from "../../../data/maps";
 import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind, EditorNpcAsset } from "../../../data/cityMaps/mapAsset";
 import { GAME_TILE_COLORS } from "../../../data/maps";
 import { objectLabelForId } from "../../../data/objectRegistry";
 import { EditorToolbar } from "./EditorToolbar";
 import { TerrainPalette } from "./terrain/TerrainPalette";
+import { terrainImageForCoord } from "./terrain/TerrainLibrary";
 import { ObjectPalette } from "./objects/ObjectPalette";
 import { BuildingPalette } from "./buildings/BuildingPalette";
 import { NpcPalette } from "./npcs/NpcPalette";
@@ -192,6 +193,39 @@ export function TerrainEditorOverlay({
   paintEditorTile: (x: number, y: number) => void;
   transformDragTo: (x: number, y: number) => boolean;
 }) {
+  const [terrainPreviewVersion, setTerrainPreviewVersion] = useState(0);
+
+  useEffect(() => {
+    const refresh = () => setTerrainPreviewVersion(version => version + 1);
+    window.addEventListener("satiria:limezu-terrain-paint-changed", refresh);
+    window.addEventListener("satiria:limezu-selected-terrain-changed", refresh);
+
+    return () => {
+      window.removeEventListener("satiria:limezu-terrain-paint-changed", refresh);
+      window.removeEventListener("satiria:limezu-selected-terrain-changed", refresh);
+    };
+  }, []);
+
+  const editorTerrainPreviewStyle = (tile: string, x: number, y: number): React.CSSProperties => {
+    void terrainPreviewVersion;
+
+    const limeZuImage = terrainImageForCoord(x, y);
+
+    if (limeZuImage) {
+      return {
+        backgroundColor: "#fff8c8",
+        backgroundImage: `url(${limeZuImage})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "18px 18px",
+        imageRendering: "pixelated",
+      };
+    }
+
+    return {
+      background: EDITOR_TILE_COLORS[tile] ?? GAME_TILE_COLORS[tile] ?? GAME_TILE_COLORS.G,
+    };
+  };
+
   return (
     <div
           style={{
@@ -331,7 +365,7 @@ export function TerrainEditorOverlay({
                     height: 18,
                     padding: 0,
                     border: displayEditorNpcs.some(npc => npc.x === x && npc.y === y) ? "2px solid #c87aff" : buildingAtCoord(displayBuildings, x, y) ? "2px solid #38bdf8" : displayObjects[`${x},${y}`] ? "2px solid #ffef93" : "0",
-                    background: EDITOR_TILE_COLORS[tile] ?? GAME_TILE_COLORS[tile] ?? GAME_TILE_COLORS.G,
+                    ...editorTerrainPreviewStyle(tile, x, y),
                     cursor: "pointer",
                     position: "relative",
                     overflow: "hidden",
