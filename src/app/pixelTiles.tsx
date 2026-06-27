@@ -1,108 +1,63 @@
 import type { CSSProperties } from "react";
 import type { PixelBuilding, PixelObject, PixelBuildingColor } from "../data/cityMaps/sceneTypes";
 import {
-  terrainImageForCoord,
   TERRAIN_LIBRARY,
+  terrainImageForCoord,
 } from "../rendering/TerrainLibrary";
 
-const TILESET_URL = "/tilesets/satiria.png";
 const TILE_SIZE = 48;
-const ATLAS_COLS = 8;
-
-const ATLAS: Record<string, number> = {
-  grass: 0,
-  path: 1,
-  tallGrass: 2,
-  water: 3,
-  shore: 4,
-  tree: 5,
-  fence: 6,
-  flower: 7,
-  redRoof: 8,
-  blueRoof: 9,
-  purpleRoof: 10,
-  greenRoof: 11,
-  wall: 12,
-  door: 13,
-  window: 14,
-  plaza: 16,
-  pier: 17,
-  bench: 18,
-  lamp: 19,
-  statue: 20,
-  fountain: 21,
-  sign: 22,
-  save: 23,
-  grassAlt: 24,
-  mediumTree: 32,
-  largeTree: 34,
-  tallGrassAlt: 28,
-  treeAlt: 29,
-};
 
 const BUILDING_TILES = new Set(["A", "B", "H", "I", "P", "U"]);
 
-const hashTile = (x: number, y: number) => Math.abs((x * 928371 + y * 364479 + x * y * 97) % 100);
+const hashTile = (x: number, y: number) =>
+  Math.abs((x * 928371 + y * 364479 + x * y * 97) % 100);
 
-const spriteStyle = (name: string, x: number, y: number, w = 1, h = 1): CSSProperties => {
-  const override = w === 1 && h === 1 ? terrainImageForCoord(x, y) : undefined;
+function findTerrainByTags(tags: string[], fallbackIndex = 0) {
+  const found = TERRAIN_LIBRARY.find(asset => {
+    const haystack = `${asset.label} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
+    return tags.some(tag => haystack.includes(tag));
+  });
 
-  if (override) {
-    return {
-      left: x * TILE_SIZE,
-      top: y * TILE_SIZE,
-      width: w * TILE_SIZE,
-      height: h * TILE_SIZE,
-      backgroundImage: `url(${override})`,
-      backgroundRepeat: "no-repeat",
-      backgroundSize: `${TILE_SIZE}px ${TILE_SIZE}px`,
-      imageRendering: "pixelated",
-    };
-  }
+  return found?.src ?? TERRAIN_LIBRARY[fallbackIndex % Math.max(1, TERRAIN_LIBRARY.length)]?.src ?? "";
+}
 
-  const index = ATLAS[name] ?? ATLAS.grass;
-  const ax = index % ATLAS_COLS;
-  const ay = Math.floor(index / ATLAS_COLS);
-  return {
-    left: x * TILE_SIZE,
-    top: y * TILE_SIZE,
-    width: w * TILE_SIZE,
-    height: h * TILE_SIZE,
-    backgroundImage: `url(${TILESET_URL})`,
-    backgroundPosition: `-${ax * TILE_SIZE}px -${ay * TILE_SIZE}px`,
-    backgroundSize: `${ATLAS_COLS * TILE_SIZE}px auto`,
-  };
-};
-
-const terrainSpriteFor = (rows: string[][], x: number, y: number) => {
-  const tile = rows[y]?.[x] ?? "G";
+function defaultTerrainImageForTile(tile: string, x: number, y: number) {
   const roll = hashTile(x, y);
 
-  if (tile === "G") return roll > 76 ? "grassAlt" : "grass";
-  if (tile === "R" || tile === "O" || tile === "V" || tile === "Q" || tile === "N") return "path";
-  if (tile === "J") return "pier";
-  if (tile === "E") return "plaza";
-  if (tile === "W") return "water";
-  if (tile === "S") return "shore";
-  if (tile === "X") return roll > 55 ? "tallGrassAlt" : "tallGrass";
-  if (tile === "T") return roll > 67 ? "treeAlt" : "tree";
-  if (tile === "F") return "fence";
-  if (tile === "L" || tile === "Y") return "grass";
-  if (tile === "M") return roll > 50 ? "largeTree" : "mediumTree";
-  if (tile === "C" || tile === "D") return "plaza";
-  if (BUILDING_TILES.has(tile)) return roll > 82 ? "grassAlt" : "grass";
+  if (tile === "G") return findTerrainByTags(["grass"], roll);
+  if (tile === "R" || tile === "O" || tile === "Q" || tile === "N") return findTerrainByTags(["dirt", "path", "road"], roll);
+  if (tile === "V" || tile === "E") return findTerrainByTags(["sidewalk", "asphalt", "pavement"], roll);
+  if (tile === "W") return findTerrainByTags(["water"], roll);
+  if (tile === "S") return findTerrainByTags(["sand", "beach"], roll);
+  if (tile === "X") return findTerrainByTags(["grass"], roll + 9);
+  if (tile === "T") return findTerrainByTags(["grass", "bush", "hedge"], roll + 15);
+  if (tile === "Y" || tile === "L") return findTerrainByTags(["flower", "grass"], roll);
+  if (tile === "F") return findTerrainByTags(["fence"], roll);
+  if (tile === "J") return findTerrainByTags(["wood", "dock", "pier"], roll);
+  if (tile === "M") return findTerrainByTags(["rock", "stone", "mountain"], roll);
+  if (tile === "C" || tile === "D") return findTerrainByTags(["asphalt", "stone", "sidewalk"], roll);
 
-  return roll > 76 ? "grassAlt" : "grass";
-};
+  if (BUILDING_TILES.has(tile)) return findTerrainByTags(["grass"], roll);
 
-const decorationStyleFor = (tile: string, x: number, y: number): CSSProperties | null => {
-  // No legacy decorations when a direct LimeZu terrain sprite is painted here.
-  if (terrainImageForCoord(x, y)) return null;
+  return findTerrainByTags(["grass"], roll);
+}
 
-  if (tile === "Y" || tile === "L") {
-    return spriteStyle("flower", x, y);
-  }
+function terrainImage(tile: string, x: number, y: number) {
+  return terrainImageForCoord(x, y) ?? defaultTerrainImageForTile(tile, x, y);
+}
 
+const tileStyle = (tile: string, x: number, y: number, w = 1, h = 1): CSSProperties => ({
+  left: x * TILE_SIZE,
+  top: y * TILE_SIZE,
+  width: w * TILE_SIZE,
+  height: h * TILE_SIZE,
+  backgroundImage: `url(${terrainImage(tile, x, y)})`,
+  backgroundRepeat: w > 1 || h > 1 ? "repeat" : "no-repeat",
+  backgroundSize: `${TILE_SIZE}px ${TILE_SIZE}px`,
+  imageRendering: "pixelated",
+});
+
+const decorationStyleFor = (_tile: string, _x: number, _y: number): CSSProperties | null => {
   return null;
 };
 
@@ -114,6 +69,7 @@ const edgeMaskFor = (rows: string[][], x: number, y: number, family: string) => 
     if (family === "water") return n === "W" || n === "S";
     return n === t;
   };
+
   return [
     !match(x, y - 1) ? "n" : "",
     !match(x + 1, y) ? "e" : "",
@@ -123,32 +79,45 @@ const edgeMaskFor = (rows: string[][], x: number, y: number, family: string) => 
 };
 
 const groundClassFor = (rows: string[][], x: number, y: number) => {
-  if (terrainImageForCoord(x, y)) return "";
-
   const tile = rows[y]?.[x];
-  if (tile === "R" || tile === "O" || tile === "V" || tile === "E" || tile === "Q" || tile === "N") return `pixel-ground-road ${edgeMaskFor(rows, x, y, "road")}`;
+
+  if (tile === "R" || tile === "O" || tile === "V" || tile === "E" || tile === "Q" || tile === "N") {
+    return `pixel-ground-road ${edgeMaskFor(rows, x, y, "road")}`;
+  }
+
   if (tile === "J") return "pixel-ground-pier";
   if (tile === "W") return `pixel-ground-water ${edgeMaskFor(rows, x, y, "water")}`;
   if (tile === "S") return "pixel-ground-shore";
   if (tile === "X") return `pixel-ground-tall tall-phase-${hashTile(x, y) % 3}`;
+
   return "";
 };
 
-const roofFor = (color: PixelBuildingColor) => `${color}Roof`;
+const roofTileFor = (color: PixelBuildingColor) => {
+  if (color === "blue") return "E";
+  if (color === "green") return "G";
+  if (color === "red") return "R";
+  return "E";
+};
 
-const buildingTileFor = (building: PixelBuilding, xx: number, yy: number) => {
-  if (yy < 2) return roofFor(building.color);
-  return "wall";
+const buildingTileFor = (building: PixelBuilding, yy: number) => {
+  if (yy < 2) return roofTileFor(building.color);
+  return "E";
 };
 
 const windowColumnsFor = (buildingWidth: number, doorX: number, isGroundFloor: boolean) => {
   const columns = buildingWidth <= 5
     ? [doorX - 1, doorX + 1]
-    : [1, Math.max(1, Math.floor(buildingWidth / 2) - 2), Math.min(buildingWidth - 2, Math.floor(buildingWidth / 2) + 2), buildingWidth - 2];
+    : [
+        1,
+        Math.max(1, Math.floor(buildingWidth / 2) - 2),
+        Math.min(buildingWidth - 2, Math.floor(buildingWidth / 2) + 2),
+        buildingWidth - 2,
+      ];
 
   return Array.from(new Set(columns))
-    .filter((x) => x > 0 && x < buildingWidth - 1)
-    .filter((x) => !isGroundFloor || Math.abs(x - doorX) > 0);
+    .filter(x => x > 0 && x < buildingWidth - 1)
+    .filter(x => !isGroundFloor || Math.abs(x - doorX) > 0);
 };
 
 function PixelBuildingSprite({ building, index }: { building: PixelBuilding; index: number }) {
@@ -174,22 +143,33 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
           <i
             key={`b-${index}-${xx}-${yy}`}
             className="pixel-sprite-tile"
-            style={spriteStyle(buildingTileFor(building, xx, yy), xx, yy)}
+            style={tileStyle(buildingTileFor(building, yy), xx, yy)}
           />
         )),
       )}
-      <i className="pixel-sprite-tile pixel-building-door" style={spriteStyle("door", doorX, building.h - 1)} />
-      {wallRows.flatMap((yy) => {
+
+      <i
+        className="pixel-sprite-tile pixel-building-door"
+        style={{
+          ...tileStyle("R", doorX, building.h - 1),
+          filter: "brightness(0.55)",
+        }}
+      />
+
+      {wallRows.flatMap(yy => {
         const isGroundFloor = yy === building.h - 1;
-        return windowColumnsFor(building.w, doorX, isGroundFloor).map((xx) => (
+        return windowColumnsFor(building.w, doorX, isGroundFloor).map(xx => (
           <i
             key={`window-${index}-${xx}-${yy}`}
             className="pixel-sprite-tile pixel-building-window"
-            style={spriteStyle("window", xx, yy)}
+            style={{
+              ...tileStyle("W", xx, yy),
+              filter: "brightness(1.25) saturate(0.7)",
+            }}
           />
         ));
       })}
-      {building.crest && <i className="pixel-sprite-tile pixel-building-sign" style={spriteStyle("sign", doorX, signY)} />}
+
       {building.crest && (
         <span
           className="pixel-building-crest"
@@ -203,6 +183,7 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
           {building.crest}
         </span>
       )}
+
       <span className="pixel-story-marker" aria-hidden="true">
         <b>{stories}F</b>
         {Array.from({ length: stories }).map((_, story) => (
@@ -211,6 +192,19 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
       </span>
     </div>
   );
+}
+
+function objectTileFor(sprite: string) {
+  const key = sprite.toLowerCase();
+
+  if (key.includes("water") || key.includes("fountain")) return "W";
+  if (key.includes("sand")) return "S";
+  if (key.includes("road") || key.includes("path")) return "R";
+  if (key.includes("rock") || key.includes("stone")) return "M";
+  if (key.includes("flower") || key.includes("tulip")) return "Y";
+  if (key.includes("fence") || key.includes("sign")) return "F";
+
+  return "G";
 }
 
 export function PixelMapScene({
@@ -224,35 +218,46 @@ export function PixelMapScene({
 }) {
   return (
     <div className="pixel-tileset-scene" aria-hidden="true">
-      {rows.map((row, y) => row.map((tileName, x) => {
-        const decoration = decorationStyleFor(tileName, x, y);
-        return (
-          <span key={`ground-wrap-${x}-${y}`}>
-            <i
-              key={`ground-${x}-${y}`}
-              className={`pixel-sprite-tile ${groundClassFor(rows, x, y)}`}
-              style={spriteStyle(terrainSpriteFor(rows, x, y), x, y)}
-            />
-            {decoration && (
+      {rows.map((row, y) =>
+        row.map((tileName, x) => {
+          const decoration = decorationStyleFor(tileName, x, y);
+          const groundTile = BUILDING_TILES.has(tileName) ? "G" : tileName;
+
+          return (
+            <span key={`ground-wrap-${x}-${y}`}>
               <i
-                key={`decor-${x}-${y}`}
-                className="pixel-sprite-tile"
-                style={decoration}
+                key={`ground-${x}-${y}`}
+                className={`pixel-sprite-tile ${groundClassFor(rows, x, y)}`}
+                style={tileStyle(groundTile, x, y)}
               />
-            )}
-          </span>
-        );
-      }))}
+              {decoration && (
+                <i
+                  key={`decor-${x}-${y}`}
+                  className="pixel-sprite-tile"
+                  style={decoration}
+                />
+              )}
+            </span>
+          );
+        }),
+      )}
 
       {buildings.map((building, index) => (
-        <PixelBuildingSprite key={`${building.kind}-${building.x}-${building.y}`} building={building} index={index} />
+        <PixelBuildingSprite
+          key={`${building.kind}-${building.x}-${building.y}`}
+          building={building}
+          index={index}
+        />
       ))}
 
       {objects.map((object, index) => (
         <i
           key={`${object.sprite}-${index}`}
           className={`pixel-sprite-object ${object.className ?? ""}`}
-          style={{ ...spriteStyle(object.sprite, object.x, object.y, object.w ?? 1, object.h ?? 1), zIndex: 35 + object.y }}
+          style={{
+            ...tileStyle(objectTileFor(object.sprite), object.x, object.y, object.w ?? 1, object.h ?? 1),
+            zIndex: 35 + object.y,
+          }}
         />
       ))}
     </div>
