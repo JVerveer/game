@@ -42,7 +42,7 @@ import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
 import { CharacterRenderer } from "../editor/hero/CharacterRenderer";
-import { LimeZuTileLayer } from "../../../world/LimeZuTileLayer";
+import { LimeZuEditorTerrainLayer } from "../../../world/LimeZuEditorTerrainLayer";
 import {
   DEFAULT_HERO_APPEARANCE,
   type HeroAppearance,
@@ -1055,10 +1055,11 @@ useRuntimeEffects({
         transition: "transform 0.1s linear",
         width: mapPxW, height: mapPxH,
       }} className={`map-layer map-${mapId}`}>
-        <LimeZuTileLayer
+        <LimeZuEditorTerrainLayer
           rows={displayRowsWithBuildings}
+          objects={displayObjects}
           tileSize={TS}
-          isTown={isTownMap(mapId)}
+          showObjects={false}
         />
 
         {isTownMap(mapId) && (
