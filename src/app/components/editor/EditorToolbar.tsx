@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LimeZuTerrainLibraryEditor } from "./terrain/LimeZuTerrainLibraryEditor";
+import { LimeZuAssetCategorizer } from "./assets/LimeZuAssetCategorizer";
 
 type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
 
@@ -10,8 +10,8 @@ export function EditorToolbar({
   editorMode: EditorMode;
   setEditorMode: (mode: EditorMode) => void;
 }) {
+  const [showAssetCategorizer, setShowAssetCategorizer] = useState(false);
   const modes: EditorMode[] = ["select", "terrain", "buildings", "objects", "npcs"];
-  const [showTerrainLibrary, setShowTerrainLibrary] = useState(false);
 
   return (
     <>
@@ -37,22 +37,22 @@ export function EditorToolbar({
 
         <button
           type="button"
-          onClick={() => setShowTerrainLibrary(true)}
+          onClick={() => setShowAssetCategorizer(true)}
           style={{
             padding: "8px 12px",
             cursor: "pointer",
             border: "2px solid #252018",
-            background: "#ca4b36",
+            background: "#315f2a",
             color: "#fff8c8",
             fontWeight: 900,
           }}
         >
-          LimeZu Terrain Library
+          Asset Categorizer
         </button>
       </div>
 
-      {showTerrainLibrary && (
-        <LimeZuTerrainLibraryEditor onClose={() => setShowTerrainLibrary(false)} />
+      {showAssetCategorizer && (
+        <LimeZuAssetCategorizer onClose={() => setShowAssetCategorizer(false)} />
       )}
     </>
   );
