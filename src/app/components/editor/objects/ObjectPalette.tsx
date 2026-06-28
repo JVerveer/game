@@ -1,27 +1,15 @@
-import { ACTIVE_MAP_OBJECT_DEFS, objectLabelForId } from "../../../../data/objectRegistry";
-import { objectClassFor } from "../../../mapRenderHelpers";
+import { useMemo, useState } from "react";
+import {
+  LIMEZU_OBJECT_LIBRARY,
+  clearAllLimeZuObjects,
+  getSelectedLimeZuObjectAssetId,
+  setSelectedLimeZuObjectAssetId,
+} from "./ObjectLibrary";
 
 type ObjectEditAction = "place" | "erase";
 
 const VT = { fontFamily: "'VT323', monospace" } as const;
 const RJ = { fontFamily: "'Rajdhani', sans-serif" } as const;
-
-const OBJECT_EDITOR_CATEGORIES = [
-  "Core",
-  "Wokeshire",
-  "Satiria",
-  "Brexiton",
-  "Promptford",
-  "Cryptonia",
-  "Surveillia",
-  "Tweetsburg",
-  "Inflatopolis",
-  "Tariff",
-  "Ragebait",
-  "Factcheck",
-  "Interior",
-  "Custom",
-] as const;
 
 export function ObjectPalette({
   objectEditAction,
@@ -34,88 +22,160 @@ export function ObjectPalette({
   editorObjectId: string;
   setEditorObjectId: (objectId: string) => void;
 }) {
+  const [selectedAssetId, setSelectedAssetIdState] = useState(() => getSelectedLimeZuObjectAssetId());
+  const [query, setQuery] = useState("");
+
+  const filteredAssets = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return LIMEZU_OBJECT_LIBRARY;
+
+    return LIMEZU_OBJECT_LIBRARY.filter(asset => {
+      const haystack = `${asset.label} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
+      return haystack.includes(q);
+    });
+  }, [query]);
+
+  function selectAsset(assetId: string) {
+    setSelectedAssetIdState(assetId);
+    setSelectedLimeZuObjectAssetId(assetId);
+
+    // Keep the old object editor plumbing active, but the actual visual
+    // LimeZu object is stored per coordinate by useTerrainPainter.
+    setEditorObjectId(assetId);
+    setObjectEditAction("place");
+  }
+
   return (
     <div style={{ marginBottom: 12 }}>
-      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
+      <div style={toolbarStyle}>
         <button
           type="button"
           onClick={() => setObjectEditAction("place")}
           style={{
-            padding: "7px 10px",
-            cursor: "pointer",
+            ...modeButtonStyle,
             border: objectEditAction === "place" ? "4px solid #315f2a" : "2px solid #252018",
             background: objectEditAction === "place" ? "#d8f0b0" : "#fff8c8",
-            color: "#252018",
-            fontWeight: 900,
           }}
         >
           Place
         </button>
+
         <button
           type="button"
           onClick={() => setObjectEditAction("erase")}
           style={{
-            padding: "7px 10px",
-            cursor: "pointer",
+            ...modeButtonStyle,
             border: objectEditAction === "erase" ? "4px solid #ca4b36" : "2px solid #252018",
             background: objectEditAction === "erase" ? "#ffd0c8" : "#fff8c8",
-            color: "#252018",
-            fontWeight: 900,
           }}
         >
           Remove
         </button>
-        <span style={{ ...VT, fontSize: "1.05rem", color: "#252018", alignSelf: "center" }}>
-          Selected: {objectLabelForId(editorObjectId)}
-        </span>
+
+        <button
+          type="button"
+          onClick={() => clearAllLimeZuObjects()}
+          style={{
+            ...modeButtonStyle,
+            border: "2px solid #252018",
+            background: "#ca4b36",
+            color: "#fff8c8",
+          }}
+        >
+          Clear LimeZu Objects
+        </button>
+
+        <input
+          value={query}
+          onChange={event => setQuery(event.target.value)}
+          placeholder="Search objects: tree, bush, flower, fence, sign, rock..."
+          style={searchStyle}
+        />
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))", gap: 8, maxHeight: 260, overflow: "auto", paddingRight: 4 }}>
-        {OBJECT_EDITOR_CATEGORIES.flatMap(category =>
-          ACTIVE_MAP_OBJECT_DEFS.filter(def => def.category === category).map(def => (
+      <div style={{ ...VT, fontSize: "1.05rem", color: "#252018", marginBottom: 8 }}>
+        Objects are props placed on top of terrain. Terrain/floor sprites are hidden from this tab.
+      </div>
+
+      <div style={assetGridStyle}>
+        {filteredAssets.map(asset => {
+          const selected = selectedAssetId === asset.id && objectEditAction === "place";
+
+          return (
             <button
-              key={def.id}
+              key={asset.id}
               type="button"
-              onClick={() => {
-                setEditorObjectId(def.id);
-                setObjectEditAction("place");
-              }}
-              title={def.id}
+              onClick={() => selectAsset(asset.id)}
+              title={asset.source}
               style={{
-                minHeight: 56,
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-                padding: "7px 9px",
-                border: editorObjectId === def.id && objectEditAction === "place" ? "4px solid #315f2a" : "2px solid #252018",
-                background: "#fff8c8",
-                color: "#252018",
-                cursor: "pointer",
-                textAlign: "left",
+                ...assetButtonStyle,
+                border: selected ? "4px solid #315f2a" : "2px solid #252018",
+                background: selected ? "#d8f0b0" : "#fff8c8",
               }}
             >
-              <span style={{
-                width: 42,
-                height: 42,
-                position: "relative",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                background: "#d7c58d",
-                border: "2px solid #252018",
-                flexShrink: 0,
-                overflow: "visible",
-              }}>
-                <span className={objectClassFor(def.id)} />
-              </span>
+              <img src={asset.src} alt="" style={assetPreviewStyle} />
               <span style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                <span style={{ ...VT, fontSize: "1.05rem", lineHeight: 1 }}>{def.label}</span>
-                <span style={{ ...RJ, fontSize: "0.68rem", fontWeight: 700, opacity: 0.65 }}>{def.id} · {def.category}</span>
+                <span style={{ ...VT, fontSize: "1.05rem", lineHeight: 1 }}>{asset.label}</span>
+                <span style={{ ...RJ, fontSize: "0.68rem", fontWeight: 700, opacity: 0.65 }}>
+                  {asset.tags.slice(0, 3).join(" · ") || "object"}
+                </span>
               </span>
             </button>
-          ))
-        )}
+          );
+        })}
       </div>
     </div>
   );
 }
+
+const toolbarStyle: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "auto auto auto minmax(240px, 1fr)",
+  gap: 8,
+  alignItems: "center",
+  marginBottom: 10,
+};
+
+const modeButtonStyle: React.CSSProperties = {
+  padding: "7px 10px",
+  cursor: "pointer",
+  color: "#252018",
+  fontWeight: 900,
+};
+
+const searchStyle: React.CSSProperties = {
+  border: "2px solid #252018",
+  background: "#fff3a8",
+  color: "#252018",
+  padding: "8px 10px",
+  fontWeight: 900,
+};
+
+const assetGridStyle: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))",
+  gap: 8,
+  maxHeight: 300,
+  overflow: "auto",
+  paddingRight: 4,
+};
+
+const assetButtonStyle: React.CSSProperties = {
+  minHeight: 62,
+  display: "flex",
+  alignItems: "center",
+  gap: 10,
+  padding: "7px 9px",
+  color: "#252018",
+  cursor: "pointer",
+  textAlign: "left",
+};
+
+const assetPreviewStyle: React.CSSProperties = {
+  width: 48,
+  height: 48,
+  imageRendering: "pixelated",
+  background: "#d7c58d",
+  border: "2px solid #252018",
+  flexShrink: 0,
+};

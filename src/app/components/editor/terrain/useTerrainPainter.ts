@@ -4,6 +4,7 @@ import type { MovingNpc } from "../../../../data/npcs";
 import type { EditorBuildingAsset } from "../../../../data/cityMaps/mapAsset";
 import type { EditedObjectsByMap, EditedRowsByMap, EditorMode, EditorSelection, ObjectEditAction } from "../hooks/useEditorState";
 import { getSelectedTerrainAssetId, paintTerrainAssetAt } from "./TerrainLibrary";
+import { eraseLimeZuObjectAt, getSelectedLimeZuObjectAssetId, paintLimeZuObjectAt } from "../objects/ObjectLibrary";
 
 const isSelectEditorMode = (mode: EditorMode) => mode === "select";
 
@@ -152,16 +153,18 @@ export function useTerrainPainter({
     }
 
     if (editorModeRef.current === "objects") {
-      setEditedObjectsByMap(prev => {
-        const base = prev[id] ?? { ...objectsForMap(id) };
-        const next = { ...base };
-        if (objectEditActionRef.current === "erase") {
-          delete next[coord];
-        } else {
-          next[coord] = editorObjectIdRef.current;
+      if (objectEditActionRef.current === "erase") {
+        eraseLimeZuObjectAt(x, y);
+      } else {
+        const selectedObjectAssetId = getSelectedLimeZuObjectAssetId();
+        if (selectedObjectAssetId) {
+          paintLimeZuObjectAt(x, y, selectedObjectAssetId);
         }
-        return { ...prev, [id]: next };
-      });
+      }
+
+      // Keep old object map untouched for compatibility. LimeZu object
+      // placements are stored separately per coordinate.
+      setEditedObjectsByMap(prev => ({ ...prev }));
       return;
     }
 
@@ -173,6 +176,22 @@ export function useTerrainPainter({
 
       // Keep the underlying map compatible with the old one-character terrain system.
       // Direct LimeZu terrain is stored separately per coordinate.
+      setEditedRowsByMap(prev => {
+        const base = prev[id] ?? rowsForMap(id).map(row => [...row]);
+        const next = base.map(row => [...row]);
+        if (next[y]?.[x] !== undefined) next[y][x] = "G";
+        return { ...prev, [id]: next };
+      });
+      return;
+    }
+
+    if (editorModeRef.current === "terrain") {
+      const selectedTerrainAssetId = getSelectedTerrainAssetId();
+      if (selectedTerrainAssetId) {
+        paintTerrainAssetAt(x, y, selectedTerrainAssetId);
+      }
+
+      // Preserve old one-character map compatibility underneath.
       setEditedRowsByMap(prev => {
         const base = prev[id] ?? rowsForMap(id).map(row => [...row]);
         const next = base.map(row => [...row]);

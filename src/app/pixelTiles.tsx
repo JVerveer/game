@@ -4,9 +4,11 @@ import {
   TERRAIN_LIBRARY,
   terrainImageForCoord,
 } from "../rendering/TerrainLibrary";
+import {
+  limeZuObjectAssetForCoord,
+} from "../rendering/ObjectLibrary";
 
 const TILE_SIZE = 48;
-
 const BUILDING_TILES = new Set(["A", "B", "H", "I", "P", "U"]);
 
 const hashTile = (x: number, y: number) =>
@@ -30,13 +32,12 @@ function defaultTerrainImageForTile(tile: string, x: number, y: number) {
   if (tile === "W") return findTerrainByTags(["water"], roll);
   if (tile === "S") return findTerrainByTags(["sand", "beach"], roll);
   if (tile === "X") return findTerrainByTags(["grass"], roll + 9);
-  if (tile === "T") return findTerrainByTags(["grass", "bush", "hedge"], roll + 15);
-  if (tile === "Y" || tile === "L") return findTerrainByTags(["flower", "grass"], roll);
-  if (tile === "F") return findTerrainByTags(["fence"], roll);
+  if (tile === "T") return findTerrainByTags(["grass"], roll + 15);
+  if (tile === "Y" || tile === "L") return findTerrainByTags(["grass"], roll);
+  if (tile === "F") return findTerrainByTags(["grass"], roll);
   if (tile === "J") return findTerrainByTags(["wood", "dock", "pier"], roll);
-  if (tile === "M") return findTerrainByTags(["rock", "stone", "mountain"], roll);
+  if (tile === "M") return findTerrainByTags(["stone", "rock"], roll);
   if (tile === "C" || tile === "D") return findTerrainByTags(["asphalt", "stone", "sidewalk"], roll);
-
   if (BUILDING_TILES.has(tile)) return findTerrainByTags(["grass"], roll);
 
   return findTerrainByTags(["grass"], roll);
@@ -57,9 +58,18 @@ const tileStyle = (tile: string, x: number, y: number, w = 1, h = 1): CSSPropert
   imageRendering: "pixelated",
 });
 
-const decorationStyleFor = (_tile: string, _x: number, _y: number): CSSProperties | null => {
-  return null;
-};
+const objectStyle = (src: string, x: number, y: number, w = 1, h = 1): CSSProperties => ({
+  left: x * TILE_SIZE,
+  top: y * TILE_SIZE,
+  width: w * TILE_SIZE,
+  height: h * TILE_SIZE,
+  backgroundImage: `url(${src})`,
+  backgroundRepeat: "no-repeat",
+  backgroundSize: `${TILE_SIZE}px ${TILE_SIZE}px`,
+  backgroundPosition: "center",
+  imageRendering: "pixelated",
+  pointerEvents: "none",
+});
 
 const edgeMaskFor = (rows: string[][], x: number, y: number, family: string) => {
   const t = rows[y]?.[x];
@@ -194,19 +204,6 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
   );
 }
 
-function objectTileFor(sprite: string) {
-  const key = sprite.toLowerCase();
-
-  if (key.includes("water") || key.includes("fountain")) return "W";
-  if (key.includes("sand")) return "S";
-  if (key.includes("road") || key.includes("path")) return "R";
-  if (key.includes("rock") || key.includes("stone")) return "M";
-  if (key.includes("flower") || key.includes("tulip")) return "Y";
-  if (key.includes("fence") || key.includes("sign")) return "F";
-
-  return "G";
-}
-
 export function PixelMapScene({
   rows,
   buildings,
@@ -220,8 +217,8 @@ export function PixelMapScene({
     <div className="pixel-tileset-scene" aria-hidden="true">
       {rows.map((row, y) =>
         row.map((tileName, x) => {
-          const decoration = decorationStyleFor(tileName, x, y);
           const groundTile = BUILDING_TILES.has(tileName) ? "G" : tileName;
+          const limeZuObject = limeZuObjectAssetForCoord(x, y);
 
           return (
             <span key={`ground-wrap-${x}-${y}`}>
@@ -230,11 +227,14 @@ export function PixelMapScene({
                 className={`pixel-sprite-tile ${groundClassFor(rows, x, y)}`}
                 style={tileStyle(groundTile, x, y)}
               />
-              {decoration && (
+              {limeZuObject && (
                 <i
-                  key={`decor-${x}-${y}`}
-                  className="pixel-sprite-tile"
-                  style={decoration}
+                  key={`limezu-object-${x}-${y}`}
+                  className="pixel-sprite-object"
+                  style={{
+                    ...objectStyle(limeZuObject.src, x, y),
+                    zIndex: 35 + y,
+                  }}
                 />
               )}
             </span>
@@ -255,8 +255,9 @@ export function PixelMapScene({
           key={`${object.sprite}-${index}`}
           className={`pixel-sprite-object ${object.className ?? ""}`}
           style={{
-            ...tileStyle(objectTileFor(object.sprite), object.x, object.y, object.w ?? 1, object.h ?? 1),
+            ...objectStyle(limeZuObjectAssetForCoord(object.x, object.y)?.src ?? "", object.x, object.y, object.w ?? 1, object.h ?? 1),
             zIndex: 35 + object.y,
+            display: limeZuObjectAssetForCoord(object.x, object.y) ? undefined : "none",
           }}
         />
       ))}

@@ -6,6 +6,7 @@ import { objectLabelForId } from "../../../data/objectRegistry";
 import { EditorToolbar } from "./EditorToolbar";
 import { TerrainPalette } from "./terrain/TerrainPalette";
 import { terrainImageForCoord } from "./terrain/TerrainLibrary";
+import { limeZuObjectAssetForCoord } from "./objects/ObjectLibrary";
 import { ObjectPalette } from "./objects/ObjectPalette";
 import { BuildingPalette } from "./buildings/BuildingPalette";
 import { NpcPalette } from "./npcs/NpcPalette";
@@ -388,6 +389,20 @@ export function TerrainEditorOverlay({
                     >
                       {buildingAtCoord(displayBuildings, x, y)?.id === selectedBuilding?.id && x === selectedBuilding!.x + selectedBuilding!.w - 1 && y === selectedBuilding!.y + selectedBuilding!.h - 1 ? "↘" : "⌂"}
                     </span>
+                  )}
+                  {limeZuObjectAssetForCoord(x, y) && (
+                    <span
+                      style={{
+                        position: "absolute",
+                        inset: 1,
+                        backgroundImage: `url(${limeZuObjectAssetForCoord(x, y)!.src})`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "16px 16px",
+                        backgroundPosition: "center",
+                        imageRendering: "pixelated",
+                        pointerEvents: "none",
+                      }}
+                    />
                   )}
                   {displayObjects[`${x},${y}`] && (
                     <span
