@@ -2,8 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import {
   LIMEZU_ASSET_CATALOG,
   classifyAsset,
+  exportAssetClassificationTs,
   readAssetClassification,
-  resetAssetClassification,
+  resetDraftAssetClassification,
   type LimeZuAssetCategory,
   type LimeZuAssetClassification,
 } from "./AssetCatalog";
@@ -24,11 +25,16 @@ export function LimeZuAssetCategorizer({
   const [activeCategory, setActiveCategory] = useState<LimeZuAssetCategory>("terrain");
   const [query, setQuery] = useState("");
   const [packFilter, setPackFilter] = useState("all");
+  const [exportText, setExportText] = useState("");
 
   useEffect(() => {
     const refresh = () => setClassification(readAssetClassification());
+    window.addEventListener("limezu:asset-classification-changed", refresh);
     window.addEventListener("satiria:limezu-asset-classification-changed", refresh);
-    return () => window.removeEventListener("satiria:limezu-asset-classification-changed", refresh);
+    return () => {
+      window.removeEventListener("limezu:asset-classification-changed", refresh);
+      window.removeEventListener("satiria:limezu-asset-classification-changed", refresh);
+    };
   }, []);
 
   const packs = useMemo(
@@ -56,9 +62,20 @@ export function LimeZuAssetCategorizer({
     setClassification(readAssetClassification());
   }
 
-  function reset() {
-    resetAssetClassification();
+  function resetDraft() {
+    resetDraftAssetClassification();
     setClassification(readAssetClassification());
+  }
+
+  async function copyExport() {
+    const next = exportAssetClassificationTs();
+    setExportText(next);
+
+    try {
+      await navigator.clipboard.writeText(next);
+    } catch {
+      // Textarea fallback remains visible.
+    }
   }
 
   return (
@@ -66,17 +83,27 @@ export function LimeZuAssetCategorizer({
       <div style={windowStyle}>
         <div style={topStyle}>
           <div>
-            <div style={titleStyle}>LimeZu Asset Categorizer</div>
+            <div style={titleStyle}>Global LimeZu Asset Categorizer</div>
             <div style={subtitleStyle}>
-              Categorize every imported LimeZu sprite. Terrain/Object/Building editors use these choices.
+              Classifications are global for the whole LimeZu library, not tied to one map. Export to make them permanent.
             </div>
           </div>
 
           <div style={topButtonsStyle}>
-            <button type="button" onClick={reset} style={buttonStyle}>Reset guesses</button>
+            <button type="button" onClick={resetDraft} style={buttonStyle}>Reset draft</button>
+            <button type="button" onClick={copyExport} style={exportButtonStyle}>Export AssetClassification.ts</button>
             <button type="button" onClick={onClose} style={doneButtonStyle}>Done</button>
           </div>
         </div>
+
+        {exportText && (
+          <div style={exportPanelStyle}>
+            <div style={exportTitleStyle}>Copied if browser allowed it. Replace this file:</div>
+            <code style={filePathStyle}>editor/assets/AssetClassification.ts</code>
+            <code style={filePathStyle}>src/rendering/AssetClassification.ts</code>
+            <textarea value={exportText} readOnly style={exportTextareaStyle} />
+          </div>
+        )}
 
         <div style={categoryTabsStyle}>
           {CATEGORIES.map(category => {
@@ -175,7 +202,7 @@ const topStyle: React.CSSProperties = {
 
 const titleStyle: React.CSSProperties = { fontWeight: 900, fontSize: "1.2rem" };
 const subtitleStyle: React.CSSProperties = { fontWeight: 800, color: "#584c35", marginTop: 4 };
-const topButtonsStyle: React.CSSProperties = { display: "flex", gap: 8 };
+const topButtonsStyle: React.CSSProperties = { display: "flex", gap: 8, flexWrap: "wrap" };
 
 const buttonStyle: React.CSSProperties = {
   border: "2px solid #252018",
@@ -186,7 +213,37 @@ const buttonStyle: React.CSSProperties = {
   fontWeight: 900,
 };
 
+const exportButtonStyle: React.CSSProperties = { ...buttonStyle, background: "#315f2a", color: "#fff8c8" };
 const doneButtonStyle: React.CSSProperties = { ...buttonStyle, background: "#ca4b36", color: "#fff8c8" };
+
+const exportPanelStyle: React.CSSProperties = {
+  border: "2px solid #252018",
+  background: "#f4e8b5",
+  padding: 10,
+  marginBottom: 12,
+  display: "grid",
+  gap: 6,
+};
+
+const exportTitleStyle: React.CSSProperties = { fontWeight: 900 };
+const filePathStyle: React.CSSProperties = {
+  display: "block",
+  background: "#252018",
+  color: "#fff8c8",
+  padding: "4px 6px",
+  width: "fit-content",
+};
+
+const exportTextareaStyle: React.CSSProperties = {
+  width: "100%",
+  height: 180,
+  boxSizing: "border-box",
+  border: "2px solid #252018",
+  background: "#fff8c8",
+  color: "#252018",
+  fontFamily: "monospace",
+  fontSize: 12,
+};
 
 const categoryTabsStyle: React.CSSProperties = {
   display: "grid",
