@@ -1,7 +1,7 @@
-import { useEffect, useState, type CSSProperties } from "react";
+import type { CSSProperties } from "react";
 import type { PixelBuilding, PixelObject, PixelBuildingColor } from "../data/cityMaps/sceneTypes";
 import {
-  TERRAIN_LIBRARY,
+  getDefaultTerrainImage,
   terrainImageForCoord,
 } from "../rendering/TerrainLibrary";
 import {
@@ -14,33 +14,22 @@ const BUILDING_TILES = new Set(["A", "B", "H", "I", "P", "U"]);
 const hashTile = (x: number, y: number) =>
   Math.abs((x * 928371 + y * 364479 + x * y * 97) % 100);
 
-function findTerrainByTags(tags: string[], fallbackIndex = 0) {
-  const found = TERRAIN_LIBRARY.find(asset => {
-    const haystack = `${asset.label} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
-    return tags.some(tag => haystack.includes(tag));
-  });
+function defaultTerrainImageForTile(tile: string, _x: number, _y: number) {
+  if (tile === "G") return getDefaultTerrainImage("grass");
+  if (tile === "R" || tile === "O" || tile === "Q" || tile === "N") return getDefaultTerrainImage("path");
+  if (tile === "V" || tile === "E") return getDefaultTerrainImage("plaza");
+  if (tile === "W") return getDefaultTerrainImage("water");
+  if (tile === "S") return getDefaultTerrainImage("sand");
+  if (tile === "X") return getDefaultTerrainImage("grass");
+  if (tile === "T") return getDefaultTerrainImage("grass");
+  if (tile === "Y" || tile === "L") return getDefaultTerrainImage("grass");
+  if (tile === "F") return getDefaultTerrainImage("grass");
+  if (tile === "J") return getDefaultTerrainImage("wood");
+  if (tile === "M") return getDefaultTerrainImage("stone");
+  if (tile === "C" || tile === "D") return getDefaultTerrainImage("stone");
+  if (BUILDING_TILES.has(tile)) return getDefaultTerrainImage("grass");
 
-  return found?.src ?? TERRAIN_LIBRARY[fallbackIndex % Math.max(1, TERRAIN_LIBRARY.length)]?.src ?? "";
-}
-
-function defaultTerrainImageForTile(tile: string, x: number, y: number) {
-  const roll = hashTile(x, y);
-
-  if (tile === "G") return findTerrainByTags(["grass"], roll);
-  if (tile === "R" || tile === "O" || tile === "Q" || tile === "N") return findTerrainByTags(["dirt", "path", "road"], roll);
-  if (tile === "V" || tile === "E") return findTerrainByTags(["sidewalk", "asphalt", "pavement"], roll);
-  if (tile === "W") return findTerrainByTags(["water"], roll);
-  if (tile === "S") return findTerrainByTags(["sand", "beach"], roll);
-  if (tile === "X") return findTerrainByTags(["grass"], roll + 9);
-  if (tile === "T") return findTerrainByTags(["grass"], roll + 15);
-  if (tile === "Y" || tile === "L") return findTerrainByTags(["grass"], roll);
-  if (tile === "F") return findTerrainByTags(["grass"], roll);
-  if (tile === "J") return findTerrainByTags(["wood", "dock", "pier"], roll);
-  if (tile === "M") return findTerrainByTags(["stone", "rock"], roll);
-  if (tile === "C" || tile === "D") return findTerrainByTags(["asphalt", "stone", "sidewalk"], roll);
-  if (BUILDING_TILES.has(tile)) return findTerrainByTags(["grass"], roll);
-
-  return findTerrainByTags(["grass"], roll);
+  return getDefaultTerrainImage("grass");
 }
 
 function terrainImage(tile: string, x: number, y: number) {
@@ -204,26 +193,6 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
   );
 }
 
-function useLimeZuPaintVersion() {
-  const [version, setVersion] = useState(0);
-
-  useEffect(() => {
-    const refresh = () => setVersion(current => current + 1);
-
-    window.addEventListener("satiria:limezu-terrain-paint-changed", refresh);
-    window.addEventListener("satiria:limezu-object-paint-changed", refresh);
-    window.addEventListener("storage", refresh);
-
-    return () => {
-      window.removeEventListener("satiria:limezu-terrain-paint-changed", refresh);
-      window.removeEventListener("satiria:limezu-object-paint-changed", refresh);
-      window.removeEventListener("storage", refresh);
-    };
-  }, []);
-
-  return version;
-}
-
 export function PixelMapScene({
   rows,
   buildings,
@@ -233,12 +202,6 @@ export function PixelMapScene({
   buildings: PixelBuilding[];
   objects: PixelObject[];
 }) {
-  // This is important:
-  // terrain/object selections are stored in localStorage, so this component must
-  // re-render when the editor paints a LimeZu tile/object.
-  const limeZuPaintVersion = useLimeZuPaintVersion();
-  void limeZuPaintVersion;
-
   return (
     <div className="pixel-tileset-scene" aria-hidden="true">
       {rows.map((row, y) =>
@@ -276,22 +239,17 @@ export function PixelMapScene({
         />
       ))}
 
-      {objects.map((object, index) => {
-        const limeZuObject = limeZuObjectAssetForCoord(object.x, object.y);
-
-        if (!limeZuObject) return null;
-
-        return (
-          <i
-            key={`${object.sprite}-${index}`}
-            className={`pixel-sprite-object ${object.className ?? ""}`}
-            style={{
-              ...objectStyle(limeZuObject.src, object.x, object.y, object.w ?? 1, object.h ?? 1),
-              zIndex: 35 + object.y,
-            }}
-          />
-        );
-      })}
+      {objects.map((object, index) => (
+        <i
+          key={`${object.sprite}-${index}`}
+          className={`pixel-sprite-object ${object.className ?? ""}`}
+          style={{
+            ...objectStyle(limeZuObjectAssetForCoord(object.x, object.y)?.src ?? "", object.x, object.y, object.w ?? 1, object.h ?? 1),
+            zIndex: 35 + object.y,
+            display: limeZuObjectAssetForCoord(object.x, object.y) ? undefined : "none",
+          }}
+        />
+      ))}
     </div>
   );
 }
