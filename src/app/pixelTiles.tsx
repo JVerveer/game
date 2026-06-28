@@ -1,7 +1,7 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import type { PixelBuilding, PixelObject, PixelBuildingColor } from "../data/cityMaps/sceneTypes";
-import { terrainImageForCoord, terrainImageForKind } from "../assets/limezu/TerrainLibrary";
-import { objectAssetForCoord } from "../assets/limezu/ObjectLibrary";
+import { terrainImageForCoord, terrainImageForKind } from "./assets/limezu/TerrainLibrary";
+import { objectAssetForCoord } from "./assets/limezu/ObjectLibrary";
 
 const TILE_SIZE = 48;
 const BUILDING_TILES = new Set(["A", "B", "H", "I", "P", "U"]);
