@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import type { PixelBuilding, PixelObject, PixelBuildingColor } from "../data/cityMaps/sceneTypes";
 import {
   TERRAIN_LIBRARY,
@@ -204,6 +204,26 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
   );
 }
 
+function useLimeZuPaintVersion() {
+  const [version, setVersion] = useState(0);
+
+  useEffect(() => {
+    const refresh = () => setVersion(current => current + 1);
+
+    window.addEventListener("satiria:limezu-terrain-paint-changed", refresh);
+    window.addEventListener("satiria:limezu-object-paint-changed", refresh);
+    window.addEventListener("storage", refresh);
+
+    return () => {
+      window.removeEventListener("satiria:limezu-terrain-paint-changed", refresh);
+      window.removeEventListener("satiria:limezu-object-paint-changed", refresh);
+      window.removeEventListener("storage", refresh);
+    };
+  }, []);
+
+  return version;
+}
+
 export function PixelMapScene({
   rows,
   buildings,
@@ -213,6 +233,12 @@ export function PixelMapScene({
   buildings: PixelBuilding[];
   objects: PixelObject[];
 }) {
+  // This is important:
+  // terrain/object selections are stored in localStorage, so this component must
+  // re-render when the editor paints a LimeZu tile/object.
+  const limeZuPaintVersion = useLimeZuPaintVersion();
+  void limeZuPaintVersion;
+
   return (
     <div className="pixel-tileset-scene" aria-hidden="true">
       {rows.map((row, y) =>
@@ -250,17 +276,22 @@ export function PixelMapScene({
         />
       ))}
 
-      {objects.map((object, index) => (
-        <i
-          key={`${object.sprite}-${index}`}
-          className={`pixel-sprite-object ${object.className ?? ""}`}
-          style={{
-            ...objectStyle(limeZuObjectAssetForCoord(object.x, object.y)?.src ?? "", object.x, object.y, object.w ?? 1, object.h ?? 1),
-            zIndex: 35 + object.y,
-            display: limeZuObjectAssetForCoord(object.x, object.y) ? undefined : "none",
-          }}
-        />
-      ))}
+      {objects.map((object, index) => {
+        const limeZuObject = limeZuObjectAssetForCoord(object.x, object.y);
+
+        if (!limeZuObject) return null;
+
+        return (
+          <i
+            key={`${object.sprite}-${index}`}
+            className={`pixel-sprite-object ${object.className ?? ""}`}
+            style={{
+              ...objectStyle(limeZuObject.src, object.x, object.y, object.w ?? 1, object.h ?? 1),
+              zIndex: 35 + object.y,
+            }}
+          />
+        );
+      })}
     </div>
   );
 }
