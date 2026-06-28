@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LimeZuAssetCategorizer } from "./assets/LimeZuAssetCategorizer";
+import { LimeZuAssetManager } from "./assets/LimeZuAssetManager";
 
 type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
 
@@ -10,6 +10,7 @@ export function EditorToolbar({
   editorMode: EditorMode;
   setEditorMode: (mode: EditorMode) => void;
 }) {
+  const [showAssetManager, setShowAssetManager] = useState(false);
   const [showAssetCategorizer, setShowAssetCategorizer] = useState(false);
   const modes: EditorMode[] = ["select", "terrain", "buildings", "objects", "npcs"];
 
@@ -49,10 +50,28 @@ export function EditorToolbar({
         >
           Asset Categorizer
         </button>
+
+        <button
+          type="button"
+          onClick={() => setShowAssetManager(true)}
+          style={{
+            padding: "8px 12px",
+            cursor: "pointer",
+            border: "2px solid #252018",
+            background: "#315f2a",
+            color: "#fff8c8",
+            fontWeight: 900,
+          }}
+        >
+          Asset Manager
+        </button>
       </div>
 
       {showAssetCategorizer && (
         <LimeZuAssetCategorizer onClose={() => setShowAssetCategorizer(false)} />
+      )}
+      {showAssetManager && (
+        <LimeZuAssetManager onClose={() => setShowAssetManager(false)} />
       )}
     </>
   );
