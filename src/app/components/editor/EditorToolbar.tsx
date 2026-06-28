@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { LimeZuAssetManager } from "./assets/LimeZuAssetManager";
+import { CharacterAssetManager } from "./characters/CharacterAssetManager";
+import { LimeZuAssetCategorizer } from "./assets/LimeZuAssetCategorizer";
 
 type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
 
@@ -10,7 +11,7 @@ export function EditorToolbar({
   editorMode: EditorMode;
   setEditorMode: (mode: EditorMode) => void;
 }) {
-  const [showAssetManager, setShowAssetManager] = useState(false);
+  const [showCharacterAssetManager, setShowCharacterAssetManager] = useState(false);
   const [showAssetCategorizer, setShowAssetCategorizer] = useState(false);
   const modes: EditorMode[] = ["select", "terrain", "buildings", "objects", "npcs"];
 
@@ -53,25 +54,25 @@ export function EditorToolbar({
 
         <button
           type="button"
-          onClick={() => setShowAssetManager(true)}
+          onClick={() => setShowCharacterAssetManager(true)}
           style={{
             padding: "8px 12px",
             cursor: "pointer",
             border: "2px solid #252018",
-            background: "#315f2a",
+            background: "#5b3f8c",
             color: "#fff8c8",
             fontWeight: 900,
           }}
         >
-          Asset Manager
+          Character Assets
         </button>
       </div>
 
       {showAssetCategorizer && (
         <LimeZuAssetCategorizer onClose={() => setShowAssetCategorizer(false)} />
       )}
-      {showAssetManager && (
-        <LimeZuAssetManager onClose={() => setShowAssetManager(false)} />
+      {showCharacterAssetManager && (
+        <CharacterAssetManager onClose={() => setShowCharacterAssetManager(false)} />
       )}
     </>
   );
