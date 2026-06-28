@@ -1071,10 +1071,11 @@ useRuntimeEffects({
               rows={displayRowsWithBuildings}
               buildings={pixelBuildingsFor(mapId, displayRowsWithBuildings)}
               objects={isTownMap(mapId) ? citySceneObjectsFor(mapId) : []}
+              legacyObjects={displayObjects}
             />
         )}
 
-        {isTownMap(mapId) && Object.entries(displayObjects)
+        {!isTownMap(mapId) && Object.entries(displayObjects)
           .filter(([, obj]) => obj !== "NPC")
           .map(([coord, obj]) => {
             const [x, y] = coord.split(",").map(Number);
@@ -1100,7 +1101,7 @@ useRuntimeEffects({
           })}
 
         {/* Tiles rendered as flex rows */}
-        <div className={isTownMap(mapId) ? "pixel-game-grid" : ""} style={{ display: "flex", flexDirection: "column" }}>
+        {!isTownMap(mapId) && (<div className="" style={{ display: "flex", flexDirection: "column" }}>
           {displayRowsWithBuildings.map((row, ry) => (
             <div key={ry} style={{ display: "flex" }}>
               {row.map((t, cx) => {
@@ -1124,7 +1125,7 @@ useRuntimeEffects({
               })}
             </div>
           ))}
-        </div>
+        </div>)}
 
         {displayEditorNpcs.map(npc => (
           <div

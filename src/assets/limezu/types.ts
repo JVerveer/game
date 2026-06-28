@@ -7,6 +7,7 @@ export type LimeZuRuntimeAsset = {
   source: string;
   width: number;
   height: number;
+  runtimeLayer?: "terrain" | "object" | "building" | "effect" | "ui";
 };
 
 export const assetMatches = (asset: LimeZuRuntimeAsset, terms: string[]) => {
