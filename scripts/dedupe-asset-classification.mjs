@@ -4,8 +4,15 @@ import path from "node:path";
 
 const ROOT = process.cwd();
 
-const ASSET_CATALOG_PATH = path.join(ROOT, "src/app/components/editor/assets/AssetCatalog.ts");
-const ASSET_CLASSIFICATION_PATH = path.join(ROOT, "src/app/components/editor/assets/AssetClassification.ts");
+const ASSET_CATALOG_PATH = path.join(
+  ROOT,
+  "src/app/components/editor/assets/AssetCatalog.ts",
+);
+
+const ASSET_CLASSIFICATION_PATH = path.join(
+  ROOT,
+  "src/app/components/editor/assets/AssetClassification.ts",
+);
 
 const VALID_CATEGORIES = new Set([
   "uncategorized",
@@ -21,7 +28,7 @@ const VALID_CATEGORIES = new Set([
 
 function readFile(filePath) {
   if (!fs.existsSync(filePath)) {
-    throw new Error(`Missing file: ${filePath}`);
+    throw new Error(`Missing file: ${path.relative(ROOT, filePath)}`);
   }
 
   return fs.readFileSync(filePath, "utf8");
@@ -40,24 +47,111 @@ function normalizeAssetName(label) {
 }
 
 function readStringProp(block, prop) {
-  const match = block.match(new RegExp(`${prop}\\s*:\\s*"([^"]*)"`, "m"));
-  return match?.[1] ?? "";
+  const quoted = block.match(new RegExp(`["']${prop}["']\\s*:\\s*["']([^"']*)["']`, "m"));
+  if (quoted?.[1] !== undefined) return quoted[1];
+
+  const unquoted = block.match(new RegExp(`\\b${prop}\\s*:\\s*["']([^"']*)["']`, "m"));
+  return unquoted?.[1] ?? "";
 }
 
 function readNumberProp(block, prop) {
-  const match = block.match(new RegExp(`${prop}\\s*:\\s*(\\d+)`, "m"));
-  return match ? Number(match[1]) : 0;
+  const quoted = block.match(new RegExp(`["']${prop}["']\\s*:\\s*(\\d+)`, "m"));
+  if (quoted?.[1] !== undefined) return Number(quoted[1]);
+
+  const unquoted = block.match(new RegExp(`\\b${prop}\\s*:\\s*(\\d+)`, "m"));
+  return unquoted ? Number(unquoted[1]) : 0;
+}
+
+function extractCatalogArray(source) {
+  const markerIndex = source.indexOf("LIMEZU_ASSET_CATALOG");
+  if (markerIndex < 0) {
+    throw new Error("Could not find LIMEZU_ASSET_CATALOG in AssetCatalog.ts");
+  }
+
+  const arrayStart = source.indexOf("[", markerIndex);
+  if (arrayStart < 0) {
+    throw new Error("Could not find asset catalog array start.");
+  }
+
+  let depth = 0;
+  let inString = false;
+  let quote = "";
+  let escaped = false;
+
+  for (let i = arrayStart; i < source.length; i += 1) {
+    const char = source[i];
+
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (char === "\\") escaped = true;
+      else if (char === quote) inString = false;
+      continue;
+    }
+
+    if (char === '"' || char === "'") {
+      inString = true;
+      quote = char;
+      continue;
+    }
+
+    if (char === "[") depth += 1;
+    if (char === "]") depth -= 1;
+
+    if (depth === 0) {
+      return source.slice(arrayStart, i + 1);
+    }
+  }
+
+  throw new Error("Could not find asset catalog array end.");
+}
+
+function splitTopLevelObjects(arraySource) {
+  const objects = [];
+  let depth = 0;
+  let start = -1;
+  let inString = false;
+  let quote = "";
+  let escaped = false;
+
+  for (let i = 0; i < arraySource.length; i += 1) {
+    const char = arraySource[i];
+
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (char === "\\") escaped = true;
+      else if (char === quote) inString = false;
+      continue;
+    }
+
+    if (char === '"' || char === "'") {
+      inString = true;
+      quote = char;
+      continue;
+    }
+
+    if (char === "{") {
+      if (depth === 0) start = i;
+      depth += 1;
+    } else if (char === "}") {
+      depth -= 1;
+      if (depth === 0 && start >= 0) {
+        objects.push(arraySource.slice(start, i + 1));
+        start = -1;
+      }
+    }
+  }
+
+  return objects;
 }
 
 function parseCatalog(source) {
+  const arraySource = extractCatalogArray(source);
+  const blocks = splitTopLevelObjects(arraySource);
+
   const assets = [];
-  const assetBlockRegex = /\{\s*id\s*:\s*"([^"]+)"[\s\S]*?\n\s*\}/g;
 
-  let match;
-  while ((match = assetBlockRegex.exec(source))) {
-    const block = match[0];
-    const id = match[1];
-
+  for (const block of blocks) {
+    const id = readStringProp(block, "id");
     const label = readStringProp(block, "label");
     const sourcePath = readStringProp(block, "source");
     const pack = readStringProp(block, "pack");
@@ -83,10 +177,13 @@ function parseCatalog(source) {
 
 function parseClassification(source) {
   const classification = {};
-  const pairRegex = /([A-Za-z0-9_$]+)\s*:\s*"([^"]+)"/g;
+  const objectMatch = source.match(/ASSET_CLASSIFICATION\s*=\s*\{([\s\S]*?)\}\s*as const/s);
+  const body = objectMatch?.[1] ?? source;
+
+  const pairRegex = /["']?([A-Za-z0-9_$]+)["']?\s*:\s*["']([^"']+)["']/g;
 
   let match;
-  while ((match = pairRegex.exec(source))) {
+  while ((match = pairRegex.exec(body))) {
     const [, id, category] = match;
     if (VALID_CATEGORIES.has(category)) {
       classification[id] = category;
@@ -101,14 +198,11 @@ function categoryFor(asset, classification) {
 }
 
 function duplicateKeyFor(asset, category) {
-  // Only dedupe inside the same category.
-  // Name + size prevents intentionally different size variants from being collapsed.
   return `${category}::${normalizeAssetName(asset.label)}::${asset.width}x${asset.height}`;
 }
 
 function chooseCanonical(group) {
   return [...group].sort((a, b) => {
-    // Prefer non-OLD paths, then shorter paths, then stable source order.
     const aOld = /\bOLD\b|\/OLD\//i.test(a.source) ? 1 : 0;
     const bOld = /\bOLD\b|\/OLD\//i.test(b.source) ? 1 : 0;
     if (aOld !== bOld) return aOld - bOld;
@@ -120,18 +214,17 @@ function chooseCanonical(group) {
   })[0];
 }
 
+function assetNumber(id) {
+  const match = id.match(/\d+/);
+  return match ? Number(match[0]) : Number.POSITIVE_INFINITY;
+}
+
 function buildOutput(classification) {
   const entries = Object.entries(classification)
     .filter(([, category]) => VALID_CATEGORIES.has(category))
     .sort(([a], [b]) => {
-      const aNumber = Number(a.replace(/\D+/g, ""));
-      const bNumber = Number(b.replace(/\D+/g, ""));
-
-      if (Number.isFinite(aNumber) && Number.isFinite(bNumber) && aNumber !== bNumber) {
-        return aNumber - bNumber;
-      }
-
-      return a.localeCompare(b);
+      const diff = assetNumber(a) - assetNumber(b);
+      return diff || a.localeCompare(b);
     });
 
   const body = entries
@@ -155,6 +248,9 @@ ${body}
 function main() {
   const dryRun = process.argv.includes("--dry-run");
 
+  console.log(`Using catalog: ${path.relative(ROOT, ASSET_CATALOG_PATH)}`);
+  console.log(`Using classification: ${path.relative(ROOT, ASSET_CLASSIFICATION_PATH)}`);
+
   const catalogSource = readFile(ASSET_CATALOG_PATH);
   const classificationSource = readFile(ASSET_CLASSIFICATION_PATH);
 
@@ -169,8 +265,6 @@ function main() {
 
   for (const asset of assets) {
     const category = categoryFor(asset, classification);
-
-    // Do not dedupe assets that are already ignored.
     if (category === "ignore") continue;
 
     const normalizedName = normalizeAssetName(asset.label);
@@ -232,8 +326,7 @@ function main() {
     return;
   }
 
-  const output = buildOutput(classification);
-  fs.writeFileSync(ASSET_CLASSIFICATION_PATH, output, "utf8");
+  fs.writeFileSync(ASSET_CLASSIFICATION_PATH, buildOutput(classification), "utf8");
 
   console.log(`\nUpdated: ${path.relative(ROOT, ASSET_CLASSIFICATION_PATH)}`);
   console.log("Review the git diff, then commit if it looks correct.");
