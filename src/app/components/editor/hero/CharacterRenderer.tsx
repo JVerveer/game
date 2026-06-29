@@ -90,12 +90,14 @@ function AtlasLayer({
   appearance,
   baseFrame,
   pixelSize,
+  imageRendering,
 }: {
   category: CharacterLayerCategory;
   optionId: string;
   appearance: CharacterAppearance;
   baseFrame: CharacterFrame;
   pixelSize: number;
+  imageRendering: "auto" | "pixelated";
 }) {
   const option = optionFor(category, optionId);
   if (!option || option.id === "none") return null;
@@ -114,7 +116,7 @@ function AtlasLayer({
     backgroundRepeat: "no-repeat",
     backgroundSize: `${backgroundWidth}px ${backgroundHeight}px`,
     backgroundPosition: `${-frame.col * displaySize}px ${-sourceRow * displaySize}px`,
-    imageRendering: "pixelated" as const,
+    imageRendering,
     pointerEvents: "none" as const,
   };
   const colorOption = colorOptionForLayer(category, appearance);
@@ -129,7 +131,7 @@ function AtlasLayer({
         top: layerTop,
         width: displaySize,
         height: layerHeight,
-        imageRendering: "pixelated",
+        imageRendering,
         pointerEvents: "none",
       }}
     >
@@ -160,7 +162,7 @@ function AtlasLayer({
             maskRepeat: "no-repeat",
             maskSize: `${backgroundWidth}px ${backgroundHeight}px`,
             maskPosition: `${-frame.col * displaySize}px ${-sourceRow * displaySize}px`,
-            imageRendering: "pixelated",
+            imageRendering,
             pointerEvents: "none",
           }}
         />
@@ -175,6 +177,7 @@ export function CharacterRenderer({
   animation = "idle",
   pixelSize = 1,
   showShadow = true,
+  smooth = true,
   debug = false,
 }: {
   appearance: CharacterAppearance;
@@ -182,6 +185,7 @@ export function CharacterRenderer({
   animation?: CharacterAnimation;
   pixelSize?: number;
   showShadow?: boolean;
+  smooth?: boolean;
   debug?: boolean;
 }) {
   const config = useMemo(() => animationConfigFor({ facing, animation }), [facing, animation]);
@@ -195,6 +199,7 @@ export function CharacterRenderer({
       pixelSize={pixelSize}
       showShadow={showShadow}
       walking={animation === "walk"}
+      smooth={smooth}
       debug={debug ? `${animation} ${facing} c${baseFrame.col} r${baseFrame.row}` : undefined}
     />
   );
@@ -206,6 +211,7 @@ export function CharacterComposite({
   pixelSize = 1,
   showShadow = true,
   walking = false,
+  smooth = true,
   debug,
 }: {
   appearance: CharacterAppearance;
@@ -213,33 +219,19 @@ export function CharacterComposite({
   pixelSize?: number;
   showShadow?: boolean;
   walking?: boolean;
+  smooth?: boolean;
   debug?: string;
 }) {
   const size = CHARACTER_TILE_SIZE * pixelSize;
-  const walkDistance = Math.max(1, Math.round(pixelSize * 1.2));
+  const renderPixelSize = smooth ? pixelSize * 2 : pixelSize;
+  const renderSize = CHARACTER_TILE_SIZE * renderPixelSize;
+  const visualScale = size / renderSize;
+  const imageRendering = smooth ? "auto" : "pixelated";
 
   return (
     <>
       <style>
         {`
-          @keyframes limezuHeroObviousWalk {
-            0% {
-              transform: translate(0px, 0px) rotate(0deg) scaleY(1);
-            }
-            25% {
-              transform: translate(${-walkDistance}px, -2px) rotate(-0.7deg) scaleY(0.99);
-            }
-            50% {
-              transform: translate(0px, 0px) rotate(0deg) scaleY(1);
-            }
-            75% {
-              transform: translate(${walkDistance}px, -2px) rotate(0.7deg) scaleY(0.99);
-            }
-            100% {
-              transform: translate(0px, 0px) rotate(0deg) scaleY(1);
-            }
-          }
-
           @keyframes limezuHeroObviousShadow {
             0% {
               opacity: 0.26;
@@ -270,11 +262,10 @@ export function CharacterComposite({
           position: "relative",
           width: size,
           height: size,
-          imageRendering: "pixelated",
+          imageRendering,
           flex: "0 0 auto",
           overflow: "visible",
           transformOrigin: "center bottom",
-          animation: walking ? "limezuHeroObviousWalk 360ms ease-in-out infinite" : undefined,
         }}
       >
         {showShadow && (
@@ -293,16 +284,32 @@ export function CharacterComposite({
           />
         )}
 
-        {CHARACTER_LAYER_ORDER.map(category => (
-          <AtlasLayer
-            key={`${category}-${appearance[category]}-${appearance.skinColor}-${appearance.hairColor}-${appearance.outfitColor}-${baseFrame.col}-${baseFrame.row}`}
-            category={category}
-            optionId={appearance[category]}
-            appearance={appearance}
-            baseFrame={baseFrame}
-            pixelSize={pixelSize}
-          />
-        ))}
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            left: "50%",
+            bottom: 0,
+            width: renderSize,
+            height: renderSize,
+            transform: `translateX(-50%) scale(${visualScale})`,
+            transformOrigin: "center bottom",
+            imageRendering,
+            pointerEvents: "none",
+          }}
+        >
+          {CHARACTER_LAYER_ORDER.map(category => (
+            <AtlasLayer
+              key={`${category}-${appearance[category]}-${appearance.skinColor}-${appearance.hairColor}-${appearance.outfitColor}-${baseFrame.col}-${baseFrame.row}`}
+              category={category}
+              optionId={appearance[category]}
+              appearance={appearance}
+              baseFrame={baseFrame}
+              pixelSize={renderPixelSize}
+              imageRendering={imageRendering}
+            />
+          ))}
+        </div>
 
         {debug && (
           <div
@@ -356,6 +363,7 @@ export function CharacterLayerThumbnail({
       pixelSize={pixelSize}
       showShadow={false}
       walking={false}
+      smooth={false}
     />
   );
 }

@@ -7,6 +7,7 @@ import type {
 } from "./characterTypes";
 
 const IDLE_DURATION = 600;
+const WALK_DURATION = 95;
 
 // Stable full-body cells.
 // These are confirmed to render the whole character without flashes.
@@ -17,20 +18,17 @@ const IDLE_FRAMES: Record<CharacterFacing, CharacterFrame> = {
   left: { col: 2, row: 1, durationMs: IDLE_DURATION },
 };
 
-// IMPORTANT:
-// The previous V10 tried to use guessed walking rows.
-// Those guessed coordinates caused flashing/ghost sprites around the hero.
-// This stable version intentionally uses the confirmed full-body standing
-// frames while the player moves. Movement remains smooth because the map
-// position changes, but the sprite itself does not rapidly switch to bad cells.
-//
-// Once we inspect the exact LimeZu walk atlas coordinates, we can re-enable
-// proper walk animation safely.
-const STABLE_WALK_FRAMES: Record<CharacterFacing, CharacterFrame[]> = {
-  down: [{ ...IDLE_FRAMES.down, durationMs: IDLE_DURATION }],
-  up: [{ ...IDLE_FRAMES.up, durationMs: IDLE_DURATION }],
-  right: [{ ...IDLE_FRAMES.right, durationMs: IDLE_DURATION }],
-  left: [{ ...IDLE_FRAMES.left, durationMs: IDLE_DURATION }],
+const cells = (row: number, cols: number[]): CharacterFrame[] =>
+  cols.map(col => ({ col, row, durationMs: WALK_DURATION }));
+
+// LimeZu layered character sheets use paired rows: the visible full-body
+// frames sit on odd rows, while the preceding even row carries overflow pieces
+// for hair and accessories. Row 3 contains the first clean 4-direction walk set.
+const WALK_FRAMES: Record<CharacterFacing, CharacterFrame[]> = {
+  right: cells(3, [0, 1, 2, 3, 4, 5]),
+  up: cells(3, [6, 7, 8, 9, 10, 11]),
+  left: cells(3, [12, 13, 14, 15, 16, 17]),
+  down: cells(3, [18, 19, 20, 21, 22, 23]),
 };
 
 export function frameForLayer({
@@ -54,7 +52,7 @@ export function animationConfigFor({
     return {
       id: "walk",
       loop: true,
-      frames: STABLE_WALK_FRAMES[facing],
+      frames: WALK_FRAMES[facing],
     };
   }
 
@@ -72,6 +70,6 @@ export function thumbnailFrame() {
 export function debugFramesFor(facing: CharacterFacing) {
   return {
     idle: IDLE_FRAMES[facing],
-    walk: STABLE_WALK_FRAMES[facing],
+    walk: WALK_FRAMES[facing],
   };
 }
