@@ -27,20 +27,25 @@ export type BuildingPrefabLibrary = Record<string, BuildingPrefab>;
 let cachedPrefabs: BuildingPrefabLibrary = {};
 let selectedPrefabId = "";
 
+function toRuntimePrefab(prefab: BuildingCatalogPrefab): BuildingPrefab {
+  return {
+    ...prefab,
+    assetId: firstAssetIdFromPrefab(prefab),
+  };
+}
+
 function catalogLibrary(): BuildingPrefabLibrary {
+  const catalog = BUILDING_PREFAB_CATALOG as readonly BuildingCatalogPrefab[];
+
   return Object.fromEntries(
-    BUILDING_PREFAB_CATALOG.map(prefab => [
-      prefab.id,
-      {
-        ...prefab,
-        assetId: firstAssetIdFromPrefab(prefab),
-      },
-    ]),
+    catalog.map((prefab) => [prefab.id, toRuntimePrefab(prefab)]),
   );
 }
 
-export function firstAssetIdFromPrefab(prefab: Pick<BuildingPrefab, "tiles">) {
-  return prefab.tiles.find(tile => tile.assetId)?.assetId;
+export function firstAssetIdFromPrefab(
+  prefab: Pick<BuildingCatalogPrefab, "tiles">,
+) {
+  return prefab.tiles.find((tile) => tile.assetId)?.assetId;
 }
 
 export function readBuildingPrefabs(): BuildingPrefabLibrary {
@@ -52,7 +57,9 @@ export function readBuildingPrefabs(): BuildingPrefabLibrary {
   }
 
   try {
-    cachedPrefabs = JSON.parse(window.localStorage.getItem(PREFAB_STORAGE_KEY) ?? "{}");
+    cachedPrefabs = JSON.parse(
+      window.localStorage.getItem(PREFAB_STORAGE_KEY) ?? "{}",
+    ) as BuildingPrefabLibrary;
   } catch {
     cachedPrefabs = {};
   }
@@ -64,20 +71,25 @@ export function readBuildingPrefabs(): BuildingPrefabLibrary {
 }
 
 export function writeBuildingPrefabs(next: BuildingPrefabLibrary) {
-  // Only write user/browser prefabs. Catalog prefabs live in code.
-  const catalogIds = new Set(BUILDING_PREFAB_CATALOG.map(prefab => prefab.id));
+  const catalog = BUILDING_PREFAB_CATALOG as readonly BuildingCatalogPrefab[];
+  const catalogIds = new Set(catalog.map((prefab) => prefab.id));
+
   cachedPrefabs = Object.fromEntries(
     Object.entries(next).filter(([id]) => !catalogIds.has(id)),
-  );
+  ) as BuildingPrefabLibrary;
 
   if (typeof window !== "undefined") {
-    window.localStorage.setItem(PREFAB_STORAGE_KEY, JSON.stringify(cachedPrefabs));
+    window.localStorage.setItem(
+      PREFAB_STORAGE_KEY,
+      JSON.stringify(cachedPrefabs),
+    );
     window.dispatchEvent(new CustomEvent("satiria:building-prefabs-changed"));
   }
 }
 
 export function upsertBuildingPrefab(prefab: BuildingPrefab) {
   const current = readBuildingPrefabs();
+
   const nextPrefab: BuildingPrefab = {
     ...prefab,
     assetId: prefab.assetId ?? firstAssetIdFromPrefab(prefab),
@@ -101,7 +113,9 @@ export function upsertBuildingPrefab(prefab: BuildingPrefab) {
 
 export function deleteBuildingPrefab(prefabId: string) {
   const next = { ...readBuildingPrefabs() };
+
   delete next[prefabId];
+
   writeBuildingPrefabs(next);
 
   if (readSelectedBuildingPrefabId() === prefabId) {
@@ -112,7 +126,9 @@ export function deleteBuildingPrefab(prefabId: string) {
 export function readSelectedBuildingPrefabId() {
   if (typeof window === "undefined") return selectedPrefabId;
 
-  selectedPrefabId = window.localStorage.getItem(SELECTED_PREFAB_STORAGE_KEY) ?? "";
+  selectedPrefabId =
+    window.localStorage.getItem(SELECTED_PREFAB_STORAGE_KEY) ?? "";
+
   return selectedPrefabId;
 }
 
@@ -121,18 +137,22 @@ export function writeSelectedBuildingPrefabId(prefabId: string) {
 
   if (typeof window !== "undefined") {
     window.localStorage.setItem(SELECTED_PREFAB_STORAGE_KEY, prefabId);
-    window.dispatchEvent(new CustomEvent("satiria:building-prefab-selection-changed"));
+    window.dispatchEvent(
+      new CustomEvent("satiria:building-prefab-selection-changed"),
+    );
   }
 }
 
 export function selectedBuildingPrefab() {
   const prefabId = readSelectedBuildingPrefabId();
   if (!prefabId) return undefined;
+
   return readBuildingPrefabs()[prefabId];
 }
 
 export function buildingPrefabById(prefabId: string | undefined) {
   if (!prefabId) return undefined;
+
   return readBuildingPrefabs()[prefabId];
 }
 
@@ -152,6 +172,7 @@ export function applyBuildingPrefabToEditor({
   writeSelectedBuildingPrefabId(prefab.id);
 
   const firstAssetId = firstAssetIdFromPrefab(prefab);
+
   if (firstAssetId) {
     writeSelectedBuildingAssetId(firstAssetId);
   }
@@ -163,7 +184,12 @@ export function applyBuildingPrefabToEditor({
 }
 
 export function makeBuildingPrefabId(name: string) {
-  return `building-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "prefab"}`;
+  return `building-${
+    name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "") || "prefab"
+  }`;
 }
 
 export function currentBuildingAssetIdForPrefab() {
@@ -179,13 +205,42 @@ export function exportBuildingCatalogEntry(prefab: BuildingPrefab) {
     width: prefab.width,
     height: prefab.height,
     tiles: prefab.tiles
-      .filter(tile => tile.assetId || tile.collision)
-      .sort((a, b) => a.y - b.y || a.x - b.x || a.layer.localeCompare(b.layer)),
+      .filter((tile) => tile.assetId || tile.collision)
+      .sort(
+        (a, b) =>
+          a.y - b.y || a.x - b.x || a.layer.localeCompare(b.layer),
+      ),
     entrance: prefab.entrance,
     tags: prefab.tags,
   };
 
   return JSON.stringify(stablePrefab, null, 2);
+}
+
+export function exportBuildingPrefabsTs() {
+  const prefabs: BuildingCatalogPrefab[] = Object.values(readBuildingPrefabs())
+    .map((prefab) => ({
+      id: prefab.id,
+      name: prefab.name,
+      kind: prefab.kind,
+      color: prefab.color,
+      width: prefab.width,
+      height: prefab.height,
+      tiles: prefab.tiles
+        .filter((tile) => tile.assetId || tile.collision)
+        .sort(
+          (a, b) =>
+            a.y - b.y || a.x - b.x || a.layer.localeCompare(b.layer),
+        ),
+      entrance: prefab.entrance,
+      tags: prefab.tags,
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  return `import type { BuildingCatalogPrefab } from "./BuildingPrefabCatalog";
+
+export const EXPORTED_BUILDING_PREFABS = ${JSON.stringify(prefabs, null, 2)} as const satisfies BuildingCatalogPrefab[];
+`;
 }
 
 export type { BuildingCatalogPrefab, BuildingCatalogTile };
