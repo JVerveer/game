@@ -4,7 +4,10 @@ import {
   type CharacterAsset,
 } from "../../../assets/limezu/characters/CharacterAssetCatalog";
 import { readCharacterAssetClassification } from "../../../assets/limezu/characters/CharacterAssetRuntime";
+import type { GlobalNpcPrefab } from "../../../assets/limezu/characters/NpcCatalogRuntime";
 import { CharacterSheetRenderer } from "../../../rendering/characters/CharacterSheetRenderer";
+import { GlobalNpcManager } from "./GlobalNpcManager";
+import { NpcCatalogBuilderButton } from "./NpcCatalogBuilderButton";
 
 type NpcEditorAction = "create" | "edit" | "delete";
 
@@ -140,6 +143,17 @@ export function NpcPalette({
 
   return (
     <div style={{ marginBottom: 12 }}>
+      <NpcCatalogBuilderButton />
+      <GlobalNpcManager
+        onSelect={(npc: GlobalNpcPrefab) => {
+          setNpcEditorAction("create");
+          setEditorNpcPresetId(npc.sheetAssetId);
+          setEditorNpcName(npc.name);
+          setEditorNpcWalking(npc.walking !== false);
+          setEditorNpcLines(npc.lines.join("\n"));
+        }}
+      />
+
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
         {(["create", "delete"] as const).map(action => (
           <button

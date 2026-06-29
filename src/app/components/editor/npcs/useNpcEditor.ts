@@ -9,6 +9,7 @@ import type {
   ObjectEditAction,
 } from "../hooks/useEditorState";
 import { CHARACTER_ASSET_CATALOG } from "../../../assets/limezu/characters/CharacterAssetCatalog";
+import { selectedGlobalNpc } from "../../../assets/limezu/characters/NpcCatalogRuntime";
 import { assignNpcSheet } from "../../../rendering/characters/NpcSheetRuntime";
 
 type NpcVisualPreset = {
@@ -77,6 +78,7 @@ export function useNpcEditor({
     variant: npc.variant,
     style: npc.style,
     walking: npc.walking,
+    sheetAssetId: npc.sheetAssetId,
   });
 
   const syncRuntimeNpcsForMap = (id: GameMapId, editorNpcs: EditorNpcAsset[]) => {
@@ -100,6 +102,7 @@ export function useNpcEditor({
         variant: npc.variant,
         style: npc.style,
         walking: npc.walking,
+        sheetAssetId: npc.sheetAssetId,
       }));
 
     const nextForMap = updater(base.map(npc => ({ ...npc, lines: [...npc.lines] })));
@@ -162,7 +165,10 @@ export function useNpcEditor({
       return;
     }
 
-    const selectedCharacterAsset = characterAssetForPresetId(editorNpcPresetIdRef.current);
+    const selectedNpc = selectedGlobalNpc();
+    const selectedCharacterAsset = selectedNpc?.sheetAssetId
+      ? characterAssetForPresetId(selectedNpc.sheetAssetId)
+      : characterAssetForPresetId(editorNpcPresetIdRef.current);
 
     const next = upsertEditedNpcsForMap(id, current => {
       const fallbackPreset = npcVisualPresets.find(item => item.id === editorNpcPresetIdRef.current) ?? npcVisualPresets[0];
@@ -176,22 +182,26 @@ export function useNpcEditor({
         homeX: x,
         homeY: y,
         name: editorNpcNameRef.current.trim()
+          || selectedNpc?.name
           || selectedCharacterAsset?.label
           || fallbackPreset?.label
           || readableNameFromAssetId(editorNpcPresetIdRef.current),
-        lines: editorNpcLinesRef.current.split("\n").map(line => line.trim()).filter(Boolean),
+        lines: editorNpcLinesRef.current.split("\n").map(line => line.trim()).filter(Boolean).length > 0
+          ? editorNpcLinesRef.current.split("\n").map(line => line.trim()).filter(Boolean)
+          : selectedNpc?.lines ?? [],
         variant: selectedCharacterAsset ? 0 : fallbackPreset.variant,
         style: selectedCharacterAsset
           ? "npc-role-character-sheet"
           : isTownMap(id)
             ? `npc-town-${id} npc-role-${fallbackPreset.styleRole}`
             : `npc-role-${fallbackPreset.styleRole}`,
-        walking: editorNpcWalkingRef.current,
+        walking: selectedNpc?.walking ?? editorNpcWalkingRef.current,
+        sheetAssetId: selectedNpc?.sheetAssetId ?? selectedCharacterAsset?.id,
       };
 
-      if (selectedCharacterAsset) {
+      if (newNpc.sheetAssetId) {
         window.setTimeout(() => {
-          assignNpcSheet(npcId, selectedCharacterAsset.id);
+          assignNpcSheet(npcId, newNpc.sheetAssetId!);
         }, 0);
       }
 

@@ -41,6 +41,7 @@ import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
 import { CharacterRenderer } from "../editor/hero/CharacterRenderer";
+import { CharacterSheetRenderer } from "../../rendering/characters/CharacterSheetRenderer";
 import { limeZuTileStyle } from "../../../world/limeZuTileStyle";
 import {
   DEFAULT_HERO_APPEARANCE,
@@ -351,7 +352,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const baseRowsWithoutBuildingTiles = displayRows.map(row => row.map(tile => BUILDING_TILE_IDS.has(tile) ? "G" : tile));
   const displayRowsWithBuildings = applyBuildingsToRows(baseRowsWithoutBuildingTiles, displayBuildings);
   const editedNpcs = editedNpcsByMap[mapId];
-  const mapAssetNpcs = npcs.filter(npc => npc.mapId === mapId).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking }));
+  const mapAssetNpcs = npcs.filter(npc => npc.mapId === mapId).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking, sheetAssetId: npc.sheetAssetId }));
   const displayEditorNpcs = mapAssetNpcs;
   const currentTown = isTownMap(mapId) ? TOWN_THEMES.find(town => town.id === mapId) : null;
 
@@ -438,7 +439,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     const removed = removedBuildingIdsByMapRef.current[id] ?? new Set<string>();
     return editedBuildingsByMapRef.current[id] ?? inferBuildingsFromRowsForEditor(editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows).filter(building => !removed.has(building.id));
   };
-  const npcsForMap = (id: GameMapId) => editedNpcsByMapRef.current[id] ?? npcsRef.current.filter(npc => npc.mapId === id).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking }));
+  const npcsForMap = (id: GameMapId) => editedNpcsByMapRef.current[id] ?? npcsRef.current.filter(npc => npc.mapId === id).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking, sheetAssetId: npc.sheetAssetId }));
 
   const selectedNpc = editorSelection?.kind === "npc"
     ? displayEditorNpcs.find(npc => npc.id === editorSelection.id)
@@ -1149,7 +1150,23 @@ useRuntimeEffects({
               transition: "left 0.28s linear, top 0.28s linear",
             }}
           >
-            <div className={`npc-sprite npc-variant-${npc.variant ?? 0} ${npc.style ?? ""} ${npc.walking ? "walking" : ""}`} />
+            {npc.sheetAssetId ? (
+              <CharacterSheetRenderer
+                assetId={npc.sheetAssetId}
+                animation={npc.walking ? "walk" : "idle"}
+                facing="down"
+                pixelSize={1}
+                playing
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  bottom: 0,
+                  transform: "translateX(-50%)",
+                }}
+              />
+            ) : (
+              <div className={`npc-sprite npc-variant-${npc.variant ?? 0} ${npc.style ?? ""} ${npc.walking ? "walking" : ""}`} />
+            )}
           </div>
         ))}
 

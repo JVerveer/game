@@ -11,6 +11,7 @@ export type EditorNpcAsset = {
   variant?: number;
   style?: string;
   walking?: boolean;
+  sheetAssetId?: string;
 };
 
 export type EditorBuildingKind = "house" | "shop" | "healing" | "station" | "hall";

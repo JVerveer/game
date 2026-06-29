@@ -15,6 +15,7 @@ export type MovingNpc = {
   walking?: boolean;
   variant?: number;
   style?: string;
+  sheetAssetId?: string;
 };
 
 
@@ -30,6 +31,7 @@ const movingNpcFromAsset = (mapId: TownMapId, npc: EditorNpcAsset): MovingNpc =>
   variant: npc.variant,
   style: npc.style,
   walking: npc.walking,
+  sheetAssetId: npc.sheetAssetId,
 });
 
 const EDITOR_NATIVE_NPCS: Partial<Record<TownMapId, MovingNpc[]>> = {

@@ -2,6 +2,7 @@ import type { Dispatch, MutableRefObject, SetStateAction } from "react";
 import type { GameMapId } from "../../../../data/maps";
 import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind, EditorNpcAsset } from "../../../../data/cityMaps/mapAsset";
 import { buildingCrestForKind } from "../../../../data/cityMaps/mapAsset";
+import { CharacterSheetRenderer } from "../../../rendering/characters/CharacterSheetRenderer";
 
 type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
 
@@ -336,7 +337,18 @@ export function SelectedInspector({
                         background: "#d7c58d",
                         border: "2px solid #252018",
                       }}>
-                        <span className={`npc-sprite npc-variant-${selectedNpc.variant ?? 0} ${selectedNpc.style ?? ""}`} />
+                        {selectedNpc.sheetAssetId ? (
+                          <CharacterSheetRenderer
+                            assetId={selectedNpc.sheetAssetId}
+                            animation="idle"
+                            facing="down"
+                            pixelSize={1}
+                            playing
+                            showShadow={false}
+                          />
+                        ) : (
+                          <span className={`npc-sprite npc-variant-${selectedNpc.variant ?? 0} ${selectedNpc.style ?? ""}`} />
+                        )}
                       </span>
                       <div style={{ ...RJ, fontSize: "0.95rem", color: "#252018" }}>
                         NPC at {selectedNpc.x},{selectedNpc.y}
@@ -389,7 +401,7 @@ export function SelectedInspector({
                               key={`selected-${preset.id}`}
                               type="button"
                               onClick={() => {
-                                upsertEditedNpcsForMap(mapIdRef.current, current => current.map((npc: EditorNpcAsset) => npc.id === selectedNpc.id ? { ...npc, variant: preset.variant, style } : npc));
+                                upsertEditedNpcsForMap(mapIdRef.current, current => current.map((npc: EditorNpcAsset) => npc.id === selectedNpc.id ? { ...npc, variant: preset.variant, style, sheetAssetId: undefined } : npc));
                               }}
                               style={{
                                 minHeight: 58,
