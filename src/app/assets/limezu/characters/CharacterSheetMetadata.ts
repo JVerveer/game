@@ -17,10 +17,4 @@ export type CharacterSheetMetadata = {
   selections: CharacterSheetFrameSelection[];
 };
 
-/**
- * Permanent character sheet metadata.
- *
- * Use the Sheet Inspector inside the Character Asset Manager to export updated
- * metadata, then replace this object.
- */
 export const CHARACTER_SHEET_METADATA = {} as const satisfies Record<string, CharacterSheetMetadata>;
