@@ -250,7 +250,7 @@ const INFLATOPOLIS_NPCS: MovingNpc[] = [
   },
 ];
 
-export const INITIAL_NPCS: MovingNpc[] = [
+const INITIAL_NPCS_WITH_SATIRIA: MovingNpc[] = [
   {
     id: "satiria-guide",
     mapId: "satiria",
@@ -425,3 +425,5 @@ export const INITIAL_NPCS: MovingNpc[] = [
     }),
   ),
 ];
+
+export const INITIAL_NPCS: MovingNpc[] = INITIAL_NPCS_WITH_SATIRIA.filter(npc => npc.mapId !== "satiria");

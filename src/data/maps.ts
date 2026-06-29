@@ -774,10 +774,24 @@ const doorConfigFromRows = (theme: TownTheme, rows: string[][]): TownDoorConfig 
 const createThemedTownDef = (theme: TownTheme): GameMapDef => {
   const nativeAsset = editorNativeAssetFor(theme.id);
   const rows = themedRowsFor(theme);
+
+  if (theme.id === "satiria") {
+    return {
+      id: theme.id,
+      name: theme.name,
+      width: rows[0]?.length ?? 56,
+      height: rows.length,
+      rows,
+      spawn: centralSpawnFor(rows),
+      objects: {},
+      interactions: {},
+    };
+  }
+
   const doors = doorConfigFromRows(theme, rows);
   const homeObjects: Record<string, string> = Object.fromEntries(doors.homes.map(coord => [coord, "DOOR_HOME"]));
   const trainObjects: Record<string, string> = Object.fromEntries(doors.train.slice(0, 2).map(coord => [coord, "TRAIN"]));
-  const coreOffset = theme.id === "satiria" ? { x: 0, y: 0 } : cityCoreOffsetFor(theme.id);
+  const coreOffset = cityCoreOffsetFor(theme.id);
   const specialObjects =
     theme.id === "wokeshire"
       ? specialObjectsFor(theme)
@@ -811,7 +825,7 @@ const createThemedTownDef = (theme: TownTheme): GameMapDef => {
     train: true,
     lines: ["Choose a destination."],
   } satisfies Interaction]));
-  const showGenericSave = theme.id !== "satiria";
+  const showGenericSave = true;
   const entryDoorCoords = new Set([doors.shop, doors.healing, ...doors.homes, ...doors.train]);
   const genericObjects: Record<string, string> = {};
   const genericInteractions: Record<string, Interaction> = {};
