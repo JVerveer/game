@@ -39,6 +39,8 @@ function compareAssetNames<
     || assetNameCollator.compare(a.id, b.id);
 }
 
+const SORTED_OBJECT_ASSETS = getObjectAssets().slice().sort(compareAssetNames);
+
 export function ObjectPalette({
   objectEditAction,
   setObjectEditAction,
@@ -56,12 +58,11 @@ export function ObjectPalette({
   const [query, setQuery] = useState("");
 
   const filteredAssets = useMemo(() => {
-    const assets = getObjectAssets().slice().sort(compareAssetNames);
     const q = query.trim().toLowerCase();
 
-    if (!q) return assets;
+    if (!q) return SORTED_OBJECT_ASSETS;
 
-    return assets.filter(asset => {
+    return SORTED_OBJECT_ASSETS.filter(asset => {
       const haystack = `${asset.label} ${normalizedAssetName(asset.label)} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
       return haystack.includes(q);
     });

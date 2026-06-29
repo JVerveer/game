@@ -34,9 +34,9 @@ function compareAssetNames<
     || assetNameCollator.compare(a.id, b.id);
 }
 
-export const getTerrainTileTypes = () => getTerrainAssets()
-  .slice()
-  .sort(compareAssetNames)
+const SORTED_TERRAIN_ASSETS = getTerrainAssets().slice().sort(compareAssetNames);
+
+export const getTerrainTileTypes = () => SORTED_TERRAIN_ASSETS
   .map(asset => ({
     id: asset.id,
     name: asset.label,
@@ -76,12 +76,11 @@ export function TerrainPalette({
   const [query, setQuery] = useState("");
 
   const filteredAssets = useMemo(() => {
-    const assets = getTerrainAssets().slice().sort(compareAssetNames);
     const q = query.trim().toLowerCase();
 
-    if (!q) return assets;
+    if (!q) return SORTED_TERRAIN_ASSETS;
 
-    return assets.filter(asset => {
+    return SORTED_TERRAIN_ASSETS.filter(asset => {
       const haystack = `${asset.label} ${normalizedAssetName(asset.label)} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
       return haystack.includes(q);
     });

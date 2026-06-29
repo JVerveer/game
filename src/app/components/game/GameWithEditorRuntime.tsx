@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState, useEffect, useRef } from "react";
+import { lazy, Suspense, useMemo, useState, useEffect, useRef } from "react";
 import { ThemeProvider } from "../../../context/ThemeContext";
 import {
   WILD_ENEMIES,
@@ -346,15 +346,28 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const editedObjects = editedObjectsByMap[mapId];
   const displayObjects = editedObjects ?? currentMap.objects;
   const removedBuildingIds = removedBuildingIdsByMap[mapId] ?? new Set<string>();
-  const inferredBuildings = inferBuildingsFromRowsForEditor(displayRows).filter(building => !removedBuildingIds.has(building.id));
+  const inferredBuildings = useMemo(
+    () => inferBuildingsFromRowsForEditor(displayRows).filter(building => !removedBuildingIds.has(building.id)),
+    [displayRows, removedBuildingIds],
+  );
   const editedBuildings = editedBuildingsByMap[mapId];
   const displayBuildings = editedBuildings ?? inferredBuildings;
-  const baseRowsWithoutBuildingTiles = displayRows.map(row => row.map(tile => BUILDING_TILE_IDS.has(tile) ? "G" : tile));
-  const displayRowsWithBuildings = applyBuildingsToRows(baseRowsWithoutBuildingTiles, displayBuildings);
+  const displayRowsWithBuildings = useMemo(() => {
+    const baseRowsWithoutBuildingTiles = displayRows.map(row => row.map(tile => BUILDING_TILE_IDS.has(tile) ? "G" : tile));
+    return applyBuildingsToRows(baseRowsWithoutBuildingTiles, displayBuildings);
+  }, [displayRows, displayBuildings]);
   const editedNpcs = editedNpcsByMap[mapId];
-  const mapAssetNpcs = npcs.filter(npc => npc.mapId === mapId).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking, sheetAssetId: npc.sheetAssetId }));
-  const displayEditorNpcs = mapAssetNpcs;
-  const currentTown = isTownMap(mapId) ? TOWN_THEMES.find(town => town.id === mapId) : null;
+  void editedNpcs;
+  const displayEditorNpcs = useMemo(
+    () => npcs
+      .filter(npc => npc.mapId === mapId)
+      .map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking, sheetAssetId: npc.sheetAssetId })),
+    [npcs, mapId],
+  );
+  const currentTown = useMemo(
+    () => isTownMap(mapId) ? TOWN_THEMES.find(town => town.id === mapId) : null,
+    [mapId],
+  );
 
   // Mutable refs so event handler closure stays fresh
   const mapIdRef = useRef(mapId);

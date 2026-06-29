@@ -1,4 +1,4 @@
-import { useEffect, useState, type Dispatch, type MutableRefObject, type SetStateAction } from "react";
+import { memo, useEffect, useMemo, useState, type Dispatch, type MutableRefObject, type SetStateAction } from "react";
 import type { GameMapId, TownMapId } from "../../../data/maps";
 import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind, EditorNpcAsset } from "../../../data/cityMaps/mapAsset";
 import { GAME_TILE_COLORS } from "../../../data/maps";
@@ -63,7 +63,7 @@ const EDITOR_TILE_COLORS: Record<string, string> = {
 
 type TileTypeFor = (id: string) => { name: string; description?: string } | undefined;
 
-export function TerrainEditorOverlay({
+function TerrainEditorOverlayComponent({
   mapId,
   displayRows,
   displayObjects,
@@ -207,25 +207,63 @@ export function TerrainEditorOverlay({
     };
   }, []);
 
-  const editorTerrainPreviewStyle = (tile: string, x: number, y: number): React.CSSProperties => {
-    void terrainPreviewVersion;
-
-    const limeZuImage = terrainImageForCoord(x, y);
-
-    if (limeZuImage) {
-      return {
-        backgroundColor: "#fff8c8",
-        backgroundImage: `url(${limeZuImage})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "18px 18px",
-        imageRendering: "pixelated",
-      };
+  const buildingByCoord = useMemo(() => {
+    const byCoord = new Map<string, EditorBuildingAsset>();
+    for (const building of displayBuildings) {
+      for (let yy = building.y; yy < building.y + building.h; yy += 1) {
+        for (let xx = building.x; xx < building.x + building.w; xx += 1) {
+          byCoord.set(`${xx},${yy}`, building);
+        }
+      }
     }
+    return byCoord;
+  }, [displayBuildings]);
 
-    return {
-      background: EDITOR_TILE_COLORS[tile] ?? GAME_TILE_COLORS[tile] ?? GAME_TILE_COLORS.G,
-    };
-  };
+  const npcByCoord = useMemo(() => {
+    const byCoord = new Map<string, EditorNpcAsset>();
+    for (const npc of displayEditorNpcs) {
+      byCoord.set(`${npc.x},${npc.y}`, npc);
+    }
+    return byCoord;
+  }, [displayEditorNpcs]);
+
+  const terrainPreviewStyleByCoord = useMemo(() => {
+    void terrainPreviewVersion;
+    const styles = new Map<string, React.CSSProperties>();
+
+    displayRows.forEach((row, y) => {
+      row.forEach((tile, x) => {
+        const limeZuImage = terrainImageForCoord(x, y);
+        styles.set(`${x},${y}`, limeZuImage
+          ? {
+              backgroundColor: "#fff8c8",
+              backgroundImage: `url(${limeZuImage})`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "18px 18px",
+              imageRendering: "pixelated",
+            }
+          : {
+              background: EDITOR_TILE_COLORS[tile] ?? GAME_TILE_COLORS[tile] ?? GAME_TILE_COLORS.G,
+            });
+      });
+    });
+
+    return styles;
+  }, [displayRows, terrainPreviewVersion]);
+
+  const limeZuObjectByCoord = useMemo(() => {
+    void terrainPreviewVersion;
+    const byCoord = new Map<string, ReturnType<typeof limeZuObjectAssetForCoord>>();
+
+    displayRows.forEach((row, y) => {
+      row.forEach((_, x) => {
+        const asset = limeZuObjectAssetForCoord(x, y);
+        if (asset) byCoord.set(`${x},${y}`, asset);
+      });
+    });
+
+    return byCoord;
+  }, [displayRows, terrainPreviewVersion]);
 
   return (
     <div
@@ -346,104 +384,114 @@ export function TerrainEditorOverlay({
             onPointerLeave={clearEditorDragState}
           >
             {displayRows.map((row, y) =>
-              row.map((tile, x) => (
-                <button
-                  key={`${x},${y}`}
-                  type="button"
-                  title={`${x},${y}: ${tileTypeFor(tile)?.name ?? tile} (${tile})${buildingAtCoord(displayBuildings, x, y) ? ` · Building: ${BUILDING_KIND_LABEL[buildingAtCoord(displayBuildings, x, y)!.kind]}` : ""}${displayObjects[`${x},${y}`] ? ` · Object: ${objectLabelForId(displayObjects[`${x},${y}`])}` : ""}${displayEditorNpcs.some(npc => npc.x === x && npc.y === y) ? " · NPC" : ""}`}
-                  onPointerDown={(e) => {
-                    e.preventDefault();
-                    isEditorDraggingRef.current = true;
-                    setIsEditorDragging(true);
-                    paintEditorTile(x, y);
-                  }}
-                  onPointerEnter={() => {
-                    if (isEditorDraggingRef.current && transformDragTo(x, y)) return;
-                    if (isEditorDraggingRef.current) paintEditorTile(x, y);
-                  }}
-                  style={{
-                    width: 18,
-                    height: 18,
-                    padding: 0,
-                    border: displayEditorNpcs.some(npc => npc.x === x && npc.y === y) ? "2px solid #c87aff" : buildingAtCoord(displayBuildings, x, y) ? "2px solid #38bdf8" : displayObjects[`${x},${y}`] ? "2px solid #ffef93" : "0",
-                    ...editorTerrainPreviewStyle(tile, x, y),
-                    cursor: "pointer",
-                    position: "relative",
-                    overflow: "hidden",
-                  }}
-                >
-                  {buildingAtCoord(displayBuildings, x, y) && (
-                    <span
-                      style={{
-                        position: "absolute",
-                        inset: 1,
-                        background: "rgba(56,189,248,0.58)",
-                        color: "#252018",
-                        fontSize: 9,
-                        lineHeight: "14px",
-                        fontWeight: 900,
-                        textAlign: "center",
-                        borderRadius: 2,
-                        pointerEvents: "none",
-                      }}
-                    >
-                      {buildingAtCoord(displayBuildings, x, y)?.id === selectedBuilding?.id && x === selectedBuilding!.x + selectedBuilding!.w - 1 && y === selectedBuilding!.y + selectedBuilding!.h - 1 ? "↘" : "⌂"}
-                    </span>
-                  )}
-                  {limeZuObjectAssetForCoord(x, y) && (
-                    <span
-                      style={{
-                        position: "absolute",
-                        inset: 1,
-                        backgroundImage: `url(${limeZuObjectAssetForCoord(x, y)!.src})`,
-                        backgroundRepeat: "no-repeat",
-                        backgroundSize: "16px 16px",
-                        backgroundPosition: "center",
-                        imageRendering: "pixelated",
-                        pointerEvents: "none",
-                      }}
-                    />
-                  )}
-                  {displayObjects[`${x},${y}`] && (
-                    <span
-                      style={{
-                        position: "absolute",
-                        inset: 2,
-                        background: objectEditAction === "erase" && editorMode === "objects" ? "#ca4b36" : "#252018",
-                        color: "#fff8c8",
-                        fontSize: 9,
-                        lineHeight: "12px",
-                        fontWeight: 900,
-                        textAlign: "center",
-                        borderRadius: 2,
-                        pointerEvents: "none",
-                      }}
-                    >
-                      ◆
-                    </span>
-                  )}
-                  {displayEditorNpcs.some(npc => npc.x === x && npc.y === y) && (
-                    <span
-                      style={{
-                        position: "absolute",
-                        inset: 3,
-                        background: npcEditAction === "erase" && editorMode === "npcs" ? "#ca4b36" : "#8a4bd6",
-                        color: "#fff8c8",
-                        fontSize: 9,
-                        lineHeight: "10px",
-                        fontWeight: 900,
-                        textAlign: "center",
-                        borderRadius: 999,
-                        pointerEvents: "none",
-                      }}
-                    >
-                      N
-                    </span>
-                  )}
-                </button>
-              ))
+              row.map((tile, x) => {
+                const coord = `${x},${y}`;
+                const building = buildingByCoord.get(coord);
+                const objectId = displayObjects[coord];
+                const npc = npcByCoord.get(coord);
+                const limeZuObject = limeZuObjectByCoord.get(coord);
+
+                return (
+                  <button
+                    key={coord}
+                    type="button"
+                    title={`${coord}: ${tileTypeFor(tile)?.name ?? tile} (${tile})${building ? ` · Building: ${BUILDING_KIND_LABEL[building.kind]}` : ""}${objectId ? ` · Object: ${objectLabelForId(objectId)}` : ""}${npc ? " · NPC" : ""}`}
+                    onPointerDown={(e) => {
+                      e.preventDefault();
+                      isEditorDraggingRef.current = true;
+                      setIsEditorDragging(true);
+                      paintEditorTile(x, y);
+                    }}
+                    onPointerEnter={() => {
+                      if (isEditorDraggingRef.current && transformDragTo(x, y)) return;
+                      if (isEditorDraggingRef.current) paintEditorTile(x, y);
+                    }}
+                    style={{
+                      width: 18,
+                      height: 18,
+                      padding: 0,
+                      border: npc ? "2px solid #c87aff" : building ? "2px solid #38bdf8" : objectId ? "2px solid #ffef93" : "0",
+                      ...(terrainPreviewStyleByCoord.get(coord) ?? { background: GAME_TILE_COLORS.G }),
+                      cursor: "pointer",
+                      position: "relative",
+                      overflow: "hidden",
+                    }}
+                  >
+                    {building && (
+                      <span
+                        style={{
+                          position: "absolute",
+                          inset: 1,
+                          background: "rgba(56,189,248,0.58)",
+                          color: "#252018",
+                          fontSize: 9,
+                          lineHeight: "14px",
+                          fontWeight: 900,
+                          textAlign: "center",
+                          borderRadius: 2,
+                          pointerEvents: "none",
+                        }}
+                      >
+                        {building.id === selectedBuilding?.id && x === building.x + building.w - 1 && y === building.y + building.h - 1 ? "↘" : "⌂"}
+                      </span>
+                    )}
+                    {limeZuObject && (
+                      <span
+                        style={{
+                          position: "absolute",
+                          inset: 1,
+                          backgroundImage: `url(${limeZuObject.src})`,
+                          backgroundRepeat: "no-repeat",
+                          backgroundSize: "16px 16px",
+                          backgroundPosition: "center",
+                          imageRendering: "pixelated",
+                          pointerEvents: "none",
+                        }}
+                      />
+                    )}
+                    {objectId && (
+                      <span
+                        style={{
+                          position: "absolute",
+                          inset: 2,
+                          background: objectEditAction === "erase" && editorMode === "objects" ? "#ca4b36" : "#252018",
+                          color: "#fff8c8",
+                          fontSize: 9,
+                          lineHeight: "12px",
+                          fontWeight: 900,
+                          textAlign: "center",
+                          borderRadius: 2,
+                          pointerEvents: "none",
+                        }}
+                      >
+                        ◆
+                      </span>
+                    )}
+                    {npc && (
+                      <span
+                        style={{
+                          position: "absolute",
+                          inset: 3,
+                          background: npcEditAction === "erase" && editorMode === "npcs" ? "#ca4b36" : "#8a4bd6",
+                          color: "#fff8c8",
+                          fontSize: 9,
+                          lineHeight: "10px",
+                          fontWeight: 900,
+                          textAlign: "center",
+                          borderRadius: 999,
+                          pointerEvents: "none",
+                        }}
+                      >
+                        N
+                      </span>
+                    )}
+                  </button>
+                );
+              })
             )}
           </div>
         </div>
   );
 }
+
+export const TerrainEditorOverlay = memo(TerrainEditorOverlayComponent);

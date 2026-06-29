@@ -1,4 +1,4 @@
-import type { Dispatch, MutableRefObject, SetStateAction } from "react";
+import { useRef, type Dispatch, type MutableRefObject, type SetStateAction } from "react";
 import type { GameMapId } from "../../../../data/maps";
 import type { MovingNpc } from "../../../../data/npcs";
 import type { EditorBuildingAsset } from "../../../../data/cityMaps/mapAsset";
@@ -67,6 +67,8 @@ export function useTerrainPainter({
   setEditedObjectsByMap: Dispatch<SetStateAction<EditedObjectsByMap>>;
   setEditedRowsByMap: Dispatch<SetStateAction<EditedRowsByMap>>;
 }) {
+  const lastPaintedCoordRef = useRef<string | null>(null);
+
   const transformDragTo = (x: number, y: number) => {
     if (!isSelectEditorMode(editorModeRef.current)) return false;
 
@@ -96,6 +98,12 @@ export function useTerrainPainter({
   const paintEditorTile = (x: number, y: number) => {
     const id = mapIdRef.current;
     const coord = `${x},${y}`;
+    const paintKey = `${id}:${editorModeRef.current}:${objectEditActionRef.current}:${editorTileRef.current}:${editorObjectIdRef.current}:${coord}`;
+
+    if (isEditorDraggingRef.current && lastPaintedCoordRef.current === paintKey) {
+      return;
+    }
+    lastPaintedCoordRef.current = paintKey;
 
     if (isSelectEditorMode(editorModeRef.current) && isEditorDraggingRef.current && transformDragTo(x, y)) {
       return;
@@ -185,21 +193,6 @@ export function useTerrainPainter({
       return;
     }
 
-    if (editorModeRef.current === "terrain") {
-      const selectedTerrainAssetId = getSelectedTerrainAssetId();
-      if (selectedTerrainAssetId) {
-        paintTerrainAssetAt(x, y, selectedTerrainAssetId);
-      }
-
-      // Preserve old one-character map compatibility underneath.
-      setEditedRowsByMap(prev => {
-        const base = prev[id] ?? rowsForMap(id).map(row => [...row]);
-        const next = base.map(row => [...row]);
-        if (next[y]?.[x] !== undefined) next[y][x] = "G";
-        return { ...prev, [id]: next };
-      });
-      return;
-    }
 
     setEditedRowsByMap(prev => {
       const base = prev[id] ?? rowsForMap(id).map(row => [...row]);
