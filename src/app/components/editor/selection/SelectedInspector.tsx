@@ -3,6 +3,7 @@ import type { GameMapId } from "../../../../data/maps";
 import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind, EditorNpcAsset } from "../../../../data/cityMaps/mapAsset";
 import { buildingCrestForKind } from "../../../../data/cityMaps/mapAsset";
 import { CharacterSheetRenderer } from "../../../rendering/characters/CharacterSheetRenderer";
+import { CharacterRenderer } from "../hero/CharacterRenderer";
 
 type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
 
@@ -337,7 +338,15 @@ export function SelectedInspector({
                         background: "#d7c58d",
                         border: "2px solid #252018",
                       }}>
-                        {selectedNpc.sheetAssetId ? (
+                        {selectedNpc.appearance ? (
+                          <CharacterRenderer
+                            appearance={selectedNpc.appearance}
+                            animation="idle"
+                            facing="down"
+                            pixelSize={1}
+                            showShadow={false}
+                          />
+                        ) : selectedNpc.sheetAssetId ? (
                           <CharacterSheetRenderer
                             assetId={selectedNpc.sheetAssetId}
                             animation="idle"

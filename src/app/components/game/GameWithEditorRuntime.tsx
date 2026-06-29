@@ -361,7 +361,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   const displayEditorNpcs = useMemo(
     () => npcs
       .filter(npc => npc.mapId === mapId)
-      .map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking, sheetAssetId: npc.sheetAssetId })),
+      .map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking, sheetAssetId: npc.sheetAssetId, appearance: npc.appearance })),
     [npcs, mapId],
   );
   const currentTown = useMemo(
@@ -452,7 +452,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     const removed = removedBuildingIdsByMapRef.current[id] ?? new Set<string>();
     return editedBuildingsByMapRef.current[id] ?? inferBuildingsFromRowsForEditor(editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows).filter(building => !removed.has(building.id));
   };
-  const npcsForMap = (id: GameMapId) => editedNpcsByMapRef.current[id] ?? npcsRef.current.filter(npc => npc.mapId === id).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking, sheetAssetId: npc.sheetAssetId }));
+  const npcsForMap = (id: GameMapId) => editedNpcsByMapRef.current[id] ?? npcsRef.current.filter(npc => npc.mapId === id).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking, sheetAssetId: npc.sheetAssetId, appearance: npc.appearance }));
 
   const selectedNpc = editorSelection?.kind === "npc"
     ? displayEditorNpcs.find(npc => npc.id === editorSelection.id)
@@ -1163,7 +1163,15 @@ useRuntimeEffects({
               transition: "left 0.28s linear, top 0.28s linear",
             }}
           >
-            {npc.sheetAssetId ? (
+            {npc.appearance ? (
+              <CharacterRenderer
+                appearance={npc.appearance}
+                animation={npc.walking ? "walk" : "idle"}
+                facing="down"
+                pixelSize={1}
+                showShadow
+              />
+            ) : npc.sheetAssetId ? (
               <CharacterSheetRenderer
                 assetId={npc.sheetAssetId}
                 animation={npc.walking ? "walk" : "idle"}

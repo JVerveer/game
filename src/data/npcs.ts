@@ -1,7 +1,7 @@
 import { GAME_MAPS, TOWN_THEMES, WALKABLE_TILES, type GameMapId, type TownMapId } from "./maps";
 import { cityNpcCountFor } from "./cityMaps/sizeTiers";
 import { WOKESHIRE_MAP_ASSET } from "./cityMaps/wokeshireMapAsset";
-import type { EditorNpcAsset } from "./cityMaps/mapAsset";
+import type { EditorNpcAppearance, EditorNpcAsset } from "./cityMaps/mapAsset";
 
 export type MovingNpc = {
   id: string;
@@ -16,6 +16,7 @@ export type MovingNpc = {
   variant?: number;
   style?: string;
   sheetAssetId?: string;
+  appearance?: EditorNpcAppearance;
 };
 
 
@@ -32,6 +33,7 @@ const movingNpcFromAsset = (mapId: TownMapId, npc: EditorNpcAsset): MovingNpc =>
   style: npc.style,
   walking: npc.walking,
   sheetAssetId: npc.sheetAssetId,
+  appearance: npc.appearance,
 });
 
 const EDITOR_NATIVE_NPCS: Partial<Record<TownMapId, MovingNpc[]>> = {

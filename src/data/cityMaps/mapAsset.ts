@@ -1,5 +1,16 @@
 import type { Interaction, TownMapId } from "../maps";
 
+export type EditorNpcAppearance = {
+  body: string;
+  eyes: string;
+  hair: string;
+  outfit: string;
+  accessory: string;
+  skinColor: string;
+  hairColor: string;
+  outfitColor: string;
+};
+
 export type EditorNpcAsset = {
   id: string;
   x: number;
@@ -12,6 +23,7 @@ export type EditorNpcAsset = {
   style?: string;
   walking?: boolean;
   sheetAssetId?: string;
+  appearance?: EditorNpcAppearance;
 };
 
 export type EditorBuildingKind = "house" | "shop" | "healing" | "station" | "hall";

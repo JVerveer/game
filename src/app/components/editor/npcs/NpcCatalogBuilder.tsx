@@ -1,70 +1,61 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import {
-  CHARACTER_ASSET_CATALOG,
-  type CharacterAsset,
-} from "../../../assets/limezu/characters/CharacterAssetCatalog";
-import { readCharacterAssetClassification } from "../../../assets/limezu/characters/CharacterAssetRuntime";
+  CHARACTER_CATEGORIES,
+  DEFAULT_CHARACTER_APPEARANCE,
+  categoryOptionCount,
+  colorIndexFor,
+  displayColorLabelFor,
+  displayLabelFor,
+  nextColorId,
+  nextOptionId,
+  optionIndexFor,
+  randomCharacterAppearance,
+} from "../hero/characterAssets";
+import { CharacterRenderer } from "../hero/CharacterRenderer";
+import type {
+  CharacterAppearance,
+  CharacterCategoryConfig,
+  CharacterColorCategory,
+  CharacterFacing,
+  CharacterLayerCategory,
+} from "../hero/characterTypes";
 import {
   exportGlobalNpcCatalogEntry,
   makeGlobalNpcId,
   upsertGlobalNpc,
   type GlobalNpcPrefab,
 } from "../../../assets/limezu/characters/NpcCatalogRuntime";
-import { CharacterSheetRenderer } from "../../../rendering/characters/CharacterSheetRenderer";
-import type { CharacterFacing } from "../../../rendering/characters/CharacterSheetRuntime";
 
-const NPC_CATEGORIES = new Set(["npc", "fullCharacter", "monster", "set"]);
+type NpcBuilderDraft = Omit<GlobalNpcPrefab, "appearance"> & {
+  appearance: CharacterAppearance;
+};
 
-function characterNpcAssets() {
-  const classification = readCharacterAssetClassification() as Record<string, string>;
-
-  return CHARACTER_ASSET_CATALOG.filter(asset => {
-    const category = classification[asset.id] ?? asset.defaultCategory;
-    return NPC_CATEGORIES.has(category);
-  });
-}
-
-function readableName(asset: CharacterAsset) {
-  return asset.label
-    .replace(/\b\d+x\d+\b/gi, "")
-    .replace(/\s+/g, " ")
-    .trim() || asset.id;
-}
-
-function starterDraft(assets: CharacterAsset[]): GlobalNpcPrefab {
-  const asset = assets[0];
-  const name = asset ? readableName(asset) : "Global NPC";
-
+function starterDraft(): NpcBuilderDraft {
   return {
-    id: makeGlobalNpcId(name),
-    name,
-    sheetAssetId: asset?.id ?? "",
+    id: makeGlobalNpcId("Global NPC"),
+    name: "Global NPC",
+    appearance: DEFAULT_CHARACTER_APPEARANCE,
     lines: ['"Hello from the global NPC catalog."'],
     walking: true,
-    animation: "idle",
     facing: "down",
     tags: [],
   };
 }
 
+function isColorCategory(id: CharacterCategoryConfig["id"]): id is CharacterColorCategory {
+  return id === "skinColor" || id === "hairColor" || id === "outfitColor";
+}
+
+function isLayerCategory(id: CharacterCategoryConfig["id"]): id is CharacterLayerCategory {
+  return !isColorCategory(id);
+}
+
 export function NpcCatalogBuilder({ onClose }: { onClose: () => void }) {
-  const [refreshToken, setRefreshToken] = useState(0);
-  const assets = useMemo(() => {
-    void refreshToken;
-    return characterNpcAssets();
-  }, [refreshToken]);
-  const [query, setQuery] = useState("");
-  const [draft, setDraft] = useState<GlobalNpcPrefab>(() => starterDraft(characterNpcAssets()));
+  const [draft, setDraft] = useState<NpcBuilderDraft>(() => starterDraft());
+  const [selectedCategory, setSelectedCategory] = useState<CharacterCategoryConfig["id"]>("body");
   const [exportText, setExportText] = useState("");
 
-  const selectedAsset = assets.find(asset => asset.id === draft.sheetAssetId) ?? assets[0];
-  const filteredAssets = assets.filter(asset => {
-    const q = query.trim().toLowerCase();
-    const haystack = `${asset.id} ${asset.label} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
-    return !q || haystack.includes(q);
-  });
-
-  function update(patch: Partial<GlobalNpcPrefab>) {
+  function update(patch: Partial<NpcBuilderDraft>) {
     const next = { ...draft, ...patch };
     setDraft({
       ...next,
@@ -72,26 +63,43 @@ export function NpcCatalogBuilder({ onClose }: { onClose: () => void }) {
     });
   }
 
-  function selectAsset(asset: CharacterAsset) {
-    setDraft(current => ({
-      ...current,
-      sheetAssetId: asset.id,
-      name: current.name.trim() ? current.name : readableName(asset),
-    }));
+  function updateAppearance(appearance: CharacterAppearance) {
+    update({ appearance });
   }
 
-  async function copyCatalogEntry() {
-    const entry = {
+  function nudgeCurrent(direction: 1 | -1) {
+    if (isColorCategory(selectedCategory)) {
+      updateAppearance({
+        ...draft.appearance,
+        [selectedCategory]: nextColorId(selectedCategory, draft.appearance[selectedCategory], direction),
+      });
+      return;
+    }
+
+    updateAppearance({
+      ...draft.appearance,
+      [selectedCategory]: nextOptionId(selectedCategory, draft.appearance[selectedCategory], direction),
+    });
+  }
+
+  function randomize() {
+    updateAppearance(randomCharacterAppearance());
+  }
+
+  function catalogEntry() {
+    return {
       id: draft.id || makeGlobalNpcId(draft.name),
       name: draft.name.trim() || "Global NPC",
-      sheetAssetId: draft.sheetAssetId,
+      appearance: draft.appearance,
       lines: draft.lines.map(line => line.trim()).filter(Boolean),
       walking: draft.walking,
-      animation: draft.animation ?? "idle",
       facing: draft.facing ?? "down",
       tags: draft.tags?.map(tag => tag.trim()).filter(Boolean) ?? [],
     };
-    const text = exportGlobalNpcCatalogEntry(entry);
+  }
+
+  async function copyCatalogEntry() {
+    const text = exportGlobalNpcCatalogEntry(catalogEntry());
     setExportText(text);
 
     try {
@@ -102,19 +110,22 @@ export function NpcCatalogBuilder({ onClose }: { onClose: () => void }) {
   }
 
   function testInBrowser() {
-    const entry: GlobalNpcPrefab = {
-      ...draft,
-      id: draft.id || makeGlobalNpcId(draft.name),
-      lines: draft.lines.map(line => line.trim()).filter(Boolean),
-      tags: draft.tags?.map(tag => tag.trim()).filter(Boolean) ?? [],
-    };
-    upsertGlobalNpc(entry);
+    upsertGlobalNpc(catalogEntry());
   }
 
   function reset() {
-    setDraft(starterDraft(assets));
+    setDraft(starterDraft());
+    setSelectedCategory("body");
     setExportText("");
   }
+
+  const currentLabel = isColorCategory(selectedCategory)
+    ? displayColorLabelFor(selectedCategory, draft.appearance[selectedCategory])
+    : displayLabelFor(selectedCategory, draft.appearance[selectedCategory]);
+  const currentIndex = isColorCategory(selectedCategory)
+    ? colorIndexFor(selectedCategory, draft.appearance[selectedCategory])
+    : optionIndexFor(selectedCategory, draft.appearance[selectedCategory]);
+  const currentCount = categoryOptionCount(selectedCategory);
 
   return (
     <div style={overlayStyle}>
@@ -123,12 +134,12 @@ export function NpcCatalogBuilder({ onClose }: { onClose: () => void }) {
           <div>
             <div style={titleStyle}>Global NPC Builder</div>
             <div style={subtitleStyle}>
-              Create a reusable NPC, copy the object into NPC_CATALOG in NpcCatalog.ts, then select it in the NPC tab and drop it on any map.
+              Build NPCs from the same body, hair, outfit, colors, and accessories as the hero. Copy the entry into NpcCatalog.ts, then select it in the NPC tab.
             </div>
           </div>
 
           <div style={topButtonsStyle}>
-            <button type="button" onClick={() => setRefreshToken(token => token + 1)} style={buttonStyle}>Refresh Sheets</button>
+            <button type="button" onClick={randomize} style={buttonStyle}>Randomize Look</button>
             <button type="button" onClick={testInBrowser} style={buttonStyle}>Test in Browser</button>
             <button type="button" onClick={copyCatalogEntry} style={saveButtonStyle}>Copy Catalog Entry</button>
             <button type="button" onClick={reset} style={dangerButtonStyle}>Reset</button>
@@ -180,53 +191,53 @@ export function NpcCatalogBuilder({ onClose }: { onClose: () => void }) {
 
         <div style={mainStyle}>
           <div style={paletteStyle}>
-            <div style={titleStyle}>Character Sheets</div>
-            <input value={query} onChange={event => setQuery(event.target.value)} placeholder="Search NPC sheets..." style={inputStyle} />
-
-            <div style={assetGridStyle}>
-              {filteredAssets.map(asset => {
-                const selected = draft.sheetAssetId === asset.id;
+            <div style={titleStyle}>Hero Assets</div>
+            <div style={categoryGridStyle}>
+              {CHARACTER_CATEGORIES.map(category => {
+                const selected = category.id === selectedCategory;
+                const label = isColorCategory(category.id)
+                  ? displayColorLabelFor(category.id, draft.appearance[category.id])
+                  : displayLabelFor(category.id, draft.appearance[category.id]);
 
                 return (
                   <button
-                    key={asset.id}
+                    key={category.id}
                     type="button"
-                    onClick={() => selectAsset(asset)}
-                    title={asset.source}
+                    onClick={() => setSelectedCategory(category.id)}
                     style={{
-                      ...assetButtonStyle,
+                      ...categoryButtonStyle,
                       border: selected ? "4px solid #315f2a" : "2px solid #252018",
                       background: selected ? "#d8f0b0" : "#fff8c8",
                     }}
                   >
-                    <span style={assetPreviewStyle}>
-                      <CharacterSheetRenderer assetId={asset.id} animation="idle" facing="down" pixelSize={1} playing showShadow={false} />
-                    </span>
-                    <span style={assetLabelStyle}>{readableName(asset)}</span>
+                    <span style={categoryTitleStyle}>{category.label}</span>
+                    <span style={categoryValueStyle}>{label}</span>
                   </button>
                 );
               })}
+            </div>
+
+            <div style={stepperStyle}>
+              <button type="button" onClick={() => nudgeCurrent(-1)} style={buttonStyle}>Previous</button>
+              <div style={selectedValueStyle}>
+                <strong>{currentLabel}</strong>
+                <span>{currentIndex + 1} / {currentCount}</span>
+              </div>
+              <button type="button" onClick={() => nudgeCurrent(1)} style={buttonStyle}>Next</button>
             </div>
           </div>
 
           <div style={previewStyle}>
             <div style={titleStyle}>Preview</div>
-            {selectedAsset ? (
-              <>
-                <div style={spritePreviewStyle}>
-                  <CharacterSheetRenderer
-                    assetId={selectedAsset.id}
-                    animation="walk"
-                    facing={draft.facing ?? "down"}
-                    pixelSize={3}
-                    playing
-                  />
-                </div>
-                <div style={subtitleStyle}>{selectedAsset.source}</div>
-              </>
-            ) : (
-              <div style={subtitleStyle}>No NPC/full character sheets found. Classify sheets in Character Assets first.</div>
-            )}
+            <div style={spritePreviewStyle}>
+              <CharacterRenderer
+                appearance={draft.appearance}
+                animation={draft.walking === false ? "idle" : "walk"}
+                facing={draft.facing ?? "down"}
+                pixelSize={3}
+                showShadow
+              />
+            </div>
 
             <label style={fieldStyle}>
               Dialogue lines
@@ -265,13 +276,15 @@ const settingsStyle: React.CSSProperties = { display: "grid", gridTemplateColumn
 const fieldStyle: React.CSSProperties = { display: "grid", gap: 4, fontFamily: "'Rajdhani', sans-serif", fontWeight: 900, fontSize: "0.72rem" };
 const inputStyle: React.CSSProperties = { border: "2px solid #252018", background: "#fff8c8", color: "#252018", padding: 8, fontWeight: 900 };
 const mainStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "minmax(300px, 420px) minmax(280px, 1fr)", gap: 12, alignItems: "start" };
-const paletteStyle: React.CSSProperties = { border: "3px solid #252018", background: "#f4e8b5", padding: 10, display: "grid", gap: 8 };
-const assetGridStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(112px, 1fr))", gap: 7, maxHeight: "62vh", overflow: "auto", paddingRight: 4 };
-const assetButtonStyle: React.CSSProperties = { display: "grid", gap: 4, justifyItems: "center", padding: 6, color: "#252018", cursor: "pointer" };
-const assetPreviewStyle: React.CSSProperties = { width: 60, height: 60, display: "grid", placeItems: "center", background: "#d7c58d", border: "2px solid #252018", overflow: "hidden" };
-const assetLabelStyle: React.CSSProperties = { fontSize: "0.65rem", fontWeight: 900, lineHeight: 1, maxHeight: 34, overflow: "hidden", textAlign: "center" };
+const paletteStyle: React.CSSProperties = { border: "3px solid #252018", background: "#f4e8b5", padding: 10, display: "grid", gap: 10 };
+const categoryGridStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 8 };
+const categoryButtonStyle: React.CSSProperties = { display: "grid", gap: 3, padding: 8, color: "#252018", cursor: "pointer", textAlign: "left" };
+const categoryTitleStyle: React.CSSProperties = { fontFamily: "'VT323', monospace", fontSize: "1.05rem", lineHeight: 1 };
+const categoryValueStyle: React.CSSProperties = { fontFamily: "'Rajdhani', sans-serif", fontSize: "0.72rem", fontWeight: 900, color: "#584c35" };
+const stepperStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: 8, border: "2px solid #252018", background: "#fff3a8", padding: 8 };
+const selectedValueStyle: React.CSSProperties = { display: "grid", textAlign: "center", fontFamily: "'Rajdhani', sans-serif", fontSize: "0.82rem", fontWeight: 900 };
 const previewStyle: React.CSSProperties = { border: "4px solid #252018", background: "#f4e8b5", padding: 12, display: "grid", gap: 10 };
-const spritePreviewStyle: React.CSSProperties = { minHeight: 170, display: "grid", placeItems: "center", background: "#d7c58d", border: "2px solid #252018" };
+const spritePreviewStyle: React.CSSProperties = { minHeight: 190, display: "grid", placeItems: "center", background: "#d7c58d", border: "2px solid #252018", overflow: "hidden" };
 const textareaStyle: React.CSSProperties = { border: "2px solid #252018", background: "#fff8c8", color: "#252018", padding: 8, fontWeight: 900, resize: "vertical" };
 const exportPanelStyle: React.CSSProperties = { marginTop: 12, border: "2px solid #252018", background: "#fff3a8", padding: 8, display: "grid", gap: 6 };
 const exportTextareaStyle: React.CSSProperties = { width: "100%", height: 220, border: "2px solid #252018", background: "#fff8c8", color: "#252018", fontFamily: "monospace", fontSize: 12, boxSizing: "border-box" };

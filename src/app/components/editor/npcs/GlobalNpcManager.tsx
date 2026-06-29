@@ -6,7 +6,8 @@ import {
   writeSelectedGlobalNpcId,
   type GlobalNpcPrefab,
 } from "../../../assets/limezu/characters/NpcCatalogRuntime";
-import { CharacterSheetRenderer } from "../../../rendering/characters/CharacterSheetRenderer";
+import { CharacterRenderer } from "../hero/CharacterRenderer";
+import { DEFAULT_CHARACTER_APPEARANCE } from "../hero/characterAssets";
 
 export function GlobalNpcManager({
   onSelect,
@@ -35,7 +36,7 @@ export function GlobalNpcManager({
     const q = query.trim().toLowerCase();
     return Object.values(readGlobalNpcs())
       .filter(npc => {
-        const haystack = `${npc.id} ${npc.name} ${npc.sheetAssetId} ${(npc.tags ?? []).join(" ")}`.toLowerCase();
+        const haystack = `${npc.id} ${npc.name} ${(npc.tags ?? []).join(" ")}`.toLowerCase();
         return !q || haystack.includes(q);
       })
       .sort((a, b) => a.name.localeCompare(b.name));
@@ -80,12 +81,11 @@ export function GlobalNpcManager({
                 }}
               >
                 <span style={previewStyle}>
-                  <CharacterSheetRenderer
-                    assetId={npc.sheetAssetId}
+                  <CharacterRenderer
+                    appearance={npc.appearance ?? DEFAULT_CHARACTER_APPEARANCE}
                     animation="idle"
                     facing={npc.facing ?? "down"}
                     pixelSize={1}
-                    playing
                     showShadow={false}
                   />
                 </span>

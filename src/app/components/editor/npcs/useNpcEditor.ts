@@ -79,6 +79,7 @@ export function useNpcEditor({
     style: npc.style,
     walking: npc.walking,
     sheetAssetId: npc.sheetAssetId,
+    appearance: npc.appearance,
   });
 
   const syncRuntimeNpcsForMap = (id: GameMapId, editorNpcs: EditorNpcAsset[]) => {
@@ -103,6 +104,7 @@ export function useNpcEditor({
         style: npc.style,
         walking: npc.walking,
         sheetAssetId: npc.sheetAssetId,
+        appearance: npc.appearance,
       }));
 
     const nextForMap = updater(base.map(npc => ({ ...npc, lines: [...npc.lines] })));
@@ -166,9 +168,9 @@ export function useNpcEditor({
     }
 
     const selectedNpc = selectedGlobalNpc();
-    const selectedCharacterAsset = selectedNpc?.sheetAssetId
-      ? characterAssetForPresetId(selectedNpc.sheetAssetId)
-      : characterAssetForPresetId(editorNpcPresetIdRef.current);
+    const selectedCharacterAsset = selectedNpc?.appearance
+      ? undefined
+      : characterAssetForPresetId(selectedNpc?.sheetAssetId ?? editorNpcPresetIdRef.current);
 
     const next = upsertEditedNpcsForMap(id, current => {
       const fallbackPreset = npcVisualPresets.find(item => item.id === editorNpcPresetIdRef.current) ?? npcVisualPresets[0];
@@ -189,14 +191,15 @@ export function useNpcEditor({
         lines: editorNpcLinesRef.current.split("\n").map(line => line.trim()).filter(Boolean).length > 0
           ? editorNpcLinesRef.current.split("\n").map(line => line.trim()).filter(Boolean)
           : selectedNpc?.lines ?? [],
-        variant: selectedCharacterAsset ? 0 : fallbackPreset.variant,
-        style: selectedCharacterAsset
+        variant: selectedNpc?.appearance || selectedCharacterAsset ? 0 : fallbackPreset.variant,
+        style: selectedNpc?.appearance || selectedCharacterAsset
           ? "npc-role-character-sheet"
           : isTownMap(id)
             ? `npc-town-${id} npc-role-${fallbackPreset.styleRole}`
             : `npc-role-${fallbackPreset.styleRole}`,
         walking: selectedNpc?.walking ?? editorNpcWalkingRef.current,
         sheetAssetId: selectedNpc?.sheetAssetId ?? selectedCharacterAsset?.id,
+        appearance: selectedNpc?.appearance,
       };
 
       if (newNpc.sheetAssetId) {

@@ -147,7 +147,6 @@ export function NpcPalette({
       <GlobalNpcManager
         onSelect={(npc: GlobalNpcPrefab) => {
           setNpcEditorAction("create");
-          setEditorNpcPresetId(npc.sheetAssetId);
           setEditorNpcName(npc.name);
           setEditorNpcWalking(npc.walking !== false);
           setEditorNpcLines(npc.lines.join("\n"));
@@ -190,7 +189,7 @@ export function NpcPalette({
         </button>
 
         <span style={{ ...VT, fontSize: "1.05rem", color: "#252018", alignSelf: "center" }}>
-          Selected sheet: {selectedAsset ? readableName(selectedAsset) : "none"}
+          Selected ad hoc sheet: {selectedAsset ? readableName(selectedAsset) : "none"}
         </span>
       </div>
 

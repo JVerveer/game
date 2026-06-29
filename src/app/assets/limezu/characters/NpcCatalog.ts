@@ -1,13 +1,18 @@
-import type { CharacterAnimationName, CharacterFacing } from "../../../rendering/characters/CharacterSheetRuntime";
+import type {
+  CharacterAnimation,
+  CharacterAppearance,
+  CharacterFacing,
+} from "../../../components/editor/hero/characterTypes";
 
 export type GlobalNpcCatalogEntry = {
   id: string;
   name: string;
-  sheetAssetId: string;
+  appearance: CharacterAppearance;
   lines: string[];
   walking?: boolean;
-  animation?: CharacterAnimationName;
+  animation?: CharacterAnimation;
   facing?: CharacterFacing;
+  sheetAssetId?: string;
   tags?: string[];
 };
 
