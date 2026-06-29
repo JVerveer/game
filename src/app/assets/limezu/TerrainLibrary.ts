@@ -4,7 +4,8 @@ import {
   type LimeZuCatalogAsset,
 } from "../../components/editor/assets/AssetCatalog";
 
-export type TerrainPaintMap = Record<string, string>;
+export type TerrainPaintEntry = string | { assetId: string; src?: string; width?: number; height?: number };
+export type TerrainPaintMap = Record<string, TerrainPaintEntry>;
 
 const PAINT_STORAGE_KEY = "limezu.terrainPaint.v1";
 const SELECTED_STORAGE_KEY = "limezu.selectedTerrainAsset.v1";
@@ -62,7 +63,16 @@ export function writeTerrainPaintMap(next: TerrainPaintMap) {
 }
 
 export function paintTerrainAssetAt(x: number, y: number, assetId: string) {
-  writeTerrainPaintMap({ ...readTerrainPaintMap(), [terrainCoordKey(x, y)]: assetId });
+  const asset = getTerrainAsset(assetId);
+  writeTerrainPaintMap({
+    ...readTerrainPaintMap(),
+    [terrainCoordKey(x, y)]: {
+      assetId,
+      src: asset?.src,
+      width: asset?.width,
+      height: asset?.height,
+    },
+  });
 }
 
 export function eraseTerrainAssetAt(x: number, y: number) {
@@ -72,11 +82,14 @@ export function eraseTerrainAssetAt(x: number, y: number) {
 }
 
 export function terrainAssetForCoord(x: number, y: number): LimeZuRuntimeAsset | undefined {
-  const assetId = readTerrainPaintMap()[terrainCoordKey(x, y)];
+  const entry = readTerrainPaintMap()[terrainCoordKey(x, y)];
+  const assetId = typeof entry === "string" ? entry : entry?.assetId;
   return assetId ? getTerrainAsset(assetId) : undefined;
 }
 
 export function terrainImageForCoord(x: number, y: number): string | undefined {
+  const entry = readTerrainPaintMap()[terrainCoordKey(x, y)];
+  if (entry && typeof entry !== "string" && entry.src) return entry.src;
   return terrainAssetForCoord(x, y)?.src;
 }
 

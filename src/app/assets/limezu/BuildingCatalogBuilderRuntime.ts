@@ -126,7 +126,7 @@ export function draftToPrefab(draft: BuildingCatalogBuilderDraft): BuildingPrefa
     width: 20,
     height: 10,
     tiles: draft.tiles
-      .filter(tile => tile.assetId || tile.collision)
+      .filter(tile => tile.assetId || tile.src || tile.collision)
       .sort((a, b) => a.y - b.y || a.x - b.x || a.layer.localeCompare(b.layer)),
     entrance: draft.entrance,
     tags: draft.tags,

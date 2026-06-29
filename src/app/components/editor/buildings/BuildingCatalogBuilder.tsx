@@ -25,6 +25,13 @@ function assetFor(assetId: string | undefined) {
   return getBuildingAssets().find(asset => asset.id === assetId);
 }
 
+function selectedAssetMeta(assetId: string) {
+  const asset = assetFor(assetId);
+  return asset
+    ? { assetId: asset.id, src: asset.src, width: asset.width, height: asset.height }
+    : { assetId };
+}
+
 function sanitizeIdPreview(name: string) {
   return `building-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "prefab"}`;
 }
@@ -147,7 +154,7 @@ function BuildingGrid({
             x: xx,
             y: yy,
             layer: draft.selectedLayer,
-            assetId: draft.selectedLayer === "collision" ? undefined : draft.selectedAssetId,
+            ...(draft.selectedLayer === "collision" ? {} : selectedAssetMeta(draft.selectedAssetId)),
             collision: draft.selectedLayer === "collision" ? true : undefined,
           });
         }
@@ -173,7 +180,7 @@ function BuildingGrid({
       x,
       y,
       layer: draft.selectedLayer,
-      assetId: draft.selectedAssetId,
+      ...selectedAssetMeta(draft.selectedAssetId),
     }));
   }
 

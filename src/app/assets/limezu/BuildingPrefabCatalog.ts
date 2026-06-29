@@ -5,6 +5,9 @@ export type BuildingCatalogTile = {
   y: number;
   layer: BuildingCatalogLayer;
   assetId?: string;
+  src?: string;
+  width?: number;
+  height?: number;
   collision?: boolean;
 };
 
@@ -23,16 +26,6 @@ export type BuildingCatalogPrefab = {
   tags: string[];
 };
 
-/**
- * Permanent building prefabs.
- *
- * Workflow:
- * 1. Open Building Catalog Builder.
- * 2. Build on the 20x10 grid.
- * 3. Click Export Catalog Entry.
- * 4. Paste the exported object into this array.
- * 5. Save, commit, push.
- */
 export const BUILDING_PREFAB_CATALOG = [
   // Paste exported building prefab objects here.
-] as const satisfies BuildingCatalogPrefab[];
+] as const satisfies readonly BuildingCatalogPrefab[];

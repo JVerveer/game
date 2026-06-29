@@ -4,7 +4,8 @@ import {
   type LimeZuCatalogAsset,
 } from "../../components/editor/assets/AssetCatalog";
 
-export type LimeZuObjectPaintMap = Record<string, string>;
+export type LimeZuObjectPaintEntry = string | { assetId: string; src?: string; width?: number; height?: number };
+export type LimeZuObjectPaintMap = Record<string, LimeZuObjectPaintEntry>;
 
 const OBJECT_MAP_KEY = "limezu.objectPaint.v1";
 const SELECTED_OBJECT_KEY = "limezu.selectedObjectAsset.v1";
@@ -75,7 +76,16 @@ export function writeObjectPaintMap(next: LimeZuObjectPaintMap) {
 }
 
 export function paintObjectAt(x: number, y: number, assetId: string) {
-  writeObjectPaintMap({ ...readObjectPaintMap(), [objectCoordKey(x, y)]: assetId });
+  const asset = getObjectAsset(assetId);
+  writeObjectPaintMap({
+    ...readObjectPaintMap(),
+    [objectCoordKey(x, y)]: {
+      assetId,
+      src: asset?.src,
+      width: asset?.width,
+      height: asset?.height,
+    },
+  });
 }
 
 export function eraseObjectAt(x: number, y: number) {
@@ -85,7 +95,8 @@ export function eraseObjectAt(x: number, y: number) {
 }
 
 export function objectAssetForCoord(x: number, y: number): LimeZuRuntimeAsset | undefined {
-  const assetId = readObjectPaintMap()[objectCoordKey(x, y)];
+  const entry = readObjectPaintMap()[objectCoordKey(x, y)];
+  const assetId = typeof entry === "string" ? entry : entry?.assetId;
   return assetId ? getObjectAsset(assetId) : undefined;
 }
 

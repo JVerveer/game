@@ -1,12 +1,21 @@
-import { getBuildingAssets } from "./BuildingLibrary";
-import { buildingPrefabById } from "./BuildingPrefabRuntime";
+import { buildingPrefabById, firstAssetIdFromPrefab, firstAssetMetaFromPrefab } from "./BuildingPrefabRuntime";
 
 const SELECTED_BUILDING_STORAGE_KEY = "satiria.editor.selectedBuildingAsset.v1";
 const BUILDING_ASSIGNMENTS_STORAGE_KEY = "satiria.editor.buildingAssetAssignments.v2";
 
+export type RuntimeBuildingAsset = {
+  id?: string;
+  src: string;
+  width?: number;
+  height?: number;
+};
+
 export type BuildingAssetAssignment = {
   buildingId: string;
   assetId?: string;
+  assetSrc?: string;
+  assetWidth?: number;
+  assetHeight?: number;
   prefabId?: string;
   x: number;
   y: number;
@@ -19,22 +28,18 @@ export type BuildingAssetAssignments = Record<string, BuildingAssetAssignment>;
 let selectedBuildingAssetId = "";
 let cachedAssignments: BuildingAssetAssignments = {};
 
-export function getBuildingAsset(assetId: string | null | undefined) {
+export function getBuildingAsset(assetId: string | null | undefined): RuntimeBuildingAsset | undefined {
   if (!assetId) return undefined;
-  return getBuildingAssets().find(asset => asset.id === assetId);
+  return undefined;
 }
 
 export function defaultBuildingAssetId() {
-  const assets = getBuildingAssets();
-  return assets.find(asset => asset.width >= 96 && asset.height >= 96)?.id
-    ?? assets[0]?.id
-    ?? "";
+  return "";
 }
 
 export function readSelectedBuildingAssetId() {
-  if (typeof window === "undefined") return selectedBuildingAssetId || defaultBuildingAssetId();
-
-  selectedBuildingAssetId = window.localStorage.getItem(SELECTED_BUILDING_STORAGE_KEY) || defaultBuildingAssetId();
+  if (typeof window === "undefined") return selectedBuildingAssetId;
+  selectedBuildingAssetId = window.localStorage.getItem(SELECTED_BUILDING_STORAGE_KEY) || "";
   return selectedBuildingAssetId;
 }
 
@@ -104,15 +109,27 @@ export function buildingAssetForBuilding({
   id?: string;
   x: number;
   y: number;
-}) {
+}): RuntimeBuildingAsset | undefined {
   const assignment = buildingAssignmentForBuilding({ id, x, y });
   if (!assignment) return undefined;
 
-  if (assignment.assetId) return getBuildingAsset(assignment.assetId);
+  if (assignment.assetSrc) {
+    return {
+      id: assignment.assetId,
+      src: assignment.assetSrc,
+      width: assignment.assetWidth,
+      height: assignment.assetHeight,
+    };
+  }
 
   const prefab = buildingPrefabById(assignment.prefabId);
-  const firstAssetId = prefab?.tiles.find(tile => tile.assetId)?.assetId;
-  return getBuildingAsset(firstAssetId);
+  const meta = prefab ? firstAssetMetaFromPrefab(prefab) : undefined;
+  if (meta?.src) return meta;
+
+  const firstAssetId = prefab ? firstAssetIdFromPrefab(prefab) : undefined;
+  if (firstAssetId) return { id: firstAssetId, src: "" };
+
+  return undefined;
 }
 
 export function buildingPrefabForBuilding({

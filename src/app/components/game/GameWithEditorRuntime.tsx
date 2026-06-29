@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { lazy, Suspense, useState, useEffect, useRef } from "react";
 import { ThemeProvider } from "../../../context/ThemeContext";
 import {
   WILD_ENEMIES,
@@ -31,7 +31,6 @@ import { applyBuildingsToRows, buildingCrestForKind, buildingTileForKind, doorFo
 import { InGameBattle } from "./InGameBattle";
 import { useEditorState } from "../editor/hooks/useEditorState";
 import { createMapAssetExport } from "../editor/export/exportHelpers";
-import { TerrainEditorOverlay } from "../editor/TerrainEditorOverlay";
 import { useBuildingMovement } from "../editor/buildings/useBuildingMovement";
 import { useBuildingResize } from "../editor/buildings/useBuildingResize";
 import { useBuildingPlacement } from "../editor/buildings/useBuildingPlacement";
@@ -55,6 +54,12 @@ import {
   inferBuildingsFromRowsForEditor,
 } from "../editor/buildings/buildingHelpers";
 
+
+const TerrainEditorOverlay = lazy(() =>
+  import("../editor/TerrainEditorOverlay").then(module => ({
+    default: module.TerrainEditorOverlay,
+  })),
+);
 
 type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
 type ObjectEditAction = "place" | "erase";
@@ -1263,6 +1268,7 @@ useRuntimeEffects({
 
       {/* ── TERRAIN EDITOR ── */}
       {terrainEditorOpen && (
+        <Suspense fallback={<div style={{ position: "fixed", inset: 0, zIndex: 5600, display: "grid", placeItems: "center", background: "rgba(37,32,24,0.85)", color: "#fff8c8", fontWeight: 900 }}>Loading editor...</div>}>
         <TerrainEditorOverlay
           mapId={mapId}
           displayRows={displayRows}
@@ -1329,6 +1335,7 @@ useRuntimeEffects({
           paintEditorTile={paintEditorTile}
           transformDragTo={transformDragTo}
         />
+        </Suspense>
       )}
 
       {/* ── HERO EDITOR ── */}

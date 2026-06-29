@@ -1,15 +1,18 @@
 import { useEffect, useState, type CSSProperties } from "react";
-import type { PixelBuilding, PixelObject, PixelBuildingColor } from "../data/cityMaps/sceneTypes";
+import type {
+  PixelBuilding,
+  PixelObject,
+  PixelBuildingColor,
+} from "../data/cityMaps/sceneTypes";
 import { objectClassFor } from "./mapRenderHelpers";
 import {
-  terrainImageForCoord,
-  terrainImageForKind,
-} from "./assets/limezu/TerrainLibrary";
-import {
-  objectAssetForCoord,
-} from "./assets/limezu/ObjectLibrary";
+  objectImageForCoordFast,
+  terrainColorForTile,
+  terrainImageForCoordFast,
+} from "./assets/limezu/RuntimePaintMaps";
 import {
   buildingAssetForBuilding,
+  buildingPrefabForBuilding,
 } from "./assets/limezu/BuildingPlacementRuntime";
 
 const TILE_SIZE = 48;
@@ -19,34 +22,40 @@ const BUILDING_TILES = new Set(["A", "B", "H", "I", "P", "U"]);
 const hashTile = (x: number, y: number) =>
   Math.abs((x * 928371 + y * 364479 + x * y * 97) % 100);
 
-function defaultTerrainImageForTile(tile: string) {
-  if (tile === "G") return terrainImageForKind("grass");
-  if (tile === "R" || tile === "O" || tile === "Q" || tile === "N") return terrainImageForKind("path");
-  if (tile === "V" || tile === "E") return terrainImageForKind("plaza");
-  if (tile === "W") return terrainImageForKind("water");
-  if (tile === "S") return terrainImageForKind("sand");
-  if (tile === "J") return terrainImageForKind("wood");
-  if (tile === "M" || tile === "C" || tile === "D") return terrainImageForKind("stone");
-  return terrainImageForKind("grass");
+function terrainImage(_tile: string, x: number, y: number) {
+  return terrainImageForCoordFast(x, y);
 }
 
-function terrainImage(tile: string, x: number, y: number) {
-  return terrainImageForCoord(x, y) ?? defaultTerrainImageForTile(tile);
-}
-
-const tileStyle = (tile: string, x: number, y: number, w = 1, h = 1): CSSProperties => ({
+const tileStyle = (
+  tile: string,
+  x: number,
+  y: number,
+  w = 1,
+  h = 1,
+): CSSProperties => ({
   position: "absolute",
   left: x * TILE_SIZE,
   top: y * TILE_SIZE,
   width: w * TILE_SIZE,
   height: h * TILE_SIZE,
-  backgroundImage: `url(${terrainImage(tile, x, y)})`,
+  backgroundImage: terrainImage(tile, x, y)
+    ? `url(${terrainImage(tile, x, y)})`
+    : undefined,
+  backgroundColor: terrainImage(tile, x, y)
+    ? undefined
+    : terrainColorForTile(tile),
   backgroundRepeat: w > 1 || h > 1 ? "repeat" : "no-repeat",
   backgroundSize: `${TILE_SIZE}px ${TILE_SIZE}px`,
   imageRendering: "pixelated",
 });
 
-const imageObjectStyle = (src: string, x: number, y: number, w = 1, h = 1): CSSProperties => ({
+const imageObjectStyle = (
+  src: string,
+  x: number,
+  y: number,
+  w = 1,
+  h = 1,
+): CSSProperties => ({
   position: "absolute",
   left: x * TILE_SIZE,
   top: y * TILE_SIZE,
@@ -73,11 +82,24 @@ const legacyObjectWrapStyle = (x: number, y: number): CSSProperties => ({
   pointerEvents: "none",
 });
 
-const edgeMaskFor = (rows: string[][], x: number, y: number, family: string) => {
+const edgeMaskFor = (
+  rows: string[][],
+  x: number,
+  y: number,
+  family: string,
+) => {
   const t = rows[y]?.[x];
   const match = (nx: number, ny: number) => {
     const n = rows[ny]?.[nx];
-    if (family === "road") return n === "R" || n === "O" || n === "V" || n === "E" || n === "Q" || n === "N";
+    if (family === "road")
+      return (
+        n === "R" ||
+        n === "O" ||
+        n === "V" ||
+        n === "E" ||
+        n === "Q" ||
+        n === "N"
+      );
     if (family === "water") return n === "W" || n === "S";
     return n === t;
   };
@@ -87,18 +109,28 @@ const edgeMaskFor = (rows: string[][], x: number, y: number, family: string) => 
     !match(x + 1, y) ? "e" : "",
     !match(x, y + 1) ? "s" : "",
     !match(x - 1, y) ? "w" : "",
-  ].filter(Boolean).join(" ");
+  ]
+    .filter(Boolean)
+    .join(" ");
 };
 
 const groundClassFor = (rows: string[][], x: number, y: number) => {
   const tile = rows[y]?.[x];
 
-  if (tile === "R" || tile === "O" || tile === "V" || tile === "E" || tile === "Q" || tile === "N") {
+  if (
+    tile === "R" ||
+    tile === "O" ||
+    tile === "V" ||
+    tile === "E" ||
+    tile === "Q" ||
+    tile === "N"
+  ) {
     return `pixel-ground-road ${edgeMaskFor(rows, x, y, "road")}`;
   }
 
   if (tile === "J") return "pixel-ground-pier";
-  if (tile === "W") return `pixel-ground-water ${edgeMaskFor(rows, x, y, "water")}`;
+  if (tile === "W")
+    return `pixel-ground-water ${edgeMaskFor(rows, x, y, "water")}`;
   if (tile === "S") return "pixel-ground-shore";
   if (tile === "X") return `pixel-ground-tall tall-phase-${hashTile(x, y) % 3}`;
 
@@ -117,29 +149,86 @@ const buildingTileFor = (building: PixelBuilding, yy: number) => {
   return "E";
 };
 
-const windowColumnsFor = (buildingWidth: number, doorX: number, isGroundFloor: boolean) => {
-  const columns = buildingWidth <= 5
-    ? [doorX - 1, doorX + 1]
-    : [
-        1,
-        Math.max(1, Math.floor(buildingWidth / 2) - 2),
-        Math.min(buildingWidth - 2, Math.floor(buildingWidth / 2) + 2),
-        buildingWidth - 2,
-      ];
+const windowColumnsFor = (
+  buildingWidth: number,
+  doorX: number,
+  isGroundFloor: boolean,
+) => {
+  const columns =
+    buildingWidth <= 5
+      ? [doorX - 1, doorX + 1]
+      : [
+          1,
+          Math.max(1, Math.floor(buildingWidth / 2) - 2),
+          Math.min(buildingWidth - 2, Math.floor(buildingWidth / 2) + 2),
+          buildingWidth - 2,
+        ];
 
   return Array.from(new Set(columns))
-    .filter(x => x > 0 && x < buildingWidth - 1)
-    .filter(x => !isGroundFloor || Math.abs(x - doorX) > 0);
+    .filter((x) => x > 0 && x < buildingWidth - 1)
+    .filter((x) => !isGroundFloor || Math.abs(x - doorX) > 0);
 };
 
-function RuntimeBuildingAssetSprite({ building }: { building: PixelBuilding & { id?: string } }) {
+function RuntimeBuildingPrefabSprite({
+  building,
+}: {
+  building: PixelBuilding & { id?: string };
+}) {
+  const prefab = buildingPrefabForBuilding({
+    id: building.id,
+    x: building.x,
+    y: building.y,
+  });
+
+  if (!prefab) return null;
+
+  const scaleX = (building.w * TILE_SIZE) / Math.max(1, prefab.width);
+  const scaleY = (building.h * TILE_SIZE) / Math.max(1, prefab.height);
+
+  return (
+    <div
+      className="pixel-building-runtime-prefab"
+      style={{
+        position: "absolute",
+        inset: 0,
+        pointerEvents: "none",
+        zIndex: 9,
+      }}
+    >
+      {prefab.tiles
+        .filter((tile) => tile.layer !== "collision" && tile.src)
+        .map((tile, index) => (
+          <i
+            key={`${tile.layer}-${tile.x}-${tile.y}-${index}`}
+            style={{
+              position: "absolute",
+              left: tile.x * scaleX,
+              top: tile.y * scaleY,
+              width: scaleX,
+              height: scaleY,
+              backgroundImage: `url(${tile.src})`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "contain",
+              backgroundPosition: "center",
+              imageRendering: "pixelated",
+            }}
+          />
+        ))}
+    </div>
+  );
+}
+function RuntimeBuildingAssetSprite({
+  building,
+}: {
+  building: PixelBuilding & { id?: string };
+}) {
   const asset = buildingAssetForBuilding({
     id: building.id,
     x: building.x,
     y: building.y,
   });
 
-  if (!asset) return null;
+  if (!asset?.src) return null;
 
   const scale = Math.min(
     (building.w * TILE_SIZE) / Math.max(1, asset.width),
@@ -171,12 +260,25 @@ function RuntimeBuildingAssetSprite({ building }: { building: PixelBuilding & { 
   );
 }
 
-function PixelBuildingSprite({ building, index }: { building: PixelBuilding & { id?: string }; index: number }) {
-  const runtimeAsset = buildingAssetForBuilding({
+function PixelBuildingSprite({
+  building,
+  index,
+}: {
+  building: PixelBuilding & { id?: string };
+  index: number;
+}) {
+  const runtimePrefab = buildingPrefabForBuilding({
     id: building.id,
     x: building.x,
     y: building.y,
   });
+  const runtimeAsset = runtimePrefab
+    ? undefined
+    : buildingAssetForBuilding({
+        id: building.id,
+        x: building.x,
+        y: building.y,
+      });
 
   const doorX = Math.floor(building.w / 2);
   const zIndex = 40 + building.y;
@@ -196,17 +298,19 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding & { 
         zIndex,
       }}
     >
-      {!runtimeAsset && Array.from({ length: building.h }).map((_, yy) =>
-        Array.from({ length: building.w }).map((__, xx) => (
-          <i
-            key={`b-${index}-${xx}-${yy}`}
-            className="pixel-sprite-tile"
-            style={tileStyle(buildingTileFor(building, yy), xx, yy)}
-          />
-        )),
-      )}
+      {!runtimeAsset &&
+        !runtimePrefab &&
+        Array.from({ length: building.h }).map((_, yy) =>
+          Array.from({ length: building.w }).map((__, xx) => (
+            <i
+              key={`b-${index}-${xx}-${yy}`}
+              className="pixel-sprite-tile"
+              style={tileStyle(buildingTileFor(building, yy), xx, yy)}
+            />
+          )),
+        )}
 
-      {!runtimeAsset && (
+      {!runtimeAsset && !runtimePrefab && (
         <i
           className="pixel-sprite-tile pixel-building-door"
           style={{
@@ -216,21 +320,25 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding & { 
         />
       )}
 
-      {!runtimeAsset && wallRows.flatMap(yy => {
-        const isGroundFloor = yy === building.h - 1;
-        return windowColumnsFor(building.w, doorX, isGroundFloor).map(xx => (
-          <i
-            key={`window-${index}-${xx}-${yy}`}
-            className="pixel-sprite-tile pixel-building-window"
-            style={{
-              ...tileStyle("W", xx, yy),
-              filter: "brightness(1.25) saturate(0.7)",
-            }}
-          />
-        ));
-      })}
+      {!runtimeAsset &&
+        !runtimePrefab &&
+        wallRows.flatMap((yy) => {
+          const isGroundFloor = yy === building.h - 1;
+          return windowColumnsFor(building.w, doorX, isGroundFloor).map(
+            (xx) => (
+              <i
+                key={`window-${index}-${xx}-${yy}`}
+                className="pixel-sprite-tile pixel-building-window"
+                style={{
+                  ...tileStyle("W", xx, yy),
+                  filter: "brightness(1.25) saturate(0.7)",
+                }}
+              />
+            ),
+          );
+        })}
 
-      {!runtimeAsset && building.crest && (
+      {!runtimeAsset && !runtimePrefab && building.crest && (
         <span
           className="pixel-building-crest"
           style={{
@@ -244,9 +352,10 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding & { 
         </span>
       )}
 
+      {runtimePrefab && <RuntimeBuildingPrefabSprite building={building} />}
       {runtimeAsset && <RuntimeBuildingAssetSprite building={building} />}
 
-      {!runtimeAsset && (
+      {!runtimeAsset && !runtimePrefab && (
         <span className="pixel-story-marker" aria-hidden="true">
           <b>{stories}F</b>
           {Array.from({ length: stories }).map((_, story) => (
@@ -262,7 +371,7 @@ function useLimeZuPaintVersion() {
   const [version, setVersion] = useState(0);
 
   useEffect(() => {
-    const refresh = () => setVersion(current => current + 1);
+    const refresh = () => setVersion((current) => current + 1);
 
     window.addEventListener("limezu:terrain-paint-changed", refresh);
     window.addEventListener("limezu:object-paint-changed", refresh);
@@ -274,8 +383,14 @@ function useLimeZuPaintVersion() {
     return () => {
       window.removeEventListener("limezu:terrain-paint-changed", refresh);
       window.removeEventListener("limezu:object-paint-changed", refresh);
-      window.removeEventListener("satiria:limezu-terrain-paint-changed", refresh);
-      window.removeEventListener("satiria:limezu-object-paint-changed", refresh);
+      window.removeEventListener(
+        "satiria:limezu-terrain-paint-changed",
+        refresh,
+      );
+      window.removeEventListener(
+        "satiria:limezu-object-paint-changed",
+        refresh,
+      );
       window.removeEventListener("satiria:building-assets-changed", refresh);
       window.removeEventListener("storage", refresh);
     };
@@ -286,7 +401,10 @@ function useLimeZuPaintVersion() {
 
 function TerrainLayer({ rows }: { rows: string[][] }) {
   return (
-    <div className="pixel-layer pixel-layer-terrain" style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+    <div
+      className="pixel-layer pixel-layer-terrain"
+      style={{ position: "absolute", inset: 0, zIndex: 0 }}
+    >
       {rows.map((row, y) =>
         row.map((tileName, x) => {
           const groundTile = BUILDING_TILES.has(tileName) ? "G" : tileName;
@@ -304,18 +422,28 @@ function TerrainLayer({ rows }: { rows: string[][] }) {
   );
 }
 
-function LegacyObjectLayer({ legacyObjects }: { legacyObjects?: Record<string, string> }) {
+function LegacyObjectLayer({
+  legacyObjects,
+}: {
+  legacyObjects?: Record<string, string>;
+}) {
   if (!legacyObjects) return null;
 
   return (
-    <div className="pixel-layer pixel-layer-legacy-objects" style={{ position: "absolute", inset: 0, zIndex: 25 }}>
+    <div
+      className="pixel-layer pixel-layer-legacy-objects"
+      style={{ position: "absolute", inset: 0, zIndex: 25 }}
+    >
       {Object.entries(legacyObjects)
         .filter(([, objectId]) => objectId !== "NPC")
         .map(([coord, objectId]) => {
           const [x, y] = coord.split(",").map(Number);
 
           return (
-            <div key={`legacy-object-${objectId}-${coord}`} style={legacyObjectWrapStyle(x, y)}>
+            <div
+              key={`legacy-object-${objectId}-${coord}`}
+              style={legacyObjectWrapStyle(x, y)}
+            >
               <div className={objectClassFor(objectId)} />
             </div>
           );
@@ -326,18 +454,21 @@ function LegacyObjectLayer({ legacyObjects }: { legacyObjects?: Record<string, s
 
 function RuntimeObjectLayer({ rows }: { rows: string[][] }) {
   return (
-    <div className="pixel-layer pixel-layer-runtime-objects" style={{ position: "absolute", inset: 0, zIndex: 35 }}>
+    <div
+      className="pixel-layer pixel-layer-runtime-objects"
+      style={{ position: "absolute", inset: 0, zIndex: 35 }}
+    >
       {rows.flatMap((row, y) =>
         row.map((_tile, x) => {
-          const limeZuObject = objectAssetForCoord(x, y);
-          if (!limeZuObject) return null;
+          const objectSrc = objectImageForCoordFast(x, y);
+          if (!objectSrc) return null;
 
           return (
             <i
               key={`runtime-object-${x}-${y}`}
               className="pixel-sprite-object"
               style={{
-                ...imageObjectStyle(limeZuObject.src, x, y),
+                ...imageObjectStyle(objectSrc, x, y),
                 zIndex: 35 + y,
               }}
             />
@@ -350,10 +481,13 @@ function RuntimeObjectLayer({ rows }: { rows: string[][] }) {
 
 function SceneObjectLayer({ objects }: { objects: PixelObject[] }) {
   return (
-    <div className="pixel-layer pixel-layer-scene-objects" style={{ position: "absolute", inset: 0, zIndex: 36 }}>
+    <div
+      className="pixel-layer pixel-layer-scene-objects"
+      style={{ position: "absolute", inset: 0, zIndex: 36 }}
+    >
       {objects.map((object, index) => {
-        const limeZuObject = objectAssetForCoord(object.x, object.y);
-        if (limeZuObject) return null;
+        const objectSrc = objectImageForCoordFast(object.x, object.y);
+        if (objectSrc) return null;
 
         return (
           <div
@@ -364,7 +498,9 @@ function SceneObjectLayer({ objects }: { objects: PixelObject[] }) {
               zIndex: 36 + object.y,
             }}
           >
-            <div className={object.className ?? objectClassFor(object.sprite)} />
+            <div
+              className={object.className ?? objectClassFor(object.sprite)}
+            />
           </div>
         );
       })}
@@ -372,9 +508,16 @@ function SceneObjectLayer({ objects }: { objects: PixelObject[] }) {
   );
 }
 
-function BuildingLayer({ buildings }: { buildings: (PixelBuilding & { id?: string })[] }) {
+function BuildingLayer({
+  buildings,
+}: {
+  buildings: (PixelBuilding & { id?: string })[];
+}) {
   return (
-    <div className="pixel-layer pixel-layer-buildings" style={{ position: "absolute", inset: 0, zIndex: 40 }}>
+    <div
+      className="pixel-layer pixel-layer-buildings"
+      style={{ position: "absolute", inset: 0, zIndex: 40 }}
+    >
       {buildings.map((building, index) => (
         <PixelBuildingSprite
           key={`${building.kind}-${building.x}-${building.y}-${index}`}
