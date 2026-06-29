@@ -4,6 +4,7 @@ import {
 } from "./NpcCatalog";
 
 const NPC_PREFAB_STORAGE_KEY = "satiria.editor.globalNpcs.v1";
+const NPC_DELETED_STORAGE_KEY = "satiria.editor.deletedGlobalNpcs.v1";
 const SELECTED_NPC_STORAGE_KEY = "satiria.editor.selectedGlobalNpc.v1";
 
 export type GlobalNpcPrefab = GlobalNpcCatalogEntry & {
@@ -14,12 +15,22 @@ export type GlobalNpcPrefab = GlobalNpcCatalogEntry & {
 export type GlobalNpcLibrary = Record<string, GlobalNpcPrefab>;
 
 let cachedNpcs: GlobalNpcLibrary = {};
+let cachedDeletedNpcIds: string[] = [];
 let selectedNpcId = "";
 
 function catalogLibrary(): GlobalNpcLibrary {
   return Object.fromEntries(
     (NPC_CATALOG as readonly GlobalNpcCatalogEntry[]).map(npc => [npc.id, npc]),
   ) as GlobalNpcLibrary;
+}
+
+function stripRuntimeFields(npc: GlobalNpcPrefab): GlobalNpcCatalogEntry {
+  const { createdAt, updatedAt, ...catalogNpc } = npc;
+  return catalogNpc;
+}
+
+function sameCatalogEntry(left: GlobalNpcPrefab, right: GlobalNpcPrefab) {
+  return JSON.stringify(stripRuntimeFields(left)) === JSON.stringify(stripRuntimeFields(right));
 }
 
 export function makeGlobalNpcId(name: string) {
@@ -40,21 +51,38 @@ export function readGlobalNpcs(): GlobalNpcLibrary {
     cachedNpcs = {};
   }
 
+  try {
+    cachedDeletedNpcIds = JSON.parse(window.localStorage.getItem(NPC_DELETED_STORAGE_KEY) ?? "[]") as string[];
+  } catch {
+    cachedDeletedNpcIds = [];
+  }
+
+  const deletedIds = new Set(cachedDeletedNpcIds);
+  const visibleCatalog = Object.fromEntries(
+    Object.entries(catalogLibrary()).filter(([id]) => !deletedIds.has(id)),
+  ) as GlobalNpcLibrary;
+
   return {
-    ...catalogLibrary(),
+    ...visibleCatalog,
     ...cachedNpcs,
   };
 }
 
 export function writeGlobalNpcs(next: GlobalNpcLibrary) {
-  const catalogIds = new Set((NPC_CATALOG as readonly GlobalNpcCatalogEntry[]).map(npc => npc.id));
+  const sourceCatalog = catalogLibrary();
+  const catalogIds = new Set(Object.keys(sourceCatalog));
+  cachedDeletedNpcIds = [...catalogIds].filter(id => !next[id]);
 
   cachedNpcs = Object.fromEntries(
-    Object.entries(next).filter(([id]) => !catalogIds.has(id)),
+    Object.entries(next).filter(([id, npc]) => {
+      if (!catalogIds.has(id)) return true;
+      return !sameCatalogEntry(npc, sourceCatalog[id]);
+    }),
   ) as GlobalNpcLibrary;
 
   if (typeof window !== "undefined") {
     window.localStorage.setItem(NPC_PREFAB_STORAGE_KEY, JSON.stringify(cachedNpcs));
+    window.localStorage.setItem(NPC_DELETED_STORAGE_KEY, JSON.stringify(cachedDeletedNpcIds));
     window.dispatchEvent(new CustomEvent("satiria:global-npcs-changed"));
   }
 }
@@ -122,6 +150,31 @@ export function exportGlobalNpcCatalogTs() {
   return `import type { GlobalNpcCatalogEntry } from "./NpcCatalog";
 
 export const EXPORTED_GLOBAL_NPCS = ${JSON.stringify(npcs, null, 2)} as const satisfies readonly GlobalNpcCatalogEntry[];
+`;
+}
+
+export function exportGlobalNpcCatalogFile(npcs: readonly GlobalNpcCatalogEntry[]) {
+  const sortedNpcs = [...npcs].sort((a, b) => a.name.localeCompare(b.name));
+
+  return `import type {
+  CharacterAnimation,
+  CharacterAppearance,
+  CharacterFacing,
+} from "../../../components/editor/hero/characterTypes";
+
+export type GlobalNpcCatalogEntry = {
+  id: string;
+  name: string;
+  appearance: CharacterAppearance;
+  lines: string[];
+  walking?: boolean;
+  animation?: CharacterAnimation;
+  facing?: CharacterFacing;
+  sheetAssetId?: string;
+  tags?: string[];
+};
+
+export const NPC_CATALOG = ${JSON.stringify(sortedNpcs, null, 2)} as const satisfies readonly GlobalNpcCatalogEntry[];
 `;
 }
 

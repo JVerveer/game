@@ -17,14 +17,17 @@ import type {
   CharacterCategoryConfig,
   CharacterColorCategory,
   CharacterFacing,
-  CharacterLayerCategory,
 } from "../hero/characterTypes";
 import {
+  deleteGlobalNpc,
+  exportGlobalNpcCatalogFile,
   exportGlobalNpcCatalogEntry,
   makeGlobalNpcId,
+  readGlobalNpcs,
   upsertGlobalNpc,
   type GlobalNpcPrefab,
 } from "../../../assets/limezu/characters/NpcCatalogRuntime";
+import type { GlobalNpcCatalogEntry } from "../../../assets/limezu/characters/NpcCatalog";
 
 type NpcBuilderDraft = Omit<GlobalNpcPrefab, "appearance"> & {
   appearance: CharacterAppearance;
@@ -46,12 +49,48 @@ function isColorCategory(id: CharacterCategoryConfig["id"]): id is CharacterColo
   return id === "skinColor" || id === "hairColor" || id === "outfitColor";
 }
 
-function isLayerCategory(id: CharacterCategoryConfig["id"]): id is CharacterLayerCategory {
-  return !isColorCategory(id);
+function normalizeCatalogEntry(npc: GlobalNpcPrefab): GlobalNpcCatalogEntry {
+  return {
+    id: npc.id,
+    name: npc.name,
+    appearance: npc.appearance,
+    lines: npc.lines,
+    walking: npc.walking,
+    animation: npc.animation,
+    facing: npc.facing,
+    sheetAssetId: npc.sheetAssetId,
+    tags: npc.tags,
+  };
+}
+
+function toDraft(npc: GlobalNpcPrefab): NpcBuilderDraft {
+  return {
+    ...normalizeCatalogEntry(npc),
+    appearance: npc.appearance ?? DEFAULT_CHARACTER_APPEARANCE,
+    lines: npc.lines?.length ? [...npc.lines] : ['"Hello from the global NPC catalog."'],
+    tags: [...(npc.tags ?? [])],
+  };
+}
+
+function sortedCatalog(npcs: readonly GlobalNpcCatalogEntry[]) {
+  return [...npcs].sort((a, b) => a.name.localeCompare(b.name));
+}
+
+function upsertWorkingCatalog(
+  catalog: readonly GlobalNpcCatalogEntry[],
+  entry: GlobalNpcCatalogEntry,
+) {
+  const next = catalog.filter(npc => npc.id !== entry.id);
+  next.push(entry);
+  return sortedCatalog(next);
 }
 
 export function NpcCatalogBuilder({ onClose }: { onClose: () => void }) {
+  const [workingCatalog, setWorkingCatalog] = useState<GlobalNpcCatalogEntry[]>(() =>
+    sortedCatalog(Object.values(readGlobalNpcs()).map(normalizeCatalogEntry)),
+  );
   const [draft, setDraft] = useState<NpcBuilderDraft>(() => starterDraft());
+  const [selectedNpcId, setSelectedNpcId] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<CharacterCategoryConfig["id"]>("body");
   const [exportText, setExportText] = useState("");
 
@@ -86,7 +125,7 @@ export function NpcCatalogBuilder({ onClose }: { onClose: () => void }) {
     updateAppearance(randomCharacterAppearance());
   }
 
-  function catalogEntry() {
+  function catalogEntry(): GlobalNpcCatalogEntry {
     return {
       id: draft.id || makeGlobalNpcId(draft.name),
       name: draft.name.trim() || "Global NPC",
@@ -98,8 +137,37 @@ export function NpcCatalogBuilder({ onClose }: { onClose: () => void }) {
     };
   }
 
+  function selectNpc(npc: GlobalNpcCatalogEntry) {
+    setDraft(toDraft(npc));
+    setSelectedNpcId(npc.id);
+    setExportText("");
+  }
+
+  function saveDraftToWorkingCatalog() {
+    const entry = catalogEntry();
+    setWorkingCatalog(current => upsertWorkingCatalog(current, entry));
+    setSelectedNpcId(entry.id);
+    return entry;
+  }
+
   async function copyCatalogEntry() {
-    const text = exportGlobalNpcCatalogEntry(catalogEntry());
+    const entry = saveDraftToWorkingCatalog();
+    const text = exportGlobalNpcCatalogEntry(entry);
+    setExportText(text);
+
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      // textarea fallback stays visible
+    }
+  }
+
+  async function copyFullCatalog() {
+    const entry = catalogEntry();
+    const nextCatalog = upsertWorkingCatalog(workingCatalog, entry);
+    const text = exportGlobalNpcCatalogFile(nextCatalog);
+    setWorkingCatalog(nextCatalog);
+    setSelectedNpcId(entry.id);
     setExportText(text);
 
     try {
@@ -110,13 +178,23 @@ export function NpcCatalogBuilder({ onClose }: { onClose: () => void }) {
   }
 
   function testInBrowser() {
-    upsertGlobalNpc(catalogEntry());
+    const entry = saveDraftToWorkingCatalog();
+    upsertGlobalNpc(entry);
   }
 
-  function reset() {
-    setDraft(starterDraft());
+  function newNpc() {
+    const next = starterDraft();
+    setDraft(next);
+    setSelectedNpcId("");
     setSelectedCategory("body");
     setExportText("");
+  }
+
+  function deleteCurrentNpc() {
+    const entry = catalogEntry();
+    setWorkingCatalog(current => current.filter(npc => npc.id !== entry.id));
+    deleteGlobalNpc(entry.id);
+    newNpc();
   }
 
   const currentLabel = isColorCategory(selectedCategory)
@@ -134,15 +212,17 @@ export function NpcCatalogBuilder({ onClose }: { onClose: () => void }) {
           <div>
             <div style={titleStyle}>Global NPC Builder</div>
             <div style={subtitleStyle}>
-              Build NPCs from the same body, hair, outfit, colors, and accessories as the hero. Copy the entry into NpcCatalog.ts, then select it in the NPC tab.
+              Build, adjust, and delete reusable NPCs from the same assets as the hero. Copy the full catalog when you want the edited list to become source code.
             </div>
           </div>
 
           <div style={topButtonsStyle}>
             <button type="button" onClick={randomize} style={buttonStyle}>Randomize Look</button>
-            <button type="button" onClick={testInBrowser} style={buttonStyle}>Test in Browser</button>
-            <button type="button" onClick={copyCatalogEntry} style={saveButtonStyle}>Copy Catalog Entry</button>
-            <button type="button" onClick={reset} style={dangerButtonStyle}>Reset</button>
+            <button type="button" onClick={testInBrowser} style={buttonStyle}>Save/Test</button>
+            <button type="button" onClick={copyCatalogEntry} style={buttonStyle}>Copy Current NPC</button>
+            <button type="button" onClick={copyFullCatalog} style={saveButtonStyle}>Copy Full Catalog</button>
+            <button type="button" onClick={deleteCurrentNpc} style={dangerButtonStyle}>Delete NPC</button>
+            <button type="button" onClick={newNpc} style={buttonStyle}>New NPC</button>
             <button type="button" onClick={onClose} style={doneButtonStyle}>Done</button>
           </div>
         </div>
@@ -190,6 +270,38 @@ export function NpcCatalogBuilder({ onClose }: { onClose: () => void }) {
         </div>
 
         <div style={mainStyle}>
+          <div style={catalogStyle}>
+            <div style={titleStyle}>Existing NPCs</div>
+            <div style={catalogHintStyle}>
+              Select one to adjust it. Deleted source NPCs stay gone in this working list and in the copied full catalog.
+            </div>
+            <div style={catalogListStyle}>
+              {workingCatalog.map(npc => {
+                const selected = selectedNpcId === npc.id || draft.id === npc.id;
+
+                return (
+                  <button
+                    key={npc.id}
+                    type="button"
+                    onClick={() => selectNpc(npc)}
+                    style={{
+                      ...catalogItemStyle,
+                      background: selected ? "#d8f0b0" : "#fff8c8",
+                      border: selected ? "4px solid #315f2a" : "2px solid #252018",
+                    }}
+                  >
+                    <span style={catalogNameStyle}>{npc.name}</span>
+                    <span style={catalogIdStyle}>{npc.id}</span>
+                    {npc.tags?.length ? <span style={catalogTagsStyle}>{npc.tags.join(", ")}</span> : null}
+                  </button>
+                );
+              })}
+              {!workingCatalog.length && (
+                <div style={emptyCatalogStyle}>No NPCs in the working catalog yet.</div>
+              )}
+            </div>
+          </div>
+
           <div style={paletteStyle}>
             <div style={titleStyle}>Hero Assets</div>
             <div style={categoryGridStyle}>
@@ -234,7 +346,7 @@ export function NpcCatalogBuilder({ onClose }: { onClose: () => void }) {
                 appearance={draft.appearance}
                 animation={draft.walking === false ? "idle" : "walk"}
                 facing={draft.facing ?? "down"}
-                pixelSize={3}
+                pixelSize={5}
                 showShadow
               />
             </div>
@@ -253,7 +365,7 @@ export function NpcCatalogBuilder({ onClose }: { onClose: () => void }) {
 
         {exportText && (
           <div style={exportPanelStyle}>
-            <strong>Paste this object into NPC_CATALOG in src/app/assets/limezu/characters/NpcCatalog.ts</strong>
+            <strong>Paste this code into src/app/assets/limezu/characters/NpcCatalog.ts, or paste the object into NPC_CATALOG when copying one NPC.</strong>
             <textarea value={exportText} readOnly style={exportTextareaStyle} />
           </div>
         )}
@@ -275,7 +387,15 @@ const doneButtonStyle: React.CSSProperties = { ...buttonStyle, background: "#ca4
 const settingsStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 8, marginBottom: 10 };
 const fieldStyle: React.CSSProperties = { display: "grid", gap: 4, fontFamily: "'Rajdhani', sans-serif", fontWeight: 900, fontSize: "0.72rem" };
 const inputStyle: React.CSSProperties = { border: "2px solid #252018", background: "#fff8c8", color: "#252018", padding: 8, fontWeight: 900 };
-const mainStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "minmax(300px, 420px) minmax(280px, 1fr)", gap: 12, alignItems: "start" };
+const mainStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "minmax(220px, 280px) minmax(300px, 420px) minmax(320px, 1fr)", gap: 12, alignItems: "start" };
+const catalogStyle: React.CSSProperties = { border: "3px solid #252018", background: "#f4e8b5", padding: 10, display: "grid", gap: 8 };
+const catalogHintStyle: React.CSSProperties = { fontFamily: "'Rajdhani', sans-serif", fontSize: "0.72rem", fontWeight: 900, color: "#584c35" };
+const catalogListStyle: React.CSSProperties = { display: "grid", gap: 6, maxHeight: 520, overflow: "auto", paddingRight: 2 };
+const catalogItemStyle: React.CSSProperties = { display: "grid", gap: 2, color: "#252018", cursor: "pointer", textAlign: "left", padding: 8 };
+const catalogNameStyle: React.CSSProperties = { fontFamily: "'VT323', monospace", fontSize: "1.12rem", lineHeight: 1 };
+const catalogIdStyle: React.CSSProperties = { fontFamily: "monospace", fontSize: "0.62rem", color: "#584c35", overflowWrap: "anywhere" };
+const catalogTagsStyle: React.CSSProperties = { fontFamily: "'Rajdhani', sans-serif", fontSize: "0.68rem", fontWeight: 900, color: "#315f2a" };
+const emptyCatalogStyle: React.CSSProperties = { border: "2px dashed #8d7a52", padding: 10, fontFamily: "'Rajdhani', sans-serif", fontWeight: 900, color: "#584c35" };
 const paletteStyle: React.CSSProperties = { border: "3px solid #252018", background: "#f4e8b5", padding: 10, display: "grid", gap: 10 };
 const categoryGridStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 8 };
 const categoryButtonStyle: React.CSSProperties = { display: "grid", gap: 3, padding: 8, color: "#252018", cursor: "pointer", textAlign: "left" };
@@ -284,7 +404,7 @@ const categoryValueStyle: React.CSSProperties = { fontFamily: "'Rajdhani', sans-
 const stepperStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: 8, border: "2px solid #252018", background: "#fff3a8", padding: 8 };
 const selectedValueStyle: React.CSSProperties = { display: "grid", textAlign: "center", fontFamily: "'Rajdhani', sans-serif", fontSize: "0.82rem", fontWeight: 900 };
 const previewStyle: React.CSSProperties = { border: "4px solid #252018", background: "#f4e8b5", padding: 12, display: "grid", gap: 10 };
-const spritePreviewStyle: React.CSSProperties = { minHeight: 190, display: "grid", placeItems: "center", background: "#d7c58d", border: "2px solid #252018", overflow: "hidden" };
+const spritePreviewStyle: React.CSSProperties = { minHeight: 340, display: "grid", placeItems: "center", background: "#d7c58d", border: "2px solid #252018", overflow: "hidden" };
 const textareaStyle: React.CSSProperties = { border: "2px solid #252018", background: "#fff8c8", color: "#252018", padding: 8, fontWeight: 900, resize: "vertical" };
 const exportPanelStyle: React.CSSProperties = { marginTop: 12, border: "2px solid #252018", background: "#fff3a8", padding: 8, display: "grid", gap: 6 };
 const exportTextareaStyle: React.CSSProperties = { width: "100%", height: 220, border: "2px solid #252018", background: "#fff8c8", color: "#252018", fontFamily: "monospace", fontSize: 12, boxSizing: "border-box" };
