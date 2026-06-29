@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import {
-  LIMEZU_OBJECT_LIBRARY,
   clearAllLimeZuObjects,
+  getObjectAssets,
   getSelectedLimeZuObjectAssetId,
   setSelectedLimeZuObjectAssetId,
 } from "./ObjectLibrary";
@@ -26,10 +26,11 @@ export function ObjectPalette({
   const [query, setQuery] = useState("");
 
   const filteredAssets = useMemo(() => {
+    const assets = getObjectAssets();
     const q = query.trim().toLowerCase();
-    if (!q) return LIMEZU_OBJECT_LIBRARY;
+    if (!q) return assets;
 
-    return LIMEZU_OBJECT_LIBRARY.filter(asset => {
+    return assets.filter(asset => {
       const haystack = `${asset.label} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
       return haystack.includes(q);
     });

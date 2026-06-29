@@ -1,16 +1,19 @@
 import { useMemo, useState } from "react";
 import {
-  TERRAIN_LIBRARY,
   clearAllDirectTerrainPaint,
   getSelectedTerrainAssetId,
+  getTerrainAssets,
   setSelectedTerrainAssetId,
 } from "./TerrainLibrary";
 
-const TILE_TYPES = TERRAIN_LIBRARY.map(asset => ({
+export const getTerrainTileTypes = () => getTerrainAssets().map(asset => ({
   id: asset.id,
   name: asset.label,
   description: asset.source,
 }));
+
+// Compatibility export. Use getTerrainTileTypes()/tileTypeFor() for fresh classifications.
+const TILE_TYPES = getTerrainTileTypes();
 
 const EDITOR_TILE_COLORS: Record<string, string> = {
   G: "#56b447",
@@ -40,10 +43,11 @@ export function TerrainPalette({
   const [query, setQuery] = useState("");
 
   const filteredAssets = useMemo(() => {
+    const assets = getTerrainAssets();
     const q = query.trim().toLowerCase();
-    if (!q) return TERRAIN_LIBRARY;
+    if (!q) return assets;
 
-    return TERRAIN_LIBRARY.filter(asset => {
+    return assets.filter(asset => {
       const haystack = `${asset.label} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
       return haystack.includes(q);
     });
@@ -105,7 +109,7 @@ export function TerrainPalette({
 }
 
 export { TILE_TYPES, EDITOR_TILE_COLORS };
-export const tileTypeFor = (id: string) => TILE_TYPES.find(tile => tile.id === id);
+export const tileTypeFor = (id: string) => getTerrainTileTypes().find(tile => tile.id === id);
 
 const panelStyle: React.CSSProperties = { display: "grid", gap: 12, marginBottom: 12 };
 const headerStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "1fr minmax(300px, 420px)", gap: 12, alignItems: "end", background: "#fff8c8", border: "2px solid #252018", padding: 12 };

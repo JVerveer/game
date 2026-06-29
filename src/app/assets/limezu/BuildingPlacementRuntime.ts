@@ -1,4 +1,4 @@
-import { BUILDING_ASSETS } from "./BuildingLibrary";
+import { getBuildingAssets } from "./BuildingLibrary";
 import { buildingPrefabById } from "./BuildingPrefabRuntime";
 
 const SELECTED_BUILDING_STORAGE_KEY = "satiria.editor.selectedBuildingAsset.v1";
@@ -21,12 +21,13 @@ let cachedAssignments: BuildingAssetAssignments = {};
 
 export function getBuildingAsset(assetId: string | null | undefined) {
   if (!assetId) return undefined;
-  return BUILDING_ASSETS.find(asset => asset.id === assetId);
+  return getBuildingAssets().find(asset => asset.id === assetId);
 }
 
 export function defaultBuildingAssetId() {
-  return BUILDING_ASSETS.find(asset => asset.width >= 96 && asset.height >= 96)?.id
-    ?? BUILDING_ASSETS[0]?.id
+  const assets = getBuildingAssets();
+  return assets.find(asset => asset.width >= 96 && asset.height >= 96)?.id
+    ?? assets[0]?.id
     ?? "";
 }
 

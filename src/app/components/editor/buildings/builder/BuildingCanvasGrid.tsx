@@ -1,4 +1,4 @@
-import { BUILDING_ASSETS } from "../BuildingLibrary";
+import { getBuildingAssets } from "../BuildingLibrary";
 import {
   setBuildingCanvasTile,
   removeBuildingCanvasTile,
@@ -9,7 +9,7 @@ import {
 const TILE_SIZE = 48;
 
 function assetFor(assetId: string | undefined) {
-  return BUILDING_ASSETS.find(asset => asset.id === assetId);
+  return getBuildingAssets().find(asset => asset.id === assetId);
 }
 
 export function BuildingCanvasGrid({

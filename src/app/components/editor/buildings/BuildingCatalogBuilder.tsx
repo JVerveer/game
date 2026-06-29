@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BUILDING_ASSETS } from "./BuildingLibrary";
+import { getBuildingAssets } from "./BuildingLibrary";
 import {
   clearBuildingCatalogDraft,
   createEmptyBuildingCatalogDraft,
@@ -21,7 +21,7 @@ const TOOLS: BuildingBuilderTool[] = ["brush", "eraser", "picker", "fill"];
 const LAYERS: BuildingCatalogLayer[] = ["base", "decor", "collision"];
 
 function assetFor(assetId: string | undefined) {
-  return BUILDING_ASSETS.find(asset => asset.id === assetId);
+  return getBuildingAssets().find(asset => asset.id === assetId);
 }
 
 function sanitizeIdPreview(name: string) {
@@ -39,7 +39,7 @@ function BuildingAssetPalette({
   const [group, setGroup] = useState("all");
   const [visibleCount, setVisibleCount] = useState(80);
 
-  const assets = BUILDING_ASSETS.filter(asset => {
+  const assets = getBuildingAssets().filter(asset => {
     const haystack = `${asset.label} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
     return (group === "all" || haystack.includes(group)) && (!query.trim() || haystack.includes(query.trim().toLowerCase()));
   });
