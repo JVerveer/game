@@ -69,6 +69,18 @@ export function useTerrainPainter({
 }) {
   const lastPaintedCoordRef = useRef<string | null>(null);
 
+  const updateEditedTerrainTile = (id: GameMapId, x: number, y: number, tile: string) => {
+    setEditedRowsByMap(prev => {
+      const base = prev[id] ?? rowsForMap(id);
+      if (base[y]?.[x] === undefined) return prev;
+      if (base[y][x] === tile && prev[id]) return prev;
+
+      const next = base.map((row, rowIndex) => rowIndex === y ? [...row] : row);
+      next[y][x] = tile;
+      return { ...prev, [id]: next };
+    });
+  };
+
   const transformDragTo = (x: number, y: number) => {
     if (!isSelectEditorMode(editorModeRef.current)) return false;
 
@@ -184,22 +196,12 @@ export function useTerrainPainter({
 
       // Keep the underlying map compatible with the old one-character terrain system.
       // Direct LimeZu terrain is stored separately per coordinate.
-      setEditedRowsByMap(prev => {
-        const base = prev[id] ?? rowsForMap(id).map(row => [...row]);
-        const next = base.map(row => [...row]);
-        if (next[y]?.[x] !== undefined) next[y][x] = "G";
-        return { ...prev, [id]: next };
-      });
+      updateEditedTerrainTile(id, x, y, "G");
       return;
     }
 
 
-    setEditedRowsByMap(prev => {
-      const base = prev[id] ?? rowsForMap(id).map(row => [...row]);
-      const next = base.map(row => [...row]);
-      if (next[y]?.[x] !== undefined) next[y][x] = editorTileRef.current;
-      return { ...prev, [id]: next };
-    });
+    updateEditedTerrainTile(id, x, y, editorTileRef.current);
   };
 
   return {
