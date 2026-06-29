@@ -1185,7 +1185,7 @@ useRuntimeEffects({
           display: "flex", alignItems: "center", justifyContent: "center",
           filter: "drop-shadow(0 3px 2px rgba(37,32,24,0.28))",
           zIndex: 80 + pos.y, pointerEvents: "none",
-          transition: "left 0.18s steps(3, end), top 0.18s steps(3, end)",
+          transition: "left 0.15s linear, top 0.15s linear",
         }}>
           <div
             title={heroName}

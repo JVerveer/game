@@ -1,10 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import type { Dispatch, MutableRefObject, RefObject, SetStateAction } from "react";
 import type { GameMapId } from "../../../data/maps";
 import { WALKABLE_TILES as WALK, GAME_MAPS } from "../../../data/maps";
 import type { MovingNpc } from "../../../data/npcs";
 import type { EditorBuildingAsset } from "../../../data/cityMaps/mapAsset";
 import type { EditorSelection } from "../editor/hooks/useEditorState";
+
+type MoveIntent = {
+  dx: number;
+  dy: number;
+  dir: "up" | "down" | "left" | "right";
+  key: string;
+};
+
+function moveIntentForKey(key: string): MoveIntent | null {
+  if (key === "ArrowUp" || key === "w" || key === "W") return { dx: 0, dy: -1, dir: "up", key };
+  if (key === "ArrowDown" || key === "s" || key === "S") return { dx: 0, dy: 1, dir: "down", key };
+  if (key === "ArrowLeft" || key === "a" || key === "A") return { dx: -1, dy: 0, dir: "left", key };
+  if (key === "ArrowRight" || key === "d" || key === "D") return { dx: 1, dy: 0, dir: "right", key };
+  return null;
+}
 
 export function useRuntimeEffects({
   trainOpenRef,
@@ -83,8 +98,10 @@ export function useRuntimeEffects({
   setDraggedObjectCoord: Dispatch<SetStateAction<string | null>>;
   setResizeBuildingId: Dispatch<SetStateAction<string | null>>;
 }) {
+  const heldMoveRef = useRef<MoveIntent | null>(null);
+
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
+    const keydownHandler = (e: KeyboardEvent) => {
       if (trainOpenRef.current) {
         e.preventDefault();
         handleTrainKey(e.key);
@@ -139,13 +156,46 @@ export function useRuntimeEffects({
       if (e.key === " " || e.key === "z" || e.key === "Z" || e.key === "Enter") {
         e.preventDefault(); doInteract(); return;
       }
-      if (e.key === "ArrowUp"    || e.key === "w" || e.key === "W") { e.preventDefault(); doMove(0, -1, "up", e.repeat); }
-      if (e.key === "ArrowDown"  || e.key === "s" || e.key === "S") { e.preventDefault(); doMove(0, 1, "down", e.repeat); }
-      if (e.key === "ArrowLeft"  || e.key === "a" || e.key === "A") { e.preventDefault(); doMove(-1, 0, "left", e.repeat); }
-      if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") { e.preventDefault(); doMove(1, 0, "right", e.repeat); }
+      const moveIntent = moveIntentForKey(e.key);
+      if (moveIntent) {
+        e.preventDefault();
+        heldMoveRef.current = moveIntent;
+        if (!e.repeat) doMove(moveIntent.dx, moveIntent.dy, moveIntent.dir, false);
+      }
     };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
+
+    const keyupHandler = (e: KeyboardEvent) => {
+      const held = heldMoveRef.current;
+      if (!held) return;
+      const released = moveIntentForKey(e.key);
+      if (!released) return;
+      if (released.dir === held.dir || released.key.toLowerCase() === held.key.toLowerCase()) {
+        heldMoveRef.current = null;
+      }
+    };
+
+    const blurHandler = () => {
+      heldMoveRef.current = null;
+    };
+
+    window.addEventListener("keydown", keydownHandler);
+    window.addEventListener("keyup", keyupHandler);
+    window.addEventListener("blur", blurHandler);
+    return () => {
+      window.removeEventListener("keydown", keydownHandler);
+      window.removeEventListener("keyup", keyupHandler);
+      window.removeEventListener("blur", blurHandler);
+    };
+  }, []);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      const moveIntent = heldMoveRef.current;
+      if (!moveIntent) return;
+      doMove(moveIntent.dx, moveIntent.dy, moveIntent.dir, true);
+    }, 80);
+
+    return () => window.clearInterval(timer);
   }, []);
 
   useEffect(() => {

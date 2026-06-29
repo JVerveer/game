@@ -729,7 +729,7 @@ export function nextColorId(category: CharacterColorCategory, currentId: string,
 }
 
 export function nextOptionId(category: CharacterLayerCategory, currentId: string, direction: 1 | -1) {
-  const options = CHARACTER_ASSET_MANIFEST[category];
+  const options = curatedOptionsFor(category);
   const currentIndex = Math.max(0, options.findIndex(option => option.id === currentId));
   const nextIndex = (currentIndex + direction + options.length) % options.length;
   return options[nextIndex]?.id ?? currentId;
@@ -737,7 +737,7 @@ export function nextOptionId(category: CharacterLayerCategory, currentId: string
 
 export function randomCharacterAppearance(): CharacterAppearance {
   const pick = (category: CharacterLayerCategory) => {
-    const options = CHARACTER_ASSET_MANIFEST[category];
+    const options = curatedOptionsFor(category);
     const usable = category === "body"
       ? options
       : options.filter(option => option.id !== "none");
@@ -765,6 +765,10 @@ export function randomCharacterAppearance(): CharacterAppearance {
 
 function prettyOptionLabel(id: string, fallback: string) {
   if (id === "none") return "None";
+  const hairMatch = id.match(/^hairstyle_(\d+)_48x48_\d+$/);
+  if (hairMatch) return `Hairstyle ${Number(hairMatch[1])}`;
+  const outfitMatch = id.match(/^outfit_(\d+)_48x48_\d+$/);
+  if (outfitMatch) return `Outfit ${Number(outfitMatch[1])}`;
 
   const normalized = id
     .replace(/_48x48/g, "")
@@ -798,6 +802,21 @@ export function curatedOptionsFor(category: CharacterLayerCategory) {
 
   const none = options.filter(option => option.id === "none");
   const rest = options.filter(option => option.id !== "none");
+
+  if (category === "hair" || category === "outfit") {
+    const seen = new Set<string>();
+    const shapeOptions = rest.filter(option => {
+      const key = option.id.replace(/_\d+$/, "");
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+
+    return [
+      ...none,
+      ...shapeOptions,
+    ];
+  }
 
   return [
     ...none,

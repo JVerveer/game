@@ -72,6 +72,18 @@ function filterForLayer(category: CharacterLayerCategory, appearance: CharacterA
   return colorOptionFor(colorCategory, appearance[colorCategory]).filter;
 }
 
+function colorOptionForLayer(category: CharacterLayerCategory, appearance: CharacterAppearance) {
+  const colorCategory = colorCategoryForLayer(category);
+  return colorCategory ? colorOptionFor(colorCategory, appearance[colorCategory]) : null;
+}
+
+function usesConsistentRecolor(category: CharacterLayerCategory, appearance: CharacterAppearance) {
+  const colorCategory = colorCategoryForLayer(category);
+  if (!colorCategory || (category !== "hair" && category !== "outfit")) return false;
+  const colorId = appearance[colorCategory];
+  return colorId !== "default" && colorId !== "black" && colorId !== "white";
+}
+
 function AtlasLayer({
   category,
   optionId,
@@ -97,6 +109,16 @@ function AtlasLayer({
   const sourceRow = useOverflow ? frame.row - 1 : frame.row;
   const layerTop = useOverflow ? -displaySize : 0;
   const layerHeight = useOverflow ? displaySize * 2 : displaySize;
+  const commonImageStyle = {
+    backgroundImage: `url(${option.src})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: `${backgroundWidth}px ${backgroundHeight}px`,
+    backgroundPosition: `${-frame.col * displaySize}px ${-sourceRow * displaySize}px`,
+    imageRendering: "pixelated" as const,
+    pointerEvents: "none" as const,
+  };
+  const colorOption = colorOptionForLayer(category, appearance);
+  const consistentRecolor = usesConsistentRecolor(category, appearance);
 
   return (
     <div
@@ -107,15 +129,43 @@ function AtlasLayer({
         top: layerTop,
         width: displaySize,
         height: layerHeight,
-        backgroundImage: `url(${option.src})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: `${backgroundWidth}px ${backgroundHeight}px`,
-        backgroundPosition: `${-frame.col * displaySize}px ${-sourceRow * displaySize}px`,
         imageRendering: "pixelated",
         pointerEvents: "none",
-        filter: filterForLayer(category, appearance),
       }}
-    />
+    >
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          ...commonImageStyle,
+          filter: consistentRecolor
+            ? "grayscale(1) contrast(1.15) brightness(0.92)"
+            : filterForLayer(category, appearance),
+        }}
+      />
+
+      {consistentRecolor && colorOption && (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: colorOption.color,
+            mixBlendMode: "color",
+            opacity: 0.95,
+            WebkitMaskImage: `url(${option.src})`,
+            WebkitMaskRepeat: "no-repeat",
+            WebkitMaskSize: `${backgroundWidth}px ${backgroundHeight}px`,
+            WebkitMaskPosition: `${-frame.col * displaySize}px ${-sourceRow * displaySize}px`,
+            maskImage: `url(${option.src})`,
+            maskRepeat: "no-repeat",
+            maskSize: `${backgroundWidth}px ${backgroundHeight}px`,
+            maskPosition: `${-frame.col * displaySize}px ${-sourceRow * displaySize}px`,
+            imageRendering: "pixelated",
+            pointerEvents: "none",
+          }}
+        />
+      )}
+    </div>
   );
 }
 
@@ -177,13 +227,13 @@ export function CharacterComposite({
               transform: translate(0px, 0px) rotate(0deg) scaleY(1);
             }
             25% {
-              transform: translate(${-walkDistance}px, -3px) rotate(-1deg) scaleY(0.985);
+              transform: translate(${-walkDistance}px, -2px) rotate(-0.7deg) scaleY(0.99);
             }
             50% {
               transform: translate(0px, 0px) rotate(0deg) scaleY(1);
             }
             75% {
-              transform: translate(${walkDistance}px, -3px) rotate(1deg) scaleY(0.985);
+              transform: translate(${walkDistance}px, -2px) rotate(0.7deg) scaleY(0.99);
             }
             100% {
               transform: translate(0px, 0px) rotate(0deg) scaleY(1);
@@ -224,7 +274,7 @@ export function CharacterComposite({
           flex: "0 0 auto",
           overflow: "visible",
           transformOrigin: "center bottom",
-          animation: walking ? "limezuHeroObviousWalk 420ms steps(4, end) infinite" : undefined,
+          animation: walking ? "limezuHeroObviousWalk 360ms ease-in-out infinite" : undefined,
         }}
       >
         {showShadow && (
@@ -238,7 +288,7 @@ export function CharacterComposite({
               backgroundColor: "rgba(0,0,0,0.26)",
               borderRadius: 999,
               transformOrigin: "center",
-              animation: walking ? "limezuHeroObviousShadow 420ms steps(4, end) infinite" : undefined,
+              animation: walking ? "limezuHeroObviousShadow 360ms ease-in-out infinite" : undefined,
             }}
           />
         )}
