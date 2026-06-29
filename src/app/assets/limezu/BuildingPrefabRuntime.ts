@@ -9,6 +9,7 @@ import {
 import {
   BUILDING_PREFAB_CATALOG,
   type BuildingCatalogPrefab,
+  type BuildingCatalogLayer,
   type BuildingCatalogTile,
 } from "./BuildingPrefabCatalog";
 

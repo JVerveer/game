@@ -7,7 +7,8 @@ import {
   readBuildingPrefabs,
   type BuildingPrefab,
 } from "../../../assets/limezu/BuildingPrefabRuntime";
-import { getBuildingAsset, humanBuildingAssetLabel } from "../../../assets/limezu/BuildingPlacementRuntime";
+import { getBuildingAsset } from "../../../assets/limezu/BuildingLibrary";
+import { humanBuildingAssetLabel } from "../../../assets/limezu/BuildingPlacementRuntime";
 
 const VT = { fontFamily: "'VT323', monospace" } as const;
 const RJ = { fontFamily: "'Rajdhani', sans-serif" } as const;
@@ -73,7 +74,7 @@ export function BuildingPrefabManager({
     const q = query.trim().toLowerCase();
 
     return Object.values(readBuildingPrefabs())
-      .sort((a, b) => b.updatedAt - a.updatedAt)
+      .sort((a, b) => (b.updatedAt ?? 0) - (a.updatedAt ?? 0))
       .filter(prefab => {
         const haystack = `${prefab.name} ${prefab.kind} ${prefab.color} ${prefab.tags.join(" ")} ${prefab.assetId ?? ""}`.toLowerCase();
         return !q || haystack.includes(q);
@@ -147,7 +148,7 @@ export function BuildingPrefabManager({
               <div style={{ minWidth: 0 }}>
                 <div style={{ ...VT, fontSize: "1.1rem", color: "#252018" }}>{prefab.name}</div>
                 <div style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#584c35" }}>
-                  {prefab.kind} · {prefab.color} · {prefab.w}×{prefab.h}
+                  {prefab.kind} · {prefab.color} · {prefab.width}×{prefab.height}
                 </div>
                 {asset && (
                   <div style={{ ...RJ, fontSize: "0.64rem", fontWeight: 800, color: "#584c35" }}>

@@ -153,8 +153,9 @@ export function saveBuildingCanvasAsPrefab(draft: BuildingCanvasDraft) {
     name: draft.name.trim() || "New Building",
     kind: draft.kind,
     color: draft.color,
-    w: draft.width,
-    h: draft.height,
+    width: draft.width,
+    height: draft.height,
+    tiles: draft.tiles,
     assetId,
     tags: [
       draft.kind,

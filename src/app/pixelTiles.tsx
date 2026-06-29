@@ -230,13 +230,15 @@ function RuntimeBuildingAssetSprite({
 
   if (!asset?.src) return null;
 
+  const assetWidth = asset.width ?? TILE_SIZE;
+  const assetHeight = asset.height ?? TILE_SIZE;
   const scale = Math.min(
-    (building.w * TILE_SIZE) / Math.max(1, asset.width),
-    (building.h * TILE_SIZE) / Math.max(1, asset.height),
+    (building.w * TILE_SIZE) / Math.max(1, assetWidth),
+    (building.h * TILE_SIZE) / Math.max(1, assetHeight),
   );
 
-  const displayWidth = Math.max(TILE_SIZE, asset.width * scale);
-  const displayHeight = Math.max(TILE_SIZE, asset.height * scale);
+  const displayWidth = Math.max(TILE_SIZE, assetWidth * scale);
+  const displayHeight = Math.max(TILE_SIZE, assetHeight * scale);
 
   return (
     <i

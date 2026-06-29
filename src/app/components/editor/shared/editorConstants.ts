@@ -1,4 +1,4 @@
-import type { EditorBuildingColor, EditorBuildingKind } from "../../../data/cityMaps/mapAsset";
+import type { EditorBuildingColor, EditorBuildingKind } from "../../../../data/cityMaps/mapAsset";
 import type { BuildingTypeOption, NpcVisualCategory, NpcVisualPreset } from "./editorTypes";
 
 export const TILE_TYPES = [

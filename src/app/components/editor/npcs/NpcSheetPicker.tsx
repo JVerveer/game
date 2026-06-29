@@ -2,9 +2,9 @@ import { useMemo, useState } from "react";
 import {
   CHARACTER_ASSET_CATALOG,
   type CharacterAsset,
-} from "../../assets/limezu/characters/CharacterAssetCatalog";
-import { readCharacterAssetClassification } from "../../assets/limezu/characters/CharacterAssetRuntime";
-import { assignNpcSheet, clearNpcSheet, getNpcSheetAssignment } from "../../rendering/characters/NpcSheetRuntime";
+} from "../../../assets/limezu/characters/CharacterAssetCatalog";
+import { readCharacterAssetClassification } from "../../../assets/limezu/characters/CharacterAssetRuntime";
+import { assignNpcSheet, clearNpcSheet, getNpcSheetAssignment } from "../../../rendering/characters/NpcSheetRuntime";
 
 const NPC_CATEGORIES = new Set(["npc", "fullCharacter", "monster", "set"]);
 
