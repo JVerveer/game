@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react";
 import { getBuildingAssets } from "../BuildingLibrary";
+import type { LimeZuRuntimeAsset } from "../../../../assets/limezu/types";
 import { humanBuildingAssetLabel } from "../../../../assets/limezu/BuildingPlacementRuntime";
-
-type BuildingAsset = ReturnType<typeof getBuildingAssets>[number];
 
 const GROUPS = [
   "all",
@@ -18,7 +17,7 @@ const GROUPS = [
   "post",
 ] as const;
 
-function matchesGroup(asset: BuildingAsset, group: string) {
+function matchesGroup(asset: LimeZuRuntimeAsset, group: string) {
   if (group === "all") return true;
   const haystack = `${asset.label} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
   return haystack.includes(group);
@@ -38,7 +37,7 @@ export function BuildingPartPalette({
   const assets = useMemo(() => {
     const q = query.trim().toLowerCase();
 
-    return getBuildingAssets().filter(asset => {
+    return getBuildingAssets().filter((asset: LimeZuRuntimeAsset) => {
       const haystack = `${asset.label} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
       return matchesGroup(asset, group) && (!q || haystack.includes(q));
     });

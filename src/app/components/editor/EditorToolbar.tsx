@@ -1,8 +1,29 @@
-import { useState } from "react";
-import { CharacterAssetManager } from "./characters/CharacterAssetManager";
-import { LimeZuAssetCategorizer } from "./assets/LimeZuAssetCategorizer";
+import { lazy, Suspense, useState } from "react";
+
+const LimeZuAssetCategorizer = lazy(() =>
+  import("./assets/LimeZuAssetCategorizer").then(module => ({
+    default: module.LimeZuAssetCategorizer,
+  })),
+);
+
+const CharacterAssetManager = lazy(() =>
+  import("./characters/CharacterAssetManager").then(module => ({
+    default: module.CharacterAssetManager,
+  })),
+);
 
 type EditorMode = "select" | "terrain" | "buildings" | "objects" | "npcs";
+
+const loadingPanelStyle: React.CSSProperties = {
+  position: "fixed",
+  inset: 0,
+  zIndex: 6000,
+  display: "grid",
+  placeItems: "center",
+  background: "rgba(37,32,24,0.85)",
+  color: "#fff8c8",
+  fontWeight: 900,
+};
 
 export function EditorToolbar({
   editorMode,
@@ -68,12 +89,14 @@ export function EditorToolbar({
         </button>
       </div>
 
-      {showAssetCategorizer && (
-        <LimeZuAssetCategorizer onClose={() => setShowAssetCategorizer(false)} />
-      )}
-      {showCharacterAssetManager && (
-        <CharacterAssetManager onClose={() => setShowCharacterAssetManager(false)} />
-      )}
+      <Suspense fallback={<div style={loadingPanelStyle}>Loading editor assets...</div>}>
+        {showAssetCategorizer && (
+          <LimeZuAssetCategorizer onClose={() => setShowAssetCategorizer(false)} />
+        )}
+        {showCharacterAssetManager && (
+          <CharacterAssetManager onClose={() => setShowCharacterAssetManager(false)} />
+        )}
+      </Suspense>
     </>
   );
 }

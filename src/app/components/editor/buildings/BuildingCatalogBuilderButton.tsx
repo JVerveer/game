@@ -1,5 +1,10 @@
-import { useState } from "react";
-import { BuildingCatalogBuilder } from "./BuildingCatalogBuilder";
+import { lazy, Suspense, useState } from "react";
+
+const BuildingCatalogBuilder = lazy(() =>
+  import("./BuildingCatalogBuilder").then(module => ({
+    default: module.BuildingCatalogBuilder,
+  })),
+);
 
 export function BuildingCatalogBuilderButton() {
   const [open, setOpen] = useState(false);
@@ -20,10 +25,12 @@ export function BuildingCatalogBuilderButton() {
           width: "100%",
         }}
       >
-        Open 20×10 Building Catalog Builder
+        Open 20x10 Building Catalog Builder
       </button>
 
-      {open && <BuildingCatalogBuilder onClose={() => setOpen(false)} />}
+      <Suspense fallback={<div style={{ padding: 12, fontWeight: 900 }}>Loading building builder...</div>}>
+        {open && <BuildingCatalogBuilder onClose={() => setOpen(false)} />}
+      </Suspense>
     </>
   );
 }

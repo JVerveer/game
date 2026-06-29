@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { getBuildingAssets } from "./BuildingLibrary";
+import type { LimeZuRuntimeAsset } from "../../../assets/limezu/types";
 import {
   clearBuildingCatalogDraft,
   createEmptyBuildingCatalogDraft,
@@ -39,10 +40,14 @@ function BuildingAssetPalette({
   const [group, setGroup] = useState("all");
   const [visibleCount, setVisibleCount] = useState(80);
 
-  const assets = getBuildingAssets().filter(asset => {
-    const haystack = `${asset.label} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
-    return (group === "all" || haystack.includes(group)) && (!query.trim() || haystack.includes(query.trim().toLowerCase()));
-  });
+  const assets = useMemo(() => {
+    const q = query.trim().toLowerCase();
+
+    return getBuildingAssets().filter((asset: LimeZuRuntimeAsset) => {
+      const haystack = `${asset.label} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
+      return (group === "all" || haystack.includes(group)) && (!q || haystack.includes(q));
+    });
+  }, [group, query]);
 
   return (
     <div style={paletteStyle}>
