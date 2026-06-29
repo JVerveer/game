@@ -6,7 +6,7 @@ import type { LimeZuAssetClassification } from "./AssetCatalog";
  * Generated/updated by:
  *   node scripts/dedupe-asset-classification.mjs
  */
-export const ASSET_CLASSIFICATION = {
+export const LIMEZU_ASSET_CLASSIFICATION = {
   asset_0: "ignore",
   asset_1: "ignore",
   asset_2: "ignore",
