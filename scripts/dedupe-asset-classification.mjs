@@ -34,9 +34,15 @@ function readFile(filePath) {
   return fs.readFileSync(filePath, "utf8");
 }
 
+function shouldIgnoreBySizeLabel(asset) {
+  const haystack = `${asset.label} ${asset.source}`.toLowerCase();
+  return /\b16x16\b/.test(haystack) || /\b32x32\b/.test(haystack);
+}
+
 function normalizeAssetName(label) {
   return String(label ?? "")
     .toLowerCase()
+    .replace(/^\d+\s+/, "")
     .replace(/\b\d+x\d+\b/g, "")
     .replace(/\b(16x16|32x32|48x48)\b/g, "")
     .replace(/\bcopy\b/g, "")
@@ -73,7 +79,6 @@ function extractCatalogArray(source) {
     throw new Error("Could not find equals sign after LIMEZU_ASSET_CATALOG.");
   }
 
-  // Important: search after "=" so we do not accidentally pick the [] in LimeZuCatalogAsset[].
   const arrayStart = source.indexOf("[", equalsIndex);
   if (arrayStart < 0) {
     throw new Error("Could not find asset catalog array start.");
@@ -183,9 +188,10 @@ function parseCatalog(source) {
 
 function parseClassification(source) {
   const classification = {};
-  const objectMatch = source.match(/ASSET_CLASSIFICATION\s*=\s*\{([\s\S]*?)\}\s*as const/s);
-  const body = objectMatch?.[1] ?? source;
+  const objectMatch = source.match(/LIMEZU_ASSET_CLASSIFICATION\s*=\s*\{([\s\S]*?)\}\s*as const/s)
+    ?? source.match(/ASSET_CLASSIFICATION\s*=\s*\{([\s\S]*?)\}\s*as const/s);
 
+  const body = objectMatch?.[1] ?? source;
   const pairRegex = /["']?([A-Za-z0-9_$]+)["']?\s*:\s*["']([^"']+)["']/g;
 
   let match;
@@ -245,7 +251,7 @@ function buildOutput(classification) {
  * Generated/updated by:
  *   node scripts/dedupe-asset-classification.mjs
  */
-export const ASSET_CLASSIFICATION = {
+export const LIMEZU_ASSET_CLASSIFICATION = {
 ${body}
 } as const satisfies LimeZuAssetClassification;
 `;
@@ -267,6 +273,24 @@ function main() {
     throw new Error("No assets found in AssetCatalog.ts. The parser may need updating.");
   }
 
+  let sizeIgnoredCount = 0;
+  const sizeIgnoredReport = [];
+
+  for (const asset of assets) {
+    if (shouldIgnoreBySizeLabel(asset)) {
+      const previousCategory = categoryFor(asset, classification);
+      if (previousCategory !== "ignore") {
+        classification[asset.id] = "ignore";
+        sizeIgnoredCount += 1;
+        sizeIgnoredReport.push({
+          id: asset.id,
+          label: asset.label,
+          previousCategory,
+        });
+      }
+    }
+  }
+
   const groups = new Map();
 
   for (const asset of assets) {
@@ -282,7 +306,7 @@ function main() {
 
   const duplicateGroups = [...groups.values()].filter(group => group.length > 1);
 
-  let ignoredCount = 0;
+  let duplicateIgnoredCount = 0;
   const report = [];
 
   for (const group of duplicateGroups) {
@@ -295,7 +319,7 @@ function main() {
 
     for (const asset of ignored) {
       classification[asset.id] = "ignore";
-      ignoredCount += 1;
+      duplicateIgnoredCount += 1;
     }
 
     report.push({
@@ -309,8 +333,20 @@ function main() {
   }
 
   console.log(`Catalog assets: ${assets.length}`);
+  console.log(`16x16 / 32x32 assets changed to ignore: ${sizeIgnoredCount}`);
   console.log(`Duplicate groups inside same category: ${duplicateGroups.length}`);
-  console.log(`Assets changed to ignore: ${ignoredCount}`);
+  console.log(`Duplicate assets changed to ignore: ${duplicateIgnoredCount}`);
+  console.log(`Total assets changed to ignore: ${sizeIgnoredCount + duplicateIgnoredCount}`);
+
+  if (sizeIgnoredReport.length > 0) {
+    console.log("\n16x16 / 32x32 assets moved to ignore:");
+    for (const item of sizeIgnoredReport.slice(0, 80)) {
+      console.log(`  ${item.id}: ${item.previousCategory} -> ignore (${item.label})`);
+    }
+    if (sizeIgnoredReport.length > 80) {
+      console.log(`  ... ${sizeIgnoredReport.length - 80} more omitted from console output.`);
+    }
+  }
 
   if (report.length > 0) {
     console.log("\nDuplicate report:");
@@ -323,7 +359,7 @@ function main() {
     }
 
     if (report.length > 80) {
-      console.log(`\n... ${report.length - 80} more groups omitted from console output.`);
+      console.log(`\n... ${report.length - 80} more duplicate groups omitted from console output.`);
     }
   }
 
