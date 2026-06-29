@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BUILDING_ASSETS } from "../BuildingLibrary";
+import { BUILDING_ASSETS } from "./BuildingLibrary";
 import {
   clearBuildingCatalogDraft,
   createEmptyBuildingCatalogDraft,
@@ -13,7 +13,7 @@ import {
   type BuildingBuilderTool,
   type BuildingCatalogBuilderDraft,
 } from "../../../assets/limezu/BuildingCatalogBuilderRuntime";
-import type { BuildingCatalogLayer } from "../../../assets/limezu/BuildingPrefabRuntime";
+import type { BuildingCatalogLayer } from "../../../assets/limezu/BuildingPrefabCatalog";
 import { humanBuildingAssetLabel } from "../../../assets/limezu/BuildingPlacementRuntime";
 
 const TILE_SIZE = 40;
