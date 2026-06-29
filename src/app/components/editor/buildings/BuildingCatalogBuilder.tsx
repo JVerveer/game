@@ -4,18 +4,26 @@ import type { LimeZuRuntimeAsset } from "../../../assets/limezu/types";
 import {
   clearBuildingCatalogDraft,
   createEmptyBuildingCatalogDraft,
+  draftToPrefab,
   exportDraftAsCatalogEntry,
+  prefabToDraft,
   readBuildingCatalogDraft,
   removeTile,
-  saveDraftToBrowserPrefab,
   setTile,
   tileAt,
   writeBuildingCatalogDraft,
   type BuildingBuilderTool,
   type BuildingCatalogBuilderDraft,
 } from "../../../assets/limezu/BuildingCatalogBuilderRuntime";
-import type { BuildingCatalogLayer } from "../../../assets/limezu/BuildingPrefabCatalog";
+import type { BuildingCatalogLayer, BuildingCatalogPrefab } from "../../../assets/limezu/BuildingPrefabCatalog";
 import { humanBuildingAssetLabel } from "../../../assets/limezu/BuildingPlacementRuntime";
+import {
+  deleteBuildingPrefab,
+  exportBuildingPrefabCatalogFile,
+  readBuildingPrefabs,
+  upsertBuildingPrefab,
+  type BuildingPrefab,
+} from "../../../assets/limezu/BuildingPrefabRuntime";
 
 const TILE_SIZE = 40;
 const TOOLS: BuildingBuilderTool[] = ["brush", "eraser", "picker", "fill"];
@@ -34,6 +42,35 @@ function selectedAssetMeta(assetId: string) {
 
 function sanitizeIdPreview(name: string) {
   return `building-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "prefab"}`;
+}
+
+function normalizeCatalogPrefab(prefab: BuildingPrefab): BuildingCatalogPrefab {
+  return {
+    id: prefab.id,
+    name: prefab.name,
+    kind: prefab.kind,
+    color: prefab.color,
+    width: prefab.width,
+    height: prefab.height,
+    tiles: prefab.tiles
+      .filter(tile => tile.assetId || tile.src || tile.collision)
+      .sort((a, b) => a.y - b.y || a.x - b.x || a.layer.localeCompare(b.layer)),
+    entrance: prefab.entrance,
+    tags: prefab.tags,
+  };
+}
+
+function sortedPrefabs(prefabs: readonly BuildingCatalogPrefab[]) {
+  return [...prefabs].sort((a, b) => a.name.localeCompare(b.name));
+}
+
+function upsertWorkingPrefab(
+  prefabs: readonly BuildingCatalogPrefab[],
+  prefab: BuildingCatalogPrefab,
+) {
+  const next = prefabs.filter(item => item.id !== prefab.id);
+  next.push(prefab);
+  return sortedPrefabs(next);
 }
 
 function BuildingAssetPalette({
@@ -244,9 +281,13 @@ function BuildingGrid({
 }
 
 export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
+  const [workingCatalog, setWorkingCatalog] = useState<BuildingCatalogPrefab[]>(() =>
+    sortedPrefabs(Object.values(readBuildingPrefabs()).map(normalizeCatalogPrefab)),
+  );
   const [draft, setDraftState] = useState(() => readBuildingCatalogDraft());
   const [history, setHistory] = useState<BuildingCatalogBuilderDraft[]>([]);
   const [future, setFuture] = useState<BuildingCatalogBuilderDraft[]>([]);
+  const [selectedPrefabId, setSelectedPrefabId] = useState("");
   const [exportText, setExportText] = useState("");
 
   function setDraft(next: BuildingCatalogBuilderDraft) {
@@ -262,6 +303,25 @@ export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
 
   function update(patch: Partial<BuildingCatalogBuilderDraft>) {
     setDraft({ ...draft, ...patch });
+  }
+
+  function currentCatalogPrefab(): BuildingCatalogPrefab {
+    return normalizeCatalogPrefab(draftToPrefab(draft));
+  }
+
+  function selectPrefab(prefab: BuildingCatalogPrefab) {
+    setDraft(prefabToDraft(prefab));
+    setSelectedPrefabId(prefab.id);
+    setHistory([]);
+    setFuture([]);
+    setExportText("");
+  }
+
+  function saveDraftToWorkingCatalog() {
+    const prefab = currentCatalogPrefab();
+    setWorkingCatalog(current => upsertWorkingPrefab(current, prefab));
+    setSelectedPrefabId(prefab.id);
+    return prefab;
   }
 
   function undo() {
@@ -280,16 +340,33 @@ export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
     setDraft(next);
   }
 
-  function reset() {
+  function newPrefab() {
     clearBuildingCatalogDraft();
     setDraftState(createEmptyBuildingCatalogDraft());
+    setSelectedPrefabId("");
     setHistory([]);
     setFuture([]);
     setExportText("");
   }
 
   async function exportCatalogEntry() {
-    const text = exportDraftAsCatalogEntry(draft);
+    const prefab = saveDraftToWorkingCatalog();
+    const text = exportDraftAsCatalogEntry(prefabToDraft(prefab));
+    setExportText(text);
+
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      // textarea fallback stays visible
+    }
+  }
+
+  async function exportFullCatalog() {
+    const prefab = currentCatalogPrefab();
+    const nextCatalog = upsertWorkingPrefab(workingCatalog, prefab);
+    const text = exportBuildingPrefabCatalogFile(nextCatalog);
+    setWorkingCatalog(nextCatalog);
+    setSelectedPrefabId(prefab.id);
     setExportText(text);
 
     try {
@@ -300,7 +377,15 @@ export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
   }
 
   function saveBrowserOnly() {
-    saveDraftToBrowserPrefab(draft);
+    const prefab = saveDraftToWorkingCatalog();
+    upsertBuildingPrefab(prefab);
+  }
+
+  function deleteCurrentPrefab() {
+    const prefab = currentCatalogPrefab();
+    setWorkingCatalog(current => current.filter(item => item.id !== prefab.id));
+    deleteBuildingPrefab(prefab.id);
+    newPrefab();
   }
 
   return (
@@ -310,16 +395,18 @@ export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
           <div>
             <div style={titleStyle}>Building Catalog Builder</div>
             <div style={subtitleStyle}>
-              Build a 20×10 prefab, export the object, paste it into BuildingPrefabCatalog.ts, commit, then select it in the editor.
+              Build, adjust, and delete reusable 20×10 building prefabs. Copy the full catalog when the edited list should become source code.
             </div>
           </div>
 
           <div style={topButtonsStyle}>
             <button type="button" onClick={undo} style={buttonStyle}>Undo</button>
             <button type="button" onClick={redo} style={buttonStyle}>Redo</button>
-            <button type="button" onClick={saveBrowserOnly} style={buttonStyle}>Test in Browser</button>
-            <button type="button" onClick={exportCatalogEntry} style={saveButtonStyle}>Export Catalog Entry</button>
-            <button type="button" onClick={reset} style={dangerButtonStyle}>Reset</button>
+            <button type="button" onClick={saveBrowserOnly} style={buttonStyle}>Save/Test</button>
+            <button type="button" onClick={exportCatalogEntry} style={buttonStyle}>Copy Current Building</button>
+            <button type="button" onClick={exportFullCatalog} style={saveButtonStyle}>Copy Full Catalog</button>
+            <button type="button" onClick={deleteCurrentPrefab} style={dangerButtonStyle}>Delete Building</button>
+            <button type="button" onClick={newPrefab} style={buttonStyle}>New Building</button>
             <button type="button" onClick={onClose} style={doneButtonStyle}>Done</button>
           </div>
         </div>
@@ -402,13 +489,44 @@ export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
         </div>
 
         <div style={mainStyle}>
+          <div style={catalogStyle}>
+            <div style={titleStyle}>Existing Buildings</div>
+            <div style={catalogHintStyle}>
+              Select one to edit it. Deletes and edits are reflected when copying the full catalog.
+            </div>
+            <div style={catalogListStyle}>
+              {workingCatalog.map(prefab => {
+                const selected = selectedPrefabId === prefab.id || sanitizeIdPreview(draft.name) === prefab.id;
+
+                return (
+                  <button
+                    key={prefab.id}
+                    type="button"
+                    onClick={() => selectPrefab(prefab)}
+                    style={{
+                      ...catalogItemStyle,
+                      background: selected ? "#d8f0b0" : "#fff8c8",
+                      border: selected ? "4px solid #315f2a" : "2px solid #252018",
+                    }}
+                  >
+                    <span style={catalogNameStyle}>{prefab.name}</span>
+                    <span style={catalogIdStyle}>{prefab.id}</span>
+                    <span style={catalogTagsStyle}>{prefab.kind} · {prefab.color} · {prefab.tags.join(", ")}</span>
+                  </button>
+                );
+              })}
+              {!workingCatalog.length && (
+                <div style={emptyCatalogStyle}>No buildings in the working catalog yet.</div>
+              )}
+            </div>
+          </div>
           <BuildingAssetPalette selectedAssetId={draft.selectedAssetId} onSelect={assetId => update({ selectedAssetId: assetId, tool: "brush" })} />
           <BuildingGrid draft={draft} setDraft={setDraft} pushHistory={pushHistory} />
         </div>
 
         {exportText && (
           <div style={exportPanelStyle}>
-            <strong>Paste this object into BUILDING_PREFAB_CATALOG in BuildingPrefabCatalog.ts</strong>
+            <strong>Paste this code into src/app/assets/limezu/BuildingPrefabCatalog.ts, or paste the object into BUILDING_PREFAB_CATALOG when copying one building.</strong>
             <textarea value={exportText} readOnly style={exportTextareaStyle} />
           </div>
         )}
@@ -431,7 +549,15 @@ const settingsStyle: React.CSSProperties = { display: "grid", gridTemplateColumn
 const fieldStyle: React.CSSProperties = { display: "grid", gap: 4, fontFamily: "'Rajdhani', sans-serif", fontWeight: 900, fontSize: "0.72rem" };
 const inputStyle: React.CSSProperties = { border: "2px solid #252018", background: "#fff8c8", color: "#252018", padding: 8, fontWeight: 900 };
 const toolbarStyle: React.CSSProperties = { display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center", marginBottom: 10, border: "2px solid #252018", background: "#f4e8b5", padding: 8 };
-const mainStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "320px minmax(0, 1fr)", gap: 12, alignItems: "start" };
+const mainStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "minmax(220px, 280px) 320px minmax(0, 1fr)", gap: 12, alignItems: "start" };
+const catalogStyle: React.CSSProperties = { border: "3px solid #252018", background: "#f4e8b5", padding: 10, display: "grid", gap: 8 };
+const catalogHintStyle: React.CSSProperties = { fontFamily: "'Rajdhani', sans-serif", fontSize: "0.72rem", fontWeight: 900, color: "#584c35" };
+const catalogListStyle: React.CSSProperties = { display: "grid", gap: 6, maxHeight: "62vh", overflow: "auto", paddingRight: 2 };
+const catalogItemStyle: React.CSSProperties = { display: "grid", gap: 2, color: "#252018", cursor: "pointer", textAlign: "left", padding: 8 };
+const catalogNameStyle: React.CSSProperties = { fontFamily: "'VT323', monospace", fontSize: "1.12rem", lineHeight: 1 };
+const catalogIdStyle: React.CSSProperties = { fontFamily: "monospace", fontSize: "0.62rem", color: "#584c35", overflowWrap: "anywhere" };
+const catalogTagsStyle: React.CSSProperties = { fontFamily: "'Rajdhani', sans-serif", fontSize: "0.68rem", fontWeight: 900, color: "#315f2a" };
+const emptyCatalogStyle: React.CSSProperties = { border: "2px dashed #8d7a52", padding: 10, fontFamily: "'Rajdhani', sans-serif", fontWeight: 900, color: "#584c35" };
 const paletteStyle: React.CSSProperties = { border: "3px solid #252018", background: "#f4e8b5", padding: 10, display: "grid", gap: 8 };
 const assetGridStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(95px, 1fr))", gap: 7, maxHeight: "62vh", overflow: "auto", paddingRight: 4 };
 const assetButtonStyle: React.CSSProperties = { display: "grid", gap: 4, justifyItems: "center", padding: 6, color: "#252018", cursor: "pointer" };

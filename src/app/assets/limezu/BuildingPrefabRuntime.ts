@@ -14,6 +14,7 @@ import {
 } from "./BuildingPrefabCatalog";
 
 const PREFAB_STORAGE_KEY = "satiria.editor.buildingPrefabs.v2";
+const DELETED_PREFAB_STORAGE_KEY = "satiria.editor.deletedBuildingPrefabs.v2";
 const SELECTED_PREFAB_STORAGE_KEY = "satiria.editor.selectedBuildingPrefab.v2";
 
 export type BuildingPrefab = BuildingCatalogPrefab & {
@@ -26,6 +27,7 @@ export type BuildingPrefab = BuildingCatalogPrefab & {
 export type BuildingPrefabLibrary = Record<string, BuildingPrefab>;
 
 let cachedPrefabs: BuildingPrefabLibrary = {};
+let cachedDeletedPrefabIds: string[] = [];
 let selectedPrefabId = "";
 
 export function firstAssetIdFromPrefab(prefab: Pick<BuildingCatalogPrefab, "tiles">) {
@@ -59,6 +61,15 @@ function catalogLibrary(): BuildingPrefabLibrary {
   ) as BuildingPrefabLibrary;
 }
 
+function stripRuntimeFields(prefab: BuildingPrefab): BuildingCatalogPrefab {
+  const { createdAt, updatedAt, assetId, interiorMapId, ...catalogPrefab } = prefab;
+  return catalogPrefab;
+}
+
+function sameCatalogPrefab(left: BuildingPrefab, right: BuildingPrefab) {
+  return JSON.stringify(stripRuntimeFields(left)) === JSON.stringify(stripRuntimeFields(right));
+}
+
 export function readBuildingPrefabs(): BuildingPrefabLibrary {
   if (typeof window === "undefined") {
     return {
@@ -75,22 +86,40 @@ export function readBuildingPrefabs(): BuildingPrefabLibrary {
     cachedPrefabs = {};
   }
 
+  try {
+    cachedDeletedPrefabIds = JSON.parse(
+      window.localStorage.getItem(DELETED_PREFAB_STORAGE_KEY) ?? "[]",
+    ) as string[];
+  } catch {
+    cachedDeletedPrefabIds = [];
+  }
+
+  const deletedIds = new Set(cachedDeletedPrefabIds);
+  const visibleCatalog = Object.fromEntries(
+    Object.entries(catalogLibrary()).filter(([id]) => !deletedIds.has(id)),
+  ) as BuildingPrefabLibrary;
+
   return {
-    ...catalogLibrary(),
+    ...visibleCatalog,
     ...cachedPrefabs,
   };
 }
 
 export function writeBuildingPrefabs(next: BuildingPrefabLibrary) {
-  const catalog = BUILDING_PREFAB_CATALOG as readonly BuildingCatalogPrefab[];
-  const catalogIds = new Set(catalog.map(prefab => prefab.id));
+  const sourceCatalog = catalogLibrary();
+  const catalogIds = new Set(Object.keys(sourceCatalog));
+  cachedDeletedPrefabIds = [...catalogIds].filter(id => !next[id]);
 
   cachedPrefabs = Object.fromEntries(
-    Object.entries(next).filter(([id]) => !catalogIds.has(id)),
+    Object.entries(next).filter(([id, prefab]) => {
+      if (!catalogIds.has(id)) return true;
+      return !sameCatalogPrefab(prefab, sourceCatalog[id]);
+    }),
   ) as BuildingPrefabLibrary;
 
   if (typeof window !== "undefined") {
     window.localStorage.setItem(PREFAB_STORAGE_KEY, JSON.stringify(cachedPrefabs));
+    window.localStorage.setItem(DELETED_PREFAB_STORAGE_KEY, JSON.stringify(cachedDeletedPrefabIds));
     window.dispatchEvent(new CustomEvent("satiria:building-prefabs-changed"));
   }
 }
@@ -226,6 +255,41 @@ export function exportBuildingPrefabsTs() {
   return `import type { BuildingCatalogPrefab } from "./BuildingPrefabCatalog";
 
 export const EXPORTED_BUILDING_PREFABS = ${JSON.stringify(prefabs, null, 2)} as const satisfies BuildingCatalogPrefab[];
+`;
+}
+
+export function exportBuildingPrefabCatalogFile(prefabs: readonly BuildingCatalogPrefab[]) {
+  const sortedPrefabs = [...prefabs].sort((a, b) => a.name.localeCompare(b.name));
+
+  return `export type BuildingCatalogLayer = "base" | "decor" | "collision";
+
+export type BuildingCatalogTile = {
+  x: number;
+  y: number;
+  layer: BuildingCatalogLayer;
+  assetId?: string;
+  src?: string;
+  width?: number;
+  height?: number;
+  collision?: boolean;
+};
+
+export type BuildingCatalogPrefab = {
+  id: string;
+  name: string;
+  kind: "house" | "shop" | "healing" | "station" | "hall";
+  color: "red" | "blue" | "purple" | "green";
+  width: number;
+  height: number;
+  tiles: BuildingCatalogTile[];
+  entrance: {
+    x: number;
+    y: number;
+  };
+  tags: string[];
+};
+
+export const BUILDING_PREFAB_CATALOG = ${JSON.stringify(sortedPrefabs, null, 2)} as const satisfies readonly BuildingCatalogPrefab[];
 `;
 }
 

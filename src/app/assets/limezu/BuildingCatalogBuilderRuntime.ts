@@ -136,6 +136,22 @@ export function draftToPrefab(draft: BuildingCatalogBuilderDraft): BuildingPrefa
   };
 }
 
+export function prefabToDraft(prefab: BuildingPrefab): BuildingCatalogBuilderDraft {
+  return {
+    name: prefab.name,
+    kind: prefab.kind,
+    color: prefab.color,
+    width: 20,
+    height: 10,
+    selectedAssetId: prefab.tiles.find(tile => tile.assetId)?.assetId ?? "",
+    selectedLayer: "base",
+    tool: "brush",
+    tiles: prefab.tiles,
+    entrance: prefab.entrance,
+    tags: prefab.tags,
+  };
+}
+
 export function saveDraftToBrowserPrefab(draft: BuildingCatalogBuilderDraft) {
   return upsertBuildingPrefab(draftToPrefab(draft));
 }
