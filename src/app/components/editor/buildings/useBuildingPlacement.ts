@@ -5,10 +5,8 @@ import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind } fro
 import { buildingCrestForKind, doorForBuildingAsset } from "../../../../data/cityMaps/mapAsset";
 import type { EditedBuildingsByMap, EditedRowsByMap, EditorSelection } from "../hooks/useEditorState";
 import { clearBuildingFootprintsFromRows } from "./buildingHelpers";
-import {
-  assignBuildingAsset,
-  readSelectedBuildingAssetId,
-} from "../../../assets/limezu/BuildingPlacementRuntime";
+import { assignBuildingAsset, readSelectedBuildingAssetId } from "../../../assets/limezu/BuildingPlacementRuntime";
+import { selectedBuildingPrefab } from "../../../assets/limezu/BuildingPrefabRuntime";
 
 const UNIQUE_BUILDING_KINDS = new Set<EditorBuildingKind>(["shop", "healing", "station"]);
 
@@ -73,15 +71,17 @@ export function useBuildingPlacement({
 
   const placeEditorBuilding = (x: number, y: number) => {
     const id = mapIdRef.current;
-    const kind = editorBuildingKindRef.current;
+    const prefab = selectedBuildingPrefab();
+
+    const kind = prefab?.kind ?? editorBuildingKindRef.current;
     const building: EditorBuildingAsset = {
       id: `${id}-building-${Date.now()}`,
       x,
       y,
-      w: Math.max(1, editorBuildingWRef.current),
-      h: Math.max(1, editorBuildingHRef.current),
+      w: Math.max(1, prefab?.w ?? editorBuildingWRef.current),
+      h: Math.max(1, prefab?.h ?? editorBuildingHRef.current),
       kind,
-      color: editorBuildingColorRef.current,
+      color: prefab?.color ?? editorBuildingColorRef.current,
       crest: buildingCrestForKind(kind),
     };
 
@@ -101,18 +101,20 @@ export function useBuildingPlacement({
         if (shouldRemove) removedBuildings.push(item);
         return !shouldRemove;
       });
+
       if (removedBuildings.length > 0) {
         const baseRows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows.map(row => [...row]);
         const nextRows = clearBuildingFootprintsFromRows(baseRows, removedBuildings);
         editedRowsByMapRef.current = { ...editedRowsByMapRef.current, [id]: nextRows };
         setEditedRowsByMap(rowsPrev => ({ ...rowsPrev, [id]: nextRows }));
       }
+
       const next = [...withoutOverlap, building];
       editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: next };
       return { ...prev, [id]: next };
     });
 
-    const selectedAssetId = readSelectedBuildingAssetId();
+    const selectedAssetId = prefab?.assetId ?? readSelectedBuildingAssetId();
     if (selectedAssetId) {
       assignBuildingAsset({
         buildingId: building.id,

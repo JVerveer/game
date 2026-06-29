@@ -1,11 +1,9 @@
 import { useMemo, useState } from "react";
 import type { EditorBuildingColor, EditorBuildingKind } from "../../../../data/cityMaps/mapAsset";
 import { BUILDING_ASSETS } from "./BuildingLibrary";
-import {
-  humanBuildingAssetLabel,
-  readSelectedBuildingAssetId,
-  writeSelectedBuildingAssetId,
-} from "../../../assets/limezu/BuildingPlacementRuntime";
+import { humanBuildingAssetLabel, readSelectedBuildingAssetId, writeSelectedBuildingAssetId } from "../../../assets/limezu/BuildingPlacementRuntime";
+import { currentBuildingAssetIdForPrefab, makeBuildingPrefabId, upsertBuildingPrefab } from "../../../assets/limezu/BuildingPrefabRuntime";
+import { BuildingPrefabManager } from "./BuildingPrefabManager";
 
 const VT = { fontFamily: "'VT323', monospace" } as const;
 const RJ = { fontFamily: "'Rajdhani', sans-serif" } as const;
@@ -19,19 +17,7 @@ const BUILDING_TYPES = [
 ];
 
 const BUILDING_COLORS = ["red", "blue", "purple", "green"] as const;
-
-const BUILDING_GROUPS = [
-  "all",
-  "house",
-  "door",
-  "roof",
-  "window",
-  "shop",
-  "office",
-  "garden",
-  "garage",
-  "post",
-] as const;
+const BUILDING_GROUPS = ["all", "house", "door", "roof", "window", "shop", "office", "garden", "garage", "post"] as const;
 
 function assetMatchesGroup(asset: (typeof BUILDING_ASSETS)[number], group: string) {
   if (group === "all") return true;
@@ -46,35 +32,24 @@ function inferredFootprint(asset: (typeof BUILDING_ASSETS)[number]) {
   };
 }
 
-function BuildingAssetPreview({
-  asset,
-}: {
-  asset: (typeof BUILDING_ASSETS)[number];
-}) {
+function BuildingAssetPreview({ asset }: { asset: (typeof BUILDING_ASSETS)[number] }) {
   return (
-    <span
-      style={{
-        width: 64,
-        height: 64,
-        display: "grid",
-        placeItems: "center",
-        background: "#d7c58d",
-        border: "2px solid #252018",
-        overflow: "hidden",
-        flexShrink: 0,
-      }}
-    >
-      <img
-        src={asset.src}
-        alt=""
-        loading="lazy"
-        style={{
-          maxWidth: "100%",
-          maxHeight: "100%",
-          objectFit: "contain",
-          imageRendering: "pixelated",
-        }}
-      />
+    <span style={{
+      width: 64,
+      height: 64,
+      display: "grid",
+      placeItems: "center",
+      background: "#d7c58d",
+      border: "2px solid #252018",
+      overflow: "hidden",
+      flexShrink: 0,
+    }}>
+      <img src={asset.src} alt="" loading="lazy" style={{
+        maxWidth: "100%",
+        maxHeight: "100%",
+        objectFit: "contain",
+        imageRendering: "pixelated",
+      }} />
     </span>
   );
 }
@@ -102,6 +77,7 @@ export function BuildingPalette({
   const [buildingGroup, setBuildingGroup] = useState<(typeof BUILDING_GROUPS)[number]>("all");
   const [selectedAssetId, setSelectedAssetId] = useState(() => readSelectedBuildingAssetId());
   const [visibleCount, setVisibleCount] = useState(80);
+  const [prefabName, setPrefabName] = useState("");
 
   const filteredAssets = useMemo(() => {
     const q = buildingSearch.trim().toLowerCase();
@@ -120,7 +96,6 @@ export function BuildingPalette({
     setSelectedAssetId(asset.id);
     writeSelectedBuildingAssetId(asset.id);
 
-    // Keep existing building placement flow working by mapping runtime assets to current procedural building data.
     const haystack = `${asset.label} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
     const kind: EditorBuildingKind =
       haystack.includes("shop") ? "shop" :
@@ -134,12 +109,72 @@ export function BuildingPalette({
 
     if (kind === "shop") setEditorBuildingColor("green");
     else if (kind === "station") setEditorBuildingColor("red");
-    else if (kind === "hall") setEditorBuildingColor("purple");
     else setEditorBuildingColor("purple");
+  }
+
+  function saveCurrentAsPrefab() {
+    const assetId = currentBuildingAssetIdForPrefab();
+    const asset = BUILDING_ASSETS.find(item => item.id === assetId);
+    const name = prefabName.trim()
+      || (asset ? humanBuildingAssetLabel(asset.label) : `${editorBuildingKind} ${editorBuildingW}x${editorBuildingH}`);
+
+    upsertBuildingPrefab({
+      id: makeBuildingPrefabId(name),
+      name,
+      kind: editorBuildingKind,
+      color: editorBuildingColor,
+      w: editorBuildingW,
+      h: editorBuildingH,
+      assetId: assetId || undefined,
+      tags: [editorBuildingKind, editorBuildingColor, asset?.tags?.[0] ?? ""].filter(Boolean),
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+      entrance: { x: Math.floor(editorBuildingW / 2), y: editorBuildingH - 1 },
+    });
+
+    setPrefabName("");
   }
 
   return (
     <div style={{ marginBottom: 12 }}>
+      <BuildingPrefabManager
+        editorBuildingKind={editorBuildingKind}
+        editorBuildingColor={editorBuildingColor}
+        editorBuildingW={editorBuildingW}
+        editorBuildingH={editorBuildingH}
+        setEditorBuildingKind={setEditorBuildingKind}
+        setEditorBuildingColor={setEditorBuildingColor}
+        setEditorBuildingW={setEditorBuildingW}
+        setEditorBuildingH={setEditorBuildingH}
+      />
+
+      <div style={{ border: "3px solid #252018", background: "#fff3a8", padding: 10, marginBottom: 10 }}>
+        <div style={{ ...VT, fontSize: "1.25rem", color: "#252018", marginBottom: 6 }}>
+          Save Current Building as Prefab
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "minmax(180px, 1fr) auto", gap: 8 }}>
+          <input
+            value={prefabName}
+            onChange={event => setPrefabName(event.target.value)}
+            placeholder={selectedAsset ? humanBuildingAssetLabel(selectedAsset.label) : "Prefab name..."}
+            style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018", fontWeight: 800 }}
+          />
+
+          <button
+            type="button"
+            onClick={saveCurrentAsPrefab}
+            style={{ padding: "8px 12px", border: "2px solid #252018", background: "#315f2a", color: "#fff8c8", fontWeight: 900, cursor: "pointer" }}
+          >
+            Save Prefab
+          </button>
+        </div>
+
+        <div style={{ ...RJ, fontSize: "0.72rem", color: "#584c35", fontWeight: 800, marginTop: 6 }}>
+          Saves kind, color, size, selected LimeZu asset, entrance position, and tags globally.
+        </div>
+      </div>
+
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 8, marginBottom: 10 }}>
         {BUILDING_TYPES.map(building => (
           <button
@@ -198,20 +233,14 @@ export function BuildingPalette({
         <div style={{ display: "grid", gridTemplateColumns: "minmax(160px, 1fr) minmax(130px, 220px)", gap: 8, marginBottom: 8 }}>
           <input
             value={buildingSearch}
-            onChange={(event) => {
-              setBuildingSearch(event.target.value);
-              setVisibleCount(80);
-            }}
+            onChange={(event) => { setBuildingSearch(event.target.value); setVisibleCount(80); }}
             placeholder="Search buildings, roof, door, garage..."
             style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018", fontWeight: 800 }}
           />
 
           <select
             value={buildingGroup}
-            onChange={(event) => {
-              setBuildingGroup(event.target.value as (typeof BUILDING_GROUPS)[number]);
-              setVisibleCount(80);
-            }}
+            onChange={(event) => { setBuildingGroup(event.target.value as (typeof BUILDING_GROUPS)[number]); setVisibleCount(80); }}
             style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018", fontWeight: 800 }}
           >
             {BUILDING_GROUPS.map(group => <option key={group} value={group}>{group}</option>)}
@@ -302,7 +331,7 @@ export function BuildingPalette({
         </label>
 
         <div style={{ ...VT, fontSize: "1.05rem", color: "#252018" }}>
-          Click a top-left tile to place. If a LimeZu asset is selected, the renderer will draw that sprite over the generated footprint.
+          Click a top-left tile to place. Saved prefabs can be reused across all maps.
         </div>
       </div>
     </div>
