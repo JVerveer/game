@@ -5,8 +5,14 @@ import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind } fro
 import { buildingCrestForKind, doorForBuildingAsset } from "../../../../data/cityMaps/mapAsset";
 import type { EditedBuildingsByMap, EditedRowsByMap, EditorSelection } from "../hooks/useEditorState";
 import { clearBuildingFootprintsFromRows } from "./buildingHelpers";
-import { assignBuildingAsset, readSelectedBuildingAssetId } from "../../../assets/limezu/BuildingPlacementRuntime";
-import { selectedBuildingPrefab } from "../../../assets/limezu/BuildingPrefabRuntime";
+import {
+  assignBuildingAsset,
+  readSelectedBuildingAssetId,
+} from "../../../assets/limezu/BuildingPlacementRuntime";
+import {
+  firstAssetIdFromPrefab,
+  selectedBuildingPrefab,
+} from "../../../assets/limezu/BuildingPrefabRuntime";
 
 const UNIQUE_BUILDING_KINDS = new Set<EditorBuildingKind>(["shop", "healing", "station"]);
 
@@ -54,10 +60,13 @@ export function useBuildingPlacement({
       return { ...prev, [id]: next };
     });
 
-    const selectedAssetId = readSelectedBuildingAssetId();
-    if (selectedAssetId) {
+    const prefab = selectedBuildingPrefab();
+    const selectedAssetId = prefab ? firstAssetIdFromPrefab(prefab) : readSelectedBuildingAssetId();
+
+    if (selectedAssetId || prefab) {
       assignBuildingAsset({
         buildingId: clone.id,
+        prefabId: prefab?.id,
         assetId: selectedAssetId,
         x: clone.x,
         y: clone.y,
@@ -78,8 +87,8 @@ export function useBuildingPlacement({
       id: `${id}-building-${Date.now()}`,
       x,
       y,
-      w: Math.max(1, prefab?.w ?? editorBuildingWRef.current),
-      h: Math.max(1, prefab?.h ?? editorBuildingHRef.current),
+      w: Math.max(1, prefab?.width ?? editorBuildingWRef.current),
+      h: Math.max(1, prefab?.height ?? editorBuildingHRef.current),
       kind,
       color: prefab?.color ?? editorBuildingColorRef.current,
       crest: buildingCrestForKind(kind),
@@ -101,23 +110,23 @@ export function useBuildingPlacement({
         if (shouldRemove) removedBuildings.push(item);
         return !shouldRemove;
       });
-
       if (removedBuildings.length > 0) {
         const baseRows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows.map(row => [...row]);
         const nextRows = clearBuildingFootprintsFromRows(baseRows, removedBuildings);
         editedRowsByMapRef.current = { ...editedRowsByMapRef.current, [id]: nextRows };
         setEditedRowsByMap(rowsPrev => ({ ...rowsPrev, [id]: nextRows }));
       }
-
       const next = [...withoutOverlap, building];
       editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: next };
       return { ...prev, [id]: next };
     });
 
-    const selectedAssetId = prefab?.assetId ?? readSelectedBuildingAssetId();
-    if (selectedAssetId) {
+    const selectedAssetId = prefab ? firstAssetIdFromPrefab(prefab) : readSelectedBuildingAssetId();
+
+    if (selectedAssetId || prefab) {
       assignBuildingAsset({
         buildingId: building.id,
+        prefabId: prefab?.id,
         assetId: selectedAssetId,
         x: building.x,
         y: building.y,

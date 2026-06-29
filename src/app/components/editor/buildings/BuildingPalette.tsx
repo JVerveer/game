@@ -4,6 +4,7 @@ import { BUILDING_ASSETS } from "./BuildingLibrary";
 import { humanBuildingAssetLabel, readSelectedBuildingAssetId, writeSelectedBuildingAssetId } from "../../../assets/limezu/BuildingPlacementRuntime";
 import { currentBuildingAssetIdForPrefab, makeBuildingPrefabId, upsertBuildingPrefab } from "../../../assets/limezu/BuildingPrefabRuntime";
 import { BuildingPrefabManager } from "./BuildingPrefabManager";
+import { BuildingCatalogBuilderButton } from "./BuildingCatalogBuilderButton";
 
 const VT = { fontFamily: "'VT323', monospace" } as const;
 const RJ = { fontFamily: "'Rajdhani', sans-serif" } as const;
@@ -123,9 +124,18 @@ export function BuildingPalette({
       name,
       kind: editorBuildingKind,
       color: editorBuildingColor,
-      w: editorBuildingW,
-      h: editorBuildingH,
-      assetId: assetId || undefined,
+      width: editorBuildingW,
+      height: editorBuildingH,
+      tiles: assetId
+        ? [
+            {
+              x: 0,
+              y: 0,
+              layer: "base",
+              assetId,
+            },
+          ]
+        : [],
       tags: [editorBuildingKind, editorBuildingColor, asset?.tags?.[0] ?? ""].filter(Boolean),
       createdAt: Date.now(),
       updatedAt: Date.now(),
@@ -137,6 +147,7 @@ export function BuildingPalette({
 
   return (
     <div style={{ marginBottom: 12 }}>
+      <BuildingCatalogBuilderButton />
       <BuildingPrefabManager
         editorBuildingKind={editorBuildingKind}
         editorBuildingColor={editorBuildingColor}

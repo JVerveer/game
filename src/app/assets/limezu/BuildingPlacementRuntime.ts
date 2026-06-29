@@ -1,11 +1,13 @@
 import { BUILDING_ASSETS } from "./BuildingLibrary";
+import { buildingPrefabById } from "./BuildingPrefabRuntime";
 
 const SELECTED_BUILDING_STORAGE_KEY = "satiria.editor.selectedBuildingAsset.v1";
-const BUILDING_ASSIGNMENTS_STORAGE_KEY = "satiria.editor.buildingAssetAssignments.v1";
+const BUILDING_ASSIGNMENTS_STORAGE_KEY = "satiria.editor.buildingAssetAssignments.v2";
 
 export type BuildingAssetAssignment = {
   buildingId: string;
-  assetId: string;
+  assetId?: string;
+  prefabId?: string;
   x: number;
   y: number;
   w: number;
@@ -78,7 +80,7 @@ export function removeBuildingAssetAssignment(buildingId: string) {
   writeBuildingAssetAssignments(next);
 }
 
-export function buildingAssetForBuilding({
+export function buildingAssignmentForBuilding({
   id,
   x,
   y,
@@ -88,12 +90,41 @@ export function buildingAssetForBuilding({
   y: number;
 }) {
   const assignments = readBuildingAssetAssignments();
-
   const byId = id ? assignments[id] : undefined;
   const byCoord = Object.values(assignments).find(item => item.x === x && item.y === y);
-  const assignment = byId ?? byCoord;
+  return byId ?? byCoord;
+}
 
-  return assignment ? getBuildingAsset(assignment.assetId) : undefined;
+export function buildingAssetForBuilding({
+  id,
+  x,
+  y,
+}: {
+  id?: string;
+  x: number;
+  y: number;
+}) {
+  const assignment = buildingAssignmentForBuilding({ id, x, y });
+  if (!assignment) return undefined;
+
+  if (assignment.assetId) return getBuildingAsset(assignment.assetId);
+
+  const prefab = buildingPrefabById(assignment.prefabId);
+  const firstAssetId = prefab?.tiles.find(tile => tile.assetId)?.assetId;
+  return getBuildingAsset(firstAssetId);
+}
+
+export function buildingPrefabForBuilding({
+  id,
+  x,
+  y,
+}: {
+  id?: string;
+  x: number;
+  y: number;
+}) {
+  const assignment = buildingAssignmentForBuilding({ id, x, y });
+  return buildingPrefabById(assignment?.prefabId);
 }
 
 export function humanBuildingAssetLabel(label: string) {

@@ -1,21 +1,24 @@
-import type { EditorBuildingColor, EditorBuildingKind } from "../../../data/cityMaps/mapAsset";
-import { readSelectedBuildingAssetId, writeSelectedBuildingAssetId } from "./BuildingPlacementRuntime";
+import type {
+  EditorBuildingColor,
+  EditorBuildingKind,
+} from "../../../data/cityMaps/mapAsset";
+import {
+  readSelectedBuildingAssetId,
+  writeSelectedBuildingAssetId,
+} from "./BuildingPlacementRuntime";
+import {
+  BUILDING_PREFAB_CATALOG,
+  type BuildingCatalogPrefab,
+  type BuildingCatalogTile,
+} from "./BuildingPrefabCatalog";
 
-const PREFAB_STORAGE_KEY = "satiria.editor.buildingPrefabs.v1";
-const SELECTED_PREFAB_STORAGE_KEY = "satiria.editor.selectedBuildingPrefab.v1";
+const PREFAB_STORAGE_KEY = "satiria.editor.buildingPrefabs.v2";
+const SELECTED_PREFAB_STORAGE_KEY = "satiria.editor.selectedBuildingPrefab.v2";
 
-export type BuildingPrefab = {
-  id: string;
-  name: string;
-  kind: EditorBuildingKind;
-  color: EditorBuildingColor;
-  w: number;
-  h: number;
+export type BuildingPrefab = BuildingCatalogPrefab & {
+  createdAt?: number;
+  updatedAt?: number;
   assetId?: string;
-  tags: string[];
-  createdAt: number;
-  updatedAt: number;
-  entrance?: { x: number; y: number };
   interiorMapId?: string;
 };
 
@@ -24,8 +27,29 @@ export type BuildingPrefabLibrary = Record<string, BuildingPrefab>;
 let cachedPrefabs: BuildingPrefabLibrary = {};
 let selectedPrefabId = "";
 
+function catalogLibrary(): BuildingPrefabLibrary {
+  return Object.fromEntries(
+    BUILDING_PREFAB_CATALOG.map(prefab => [
+      prefab.id,
+      {
+        ...prefab,
+        assetId: firstAssetIdFromPrefab(prefab),
+      },
+    ]),
+  );
+}
+
+export function firstAssetIdFromPrefab(prefab: Pick<BuildingPrefab, "tiles">) {
+  return prefab.tiles.find(tile => tile.assetId)?.assetId;
+}
+
 export function readBuildingPrefabs(): BuildingPrefabLibrary {
-  if (typeof window === "undefined") return cachedPrefabs;
+  if (typeof window === "undefined") {
+    return {
+      ...catalogLibrary(),
+      ...cachedPrefabs,
+    };
+  }
 
   try {
     cachedPrefabs = JSON.parse(window.localStorage.getItem(PREFAB_STORAGE_KEY) ?? "{}");
@@ -33,11 +57,18 @@ export function readBuildingPrefabs(): BuildingPrefabLibrary {
     cachedPrefabs = {};
   }
 
-  return cachedPrefabs;
+  return {
+    ...catalogLibrary(),
+    ...cachedPrefabs,
+  };
 }
 
 export function writeBuildingPrefabs(next: BuildingPrefabLibrary) {
-  cachedPrefabs = { ...next };
+  // Only write user/browser prefabs. Catalog prefabs live in code.
+  const catalogIds = new Set(BUILDING_PREFAB_CATALOG.map(prefab => prefab.id));
+  cachedPrefabs = Object.fromEntries(
+    Object.entries(next).filter(([id]) => !catalogIds.has(id)),
+  );
 
   if (typeof window !== "undefined") {
     window.localStorage.setItem(PREFAB_STORAGE_KEY, JSON.stringify(cachedPrefabs));
@@ -49,15 +80,21 @@ export function upsertBuildingPrefab(prefab: BuildingPrefab) {
   const current = readBuildingPrefabs();
   const nextPrefab: BuildingPrefab = {
     ...prefab,
-    tags: prefab.tags ?? [],
+    assetId: prefab.assetId ?? firstAssetIdFromPrefab(prefab),
     createdAt: prefab.createdAt ?? Date.now(),
     updatedAt: Date.now(),
   };
 
-  writeBuildingPrefabs({ ...current, [nextPrefab.id]: nextPrefab });
+  writeBuildingPrefabs({
+    ...current,
+    [nextPrefab.id]: nextPrefab,
+  });
+
   writeSelectedBuildingPrefabId(nextPrefab.id);
 
-  if (nextPrefab.assetId) writeSelectedBuildingAssetId(nextPrefab.assetId);
+  if (nextPrefab.assetId) {
+    writeSelectedBuildingAssetId(nextPrefab.assetId);
+  }
 
   return nextPrefab;
 }
@@ -67,11 +104,14 @@ export function deleteBuildingPrefab(prefabId: string) {
   delete next[prefabId];
   writeBuildingPrefabs(next);
 
-  if (readSelectedBuildingPrefabId() === prefabId) writeSelectedBuildingPrefabId("");
+  if (readSelectedBuildingPrefabId() === prefabId) {
+    writeSelectedBuildingPrefabId("");
+  }
 }
 
 export function readSelectedBuildingPrefabId() {
   if (typeof window === "undefined") return selectedPrefabId;
+
   selectedPrefabId = window.localStorage.getItem(SELECTED_PREFAB_STORAGE_KEY) ?? "";
   return selectedPrefabId;
 }
@@ -87,7 +127,13 @@ export function writeSelectedBuildingPrefabId(prefabId: string) {
 
 export function selectedBuildingPrefab() {
   const prefabId = readSelectedBuildingPrefabId();
-  return prefabId ? readBuildingPrefabs()[prefabId] : undefined;
+  if (!prefabId) return undefined;
+  return readBuildingPrefabs()[prefabId];
+}
+
+export function buildingPrefabById(prefabId: string | undefined) {
+  if (!prefabId) return undefined;
+  return readBuildingPrefabs()[prefabId];
 }
 
 export function applyBuildingPrefabToEditor({
@@ -104,27 +150,42 @@ export function applyBuildingPrefabToEditor({
   setEditorBuildingH: (height: number) => void;
 }) {
   writeSelectedBuildingPrefabId(prefab.id);
-  if (prefab.assetId) writeSelectedBuildingAssetId(prefab.assetId);
+
+  const firstAssetId = firstAssetIdFromPrefab(prefab);
+  if (firstAssetId) {
+    writeSelectedBuildingAssetId(firstAssetId);
+  }
 
   setEditorBuildingKind(prefab.kind);
   setEditorBuildingColor(prefab.color);
-  setEditorBuildingW(prefab.w);
-  setEditorBuildingH(prefab.h);
+  setEditorBuildingW(prefab.width);
+  setEditorBuildingH(prefab.height);
 }
 
 export function makeBuildingPrefabId(name: string) {
-  return `building-prefab-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "prefab"}-${Date.now()}`;
+  return `building-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "prefab"}`;
 }
 
 export function currentBuildingAssetIdForPrefab() {
   return readSelectedBuildingAssetId();
 }
 
-export function exportBuildingPrefabsTs() {
-  const prefabs = Object.values(readBuildingPrefabs()).sort((a, b) => a.name.localeCompare(b.name));
+export function exportBuildingCatalogEntry(prefab: BuildingPrefab) {
+  const stablePrefab: BuildingCatalogPrefab = {
+    id: prefab.id,
+    name: prefab.name,
+    kind: prefab.kind,
+    color: prefab.color,
+    width: prefab.width,
+    height: prefab.height,
+    tiles: prefab.tiles
+      .filter(tile => tile.assetId || tile.collision)
+      .sort((a, b) => a.y - b.y || a.x - b.x || a.layer.localeCompare(b.layer)),
+    entrance: prefab.entrance,
+    tags: prefab.tags,
+  };
 
-  return `import type { BuildingPrefab } from "./BuildingPrefabRuntime";
-
-export const EXPORTED_BUILDING_PREFABS = ${JSON.stringify(prefabs, null, 2)} as const satisfies BuildingPrefab[];
-`;
+  return JSON.stringify(stablePrefab, null, 2);
 }
+
+export type { BuildingCatalogPrefab, BuildingCatalogTile };
