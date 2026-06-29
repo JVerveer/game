@@ -307,7 +307,7 @@ function AssetGrid({
             }}
           >
             <div style={optionThumbStageStyle}>
-              {option.id !== "none" && (
+              {(option.id !== "none" || category === "hair") && (
                 <CharacterLayerThumbnail
                   category={category}
                   optionId={option.id}

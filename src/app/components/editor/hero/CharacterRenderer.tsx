@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import {
   CHARACTER_LAYER_ORDER,
   CHARACTER_TILE_SIZE,
+  DEFAULT_CHARACTER_APPEARANCE,
   colorOptionFor,
   optionFor,
 } from "./characterAssets";
@@ -345,9 +346,10 @@ export function CharacterLayerThumbnail({
   appearance?: CharacterAppearance;
   pixelSize?: number;
 }) {
+  const isBaldHairPreview = category === "hair" && optionId === "none";
   const thumbnailAppearance = {
-    body: category === "body" ? optionId : "none",
-    eyes: category === "eyes" ? optionId : "none",
+    body: category === "body" ? optionId : isBaldHairPreview ? (appearance?.body ?? DEFAULT_CHARACTER_APPEARANCE.body) : "none",
+    eyes: category === "eyes" ? optionId : isBaldHairPreview ? (appearance?.eyes ?? DEFAULT_CHARACTER_APPEARANCE.eyes) : "none",
     hair: category === "hair" ? optionId : "none",
     outfit: category === "outfit" ? optionId : "none",
     accessory: category === "accessory" ? optionId : "none",
