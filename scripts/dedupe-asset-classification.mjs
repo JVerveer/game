@@ -68,7 +68,13 @@ function extractCatalogArray(source) {
     throw new Error("Could not find LIMEZU_ASSET_CATALOG in AssetCatalog.ts");
   }
 
-  const arrayStart = source.indexOf("[", markerIndex);
+  const equalsIndex = source.indexOf("=", markerIndex);
+  if (equalsIndex < 0) {
+    throw new Error("Could not find equals sign after LIMEZU_ASSET_CATALOG.");
+  }
+
+  // Important: search after "=" so we do not accidentally pick the [] in LimeZuCatalogAsset[].
+  const arrayStart = source.indexOf("[", equalsIndex);
   if (arrayStart < 0) {
     throw new Error("Could not find asset catalog array start.");
   }
