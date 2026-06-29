@@ -10,13 +10,14 @@ export function BuildingBuilderButton() {
         type="button"
         onClick={() => setOpen(true)}
         style={{
-          padding: "8px 12px",
-          border: "2px solid #252018",
+          padding: "10px 14px",
+          border: "3px solid #252018",
           background: "#5b3f8c",
           color: "#fff8c8",
           fontWeight: 900,
           cursor: "pointer",
-          marginBottom: 10,
+          marginBottom: 12,
+          width: "100%",
         }}
       >
         Open Building Prefab Builder
