@@ -8,6 +8,8 @@ import type {
   NpcEditorAction,
   ObjectEditAction,
 } from "../hooks/useEditorState";
+import { CHARACTER_ASSET_CATALOG } from "../../../assets/limezu/characters/CharacterAssetCatalog";
+import { assignNpcSheet } from "../../../rendering/characters/NpcSheetRuntime";
 
 type NpcVisualPreset = {
   id: string;
@@ -16,6 +18,15 @@ type NpcVisualPreset = {
   styleRole: string;
   category: string;
 };
+
+function characterAssetForPresetId(presetId: string) {
+  return CHARACTER_ASSET_CATALOG.find(asset => asset.id === presetId);
+}
+
+function readableNameFromAssetId(assetId: string) {
+  const asset = characterAssetForPresetId(assetId);
+  return asset?.label?.replace(/\s+/g, " ").trim() || assetId;
+}
 
 export function useNpcEditor({
   mapIdRef,
@@ -54,7 +65,7 @@ export function useNpcEditor({
   isTownMap: (id: GameMapId) => id is TownMapId;
   npcVisualPresets: readonly NpcVisualPreset[];
 }) {
-const movingNpcFromEditorAsset = (id: GameMapId, npc: EditorNpcAsset): MovingNpc => ({
+  const movingNpcFromEditorAsset = (id: GameMapId, npc: EditorNpcAsset): MovingNpc => ({
     id: npc.id,
     mapId: id,
     x: npc.x,
@@ -76,9 +87,6 @@ const movingNpcFromEditorAsset = (id: GameMapId, npc: EditorNpcAsset): MovingNpc
   };
 
   const upsertEditedNpcsForMap = (id: GameMapId, updater: (current: EditorNpcAsset[]) => EditorNpcAsset[]) => {
-    // Compute synchronously first. Do not rely on React's async state callback
-    // before syncing runtime NPCs, otherwise the runtime list can be replaced
-    // with an empty array.
     const base = editedNpcsByMapRef.current[id] ?? npcsRef.current
       .filter(npc => npc.mapId === id)
       .map(npc => ({
@@ -105,7 +113,7 @@ const movingNpcFromEditorAsset = (id: GameMapId, npc: EditorNpcAsset): MovingNpc
     return nextForMap;
   };
 
-const moveSelectedNpcTo = (x: number, y: number) => {
+  const moveSelectedNpcTo = (x: number, y: number) => {
     const id = mapIdRef.current;
     const npcId = draggedNpcIdRef.current;
     if (!npcId) return;
@@ -154,21 +162,39 @@ const moveSelectedNpcTo = (x: number, y: number) => {
       return;
     }
 
+    const selectedCharacterAsset = characterAssetForPresetId(editorNpcPresetIdRef.current);
+
     const next = upsertEditedNpcsForMap(id, current => {
-      const preset = npcVisualPresets.find(item => item.id === editorNpcPresetIdRef.current) ?? npcVisualPresets[0];
+      const fallbackPreset = npcVisualPresets.find(item => item.id === editorNpcPresetIdRef.current) ?? npcVisualPresets[0];
       const npcNumber = current.length + 1;
+      const npcId = `${id}-editor-npc-${Date.now()}-${npcNumber}`;
+
       const newNpc: EditorNpcAsset = {
-        id: `${id}-editor-npc-${Date.now()}-${npcNumber}`,
+        id: npcId,
         x,
         y,
         homeX: x,
         homeY: y,
-        name: editorNpcNameRef.current.trim() || preset.label,
+        name: editorNpcNameRef.current.trim()
+          || selectedCharacterAsset?.label
+          || fallbackPreset?.label
+          || readableNameFromAssetId(editorNpcPresetIdRef.current),
         lines: editorNpcLinesRef.current.split("\n").map(line => line.trim()).filter(Boolean),
-        variant: preset.variant,
-        style: isTownMap(id) ? `npc-town-${id} npc-role-${preset.styleRole}` : `npc-role-${preset.styleRole}`,
+        variant: selectedCharacterAsset ? 0 : fallbackPreset.variant,
+        style: selectedCharacterAsset
+          ? "npc-role-character-sheet"
+          : isTownMap(id)
+            ? `npc-town-${id} npc-role-${fallbackPreset.styleRole}`
+            : `npc-role-${fallbackPreset.styleRole}`,
         walking: editorNpcWalkingRef.current,
       };
+
+      if (selectedCharacterAsset) {
+        window.setTimeout(() => {
+          assignNpcSheet(npcId, selectedCharacterAsset.id);
+        }, 0);
+      }
+
       return [...current, newNpc];
     });
 
