@@ -8,6 +8,9 @@ import {
 import {
   objectAssetForCoord,
 } from "./assets/limezu/ObjectLibrary";
+import {
+  buildingAssetForBuilding,
+} from "./assets/limezu/BuildingPlacementRuntime";
 
 const TILE_SIZE = 48;
 
@@ -129,7 +132,52 @@ const windowColumnsFor = (buildingWidth: number, doorX: number, isGroundFloor: b
     .filter(x => !isGroundFloor || Math.abs(x - doorX) > 0);
 };
 
-function PixelBuildingSprite({ building, index }: { building: PixelBuilding; index: number }) {
+function RuntimeBuildingAssetSprite({ building }: { building: PixelBuilding & { id?: string } }) {
+  const asset = buildingAssetForBuilding({
+    id: building.id,
+    x: building.x,
+    y: building.y,
+  });
+
+  if (!asset) return null;
+
+  const scale = Math.min(
+    (building.w * TILE_SIZE) / Math.max(1, asset.width),
+    (building.h * TILE_SIZE) / Math.max(1, asset.height),
+  );
+
+  const displayWidth = Math.max(TILE_SIZE, asset.width * scale);
+  const displayHeight = Math.max(TILE_SIZE, asset.height * scale);
+
+  return (
+    <i
+      className="pixel-building-runtime-asset"
+      style={{
+        position: "absolute",
+        left: "50%",
+        bottom: 0,
+        width: displayWidth,
+        height: displayHeight,
+        transform: "translateX(-50%)",
+        backgroundImage: `url(${asset.src})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center bottom",
+        backgroundSize: "contain",
+        imageRendering: "pixelated",
+        pointerEvents: "none",
+        zIndex: 9,
+      }}
+    />
+  );
+}
+
+function PixelBuildingSprite({ building, index }: { building: PixelBuilding & { id?: string }; index: number }) {
+  const runtimeAsset = buildingAssetForBuilding({
+    id: building.id,
+    x: building.x,
+    y: building.y,
+  });
+
   const doorX = Math.floor(building.w / 2);
   const zIndex = 40 + building.y;
   const stories = Math.max(1, Math.min(5, building.h - 2));
@@ -148,7 +196,7 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
         zIndex,
       }}
     >
-      {Array.from({ length: building.h }).map((_, yy) =>
+      {!runtimeAsset && Array.from({ length: building.h }).map((_, yy) =>
         Array.from({ length: building.w }).map((__, xx) => (
           <i
             key={`b-${index}-${xx}-${yy}`}
@@ -158,15 +206,17 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
         )),
       )}
 
-      <i
-        className="pixel-sprite-tile pixel-building-door"
-        style={{
-          ...tileStyle("R", doorX, building.h - 1),
-          filter: "brightness(0.55)",
-        }}
-      />
+      {!runtimeAsset && (
+        <i
+          className="pixel-sprite-tile pixel-building-door"
+          style={{
+            ...tileStyle("R", doorX, building.h - 1),
+            filter: "brightness(0.55)",
+          }}
+        />
+      )}
 
-      {wallRows.flatMap(yy => {
+      {!runtimeAsset && wallRows.flatMap(yy => {
         const isGroundFloor = yy === building.h - 1;
         return windowColumnsFor(building.w, doorX, isGroundFloor).map(xx => (
           <i
@@ -180,7 +230,7 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
         ));
       })}
 
-      {building.crest && (
+      {!runtimeAsset && building.crest && (
         <span
           className="pixel-building-crest"
           style={{
@@ -194,12 +244,16 @@ function PixelBuildingSprite({ building, index }: { building: PixelBuilding; ind
         </span>
       )}
 
-      <span className="pixel-story-marker" aria-hidden="true">
-        <b>{stories}F</b>
-        {Array.from({ length: stories }).map((_, story) => (
-          <i key={`story-${story}`} />
-        ))}
-      </span>
+      {runtimeAsset && <RuntimeBuildingAssetSprite building={building} />}
+
+      {!runtimeAsset && (
+        <span className="pixel-story-marker" aria-hidden="true">
+          <b>{stories}F</b>
+          {Array.from({ length: stories }).map((_, story) => (
+            <i key={`story-${story}`} />
+          ))}
+        </span>
+      )}
     </div>
   );
 }
@@ -214,6 +268,7 @@ function useLimeZuPaintVersion() {
     window.addEventListener("limezu:object-paint-changed", refresh);
     window.addEventListener("satiria:limezu-terrain-paint-changed", refresh);
     window.addEventListener("satiria:limezu-object-paint-changed", refresh);
+    window.addEventListener("satiria:building-assets-changed", refresh);
     window.addEventListener("storage", refresh);
 
     return () => {
@@ -221,6 +276,7 @@ function useLimeZuPaintVersion() {
       window.removeEventListener("limezu:object-paint-changed", refresh);
       window.removeEventListener("satiria:limezu-terrain-paint-changed", refresh);
       window.removeEventListener("satiria:limezu-object-paint-changed", refresh);
+      window.removeEventListener("satiria:building-assets-changed", refresh);
       window.removeEventListener("storage", refresh);
     };
   }, []);
@@ -316,7 +372,7 @@ function SceneObjectLayer({ objects }: { objects: PixelObject[] }) {
   );
 }
 
-function BuildingLayer({ buildings }: { buildings: PixelBuilding[] }) {
+function BuildingLayer({ buildings }: { buildings: (PixelBuilding & { id?: string })[] }) {
   return (
     <div className="pixel-layer pixel-layer-buildings" style={{ position: "absolute", inset: 0, zIndex: 40 }}>
       {buildings.map((building, index) => (
@@ -337,7 +393,7 @@ export function PixelMapScene({
   legacyObjects,
 }: {
   rows: string[][];
-  buildings: PixelBuilding[];
+  buildings: (PixelBuilding & { id?: string })[];
   objects: PixelObject[];
   legacyObjects?: Record<string, string>;
 }) {

@@ -5,6 +5,10 @@ import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind } fro
 import { buildingCrestForKind, doorForBuildingAsset } from "../../../../data/cityMaps/mapAsset";
 import type { EditedBuildingsByMap, EditedRowsByMap, EditorSelection } from "../hooks/useEditorState";
 import { clearBuildingFootprintsFromRows } from "./buildingHelpers";
+import {
+  assignBuildingAsset,
+  readSelectedBuildingAssetId,
+} from "../../../assets/limezu/BuildingPlacementRuntime";
 
 const UNIQUE_BUILDING_KINDS = new Set<EditorBuildingKind>(["shop", "healing", "station"]);
 
@@ -52,6 +56,18 @@ export function useBuildingPlacement({
       return { ...prev, [id]: next };
     });
 
+    const selectedAssetId = readSelectedBuildingAssetId();
+    if (selectedAssetId) {
+      assignBuildingAsset({
+        buildingId: clone.id,
+        assetId: selectedAssetId,
+        x: clone.x,
+        y: clone.y,
+        w: clone.w,
+        h: clone.h,
+      });
+    }
+
     setEditorSelection({ kind: "building", id: clone.id });
   };
 
@@ -62,8 +78,8 @@ export function useBuildingPlacement({
       id: `${id}-building-${Date.now()}`,
       x,
       y,
-      w: Math.max(3, editorBuildingWRef.current),
-      h: Math.max(3, editorBuildingHRef.current),
+      w: Math.max(1, editorBuildingWRef.current),
+      h: Math.max(1, editorBuildingHRef.current),
       kind,
       color: editorBuildingColorRef.current,
       crest: buildingCrestForKind(kind),
@@ -95,6 +111,18 @@ export function useBuildingPlacement({
       editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: next };
       return { ...prev, [id]: next };
     });
+
+    const selectedAssetId = readSelectedBuildingAssetId();
+    if (selectedAssetId) {
+      assignBuildingAsset({
+        buildingId: building.id,
+        assetId: selectedAssetId,
+        x: building.x,
+        y: building.y,
+        w: building.w,
+        h: building.h,
+      });
+    }
   };
 
   return {
