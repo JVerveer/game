@@ -6,11 +6,42 @@ import {
   setSelectedTerrainAssetId,
 } from "./TerrainLibrary";
 
-export const getTerrainTileTypes = () => getTerrainAssets().map(asset => ({
-  id: asset.id,
-  name: asset.label,
-  description: asset.source,
-}));
+const assetNameCollator = new Intl.Collator(undefined, {
+  numeric: true,
+  sensitivity: "base",
+});
+
+function normalizedAssetName(label: string) {
+  return label
+    .toLowerCase()
+    .replace(/^\d+\s+/, "")
+    .replace(/\b\d+x\d+\b/g, "")
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function compareAssetNames<
+  T extends {
+    label: string;
+    source: string;
+    id: string;
+  },
+>(a: T, b: T) {
+  return assetNameCollator.compare(normalizedAssetName(a.label), normalizedAssetName(b.label))
+    || assetNameCollator.compare(a.label, b.label)
+    || assetNameCollator.compare(a.source, b.source)
+    || assetNameCollator.compare(a.id, b.id);
+}
+
+export const getTerrainTileTypes = () => getTerrainAssets()
+  .slice()
+  .sort(compareAssetNames)
+  .map(asset => ({
+    id: asset.id,
+    name: asset.label,
+    description: asset.source,
+  }));
 
 // Compatibility export. Use getTerrainTileTypes()/tileTypeFor() for fresh classifications.
 const TILE_TYPES = getTerrainTileTypes();
@@ -39,16 +70,19 @@ export function TerrainPalette({
   editorTile: string;
   setEditorTile: (tile: string) => void;
 }) {
+  void editorTile;
+
   const [selectedAssetId, setSelectedAssetIdState] = useState(() => getSelectedTerrainAssetId());
   const [query, setQuery] = useState("");
 
   const filteredAssets = useMemo(() => {
-    const assets = getTerrainAssets();
+    const assets = getTerrainAssets().slice().sort(compareAssetNames);
     const q = query.trim().toLowerCase();
+
     if (!q) return assets;
 
     return assets.filter(asset => {
-      const haystack = `${asset.label} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
+      const haystack = `${asset.label} ${normalizedAssetName(asset.label)} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
       return haystack.includes(q);
     });
   }, [query]);
@@ -65,7 +99,7 @@ export function TerrainPalette({
         <div>
           <div style={titleStyle}>LimeZu Terrain Brush</div>
           <div style={subtitleStyle}>
-            Ground/floor/water/path tiles only. Objects are now in the Objects tab.
+            Ground/floor/water/path tiles only. Sorted alphabetically by asset name.
           </div>
         </div>
 

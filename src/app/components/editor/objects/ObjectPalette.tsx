@@ -11,6 +11,34 @@ type ObjectEditAction = "place" | "erase";
 const VT = { fontFamily: "'VT323', monospace" } as const;
 const RJ = { fontFamily: "'Rajdhani', sans-serif" } as const;
 
+const assetNameCollator = new Intl.Collator(undefined, {
+  numeric: true,
+  sensitivity: "base",
+});
+
+function normalizedAssetName(label: string) {
+  return label
+    .toLowerCase()
+    .replace(/^\d+\s+/, "")
+    .replace(/\b\d+x\d+\b/g, "")
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function compareAssetNames<
+  T extends {
+    label: string;
+    source: string;
+    id: string;
+  },
+>(a: T, b: T) {
+  return assetNameCollator.compare(normalizedAssetName(a.label), normalizedAssetName(b.label))
+    || assetNameCollator.compare(a.label, b.label)
+    || assetNameCollator.compare(a.source, b.source)
+    || assetNameCollator.compare(a.id, b.id);
+}
+
 export function ObjectPalette({
   objectEditAction,
   setObjectEditAction,
@@ -22,16 +50,19 @@ export function ObjectPalette({
   editorObjectId: string;
   setEditorObjectId: (objectId: string) => void;
 }) {
+  void editorObjectId;
+
   const [selectedAssetId, setSelectedAssetIdState] = useState(() => getSelectedLimeZuObjectAssetId());
   const [query, setQuery] = useState("");
 
   const filteredAssets = useMemo(() => {
-    const assets = getObjectAssets();
+    const assets = getObjectAssets().slice().sort(compareAssetNames);
     const q = query.trim().toLowerCase();
+
     if (!q) return assets;
 
     return assets.filter(asset => {
-      const haystack = `${asset.label} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
+      const haystack = `${asset.label} ${normalizedAssetName(asset.label)} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
       return haystack.includes(q);
     });
   }, [query]);
@@ -95,7 +126,7 @@ export function ObjectPalette({
       </div>
 
       <div style={{ ...VT, fontSize: "1.05rem", color: "#252018", marginBottom: 8 }}>
-        Objects are props placed on top of terrain. Terrain/floor sprites are hidden from this tab.
+        Objects are props placed on top of terrain. Sorted alphabetically by asset name.
       </div>
 
       <div style={assetGridStyle}>
