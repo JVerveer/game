@@ -13,7 +13,7 @@ const metadataPath = path.join(root, "src/app/components/editor/assets/AssetMeta
 const tileSize = 48;
 const gridSize = 16;
 const firstSet = 1;
-const lastSet = 16;
+const lastSet = 40;
 
 function readExportedValue(filePath, exportName, closeToken) {
   const source = fs.readFileSync(filePath, "utf8");
