@@ -35,7 +35,7 @@ export const BUILDING_PREFAB_CATALOG = [
     "id": "building-healing",
     "name": "Healing",
     "kind": "healing",
-    "color": "purple",
+    "color": "orange",
     "width": 20,
     "height": 10,
     "tiles": [
@@ -250,8 +250,8 @@ export const BUILDING_PREFAB_CATALOG = [
         "x": 8,
         "y": 3,
         "layer": "base",
-        "assetId": "asset_tileset3_mv_00_13",
-        "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_13.png",
+        "assetId": "asset_tileset3_mv_03_05",
+        "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_03_05.png",
         "width": 48,
         "height": 48
       },
@@ -358,8 +358,8 @@ export const BUILDING_PREFAB_CATALOG = [
         "x": 8,
         "y": 5,
         "layer": "base",
-        "assetId": "asset_tileset3_mv_00_13",
-        "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_13.png",
+        "assetId": "asset_tileset3_mv_07_05",
+        "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_05.png",
         "width": 48,
         "height": 48
       },
@@ -527,18 +527,22 @@ export const BUILDING_PREFAB_CATALOG = [
       }
     ],
     "entrance": {
-      "x": 6,
+      "x": 5,
       "y": 7
     },
-    "tags": [
-      "custom",
-      "building"
-    ],
     "entrances": [
+      {
+        "x": 5,
+        "y": 7
+      },
       {
         "x": 6,
         "y": 7
       }
+    ],
+    "tags": [
+      "custom",
+      "building"
     ]
   }
 ] as const satisfies readonly BuildingCatalogPrefab[];
