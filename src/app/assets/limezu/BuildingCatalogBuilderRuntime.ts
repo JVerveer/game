@@ -12,7 +12,7 @@ const BUILDER_STORAGE_KEY = "satiria.editor.buildingCatalogBuilderDraft.v1";
 export const BUILDING_CATALOG_GRID_WIDTH = 25;
 export const BUILDING_CATALOG_GRID_HEIGHT = 25;
 
-export type BuildingBuilderTool = "brush" | "eraser" | "picker" | "fill";
+export type BuildingBuilderTool = "brush" | "eraser" | "picker" | "fill" | "base-remover" | "object-remover";
 
 export type BuildingCatalogBuilderDraft = {
   name: string;

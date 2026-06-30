@@ -28,7 +28,21 @@ import {
 } from "../../../assets/limezu/BuildingPrefabRuntime";
 
 const TILE_SIZE = 40;
-const TOOLS: BuildingBuilderTool[] = ["brush", "eraser", "picker", "fill"];
+const TOOLS: BuildingBuilderTool[] = ["brush", "eraser", "picker", "fill", "base-remover", "object-remover"];
+const TOOL_LABELS: Record<BuildingBuilderTool, string> = {
+  brush: "Brush",
+  eraser: "Erase Layer",
+  picker: "Picker",
+  fill: "Fill Layer",
+  "base-remover": "Remove Base",
+  "object-remover": "Remove Object",
+};
+const SHIFT_CONTROLS = [
+  { label: "↑", title: "Move all tiles and objects up", dx: 0, dy: -1 },
+  { label: "↓", title: "Move all tiles and objects down", dx: 0, dy: 1 },
+  { label: "←", title: "Move all tiles and objects left", dx: -1, dy: 0 },
+  { label: "→", title: "Move all tiles and objects right", dx: 1, dy: 0 },
+];
 const LAYERS: BuildingCatalogLayer[] = ["base", "decor", "collision"];
 const BUILDING_COLOR_OPTIONS: BuildingCatalogBuilderDraft["color"][] = [
   "default",
@@ -215,6 +229,16 @@ function BuildingGrid({
 
     pushHistory(draft);
 
+    if (draft.tool === "base-remover") {
+      setDraft(removeTile(draft, x, y, "base"));
+      return;
+    }
+
+    if (draft.tool === "object-remover") {
+      setDraft(removeTile(draft, x, y, "decor"));
+      return;
+    }
+
     if (draft.tool === "eraser") {
       setDraft(removeTile(draft, x, y, draft.selectedLayer));
       return;
@@ -287,7 +311,12 @@ function BuildingGrid({
           key={`${x}-${y}`}
           type="button"
           onClick={() => applyAt(x, y)}
-          title={`${x}, ${y}`}
+          title={[
+            `${x}, ${y}`,
+            base ? "base" : "",
+            decor ? "object" : "",
+            collision?.collision ? "collision" : "",
+          ].filter(Boolean).join(" · ")}
           style={{
             position: "absolute",
             left: x * TILE_SIZE,
@@ -302,6 +331,8 @@ function BuildingGrid({
         >
           {baseAsset && <i style={{ ...gridAssetStyle, backgroundImage: `url(${baseAsset.src})` }} />}
           {decorAsset && <i style={{ ...gridAssetStyle, backgroundImage: `url(${decorAsset.src})` }} />}
+          {base && <span style={{ ...cellIndicatorStyle, left: 2, top: 2, background: "#315f2a" }}>B</span>}
+          {decor && <span style={{ ...cellIndicatorStyle, right: 2, top: 2, background: "#5f3f8f" }}>O</span>}
           {collision?.collision && <i style={collisionStyle} />}
           {entrance && <span style={entranceStyle}>DOOR {entranceIndex + 1}</span>}
         </button>,
@@ -382,6 +413,40 @@ export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
         entranceIndex === index ? { ...entrance, ...patch } : entrance,
       ),
     );
+  }
+
+  function canShiftDraft(dx: number, dy: number) {
+    const occupiedCells = [
+      ...draft.tiles.map(tile => ({ x: tile.x, y: tile.y })),
+      ...draft.entrances.map(entrance => ({ x: entrance.x, y: entrance.y })),
+    ];
+
+    return occupiedCells.every(cell => {
+      const x = cell.x + dx;
+      const y = cell.y + dy;
+      return x >= 0 && x < BUILDING_CATALOG_GRID_WIDTH && y >= 0 && y < BUILDING_CATALOG_GRID_HEIGHT;
+    });
+  }
+
+  function shiftDraft(dx: number, dy: number) {
+    if (!canShiftDraft(dx, dy)) return;
+
+    pushHistory(draft);
+    const entrances = draft.entrances.map(entrance => ({
+      x: entrance.x + dx,
+      y: entrance.y + dy,
+    }));
+
+    setDraft({
+      ...draft,
+      tiles: draft.tiles.map(tile => ({
+        ...tile,
+        x: tile.x + dx,
+        y: tile.y + dy,
+      })),
+      entrance: entrances[0] ?? draft.entrance,
+      entrances,
+    });
   }
 
   function addEntrance() {
@@ -590,7 +655,7 @@ export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
                 border: draft.tool === tool ? "4px solid #315f2a" : "2px solid #252018",
               }}
             >
-              {tool}
+              {TOOL_LABELS[tool]}
             </button>
           ))}
 
@@ -609,6 +674,29 @@ export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
               {layer}
             </button>
           ))}
+
+          <strong>Move All:</strong>
+          {SHIFT_CONTROLS.map(control => {
+            const disabled = !canShiftDraft(control.dx, control.dy);
+
+            return (
+              <button
+                key={control.label}
+                type="button"
+                onClick={() => shiftDraft(control.dx, control.dy)}
+                disabled={disabled}
+                title={control.title}
+                style={{
+                  ...buttonStyle,
+                  opacity: disabled ? 0.45 : 1,
+                  cursor: disabled ? "not-allowed" : "pointer",
+                  minWidth: 38,
+                }}
+              >
+                {control.label}
+              </button>
+            );
+          })}
         </div>
 
         <div style={mainStyle}>
@@ -695,6 +783,7 @@ const assetLabelStyle: React.CSSProperties = { fontSize: "0.61rem", fontWeight: 
 const canvasOuterStyle: React.CSSProperties = { border: "4px solid #252018", background: "#584c35", padding: 12, overflow: "auto", maxHeight: "72vh" };
 const canvasInfoStyle: React.CSSProperties = { color: "#fff8c8", fontWeight: 900, marginBottom: 8, fontFamily: "'Rajdhani', sans-serif" };
 const gridAssetStyle: React.CSSProperties = { position: "absolute", inset: 0, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center", imageRendering: "pixelated", pointerEvents: "none" };
+const cellIndicatorStyle: React.CSSProperties = { position: "absolute", minWidth: 10, height: 10, padding: "1px 2px", color: "#fff8c8", border: "1px solid #fff8c8", fontSize: 8, lineHeight: "10px", fontWeight: 900, pointerEvents: "none" };
 const collisionStyle: React.CSSProperties = { position: "absolute", inset: 4, background: "rgba(202,75,54,0.45)", border: "2px solid #ca4b36", pointerEvents: "none" };
 const entranceStyle: React.CSSProperties = { position: "absolute", left: 2, right: 2, bottom: 2, background: "#315f2a", color: "#fff8c8", fontSize: 8, fontWeight: 900, pointerEvents: "none" };
 const exportPanelStyle: React.CSSProperties = { marginTop: 12, border: "2px solid #252018", background: "#fff3a8", padding: 8, display: "grid", gap: 6 };
