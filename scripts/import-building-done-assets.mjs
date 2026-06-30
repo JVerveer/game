@@ -12,6 +12,8 @@ const classificationPath = path.join(root, "src/app/components/editor/assets/Ass
 const metadataPath = path.join(root, "src/app/components/editor/assets/AssetMetadata.ts");
 const tileSize = 48;
 const gridSize = 16;
+const firstSet = 1;
+const lastSet = 16;
 
 function readExportedValue(filePath, exportName, closeToken) {
   const source = fs.readFileSync(filePath, "utf8");
@@ -78,7 +80,7 @@ const newAssets = [];
 const newClassification = {};
 const newMetadata = {};
 
-for (let setNumber = 1; setNumber <= 8; setNumber += 1) {
+for (let setNumber = firstSet; setNumber <= lastSet; setNumber += 1) {
   for (let row = 0; row < gridSize; row += 1) {
     for (let col = 0; col < gridSize; col += 1) {
       const id = `asset_buildingset${setNumber}_${rowCol(row)}_${rowCol(col)}`;

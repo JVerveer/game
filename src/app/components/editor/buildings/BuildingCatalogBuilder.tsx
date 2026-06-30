@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { getBuildingAssets } from "./BuildingLibrary";
 import type { LimeZuRuntimeAsset } from "../../../assets/limezu/types";
 import {
+  BUILDING_CATALOG_GRID_HEIGHT,
+  BUILDING_CATALOG_GRID_WIDTH,
   clearBuildingCatalogDraft,
   createEmptyBuildingCatalogDraft,
   draftToPrefab,
@@ -134,6 +136,14 @@ function BuildingAssetPalette({
           "buildingset6",
           "buildingset7",
           "buildingset8",
+          "buildingset9",
+          "buildingset10",
+          "buildingset11",
+          "buildingset12",
+          "buildingset13",
+          "buildingset14",
+          "buildingset15",
+          "buildingset16",
           "wall",
           "roof",
           "door",
@@ -216,8 +226,8 @@ function BuildingGrid({
         tiles: draft.tiles.filter(tile => tile.layer !== draft.selectedLayer),
       };
 
-      for (let yy = 0; yy < 10; yy += 1) {
-        for (let xx = 0; xx < 20; xx += 1) {
+      for (let yy = 0; yy < BUILDING_CATALOG_GRID_HEIGHT; yy += 1) {
+        for (let xx = 0; xx < BUILDING_CATALOG_GRID_WIDTH; xx += 1) {
           next = setTile(next, {
             x: xx,
             y: yy,
@@ -262,8 +272,8 @@ function BuildingGrid({
 
   const cells = [];
 
-  for (let y = 0; y < 10; y += 1) {
-    for (let x = 0; x < 20; x += 1) {
+  for (let y = 0; y < BUILDING_CATALOG_GRID_HEIGHT; y += 1) {
+    for (let x = 0; x < BUILDING_CATALOG_GRID_WIDTH; x += 1) {
       const base = tileLookup.get(`base:${x},${y}`);
       const decor = tileLookup.get(`decor:${x},${y}`);
       const collision = tileLookup.get(`collision:${x},${y}`);
@@ -301,12 +311,12 @@ function BuildingGrid({
 
   return (
     <div style={canvasOuterStyle}>
-      <div style={canvasInfoStyle}>20 × 10 building grid</div>
+      <div style={canvasInfoStyle}>{BUILDING_CATALOG_GRID_WIDTH} × {BUILDING_CATALOG_GRID_HEIGHT} building grid</div>
       <div
         style={{
           position: "relative",
-          width: 20 * TILE_SIZE,
-          height: 10 * TILE_SIZE,
+          width: BUILDING_CATALOG_GRID_WIDTH * TILE_SIZE,
+          height: BUILDING_CATALOG_GRID_HEIGHT * TILE_SIZE,
           backgroundColor: "#d7c58d",
           backgroundImage:
             "linear-gradient(45deg, rgba(37,32,24,.12) 25%, transparent 25%), linear-gradient(-45deg, rgba(37,32,24,.12) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(37,32,24,.12) 75%), linear-gradient(-45deg, transparent 75%, rgba(37,32,24,.12) 75%)",
@@ -337,7 +347,11 @@ export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
   const [exportText, setExportText] = useState("");
 
   function setDraft(next: BuildingCatalogBuilderDraft) {
-    const fixed = { ...next, width: 20 as const, height: 10 as const };
+    const fixed: BuildingCatalogBuilderDraft = {
+      ...next,
+      width: BUILDING_CATALOG_GRID_WIDTH,
+      height: BUILDING_CATALOG_GRID_HEIGHT,
+    };
     setDraftState(fixed);
     writeBuildingCatalogDraft(fixed);
   }
@@ -352,9 +366,12 @@ export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
   }
 
   function syncEntrances(entrances: BuildingCatalogBuilderDraft["entrances"]) {
-    const safeEntrances = (entrances.length ? entrances : [{ x: 10, y: 9 }]).map(entrance => ({
-      x: Math.max(0, Math.min(19, entrance.x)),
-      y: Math.max(0, Math.min(9, entrance.y)),
+    const safeEntrances = (entrances.length
+      ? entrances
+      : [{ x: Math.floor(BUILDING_CATALOG_GRID_WIDTH / 2), y: BUILDING_CATALOG_GRID_HEIGHT - 1 }]
+    ).map(entrance => ({
+      x: Math.max(0, Math.min(BUILDING_CATALOG_GRID_WIDTH - 1, entrance.x)),
+      y: Math.max(0, Math.min(BUILDING_CATALOG_GRID_HEIGHT - 1, entrance.y)),
     }));
     setDraft({ ...draft, entrance: safeEntrances[0], entrances: safeEntrances });
   }
@@ -466,7 +483,7 @@ export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
           <div>
             <div style={titleStyle}>Building Catalog Builder</div>
             <div style={subtitleStyle}>
-              Build, adjust, and delete reusable 20×10 building prefabs. Copy the full catalog when the edited list should become source code.
+              Build, adjust, and delete reusable {BUILDING_CATALOG_GRID_WIDTH}×{BUILDING_CATALOG_GRID_HEIGHT} building prefabs. Copy the full catalog when the edited list should become source code.
             </div>
           </div>
 
@@ -526,7 +543,7 @@ export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
                   <input
                     type="number"
                     min={0}
-                    max={19}
+                    max={BUILDING_CATALOG_GRID_WIDTH - 1}
                     value={entrance.x}
                     onChange={event => updateEntrance(index, { x: Number(event.target.value) })}
                     style={inputStyle}
@@ -537,7 +554,7 @@ export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
                   <input
                     type="number"
                     min={0}
-                    max={9}
+                    max={BUILDING_CATALOG_GRID_HEIGHT - 1}
                     value={entrance.y}
                     onChange={event => updateEntrance(index, { y: Number(event.target.value) })}
                     style={inputStyle}

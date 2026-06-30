@@ -9,6 +9,8 @@ import {
 } from "./BuildingPrefabRuntime";
 
 const BUILDER_STORAGE_KEY = "satiria.editor.buildingCatalogBuilderDraft.v1";
+export const BUILDING_CATALOG_GRID_WIDTH = 25;
+export const BUILDING_CATALOG_GRID_HEIGHT = 25;
 
 export type BuildingBuilderTool = "brush" | "eraser" | "picker" | "fill";
 
@@ -16,8 +18,8 @@ export type BuildingCatalogBuilderDraft = {
   name: string;
   kind: EditorBuildingKind;
   color: EditorBuildingColor;
-  width: 20;
-  height: 10;
+  width: typeof BUILDING_CATALOG_GRID_WIDTH;
+  height: typeof BUILDING_CATALOG_GRID_HEIGHT;
   selectedAssetId: string;
   selectedLayer: BuildingCatalogLayer;
   tool: BuildingBuilderTool;
@@ -38,17 +40,17 @@ export function createEmptyBuildingCatalogDraft(): BuildingCatalogBuilderDraft {
     name: "New Building",
     kind: "house",
     color: "default",
-    width: 20,
-    height: 10,
+    width: BUILDING_CATALOG_GRID_WIDTH,
+    height: BUILDING_CATALOG_GRID_HEIGHT,
     selectedAssetId: "",
     selectedLayer: "base",
     tool: "brush",
     tiles: [],
     entrance: {
-      x: 10,
-      y: 9,
+      x: Math.floor(BUILDING_CATALOG_GRID_WIDTH / 2),
+      y: BUILDING_CATALOG_GRID_HEIGHT - 1,
     },
-    entrances: [{ x: 10, y: 9 }],
+    entrances: [{ x: Math.floor(BUILDING_CATALOG_GRID_WIDTH / 2), y: BUILDING_CATALOG_GRID_HEIGHT - 1 }],
     tags: ["custom", "building"],
   };
 }
@@ -70,8 +72,8 @@ export function readBuildingCatalogDraft(): BuildingCatalogBuilderDraft {
       ...parsed,
       entrance,
       entrances,
-      width: 20,
-      height: 10,
+      width: BUILDING_CATALOG_GRID_WIDTH,
+      height: BUILDING_CATALOG_GRID_HEIGHT,
     };
   } catch {
     return createEmptyBuildingCatalogDraft();
@@ -80,7 +82,11 @@ export function readBuildingCatalogDraft(): BuildingCatalogBuilderDraft {
 
 export function writeBuildingCatalogDraft(draft: BuildingCatalogBuilderDraft) {
   if (typeof window !== "undefined") {
-    window.localStorage.setItem(BUILDER_STORAGE_KEY, JSON.stringify({ ...draft, width: 20, height: 10 }));
+    window.localStorage.setItem(BUILDER_STORAGE_KEY, JSON.stringify({
+      ...draft,
+      width: BUILDING_CATALOG_GRID_WIDTH,
+      height: BUILDING_CATALOG_GRID_HEIGHT,
+    }));
   }
 }
 
@@ -134,8 +140,8 @@ export function draftToPrefab(draft: BuildingCatalogBuilderDraft): BuildingPrefa
     name: draft.name.trim() || "New Building",
     kind: draft.kind,
     color: draft.color,
-    width: 20,
-    height: 10,
+    width: BUILDING_CATALOG_GRID_WIDTH,
+    height: BUILDING_CATALOG_GRID_HEIGHT,
     tiles: draft.tiles
       .filter(tile => tile.assetId || tile.src || tile.collision)
       .sort((a, b) => a.y - b.y || a.x - b.x || a.layer.localeCompare(b.layer)),
@@ -153,8 +159,8 @@ export function prefabToDraft(prefab: BuildingPrefab): BuildingCatalogBuilderDra
     name: prefab.name,
     kind: prefab.kind,
     color: prefab.color,
-    width: 20,
-    height: 10,
+    width: BUILDING_CATALOG_GRID_WIDTH,
+    height: BUILDING_CATALOG_GRID_HEIGHT,
     selectedAssetId: prefab.tiles.find(tile => tile.assetId)?.assetId ?? "",
     selectedLayer: "base",
     tool: "brush",
