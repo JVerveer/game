@@ -15,6 +15,7 @@ import {
   buildingPrefabForBuilding,
 } from "./assets/limezu/BuildingPlacementRuntime";
 import { getBuildingAsset as getCatalogBuildingAsset } from "./assets/limezu/BuildingLibrary";
+import { effectiveBuildingPrefabFootprint } from "./assets/limezu/BuildingPrefabRuntime";
 
 const TILE_SIZE = 48;
 
@@ -183,15 +184,16 @@ function RuntimeBuildingPrefabSprite({
 
   if (!prefab) return null;
 
-  const scaleX = (building.w * TILE_SIZE) / Math.max(1, prefab.width);
-  const scaleY = (building.h * TILE_SIZE) / Math.max(1, prefab.height);
+  const footprint = effectiveBuildingPrefabFootprint(prefab);
+  const scaleX = (building.w * TILE_SIZE) / Math.max(1, footprint.width);
+  const scaleY = (building.h * TILE_SIZE) / Math.max(1, footprint.height);
   const visibleTiles = prefab.tiles
     .filter((tile) => tile.layer !== "collision")
     .map((tile) => ({
       ...tile,
       src: tile.src ?? getCatalogBuildingAsset(tile.assetId)?.src,
     }))
-    .filter((tile) => tile.src)
+    .filter((tile) => tile.src && tile.x >= footprint.minX && tile.x <= footprint.maxX && tile.y >= footprint.minY && tile.y <= footprint.maxY)
     .sort((a, b) => {
       const layerOrder = (layer: string) => (layer === "base" ? 0 : layer === "decor" ? 1 : 2);
       return layerOrder(a.layer) - layerOrder(b.layer) || a.y - b.y || a.x - b.x;
@@ -213,8 +215,8 @@ function RuntimeBuildingPrefabSprite({
             key={`${tile.layer}-${tile.x}-${tile.y}-${index}`}
             style={{
               position: "absolute",
-              left: tile.x * scaleX,
-              top: tile.y * scaleY,
+              left: (tile.x - footprint.minX) * scaleX,
+              top: (tile.y - footprint.minY) * scaleY,
               width: scaleX,
               height: scaleY,
               backgroundImage: `url(${tile.src})`,

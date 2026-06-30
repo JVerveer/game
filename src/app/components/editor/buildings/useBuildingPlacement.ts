@@ -10,6 +10,7 @@ import {
   readSelectedBuildingAssetId,
 } from "../../../assets/limezu/BuildingPlacementRuntime";
 import {
+  effectiveBuildingPrefabFootprint,
   firstAssetIdFromPrefab,
   selectedBuildingPrefab,
 } from "../../../assets/limezu/BuildingPrefabRuntime";
@@ -81,14 +82,15 @@ export function useBuildingPlacement({
   const placeEditorBuilding = (x: number, y: number) => {
     const id = mapIdRef.current;
     const prefab = selectedBuildingPrefab();
+    const prefabFootprint = prefab ? effectiveBuildingPrefabFootprint(prefab) : undefined;
 
     const kind = prefab?.kind ?? editorBuildingKindRef.current;
     const building: EditorBuildingAsset = {
       id: `${id}-building-${Date.now()}`,
       x,
       y,
-      w: Math.max(1, prefab?.width ?? editorBuildingWRef.current),
-      h: Math.max(1, prefab?.height ?? editorBuildingHRef.current),
+      w: Math.max(1, prefabFootprint?.width ?? editorBuildingWRef.current),
+      h: Math.max(1, prefabFootprint?.height ?? editorBuildingHRef.current),
       kind,
       color: prefab?.color ?? editorBuildingColorRef.current,
       crest: buildingCrestForKind(kind),

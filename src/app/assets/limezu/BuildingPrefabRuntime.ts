@@ -26,6 +26,17 @@ export type BuildingPrefab = BuildingCatalogPrefab & {
 
 export type BuildingPrefabLibrary = Record<string, BuildingPrefab>;
 
+export type BuildingPrefabFootprint = {
+  minX: number;
+  minY: number;
+  maxX: number;
+  maxY: number;
+  width: number;
+  height: number;
+  entranceX: number;
+  entranceY: number;
+};
+
 let cachedPrefabs: BuildingPrefabLibrary = {};
 let cachedDeletedPrefabIds: string[] = [];
 let selectedPrefabId = "";
@@ -43,6 +54,43 @@ export function firstAssetMetaFromPrefab(prefab: Pick<BuildingCatalogPrefab, "ti
     src: tile.src,
     width: tile.width,
     height: tile.height,
+  };
+}
+
+export function effectiveBuildingPrefabFootprint(
+  prefab: Pick<BuildingCatalogPrefab, "width" | "height" | "tiles" | "entrance">,
+): BuildingPrefabFootprint {
+  const visualTiles = prefab.tiles.filter(tile => tile.layer !== "collision" && (tile.assetId || tile.src));
+
+  if (visualTiles.length === 0) {
+    return {
+      minX: 0,
+      minY: 0,
+      maxX: Math.max(0, prefab.width - 1),
+      maxY: Math.max(0, prefab.height - 1),
+      width: Math.max(1, prefab.width),
+      height: Math.max(1, prefab.height),
+      entranceX: Math.max(0, Math.min(prefab.width - 1, prefab.entrance.x)),
+      entranceY: Math.max(0, Math.min(prefab.height - 1, prefab.entrance.y)),
+    };
+  }
+
+  const minX = Math.min(...visualTiles.map(tile => tile.x));
+  const minY = Math.min(...visualTiles.map(tile => tile.y));
+  const maxX = Math.max(...visualTiles.map(tile => tile.x));
+  const maxY = Math.max(...visualTiles.map(tile => tile.y));
+  const width = Math.max(1, maxX - minX + 1);
+  const height = Math.max(1, maxY - minY + 1);
+
+  return {
+    minX,
+    minY,
+    maxX,
+    maxY,
+    width,
+    height,
+    entranceX: Math.max(0, Math.min(width - 1, prefab.entrance.x - minX)),
+    entranceY: Math.max(0, Math.min(height - 1, prefab.entrance.y - minY)),
   };
 }
 
@@ -199,14 +247,15 @@ export function applyBuildingPrefabToEditor({
   writeSelectedBuildingPrefabId(prefab.id);
 
   const firstAssetId = firstAssetIdFromPrefab(prefab);
+  const footprint = effectiveBuildingPrefabFootprint(prefab);
   if (firstAssetId) {
     writeSelectedBuildingAssetId(firstAssetId);
   }
 
   setEditorBuildingKind(prefab.kind);
   setEditorBuildingColor(prefab.color);
-  setEditorBuildingW(prefab.width);
-  setEditorBuildingH(prefab.height);
+  setEditorBuildingW(footprint.width);
+  setEditorBuildingH(footprint.height);
 }
 
 export function makeBuildingPrefabId(name: string) {

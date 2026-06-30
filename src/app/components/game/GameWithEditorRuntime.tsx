@@ -39,6 +39,8 @@ import { useObjectEditor } from "../editor/objects/useObjectEditor";
 import { useNpcEditor } from "../editor/npcs/useNpcEditor";
 import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
+import { buildingPrefabForBuilding } from "../../assets/limezu/BuildingPlacementRuntime";
+import { effectiveBuildingPrefabFootprint } from "../../assets/limezu/BuildingPrefabRuntime";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
 import { CharacterRenderer } from "../editor/hero/CharacterRenderer";
 import { CharacterSheetRenderer } from "../../rendering/characters/CharacterSheetRenderer";
@@ -446,11 +448,34 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
   const isIndoor = (id: GameMapId) => id === "shop" || id === "house" || id === "healing";
 
-  const rowsForMap = (id: GameMapId) => applyBuildingsToRows(editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows, editedBuildingsByMapRef.current[id] ?? []);
+  const buildingWithEffectivePrefabFootprint = (building: EditorBuildingAsset): EditorBuildingAsset => {
+    const prefab = buildingPrefabForBuilding({ id: building.id, x: building.x, y: building.y });
+    if (!prefab) return building;
+
+    const footprint = effectiveBuildingPrefabFootprint(prefab);
+    if (building.w === footprint.width && building.h === footprint.height) return building;
+
+    return {
+      ...building,
+      w: footprint.width,
+      h: footprint.height,
+    };
+  };
+
+  const buildingsWithEffectivePrefabFootprints = (buildings: EditorBuildingAsset[]) =>
+    buildings.map(buildingWithEffectivePrefabFootprint);
+
+  const rowsForMap = (id: GameMapId) =>
+    applyBuildingsToRows(
+      editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows,
+      buildingsWithEffectivePrefabFootprints(editedBuildingsByMapRef.current[id] ?? []),
+    );
   const objectsForMap = (id: GameMapId) => editedObjectsByMapRef.current[id] ?? GAME_MAPS[id].objects;
   const buildingsForMap = (id: GameMapId) => {
     const removed = removedBuildingIdsByMapRef.current[id] ?? new Set<string>();
-    return editedBuildingsByMapRef.current[id] ?? inferBuildingsFromRowsForEditor(editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows).filter(building => !removed.has(building.id));
+    return buildingsWithEffectivePrefabFootprints(
+      editedBuildingsByMapRef.current[id] ?? inferBuildingsFromRowsForEditor(editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows).filter(building => !removed.has(building.id)),
+    );
   };
   const npcsForMap = (id: GameMapId) => editedNpcsByMapRef.current[id] ?? npcsRef.current.filter(npc => npc.mapId === id).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking, sheetAssetId: npc.sheetAssetId, appearance: npc.appearance }));
 
