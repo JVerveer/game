@@ -110497,7 +110497,3509 @@ export const LIMEZU_ASSET_CATALOG: LimeZuCatalogAsset[] = [
       "win"
     ],
     "defaultCategory": "uncategorized"
-  }
+  },
+{
+  "id": "asset_tileset3_mv_00_00",
+  "label": "Tileset 3 MV Outside Building 0-0",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_00.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-0-0",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_00_01",
+  "label": "Tileset 3 MV Outside Building 0-1",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_01.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-0-1",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_00_02",
+  "label": "Tileset 3 MV Outside Building 0-2",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_02.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-0-2",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_00_03",
+  "label": "Tileset 3 MV Outside Building 0-3",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_03.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-0-3",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_00_04",
+  "label": "Tileset 3 MV Outside Building 0-4",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_04.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-0-4",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_00_05",
+  "label": "Tileset 3 MV Outside Building 0-5",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_05.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-0-5",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_00_06",
+  "label": "Tileset 3 MV Outside Building 0-6",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_06.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-0-6",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_00_07",
+  "label": "Tileset 3 MV Outside Building 0-7",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_07.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-0-7",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_00_08",
+  "label": "Tileset 3 MV Outside Building 0-8",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_08.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-0-8",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_00_09",
+  "label": "Tileset 3 MV Outside Building 0-9",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_09.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-0-9",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_00_10",
+  "label": "Tileset 3 MV Outside Building 0-10",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_10.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-0-10",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_00_11",
+  "label": "Tileset 3 MV Outside Building 0-11",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_11.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-0-11",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_00_12",
+  "label": "Tileset 3 MV Outside Building 0-12",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_12.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-0-12",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_00_13",
+  "label": "Tileset 3 MV Outside Building 0-13",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_13.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-0-13",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_00_14",
+  "label": "Tileset 3 MV Outside Building 0-14",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_14.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-0-14",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_00_15",
+  "label": "Tileset 3 MV Outside Building 0-15",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_15.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-0-15",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_01_00",
+  "label": "Tileset 3 MV Outside Building 1-0",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_01_00.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-1-0",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_01_01",
+  "label": "Tileset 3 MV Outside Building 1-1",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_01_01.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-1-1",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_01_02",
+  "label": "Tileset 3 MV Outside Building 1-2",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_01_02.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-1-2",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_01_03",
+  "label": "Tileset 3 MV Outside Building 1-3",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_01_03.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-1-3",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_01_04",
+  "label": "Tileset 3 MV Outside Building 1-4",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_01_04.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-1-4",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_01_05",
+  "label": "Tileset 3 MV Outside Building 1-5",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_01_05.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-1-5",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_01_06",
+  "label": "Tileset 3 MV Outside Building 1-6",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_01_06.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-1-6",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_01_07",
+  "label": "Tileset 3 MV Outside Building 1-7",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_01_07.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-1-7",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_01_08",
+  "label": "Tileset 3 MV Outside Building 1-8",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_01_08.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-1-8",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_01_09",
+  "label": "Tileset 3 MV Outside Building 1-9",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_01_09.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-1-9",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_01_10",
+  "label": "Tileset 3 MV Outside Building 1-10",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_01_10.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-1-10",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_01_11",
+  "label": "Tileset 3 MV Outside Building 1-11",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_01_11.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-1-11",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_01_12",
+  "label": "Tileset 3 MV Outside Building 1-12",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_01_12.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-1-12",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_01_13",
+  "label": "Tileset 3 MV Outside Building 1-13",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_01_13.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-1-13",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_01_14",
+  "label": "Tileset 3 MV Outside Building 1-14",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_01_14.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-1-14",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_01_15",
+  "label": "Tileset 3 MV Outside Building 1-15",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_01_15.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-1-15",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_02_00",
+  "label": "Tileset 3 MV Outside Building 2-0",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_02_00.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-2-0",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_02_01",
+  "label": "Tileset 3 MV Outside Building 2-1",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_02_01.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-2-1",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_02_02",
+  "label": "Tileset 3 MV Outside Building 2-2",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_02_02.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-2-2",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_02_03",
+  "label": "Tileset 3 MV Outside Building 2-3",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_02_03.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-2-3",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_02_04",
+  "label": "Tileset 3 MV Outside Building 2-4",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_02_04.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-2-4",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_02_05",
+  "label": "Tileset 3 MV Outside Building 2-5",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_02_05.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-2-5",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_02_06",
+  "label": "Tileset 3 MV Outside Building 2-6",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_02_06.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-2-6",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_02_07",
+  "label": "Tileset 3 MV Outside Building 2-7",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_02_07.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-2-7",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_02_08",
+  "label": "Tileset 3 MV Outside Building 2-8",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_02_08.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-2-8",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_02_09",
+  "label": "Tileset 3 MV Outside Building 2-9",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_02_09.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-2-9",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_02_10",
+  "label": "Tileset 3 MV Outside Building 2-10",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_02_10.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-2-10",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_02_11",
+  "label": "Tileset 3 MV Outside Building 2-11",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_02_11.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-2-11",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_02_12",
+  "label": "Tileset 3 MV Outside Building 2-12",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_02_12.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-2-12",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_02_13",
+  "label": "Tileset 3 MV Outside Building 2-13",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_02_13.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-2-13",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_02_14",
+  "label": "Tileset 3 MV Outside Building 2-14",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_02_14.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-2-14",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_02_15",
+  "label": "Tileset 3 MV Outside Building 2-15",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_02_15.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-2-15",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_03_00",
+  "label": "Tileset 3 MV Outside Building 3-0",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_03_00.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-3-0",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_03_01",
+  "label": "Tileset 3 MV Outside Building 3-1",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_03_01.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-3-1",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_03_02",
+  "label": "Tileset 3 MV Outside Building 3-2",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_03_02.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-3-2",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_03_03",
+  "label": "Tileset 3 MV Outside Building 3-3",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_03_03.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-3-3",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_03_04",
+  "label": "Tileset 3 MV Outside Building 3-4",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_03_04.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-3-4",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_03_05",
+  "label": "Tileset 3 MV Outside Building 3-5",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_03_05.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-3-5",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_03_06",
+  "label": "Tileset 3 MV Outside Building 3-6",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_03_06.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-3-6",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_03_07",
+  "label": "Tileset 3 MV Outside Building 3-7",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_03_07.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-3-7",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_03_08",
+  "label": "Tileset 3 MV Outside Building 3-8",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_03_08.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-3-8",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_03_09",
+  "label": "Tileset 3 MV Outside Building 3-9",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_03_09.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-3-9",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_03_10",
+  "label": "Tileset 3 MV Outside Building 3-10",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_03_10.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-3-10",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_03_11",
+  "label": "Tileset 3 MV Outside Building 3-11",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_03_11.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-3-11",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_03_12",
+  "label": "Tileset 3 MV Outside Building 3-12",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_03_12.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-3-12",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_03_13",
+  "label": "Tileset 3 MV Outside Building 3-13",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_03_13.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-3-13",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_03_14",
+  "label": "Tileset 3 MV Outside Building 3-14",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_03_14.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-3-14",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_04_00",
+  "label": "Tileset 3 MV Outside Building 4-0",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_04_00.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-4-0",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_04_01",
+  "label": "Tileset 3 MV Outside Building 4-1",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_04_01.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-4-1",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_04_02",
+  "label": "Tileset 3 MV Outside Building 4-2",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_04_02.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-4-2",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_04_03",
+  "label": "Tileset 3 MV Outside Building 4-3",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_04_03.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-4-3",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_04_04",
+  "label": "Tileset 3 MV Outside Building 4-4",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_04_04.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-4-4",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_04_05",
+  "label": "Tileset 3 MV Outside Building 4-5",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_04_05.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-4-5",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_04_06",
+  "label": "Tileset 3 MV Outside Building 4-6",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_04_06.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-4-6",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_04_07",
+  "label": "Tileset 3 MV Outside Building 4-7",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_04_07.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-4-7",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_04_08",
+  "label": "Tileset 3 MV Outside Building 4-8",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_04_08.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-4-8",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_04_09",
+  "label": "Tileset 3 MV Outside Building 4-9",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_04_09.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-4-9",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_04_10",
+  "label": "Tileset 3 MV Outside Building 4-10",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_04_10.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-4-10",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_04_11",
+  "label": "Tileset 3 MV Outside Building 4-11",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_04_11.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-4-11",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_04_12",
+  "label": "Tileset 3 MV Outside Building 4-12",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_04_12.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-4-12",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_04_13",
+  "label": "Tileset 3 MV Outside Building 4-13",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_04_13.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-4-13",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_04_14",
+  "label": "Tileset 3 MV Outside Building 4-14",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_04_14.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-4-14",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_05_00",
+  "label": "Tileset 3 MV Outside Building 5-0",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_05_00.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-5-0",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_05_01",
+  "label": "Tileset 3 MV Outside Building 5-1",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_05_01.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-5-1",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_05_02",
+  "label": "Tileset 3 MV Outside Building 5-2",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_05_02.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-5-2",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_05_03",
+  "label": "Tileset 3 MV Outside Building 5-3",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_05_03.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-5-3",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_05_04",
+  "label": "Tileset 3 MV Outside Building 5-4",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_05_04.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-5-4",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_05_05",
+  "label": "Tileset 3 MV Outside Building 5-5",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_05_05.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-5-5",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_05_06",
+  "label": "Tileset 3 MV Outside Building 5-6",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_05_06.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-5-6",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_05_07",
+  "label": "Tileset 3 MV Outside Building 5-7",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_05_07.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-5-7",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_05_08",
+  "label": "Tileset 3 MV Outside Building 5-8",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_05_08.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-5-8",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_05_09",
+  "label": "Tileset 3 MV Outside Building 5-9",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_05_09.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-5-9",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_05_10",
+  "label": "Tileset 3 MV Outside Building 5-10",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_05_10.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-5-10",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_05_11",
+  "label": "Tileset 3 MV Outside Building 5-11",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_05_11.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-5-11",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_05_12",
+  "label": "Tileset 3 MV Outside Building 5-12",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_05_12.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-5-12",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_05_13",
+  "label": "Tileset 3 MV Outside Building 5-13",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_05_13.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-5-13",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_05_14",
+  "label": "Tileset 3 MV Outside Building 5-14",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_05_14.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-5-14",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_06_00",
+  "label": "Tileset 3 MV Outside Building 6-0",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_06_00.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-6-0",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_06_01",
+  "label": "Tileset 3 MV Outside Building 6-1",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_06_01.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-6-1",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_06_02",
+  "label": "Tileset 3 MV Outside Building 6-2",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_06_02.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-6-2",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_06_03",
+  "label": "Tileset 3 MV Outside Building 6-3",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_06_03.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-6-3",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_06_04",
+  "label": "Tileset 3 MV Outside Building 6-4",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_06_04.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-6-4",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_06_05",
+  "label": "Tileset 3 MV Outside Building 6-5",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_06_05.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-6-5",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_06_06",
+  "label": "Tileset 3 MV Outside Building 6-6",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_06_06.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-6-6",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_06_07",
+  "label": "Tileset 3 MV Outside Building 6-7",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_06_07.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-6-7",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_06_08",
+  "label": "Tileset 3 MV Outside Building 6-8",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_06_08.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-6-8",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_06_09",
+  "label": "Tileset 3 MV Outside Building 6-9",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_06_09.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-6-9",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_06_10",
+  "label": "Tileset 3 MV Outside Building 6-10",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_06_10.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-6-10",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_06_11",
+  "label": "Tileset 3 MV Outside Building 6-11",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_06_11.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-6-11",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_06_12",
+  "label": "Tileset 3 MV Outside Building 6-12",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_06_12.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-6-12",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_06_13",
+  "label": "Tileset 3 MV Outside Building 6-13",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_06_13.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-6-13",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_06_14",
+  "label": "Tileset 3 MV Outside Building 6-14",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_06_14.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-6-14",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_06_15",
+  "label": "Tileset 3 MV Outside Building 6-15",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_06_15.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-6-15",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_07_00",
+  "label": "Tileset 3 MV Outside Building 7-0",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_00.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-7-0",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_07_01",
+  "label": "Tileset 3 MV Outside Building 7-1",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_01.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-7-1",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_07_02",
+  "label": "Tileset 3 MV Outside Building 7-2",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_02.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-7-2",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_07_03",
+  "label": "Tileset 3 MV Outside Building 7-3",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_03.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-7-3",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_07_04",
+  "label": "Tileset 3 MV Outside Building 7-4",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_04.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-7-4",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_07_05",
+  "label": "Tileset 3 MV Outside Building 7-5",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_05.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-7-5",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_07_06",
+  "label": "Tileset 3 MV Outside Building 7-6",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_06.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-7-6",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_07_07",
+  "label": "Tileset 3 MV Outside Building 7-7",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_07.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-7-7",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_07_08",
+  "label": "Tileset 3 MV Outside Building 7-8",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_08.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-7-8",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_07_09",
+  "label": "Tileset 3 MV Outside Building 7-9",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_09.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-7-9",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_07_10",
+  "label": "Tileset 3 MV Outside Building 7-10",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_10.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-7-10",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_07_11",
+  "label": "Tileset 3 MV Outside Building 7-11",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_11.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-7-11",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_07_12",
+  "label": "Tileset 3 MV Outside Building 7-12",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_12.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-7-12",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_07_13",
+  "label": "Tileset 3 MV Outside Building 7-13",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_13.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-7-13",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_07_14",
+  "label": "Tileset 3 MV Outside Building 7-14",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_14.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-7-14",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_07_15",
+  "label": "Tileset 3 MV Outside Building 7-15",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_07_15.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-7-15",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_08_00",
+  "label": "Tileset 3 MV Outside Building 8-0",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_08_00.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-8-0",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_08_01",
+  "label": "Tileset 3 MV Outside Building 8-1",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_08_01.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-8-1",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_08_02",
+  "label": "Tileset 3 MV Outside Building 8-2",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_08_02.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-8-2",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_08_03",
+  "label": "Tileset 3 MV Outside Building 8-3",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_08_03.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-8-3",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_08_04",
+  "label": "Tileset 3 MV Outside Building 8-4",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_08_04.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-8-4",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_08_05",
+  "label": "Tileset 3 MV Outside Building 8-5",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_08_05.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-8-5",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_08_07",
+  "label": "Tileset 3 MV Outside Building 8-7",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_08_07.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-8-7",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_08_08",
+  "label": "Tileset 3 MV Outside Building 8-8",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_08_08.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-8-8",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_08_09",
+  "label": "Tileset 3 MV Outside Building 8-9",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_08_09.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-8-9",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_08_10",
+  "label": "Tileset 3 MV Outside Building 8-10",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_08_10.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-8-10",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_08_11",
+  "label": "Tileset 3 MV Outside Building 8-11",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_08_11.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-8-11",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_08_12",
+  "label": "Tileset 3 MV Outside Building 8-12",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_08_12.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-8-12",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_08_13",
+  "label": "Tileset 3 MV Outside Building 8-13",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_08_13.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-8-13",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_08_14",
+  "label": "Tileset 3 MV Outside Building 8-14",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_08_14.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-8-14",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_08_15",
+  "label": "Tileset 3 MV Outside Building 8-15",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_08_15.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-8-15",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_09_00",
+  "label": "Tileset 3 MV Outside Building 9-0",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_09_00.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-9-0",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_09_01",
+  "label": "Tileset 3 MV Outside Building 9-1",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_09_01.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-9-1",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_09_02",
+  "label": "Tileset 3 MV Outside Building 9-2",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_09_02.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-9-2",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_09_03",
+  "label": "Tileset 3 MV Outside Building 9-3",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_09_03.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-9-3",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_09_04",
+  "label": "Tileset 3 MV Outside Building 9-4",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_09_04.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-9-4",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_09_05",
+  "label": "Tileset 3 MV Outside Building 9-5",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_09_05.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-9-5",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_09_06",
+  "label": "Tileset 3 MV Outside Building 9-6",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_09_06.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-9-6",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_09_07",
+  "label": "Tileset 3 MV Outside Building 9-7",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_09_07.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-9-7",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_09_08",
+  "label": "Tileset 3 MV Outside Building 9-8",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_09_08.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-9-8",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_09_09",
+  "label": "Tileset 3 MV Outside Building 9-9",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_09_09.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-9-9",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_09_10",
+  "label": "Tileset 3 MV Outside Building 9-10",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_09_10.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-9-10",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_09_11",
+  "label": "Tileset 3 MV Outside Building 9-11",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_09_11.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-9-11",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_09_12",
+  "label": "Tileset 3 MV Outside Building 9-12",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_09_12.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-9-12",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_09_13",
+  "label": "Tileset 3 MV Outside Building 9-13",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_09_13.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-9-13",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_09_14",
+  "label": "Tileset 3 MV Outside Building 9-14",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_09_14.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-9-14",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_09_15",
+  "label": "Tileset 3 MV Outside Building 9-15",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_09_15.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-9-15",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_10_00",
+  "label": "Tileset 3 MV Outside Building 10-0",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_10_00.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-10-0",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_10_01",
+  "label": "Tileset 3 MV Outside Building 10-1",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_10_01.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-10-1",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_10_02",
+  "label": "Tileset 3 MV Outside Building 10-2",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_10_02.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-10-2",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_10_03",
+  "label": "Tileset 3 MV Outside Building 10-3",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_10_03.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-10-3",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_10_04",
+  "label": "Tileset 3 MV Outside Building 10-4",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_10_04.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-10-4",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_10_05",
+  "label": "Tileset 3 MV Outside Building 10-5",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_10_05.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-10-5",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_10_09",
+  "label": "Tileset 3 MV Outside Building 10-9",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_10_09.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-10-9",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_10_10",
+  "label": "Tileset 3 MV Outside Building 10-10",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_10_10.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-10-10",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_10_11",
+  "label": "Tileset 3 MV Outside Building 10-11",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_10_11.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-10-11",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_10_12",
+  "label": "Tileset 3 MV Outside Building 10-12",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_10_12.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-10-12",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_10_13",
+  "label": "Tileset 3 MV Outside Building 10-13",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_10_13.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-10-13",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_10_14",
+  "label": "Tileset 3 MV Outside Building 10-14",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_10_14.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-10-14",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_10_15",
+  "label": "Tileset 3 MV Outside Building 10-15",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_10_15.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-10-15",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_11_00",
+  "label": "Tileset 3 MV Outside Building 11-0",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_11_00.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-11-0",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_11_01",
+  "label": "Tileset 3 MV Outside Building 11-1",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_11_01.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-11-1",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_11_02",
+  "label": "Tileset 3 MV Outside Building 11-2",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_11_02.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-11-2",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_11_03",
+  "label": "Tileset 3 MV Outside Building 11-3",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_11_03.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-11-3",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_11_04",
+  "label": "Tileset 3 MV Outside Building 11-4",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_11_04.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-11-4",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_11_05",
+  "label": "Tileset 3 MV Outside Building 11-5",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_11_05.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-11-5",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_11_09",
+  "label": "Tileset 3 MV Outside Building 11-9",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_11_09.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-11-9",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_11_10",
+  "label": "Tileset 3 MV Outside Building 11-10",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_11_10.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-11-10",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_11_11",
+  "label": "Tileset 3 MV Outside Building 11-11",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_11_11.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-11-11",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_11_12",
+  "label": "Tileset 3 MV Outside Building 11-12",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_11_12.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-11-12",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_12_00",
+  "label": "Tileset 3 MV Outside Building 12-0",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_12_00.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-12-0",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_12_01",
+  "label": "Tileset 3 MV Outside Building 12-1",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_12_01.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-12-1",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_12_02",
+  "label": "Tileset 3 MV Outside Building 12-2",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_12_02.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-12-2",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_12_03",
+  "label": "Tileset 3 MV Outside Building 12-3",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_12_03.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-12-3",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_12_04",
+  "label": "Tileset 3 MV Outside Building 12-4",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_12_04.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-12-4",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_12_05",
+  "label": "Tileset 3 MV Outside Building 12-5",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_12_05.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-12-5",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_12_09",
+  "label": "Tileset 3 MV Outside Building 12-9",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_12_09.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-12-9",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_12_10",
+  "label": "Tileset 3 MV Outside Building 12-10",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_12_10.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-12-10",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_12_12",
+  "label": "Tileset 3 MV Outside Building 12-12",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_12_12.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-12-12",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_13_00",
+  "label": "Tileset 3 MV Outside Building 13-0",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_13_00.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-13-0",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_13_01",
+  "label": "Tileset 3 MV Outside Building 13-1",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_13_01.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-13-1",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_13_02",
+  "label": "Tileset 3 MV Outside Building 13-2",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_13_02.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-13-2",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_13_03",
+  "label": "Tileset 3 MV Outside Building 13-3",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_13_03.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-13-3",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_13_04",
+  "label": "Tileset 3 MV Outside Building 13-4",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_13_04.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-13-4",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_13_05",
+  "label": "Tileset 3 MV Outside Building 13-5",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_13_05.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-13-5",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_14_00",
+  "label": "Tileset 3 MV Outside Building 14-0",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_14_00.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-14-0",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_14_01",
+  "label": "Tileset 3 MV Outside Building 14-1",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_14_01.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-14-1",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_14_02",
+  "label": "Tileset 3 MV Outside Building 14-2",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_14_02.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-14-2",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_14_03",
+  "label": "Tileset 3 MV Outside Building 14-3",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_14_03.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-14-3",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_14_04",
+  "label": "Tileset 3 MV Outside Building 14-4",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_14_04.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-14-4",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_14_05",
+  "label": "Tileset 3 MV Outside Building 14-5",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_14_05.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-14-5",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_15_00",
+  "label": "Tileset 3 MV Outside Building 15-0",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_15_00.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-15-0",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_15_01",
+  "label": "Tileset 3 MV Outside Building 15-1",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_15_01.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-15-1",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_15_02",
+  "label": "Tileset 3 MV Outside Building 15-2",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_15_02.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-15-2",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_15_03",
+  "label": "Tileset 3 MV Outside Building 15-3",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_15_03.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-15-3",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_15_04",
+  "label": "Tileset 3 MV Outside Building 15-4",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_15_04.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-15-4",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+},
+{
+  "id": "asset_tileset3_mv_15_05",
+  "label": "Tileset 3 MV Outside Building 15-5",
+  "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_15_05.png",
+  "source": "/Users/jordy/Desktop/Modern_Exteriors_RPG_Maker_MV/Tileset_3_MV.png#tile-15-5",
+  "pack": "Modern_Exteriors_RPG_Maker_MV",
+  "width": 48,
+  "height": 48,
+  "tags": [
+    "building",
+    "exteriors",
+    "outside",
+    "rpg-maker-mv",
+    "tileset-3"
+  ],
+  "defaultCategory": "building"
+}
 ];
 
 import { LIMEZU_ASSET_CLASSIFICATION } from "./AssetClassification";
