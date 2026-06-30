@@ -1,7 +1,6 @@
 import type { Dispatch, MutableRefObject, SetStateAction } from "react";
 import type { GameMapId } from "../../../../data/maps";
 import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind, EditorNpcAsset } from "../../../../data/cityMaps/mapAsset";
-import { buildingCrestForKind } from "../../../../data/cityMaps/mapAsset";
 import { CharacterSheetRenderer } from "../../../rendering/characters/CharacterSheetRenderer";
 import { CharacterRenderer } from "../hero/CharacterRenderer";
 
@@ -20,14 +19,6 @@ type EditedObjectsByMap = Partial<Record<GameMapId, Record<string, string>>>;
 const VT = { fontFamily: "'VT323', monospace" } as const;
 const RJ = { fontFamily: "'Rajdhani', sans-serif" } as const;
 
-const BUILDING_TYPES = [
-  { kind: "house" as const, label: "House", defaultColor: "purple" as const, defaultW: 5, defaultH: 4, description: "Normal enterable house" },
-  { kind: "shop" as const, label: "Shop", defaultColor: "green" as const, defaultW: 5, defaultH: 4, description: "Auto-connects to shop interior" },
-  { kind: "healing" as const, label: "Healing Center", defaultColor: "blue" as const, defaultW: 5, defaultH: 4, description: "Auto-connects to healing center" },
-  { kind: "station" as const, label: "Train Station", defaultColor: "red" as const, defaultW: 7, defaultH: 4, description: "Auto-opens train menu" },
-  { kind: "hall" as const, label: "Hall / Institution", defaultColor: "purple" as const, defaultW: 6, defaultH: 5, description: "Large civic building" },
-];
-
 const BUILDING_COLORS = ["default", "purple", "red", "green", "white", "orange", "blue", "yellow"] as const;
 
 const BUILDING_KIND_LABEL: Record<EditorBuildingKind, string> = {
@@ -37,8 +28,6 @@ const BUILDING_KIND_LABEL: Record<EditorBuildingKind, string> = {
   station: "Train Station",
   hall: "Hall / Institution",
 };
-
-const UNIQUE_BUILDING_KINDS = new Set<EditorBuildingKind>(["shop", "healing", "station"]);
 
 const NPC_VISUAL_PRESETS = [
   { id: "generic-young-man-0", label: "Young Man 1", variant: 0, styleRole: "young-man", category: "Generic" },
@@ -72,13 +61,6 @@ const NPC_VISUAL_PRESETS = [
 ] as const;
 
 const isSelectEditorMode = (mode: EditorMode) => mode === "select";
-
-const colorForEditorBuildingKind = (kind: EditorBuildingKind): EditorBuildingColor => {
-  if (kind === "shop") return "green";
-  if (kind === "healing") return "blue";
-  if (kind === "station") return "red";
-  return "purple";
-};
 
 export function SelectedInspector({
   editorMode,
@@ -161,28 +143,6 @@ export function SelectedInspector({
 
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: 8 }}>
                       <label style={{ display: "grid", gap: 4 }}>
-                        <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Type</span>
-                        <select
-                          value={selectedBuilding!.kind}
-                          onChange={(e) => {
-                            const kind = e.target.value as EditorBuildingKind;
-                            setEditedBuildingsByMap(prev => {
-                              const current = prev[mapIdRef.current] ?? buildingsForMap(mapIdRef.current);
-                              const next = current.map((building: EditorBuildingAsset) => building.id === selectedBuilding!.id
-                                ? { ...building, kind, crest: buildingCrestForKind(kind), color: colorForEditorBuildingKind(kind) }
-                                : building
-                              ).filter((building: EditorBuildingAsset, _: number, all: EditorBuildingAsset[]) => !UNIQUE_BUILDING_KINDS.has(building.kind) || building.id === selectedBuilding!.id || all.find((other: EditorBuildingAsset) => other.kind === building.kind)?.id === building.id);
-                              editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [mapIdRef.current]: next };
-                              return { ...prev, [mapIdRef.current]: next };
-                            });
-                          }}
-                          style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
-                        >
-                          {BUILDING_TYPES.map(type => <option key={type.kind} value={type.kind}>{type.label}</option>)}
-                        </select>
-                      </label>
-
-                      <label style={{ display: "grid", gap: 4 }}>
                         <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Color</span>
                         <select
                           value={selectedBuilding!.color}
@@ -199,46 +159,6 @@ export function SelectedInspector({
                         >
                           {BUILDING_COLORS.map(color => <option key={color} value={color}>{color}</option>)}
                         </select>
-                      </label>
-
-                      <label style={{ display: "grid", gap: 4 }}>
-                        <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Width</span>
-                        <input
-                          type="number"
-                          min={3}
-                          max={14}
-                          value={selectedBuilding!.w}
-                          onChange={(e) => {
-                            const w = Number(e.target.value);
-                            setEditedBuildingsByMap(prev => {
-                              const current = prev[mapIdRef.current] ?? buildingsForMap(mapIdRef.current);
-                              const next = current.map((building: EditorBuildingAsset) => building.id === selectedBuilding!.id ? { ...building, w } : building);
-                              editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [mapIdRef.current]: next };
-                              return { ...prev, [mapIdRef.current]: next };
-                            });
-                          }}
-                          style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
-                        />
-                      </label>
-
-                      <label style={{ display: "grid", gap: 4 }}>
-                        <span style={{ ...RJ, fontSize: "0.72rem", fontWeight: 800, color: "#252018" }}>Height</span>
-                        <input
-                          type="number"
-                          min={3}
-                          max={10}
-                          value={selectedBuilding!.h}
-                          onChange={(e) => {
-                            const h = Number(e.target.value);
-                            setEditedBuildingsByMap(prev => {
-                              const current = prev[mapIdRef.current] ?? buildingsForMap(mapIdRef.current);
-                              const next = current.map((building: EditorBuildingAsset) => building.id === selectedBuilding!.id ? { ...building, h } : building);
-                              editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [mapIdRef.current]: next };
-                              return { ...prev, [mapIdRef.current]: next };
-                            });
-                          }}
-                          style={{ padding: 8, border: "2px solid #252018", background: "#fff8c8", color: "#252018" }}
-                        />
                       </label>
                     </div>
 
@@ -264,7 +184,7 @@ export function SelectedInspector({
                     </div>
 
                     <div style={{ ...RJ, fontSize: "0.82rem", color: "#66512c", fontWeight: 700 }}>
-                      Drag the building to move it. Drag its bottom-right tile to resize it.
+                      Drag the building to move it.
                     </div>
 
                     <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>

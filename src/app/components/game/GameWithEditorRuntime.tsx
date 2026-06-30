@@ -32,7 +32,6 @@ import { InGameBattle } from "./InGameBattle";
 import { useEditorState } from "../editor/hooks/useEditorState";
 import { createMapAssetExport } from "../editor/export/exportHelpers";
 import { useBuildingMovement } from "../editor/buildings/useBuildingMovement";
-import { useBuildingResize } from "../editor/buildings/useBuildingResize";
 import { useBuildingPlacement } from "../editor/buildings/useBuildingPlacement";
 import { useBuildingDeletion } from "../editor/buildings/useBuildingDeletion";
 import { useObjectEditor } from "../editor/objects/useObjectEditor";
@@ -930,17 +929,6 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   });
 
   const {
-    resizeEditorBuildingTo,
-  } = useBuildingResize({
-    mapIdRef,
-    editedRowsByMapRef,
-    editedBuildingsByMapRef,
-    setEditedRowsByMap,
-    setEditedBuildingsByMap,
-    buildingsForMap,
-  });
-
-  const {
     duplicateSelectedBuilding,
     placeEditorBuilding,
   } = useBuildingPlacement({
@@ -951,7 +939,6 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     editorBuildingColorRef,
     editorBuildingWRef,
     editorBuildingHRef,
-    setEditedRowsByMap,
     setEditedBuildingsByMap,
     setEditorSelection,
     buildingsForMap,
@@ -1017,7 +1004,6 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     mapIdRef,
     editorModeRef,
     isEditorDraggingRef,
-    resizeBuildingIdRef,
     draggedBuildingIdRef,
     draggedObjectCoordRef,
     draggedNpcIdRef,
@@ -1029,12 +1015,10 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     setDraggedNpcId,
     setDraggedObjectCoord,
     setDraggedBuildingId,
-    setResizeBuildingId,
     buildingsForMap,
     objectsForMap,
     rowsForMap,
     buildingAtCoord,
-    resizeEditorBuildingTo,
     moveEditorBuildingTo,
     moveEditorObjectTo,
     moveSelectedNpcTo,

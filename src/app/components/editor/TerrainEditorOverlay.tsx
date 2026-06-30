@@ -13,6 +13,8 @@ import { NpcPalette } from "./npcs/NpcPalette";
 import { ExportPanel } from "./export/ExportPanel";
 import { SelectedInspector } from "./selection/SelectedInspector";
 import { buildingAtCoord } from "./buildings/buildingHelpers";
+import { buildingPrefabForBuilding } from "../../assets/limezu/BuildingPlacementRuntime";
+import { effectiveBuildingPrefabFootprint, selectedBuildingPrefab } from "../../assets/limezu/BuildingPrefabRuntime";
 import type {
   EditorMode,
   EditorSelection,
@@ -79,7 +81,8 @@ type EditorTileButtonProps = {
   npc: EditorNpcAsset | undefined;
   limeZuObject: ReturnType<typeof limeZuObjectAssetForCoord> | undefined;
   terrainStyle: CSSProperties | undefined;
-  selectedBuildingId: string | undefined;
+  buildingLabel: string | undefined;
+  placementPreview: "valid" | "invalid" | undefined;
   objectEditAction: ObjectEditAction;
   npcEditAction: ObjectEditAction;
   editorMode: EditorMode;
@@ -97,7 +100,8 @@ const EditorTileButton = memo(function EditorTileButton({
   npc,
   limeZuObject,
   terrainStyle,
-  selectedBuildingId,
+  buildingLabel,
+  placementPreview,
   objectEditAction,
   npcEditAction,
   editorMode,
@@ -110,27 +114,49 @@ const EditorTileButton = memo(function EditorTileButton({
   return (
     <button
       type="button"
-      title={`${coord}: ${tileTypeName} (${tile})${building ? ` · Building: ${BUILDING_KIND_LABEL[building.kind]}` : ""}${objectId ? ` · Object: ${objectLabelForId(objectId)}` : ""}${npc ? " · NPC" : ""}`}
+      title={`${coord}: ${tileTypeName} (${tile})${building ? ` · Building: ${buildingLabel ?? BUILDING_KIND_LABEL[building.kind]}` : ""}${placementPreview === "invalid" ? " · Cannot place building here" : ""}${objectId ? ` · Object: ${objectLabelForId(objectId)}` : ""}${npc ? " · NPC" : ""}`}
       onPointerDown={(event) => onTilePointerDown(x, y, event)}
       onPointerEnter={() => onTilePointerEnter(x, y)}
       style={{
         width: EDITOR_TILE_SIZE,
         height: EDITOR_TILE_SIZE,
         padding: 0,
-        border: npc ? "2px solid #c87aff" : building ? "2px solid #38bdf8" : objectId ? "2px solid #ffef93" : "0",
+        border: placementPreview === "invalid"
+          ? "2px solid #ca4b36"
+          : placementPreview === "valid"
+            ? "2px solid #38bdf8"
+            : npc
+              ? "2px solid #c87aff"
+              : building
+                ? "2px solid #38bdf8"
+                : objectId
+                  ? "2px solid #ffef93"
+                  : "0",
         ...(terrainStyle ?? { background: GAME_TILE_COLORS.G }),
         cursor: "pointer",
         position: "relative",
-        overflow: "hidden",
+        overflow: "visible",
         flex: "0 0 auto",
+        zIndex: building && x === building.x && y === building.y ? 4 : placementPreview ? 3 : undefined,
       }}
     >
+      {placementPreview && (
+        <span
+          style={{
+            position: "absolute",
+            inset: 1,
+            background: placementPreview === "invalid" ? "rgba(202,75,54,0.62)" : "rgba(56,189,248,0.42)",
+            borderRadius: 2,
+            pointerEvents: "none",
+          }}
+        />
+      )}
       {building && (
         <span
           style={{
             position: "absolute",
             inset: 1,
-            background: "rgba(56,189,248,0.58)",
+            background: "rgba(56,189,248,0.48)",
             color: "#252018",
             fontSize: 9,
             lineHeight: "14px",
@@ -140,7 +166,34 @@ const EditorTileButton = memo(function EditorTileButton({
             pointerEvents: "none",
           }}
         >
-          {building.id === selectedBuildingId && x === building.x + building.w - 1 && y === building.y + building.h - 1 ? "↘" : "⌂"}
+          ⌂
+        </span>
+      )}
+      {building && x === building.x && y === building.y && (
+        <span
+          style={{
+            position: "absolute",
+            left: 1,
+            top: 1,
+            width: Math.max(EDITOR_TILE_SIZE, building.w * (EDITOR_TILE_SIZE + EDITOR_TILE_GAP) - EDITOR_TILE_GAP - 2),
+            minHeight: 14,
+            padding: "1px 3px",
+            boxSizing: "border-box",
+            background: "rgba(255,248,200,0.92)",
+            border: "1px solid #252018",
+            color: "#252018",
+            fontSize: 8,
+            lineHeight: "10px",
+            fontWeight: 900,
+            textAlign: "left",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            pointerEvents: "none",
+            zIndex: 2,
+          }}
+        >
+          {buildingLabel ?? BUILDING_KIND_LABEL[building.kind]}
         </span>
       )}
       {limeZuObject && (
@@ -329,6 +382,9 @@ function TerrainEditorOverlayComponent({
   transformDragTo: (x: number, y: number) => boolean;
 }) {
   const [terrainPreviewVersion, setTerrainPreviewVersion] = useState(0);
+  const [hoveredTile, setHoveredTile] = useState<{ x: number; y: number } | null>(null);
+  const columnCount = displayRows[0]?.length ?? 0;
+  const totalRowCount = displayRows.length;
 
   useEffect(() => {
     const refresh = () => setTerrainPreviewVersion(version => version + 1);
@@ -352,6 +408,52 @@ function TerrainEditorOverlayComponent({
     }
     return byCoord;
   }, [displayBuildings]);
+
+  const buildingLabelById = useMemo(() => {
+    const labels = new Map<string, string>();
+
+    for (const building of displayBuildings) {
+      const prefab = buildingPrefabForBuilding({ id: building.id, x: building.x, y: building.y });
+      labels.set(building.id, prefab?.name ?? BUILDING_KIND_LABEL[building.kind]);
+    }
+
+    return labels;
+  }, [displayBuildings]);
+
+  const placementPreviewByCoord = useMemo(() => {
+    const preview = new Map<string, "valid" | "invalid">();
+    if (editorMode !== "buildings" || !hoveredTile) return preview;
+
+    const prefab = selectedBuildingPrefab();
+    const footprint = prefab ? effectiveBuildingPrefabFootprint(prefab) : undefined;
+    const w = Math.max(1, footprint?.width ?? editorBuildingW);
+    const h = Math.max(1, footprint?.height ?? editorBuildingH);
+    const kind = prefab?.kind ?? editorBuildingKind;
+    const outOfBounds =
+      hoveredTile.x < 0 ||
+      hoveredTile.y < 0 ||
+      hoveredTile.x + w > columnCount ||
+      hoveredTile.y + h > totalRowCount;
+    const overlaps = displayBuildings.some(building =>
+      hoveredTile.x < building.x + building.w &&
+      hoveredTile.x + w > building.x &&
+      hoveredTile.y < building.y + building.h &&
+      hoveredTile.y + h > building.y,
+    );
+    const sameUniqueKind = (kind === "shop" || kind === "healing" || kind === "station")
+      && displayBuildings.some(building => building.kind === kind);
+    const state: "valid" | "invalid" = outOfBounds || overlaps || sameUniqueKind ? "invalid" : "valid";
+
+    for (let yy = hoveredTile.y; yy < hoveredTile.y + h; yy += 1) {
+      for (let xx = hoveredTile.x; xx < hoveredTile.x + w; xx += 1) {
+        if (xx >= 0 && yy >= 0 && xx < columnCount && yy < totalRowCount) {
+          preview.set(`${xx},${yy}`, state);
+        }
+      }
+    }
+
+    return preview;
+  }, [columnCount, displayBuildings, editorBuildingH, editorBuildingKind, editorBuildingW, editorMode, hoveredTile, totalRowCount]);
 
   const npcByCoord = useMemo(() => {
     const byCoord = new Map<string, EditorNpcAsset>();
@@ -402,8 +504,6 @@ function TerrainEditorOverlayComponent({
   const [gridScrollTop, setGridScrollTop] = useState(0);
   const mapScrollerRef = useRef<HTMLDivElement | null>(null);
   const mapScrollFrameRef = useRef<number | null>(null);
-  const columnCount = displayRows[0]?.length ?? 0;
-  const totalRowCount = displayRows.length;
   const gridWidth = columnCount * EDITOR_ROW_HEIGHT - EDITOR_TILE_GAP + EDITOR_GRID_PADDING * 2;
   const gridHeight = totalRowCount * EDITOR_ROW_HEIGHT - EDITOR_TILE_GAP + EDITOR_GRID_PADDING * 2;
   const viewportHeight = Math.min(720, Math.max(260, gridHeight + 8));
@@ -436,12 +536,14 @@ function TerrainEditorOverlayComponent({
 
   const handleTilePointerDown = useCallback((x: number, y: number, event: ReactPointerEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    setHoveredTile({ x, y });
     isEditorDraggingRef.current = true;
     setIsEditorDragging(true);
     paintEditorTile(x, y);
   }, [isEditorDraggingRef, paintEditorTile, setIsEditorDragging]);
 
   const handleTilePointerEnter = useCallback((x: number, y: number) => {
+    setHoveredTile({ x, y });
     if (isEditorDraggingRef.current && transformDragTo(x, y)) return;
     if (isEditorDraggingRef.current) paintEditorTile(x, y);
   }, [isEditorDraggingRef, paintEditorTile, transformDragTo]);
@@ -596,6 +698,7 @@ function TerrainEditorOverlayComponent({
                         const objectId = displayObjects[coord];
                         const npc = npcByCoord.get(coord);
                         const limeZuObject = limeZuObjectByCoord.get(coord);
+                        const buildingLabel = building ? buildingLabelById.get(building.id) : undefined;
 
                         return (
                           <EditorTileButton
@@ -608,7 +711,8 @@ function TerrainEditorOverlayComponent({
                             npc={npc}
                             limeZuObject={limeZuObject}
                             terrainStyle={terrainPreviewStyleByCoord.get(coord)}
-                            selectedBuildingId={selectedBuilding?.id}
+                            buildingLabel={buildingLabel}
+                            placementPreview={placementPreviewByCoord.get(coord)}
                             objectEditAction={objectEditAction}
                             npcEditAction={npcEditAction}
                             editorMode={editorMode}

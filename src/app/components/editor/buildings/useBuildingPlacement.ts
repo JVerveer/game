@@ -4,7 +4,6 @@ import { GAME_MAPS } from "../../../../data/maps";
 import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind } from "../../../../data/cityMaps/mapAsset";
 import { buildingCrestForKind, doorForBuildingAsset } from "../../../../data/cityMaps/mapAsset";
 import type { EditedBuildingsByMap, EditedRowsByMap, EditorSelection } from "../hooks/useEditorState";
-import { clearBuildingFootprintsFromRows } from "./buildingHelpers";
 import {
   assignBuildingAsset,
   readSelectedBuildingAssetId,
@@ -25,7 +24,6 @@ export function useBuildingPlacement({
   editorBuildingColorRef,
   editorBuildingWRef,
   editorBuildingHRef,
-  setEditedRowsByMap,
   setEditedBuildingsByMap,
   setEditorSelection,
   buildingsForMap,
@@ -37,7 +35,6 @@ export function useBuildingPlacement({
   editorBuildingColorRef: MutableRefObject<EditorBuildingColor>;
   editorBuildingWRef: MutableRefObject<number>;
   editorBuildingHRef: MutableRefObject<number>;
-  setEditedRowsByMap: Dispatch<SetStateAction<EditedRowsByMap>>;
   setEditedBuildingsByMap: Dispatch<SetStateAction<EditedBuildingsByMap>>;
   setEditorSelection: (selection: EditorSelection) => void;
   buildingsForMap: (id: GameMapId) => EditorBuildingAsset[];
@@ -96,29 +93,28 @@ export function useBuildingPlacement({
       crest: buildingCrestForKind(kind),
     };
 
+    const currentBuildings = editedBuildingsByMapRef.current[id] ?? buildingsForMap(id).map(item => ({ ...item }));
+    const door = doorForBuildingAsset(building);
+    const mapRows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows;
+    const mapHeight = mapRows.length;
+    const mapWidth = mapRows[0]?.length ?? 0;
+    const outOfBounds = building.x < 0 || building.y < 0 || building.x + building.w > mapWidth || building.y + building.h > mapHeight;
+    const conflicts = outOfBounds || currentBuildings.some(item => {
+      const itemDoor = doorForBuildingAsset(item);
+      const overlaps =
+        building.x < item.x + item.w &&
+        building.x + building.w > item.x &&
+        building.y < item.y + item.h &&
+        building.y + building.h > item.y;
+      const sameUniqueKind = UNIQUE_BUILDING_KINDS.has(kind) && item.kind === kind;
+      return overlaps || sameUniqueKind || (itemDoor.x === door.x && itemDoor.y === door.y);
+    });
+
+    if (conflicts) return false;
+
     setEditedBuildingsByMap(prev => {
-      const current = prev[id] ?? buildingsForMap(id).map(item => ({ ...item }));
-      const door = doorForBuildingAsset(building);
-      const removedBuildings: EditorBuildingAsset[] = [];
-      const withoutOverlap = current.filter(item => {
-        const itemDoor = doorForBuildingAsset(item);
-        const overlaps =
-          building.x < item.x + item.w &&
-          building.x + building.w > item.x &&
-          building.y < item.y + item.h &&
-          building.y + building.h > item.y;
-        const sameUniqueKind = UNIQUE_BUILDING_KINDS.has(kind) && item.kind === kind;
-        const shouldRemove = overlaps || sameUniqueKind || (itemDoor.x === door.x && itemDoor.y === door.y);
-        if (shouldRemove) removedBuildings.push(item);
-        return !shouldRemove;
-      });
-      if (removedBuildings.length > 0) {
-        const baseRows = editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows.map(row => [...row]);
-        const nextRows = clearBuildingFootprintsFromRows(baseRows, removedBuildings);
-        editedRowsByMapRef.current = { ...editedRowsByMapRef.current, [id]: nextRows };
-        setEditedRowsByMap(rowsPrev => ({ ...rowsPrev, [id]: nextRows }));
-      }
-      const next = [...withoutOverlap, building];
+      const current = prev[id] ?? currentBuildings;
+      const next = [...current, building];
       editedBuildingsByMapRef.current = { ...editedBuildingsByMapRef.current, [id]: next };
       return { ...prev, [id]: next };
     });
@@ -136,6 +132,8 @@ export function useBuildingPlacement({
         h: building.h,
       });
     }
+
+    return true;
   };
 
   return {

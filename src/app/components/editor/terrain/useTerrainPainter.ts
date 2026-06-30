@@ -12,7 +12,6 @@ export function useTerrainPainter({
   mapIdRef,
   editorModeRef,
   isEditorDraggingRef,
-  resizeBuildingIdRef,
   draggedBuildingIdRef,
   draggedObjectCoordRef,
   draggedNpcIdRef,
@@ -24,12 +23,10 @@ export function useTerrainPainter({
   setDraggedNpcId,
   setDraggedObjectCoord,
   setDraggedBuildingId,
-  setResizeBuildingId,
   buildingsForMap,
   objectsForMap,
   rowsForMap,
   buildingAtCoord,
-  resizeEditorBuildingTo,
   moveEditorBuildingTo,
   moveEditorObjectTo,
   moveSelectedNpcTo,
@@ -41,7 +38,6 @@ export function useTerrainPainter({
   mapIdRef: MutableRefObject<GameMapId>;
   editorModeRef: MutableRefObject<EditorMode>;
   isEditorDraggingRef: MutableRefObject<boolean>;
-  resizeBuildingIdRef: MutableRefObject<string | null>;
   draggedBuildingIdRef: MutableRefObject<string | null>;
   draggedObjectCoordRef: MutableRefObject<string | null>;
   draggedNpcIdRef: MutableRefObject<string | null>;
@@ -53,17 +49,15 @@ export function useTerrainPainter({
   setDraggedNpcId: (id: string | null) => void;
   setDraggedObjectCoord: (coord: string | null) => void;
   setDraggedBuildingId: (id: string | null) => void;
-  setResizeBuildingId: (id: string | null) => void;
   buildingsForMap: (id: GameMapId) => EditorBuildingAsset[];
   objectsForMap: (id: GameMapId) => Record<string, string>;
   rowsForMap: (id: GameMapId) => string[][];
   buildingAtCoord: (buildings: EditorBuildingAsset[], x: number, y: number) => EditorBuildingAsset | undefined;
-  resizeEditorBuildingTo: (buildingId: string, x: number, y: number) => void;
   moveEditorBuildingTo: (buildingId: string, x: number, y: number) => void;
   moveEditorObjectTo: (fromCoord: string, x: number, y: number) => void;
   moveSelectedNpcTo: (x: number, y: number) => void;
   paintNpcEditorTile: (x: number, y: number) => void;
-  placeEditorBuilding: (x: number, y: number) => void;
+  placeEditorBuilding: (x: number, y: number) => boolean;
   setEditedObjectsByMap: Dispatch<SetStateAction<EditedObjectsByMap>>;
   setEditedRowsByMap: Dispatch<SetStateAction<EditedRowsByMap>>;
 }) {
@@ -83,11 +77,6 @@ export function useTerrainPainter({
 
   const transformDragTo = (x: number, y: number) => {
     if (!isSelectEditorMode(editorModeRef.current)) return false;
-
-    if (resizeBuildingIdRef.current) {
-      resizeEditorBuildingTo(resizeBuildingIdRef.current, x, y);
-      return true;
-    }
 
     if (draggedBuildingIdRef.current) {
       moveEditorBuildingTo(draggedBuildingIdRef.current, x, y);
@@ -141,20 +130,9 @@ export function useTerrainPainter({
 
       const building = buildingAtCoord(buildingsForMap(id), x, y);
       if (building) {
-        const isResizeHandle = x === building.x + building.w - 1 && y === building.y + building.h - 1;
         setEditorSelection({ kind: "building", id: building.id });
-        setDraggedBuildingId(null);
-        draggedBuildingIdRef.current = null;
-        setResizeBuildingId(null);
-        resizeBuildingIdRef.current = null;
-
-        if (isResizeHandle) {
-          setResizeBuildingId(building.id);
-          resizeBuildingIdRef.current = building.id;
-        } else {
-          setDraggedBuildingId(building.id);
-          draggedBuildingIdRef.current = building.id;
-        }
+        setDraggedBuildingId(building.id);
+        draggedBuildingIdRef.current = building.id;
         return;
       }
 
