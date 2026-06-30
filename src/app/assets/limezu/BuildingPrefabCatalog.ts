@@ -3624,6 +3624,2440 @@ export const BUILDING_PREFAB_CATALOG = [
     ]
   },
   {
+    "id": "building-house3",
+    "name": "House3",
+    "kind": "house",
+    "color": "default",
+    "width": 25,
+    "height": 25,
+    "tiles": [
+      {
+        "x": 0,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset1_13_00",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_13_00.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset1_13_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_13_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset1_13_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_13_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset1_13_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_13_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset1_13_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_13_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset1_13_05",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_13_05.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset1_14_00",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_14_00.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset1_14_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_14_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset1_14_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_14_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset1_14_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_14_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset1_14_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_14_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset1_14_05",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_14_05.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset1_00_08",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_00_08.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset1_00_09",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_00_09.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset1_00_09",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_00_09.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset1_00_09",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_00_09.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset1_00_09",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_00_09.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset1_00_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_00_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset1_03_08",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_03_08.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset1_03_09",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_03_09.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset1_03_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_03_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset1_03_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_03_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset1_03_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_03_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset1_03_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_03_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset1_04_08",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_04_08.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset1_04_09",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_04_09.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset1_04_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_04_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset1_04_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_04_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset1_04_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_04_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset1_04_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_04_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset1_05_08",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_05_08.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset1_05_09",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_05_09.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset1_05_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_05_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset1_05_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_05_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset1_05_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_05_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset1_05_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_05_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset1_06_08",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_06_08.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset1_06_09",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_06_09.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset1_06_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_06_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset1_06_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_06_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset1_06_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_06_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset1_06_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_06_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 7,
+        "layer": "base",
+        "assetId": "asset_buildingset1_07_08",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_07_08.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 7,
+        "layer": "base",
+        "assetId": "asset_buildingset1_07_09",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_07_09.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 7,
+        "layer": "base",
+        "assetId": "asset_buildingset1_07_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_07_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 7,
+        "layer": "base",
+        "assetId": "asset_buildingset1_07_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_07_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 7,
+        "layer": "base",
+        "assetId": "asset_buildingset1_07_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_07_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 7,
+        "layer": "base",
+        "assetId": "asset_buildingset1_07_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset1_07_13.png",
+        "width": 48,
+        "height": 48
+      }
+    ],
+    "entrance": {
+      "x": 2,
+      "y": 6
+    },
+    "entrances": [
+      {
+        "x": 2,
+        "y": 6
+      },
+      {
+        "x": 3,
+        "y": 6
+      }
+    ],
+    "tags": [
+      "custom",
+      "building"
+    ]
+  },
+  {
+    "id": "building-house4",
+    "name": "House4",
+    "kind": "house",
+    "color": "default",
+    "width": 25,
+    "height": 25,
+    "tiles": [
+      {
+        "x": 0,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_09_00",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_09_00.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_09_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_09_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_09_02",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_09_02.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_09_03",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_09_03.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_09_04",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_09_04.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_09_05",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_09_05.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_00",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_00.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_05",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_05.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_00",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_00.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "layer": "decor",
+        "assetId": "asset_buildingset26_12_03",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset26_12_03.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_05",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_05.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_00",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_00.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_05",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_05.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_00_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_00_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_00_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_00_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_00_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_00_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_00_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_00_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_00_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_00_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_00_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_00_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_01_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_01_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_01_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_01_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_01_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_01_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_01_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_01_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_01_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_01_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_01_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_01_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_02_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_02_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_02_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_02_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_02_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_02_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_02_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_02_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_02_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_02_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_02_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_02_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      }
+    ],
+    "entrance": {
+      "x": 1,
+      "y": 5
+    },
+    "entrances": [
+      {
+        "x": 1,
+        "y": 5
+      }
+    ],
+    "tags": [
+      "custom",
+      "building"
+    ]
+  },
+  {
+    "id": "building-house5",
+    "name": "House5",
+    "kind": "house",
+    "color": "default",
+    "width": 25,
+    "height": 25,
+    "tiles": [
+      {
+        "x": 0,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_03_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_03_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_03_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_03_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_03_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_03_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_03_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_03_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_03_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_03_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_03_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_03_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_04_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_04_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_04_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_04_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "layer": "decor",
+        "assetId": "asset_buildingset19_11_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset19_11_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_04_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_04_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_04_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_04_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "layer": "decor",
+        "assetId": "asset_buildingset19_08_02",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset19_08_02.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_04_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_04_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "layer": "decor",
+        "assetId": "asset_buildingset19_08_03",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset19_08_03.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_04_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_04_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_06_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_06_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_06_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_06_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_06_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_06_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_06_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_06_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_06_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_06_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_06_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_06_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_08_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_08_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_08_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_08_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_08_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_08_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_08_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_08_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_08_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_08_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_08_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_08_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_08_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_08_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_08_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_08_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_08_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_08_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_08_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_08_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_08_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_08_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_08_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_08_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 7,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 7,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 7,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 7,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 7,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 7,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 7,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 7,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 7,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 7,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 7,
+        "layer": "base",
+        "assetId": "asset_buildingset2_07_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_07_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 7,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 8,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 8,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 8,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 8,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 8,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 8,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 8,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 8,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 8,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 8,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 8,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 8,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 9,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 9,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 9,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 9,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 9,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 9,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 9,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 9,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 9,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 9,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 9,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 9,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 10,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 10,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 10,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 10,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 10,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 10,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 10,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 10,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 10,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 10,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 11,
+        "layer": "base",
+        "assetId": "asset_buildingset2_13_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_13_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 11,
+        "layer": "base",
+        "assetId": "asset_buildingset2_13_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_13_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 11,
+        "layer": "base",
+        "assetId": "asset_buildingset2_13_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_13_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 11,
+        "layer": "base",
+        "assetId": "asset_buildingset2_13_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_13_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 11,
+        "layer": "base",
+        "assetId": "asset_buildingset2_13_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_13_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 11,
+        "layer": "base",
+        "assetId": "asset_buildingset2_13_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_13_15.png",
+        "width": 48,
+        "height": 48
+      }
+    ],
+    "entrance": {
+      "x": 10,
+      "y": 17
+    },
+    "entrances": [
+      {
+        "x": 10,
+        "y": 17
+      }
+    ],
+    "tags": [
+      "custom",
+      "building"
+    ]
+  },
+  {
     "id": "building-mushroom",
     "name": "Mushroom",
     "kind": "station",
@@ -4234,16 +6668,667 @@ export const BUILDING_PREFAB_CATALOG = [
     ]
   },
   {
+    "id": "building-new-building",
+    "name": "New Building",
+    "kind": "house",
+    "color": "default",
+    "width": 25,
+    "height": 25,
+    "tiles": [
+      {
+        "x": 0,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_09_00",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_09_00.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_09_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_09_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_09_02",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_09_02.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_09_03",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_09_03.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_09_04",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_09_04.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset2_09_05",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_09_05.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_00",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_00.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "layer": "base",
+        "assetId": "asset_buildingset2_10_05",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_10_05.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_00",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_00.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 2,
+        "layer": "decor",
+        "assetId": "asset_buildingset26_12_03",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset26_12_03.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "layer": "base",
+        "assetId": "asset_buildingset2_11_05",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_11_05.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 2,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_00",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_00.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "layer": "base",
+        "assetId": "asset_buildingset2_12_05",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_12_05.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 3,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_00_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_00_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_00_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_00_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_00_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_00_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_00_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_00_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_00_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_00_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "layer": "base",
+        "assetId": "asset_buildingset2_00_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_00_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_01_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_01_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_01_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_01_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_01_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_01_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_01_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_01_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_01_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_01_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "layer": "base",
+        "assetId": "asset_buildingset2_01_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_01_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 5,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 0,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_02_10",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_02_10.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 0,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_02_11",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_02_11.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_02_12",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_02_12.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_02_13",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_02_13.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_02_14",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_02_14.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "layer": "base",
+        "assetId": "asset_buildingset2_02_15",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset2_02_15.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "layer": "collision",
+        "collision": true
+      }
+    ],
+    "entrance": {
+      "x": 1,
+      "y": 5
+    },
+    "entrances": [
+      {
+        "x": 1,
+        "y": 5
+      }
+    ],
+    "tags": [
+      "custom",
+      "building"
+    ]
+  },
+  {
     "id": "building-shop",
     "name": "Shop",
     "kind": "shop",
     "color": "default",
-    "width": 20,
-    "height": 10,
+    "width": 25,
+    "height": 25,
     "tiles": [
       {
-        "x": 3,
-        "y": 2,
+        "x": 0,
+        "y": 0,
         "layer": "base",
         "assetId": "asset_buildingset4_09_00",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_09_00.png",
@@ -4251,14 +7336,59 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
+        "x": 0,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset4_09_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset4_09_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset4_09_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset4_09_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 2,
+        "y": 0,
+        "layer": "collision",
+        "collision": true
+      },
+      {
         "x": 3,
-        "y": 2,
+        "y": 0,
+        "layer": "base",
+        "assetId": "asset_buildingset4_09_01",
+        "src": "/assets/limezu/asset-catalog/building_done_buildingset4_09_01.png",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "x": 3,
+        "y": 0,
         "layer": "collision",
         "collision": true
       },
       {
         "x": 4,
-        "y": 2,
+        "y": 0,
         "layer": "base",
         "assetId": "asset_buildingset4_09_01",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_09_01.png",
@@ -4267,58 +7397,13 @@ export const BUILDING_PREFAB_CATALOG = [
       },
       {
         "x": 4,
-        "y": 2,
+        "y": 0,
         "layer": "collision",
         "collision": true
       },
       {
         "x": 5,
-        "y": 2,
-        "layer": "base",
-        "assetId": "asset_buildingset4_09_01",
-        "src": "/assets/limezu/asset-catalog/building_done_buildingset4_09_01.png",
-        "width": 48,
-        "height": 48
-      },
-      {
-        "x": 5,
-        "y": 2,
-        "layer": "collision",
-        "collision": true
-      },
-      {
-        "x": 6,
-        "y": 2,
-        "layer": "base",
-        "assetId": "asset_buildingset4_09_01",
-        "src": "/assets/limezu/asset-catalog/building_done_buildingset4_09_01.png",
-        "width": 48,
-        "height": 48
-      },
-      {
-        "x": 6,
-        "y": 2,
-        "layer": "collision",
-        "collision": true
-      },
-      {
-        "x": 7,
-        "y": 2,
-        "layer": "base",
-        "assetId": "asset_buildingset4_09_01",
-        "src": "/assets/limezu/asset-catalog/building_done_buildingset4_09_01.png",
-        "width": 48,
-        "height": 48
-      },
-      {
-        "x": 7,
-        "y": 2,
-        "layer": "collision",
-        "collision": true
-      },
-      {
-        "x": 8,
-        "y": 2,
+        "y": 0,
         "layer": "base",
         "assetId": "asset_buildingset4_09_05",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_09_05.png",
@@ -4326,14 +7411,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 8,
-        "y": 2,
+        "x": 5,
+        "y": 0,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 9,
-        "y": 2,
+        "x": 6,
+        "y": 0,
         "layer": "base",
         "assetId": "asset_buildingset4_09_06",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_09_06.png",
@@ -4341,14 +7426,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 9,
-        "y": 2,
+        "x": 6,
+        "y": 0,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 3,
-        "y": 3,
+        "x": 0,
+        "y": 1,
         "layer": "base",
         "assetId": "asset_buildingset4_13_00",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_13_00.png",
@@ -4356,14 +7441,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 3,
-        "y": 3,
+        "x": 0,
+        "y": 1,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 4,
-        "y": 3,
+        "x": 1,
+        "y": 1,
         "layer": "base",
         "assetId": "asset_buildingset4_13_01",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_13_01.png",
@@ -4371,14 +7456,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 4,
-        "y": 3,
+        "x": 1,
+        "y": 1,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 5,
-        "y": 3,
+        "x": 2,
+        "y": 1,
         "layer": "base",
         "assetId": "asset_buildingset4_13_02",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_13_02.png",
@@ -4386,14 +7471,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 5,
-        "y": 3,
+        "x": 2,
+        "y": 1,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 6,
-        "y": 3,
+        "x": 3,
+        "y": 1,
         "layer": "base",
         "assetId": "asset_buildingset4_13_03",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_13_03.png",
@@ -4401,14 +7486,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 6,
-        "y": 3,
+        "x": 3,
+        "y": 1,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 7,
-        "y": 3,
+        "x": 4,
+        "y": 1,
         "layer": "base",
         "assetId": "asset_buildingset4_13_04",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_13_04.png",
@@ -4416,14 +7501,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 7,
-        "y": 3,
+        "x": 4,
+        "y": 1,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 7,
-        "y": 3,
+        "x": 4,
+        "y": 1,
         "layer": "decor",
         "assetId": "asset_buildingset2_09_08",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset2_09_08.png",
@@ -4431,8 +7516,8 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 8,
-        "y": 3,
+        "x": 5,
+        "y": 1,
         "layer": "base",
         "assetId": "asset_buildingset4_13_01",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_13_01.png",
@@ -4440,14 +7525,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 8,
-        "y": 3,
+        "x": 5,
+        "y": 1,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 8,
-        "y": 3,
+        "x": 5,
+        "y": 1,
         "layer": "decor",
         "assetId": "asset_buildingset2_00_01",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset2_00_01.png",
@@ -4455,8 +7540,8 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 9,
-        "y": 3,
+        "x": 6,
+        "y": 1,
         "layer": "base",
         "assetId": "asset_buildingset4_12_06",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_12_06.png",
@@ -4464,14 +7549,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 9,
-        "y": 3,
+        "x": 6,
+        "y": 1,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 3,
-        "y": 4,
+        "x": 0,
+        "y": 2,
         "layer": "base",
         "assetId": "asset_buildingset4_14_00",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_14_00.png",
@@ -4479,14 +7564,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 3,
-        "y": 4,
+        "x": 0,
+        "y": 2,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 4,
-        "y": 4,
+        "x": 1,
+        "y": 2,
         "layer": "base",
         "assetId": "asset_buildingset4_14_01",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_14_01.png",
@@ -4494,14 +7579,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 4,
-        "y": 4,
+        "x": 1,
+        "y": 2,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 5,
-        "y": 4,
+        "x": 2,
+        "y": 2,
         "layer": "base",
         "assetId": "asset_buildingset4_14_02",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_14_02.png",
@@ -4509,14 +7594,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 5,
-        "y": 4,
+        "x": 2,
+        "y": 2,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 6,
-        "y": 4,
+        "x": 3,
+        "y": 2,
         "layer": "base",
         "assetId": "asset_buildingset4_14_03",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_14_03.png",
@@ -4524,14 +7609,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 6,
-        "y": 4,
+        "x": 3,
+        "y": 2,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 7,
-        "y": 4,
+        "x": 4,
+        "y": 2,
         "layer": "base",
         "assetId": "asset_buildingset4_14_04",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_14_04.png",
@@ -4539,14 +7624,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 7,
-        "y": 4,
+        "x": 4,
+        "y": 2,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 8,
-        "y": 4,
+        "x": 5,
+        "y": 2,
         "layer": "base",
         "assetId": "asset_buildingset4_14_05",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_14_05.png",
@@ -4554,14 +7639,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 8,
-        "y": 4,
+        "x": 5,
+        "y": 2,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 9,
-        "y": 4,
+        "x": 6,
+        "y": 2,
         "layer": "base",
         "assetId": "asset_buildingset4_14_06",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_14_06.png",
@@ -4569,14 +7654,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 9,
-        "y": 4,
+        "x": 6,
+        "y": 2,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 3,
-        "y": 5,
+        "x": 0,
+        "y": 3,
         "layer": "base",
         "assetId": "asset_buildingset4_06_00",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_06_00.png",
@@ -4584,14 +7669,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 3,
-        "y": 5,
+        "x": 0,
+        "y": 3,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 4,
-        "y": 5,
+        "x": 1,
+        "y": 3,
         "layer": "base",
         "assetId": "asset_buildingset4_06_01",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_06_01.png",
@@ -4599,14 +7684,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 4,
-        "y": 5,
+        "x": 1,
+        "y": 3,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 5,
-        "y": 5,
+        "x": 2,
+        "y": 3,
         "layer": "base",
         "assetId": "asset_buildingset4_06_02",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_06_02.png",
@@ -4614,14 +7699,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 5,
-        "y": 5,
+        "x": 2,
+        "y": 3,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 6,
-        "y": 5,
+        "x": 3,
+        "y": 3,
         "layer": "base",
         "assetId": "asset_buildingset4_06_03",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_06_03.png",
@@ -4629,14 +7714,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 6,
-        "y": 5,
+        "x": 3,
+        "y": 3,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 7,
-        "y": 5,
+        "x": 4,
+        "y": 3,
         "layer": "base",
         "assetId": "asset_buildingset4_06_04",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_06_04.png",
@@ -4644,14 +7729,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 7,
-        "y": 5,
+        "x": 4,
+        "y": 3,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 8,
-        "y": 5,
+        "x": 5,
+        "y": 3,
         "layer": "base",
         "assetId": "asset_buildingset4_06_05",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_06_05.png",
@@ -4659,14 +7744,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 8,
-        "y": 5,
+        "x": 5,
+        "y": 3,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 9,
-        "y": 5,
+        "x": 6,
+        "y": 3,
         "layer": "base",
         "assetId": "asset_buildingset4_06_06",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_06_06.png",
@@ -4674,14 +7759,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 9,
-        "y": 5,
+        "x": 6,
+        "y": 3,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 3,
-        "y": 6,
+        "x": 0,
+        "y": 4,
         "layer": "base",
         "assetId": "asset_buildingset4_07_00",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_07_00.png",
@@ -4689,14 +7774,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 3,
-        "y": 6,
+        "x": 0,
+        "y": 4,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 4,
-        "y": 6,
+        "x": 1,
+        "y": 4,
         "layer": "base",
         "assetId": "asset_buildingset4_07_01",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_07_01.png",
@@ -4704,14 +7789,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 4,
-        "y": 6,
+        "x": 1,
+        "y": 4,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 5,
-        "y": 6,
+        "x": 2,
+        "y": 4,
         "layer": "base",
         "assetId": "asset_buildingset4_07_02",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_07_02.png",
@@ -4719,14 +7804,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 5,
-        "y": 6,
+        "x": 2,
+        "y": 4,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 6,
-        "y": 6,
+        "x": 3,
+        "y": 4,
         "layer": "base",
         "assetId": "asset_buildingset4_07_03",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_07_03.png",
@@ -4734,8 +7819,8 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 7,
-        "y": 6,
+        "x": 4,
+        "y": 4,
         "layer": "base",
         "assetId": "asset_buildingset4_07_04",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_07_04.png",
@@ -4743,14 +7828,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 7,
-        "y": 6,
+        "x": 4,
+        "y": 4,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 8,
-        "y": 6,
+        "x": 5,
+        "y": 4,
         "layer": "base",
         "assetId": "asset_buildingset4_07_05",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_07_05.png",
@@ -4758,14 +7843,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 8,
-        "y": 6,
+        "x": 5,
+        "y": 4,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 9,
-        "y": 6,
+        "x": 6,
+        "y": 4,
         "layer": "base",
         "assetId": "asset_buildingset4_07_06",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_07_06.png",
@@ -4773,14 +7858,14 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 9,
-        "y": 6,
+        "x": 6,
+        "y": 4,
         "layer": "collision",
         "collision": true
       },
       {
-        "x": 3,
-        "y": 7,
+        "x": 0,
+        "y": 5,
         "layer": "base",
         "assetId": "asset_buildingset4_08_00",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_08_00.png",
@@ -4788,8 +7873,8 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 4,
-        "y": 7,
+        "x": 1,
+        "y": 5,
         "layer": "base",
         "assetId": "asset_buildingset4_08_01",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_08_01.png",
@@ -4797,8 +7882,8 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 5,
-        "y": 7,
+        "x": 2,
+        "y": 5,
         "layer": "base",
         "assetId": "asset_buildingset4_08_02",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_08_02.png",
@@ -4806,8 +7891,8 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 6,
-        "y": 7,
+        "x": 3,
+        "y": 5,
         "layer": "base",
         "assetId": "asset_buildingset4_08_03",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_08_03.png",
@@ -4815,8 +7900,8 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 7,
-        "y": 7,
+        "x": 4,
+        "y": 5,
         "layer": "base",
         "assetId": "asset_buildingset4_08_04",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_08_04.png",
@@ -4824,8 +7909,8 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 8,
-        "y": 7,
+        "x": 5,
+        "y": 5,
         "layer": "base",
         "assetId": "asset_buildingset4_08_05",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_08_05.png",
@@ -4833,8 +7918,8 @@ export const BUILDING_PREFAB_CATALOG = [
         "height": 48
       },
       {
-        "x": 9,
-        "y": 7,
+        "x": 6,
+        "y": 5,
         "layer": "base",
         "assetId": "asset_buildingset4_08_06",
         "src": "/assets/limezu/asset-catalog/building_done_buildingset4_08_06.png",
@@ -4843,13 +7928,13 @@ export const BUILDING_PREFAB_CATALOG = [
       }
     ],
     "entrance": {
-      "x": 6,
-      "y": 7
+      "x": 3,
+      "y": 5
     },
     "entrances": [
       {
-        "x": 6,
-        "y": 7
+        "x": 3,
+        "y": 5
       }
     ],
     "tags": [
