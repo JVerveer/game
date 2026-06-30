@@ -200,7 +200,7 @@ const BUILDING_TYPES = [
   { kind: "hall" as const, label: "Hall / Institution", defaultColor: "purple" as const, defaultW: 6, defaultH: 5, description: "Large civic building" },
 ];
 
-const BUILDING_COLORS = ["red", "blue", "purple", "green"] as const;
+const BUILDING_COLORS = ["default", "purple", "red", "green", "white", "orange", "blue", "yellow"] as const;
 
 const BUILDING_KIND_LABEL = {
   house: "House",
@@ -211,6 +211,82 @@ const BUILDING_KIND_LABEL = {
 } as const;
 
 const UNIQUE_BUILDING_KINDS = new Set(["shop", "healing", "station"]);
+
+const buildingEntrancePortalForKind = (mapId: GameMapId, kind: EditorBuildingKind): Interaction => {
+  if (kind === "station") {
+    return { name: `${GAME_MAPS[mapId].name} Train Station`, train: true, lines: ["Choose a destination."] };
+  }
+
+  if (kind === "shop") {
+    return {
+      name: `${GAME_MAPS[mapId].name} Shop`,
+      portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
+      auto: true,
+      lines: [],
+    };
+  }
+
+  if (kind === "healing") {
+    return {
+      name: `${GAME_MAPS[mapId].name} Healing Center`,
+      portal: { mapId: "healing", x: 7, y: 7, facing: "up" },
+      auto: true,
+      lines: [],
+    };
+  }
+
+  return {
+    name: `${GAME_MAPS[mapId].name} House`,
+    portal: { mapId: "house", x: 6, y: 6, facing: "up" },
+    auto: true,
+    lines: [],
+  };
+};
+
+const prefabEntranceCoordsForBuilding = (building: EditorBuildingAsset) => {
+  const prefab = buildingPrefabForBuilding({ id: building.id, x: building.x, y: building.y });
+  if (!prefab) return [doorForBuildingAsset(building)];
+
+  const footprint = effectiveBuildingPrefabFootprint(prefab);
+  const entrances = prefab.entrances?.length ? prefab.entrances : [prefab.entrance];
+
+  return entrances.map(entrance => ({
+    x: building.x + Math.max(0, Math.min(footprint.width - 1, entrance.x - footprint.minX)),
+    y: building.y + Math.max(0, Math.min(footprint.height - 1, entrance.y - footprint.minY)),
+  }));
+};
+
+const applyBuildingsToCollisionRows = (rows: string[][], buildings: EditorBuildingAsset[] = []) => {
+  const next = rows.map(row => row.map(tile => BUILDING_TILE_IDS.has(tile) ? "G" : tile));
+
+  buildings.forEach((building) => {
+    const prefab = buildingPrefabForBuilding({ id: building.id, x: building.x, y: building.y });
+    const tile = buildingTileForKind(building.kind);
+
+    if (!prefab) {
+      for (let y = building.y; y < building.y + building.h; y++) {
+        for (let x = building.x; x < building.x + building.w; x++) {
+          if (next[y]?.[x] !== undefined) next[y][x] = tile;
+        }
+      }
+    } else {
+      const footprint = effectiveBuildingPrefabFootprint(prefab);
+      prefab.tiles
+        .filter(prefabTile => prefabTile.layer === "collision" && prefabTile.collision)
+        .forEach((prefabTile) => {
+          const x = building.x + prefabTile.x - footprint.minX;
+          const y = building.y + prefabTile.y - footprint.minY;
+          if (next[y]?.[x] !== undefined) next[y][x] = tile;
+        });
+    }
+
+    prefabEntranceCoordsForBuilding(building).forEach((door) => {
+      if (next[door.y]?.[door.x] !== undefined) next[door.y][door.x] = "O";
+    });
+  });
+
+  return next;
+};
 
 const NPC_VISUAL_CATEGORIES = [
   "Generic",
@@ -467,7 +543,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     buildings.map(buildingWithEffectivePrefabFootprint);
 
   const rowsForMap = (id: GameMapId) =>
-    applyBuildingsToRows(
+    applyBuildingsToCollisionRows(
       editedRowsByMapRef.current[id] ?? GAME_MAPS[id].rows,
       buildingsWithEffectivePrefabFootprints(editedBuildingsByMapRef.current[id] ?? []),
     );
@@ -589,37 +665,27 @@ function GameScreen({ onExit }: { onExit: () => void }) {
 
   const dynamicDoorActionFor = (id: GameMapId, x: number, y: number): Interaction | null => {
     if (rowsForMap(id)[y]?.[x] !== "O") return null;
+    const buildingAtEntrance = buildingsForMap(id).find(building =>
+      prefabEntranceCoordsForBuilding(building).some(entrance => entrance.x === x && entrance.y === y),
+    );
+    if (buildingAtEntrance) return buildingEntrancePortalForKind(id, buildingAtEntrance.kind);
+
     const buildingTile = buildingTileNearDoor(id, x, y);
     if (!buildingTile) return null;
 
     if (buildingTile === "P") {
-      return { name: `${GAME_MAPS[id].name} Train Station`, train: true, lines: ["Choose a destination."] };
+      return buildingEntrancePortalForKind(id, "station");
     }
 
     if (buildingTile === "A") {
-      return {
-        name: `${GAME_MAPS[id].name} Shop`,
-        portal: { mapId: "shop", x: 7, y: 7, facing: "up" },
-        auto: true,
-        lines: [],
-      };
+      return buildingEntrancePortalForKind(id, "shop");
     }
 
     if (buildingTile === "H") {
-      return {
-        name: `${GAME_MAPS[id].name} Healing Center`,
-        portal: { mapId: "healing", x: 7, y: 7, facing: "up" },
-        auto: true,
-        lines: [],
-      };
+      return buildingEntrancePortalForKind(id, "healing");
     }
 
-    return {
-      name: `${GAME_MAPS[id].name} House`,
-      portal: { mapId: "house", x: 6, y: 6, facing: "up" },
-      auto: true,
-      lines: [],
-    };
+    return buildingEntrancePortalForKind(id, "house");
   };
 
   const trainDestinations = () => TOWN_THEMES.filter(town => town.id !== mapIdRef.current);

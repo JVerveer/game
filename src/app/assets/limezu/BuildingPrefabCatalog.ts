@@ -61,8 +61,8 @@ export const BUILDING_PREFAB_CATALOG = [
         "x": 3,
         "y": 1,
         "layer": "base",
-        "assetId": "asset_tileset3_mv_00_00",
-        "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_00.png",
+        "assetId": "asset_tileset3_mv_00_06",
+        "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_06.png",
         "width": 48,
         "height": 48
       },
@@ -76,8 +76,8 @@ export const BUILDING_PREFAB_CATALOG = [
         "x": 4,
         "y": 1,
         "layer": "base",
-        "assetId": "asset_tileset3_mv_00_01",
-        "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_01.png",
+        "assetId": "asset_tileset3_mv_00_06",
+        "src": "/assets/limezu/asset-catalog/modern_exteriors_rpg_maker_mv_tileset_3_mv_00_06.png",
         "width": 48,
         "height": 48
       },
