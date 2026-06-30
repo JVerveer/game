@@ -56,7 +56,7 @@ export const BUILDING_TYPES: BuildingTypeOption[] = [
   { kind: "hall", label: "Hall / Institution", defaultColor: "purple", defaultW: 6, defaultH: 5, description: "Large civic building" },
 ];
 
-export const BUILDING_COLORS: EditorBuildingColor[] = ["red", "blue", "purple", "green"];
+export const BUILDING_COLORS: EditorBuildingColor[] = ["default", "purple", "red", "green", "white", "orange", "blue", "yellow"];
 
 export const BUILDING_KIND_LABEL: Record<EditorBuildingKind, string> = {
   house: "House",

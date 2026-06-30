@@ -142,8 +142,19 @@ const groundClassFor = (rows: string[][], x: number, y: number) => {
 const roofTileFor = (color: PixelBuildingColor) => {
   if (color === "blue") return "E";
   if (color === "green") return "G";
-  if (color === "red") return "R";
+  if (color === "red" || color === "orange" || color === "yellow") return "R";
   return "E";
+};
+
+const buildingColorFilter = (color: PixelBuildingColor) => {
+  if (color === "purple") return "sepia(0.25) saturate(1.4) hue-rotate(225deg)";
+  if (color === "red") return "sepia(0.35) saturate(1.55) hue-rotate(-18deg)";
+  if (color === "green") return "sepia(0.35) saturate(1.35) hue-rotate(76deg) brightness(0.92)";
+  if (color === "white") return "saturate(0.25) brightness(1.35)";
+  if (color === "orange") return "sepia(0.55) saturate(1.65) hue-rotate(-10deg) brightness(1.05)";
+  if (color === "blue") return "sepia(0.25) saturate(1.55) hue-rotate(170deg)";
+  if (color === "yellow") return "sepia(0.65) saturate(1.6) hue-rotate(6deg) brightness(1.12)";
+  return undefined;
 };
 
 const buildingTileFor = (building: PixelBuilding, yy: number) => {
@@ -187,6 +198,7 @@ function RuntimeBuildingPrefabSprite({
   const footprint = effectiveBuildingPrefabFootprint(prefab);
   const scaleX = (building.w * TILE_SIZE) / Math.max(1, footprint.width);
   const scaleY = (building.h * TILE_SIZE) / Math.max(1, footprint.height);
+  const colorFilter = buildingColorFilter(building.color);
   const visibleTiles = prefab.tiles
     .filter((tile) => tile.layer !== "collision")
     .map((tile) => ({
@@ -224,6 +236,7 @@ function RuntimeBuildingPrefabSprite({
               backgroundSize: "contain",
               backgroundPosition: "center",
               imageRendering: "pixelated",
+              filter: colorFilter,
             }}
           />
         ))}

@@ -1,4 +1,4 @@
-export type PixelBuildingColor = "red" | "blue" | "purple" | "green";
+export type PixelBuildingColor = "default" | "purple" | "red" | "green" | "white" | "orange" | "blue" | "yellow";
 
 export type PixelBuilding = {
   x: number;
@@ -6,7 +6,7 @@ export type PixelBuilding = {
   w: number;
   h: number;
   color: PixelBuildingColor;
-  kind: "house" | "shop" | "hall" | "station";
+  kind: "house" | "shop" | "healing" | "hall" | "station";
   crest?: string;
 };
 
@@ -18,4 +18,3 @@ export type PixelObject = {
   h?: number;
   className?: string;
 };
-

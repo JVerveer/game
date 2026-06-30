@@ -26,6 +26,10 @@ export type BuildingCatalogBuilderDraft = {
     x: number;
     y: number;
   };
+  entrances: Array<{
+    x: number;
+    y: number;
+  }>;
   tags: string[];
 };
 
@@ -33,7 +37,7 @@ export function createEmptyBuildingCatalogDraft(): BuildingCatalogBuilderDraft {
   return {
     name: "New Building",
     kind: "house",
-    color: "purple",
+    color: "default",
     width: 20,
     height: 10,
     selectedAssetId: "",
@@ -44,6 +48,7 @@ export function createEmptyBuildingCatalogDraft(): BuildingCatalogBuilderDraft {
       x: 10,
       y: 9,
     },
+    entrances: [{ x: 10, y: 9 }],
     tags: ["custom", "building"],
   };
 }
@@ -56,9 +61,15 @@ export function readBuildingCatalogDraft(): BuildingCatalogBuilderDraft {
   if (typeof window === "undefined") return createEmptyBuildingCatalogDraft();
 
   try {
+    const parsed = JSON.parse(window.localStorage.getItem(BUILDER_STORAGE_KEY) ?? "{}");
+    const entrance = parsed.entrance ?? createEmptyBuildingCatalogDraft().entrance;
+    const entrances = Array.isArray(parsed.entrances) && parsed.entrances.length ? parsed.entrances : [entrance];
+
     return {
       ...createEmptyBuildingCatalogDraft(),
-      ...JSON.parse(window.localStorage.getItem(BUILDER_STORAGE_KEY) ?? "{}"),
+      ...parsed,
+      entrance,
+      entrances,
       width: 20,
       height: 10,
     };
@@ -129,6 +140,7 @@ export function draftToPrefab(draft: BuildingCatalogBuilderDraft): BuildingPrefa
       .filter(tile => tile.assetId || tile.src || tile.collision)
       .sort((a, b) => a.y - b.y || a.x - b.x || a.layer.localeCompare(b.layer)),
     entrance: draft.entrance,
+    entrances: draft.entrances.length ? draft.entrances : [draft.entrance],
     tags: draft.tags,
     assetId: draft.tiles.find(tile => tile.assetId)?.assetId,
     createdAt: Date.now(),
@@ -148,6 +160,7 @@ export function prefabToDraft(prefab: BuildingPrefab): BuildingCatalogBuilderDra
     tool: "brush",
     tiles: prefab.tiles,
     entrance: prefab.entrance,
+    entrances: prefab.entrances?.length ? [...prefab.entrances] : [prefab.entrance],
     tags: prefab.tags,
   };
 }

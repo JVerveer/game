@@ -27,7 +27,7 @@ export type EditorNpcAsset = {
 };
 
 export type EditorBuildingKind = "house" | "shop" | "healing" | "station" | "hall";
-export type EditorBuildingColor = "red" | "blue" | "purple" | "green";
+export type EditorBuildingColor = "default" | "purple" | "red" | "green" | "white" | "orange" | "blue" | "yellow";
 
 export type EditorBuildingAsset = {
   id: string;

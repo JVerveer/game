@@ -13,9 +13,9 @@ import {
   type BuildingCatalogTile,
 } from "./BuildingPrefabCatalog";
 
-const PREFAB_STORAGE_KEY = "satiria.editor.buildingPrefabs.v2";
-const DELETED_PREFAB_STORAGE_KEY = "satiria.editor.deletedBuildingPrefabs.v2";
-const SELECTED_PREFAB_STORAGE_KEY = "satiria.editor.selectedBuildingPrefab.v2";
+const PREFAB_STORAGE_KEY = "satiria.editor.buildingPrefabs.v3";
+const DELETED_PREFAB_STORAGE_KEY = "satiria.editor.deletedBuildingPrefabs.v3";
+const SELECTED_PREFAB_STORAGE_KEY = "satiria.editor.selectedBuildingPrefab.v3";
 
 export type BuildingPrefab = BuildingCatalogPrefab & {
   createdAt?: number;
@@ -36,6 +36,10 @@ export type BuildingPrefabFootprint = {
   entranceX: number;
   entranceY: number;
 };
+
+function primaryEntrance(prefab: Pick<BuildingCatalogPrefab, "entrance" | "entrances">) {
+  return prefab.entrances?.[0] ?? prefab.entrance;
+}
 
 let cachedPrefabs: BuildingPrefabLibrary = {};
 let cachedDeletedPrefabIds: string[] = [];
@@ -58,7 +62,7 @@ export function firstAssetMetaFromPrefab(prefab: Pick<BuildingCatalogPrefab, "ti
 }
 
 export function effectiveBuildingPrefabFootprint(
-  prefab: Pick<BuildingCatalogPrefab, "width" | "height" | "tiles" | "entrance">,
+  prefab: Pick<BuildingCatalogPrefab, "width" | "height" | "tiles" | "entrance" | "entrances">,
 ): BuildingPrefabFootprint {
   const visualTiles = prefab.tiles.filter(tile => tile.layer !== "collision" && (tile.assetId || tile.src));
 
@@ -70,8 +74,8 @@ export function effectiveBuildingPrefabFootprint(
       maxY: Math.max(0, prefab.height - 1),
       width: Math.max(1, prefab.width),
       height: Math.max(1, prefab.height),
-      entranceX: Math.max(0, Math.min(prefab.width - 1, prefab.entrance.x)),
-      entranceY: Math.max(0, Math.min(prefab.height - 1, prefab.entrance.y)),
+      entranceX: Math.max(0, Math.min(prefab.width - 1, primaryEntrance(prefab).x)),
+      entranceY: Math.max(0, Math.min(prefab.height - 1, primaryEntrance(prefab).y)),
     };
   }
 
@@ -89,8 +93,8 @@ export function effectiveBuildingPrefabFootprint(
     maxY,
     width,
     height,
-    entranceX: Math.max(0, Math.min(width - 1, prefab.entrance.x - minX)),
-    entranceY: Math.max(0, Math.min(height - 1, prefab.entrance.y - minY)),
+    entranceX: Math.max(0, Math.min(width - 1, primaryEntrance(prefab).x - minX)),
+    entranceY: Math.max(0, Math.min(height - 1, primaryEntrance(prefab).y - minY)),
   };
 }
 
@@ -278,6 +282,7 @@ export function exportBuildingCatalogEntry(prefab: BuildingPrefab) {
       .filter(tile => tile.assetId || tile.src || tile.collision)
       .sort((a, b) => a.y - b.y || a.x - b.x || a.layer.localeCompare(b.layer)),
     entrance: prefab.entrance,
+    entrances: prefab.entrances?.length ? prefab.entrances : [prefab.entrance],
     tags: prefab.tags,
   };
 
@@ -297,6 +302,7 @@ export function exportBuildingPrefabsTs() {
         .filter(tile => tile.assetId || tile.src || tile.collision)
         .sort((a, b) => a.y - b.y || a.x - b.x || a.layer.localeCompare(b.layer)),
       entrance: prefab.entrance,
+      entrances: prefab.entrances?.length ? prefab.entrances : [prefab.entrance],
       tags: prefab.tags,
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -327,7 +333,7 @@ export type BuildingCatalogPrefab = {
   id: string;
   name: string;
   kind: "house" | "shop" | "healing" | "station" | "hall";
-  color: "red" | "blue" | "purple" | "green";
+  color: "default" | "purple" | "red" | "green" | "white" | "orange" | "blue" | "yellow";
   width: number;
   height: number;
   tiles: BuildingCatalogTile[];
@@ -335,6 +341,10 @@ export type BuildingCatalogPrefab = {
     x: number;
     y: number;
   };
+  entrances?: Array<{
+    x: number;
+    y: number;
+  }>;
   tags: string[];
 };
 

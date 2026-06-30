@@ -28,6 +28,16 @@ import {
 const TILE_SIZE = 40;
 const TOOLS: BuildingBuilderTool[] = ["brush", "eraser", "picker", "fill"];
 const LAYERS: BuildingCatalogLayer[] = ["base", "decor", "collision"];
+const BUILDING_COLOR_OPTIONS: BuildingCatalogBuilderDraft["color"][] = [
+  "default",
+  "purple",
+  "red",
+  "green",
+  "white",
+  "orange",
+  "blue",
+  "yellow",
+];
 
 function selectedAssetMeta(assetById: Map<string, LimeZuRuntimeAsset>, assetId: string) {
   const asset = assetById.get(assetId);
@@ -52,6 +62,7 @@ function normalizeCatalogPrefab(prefab: BuildingPrefab): BuildingCatalogPrefab {
       .filter(tile => tile.assetId || tile.src || tile.collision)
       .sort((a, b) => a.y - b.y || a.x - b.x || a.layer.localeCompare(b.layer)),
     entrance: prefab.entrance,
+    entrances: prefab.entrances?.length ? prefab.entrances : [prefab.entrance],
     tags: prefab.tags,
   };
 }
@@ -238,7 +249,8 @@ function BuildingGrid({
       const collision = tileLookup.get(`collision:${x},${y}`);
       const baseAsset = base?.assetId ? assetById.get(base.assetId) : undefined;
       const decorAsset = decor?.assetId ? assetById.get(decor.assetId) : undefined;
-      const entrance = draft.entrance.x === x && draft.entrance.y === y;
+      const entranceIndex = draft.entrances.findIndex(entrance => entrance.x === x && entrance.y === y);
+      const entrance = entranceIndex >= 0;
 
       cells.push(
         <button
@@ -261,7 +273,7 @@ function BuildingGrid({
           {baseAsset && <i style={{ ...gridAssetStyle, backgroundImage: `url(${baseAsset.src})` }} />}
           {decorAsset && <i style={{ ...gridAssetStyle, backgroundImage: `url(${decorAsset.src})` }} />}
           {collision?.collision && <i style={collisionStyle} />}
-          {entrance && <span style={entranceStyle}>DOOR</span>}
+          {entrance && <span style={entranceStyle}>DOOR {entranceIndex + 1}</span>}
         </button>,
       );
     }
@@ -317,6 +329,31 @@ export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
 
   function update(patch: Partial<BuildingCatalogBuilderDraft>) {
     setDraft({ ...draft, ...patch });
+  }
+
+  function syncEntrances(entrances: BuildingCatalogBuilderDraft["entrances"]) {
+    const safeEntrances = (entrances.length ? entrances : [{ x: 10, y: 9 }]).map(entrance => ({
+      x: Math.max(0, Math.min(19, entrance.x)),
+      y: Math.max(0, Math.min(9, entrance.y)),
+    }));
+    setDraft({ ...draft, entrance: safeEntrances[0], entrances: safeEntrances });
+  }
+
+  function updateEntrance(index: number, patch: Partial<BuildingCatalogBuilderDraft["entrance"]>) {
+    syncEntrances(
+      draft.entrances.map((entrance, entranceIndex) =>
+        entranceIndex === index ? { ...entrance, ...patch } : entrance,
+      ),
+    );
+  }
+
+  function addEntrance() {
+    const lastEntrance = draft.entrances.at(-1) ?? draft.entrance;
+    syncEntrances([...draft.entrances, { ...lastEntrance }]);
+  }
+
+  function removeEntrance(index: number) {
+    syncEntrances(draft.entrances.filter((_, entranceIndex) => entranceIndex !== index));
   }
 
   function currentCatalogPrefab(): BuildingCatalogPrefab {
@@ -450,22 +487,57 @@ export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
           <label style={fieldStyle}>
             Color
             <select value={draft.color} onChange={event => update({ color: event.target.value as BuildingCatalogBuilderDraft["color"] })} style={inputStyle}>
-              <option value="purple">purple</option>
-              <option value="green">green</option>
-              <option value="blue">blue</option>
-              <option value="red">red</option>
+              {BUILDING_COLOR_OPTIONS.map(color => (
+                <option key={color} value={color}>{color}</option>
+              ))}
             </select>
           </label>
 
-          <label style={fieldStyle}>
-            Entrance X
-            <input type="number" min={0} max={19} value={draft.entrance.x} onChange={event => update({ entrance: { ...draft.entrance, x: Number(event.target.value) } })} style={inputStyle} />
-          </label>
-
-          <label style={fieldStyle}>
-            Entrance Y
-            <input type="number" min={0} max={9} value={draft.entrance.y} onChange={event => update({ entrance: { ...draft.entrance, y: Number(event.target.value) } })} style={inputStyle} />
-          </label>
+          <div style={entrancesPanelStyle}>
+            <div style={entrancesHeaderStyle}>
+              <span>Entrances</span>
+              <button type="button" onClick={addEntrance} style={miniButtonStyle}>Add entrance</button>
+            </div>
+            {draft.entrances.map((entrance, index) => (
+              <div key={`entrance-${index}`} style={entranceRowStyle}>
+                <span style={entranceLabelStyle}>#{index + 1}</span>
+                <label style={fieldStyle}>
+                  X
+                  <input
+                    type="number"
+                    min={0}
+                    max={19}
+                    value={entrance.x}
+                    onChange={event => updateEntrance(index, { x: Number(event.target.value) })}
+                    style={inputStyle}
+                  />
+                </label>
+                <label style={fieldStyle}>
+                  Y
+                  <input
+                    type="number"
+                    min={0}
+                    max={9}
+                    value={entrance.y}
+                    onChange={event => updateEntrance(index, { y: Number(event.target.value) })}
+                    style={inputStyle}
+                  />
+                </label>
+                <button
+                  type="button"
+                  onClick={() => removeEntrance(index)}
+                  disabled={draft.entrances.length <= 1}
+                  style={{
+                    ...miniButtonStyle,
+                    opacity: draft.entrances.length <= 1 ? 0.5 : 1,
+                    cursor: draft.entrances.length <= 1 ? "not-allowed" : "pointer",
+                  }}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div style={toolbarStyle}>
@@ -556,12 +628,17 @@ const titleStyle: React.CSSProperties = { fontFamily: "'VT323', monospace", font
 const subtitleStyle: React.CSSProperties = { fontFamily: "'Rajdhani', sans-serif", fontSize: "0.82rem", fontWeight: 900, color: "#584c35", maxWidth: 720 };
 const topButtonsStyle: React.CSSProperties = { display: "flex", gap: 8, flexWrap: "wrap" };
 const buttonStyle: React.CSSProperties = { border: "2px solid #252018", background: "#fff8c8", color: "#252018", padding: "7px 10px", fontWeight: 900, cursor: "pointer" };
+const miniButtonStyle: React.CSSProperties = { ...buttonStyle, padding: "5px 8px", fontSize: "0.7rem" };
 const saveButtonStyle: React.CSSProperties = { ...buttonStyle, background: "#315f2a", color: "#fff8c8" };
 const dangerButtonStyle: React.CSSProperties = { ...buttonStyle, background: "#b85b3f", color: "#fff8c8" };
 const doneButtonStyle: React.CSSProperties = { ...buttonStyle, background: "#ca4b36", color: "#fff8c8" };
 const settingsStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(145px, 1fr))", gap: 8, marginBottom: 10 };
 const fieldStyle: React.CSSProperties = { display: "grid", gap: 4, fontFamily: "'Rajdhani', sans-serif", fontWeight: 900, fontSize: "0.72rem" };
 const inputStyle: React.CSSProperties = { border: "2px solid #252018", background: "#fff8c8", color: "#252018", padding: 8, fontWeight: 900 };
+const entrancesPanelStyle: React.CSSProperties = { gridColumn: "span 2", border: "2px solid #252018", background: "#f4e8b5", padding: 8, display: "grid", gap: 6 };
+const entrancesHeaderStyle: React.CSSProperties = { display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, fontFamily: "'Rajdhani', sans-serif", fontWeight: 900 };
+const entranceRowStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "auto minmax(70px, 1fr) minmax(70px, 1fr) auto", gap: 6, alignItems: "end" };
+const entranceLabelStyle: React.CSSProperties = { fontFamily: "'VT323', monospace", fontSize: "1.25rem", alignSelf: "center" };
 const toolbarStyle: React.CSSProperties = { display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center", marginBottom: 10, border: "2px solid #252018", background: "#f4e8b5", padding: 8 };
 const mainStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "minmax(220px, 280px) 320px minmax(0, 1fr)", gap: 12, alignItems: "start" };
 const catalogStyle: React.CSSProperties = { border: "3px solid #252018", background: "#f4e8b5", padding: 10, display: "grid", gap: 8 };

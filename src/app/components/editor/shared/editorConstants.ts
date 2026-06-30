@@ -48,7 +48,7 @@ export const BUILDING_TYPES = [
   { kind: "hall" as const, label: "Hall / Institution", defaultColor: "purple" as const, defaultW: 6, defaultH: 5, description: "Large civic building" },
 ];
 
-export const BUILDING_COLORS = ["red", "blue", "purple", "green"] as const;
+export const BUILDING_COLORS = ["default", "purple", "red", "green", "white", "orange", "blue", "yellow"] as const;
 
 export const BUILDING_KIND_LABEL = {
   house: "House",
