@@ -124,7 +124,27 @@ function BuildingAssetPalette({
         }}
         style={inputStyle}
       >
-        {["all", "wall", "roof", "door", "window", "sign", "garage", "garden", "office", "house", "post"].map(item => (
+        {[
+          "all",
+          "buildingset1",
+          "buildingset2",
+          "buildingset3",
+          "buildingset4",
+          "buildingset5",
+          "buildingset6",
+          "buildingset7",
+          "buildingset8",
+          "wall",
+          "roof",
+          "door",
+          "window",
+          "sign",
+          "garage",
+          "garden",
+          "office",
+          "house",
+          "post",
+        ].map(item => (
           <option key={item} value={item}>{item}</option>
         ))}
       </select>

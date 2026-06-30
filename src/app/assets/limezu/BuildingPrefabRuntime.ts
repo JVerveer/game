@@ -16,6 +16,7 @@ import {
 const PREFAB_STORAGE_KEY = "satiria.editor.buildingPrefabs.v3";
 const DELETED_PREFAB_STORAGE_KEY = "satiria.editor.deletedBuildingPrefabs.v3";
 const SELECTED_PREFAB_STORAGE_KEY = "satiria.editor.selectedBuildingPrefab.v3";
+const HEALING_DEFAULT_COLOR_MIGRATION_KEY = "satiria.editor.healingDefaultColorMigrated.v1";
 
 export type BuildingPrefab = BuildingCatalogPrefab & {
   createdAt?: number;
@@ -136,6 +137,21 @@ export function readBuildingPrefabs(): BuildingPrefabLibrary {
     ) as BuildingPrefabLibrary;
   } catch {
     cachedPrefabs = {};
+  }
+
+  const healingDefaultColorMigrated = window.localStorage.getItem(HEALING_DEFAULT_COLOR_MIGRATION_KEY) === "true";
+  if (!healingDefaultColorMigrated && cachedPrefabs["building-healing"]) {
+    cachedPrefabs = {
+      ...cachedPrefabs,
+      "building-healing": {
+        ...cachedPrefabs["building-healing"],
+        color: "default",
+      },
+    };
+    window.localStorage.setItem(PREFAB_STORAGE_KEY, JSON.stringify(cachedPrefabs));
+  }
+  if (!healingDefaultColorMigrated) {
+    window.localStorage.setItem(HEALING_DEFAULT_COLOR_MIGRATION_KEY, "true");
   }
 
   try {

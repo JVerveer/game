@@ -28,7 +28,7 @@ const BUILDING_TYPES = [
   { kind: "hall" as const, label: "Hall / Institution", defaultColor: "purple" as const, defaultW: 6, defaultH: 5, description: "Large civic building" },
 ];
 
-const BUILDING_COLORS = ["red", "blue", "purple", "green"] as const;
+const BUILDING_COLORS = ["default", "purple", "red", "green", "white", "orange", "blue", "yellow"] as const;
 
 const BUILDING_KIND_LABEL: Record<EditorBuildingKind, string> = {
   house: "House",

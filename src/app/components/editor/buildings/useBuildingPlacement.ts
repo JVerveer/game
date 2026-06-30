@@ -92,7 +92,7 @@ export function useBuildingPlacement({
       w: Math.max(1, prefabFootprint?.width ?? editorBuildingWRef.current),
       h: Math.max(1, prefabFootprint?.height ?? editorBuildingHRef.current),
       kind,
-      color: prefab?.color ?? editorBuildingColorRef.current,
+      color: editorBuildingColorRef.current,
       crest: buildingCrestForKind(kind),
     };
 

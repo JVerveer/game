@@ -198,7 +198,7 @@ function RuntimeBuildingPrefabSprite({
   const footprint = effectiveBuildingPrefabFootprint(prefab);
   const scaleX = (building.w * TILE_SIZE) / Math.max(1, footprint.width);
   const scaleY = (building.h * TILE_SIZE) / Math.max(1, footprint.height);
-  const colorFilter = buildingColorFilter(building.color);
+  const colorFilter = buildingColorFilter(building.color) ?? "none";
   const visibleTiles = prefab.tiles
     .filter((tile) => tile.layer !== "collision")
     .map((tile) => ({
