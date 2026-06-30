@@ -41,6 +41,7 @@ import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { buildingPrefabForBuilding } from "../../assets/limezu/BuildingPlacementRuntime";
 import { effectiveBuildingPrefabFootprint } from "../../assets/limezu/BuildingPrefabRuntime";
+import { objectAtCoordIsWalkable } from "../../assets/limezu/ObjectLibrary";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
 import { CharacterRenderer } from "../editor/hero/CharacterRenderer";
 import { CharacterSheetRenderer } from "../../rendering/characters/CharacterSheetRenderer";
@@ -708,6 +709,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     }
 
     if (!WALK.has(t)) return;
+    if (!objectAtCoordIsWalkable(nx, ny)) return;
     if (blockingNpcAt(mapIdRef.current, nx, ny)) return;
 
     setPos({ x: nx, y: ny });

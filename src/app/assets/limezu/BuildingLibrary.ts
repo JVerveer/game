@@ -1,6 +1,7 @@
 import { type LimeZuRuntimeAsset } from "./types";
 import {
   assetsForCategory,
+  buildingAssetPlacement,
   type LimeZuCatalogAsset,
 } from "../../components/editor/assets/AssetCatalog";
 
@@ -18,7 +19,9 @@ function toRuntimeAsset(asset: LimeZuCatalogAsset): LimeZuRuntimeAsset {
 }
 
 export function getBuildingAssets(): LimeZuRuntimeAsset[] {
-  return assetsForCategory("building").map(toRuntimeAsset);
+  return assetsForCategory("building")
+    .filter(asset => buildingAssetPlacement(asset.id) === "outside")
+    .map(toRuntimeAsset);
 }
 
 // Kept for older components that import BUILDING_ASSETS directly.

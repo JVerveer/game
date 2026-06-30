@@ -1,6 +1,7 @@
 import { type LimeZuRuntimeAsset } from "./types";
 import {
   assetsForCategory,
+  objectAssetIsWalkable,
   type LimeZuCatalogAsset,
 } from "../../components/editor/assets/AssetCatalog";
 
@@ -100,6 +101,13 @@ export function objectAssetForCoord(x: number, y: number): LimeZuRuntimeAsset | 
   return assetId ? getObjectAsset(assetId) : undefined;
 }
 
+export function objectAtCoordIsWalkable(x: number, y: number) {
+  const entry = readObjectPaintMap()[objectCoordKey(x, y)];
+  const assetId = typeof entry === "string" ? entry : entry?.assetId;
+  if (!assetId) return true;
+  return objectAssetIsWalkable(assetId);
+}
+
 export function clearAllObjects() {
   cachedObjectMap = {};
   if (typeof window !== "undefined") {
@@ -118,4 +126,5 @@ export const writeLimeZuObjectPaintMap = writeObjectPaintMap;
 export const paintLimeZuObjectAt = paintObjectAt;
 export const eraseLimeZuObjectAt = eraseObjectAt;
 export const limeZuObjectAssetForCoord = objectAssetForCoord;
+export const limeZuObjectAtCoordIsWalkable = objectAtCoordIsWalkable;
 export const clearAllLimeZuObjects = clearAllObjects;

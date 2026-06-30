@@ -5,10 +5,15 @@ import {
   classifyAsset,
   classifyAssets,
   exportAssetClassificationTs,
+  exportAssetMetadataTs,
   readAssetClassification,
+  readAssetMetadata,
   resetDraftAssetClassification,
+  uncategorizeAsset,
+  updateAssetMetadata,
   type LimeZuAssetCategory,
   type LimeZuAssetClassification,
+  type LimeZuAssetMetadata,
   type LimeZuCatalogAsset,
 } from "./AssetCatalog";
 
@@ -83,6 +88,7 @@ function duplicateCountFor(asset: LimeZuCatalogAsset, groups: Map<string, LimeZu
 
 export function LimeZuAssetManager({ onClose }: { onClose: () => void }) {
   const [classification, setClassification] = useState<LimeZuAssetClassification>(() => readAssetClassification());
+  const [metadata, setMetadata] = useState<LimeZuAssetMetadata>(() => readAssetMetadata());
   const [activeCategory, setActiveCategory] = useState<LimeZuAssetCategory>("uncategorized");
   const [query, setQuery] = useState("");
   const [packFilter, setPackFilter] = useState("all");
@@ -94,9 +100,16 @@ export function LimeZuAssetManager({ onClose }: { onClose: () => void }) {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    const refresh = () => setClassification(readAssetClassification());
+    const refresh = () => {
+      setClassification(readAssetClassification());
+      setMetadata(readAssetMetadata());
+    };
     window.addEventListener("limezu:asset-classification-changed", refresh);
-    return () => window.removeEventListener("limezu:asset-classification-changed", refresh);
+    window.addEventListener("limezu:asset-metadata-changed", refresh);
+    return () => {
+      window.removeEventListener("limezu:asset-classification-changed", refresh);
+      window.removeEventListener("limezu:asset-metadata-changed", refresh);
+    };
   }, []);
 
   useEffect(() => {
@@ -157,11 +170,33 @@ export function LimeZuAssetManager({ onClose }: { onClose: () => void }) {
     setClassification(readAssetClassification());
   }
 
+  function uncategorize(assetId: string) {
+    uncategorizeAsset(assetId);
+    setClassification(readAssetClassification());
+  }
+
   function moveSelected(category: LimeZuAssetCategory) {
     if (selectedAssetIds.length === 0) return;
     classifyAssets(selectedAssetIds, category);
     setClassification(readAssetClassification());
     setSelectedIds({});
+  }
+
+  function uncategorizeSelected() {
+    if (selectedAssetIds.length === 0) return;
+    classifyAssets(selectedAssetIds, "uncategorized");
+    setClassification(readAssetClassification());
+    setSelectedIds({});
+  }
+
+  function setObjectWalkable(assetId: string, objectWalkable: boolean) {
+    updateAssetMetadata(assetId, { objectWalkable });
+    setMetadata(readAssetMetadata());
+  }
+
+  function setBuildingPlacement(assetId: string, buildingPlacement: "outside" | "inside") {
+    updateAssetMetadata(assetId, { buildingPlacement });
+    setMetadata(readAssetMetadata());
   }
 
   function selectDuplicateGroup(asset: LimeZuCatalogAsset) {
@@ -194,7 +229,7 @@ export function LimeZuAssetManager({ onClose }: { onClose: () => void }) {
   }
 
   async function exportClassification() {
-    const next = exportAssetClassificationTs();
+    const next = `${exportAssetClassificationTs()}\n\n${exportAssetMetadataTs()}`;
     setExportText(next);
     setCopied(false);
     try {
@@ -217,7 +252,7 @@ export function LimeZuAssetManager({ onClose }: { onClose: () => void }) {
           </div>
           <div style={topButtonsStyle}>
             <button type="button" onClick={resetDraft} style={buttonStyle}>Reset draft</button>
-            <button type="button" onClick={exportClassification} style={exportButtonStyle}>Export Classification</button>
+            <button type="button" onClick={exportClassification} style={exportButtonStyle}>Export Classification + Metadata</button>
             <button type="button" onClick={onClose} style={doneButtonStyle}>Done</button>
           </div>
         </div>
@@ -237,7 +272,7 @@ export function LimeZuAssetManager({ onClose }: { onClose: () => void }) {
         {exportText && (
           <div style={exportPanelStyle}>
             <strong>{copied ? "Copied to clipboard." : "Copy this text manually."}</strong>
-            <span>Replace your <code>AssetClassification.ts</code> with this export.</span>
+            <span>Use the first block for <code>AssetClassification.ts</code> and the second block for <code>AssetMetadata.ts</code>.</span>
             <textarea value={exportText} readOnly style={exportTextareaStyle} />
           </div>
         )}
@@ -292,11 +327,17 @@ export function LimeZuAssetManager({ onClose }: { onClose: () => void }) {
 
         <div style={bulkBarStyle}>
           <span>{selectedAssetIds.length} selected</span>
-          {CATEGORIES.filter(category => category.id !== activeCategory).map(category => (
-            <button key={category.id} type="button" onClick={() => moveSelected(category.id)} style={smallButtonStyle}>
-              Move selected to {category.label}
-            </button>
-          ))}
+          {activeCategory === "uncategorized"
+            ? CATEGORIES.filter(category => category.id !== "uncategorized").map(category => (
+                <button key={category.id} type="button" onClick={() => moveSelected(category.id)} style={smallButtonStyle}>
+                  Move selected to {category.label}
+                </button>
+              ))
+            : (
+                <button type="button" onClick={uncategorizeSelected} style={smallButtonStyle}>
+                  Back to Uncategorized
+                </button>
+              )}
         </div>
 
         <div style={assetGridStyle}>
@@ -337,6 +378,62 @@ export function LimeZuAssetManager({ onClose }: { onClose: () => void }) {
                 <div style={assetSourceStyle}>{asset.pack}</div>
                 <div style={assetSourceStyle}>{asset.width}x{asset.height} · {asset.source}</div>
 
+                {activeCategory === "object" && (
+                  <div style={metadataControlStyle}>
+                    <strong>Object collision</strong>
+                    <div style={metadataButtonRowStyle}>
+                      <button
+                        type="button"
+                        onClick={() => setObjectWalkable(asset.id, true)}
+                        style={{
+                          ...smallButtonStyle,
+                          background: metadata[asset.id]?.objectWalkable === true ? "#d8f0b0" : "#fff8c8",
+                        }}
+                      >
+                        Walkable
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setObjectWalkable(asset.id, false)}
+                        style={{
+                          ...smallButtonStyle,
+                          background: metadata[asset.id]?.objectWalkable !== true ? "#ffd1bf" : "#fff8c8",
+                        }}
+                      >
+                        Blocking
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {activeCategory === "building" && (
+                  <div style={metadataControlStyle}>
+                    <strong>Building use</strong>
+                    <div style={metadataButtonRowStyle}>
+                      <button
+                        type="button"
+                        onClick={() => setBuildingPlacement(asset.id, "outside")}
+                        style={{
+                          ...smallButtonStyle,
+                          background: (metadata[asset.id]?.buildingPlacement ?? "outside") === "outside" ? "#d8f0b0" : "#fff8c8",
+                        }}
+                      >
+                        Outside
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setBuildingPlacement(asset.id, "inside")}
+                        style={{
+                          ...smallButtonStyle,
+                          background: metadata[asset.id]?.buildingPlacement === "inside" ? "#d8f0b0" : "#fff8c8",
+                        }}
+                      >
+                        Inside
+                      </button>
+                    </div>
+                  </div>
+                )}
+
                 {duplicate && (
                   <div style={duplicateActionsStyle}>
                     <button type="button" onClick={() => selectDuplicateGroup(asset)} style={smallButtonStyle}>
@@ -348,13 +445,19 @@ export function LimeZuAssetManager({ onClose }: { onClose: () => void }) {
                   </div>
                 )}
 
-                <div style={moveGridStyle}>
-                  {CATEGORIES.filter(category => category.id !== activeCategory).map(category => (
-                    <button key={category.id} type="button" onClick={() => move(asset.id, category.id)} style={smallButtonStyle}>
-                      {category.label}
-                    </button>
-                  ))}
-                </div>
+                {activeCategory === "uncategorized" ? (
+                  <div style={moveGridStyle}>
+                    {CATEGORIES.filter(category => category.id !== "uncategorized").map(category => (
+                      <button key={category.id} type="button" onClick={() => move(asset.id, category.id)} style={smallButtonStyle}>
+                        {category.label}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <button type="button" onClick={() => uncategorize(asset.id)} style={smallButtonStyle}>
+                    Back to Uncategorized
+                  </button>
+                )}
               </div>
             );
           })}
@@ -398,6 +501,8 @@ const normalizedNameStyle: React.CSSProperties = { fontSize: "0.62rem", fontWeig
 const duplicateBadgeStyle: React.CSSProperties = { border: "2px solid #ca4b36", background: "#ffe2bf", color: "#252018", padding: "3px 5px", fontWeight: 900, fontSize: "0.68rem", textAlign: "center" };
 const assetSourceStyle: React.CSSProperties = { fontSize: "0.62rem", fontWeight: 800, color: "#584c35", maxHeight: 32, overflow: "hidden", overflowWrap: "anywhere" };
 const duplicateActionsStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4 };
+const metadataControlStyle: React.CSSProperties = { border: "1px solid #8d7a52", background: "#fff3a8", padding: 6, display: "grid", gap: 5, fontSize: "0.68rem", fontWeight: 900 };
+const metadataButtonRowStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4 };
 const moveGridStyle: React.CSSProperties = { display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 4 };
 const smallButtonStyle: React.CSSProperties = { border: "1px solid #252018", background: "#fff8c8", color: "#252018", padding: "4px 5px", cursor: "pointer", fontWeight: 900, fontSize: "0.68rem" };
 const dangerSmallButtonStyle: React.CSSProperties = { ...smallButtonStyle, background: "#ca4b36", color: "#fff8c8" };

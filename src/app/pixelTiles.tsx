@@ -14,8 +14,8 @@ import {
   buildingAssetForBuilding,
   buildingPrefabForBuilding,
 } from "./assets/limezu/BuildingPlacementRuntime";
-import { getBuildingAsset as getCatalogBuildingAsset } from "./assets/limezu/BuildingLibrary";
 import { effectiveBuildingPrefabFootprint } from "./assets/limezu/BuildingPrefabRuntime";
+import { getCatalogAsset } from "./components/editor/assets/AssetCatalog";
 
 const TILE_SIZE = 48;
 
@@ -191,7 +191,7 @@ function RuntimeBuildingPrefabSprite({
     .filter((tile) => tile.layer !== "collision")
     .map((tile) => ({
       ...tile,
-      src: tile.src ?? getCatalogBuildingAsset(tile.assetId)?.src,
+      src: tile.src ?? getCatalogAsset(tile.assetId)?.src,
     }))
     .filter((tile) => tile.src && tile.x >= footprint.minX && tile.x <= footprint.maxX && tile.y >= footprint.minY && tile.y <= footprint.maxY)
     .sort((a, b) => {
