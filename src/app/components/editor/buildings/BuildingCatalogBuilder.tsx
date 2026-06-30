@@ -29,12 +29,8 @@ const TILE_SIZE = 40;
 const TOOLS: BuildingBuilderTool[] = ["brush", "eraser", "picker", "fill"];
 const LAYERS: BuildingCatalogLayer[] = ["base", "decor", "collision"];
 
-function assetFor(assetId: string | undefined) {
-  return getBuildingAssets().find(asset => asset.id === assetId);
-}
-
-function selectedAssetMeta(assetId: string) {
-  const asset = assetFor(assetId);
+function selectedAssetMeta(assetById: Map<string, LimeZuRuntimeAsset>, assetId: string) {
+  const asset = assetById.get(assetId);
   return asset
     ? { assetId: asset.id, src: asset.src, width: asset.width, height: asset.height }
     : { assetId };
@@ -74,9 +70,11 @@ function upsertWorkingPrefab(
 }
 
 function BuildingAssetPalette({
+  assets,
   selectedAssetId,
   onSelect,
 }: {
+  assets: LimeZuRuntimeAsset[];
   selectedAssetId: string;
   onSelect: (assetId: string) => void;
 }) {
@@ -84,14 +82,14 @@ function BuildingAssetPalette({
   const [group, setGroup] = useState("all");
   const [visibleCount, setVisibleCount] = useState(80);
 
-  const assets = useMemo(() => {
+  const filteredAssets = useMemo(() => {
     const q = query.trim().toLowerCase();
 
-    return getBuildingAssets().filter((asset: LimeZuRuntimeAsset) => {
+    return assets.filter((asset: LimeZuRuntimeAsset) => {
       const haystack = `${asset.label} ${asset.source} ${asset.tags.join(" ")}`.toLowerCase();
       return (group === "all" || haystack.includes(group)) && (!q || haystack.includes(q));
     });
-  }, [group, query]);
+  }, [assets, group, query]);
 
   return (
     <div style={paletteStyle}>
@@ -121,7 +119,7 @@ function BuildingAssetPalette({
       </select>
 
       <div style={assetGridStyle}>
-        {assets.slice(0, visibleCount).map(asset => {
+        {filteredAssets.slice(0, visibleCount).map(asset => {
           const selected = selectedAssetId === asset.id;
 
           return (
@@ -145,7 +143,7 @@ function BuildingAssetPalette({
         })}
       </div>
 
-      {visibleCount < assets.length && (
+      {visibleCount < filteredAssets.length && (
         <button type="button" onClick={() => setVisibleCount(count => count + 80)} style={buttonStyle}>
           Load more
         </button>
@@ -156,10 +154,12 @@ function BuildingAssetPalette({
 
 function BuildingGrid({
   draft,
+  assetById,
   setDraft,
   pushHistory,
 }: {
   draft: BuildingCatalogBuilderDraft;
+  assetById: Map<string, LimeZuRuntimeAsset>;
   setDraft: (draft: BuildingCatalogBuilderDraft) => void;
   pushHistory: (draft: BuildingCatalogBuilderDraft) => void;
 }) {
@@ -191,7 +191,7 @@ function BuildingGrid({
             x: xx,
             y: yy,
             layer: draft.selectedLayer,
-            ...(draft.selectedLayer === "collision" ? {} : selectedAssetMeta(draft.selectedAssetId)),
+            ...(draft.selectedLayer === "collision" ? {} : selectedAssetMeta(assetById, draft.selectedAssetId)),
             collision: draft.selectedLayer === "collision" ? true : undefined,
           });
         }
@@ -217,19 +217,27 @@ function BuildingGrid({
       x,
       y,
       layer: draft.selectedLayer,
-      ...selectedAssetMeta(draft.selectedAssetId),
+      ...selectedAssetMeta(assetById, draft.selectedAssetId),
     }));
   }
+
+  const tileLookup = useMemo(() => {
+    const lookup = new Map<string, ReturnType<typeof tileAt>>();
+    for (const tile of draft.tiles) {
+      lookup.set(`${tile.layer}:${tile.x},${tile.y}`, tile);
+    }
+    return lookup;
+  }, [draft.tiles]);
 
   const cells = [];
 
   for (let y = 0; y < 10; y += 1) {
     for (let x = 0; x < 20; x += 1) {
-      const base = tileAt(draft, x, y, "base");
-      const decor = tileAt(draft, x, y, "decor");
-      const collision = tileAt(draft, x, y, "collision");
-      const baseAsset = assetFor(base?.assetId);
-      const decorAsset = assetFor(decor?.assetId);
+      const base = tileLookup.get(`base:${x},${y}`);
+      const decor = tileLookup.get(`decor:${x},${y}`);
+      const collision = tileLookup.get(`collision:${x},${y}`);
+      const baseAsset = base?.assetId ? assetById.get(base.assetId) : undefined;
+      const decorAsset = decor?.assetId ? assetById.get(decor.assetId) : undefined;
       const entrance = draft.entrance.x === x && draft.entrance.y === y;
 
       cells.push(
@@ -281,6 +289,12 @@ function BuildingGrid({
 }
 
 export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
+  const buildingAssets = useMemo(() => getBuildingAssets(), []);
+  const buildingAssetById = useMemo(
+    () => new Map(buildingAssets.flatMap(asset => [[asset.id, asset], [asset.sourceAssetId, asset]] as [string | undefined, LimeZuRuntimeAsset][])
+      .filter((entry): entry is [string, LimeZuRuntimeAsset] => !!entry[0])),
+    [buildingAssets],
+  );
   const [workingCatalog, setWorkingCatalog] = useState<BuildingCatalogPrefab[]>(() =>
     sortedPrefabs(Object.values(readBuildingPrefabs()).map(normalizeCatalogPrefab)),
   );
@@ -520,8 +534,8 @@ export function BuildingCatalogBuilder({ onClose }: { onClose: () => void }) {
               )}
             </div>
           </div>
-          <BuildingAssetPalette selectedAssetId={draft.selectedAssetId} onSelect={assetId => update({ selectedAssetId: assetId, tool: "brush" })} />
-          <BuildingGrid draft={draft} setDraft={setDraft} pushHistory={pushHistory} />
+          <BuildingAssetPalette assets={buildingAssets} selectedAssetId={draft.selectedAssetId} onSelect={assetId => update({ selectedAssetId: assetId, tool: "brush" })} />
+          <BuildingGrid draft={draft} assetById={buildingAssetById} setDraft={setDraft} pushHistory={pushHistory} />
         </div>
 
         {exportText && (

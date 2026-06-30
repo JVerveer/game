@@ -18,10 +18,31 @@ function toRuntimeAsset(asset: LimeZuCatalogAsset): LimeZuRuntimeAsset {
   };
 }
 
+let cachedBuildingAssets: LimeZuRuntimeAsset[] | undefined;
+let cachedBuildingAssetById: Map<string, LimeZuRuntimeAsset> | undefined;
+
+function clearBuildingAssetCache() {
+  cachedBuildingAssets = undefined;
+  cachedBuildingAssetById = undefined;
+}
+
+if (typeof window !== "undefined") {
+  window.addEventListener("limezu:asset-classification-changed", clearBuildingAssetCache);
+  window.addEventListener("limezu:asset-metadata-changed", clearBuildingAssetCache);
+}
+
 export function getBuildingAssets(): LimeZuRuntimeAsset[] {
-  return assetsForCategory("building")
+  if (cachedBuildingAssets) return cachedBuildingAssets;
+
+  cachedBuildingAssets = assetsForCategory("building")
     .filter(asset => buildingAssetPlacement(asset.id) === "outside")
     .map(toRuntimeAsset);
+  cachedBuildingAssetById = new Map(
+    cachedBuildingAssets.flatMap(asset => [[asset.id, asset], [asset.sourceAssetId, asset]] as [string | undefined, LimeZuRuntimeAsset][])
+      .filter((entry): entry is [string, LimeZuRuntimeAsset] => !!entry[0]),
+  );
+
+  return cachedBuildingAssets;
 }
 
 // Kept for older components that import BUILDING_ASSETS directly.
@@ -30,5 +51,5 @@ export const BUILDING_ASSETS: LimeZuRuntimeAsset[] = getBuildingAssets();
 
 export function getBuildingAsset(id: string | undefined): LimeZuRuntimeAsset {
   const assets = getBuildingAssets();
-  return assets.find(asset => asset.id === id || asset.sourceAssetId === id) ?? assets[0];
+  return (id ? cachedBuildingAssetById?.get(id) : undefined) ?? assets[0];
 }
