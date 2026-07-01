@@ -40,7 +40,6 @@ import { useTerrainPainter } from "../editor/terrain/useTerrainPainter";
 import { useRuntimeEffects } from "./useRuntimeEffects";
 import { buildingPrefabForBuilding } from "../../assets/limezu/BuildingPlacementRuntime";
 import { effectiveBuildingPrefabFootprint } from "../../assets/limezu/BuildingPrefabRuntime";
-import { objectAtCoordIsWalkable } from "../../assets/limezu/ObjectLibrary";
 import { HeroEditorOverlay } from "../editor/hero/HeroEditorOverlay";
 import { CharacterRenderer } from "../editor/hero/CharacterRenderer";
 import { CharacterSheetRenderer } from "../../rendering/characters/CharacterSheetRenderer";
@@ -334,6 +333,7 @@ const NPC_VISUAL_PRESETS = [
 
 
 const isSelectEditorMode = (mode: EditorMode) => mode === "select";
+const LIMEZU_OBJECT_MAP_KEY = "limezu.objectPaint.v1";
 
 
 function GameScreen({ onExit }: { onExit: () => void }) {
@@ -555,6 +555,22 @@ function GameScreen({ onExit }: { onExit: () => void }) {
   };
   const npcsForMap = (id: GameMapId) => editedNpcsByMapRef.current[id] ?? npcsRef.current.filter(npc => npc.mapId === id).map(npc => ({ id: npc.id, x: npc.x, y: npc.y, homeX: npc.homeX, homeY: npc.homeY, name: npc.name, lines: npc.lines, variant: npc.variant, style: npc.style, walking: npc.walking, sheetAssetId: npc.sheetAssetId, appearance: npc.appearance }));
 
+  const limeZuObjectAtCoordIsWalkable = (x: number, y: number) => {
+    if (typeof window === "undefined") return true;
+
+    try {
+      const objectMap = JSON.parse(window.localStorage.getItem(LIMEZU_OBJECT_MAP_KEY) ?? "{}") as Record<string, unknown>;
+      const entry = objectMap[`${x},${y}`];
+      if (entry && typeof entry === "object" && "walkable" in entry) {
+        return (entry as { walkable?: boolean }).walkable !== false;
+      }
+    } catch {
+      return true;
+    }
+
+    return true;
+  };
+
   const selectedNpc = editorSelection?.kind === "npc"
     ? displayEditorNpcs.find(npc => npc.id === editorSelection.id)
     : null;
@@ -774,7 +790,7 @@ function GameScreen({ onExit }: { onExit: () => void }) {
     }
 
     if (!WALK.has(t)) return;
-    if (!objectAtCoordIsWalkable(nx, ny)) return;
+    if (!limeZuObjectAtCoordIsWalkable(nx, ny)) return;
     if (blockingNpcAt(mapIdRef.current, nx, ny)) return;
 
     setPos({ x: nx, y: ny });

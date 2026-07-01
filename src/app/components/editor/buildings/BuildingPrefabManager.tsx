@@ -4,17 +4,16 @@ import {
   applyBuildingPrefabToEditor,
   deleteBuildingPrefab,
   exportBuildingPrefabsTs,
+  firstAssetMetaFromPrefab,
   readBuildingPrefabs,
   type BuildingPrefab,
 } from "../../../assets/limezu/BuildingPrefabRuntime";
-import { getBuildingAsset } from "../../../assets/limezu/BuildingLibrary";
-import { humanBuildingAssetLabel } from "../../../assets/limezu/BuildingPlacementRuntime";
 
 const VT = { fontFamily: "'VT323', monospace" } as const;
 const RJ = { fontFamily: "'Rajdhani', sans-serif" } as const;
 
 function BuildingPrefabPreview({ prefab }: { prefab: BuildingPrefab }) {
-  const asset = getBuildingAsset(prefab.assetId);
+  const asset = firstAssetMetaFromPrefab(prefab);
 
   return (
     <span style={{
@@ -139,7 +138,7 @@ export function BuildingPrefabManager({
 
       <div style={gridStyle}>
         {prefabs.map(prefab => {
-          const asset = getBuildingAsset(prefab.assetId);
+          const asset = firstAssetMetaFromPrefab(prefab);
 
           return (
             <div key={prefab.id} style={cardStyle}>
@@ -152,7 +151,7 @@ export function BuildingPrefabManager({
                 </div>
                 {asset && (
                   <div style={{ ...RJ, fontSize: "0.64rem", fontWeight: 800, color: "#584c35" }}>
-                    {humanBuildingAssetLabel(asset.label)}
+                    {prefab.assetId ?? asset.id ?? "custom prefab"}
                   </div>
                 )}
               </div>

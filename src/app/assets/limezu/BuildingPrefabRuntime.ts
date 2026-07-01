@@ -44,6 +44,11 @@ function primaryEntrance(prefab: Pick<BuildingCatalogPrefab, "entrance" | "entra
 
 let cachedPrefabs: BuildingPrefabLibrary = {};
 let cachedDeletedPrefabIds: string[] = [];
+let cachedCatalogPrefabs: BuildingPrefabLibrary | undefined;
+let cachedVisiblePrefabs: BuildingPrefabLibrary | undefined;
+let cachedCombinedPrefabs: BuildingPrefabLibrary | undefined;
+let cachedPrefabStorageSource = "";
+let cachedDeletedPrefabStorageSource = "";
 let selectedPrefabId = "";
 
 export function firstAssetIdFromPrefab(prefab: Pick<BuildingCatalogPrefab, "tiles">) {
@@ -107,11 +112,14 @@ function toRuntimePrefab(prefab: BuildingCatalogPrefab): BuildingPrefab {
 }
 
 function catalogLibrary(): BuildingPrefabLibrary {
+  if (cachedCatalogPrefabs) return cachedCatalogPrefabs;
+
   const catalog = BUILDING_PREFAB_CATALOG as readonly BuildingCatalogPrefab[];
 
-  return Object.fromEntries(
+  cachedCatalogPrefabs = Object.fromEntries(
     catalog.map(prefab => [prefab.id, toRuntimePrefab(prefab)]),
   ) as BuildingPrefabLibrary;
+  return cachedCatalogPrefabs;
 }
 
 function stripRuntimeFields(prefab: BuildingPrefab): BuildingCatalogPrefab {
@@ -131,10 +139,19 @@ export function readBuildingPrefabs(): BuildingPrefabLibrary {
     };
   }
 
+  const prefabStorageSource = window.localStorage.getItem(PREFAB_STORAGE_KEY) ?? "{}";
+  const deletedPrefabStorageSource = window.localStorage.getItem(DELETED_PREFAB_STORAGE_KEY) ?? "[]";
+
+  if (
+    cachedCombinedPrefabs &&
+    prefabStorageSource === cachedPrefabStorageSource &&
+    deletedPrefabStorageSource === cachedDeletedPrefabStorageSource
+  ) {
+    return cachedCombinedPrefabs;
+  }
+
   try {
-    cachedPrefabs = JSON.parse(
-      window.localStorage.getItem(PREFAB_STORAGE_KEY) ?? "{}",
-    ) as BuildingPrefabLibrary;
+    cachedPrefabs = JSON.parse(prefabStorageSource) as BuildingPrefabLibrary;
   } catch {
     cachedPrefabs = {};
   }
@@ -155,22 +172,23 @@ export function readBuildingPrefabs(): BuildingPrefabLibrary {
   }
 
   try {
-    cachedDeletedPrefabIds = JSON.parse(
-      window.localStorage.getItem(DELETED_PREFAB_STORAGE_KEY) ?? "[]",
-    ) as string[];
+    cachedDeletedPrefabIds = JSON.parse(deletedPrefabStorageSource) as string[];
   } catch {
     cachedDeletedPrefabIds = [];
   }
 
   const deletedIds = new Set(cachedDeletedPrefabIds);
-  const visibleCatalog = Object.fromEntries(
+  cachedVisiblePrefabs = Object.fromEntries(
     Object.entries(catalogLibrary()).filter(([id]) => !deletedIds.has(id)),
   ) as BuildingPrefabLibrary;
-
-  return {
-    ...visibleCatalog,
+  cachedCombinedPrefabs = {
+    ...cachedVisiblePrefabs,
     ...cachedPrefabs,
   };
+  cachedPrefabStorageSource = window.localStorage.getItem(PREFAB_STORAGE_KEY) ?? "{}";
+  cachedDeletedPrefabStorageSource = deletedPrefabStorageSource;
+
+  return cachedCombinedPrefabs;
 }
 
 export function writeBuildingPrefabs(next: BuildingPrefabLibrary) {
@@ -188,6 +206,10 @@ export function writeBuildingPrefabs(next: BuildingPrefabLibrary) {
   if (typeof window !== "undefined") {
     window.localStorage.setItem(PREFAB_STORAGE_KEY, JSON.stringify(cachedPrefabs));
     window.localStorage.setItem(DELETED_PREFAB_STORAGE_KEY, JSON.stringify(cachedDeletedPrefabIds));
+    cachedCombinedPrefabs = undefined;
+    cachedVisiblePrefabs = undefined;
+    cachedPrefabStorageSource = "";
+    cachedDeletedPrefabStorageSource = "";
     window.dispatchEvent(new CustomEvent("satiria:building-prefabs-changed"));
   }
 }

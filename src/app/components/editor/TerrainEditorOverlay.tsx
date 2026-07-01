@@ -1,13 +1,9 @@
-import { memo, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type Dispatch, type MutableRefObject, type PointerEvent as ReactPointerEvent, type SetStateAction } from "react";
+import { lazy, memo, Suspense, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type Dispatch, type MutableRefObject, type PointerEvent as ReactPointerEvent, type SetStateAction } from "react";
 import type { GameMapId, TownMapId } from "../../../data/maps";
 import type { EditorBuildingAsset, EditorBuildingColor, EditorBuildingKind, EditorNpcAsset } from "../../../data/cityMaps/mapAsset";
 import { GAME_TILE_COLORS } from "../../../data/maps";
 import { objectLabelForId } from "../../../data/objectRegistry";
 import { EditorToolbar } from "./EditorToolbar";
-import { TerrainPalette } from "./terrain/TerrainPalette";
-import { terrainImageForCoord } from "./terrain/TerrainLibrary";
-import { limeZuObjectAssetForCoord } from "./objects/ObjectLibrary";
-import { ObjectPalette } from "./objects/ObjectPalette";
 import { BuildingPalette } from "./buildings/BuildingPalette";
 import { NpcPalette } from "./npcs/NpcPalette";
 import { ExportPanel } from "./export/ExportPanel";
@@ -15,6 +11,7 @@ import { SelectedInspector } from "./selection/SelectedInspector";
 import { buildingAtCoord } from "./buildings/buildingHelpers";
 import { buildingPrefabForBuilding } from "../../assets/limezu/BuildingPlacementRuntime";
 import { effectiveBuildingPrefabFootprint, selectedBuildingPrefab } from "../../assets/limezu/BuildingPrefabRuntime";
+import { objectImageForCoordFast, terrainImageForCoordFast } from "../../assets/limezu/RuntimePaintMaps";
 import type {
   EditorMode,
   EditorSelection,
@@ -27,12 +24,22 @@ import type {
 
 const PX = { fontFamily: "'Press Start 2P', monospace" } as const;
 const VT = { fontFamily: "'VT323', monospace" } as const;
+const TerrainPalette = lazy(() => import("./terrain/TerrainPalette").then(module => ({ default: module.TerrainPalette })));
+const ObjectPalette = lazy(() => import("./objects/ObjectPalette").then(module => ({ default: module.ObjectPalette })));
 
 const EDITOR_TILE_SIZE = 18;
 const EDITOR_TILE_GAP = 1;
 const EDITOR_ROW_HEIGHT = EDITOR_TILE_SIZE + EDITOR_TILE_GAP;
 const EDITOR_GRID_PADDING = 4;
 const EDITOR_ROW_OVERSCAN = 8;
+const paletteLoadingStyle: CSSProperties = {
+  border: "3px solid #252018",
+  background: "#f4e8b5",
+  color: "#252018",
+  padding: 10,
+  marginBottom: 10,
+  fontWeight: 900,
+};
 
 const BUILDING_KIND_LABEL = {
   house: "House",
@@ -79,7 +86,7 @@ type EditorTileButtonProps = {
   building: EditorBuildingAsset | undefined;
   objectId: string | undefined;
   npc: EditorNpcAsset | undefined;
-  limeZuObject: ReturnType<typeof limeZuObjectAssetForCoord> | undefined;
+  limeZuObjectSrc: string | undefined;
   terrainStyle: CSSProperties | undefined;
   buildingLabel: string | undefined;
   placementPreview: "valid" | "invalid" | undefined;
@@ -98,7 +105,7 @@ const EditorTileButton = memo(function EditorTileButton({
   building,
   objectId,
   npc,
-  limeZuObject,
+  limeZuObjectSrc,
   terrainStyle,
   buildingLabel,
   placementPreview,
@@ -196,12 +203,12 @@ const EditorTileButton = memo(function EditorTileButton({
           {buildingLabel ?? BUILDING_KIND_LABEL[building.kind]}
         </span>
       )}
-      {limeZuObject && (
+      {limeZuObjectSrc && (
         <span
           style={{
             position: "absolute",
             inset: 1,
-            backgroundImage: `url(${limeZuObject.src})`,
+            backgroundImage: `url(${limeZuObjectSrc})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "16px 16px",
             backgroundPosition: "center",
@@ -469,7 +476,7 @@ function TerrainEditorOverlayComponent({
 
     displayRows.forEach((row, y) => {
       row.forEach((tile, x) => {
-        const limeZuImage = terrainImageForCoord(x, y);
+        const limeZuImage = terrainImageForCoordFast(x, y);
         styles.set(`${x},${y}`, limeZuImage
           ? {
               backgroundColor: "#fff8c8",
@@ -489,12 +496,12 @@ function TerrainEditorOverlayComponent({
 
   const limeZuObjectByCoord = useMemo(() => {
     void terrainPreviewVersion;
-    const byCoord = new Map<string, ReturnType<typeof limeZuObjectAssetForCoord>>();
+    const byCoord = new Map<string, string>();
 
     displayRows.forEach((row, y) => {
       row.forEach((_, x) => {
-        const asset = limeZuObjectAssetForCoord(x, y);
-        if (asset) byCoord.set(`${x},${y}`, asset);
+        const src = objectImageForCoordFast(x, y);
+        if (src) byCoord.set(`${x},${y}`, src);
       });
     });
 
@@ -571,10 +578,12 @@ function TerrainEditorOverlayComponent({
             <EditorToolbar editorMode={editorMode} setEditorMode={setEditorMode} />
 
             {editorMode === "terrain" && (
-              <TerrainPalette
-                editorTile={editorTile}
-                setEditorTile={setEditorTile}
-              />
+              <Suspense fallback={<div style={paletteLoadingStyle}>Loading terrain assets...</div>}>
+                <TerrainPalette
+                  editorTile={editorTile}
+                  setEditorTile={setEditorTile}
+                />
+              </Suspense>
             )}
 
             {editorMode === "buildings" && (
@@ -591,12 +600,14 @@ function TerrainEditorOverlayComponent({
             )}
 
             {editorMode === "objects" && (
-              <ObjectPalette
-                objectEditAction={objectEditAction}
-                setObjectEditAction={setObjectEditAction}
-                editorObjectId={editorObjectId}
-                setEditorObjectId={setEditorObjectId}
-              />
+              <Suspense fallback={<div style={paletteLoadingStyle}>Loading object assets...</div>}>
+                <ObjectPalette
+                  objectEditAction={objectEditAction}
+                  setObjectEditAction={setObjectEditAction}
+                  editorObjectId={editorObjectId}
+                  setEditorObjectId={setEditorObjectId}
+                />
+              </Suspense>
             )}
 
             {editorMode === "npcs" && (
@@ -697,7 +708,7 @@ function TerrainEditorOverlayComponent({
                         const building = buildingByCoord.get(coord);
                         const objectId = displayObjects[coord];
                         const npc = npcByCoord.get(coord);
-                        const limeZuObject = limeZuObjectByCoord.get(coord);
+                        const limeZuObjectSrc = limeZuObjectByCoord.get(coord);
                         const buildingLabel = building ? buildingLabelById.get(building.id) : undefined;
 
                         return (
@@ -709,7 +720,7 @@ function TerrainEditorOverlayComponent({
                             building={building}
                             objectId={objectId}
                             npc={npc}
-                            limeZuObject={limeZuObject}
+                            limeZuObjectSrc={limeZuObjectSrc}
                             terrainStyle={terrainPreviewStyleByCoord.get(coord)}
                             buildingLabel={buildingLabel}
                             placementPreview={placementPreviewByCoord.get(coord)}

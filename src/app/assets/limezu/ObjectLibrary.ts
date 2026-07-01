@@ -5,7 +5,7 @@ import {
   type LimeZuCatalogAsset,
 } from "../../components/editor/assets/AssetCatalog";
 
-export type LimeZuObjectPaintEntry = string | { assetId: string; src?: string; width?: number; height?: number };
+export type LimeZuObjectPaintEntry = string | { assetId: string; src?: string; width?: number; height?: number; walkable?: boolean };
 export type LimeZuObjectPaintMap = Record<string, LimeZuObjectPaintEntry>;
 
 const OBJECT_MAP_KEY = "limezu.objectPaint.v1";
@@ -85,6 +85,7 @@ export function paintObjectAt(x: number, y: number, assetId: string) {
       src: asset?.src,
       width: asset?.width,
       height: asset?.height,
+      walkable: objectAssetIsWalkable(assetId),
     },
   });
 }

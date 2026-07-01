@@ -3,8 +3,6 @@ import type { GameMapId } from "../../../../data/maps";
 import type { MovingNpc } from "../../../../data/npcs";
 import type { EditorBuildingAsset } from "../../../../data/cityMaps/mapAsset";
 import type { EditedObjectsByMap, EditedRowsByMap, EditorMode, EditorSelection, ObjectEditAction } from "../hooks/useEditorState";
-import { getSelectedTerrainAssetId, paintTerrainAssetAt } from "./TerrainLibrary";
-import { eraseLimeZuObjectAt, getSelectedLimeZuObjectAssetId, paintLimeZuObjectAt } from "../objects/ObjectLibrary";
 
 const isSelectEditorMode = (mode: EditorMode) => mode === "select";
 
@@ -152,12 +150,19 @@ export function useTerrainPainter({
 
     if (editorModeRef.current === "objects") {
       if (objectEditActionRef.current === "erase") {
-        eraseLimeZuObjectAt(x, y);
+        void import("../objects/ObjectLibrary").then(({ eraseLimeZuObjectAt }) => {
+          eraseLimeZuObjectAt(x, y);
+        });
       } else {
-        const selectedObjectAssetId = getSelectedLimeZuObjectAssetId();
-        if (selectedObjectAssetId) {
-          paintLimeZuObjectAt(x, y, selectedObjectAssetId);
-        }
+        void import("../objects/ObjectLibrary").then(({
+          getSelectedLimeZuObjectAssetId,
+          paintLimeZuObjectAt,
+        }) => {
+          const selectedObjectAssetId = getSelectedLimeZuObjectAssetId();
+          if (selectedObjectAssetId) {
+            paintLimeZuObjectAt(x, y, selectedObjectAssetId);
+          }
+        });
       }
 
       // Keep old object map untouched for compatibility. LimeZu object
@@ -167,10 +172,12 @@ export function useTerrainPainter({
     }
 
     if (editorModeRef.current === "terrain") {
-      const selectedTerrainAssetId = getSelectedTerrainAssetId();
-      if (selectedTerrainAssetId) {
-        paintTerrainAssetAt(x, y, selectedTerrainAssetId);
-      }
+      void import("./TerrainLibrary").then(({ getSelectedTerrainAssetId, paintTerrainAssetAt }) => {
+        const selectedTerrainAssetId = getSelectedTerrainAssetId();
+        if (selectedTerrainAssetId) {
+          paintTerrainAssetAt(x, y, selectedTerrainAssetId);
+        }
+      });
 
       // Keep the underlying map compatible with the old one-character terrain system.
       // Direct LimeZu terrain is stored separately per coordinate.
