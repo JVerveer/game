@@ -183,16 +183,22 @@ function RuntimeBuildingPrefabSprite({
 
   if (!prefab) return null;
 
-  const footprint = effectiveBuildingPrefabFootprint(prefab);
-  const scaleX = (building.w * TILE_SIZE) / Math.max(1, footprint.width);
-  const scaleY = (building.h * TILE_SIZE) / Math.max(1, footprint.height);
   const visibleTiles = prefab.tiles
     .filter((tile) => tile.layer !== "collision")
-    .filter((tile) => tile.src && tile.x >= footprint.minX && tile.x <= footprint.maxX && tile.y >= footprint.minY && tile.y <= footprint.maxY)
+    .filter((tile) => tile.src)
     .sort((a, b) => {
       const layerOrder = (layer: string) => (layer === "base" ? 0 : layer === "decor" ? 1 : 2);
       return layerOrder(a.layer) - layerOrder(b.layer) || a.y - b.y || a.x - b.x;
     });
+  const footprint = effectiveBuildingPrefabFootprint(prefab);
+  const occupiedColumns = Array.from(new Set(visibleTiles.map((tile) => tile.x))).sort((a, b) => a - b);
+  const occupiedRows = Array.from(new Set(visibleTiles.map((tile) => tile.y))).sort((a, b) => a - b);
+  const columnIndex = new Map(occupiedColumns.map((x, index) => [x, index]));
+  const rowIndex = new Map(occupiedRows.map((y, index) => [y, index]));
+  const renderWidth = Math.max(1, occupiedColumns.length || footprint.width);
+  const renderHeight = Math.max(1, occupiedRows.length || footprint.height);
+  const scaleX = (building.w * TILE_SIZE) / renderWidth;
+  const scaleY = (building.h * TILE_SIZE) / renderHeight;
 
   return (
     <div
@@ -205,13 +211,14 @@ function RuntimeBuildingPrefabSprite({
       }}
     >
       {visibleTiles
+        .filter((tile) => tile.x >= footprint.minX && tile.x <= footprint.maxX && tile.y >= footprint.minY && tile.y <= footprint.maxY)
         .map((tile, index) => (
           <i
             key={`${tile.layer}-${tile.x}-${tile.y}-${index}`}
             style={{
               position: "absolute",
-              left: (tile.x - footprint.minX) * scaleX,
-              top: (tile.y - footprint.minY) * scaleY,
+              left: (columnIndex.get(tile.x) ?? tile.x - footprint.minX) * scaleX,
+              top: (rowIndex.get(tile.y) ?? tile.y - footprint.minY) * scaleY,
               width: scaleX,
               height: scaleY,
               backgroundImage: `url(${tile.src})`,
