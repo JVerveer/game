@@ -13,7 +13,7 @@ const metadataPath = path.join(root, "src/app/components/editor/assets/AssetMeta
 const tileSize = 48;
 const gridSize = 16;
 const firstSet = 1;
-const lastSet = 40;
+const lastSet = 68;
 
 function readExportedValue(filePath, exportName, closeToken) {
   const source = fs.readFileSync(filePath, "utf8");
@@ -56,17 +56,19 @@ function ensureTileImage(setNumber, row, col) {
 
   const filename = `building_done_buildingset${setNumber}_${rowCol(row)}_${rowCol(col)}.png`;
   const outputPath = path.join(publicDir, filename);
-  execFileSync("sips", [
-    "--cropToHeightWidth",
-    String(tileSize),
-    String(tileSize),
-    "--cropOffset",
-    String(row * tileSize),
-    String(col * tileSize),
-    inputPath,
-    "--out",
-    outputPath,
-  ], { stdio: "ignore" });
+  if (!fs.existsSync(outputPath)) {
+    execFileSync("sips", [
+      "--cropToHeightWidth",
+      String(tileSize),
+      String(tileSize),
+      "--cropOffset",
+      String(row * tileSize),
+      String(col * tileSize),
+      inputPath,
+      "--out",
+      outputPath,
+    ], { stdio: "ignore" });
+  }
 
   return {
     filename,

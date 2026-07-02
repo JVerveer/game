@@ -31342,5 +31342,21509 @@ export const LIMEZU_ASSET_METADATA = {
   },
   "asset_buildingset40_15_15": {
     "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset41_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset42_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset43_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset44_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset45_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset46_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset47_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset48_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset49_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset50_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset51_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset52_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset53_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset54_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset55_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset56_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset57_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset58_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset59_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset60_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset61_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset62_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset63_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset64_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset65_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset66_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset67_15_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_00_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_00_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_00_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_00_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_00_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_00_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_00_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_00_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_00_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_00_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_00_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_00_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_00_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_00_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_00_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_00_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_01_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_01_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_01_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_01_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_01_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_01_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_01_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_01_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_01_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_01_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_01_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_01_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_01_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_01_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_01_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_01_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_02_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_02_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_02_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_02_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_02_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_02_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_02_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_02_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_02_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_02_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_02_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_02_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_02_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_02_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_02_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_02_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_03_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_03_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_03_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_03_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_03_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_03_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_03_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_03_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_03_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_03_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_03_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_03_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_03_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_03_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_03_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_03_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_04_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_04_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_04_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_04_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_04_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_04_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_04_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_04_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_04_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_04_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_04_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_04_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_04_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_04_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_04_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_04_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_05_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_05_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_05_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_05_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_05_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_05_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_05_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_05_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_05_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_05_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_05_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_05_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_05_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_05_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_05_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_05_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_06_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_06_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_06_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_06_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_06_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_06_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_06_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_06_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_06_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_06_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_06_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_06_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_06_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_06_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_06_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_06_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_07_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_07_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_07_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_07_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_07_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_07_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_07_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_07_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_07_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_07_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_07_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_07_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_07_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_07_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_07_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_07_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_08_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_08_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_08_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_08_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_08_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_08_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_08_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_08_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_08_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_08_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_08_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_08_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_08_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_08_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_08_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_08_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_09_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_09_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_09_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_09_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_09_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_09_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_09_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_09_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_09_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_09_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_09_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_09_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_09_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_09_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_09_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_09_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_10_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_10_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_10_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_10_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_10_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_10_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_10_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_10_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_10_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_10_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_10_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_10_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_10_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_10_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_10_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_10_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_11_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_11_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_11_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_11_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_11_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_11_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_11_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_11_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_11_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_11_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_11_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_11_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_11_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_11_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_11_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_11_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_12_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_12_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_12_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_12_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_12_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_12_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_12_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_12_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_12_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_12_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_12_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_12_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_12_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_12_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_12_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_12_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_13_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_13_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_13_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_13_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_13_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_13_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_13_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_13_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_13_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_13_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_13_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_13_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_13_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_13_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_13_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_13_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_14_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_14_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_14_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_14_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_14_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_14_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_14_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_14_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_14_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_14_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_14_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_14_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_14_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_14_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_14_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_14_15": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_15_00": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_15_01": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_15_02": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_15_03": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_15_04": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_15_05": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_15_06": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_15_07": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_15_08": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_15_09": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_15_10": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_15_11": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_15_12": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_15_13": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_15_14": {
+    "buildingPlacement": "outside"
+  },
+  "asset_buildingset68_15_15": {
+    "buildingPlacement": "outside"
   }
 } as const satisfies LimeZuAssetMetadata;
